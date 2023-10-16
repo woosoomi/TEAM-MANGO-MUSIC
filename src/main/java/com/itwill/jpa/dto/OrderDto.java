@@ -1,7 +1,5 @@
 package com.itwill.jpa.dto;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,8 +17,6 @@ public class OrderDto {
 	
 	private String orderaddress;
 	
-	private Long orderprice;
-	
-	private Date orderdate;	
+	private Long orderprice;	
 	
 }
