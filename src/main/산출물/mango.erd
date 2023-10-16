@@ -80,8 +80,13 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
+<<<<<<< HEAD
                     <x>300</x>
                     <y>241</y>
+=======
+                    <x>422</x>
+                    <y>508</y>
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -108,8 +113,13 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
+<<<<<<< HEAD
                           <x>626</x>
                           <y>450</y>
+=======
+                          <x>666</x>
+                          <y>565</y>
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -389,8 +399,13 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
+<<<<<<< HEAD
                           <x>521</x>
                           <y>671</y>
+=======
+                          <x>466</x>
+                          <y>672</y>
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -526,8 +541,13 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
+<<<<<<< HEAD
                           <x>206</x>
                           <y>660</y>
+=======
+                          <x>266</x>
+                          <y>667</y>
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -663,8 +683,13 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
+<<<<<<< HEAD
                           <x>29</x>
                           <y>483</y>
+=======
+                          <x>8</x>
+                          <y>634</y>
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
