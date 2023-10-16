@@ -80,8 +80,8 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
-                    <x>429</x>
-                    <y>244</y>
+                    <x>422</x>
+                    <y>508</y>
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -108,8 +108,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>619</x>
-                          <y>399</y>
+                          <x>666</x>
+                          <y>565</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -281,8 +281,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>490</x>
-                          <y>601</y>
+                          <x>466</x>
+                          <y>672</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -418,8 +418,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>232</x>
-                          <y>625</y>
+                          <x>266</x>
+                          <y>667</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -555,8 +555,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>37</x>
-                          <y>457</y>
+                          <x>8</x>
+                          <y>634</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
