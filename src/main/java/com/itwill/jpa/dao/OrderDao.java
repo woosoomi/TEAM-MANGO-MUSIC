@@ -1,4 +1,4 @@
-package com.itwill.dao;
+package com.itwill.jpa.dao;
 
 public class OrderDao {
 

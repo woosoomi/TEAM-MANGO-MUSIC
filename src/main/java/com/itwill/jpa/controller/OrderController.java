@@ -1,4 +1,4 @@
-package com.itwill.controller;
+package com.itwill.jpa.controller;
 
 public class OrderController {
 
