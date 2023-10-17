@@ -1,4 +1,4 @@
-package com.itwill.User;
+package com.itwill.jpa.dto.user;
 
 /*
  *  사용자관리를 위하여 필요한 도메인클래스(VO,DTO)
