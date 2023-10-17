@@ -1,11 +1,13 @@
 package com.itwill.jpa.entity.order;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//데이터베이스에 들어갈 중요한 데이터를 포함한 객체
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,6 +39,8 @@ public class Order {
 	private LocalDateTime updatedAt;
 
 	private String userid;
+	
+	private List<OrderItemDto> orderItems;
 
 	public static Order toEntity(OrderDto dto) {
 
