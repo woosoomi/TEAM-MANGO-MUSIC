@@ -17,11 +17,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-
-public class category {
-	@Entity
-	@Getter @Setter
-	public class Category {
+@Entity
+@Getter @Setter
+public class Category {
 
 	    @Id @GeneratedValue
 	    @Column(name = "categoryId")
@@ -30,9 +28,9 @@ public class category {
 	    private String name;
 
 	    @ManyToMany
-	    @JoinTable(name = "category_item",
-	            joinColumns = @JoinColumn(name = "category_id"),
-	            inverseJoinColumns = @JoinColumn(name = "item_id"))
+	    @JoinTable(name = "categoryItem",
+	            joinColumns = @JoinColumn(name = "categoryId"),
+	            inverseJoinColumns = @JoinColumn(name = "productId"))
 	    private List<Item> items= new ArrayList();
 
 	    @ManyToOne(fetch = FetchType.LAZY)
@@ -48,4 +46,4 @@ public class category {
 	        child.setParent(this);
 	    }
 	}
-}
+
