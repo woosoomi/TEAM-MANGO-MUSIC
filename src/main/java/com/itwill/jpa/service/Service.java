@@ -1,5 +1,5 @@
 package com.itwill.jpa.service;
 
-public interface OrderItemService {
+public class Service {
 
 }

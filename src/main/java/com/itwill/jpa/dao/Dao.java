@@ -1,5 +1,5 @@
 package com.itwill.jpa.dao;
 
-public interface OrderItemDao {
+public class Dao {
 
 }
