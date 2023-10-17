@@ -5,7 +5,7 @@ package com.itwill.jpa.dto.user;
  *  USERINFO 테이블의 각컬럼에해당하는 멤버를 가지고있다
  */
 
-public class User {
+public class UserDto {
 	
 	private String user_id;			// 회원 아이디
 	private String user_pw;			// 회원 비밀번호
@@ -17,12 +17,12 @@ public class User {
 	private String user_gender;		// 회원 성별
 	
 
-	public User() {
+	public UserDto() {
 		
 	}
 
 
-	public User(String user_id, String user_pw, String user_name, String user_address, String user_email,
+	public UserDto(String user_id, String user_pw, String user_name, String user_address, String user_email,
 			String user_jumin, String user_phone, String user_gender) {
 		super();
 		this.user_id = user_id;
