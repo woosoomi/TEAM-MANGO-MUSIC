@@ -10,18 +10,18 @@ public class UserServiceImpl implements UserService{
 	
 	// 회원가입
 	@Override
-	public int create(UserDto user_id) throws Exception {
-		if (userDao.existedUser(user_id.getUser_id())) {
+	public int create(UserDto userid) throws Exception {
+		if (userDao.existedUser(userid.getUserid())) {
 			//중복인 경우, exception 처리 만들어야함.
-		}return userDao.create(user_id);
+		}return userDao.create(userid);
 	}
 
 	
 	// 로그인
 	@Override
-	public int login(String user_id, String password) throws Exception {
-		UserDto user = userDao.findUser(user_id);
-		UserDto fUser = new UserDto(user_id, password, "", "", "", "", "", "");
+	public int login(String userid, String password) throws Exception {
+		UserDto user = userDao.findUser(userid);
+		UserDto fUser = new UserDto(userid, password, "", "", "", "", "", "");
 		if (user==null) {
 			
 		}if (user.equals(password)) {
