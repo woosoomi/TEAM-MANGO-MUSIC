@@ -1,8 +1,7 @@
-package com.itwill.jpa.service.vote;
+package com.itwill.jpa.dao.user;
 
 import java.util.List;
 
-import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.user.UserDto;
 
 public class UserServiceImpl implements UserService{

@@ -1,4 +1,6 @@
-package com.itwill.jpa.dao.vote;
+package com.itwill.jpa.service.vote;
+
+import com.itwill.jpa.dao.vote.VoteDao;
 
 public interface VoteService {
 
