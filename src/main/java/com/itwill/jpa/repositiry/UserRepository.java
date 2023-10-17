@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.itwill.jpa.entity.User;
+import com.itwill.jpa.entity.user.User;
 
 public interface UserRepository /* JpaRepository<User, String> */{
 
