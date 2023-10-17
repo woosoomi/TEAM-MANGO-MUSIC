@@ -1,6 +1,5 @@
 package com.itwill.jpa.dto;
 
-public class OrderItemDto {
+public class Dto {
 
-	
 }

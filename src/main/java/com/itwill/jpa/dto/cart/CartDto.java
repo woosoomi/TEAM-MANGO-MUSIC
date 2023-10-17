@@ -1,6 +1,6 @@
 package com.itwill.jpa.dto.cart;
 
-import com.itwill.jpa.dto.OrderDto;
+import com.itwill.jpa.dto.order.OrderDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.itwill.jpa.dao;
+package com.itwill.jpa.dao.order;
 
 public class OrderItemImpl implements OrderItemDao{
 

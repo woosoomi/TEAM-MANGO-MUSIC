@@ -1,4 +1,4 @@
-package com.itwill.jpa.dto;
+package com.itwill.jpa.dto.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
