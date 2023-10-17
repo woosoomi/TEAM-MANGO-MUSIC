@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.repositiry.UserRepository;
+import com.itwill.jpa.repositiry.user.UserRepository;
 
 class UserRepositoryTest {
 	
