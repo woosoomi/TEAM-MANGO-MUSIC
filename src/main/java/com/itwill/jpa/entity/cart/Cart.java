@@ -35,6 +35,6 @@ public class Cart {
     private LocalDateTime updatedAt;
     
     public static Cart toEntity(CartDto dto) {
-    	return Cart.builder().build();
+    	return Cart.builder().userId("test1").build();
     }
 }
