@@ -8,12 +8,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@DiscriminatorValue("goods")
+//@DiscriminatorValue("goods")
 @Getter @Setter
 public class Goods extends Product {
-	private String content;
-	private String reply;
-	private Date date;
-	private String star;
+//	private String content;
+//	private String reply;
+//	private Date date;
+//	private String star;
+//	
+//	private int stock;
 	
 }
