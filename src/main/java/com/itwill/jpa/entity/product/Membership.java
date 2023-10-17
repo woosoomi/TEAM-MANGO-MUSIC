@@ -7,10 +7,12 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@DiscriminatorValue("membership")
-@Getter @Setter
+//@Entity
+//@DiscriminatorValue("membership")
+//@Getter @Setter
 public class Membership extends Product{
-	 private Date startPeriod;
-	 private int periodOfUse;
+	 //private Date startPeriod;
+	 //private int periodOfUse;
+	 
+	 //private User userId;
 }
