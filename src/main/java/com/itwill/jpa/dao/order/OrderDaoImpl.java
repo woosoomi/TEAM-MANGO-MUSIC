@@ -37,14 +37,14 @@ public class OrderDaoImpl implements OrderDao{
 		Order updatedOrder=null;
 		if(findOrderOptional.isPresent()) {
 			Order order = findOrderOptional.get();
-			order.setOrdername(updateOrder.getOrdername());
+			//order.setOrdername(updateOrder.getOrderid());
 			updatedOrder=orderRepository.save(order);
 		}else {
 			throw new Exception("존재하지않는주문입니다.");
 		}
 		return updatedOrder;
 	}
-
+	
 	@Override
 	public void deleteOrder(Long no) throws Exception {
 		Optional<Order> selectedOrderOptional = orderRepository.findById(no); 

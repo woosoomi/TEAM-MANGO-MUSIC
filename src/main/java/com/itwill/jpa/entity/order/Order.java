@@ -2,25 +2,18 @@ package com.itwill.jpa.entity.order;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
+@Table(name = "orders") //클래스 이름이 테이블명과 같지 않기 때문에 해당 어노테이션 추가
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,26 +21,14 @@ import lombok.NoArgsConstructor;
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "order_no")
 	private Long orderid; //PK
 
-	private String ordername;
-
-	private String orderaddress;
-
-	@CreationTimestamp
-	private LocalDateTime createdAt;
-	@UpdateTimestamp
-	private LocalDateTime updatedAt;
-
-	private String userid;
+	private LocalDateTime orderdate;
 	
-	private List<OrderItemDto> orderItems;
+	private String status;
 
-	public static Order toEntity(OrderDto dto) {
+	private String userid; //FK
 
-		return null;
-
-	}
+	private List<OrderItem> orderitems;
 
 }
