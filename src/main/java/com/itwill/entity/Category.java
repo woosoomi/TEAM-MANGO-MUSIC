@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
+import com.itwill.entity.product.Product;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,10 +30,10 @@ public class Category {
 	    private String name;
 
 	    @ManyToMany
-	    @JoinTable(name = "categoryItem",
+	    @JoinTable(name = "categoryProduct",
 	            joinColumns = @JoinColumn(name = "categoryId"),
 	            inverseJoinColumns = @JoinColumn(name = "productId"))
-	    private List<Item> items= new ArrayList();
+	    private List<Product> products= new ArrayList();
 
 	    @ManyToOne(fetch = FetchType.LAZY)
 	    @JoinColumn(name = "parentId")
