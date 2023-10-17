@@ -8,16 +8,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@DiscriminatorValue("music")
+//@DiscriminatorValue("music")
 @Getter @Setter
-public class Music extends Product{
+public class Music extends Product {
 
-	private String movie;
-	private String artist;
-	private String content;
-	private String reply;
-	private String star;
-	private Date date;
-	private Long readCount;
+//	private String movie;
+//	private String artist;
+//	private String content;
+//	private String reply;
+//	private String star;
+//	private Date date;
+//	private Long readCount;
+	
 	
 }
