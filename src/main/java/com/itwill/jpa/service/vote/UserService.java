@@ -1,4 +1,4 @@
-package com.itwill.jpa.dao.user;
+package com.itwill.jpa.service.vote;
 
 import java.util.List;
 
