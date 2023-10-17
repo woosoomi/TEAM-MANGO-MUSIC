@@ -13,9 +13,11 @@ import lombok.Setter;
 public class Music extends Product{
 
 	private String movie;
+	private String artist;
 	private String content;
 	private String reply;
 	private String star;
 	private Date date;
+	private Long readCount;
 	
 }
