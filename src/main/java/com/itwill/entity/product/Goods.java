@@ -10,7 +10,7 @@ import lombok.Setter;
 @Entity
 @DiscriminatorValue("goods")
 @Getter @Setter
-public class Goods {
+public class Goods extends Product {
 	private String content;
 	private String reply;
 	private Date date;
