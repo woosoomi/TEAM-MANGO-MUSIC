@@ -21,31 +21,26 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {	
+public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long orderno;
-	
+	private Long orderid; //PK
+
 	private String ordername;
-	
+
 	private String orderaddress;
-	
-	private Long orderprice;
-	
+
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
-	
+
 	private String userid;
-	
+
 	public static Order toEntity(OrderDto dto) {
-		return Order.builder()
-			        .ordername(dto.getOrdername())
-			        .orderaddress(dto.getOrderaddress())
-			        .orderprice(dto.getOrderprice())
-			        .build();
-		
+
+		return null;
+
 	}
 
 }

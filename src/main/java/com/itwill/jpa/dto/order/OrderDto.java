@@ -1,5 +1,7 @@
 package com.itwill.jpa.dto.order;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,13 +12,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 public class OrderDto {
 
-	private String ordername;
+	private String userid;
+
+	private List<OrderItemDto> orderItems;
 	
-	private String orderaddress;
-	
-	private Long orderprice;	
-	
+
+
 }

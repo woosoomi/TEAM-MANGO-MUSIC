@@ -33,7 +33,7 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public Order updateOrder(Order updateOrder) throws Exception {
 		Optional<Order> findOrderOptional =
-				orderRepository.findById(updateOrder.getOrderno());
+				orderRepository.findById(updateOrder.getOrderid());
 		Order updatedOrder=null;
 		if(findOrderOptional.isPresent()) {
 			Order order = findOrderOptional.get();
