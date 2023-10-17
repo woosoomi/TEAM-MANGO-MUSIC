@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	@Id 
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	//@Column(name = "userid")
 	private String userid;			// 회원 아이디
 	
 	@Column(length = 10, nullable = false)
