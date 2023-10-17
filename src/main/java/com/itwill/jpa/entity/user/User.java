@@ -21,6 +21,7 @@ public class User {
 	
 	@Column(length = 10, nullable = false)
 	private String userpw;			// 회원 비밀번호
+	
 	private String username;		// 회원 이름
 	private String userphone;		// 회원 전화번호
 	private String useraddress;	    // 회원 주소
