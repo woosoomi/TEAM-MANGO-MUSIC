@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.repository.UserRepository;
+import com.itwill.jpa.repository.user.UserRepository;
+
 
 class UserRepositoryTest {
 	
