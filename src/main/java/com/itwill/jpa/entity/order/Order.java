@@ -6,7 +6,10 @@ import java.util.List;
 
 import com.itwill.jpa.entity.user.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,13 +34,17 @@ public class Order {
 
 	private LocalDateTime orderdate;
 	
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private OrderStatus status;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user; //FK
 
-	@OneToMany(mappedBy = "Order")
+	@OneToMany(mappedBy = "Order", cascade = CascadeType.ALL)
 	private List<OrderItem> orderitems = new ArrayList<OrderItem>();
 
+	public enum OrderStatus {
+	        상품준비중, 배송중, 배송완료
+	}
 }
