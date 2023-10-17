@@ -1,4 +1,4 @@
-package com.itwill.jpa.repositiry.order;
+package com.itwill.jpa.repository.order;
 
 public interface OrderItemRepository {
 

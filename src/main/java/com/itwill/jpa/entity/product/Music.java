@@ -1,4 +1,4 @@
-package com.itwill.entity.product;
+package com.itwill.jpa.entity.product;
 
 import java.sql.Date;
 
@@ -8,12 +8,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@DiscriminatorValue("goods")
+@DiscriminatorValue("music")
 @Getter @Setter
-public class Goods extends Product {
+public class Music extends Product{
+
+	private String movie;
 	private String content;
 	private String reply;
-	private Date date;
 	private String star;
+	private Date date;
 	
 }

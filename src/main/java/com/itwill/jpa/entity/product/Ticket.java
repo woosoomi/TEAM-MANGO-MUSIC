@@ -1,4 +1,4 @@
-package com.itwill.entity.product;
+package com.itwill.jpa.entity.product;
 
 import java.sql.Date;
 
