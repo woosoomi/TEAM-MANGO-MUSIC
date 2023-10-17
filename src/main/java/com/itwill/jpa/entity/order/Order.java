@@ -45,6 +45,6 @@ public class Order {
 	private List<OrderItem> orderitems = new ArrayList<OrderItem>();
 
 	public enum OrderStatus {
-	        상품준비중, 배송중, 배송완료
+	        결제완료, 주문완료, 주문취소
 	}
 }
