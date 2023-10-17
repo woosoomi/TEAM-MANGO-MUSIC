@@ -1,6 +1,8 @@
-package com.itwill.User;
+package com.itwill.jpa.dao.user;
 
 import java.util.List;
+
+import com.itwill.jpa.dto.user.User;
 
 public interface UserDao {
 

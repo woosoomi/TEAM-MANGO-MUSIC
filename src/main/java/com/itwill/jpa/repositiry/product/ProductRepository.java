@@ -1,10 +1,10 @@
-package com.itwill.repository;
+package com.itwill.jpa.repositiry.product;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.itwill.entity.product.Product;
+import com.itwill.jpa.entity.product.Product;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
