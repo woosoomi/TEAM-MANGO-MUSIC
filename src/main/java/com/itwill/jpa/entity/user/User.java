@@ -2,27 +2,24 @@ package com.itwill.jpa.entity.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 public class User {
 
 	@Id 
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private String userid;			// 회원 아이디
 	
+	@Column(length = 10, nullable = false)
 	private String userpw;			// 회원 비밀번호
 	private String username;		// 회원 이름
 	private String userphone;		// 회원 전화번호
