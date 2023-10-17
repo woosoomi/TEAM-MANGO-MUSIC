@@ -7,122 +7,117 @@ package com.itwill.jpa.dto.user;
 
 public class UserDto {
 	
-	private String user_id;			// 회원 아이디
-	private String user_pw;			// 회원 비밀번호
-	private String user_name;		// 회원 이름
-	private String user_address;	// 회원 주소
-	private String user_email;		// 회원 이메일
-	private String user_jumin;		// 회원 주민번호
-	private String user_phone;		// 회원 전화번호
-	private String user_gender;		// 회원 성별
+	private String userid;			// 회원 아이디
+	private String userpw;			// 회원 비밀번호
+	private String username;		// 회원 이름
+	private String useraddress;	// 회원 주소
+	private String useremail;		// 회원 이메일
+	private String userjumin;		// 회원 주민번호
+	private String userphone;		// 회원 전화번호
+	private String usergender;		// 회원 성별
 	
-
 	public UserDto() {
 		
 	}
 
-
-	public UserDto(String user_id, String user_pw, String user_name, String user_address, String user_email,
-			String user_jumin, String user_phone, String user_gender) {
+	public UserDto(String userid, String userpw, String username, String useraddress, String useremail,
+			String userjumin, String userphone, String usergender) {
 		super();
-		this.user_id = user_id;
-		this.user_pw = user_pw;
-		this.user_name = user_name;
-		this.user_address = user_address;
-		this.user_email = user_email;
-		this.user_jumin = user_jumin;
-		this.user_phone = user_phone;
-		this.user_gender = user_gender;
+		this.userid = userid;
+		this.userpw = userpw;
+		this.username = username;
+		this.useraddress = useraddress;
+		this.useremail = useremail;
+		this.userjumin = userjumin;
+		this.userphone = userphone;
+		this.usergender = usergender;
+	}
+	
+	public String getUserid() {
+		return userid;
 	}
 
 
-	public String getUser_id() {
-		return user_id;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public String getUserpw() {
+		return userpw;
 	}
 
 
-	public String getUser_pw() {
-		return user_pw;
+	public void setUserpw(String userpw) {
+		this.userpw = userpw;
 	}
 
 
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
+	public String getUsername() {
+		return username;
 	}
 
 
-	public String getUser_name() {
-		return user_name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public String getUseraddress() {
+		return useraddress;
 	}
 
 
-	public String getUser_address() {
-		return user_address;
+	public void setUseraddress(String useraddress) {
+		this.useraddress = useraddress;
 	}
 
 
-	public void setUser_address(String user_address) {
-		this.user_address = user_address;
+	public String getUseremail() {
+		return useremail;
 	}
 
 
-	public String getUser_email() {
-		return user_email;
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
 
 
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public String getUserjumin() {
+		return userjumin;
 	}
 
 
-	public String getUser_jumin() {
-		return user_jumin;
+	public void setUserjumin(String userjumin) {
+		this.userjumin = userjumin;
 	}
 
 
-	public void setUser_jumin(String user_jumin) {
-		this.user_jumin = user_jumin;
+	public String getUserphone() {
+		return userphone;
 	}
 
 
-	public String getUser_phone() {
-		return user_phone;
+	public void setUserphone(String userphone) {
+		this.userphone = userphone;
 	}
 
 
-	public void setUser_phone(String user_phone) {
-		this.user_phone = user_phone;
+	public String getUsergender() {
+		return usergender;
 	}
 
 
-	public String getUser_gender() {
-		return user_gender;
+	public void setUsergender(String usergender) {
+		this.usergender = usergender;
 	}
-
-
-	public void setUser_gender(String user_gender) {
-		this.user_gender = user_gender;
-	}
-
 
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_address="
-				+ user_address + ", user_email=" + user_email + ", user_jumin=" + user_jumin + ", user_phone="
-				+ user_phone + ", user_gender=" + user_gender + "]";
+		return "UserDto [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", useraddress="
+				+ useraddress + ", useremail=" + useremail + ", userjumin=" + userjumin + ", userphone=" + userphone
+				+ ", usergender=" + usergender + "]";
 	}
-
 	
 }
 
