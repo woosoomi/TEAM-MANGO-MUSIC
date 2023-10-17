@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.itwill.jpa.entity.user.User;
 
-public interface UserRepository /* JpaRepository<User, String> */{
+public interface UserRepository extends JpaRepository<User, String>{
 
 	List<User> findByUserid(String user_Id);
 
