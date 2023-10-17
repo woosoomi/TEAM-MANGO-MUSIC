@@ -16,4 +16,5 @@ public class Ticket extends Product {
 	private Date date;
 	private String address;
 	
+	private Long readCount;
 }

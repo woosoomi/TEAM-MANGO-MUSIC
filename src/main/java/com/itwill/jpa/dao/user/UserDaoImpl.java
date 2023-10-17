@@ -2,20 +2,20 @@ package com.itwill.jpa.dao.user;
 
 import java.util.List;
 
-import com.itwill.jpa.dto.user.User;
+import com.itwill.jpa.dto.user.UserDto;
 
 public class UserDaoImpl implements UserDao{
 
 	
 	
 	@Override
-	public int create(User user) throws Exception {
+	public int create(UserDto user) throws Exception {
 		
 		return 0;
 	}
 
 	@Override
-	public int update(User user) throws Exception {
+	public int update(UserDto user) throws Exception {
 		
 		return 0;
 	}
@@ -27,13 +27,13 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public User findUser(String user_id) throws Exception {
+	public UserDto findUser(String user_id) throws Exception {
 		
 		return null;
 	}
 
 	@Override
-	public List<User> findUserList() throws Exception {
+	public List<UserDto> findUserList() throws Exception {
 		
 		return null;
 	}

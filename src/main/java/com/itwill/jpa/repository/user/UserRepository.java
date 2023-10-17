@@ -1,4 +1,4 @@
-package com.itwill.jpa.repository;
+package com.itwill.jpa.repository.user;
 
 import java.util.List;
 
