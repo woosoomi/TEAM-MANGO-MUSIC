@@ -32,6 +32,6 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product findOne(Long itemId) { return productRepository.findOneById(itemId);
+    public Product findOne(Long productId) { return productRepository.findOneById(productId);
     }
 }

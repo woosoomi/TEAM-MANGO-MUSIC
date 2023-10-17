@@ -20,10 +20,13 @@ import lombok.Setter;
 @DiscriminatorColumn(name = "dtype")
 @Getter @Setter
 public class Product {
-	@Id @GeneratedValue
+	 @Id @GeneratedValue
 	 @Column(name = "productId")
 	 private Long id;
+	 
+	 @Column(nullable = false)
 	 private String name;
+	 @Column(nullable = false)
 	 private int price;
 	 @ManyToMany(mappedBy = "products")
 	 private List<Category> categories = new ArrayList<Category>();
