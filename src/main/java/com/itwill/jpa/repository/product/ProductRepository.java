@@ -1,4 +1,4 @@
-package com.itwill.jpa.repositiry.product;
+package com.itwill.jpa.repository.product;
 
 import java.util.List;
 
