@@ -17,11 +17,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-
-public class category {
-	@Entity
-	@Getter @Setter
-	public class Category {
+@Entity
+@Getter @Setter
+public class Category {
 
 	    @Id @GeneratedValue
 	    @Column(name = "categoryId")
@@ -48,4 +46,4 @@ public class category {
 	        child.setParent(this);
 	    }
 	}
-}
+
