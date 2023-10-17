@@ -1,8 +1,8 @@
-package com.itwill.jpa.dao;
+package com.itwill.jpa.dao.order;
 
 import java.util.List;
 
-import com.itwill.jpa.entity.Order;
+import com.itwill.jpa.entity.order.Order;
 
 public interface OrderDao {
 
