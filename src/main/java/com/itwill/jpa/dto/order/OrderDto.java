@@ -23,7 +23,7 @@ public class OrderDto {
 
 	private LocalDateTime orderdate;
 
-	private String status;
+	private String orderstatus;
 
 	private List<OrderItem> orderItems; // 주문한 아이템 정보들(수량, 가격등)
 
