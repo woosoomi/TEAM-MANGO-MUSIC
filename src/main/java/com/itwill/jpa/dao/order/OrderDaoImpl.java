@@ -1,12 +1,12 @@
-package com.itwill.jpa.dao;
+package com.itwill.jpa.dao.order;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.itwill.jpa.entity.Order;
-import com.itwill.jpa.repositiry.OrderRepository;
+import com.itwill.jpa.entity.order.Order;
+import com.itwill.jpa.repositiry.order.OrderRepository;
 
 public class OrderDaoImpl implements OrderDao{
 	

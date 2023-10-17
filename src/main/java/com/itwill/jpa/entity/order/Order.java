@@ -1,11 +1,11 @@
-package com.itwill.jpa.entity;
+package com.itwill.jpa.entity.order;
 
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.itwill.jpa.dto.OrderDto;
+import com.itwill.jpa.dto.order.OrderDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
