@@ -15,15 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderItemDto {
 
-	private Long oiqty;
+	private Long oiQty;
 	
-	private String name;
-	private int price;
-	private String img;
+	private String productName;
+	private int productPrice;
+	private String productImg;
 
 	public OrderItemDto(OrderItem orderItem) {
-		this.name = orderItem.getProduct().getName();
-		this.price = orderItem.getProduct().getPrice();
+		this.productName = orderItem.getProduct().getProductName();
+		this.productPrice = orderItem.getProduct().getProductPrice();
 //		this.img = orderItem.getProduct().getImg();
 	}
 	

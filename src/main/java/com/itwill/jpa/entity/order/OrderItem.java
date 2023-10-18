@@ -26,8 +26,8 @@ import lombok.NoArgsConstructor;
 public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long oino;
-	private Long oiqty;
+	private Long oiNo;
+	private Long oiQty;
 
 	@ManyToOne
 	@JoinColumn(name = "order_id")
@@ -39,8 +39,23 @@ public class OrderItem {
 	
 	public static OrderItem toEntity(OrderItemDto orderItemDto) {
 		return OrderItem.builder()
-				.oiqty(orderItemDto.getOiqty())
+				.oiQty(orderItemDto.getOiQty())
 				.build();
 				
 	}
+	   /*
+	   public double calculateTotalPrice() {
+	    double totalPrice = 0.0;
+	    
+	    for (OrderItem item : orderItems) {
+	        if (item.getProduct() != null) {
+	            totalPrice += item.getProduct().getPrice() * item.getQuantity();
+	        } else {
+	            throw new IllegalStateException("주문 하실 상품이 없습니다.");
+	        }
+	    }
+	    
+	    return totalPrice;
+	}
+	*/
 }
