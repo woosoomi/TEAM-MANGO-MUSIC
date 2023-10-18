@@ -35,9 +35,9 @@ public class OrderDto {
 
 	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정(초기화)
 	public OrderDto(Order order) {
-		this.username = order.getUser().getUsername();
-		this.userphone = order.getUser().getUserphone();
-		this.useraddress = order.getUser().getUseraddress();
+		this.username = order.getUser().getUserName();
+		this.userphone = order.getUser().getUserPhone();
+		this.useraddress = order.getUser().getUserAddress();
 		this.orderdate = order.getOrderdate();
 		this.orderstatus = order.getOrderstatus();
 		//OrderItem 엔티티 사용함 추후에 아래방법으로 사용
