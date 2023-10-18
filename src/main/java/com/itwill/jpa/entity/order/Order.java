@@ -61,6 +61,7 @@ public class Order {
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	
+	
 	/*메서드*/
 	
 	
