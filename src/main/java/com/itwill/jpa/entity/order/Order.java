@@ -18,12 +18,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "orders") //클래스 이름이 테이블명과 같지 않기 때문에 해당 어노테이션 추가
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 //데이터베이스에 들어갈 중요한 데이터를 포함한 객체
@@ -35,7 +37,7 @@ public class Order {
 	private LocalDateTime orderdate;
 	
 	@Enumerated(EnumType.STRING)
-	private OrderStatus status;
+	private OrderStatus orderstatus;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
