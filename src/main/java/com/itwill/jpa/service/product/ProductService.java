@@ -24,8 +24,8 @@ public class ProductService {
     @Transactional
     public void updateProduct(Long productId, String name, int price) {
         Product findProduct = productRepository.findOneById(productId);
-        findProduct.setName(name);
-        findProduct.setPrice(price);
+  //      findProduct.setName(name);
+  //      findProduct.setPrice(price);
     }
 
     public List<Product> findProduct() {
