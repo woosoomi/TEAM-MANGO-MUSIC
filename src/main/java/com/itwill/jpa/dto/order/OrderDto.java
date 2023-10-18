@@ -21,29 +21,29 @@ import lombok.NoArgsConstructor;
 //웹에서 고객에게 보여주기 위한 정보를 담은 객체(Dto)
 public class OrderDto {
 
-	private String username;
+	private String userName;
 
-	private String userphone;
+	private String userPhone;
 
-	private String useraddress;
+	private String userAddress;
 
-	private LocalDateTime orderdate;
+	private LocalDateTime orderDate;
 
-	private OrderStatus orderstatus;
+	private OrderStatus orderStatus;
 
-	private List<OrderItem> orderitems; // 주문한 아이템 정보들(수량, 가격등)
+	private List<OrderItem> orderItems; // 주문한 아이템 정보들(수량, 가격등)
 
 	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정(초기화)
 	public OrderDto(Order order) {
-		this.username = order.getUser().getUsername();
-		this.userphone = order.getUser().getUserphone();
-		this.useraddress = order.getUser().getUseraddress();
-		this.orderdate = order.getOrderdate();
-		this.orderstatus = order.getOrderstatus();
+		this.userName = order.getUser().getUsername();
+		this.userPhone = order.getUser().getUserphone();
+		this.userAddress = order.getUser().getUseraddress();
+		this.orderDate = order.getOrderDate();
+		this.orderStatus = order.getOrderStatus();
 		//OrderItem 엔티티 사용함 추후에 아래방법으로 사용
-		this.orderitems = order.getOrderitems();
+		this.orderItems = order.getOrderItems();
 		// 주문 아이템(OrderItem)엔티티를 OrderItemDto로 변환하여 리스트로 저장
-		//this.orderitems = order.getOrderitems().stream().map(OrderItemDto::fromOrderItem).collect(Collectors.toList());
+		//this.orderItems = order.getOrderItems().stream().map(OrderItemDto::fromOrderItem).collect(Collectors.toList());
 	}
 		
 }

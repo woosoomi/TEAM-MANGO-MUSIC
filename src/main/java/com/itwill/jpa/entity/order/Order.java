@@ -42,14 +42,14 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	//PK 주문 번호
-	private Long orderid;
+	private Long orderId;
 	
 	//주문 날짜시간
-	private LocalDateTime orderdate;
+	private LocalDateTime orderDate;
 	
 	//주문 진행상황
 	@Enumerated(EnumType.STRING)
-	private OrderStatus orderstatus;
+	private OrderStatus orderStatus;
 	
 	//FK 주문을 넣은 유저정보(다대일 관계 매핑)
 	@ManyToOne
@@ -58,7 +58,7 @@ public class Order {
 	
 	//주문 제품들(일대다 관계 매핑), 매핑된 엔티티 끼리 변경된 정보를 전부 공유하도록 설정
 	@OneToMany(mappedBy = "Order", cascade = CascadeType.ALL)
-	private List<OrderItem> orderitems = new ArrayList<OrderItem>();
+	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	
 	/*메서드*/
@@ -72,9 +72,9 @@ public class Order {
 	//Dto -> entity 변환해주는 매서드
 	public static Order toEntity(OrderDto dto) {
 		return Order.builder()
-					.orderdate(dto.getOrderdate())
-					.orderstatus(dto.getOrderstatus())
-					.orderitems(dto.getOrderitems())
+					.orderDate(dto.getOrderDate())
+					.orderStatus(dto.getOrderStatus())
+					.orderItems(dto.getOrderItems())
 					.build();	
 	}
 
