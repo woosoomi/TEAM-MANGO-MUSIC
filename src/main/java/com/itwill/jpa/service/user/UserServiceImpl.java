@@ -49,9 +49,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int countbyId(String userId) throws Exception {
+	public boolean existsById(String userId) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
 	}
 
 	@Override
@@ -65,5 +65,7 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

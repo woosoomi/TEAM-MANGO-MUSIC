@@ -16,7 +16,7 @@ public interface UserDao {
 
     List<User> findUserList();
     
-    int countbyId(String userId); //중복된 아이디
+    boolean existsById(String userId); //중복된 아이디
     
     User findUserIdByEmail(String userEmail); // 이메일로 아이디 찾기
 

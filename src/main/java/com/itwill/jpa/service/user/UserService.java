@@ -24,7 +24,7 @@ public interface UserService {
 		List<User> findUserList() throws Exception;
 		
 		// 아이디중복체크
-		int countbyId(String userId) throws Exception;
+		boolean existsById(String userId) throws Exception;
 		
 		//이메일로 아이디 찾기
 		User findUserIdByEmail(String userEmail) throws Exception;

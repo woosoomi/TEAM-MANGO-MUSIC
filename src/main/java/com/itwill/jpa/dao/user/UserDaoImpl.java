@@ -16,7 +16,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User createUser(User user) {
-		// TODO Auto-generated method stub
+		//userRepository.fin
 		return null;
 	}
 
@@ -45,9 +45,9 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public int countbyId(String userId) {
+	public boolean existsById(String userId) {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
 	}
 
 	@Override
@@ -61,6 +61,8 @@ public class UserDaoImpl implements UserDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	
 }
 
