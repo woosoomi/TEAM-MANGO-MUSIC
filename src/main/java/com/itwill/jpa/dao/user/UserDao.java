@@ -18,9 +18,9 @@ public interface UserDao {
     
     boolean existsById(String userId); //중복된 아이디
     
-    User findUserIdByUserEmail(String userEmail); // 이메일로 아이디 찾기
+    String findUserIdByUserEmail(String userEmail); // 이메일로 아이디 찾기
 
-    User findUserPwByUserPhone(String userPhone); // 번호로 비밀번호 찾기
+    String findUserPwByUserPhone(String userPhone); // 번호로 비밀번호 찾기
     
     
     

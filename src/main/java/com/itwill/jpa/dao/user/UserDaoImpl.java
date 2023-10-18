@@ -16,54 +16,54 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User createUser(User user) {
-		//userRepository
-		return null;
+		User createdUser = userRepository.save(user);
+		return createdUser;
 	}
 
 	@Override
 	public User updateUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		User updatedUser = userRepository.save(user);
+		return updatedUser;
 	}
 
 	@Override
 	public void deleteUser(String userId) {
-		// TODO Auto-generated method stub
-		
+		userRepository.deleteById(userId);
 	}
 
 	@Override
 	public User findUser(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		User findedUser = userRepository.findById(userId).get();
+		return findedUser;
 	}
 
 	@Override
 	public List<User> findUserList() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findAll();
 	}
 
 	@Override
 	public boolean existsById(String userId) {
-		// TODO Auto-generated method stub
-		return false;
+		return userRepository.existsById(userId);
 	}
 
 	@Override
-	public User findUserIdByUserEmail(String userEmail) {
-		// TODO Auto-generated method stub
-		return null;
+	public String findUserIdByUserEmail(String userEmail) {
+		String findId = userRepository.findUserIdByUserEmail(userEmail);
+		return findId;
 	}
 
 	@Override
-	public User findUserPwByUserPhone(String userPhone) {
-		// TODO Auto-generated method stub
-		return null;
+	public String findUserPwByUserPhone(String userPhone) {
+		String findPw = userRepository.findUserPwByUserPhone(userPhone);
+		return findPw;
 	}
 
-	
-	
 }
+
+
+
+
+
 
 
