@@ -10,7 +10,7 @@ public interface OrderDao {
 		
 		Order selectOrder(Long no);
 		
-		Order updateOrder(Order order) throws Exception;
+		//Order updateOrder(Order order) throws Exception;
 		
 		void deleteOrder(Long no) throws Exception;
 		
