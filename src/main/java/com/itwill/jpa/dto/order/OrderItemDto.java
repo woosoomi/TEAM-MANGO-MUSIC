@@ -8,6 +8,6 @@ public class OrderItemDto {
 	private Long oino;
 	private Long oiqty;
 	
-	private String
+//	private String
 	
 }
