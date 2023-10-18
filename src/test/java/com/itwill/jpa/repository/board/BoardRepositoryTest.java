@@ -26,14 +26,14 @@ class BoardRepositoryTest extends TeamProjectMangoApplication{
 	@Rollback(false)
 	void saveBoardWithUser() {
 		User user= User.builder()
-					   .userid("asd")
-					   .userpw("1111")
-					   .username("한영")
-					   .useraddress("s")
-					   .useremail("s")
-					   .userjumin("aaaa")
-					   .userphone("1111111111")
-					   .usergender("남")
+					   .userId("asd")
+					   .userPw("1111")
+					   .userName("한영")
+					   .userAddress("s")
+					   .userEmail("s")
+					   .userJumin("aaaa")
+					   .userPhone("1111111111")
+					   .userGender("남")
 					   .build();
 		
 		Board board=Board.builder()
