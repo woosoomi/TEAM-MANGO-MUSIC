@@ -30,11 +30,11 @@ public class OrderItem {
 	private Long oiQty;
 
 	@ManyToOne
-	@JoinColumn(name = "order_id")
+	@JoinColumn(name = "order_no")
 	private Order order;
 	
 	@ManyToOne
-	@JoinColumn(name = "product_id")
+	@JoinColumn(name = "product_no")
 	private Product product;
 	
 	public static OrderItem toEntity(OrderItemDto orderItemDto) {
