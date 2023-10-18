@@ -4,14 +4,28 @@ import com.itwill.jpa.entity.order.OrderItem;
 
 import com.itwill.jpa.entity.product.Product;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderItemDto {
 
-	private Long oino;
 	private Long oiqty;
 	
-//	private String
+	private String name;
+	private int price;
+	private String img;
 
-	
+	public OrderItemDto(OrderItem orderItem) {
+		this.name = orderItem.getProduct().getName();
+		this.price = orderItem.getProduct().getPrice();
+//		this.img = orderItem.getProduct().getImg();
+	}
 	
 	
 	
