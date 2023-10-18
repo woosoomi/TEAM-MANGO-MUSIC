@@ -47,9 +47,9 @@ public class OrderDto {
 	//Dto -> Entity
 	public Order toEntity() {
 		return Order.builder()
-					.orderdate(orderdate)
-					.orderstatus(orderstatus)
-					.orderitems(orderitems)
+					.orderdate(this.orderdate)
+					.orderstatus(this.orderstatus)
+					.orderitems(this.orderitems)
 					.build();
 				
 	}
