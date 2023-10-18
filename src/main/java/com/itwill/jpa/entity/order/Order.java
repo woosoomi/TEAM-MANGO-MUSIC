@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -22,10 +23,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "orders") //클래스 이름이 테이블명과 같지 않기 때문에 해당 어노테이션 추가
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 //데이터베이스에 들어갈 중요한 데이터를 포함한 객체
 public class Order {
@@ -47,5 +51,13 @@ public class Order {
 
 	public enum OrderStatus {
 	        결제완료, 주문완료, 주문취소
+	}
+	
+	public static Order toEntity(OrderDto dto) {
+		return Order.builder()
+					.orderdate(dto.getOrderdate())
+					.orderstatus(dto.getOrderstatus())
+					.orderitems(dto.getOrderitems())
+					.build();	
 	}
 }

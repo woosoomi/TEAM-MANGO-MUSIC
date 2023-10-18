@@ -32,7 +32,7 @@ public class OrderDto {
 
 	private List<OrderItem> orderitems; // 주문한 아이템 정보들(수량, 가격등)
 
-	//고객 주문 정보의 초기화
+	//고객 주문 정보의 정의(초기화)
 	public OrderDto(Order order) {
 		this.username = order.getUser().getUsername();
 		this.userphone = order.getUser().getUserphone();
@@ -44,17 +44,10 @@ public class OrderDto {
 
 	}
 	
-	//Dto -> Entity
-	public Order toEntity() {
-		return Order.builder()
-					.orderdate(this.orderdate)
-					.orderstatus(this.orderstatus)
-					.orderitems(this.orderitems)
-					.build();
-				
-	}
-	
 }
+	
+
+					
 			
 
 			
