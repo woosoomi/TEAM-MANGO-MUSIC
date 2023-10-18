@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public void removeUser(String userId) {
+	public void deleteUser(String userId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -48,6 +48,18 @@ public class UserDaoImpl implements UserDao{
 	public int countbyId(String userId) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public User findUserIdByEmail(String userEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findUserpasswByPhone(String userPhone) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
