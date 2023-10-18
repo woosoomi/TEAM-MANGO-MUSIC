@@ -19,4 +19,6 @@ public class CartItemDto {
 	private int cartNo;
 	private int cartItemQty;
 	private Product product;
+
+	
 }
