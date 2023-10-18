@@ -21,7 +21,6 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
 @Getter
-@Setter
 public class Product {
 	@Id
 	@GeneratedValue
@@ -39,7 +38,6 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("MUSIC")
 	@Getter
-	@Setter
 	public class Music extends Product {
 		private String movie;
 		private String artist;
@@ -54,7 +52,6 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("GOODS")
 	@Getter
-	@Setter
 	public class Goods extends Product {
 		// private String content;
 		// private String reply;
@@ -67,7 +64,6 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("MUSIC")
 	@Getter
-	@Setter
 	public class Ticket extends Product {
 		private String address;
 		// private String content;
@@ -82,7 +78,6 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("MEMBERSHIP")
 	@Getter
-	@Setter
 	public class Membership extends Product {
 		private Date startPeriod;
 		private int periodOfUse;
