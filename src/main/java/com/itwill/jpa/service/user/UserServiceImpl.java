@@ -55,13 +55,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User findUserIdByEmail(String userEmail) throws Exception {
+	public User findUserIdByUserEmail(String userEmail) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User findUserpasswByPhone(String userPhone) throws Exception {
+	public User findUserPwByUserPhone(String userPhone) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

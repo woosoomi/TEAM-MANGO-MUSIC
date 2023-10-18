@@ -8,8 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import com.itwill.jpa.entity.user.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
+	
+	@Query("SELECT u.userId FROM User u WHERE u.userEmail = :userEmail")
+    String findUserIdByUserEmail(String userEmail);
 
-	User findUserIdByEmail(String userEmail);
+	@Query("SELECT u.userPw FROM User u WHERE u.userPhone = :userPhone")
+    String findUserPwByUserPhone(String userPhone);
+	
+	
 	 
 	 
 	 

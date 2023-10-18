@@ -27,10 +27,10 @@ public interface UserService {
 		boolean existsById(String userId) throws Exception;
 		
 		//이메일로 아이디 찾기
-		User findUserIdByEmail(String userEmail) throws Exception;
+		User findUserIdByUserEmail(String userEmail) throws Exception;
 		
 		// 번호로 비밀번호 찾기
-		User findUserpasswByPhone(String userPhone) throws Exception; 
+		User findUserPwByUserPhone(String userPhone) throws Exception; 
 		
 		
 		

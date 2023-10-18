@@ -16,7 +16,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User createUser(User user) {
-		//userRepository.fin
+		//userRepository
 		return null;
 	}
 
@@ -51,13 +51,13 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public User findUserIdByEmail(String userEmail) {
+	public User findUserIdByUserEmail(String userEmail) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User findUserpasswByPhone(String userPhone) {
+	public User findUserPwByUserPhone(String userPhone) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -65,4 +65,5 @@ public class UserDaoImpl implements UserDao{
 	
 	
 }
+
 
