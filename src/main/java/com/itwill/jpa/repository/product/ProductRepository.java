@@ -16,7 +16,7 @@ public class ProductRepository {
 	private final EntityManager em;
 	
     public void insert(Product product) {
-        if(product.getId() == null) {
+        if(product.getProductId() == null) {
             em.persist(product);
         }else {
             em.merge(product);

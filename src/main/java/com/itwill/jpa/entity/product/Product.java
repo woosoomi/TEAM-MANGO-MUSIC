@@ -24,13 +24,13 @@ import lombok.Setter;
 public class Product {
 	@Id
 	@GeneratedValue
-	@Column(name = "productId")
-	private Long id;
+	@Column(name = "productid")
+	private Long productId;
 
 	@Column(nullable = false)
-	private String name;
+	private String productName;
 	@Column(nullable = false)
-	private int price;
+	private int productPrice;
 	@ManyToMany(mappedBy = "products")
 	private List<Category> categories = new ArrayList<Category>();
 
@@ -39,12 +39,12 @@ public class Product {
 	@DiscriminatorValue("MUSIC")
 	@Getter
 	public class Music extends Product {
-		private String movie;
-		private String artist;
-		private String content;
-		private String reply;
-		private String star;
-		private Date date;
+		private String productMovie;
+		private String productArtist;
+		private String productContent;
+		private String productReply;
+		private String productStar;
+		private Date productDate;
 		private Long readCount;
 	}
 
@@ -57,7 +57,7 @@ public class Product {
 		// private String reply;
 		// private Date date;
 		// private String star;
-		private int stock;
+		private int productStock;
 	}
 
 	/** ticket **/
@@ -65,7 +65,7 @@ public class Product {
 	@DiscriminatorValue("MUSIC")
 	@Getter
 	public class Ticket extends Product {
-		private String address;
+		private String productAddress;
 		// private String content;
 		// private String reply;
 		// private Date date;
