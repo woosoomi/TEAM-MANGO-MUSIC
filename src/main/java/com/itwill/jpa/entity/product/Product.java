@@ -7,6 +7,7 @@ import java.util.Locale.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -20,7 +21,6 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
 @Getter
-@Setter
 public class Product {
 	@Id
 	@GeneratedValue
@@ -36,6 +36,8 @@ public class Product {
 
 	/** music **/
 	@Entity
+	@DiscriminatorValue("MUSIC")
+	@Getter
 	public class Music extends Product {
 		private String movie;
 		private String artist;
@@ -48,6 +50,8 @@ public class Product {
 
 	/** goods **/
 	@Entity
+	@DiscriminatorValue("GOODS")
+	@Getter
 	public class Goods extends Product {
 		// private String content;
 		// private String reply;
@@ -57,6 +61,9 @@ public class Product {
 	}
 
 	/** ticket **/
+	@Entity
+	@DiscriminatorValue("MUSIC")
+	@Getter
 	public class Ticket extends Product {
 		private String address;
 		// private String content;
@@ -69,6 +76,8 @@ public class Product {
 
 	/** membership **/
 	@Entity
+	@DiscriminatorValue("MEMBERSHIP")
+	@Getter
 	public class Membership extends Product {
 		private Date startPeriod;
 		private int periodOfUse;
