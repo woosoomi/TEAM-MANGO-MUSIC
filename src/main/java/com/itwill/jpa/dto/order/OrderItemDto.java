@@ -2,8 +2,30 @@ package com.itwill.jpa.dto.order;
 
 import com.itwill.jpa.entity.order.OrderItem;
 
+import com.itwill.jpa.entity.product.Product;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderItemDto {
+
+	private Long oiQty;
 	
+	private String productName;
+	private int productPrice;
+	private String productImg;
+
+	public OrderItemDto(OrderItem orderItem) {
+		this.productName = orderItem.getProduct().getProductName();
+		this.productPrice = orderItem.getProduct().getProductPrice();
+//		this.img = orderItem.getProduct().getImg();
+	}
 	
 	
 	
@@ -33,5 +55,4 @@ public class OrderItemDto {
     }
     
     */
-	
 }

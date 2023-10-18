@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService{
 	// 회원가입
 	@Override
 	public User createUser(User userid) throws Exception {
-		if (userDao.existedUser(userid.getUserid())) {
+		if (userDao.existedUser(userid.getUserId())) {
 			//중복인 경우, exception 처리 만들어야함.
 		}return userDao.createUser(userid);
 	}

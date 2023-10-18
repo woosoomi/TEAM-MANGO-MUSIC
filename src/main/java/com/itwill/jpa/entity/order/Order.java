@@ -42,7 +42,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	//PK 주문 번호
-	private Long orderId;
+	private Long orderNo;
 	
 	//주문 날짜시간
 	private LocalDateTime orderDate;
