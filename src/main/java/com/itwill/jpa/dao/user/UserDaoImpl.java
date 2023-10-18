@@ -13,39 +13,42 @@ public class UserDaoImpl implements UserDao{
 	
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
-    public User createUser(User user) {
-       
-        return null;
-    }
+	public User createUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public User updateUser(User user) {
-       
-        return null;
-    }
+	@Override
+	public User updateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public void removeUser(String id) {
-    
-    }
+	@Override
+	public void removeUser(String userId) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public User findUser(String id) {
-        
-        return null;
-    }
+	@Override
+	public User findUser(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public List<User> findUserList() {
-       
-    	return null;
-    }
+	@Override
+	public List<User> findUserList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public boolean existedUser(String userid) {
-        
-        return true;
-    }
-
+	@Override
+	public int countbyId(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }
+

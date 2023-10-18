@@ -10,12 +10,12 @@ public interface UserDao {
 
     User updateUser(User user);
 
-    void removeUser(String id);
+    void removeUser(String userId);
 
-    User findUser(String id);
+    User findUser(String userId);
 
     List<User> findUserList();
     
-    boolean existedUser(String userid);
+    int countbyId(String userId);
 
 }

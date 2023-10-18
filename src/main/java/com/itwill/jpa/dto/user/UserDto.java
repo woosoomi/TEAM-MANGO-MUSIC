@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class UserDto {
-	//@Column(name="user_id")
+	
 	private String userId;			// 회원 아이디
 	private String userPw;			// 회원 비밀번호
 	private String userName;		// 회원 이름
