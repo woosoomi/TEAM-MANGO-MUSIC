@@ -41,10 +41,14 @@ public class User {
 	private String userJumin;		// 회원 주민번호
 	private String userGender;		// 회원 성별
 	
-	// user와 board 1대N 관계설정
-	@Builder.Default
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	private List<Board> boards = new ArrayList<>();
+	/*
+	 * // user와 board 1대N 관계설정
+	 * 
+	 * @Builder.Default
+	 * 
+	 * @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
+	 * List<Board> boards = new ArrayList<>();
+	 */
 	
 	/*
 	 * // user와 order 1대N 관계설정
