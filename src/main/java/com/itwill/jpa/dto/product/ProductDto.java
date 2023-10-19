@@ -8,12 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
+@Builder
 public class ProductDto {
 	
 	private Long productNo;

@@ -8,6 +8,7 @@ import com.itwill.jpa.entity.product.Product.Music;
 public interface ProductDao {
 	
 	Product insertProduct(Product product);
+	
 	Product selectProduct(Long no);
 	
 	List<Product> selectList();

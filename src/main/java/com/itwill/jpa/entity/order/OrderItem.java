@@ -13,12 +13,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "order_item")
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,14 +26,15 @@ public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long oiNo;
-	private Long oiQty;
+	
+	private int oiQty;
 
 	/*
 	 * 다대일 관계
 	 */
 	@ManyToOne
 	@JoinColumn(name = "order_no")
-	private Order order = new Order();
+	private Order order;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_no")
