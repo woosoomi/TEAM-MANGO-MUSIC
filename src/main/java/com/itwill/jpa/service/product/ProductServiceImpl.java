@@ -25,14 +25,14 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
     public void saveProduct(Product product) {
-        productDao.insertProduct(null);
+        productDao.insertProduct(product);
     }
 
     // ============================ 음악 내립차순 정렬 ============================//
-	@Override
-	public List<ProductDao> getAllMusicByProductNoDesc() {
-		return productDao.getAllMusicByProductNoDesc();
-	}
+//	@Override
+//	public List<ProductDao> getAllMusicByProductNoDesc() {
+//		return productDao.getAllMusicByProductNoDesc();
+//	}
 	
 //    @Transactional
 //    public void updateProduct(Long productId, String name, int price) {

@@ -28,7 +28,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
-@Getter @Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -21,7 +21,8 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public Product insertProduct(Product product) {
 		// TODO Auto-generated method stub
-		return null;
+		Product insertProduct = productRepository.save(product);
+		return insertProduct;
 	}
 
 	@Override
@@ -41,15 +42,7 @@ public class ProductDaoImpl implements ProductDao{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	private ProductDto convertToDto(Music music) {
-		ProductDto productDto = new ProductDto();
-		productDto.setProductNo(music.getProductNo());
-		productDto.setProductName(music.getProductName());
-		productDto.setReadCount(music.getReadCount());
-		return productDto;
-	}
+	
 
 	@Override
 	public List<ProductDao> getAllMusicByProductNoDesc() {
