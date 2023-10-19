@@ -18,14 +18,12 @@ public class CartItemDaoImpl implements CartItemDao{
 
 	@Override
 	public int cartRowCount(String userId) throws Exception {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteByCartId(Long cartItemId) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteByCartId(Long cartItemId) throws Exception {
+		cartItemRepository.deleteById(cartItemId);
 	}
 
 	@Override
