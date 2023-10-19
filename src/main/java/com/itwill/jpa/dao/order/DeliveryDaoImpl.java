@@ -57,8 +57,8 @@ public class DeliveryDaoImpl implements DeliveryDao {
 
 	@Override
 	public List<Delivery> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return deliveryRepository.findAll();
 	}
 
 }
