@@ -12,11 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderItemDto {
 
-	private Long oiQty;
+	private int oiQty;
 	
 	private String productName;
-	private int productPrice;
+	
 	private String productImage;
+	
+	private int productPrice;
+	
 
 
 	

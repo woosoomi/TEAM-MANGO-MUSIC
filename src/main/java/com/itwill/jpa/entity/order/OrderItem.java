@@ -26,14 +26,15 @@ public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long oiNo;
-	private Long oiQty;
+	
+	private int oiQty;
 
 	/*
 	 * 다대일 관계
 	 */
 	@ManyToOne
 	@JoinColumn(name = "order_no")
-	private Order order = new Order();
+	private Orders order;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_no")
