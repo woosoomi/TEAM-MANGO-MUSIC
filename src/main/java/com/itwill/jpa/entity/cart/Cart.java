@@ -26,7 +26,8 @@ public class Cart {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int cartNo;
+	private Long cartId;
+	
 	private String userId;
 	private CartItemDto cartItemDto;
     @CreationTimestamp
