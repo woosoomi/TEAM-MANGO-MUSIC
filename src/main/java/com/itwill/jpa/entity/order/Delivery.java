@@ -13,7 +13,6 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -39,7 +38,7 @@ public class Delivery {
 	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
 	@OneToOne
 	@JoinColumn(name = "order_no")
-	private Orders order;
+	private Order order;
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {
