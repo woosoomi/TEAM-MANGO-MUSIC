@@ -29,8 +29,6 @@ public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long cartItemId;
-	
-	private int cartNo;
 	private int cartItemQty;
 	private Product product;
 	@CreationTimestamp
