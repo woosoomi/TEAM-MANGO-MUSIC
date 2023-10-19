@@ -45,11 +45,6 @@ public class OrderItem {
 	private Product product;
 	
 	/*
-	 * orderItem 리스트
-	 */
-	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
-	
-	/*
 	 * DTO -> ENTITY로 변환해주는 작업
 	 */
 	public static OrderItem toEntity(OrderItemDto orderItemDto) {
@@ -59,22 +54,4 @@ public class OrderItem {
 				
 	}
 	   
-	/*
-	 * 총가격
-	 */
-	   public double calculateTotalPrice() {
-	    double totalPrice = 0.0;
-	    
-	    for (OrderItem item : orderItems) {
-	        if (item.getProduct() != null) {
-	            totalPrice += item.getProduct().getProductPrice() * item.getOiQty();
-	        } else {
-	            throw new OrderItemNotFoundException("주문 하실 상품이 없습니다.");
-	        }
-	    }
-	    
-	    return totalPrice;
-	}
-	
-
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.user.User;
+import com.itwill.jpa.exception.OrderItemNotFoundException;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -67,7 +68,7 @@ public class Order {
 	
 	//주문 진행상황 표시를 위한 enum(상수)타입 메서드
 	public enum OrderStatus {
-	        결제완료, 주문완료, 주문취소
+	        결제완료, 배송준비중, 배송중, 배송완료
 	}
 	
 	//Dto -> entity 변환해주는 매서드
@@ -77,6 +78,23 @@ public class Order {
 					.orderStatus(dto.getOrderStatus())
 					.orderItems(dto.getOrderItems())
 					.build();	
+	}
+	
+	/*
+	 * 총가격
+	 */
+	   public double calculateTotalPrice() {
+	    double totalPrice = 0.0;
+	    
+	    for (OrderItem item : orderItems) {
+	        if (item.getProduct() != null) {
+	            totalPrice += item.getProduct().getProductPrice() * item.getOiQty();
+	        } else {
+	            throw new OrderItemNotFoundException("주문 하실 상품이 없습니다.");
+	        }
+	    }
+	    
+	    return totalPrice;
 	}
 
 }
