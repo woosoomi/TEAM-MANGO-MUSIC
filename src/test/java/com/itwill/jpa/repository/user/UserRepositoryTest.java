@@ -22,7 +22,7 @@ public class UserRepositoryTest extends TeamProjectMangoApplication{
 	
 	@DisplayName("회원가입")
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void testSave() {
@@ -47,6 +47,8 @@ public class UserRepositoryTest extends TeamProjectMangoApplication{
 				 		  .build();
 		
 		user1.getBoards().add(board1);
+		System.out.println(user1);
+		System.out.println(board1);
 		board1.setUser(user1);
 	
 		userRepository.save(user1);

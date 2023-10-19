@@ -48,6 +48,7 @@ public class User {
 	private String userGender;		// 회원 성별
 	
 	// user와 board 1대N 관계설정
+	@Builder.Default
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private List<Board> boards = new ArrayList<>();
 	

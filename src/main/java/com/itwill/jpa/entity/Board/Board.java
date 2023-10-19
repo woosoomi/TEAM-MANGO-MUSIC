@@ -16,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,9 +30,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Board {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long boardNo;
-
+	private String boardId;
+	
     private String boardCategory;
     private String boardTitle;
     private String boardContent;
@@ -54,9 +54,9 @@ public class Board {
     }
     //user와 board N대1관계설정.
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
-	@ToString.Exclude //순환방지
-	private User user;
+	@JoinColumn(name = "userId")
+	@Builder.Default
+	private User user =new User();
 	
 	
 }
