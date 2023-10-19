@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale.Category;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorValue;
@@ -13,7 +14,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,12 +34,15 @@ public class Product {
 	private String productName;
 	@Column(nullable = false)
 	private int productPrice;
-	@ManyToMany(mappedBy = "products")
+	
+	//(c)1:N(p)
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="category_id")
 	private List<Category> categories = new ArrayList<Category>();
 
 	/** music **/
 	@Entity
-	@DiscriminatorValue("MUSIC")
+	@DiscriminatorValue("music")
 	@Getter
 	public class Music extends Product {
 		private String productMovie;
@@ -50,7 +56,7 @@ public class Product {
 
 	/** goods **/
 	@Entity
-	@DiscriminatorValue("GOODS")
+	@DiscriminatorValue("goods")
 	@Getter
 	public class Goods extends Product {
 		// private String content;
@@ -62,7 +68,7 @@ public class Product {
 
 	/** ticket **/
 	@Entity
-	@DiscriminatorValue("MUSIC")
+	@DiscriminatorValue("ticket")
 	@Getter
 	public class Ticket extends Product {
 		private String productAddress;
@@ -76,7 +82,7 @@ public class Product {
 
 	/** membership **/
 	@Entity
-	@DiscriminatorValue("MEMBERSHIP")
+	@DiscriminatorValue("membership")
 	@Getter
 	public class Membership extends Product {
 		private Date startPeriod;

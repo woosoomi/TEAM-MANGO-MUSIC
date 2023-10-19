@@ -6,19 +6,16 @@ import com.itwill.jpa.entity.user.User;
 
 public interface UserService {
 		// 회원가입
-		User createUser(User userid) throws Exception;
-
-		// 회원 로그인
-		int login(String userid, String password) throws Exception;
-		 
-		// 회원상세보기
-		User findUser(String userid) throws Exception;
-
-		// 회원수정
-		int updateUser(User userid) throws Exception;
+		User createUser(User user) throws Exception;
 		
+		// 회원수정
+		User updateUser(User user) throws Exception;
+
 		// 회원탈퇴
-		int deleteUser(String userid) throws Exception;
+		void deleteUser(String userId) throws Exception;
+		
+		// 회원상세보기
+		User findUser(String userId) throws Exception;
 
 		// 전체회원리스트
 		List<User> findUserList() throws Exception;
@@ -27,10 +24,10 @@ public interface UserService {
 		boolean existsById(String userId) throws Exception;
 		
 		//이메일로 아이디 찾기
-		User findUserIdByUserEmail(String userEmail) throws Exception;
+		String findUserIdByUserEmail(String userEmail) throws Exception;
 		
 		// 번호로 비밀번호 찾기
-		User findUserPwByUserPhone(String userPhone) throws Exception; 
+		String findUserPwByUserPhone(String userPhone) throws Exception; 
 		
 		
 		
