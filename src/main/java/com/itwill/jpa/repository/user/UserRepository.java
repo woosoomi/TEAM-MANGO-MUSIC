@@ -7,21 +7,17 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.itwill.jpa.entity.user.User;
 
-public interface UserRepository extends JpaRepository<User, String>{
-
-	List<User> findByUserid(String user_Id);
-
-	List<User> getByUserid(String user_Id);
+public interface UserRepository extends JpaRepository<User, String> {
 	
+	@Query("SELECT u.userId FROM User u WHERE u.userEmail = :userEmail")
+    String findUserIdByUserEmail(String userEmail);
 
-	List<User> findByPhone(String phone);
-
-
-	List<User> findByUseridAndPhone(String user_id,String phone);
-	List<User> findByUseridOrPhone(String user_id,String phone);
-
-	@Query(value="select * from userinfo where user_id=?1",nativeQuery = true)
-	List<User> findByuser_idSQL(String user_id);
-
+	@Query("SELECT u.userPw FROM User u WHERE u.userPhone = :userPhone")
+    String findUserPwByUserPhone(String userPhone);
+	
+	
+	 
+	 
+	 
 
 }

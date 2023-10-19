@@ -2,11 +2,11 @@ package com.itwill.jpa.dto.order;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
 import com.itwill.jpa.entity.order.OrderItem;
-import com.itwill.jpa.entity.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,37 +16,38 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
-
 //웹에서 고객에게 보여주기 위한 정보를 담은 객체(Dto)
 public class OrderDto {
 
-	private String username;
+	private String userName;
 
-	private String userphone;
+	private String userPhone;
 
-	private String useraddress;
-
-	private LocalDateTime orderdate;
-
-	private OrderStatus orderstatus;
-
-	private List<OrderItem> orderitems; // 주문한 아이템 정보들(수량, 가격등)
-
-	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정(초기화)
+	private String userAddress;
+	
+	private LocalDateTime orderDate;
+	
+	private OrderStatus orderStatus; //주문 상태
+	
+	private List<OrderItemDto> orderItems; // 주문한 아이템 정보들(수량, 가격등)
+	
+	
+	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정하는 생성자(초기화)
 	public OrderDto(Order order) {
-		this.username = order.getUser().getUsername();
-		this.userphone = order.getUser().getUserphone();
-		this.useraddress = order.getUser().getUseraddress();
-		this.orderdate = order.getOrderdate();
-		this.orderstatus = order.getOrderstatus();
-		//OrderItem 엔티티 사용함 추후에 아래방법으로 사용
-		this.orderitems = order.getOrderitems();
-		// 주문 아이템(OrderItem)엔티티를 OrderItemDto로 변환하여 리스트로 저장
-		//this.orderitems = order.getOrderitems().stream().map(OrderItemDto::fromOrderItem).collect(Collectors.toList());
-	}
 		
+		this.userName = order.getUser().getUserName();
+		this.userPhone = order.getUser().getUserPhone();
+		this.userAddress = order.getUser().getUserAddress();
+		this.orderDate = order.getOrderDate();
+		this.orderStatus = order.getOrderStatus();
+		
+		// 주문 아이템(OrderItem)엔티티를 OrderItemDto로 변환하여 리스트로 저장
+		// why? 데이터 무결성을 위해서 Entity는 건들지않고 Dto만 사용하기위해서
+		this.orderItems = order.getOrderItems().stream().map(OrderItemDto::fromOrderItem).collect(Collectors.toList());
+	}
+	
 }
+	
 		
 
 	

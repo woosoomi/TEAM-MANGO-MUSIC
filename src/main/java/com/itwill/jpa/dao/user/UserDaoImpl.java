@@ -13,39 +13,57 @@ public class UserDaoImpl implements UserDao{
 	
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
-    public User createUser(User user) {
-       
-        return null;
-    }
+	public User createUser(User user) {
+		User createdUser = userRepository.save(user);
+		return createdUser;
+	}
 
-    @Override
-    public User updateUser(User user) {
-       
-        return null;
-    }
+	@Override
+	public User updateUser(User user) {
+		User updatedUser = userRepository.save(user);
+		return updatedUser;
+	}
 
-    @Override
-    public void removeUser(String id) {
-    
-    }
+	@Override
+	public void deleteUser(String userId) {
+		userRepository.deleteById(userId);
+	}
 
-    @Override
-    public User findUser(String id) {
-        
-        return null;
-    }
+	@Override
+	public User findUser(String userId) {
+		User findedUser = userRepository.findById(userId).get();
+		return findedUser;
+	}
 
-    @Override
-    public List<User> findUserList() {
-       
-    	return null;
-    }
+	@Override
+	public List<User> findUserList() {
+		return userRepository.findAll();
+	}
 
-    public boolean existedUser(String userid) {
-        
-        return true;
-    }
+	@Override
+	public boolean existsById(String userId) {
+		return userRepository.existsById(userId);
+	}
+
+	@Override
+	public String findUserIdByUserEmail(String userEmail) {
+		String findId = userRepository.findUserIdByUserEmail(userEmail);
+		return findId;
+	}
+
+	@Override
+	public String findUserPwByUserPhone(String userPhone) {
+		String findPw = userRepository.findUserPwByUserPhone(userPhone);
+		return findPw;
+	}
 
 }
+
+
+
+
+
+
+

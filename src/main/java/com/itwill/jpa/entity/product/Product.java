@@ -21,17 +21,16 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
 @Getter
-@Setter
 public class Product {
 	@Id
 	@GeneratedValue
-	@Column(name = "productId")
-	private Long id;
+	@Column(name = "product_no")
+	private Long productNo;
 
 	@Column(nullable = false)
-	private String name;
+	private String productName;
 	@Column(nullable = false)
-	private int price;
+	private int productPrice;
 	@ManyToMany(mappedBy = "products")
 	private List<Category> categories = new ArrayList<Category>();
 
@@ -39,14 +38,13 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("MUSIC")
 	@Getter
-	@Setter
 	public class Music extends Product {
-		private String movie;
-		private String artist;
-		private String content;
-		private String reply;
-		private String star;
-		private Date date;
+		private String productMovie;
+		private String productArtist;
+		private String productContent;
+		private String productReply;
+		private String productStar;
+		private Date productDate;
 		private Long readCount;
 	}
 
@@ -54,22 +52,20 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("GOODS")
 	@Getter
-	@Setter
 	public class Goods extends Product {
 		// private String content;
 		// private String reply;
 		// private Date date;
 		// private String star;
-		private int stock;
+		private int productStock;
 	}
 
 	/** ticket **/
 	@Entity
 	@DiscriminatorValue("MUSIC")
 	@Getter
-	@Setter
 	public class Ticket extends Product {
-		private String address;
+		private String productAddress;
 		// private String content;
 		// private String reply;
 		// private Date date;
@@ -82,7 +78,6 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("MEMBERSHIP")
 	@Getter
-	@Setter
 	public class Membership extends Product {
 		private Date startPeriod;
 		private int periodOfUse;

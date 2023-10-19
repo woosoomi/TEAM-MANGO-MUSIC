@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.jpa.entity.order.Order;
+import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 
 public class OrderDaoImpl implements OrderDao{
@@ -37,6 +38,12 @@ public class OrderDaoImpl implements OrderDao{
 			throw new Exception("존재하지않는주문입니다.");
 		}
 		orderRepository.delete(selectedOrderOptional.get());
+	}
+
+	@Override
+	public Order updateOrder(Order order) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

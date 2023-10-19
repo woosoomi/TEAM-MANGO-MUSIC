@@ -10,12 +10,19 @@ public interface UserDao {
 
     User updateUser(User user);
 
-    void removeUser(String id);
+    void deleteUser(String userId);
 
-    User findUser(String id);
+    User findUser(String userId);
 
     List<User> findUserList();
     
-    boolean existedUser(String userid);
+    boolean existsById(String userId); //중복된 아이디
+    
+    String findUserIdByUserEmail(String userEmail); // 이메일로 아이디 찾기
 
+    String findUserPwByUserPhone(String userPhone); // 번호로 비밀번호 찾기
+    
+    
+    
+    
 }

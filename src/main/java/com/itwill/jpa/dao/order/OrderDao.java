@@ -10,7 +10,8 @@ public interface OrderDao {
 		
 		Order selectOrder(Long no);
 		
-		//Order updateOrder(Order order) throws Exception;
+		// 관리자(admin)가 주문상태 변경 수정 가능 (ex.결제완료, 배송준비중, 배송완료 등)
+		Order updateOrder(Order order) throws Exception;
 		
 		void deleteOrder(Long no) throws Exception;
 		
