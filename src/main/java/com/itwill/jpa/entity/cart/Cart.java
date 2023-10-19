@@ -34,7 +34,11 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long cartId;
 	
-	private String userId;
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn
+	@Builder.Default
+	private User user =new User();
+	
 	private CartItemDto cartItemDto;
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -42,12 +46,14 @@ public class Cart {
     private LocalDateTime updatedAt;
     
     public static Cart toEntity(CartDto dto) {
-    	return Cart.builder().userId("test1").build();
+    	return Cart.builder()
+    				.user(dto.getUserInfo())
+    				.cartItemDto(dto.getCartItem())
+    				.build();
     }
     
-    //user와 cart N대1관계설정.
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn
-	@Builder.Default
-	private User user =new User();
+	
+	
+    
+    
 }
