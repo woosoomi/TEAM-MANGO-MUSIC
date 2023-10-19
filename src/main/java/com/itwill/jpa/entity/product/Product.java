@@ -47,10 +47,12 @@ public class Product {
 	private int productPrice;
 	
 	//(c)1:N(p)
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="category_id")
-	private List<Category> categories = new ArrayList<Category>();
-
+	/*
+	 * @ManyToOne(cascade = CascadeType.PERSIST)
+	 * 
+	 * @JoinColumn(name="category_id") private List<Category> categories = new
+	 * ArrayList<Category>();
+	 */
 	/** music **/
 	@Entity
 	@DiscriminatorValue("music")

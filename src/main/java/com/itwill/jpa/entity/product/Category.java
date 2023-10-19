@@ -39,10 +39,12 @@ public class Category {
  private Long categoryId;
  private String categoryName;
  
- @OneToMany(mappedBy = "category",cascade = CascadeType.PERSIST)
- private List<Product> products = new ArrayList<>();
+	/*
+	 * @OneToMany(mappedBy = "category",cascade = CascadeType.PERSIST) private
+	 * List<Product> products = new ArrayList<>();
+	 */
  
- @ManyToOne(fetch = FetchType.LAZY)
+/* @ManyToOne(fetch = FetchType.LAZY)
  @JoinColumn(name = "parent_id")
  private Category parent;
  
@@ -54,5 +56,5 @@ public class Category {
 	 
  this.child.add(child);
  child.setParent(this);
- }
+ }*/
 }
