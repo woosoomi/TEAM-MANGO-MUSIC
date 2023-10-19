@@ -11,6 +11,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -63,8 +64,8 @@ public class Order {
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
-	@OneToOne(mappedBy = "order")
-	@JoinColumn(name = "delivery_id")
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "delivery_no")
 	private Delivery delivery;
 	
 	

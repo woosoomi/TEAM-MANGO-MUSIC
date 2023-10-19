@@ -15,8 +15,6 @@ import lombok.ToString;
 @ToString
 public class CartItemDto {
 	
-	private int cartItemNo;
-	private int cartNo;
 	private int cartItemQty;
 	private Product product;
 
