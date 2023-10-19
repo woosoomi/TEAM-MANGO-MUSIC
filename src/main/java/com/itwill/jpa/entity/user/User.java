@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.jpa.entity.Board.Board;
+import com.itwill.jpa.entity.cart.Cart;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.criteria.Order;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,31 +43,27 @@ public class User {
 	private String userJumin;		// 회원 주민번호
 	private String userGender;		// 회원 성별
 	
-	/*
-	 * // user와 board 1대N 관계설정
-	 * 
-	 * @Builder.Default
-	 * 
-	 * @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
-	 * List<Board> boards = new ArrayList<>();
-	 */
-	
-	/*
-	 * // user와 order 1대N 관계설정
-	 * 
-	 * @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
-	 * List<Order> orders = new ArrayList<>();
-	 * 
-	 * // user와 cart 1대N 관계설정
-	 * 
-	 * @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
-	 * List<Cart> carts = new ArrayList<>();
-	 */
-	
+	  // user와 board 1대N 관계설정
+	  @Builder.Default
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<Board> boards = new ArrayList<>();
+	 
+	  // user와 order 1대N 관계설정
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<Order> orders = new ArrayList<>();
+	  
+	  // user와 cart 1대N 관계설정
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<Cart> carts = new ArrayList<>();
+	 
 }
 
 
 
 
 
-	
+
+
+
+
+
