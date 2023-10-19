@@ -18,14 +18,14 @@ public class CartDaoImpl implements CartDao {
 	public void createCart(Cart cart) throws Exception {
 		cartRepository.save(cart);
 	}
-
+/*
 	@Override
 	public Cart updateCart(Cart updateCart) throws Exception {
 		Optional<Cart> findcartOptional = cartRepository.findById(updateCart.getCartId());
 		Cart updatedCart = null;
 		if (findcartOptional.isPresent()) {
 			Cart cart = findcartOptional.get();
-			cart.getCartItemDto().setCartItemQty(updateCart.getCartItemDto().getCartItemQty());
+			cart.getCartItem().setCartItemQty(updateCart.getCartItem().getCartItemQty());
 			updateCart = cartRepository.save(cart);
 	
 		}else {
@@ -33,7 +33,7 @@ public class CartDaoImpl implements CartDao {
 		}
 		return updatedCart;
 	}
-
+*/
 	@Override
 	public void deleteAllbyUserId(String userId) throws Exception {
 		cartRepository.deleteAllByUserId(userId);

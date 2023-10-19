@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.repository.user.UserRepository;
 
-class CartRepositoryTest {
+class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 	
 	@Autowired
 	CartRepository cartRepository;
@@ -22,8 +23,10 @@ class CartRepositoryTest {
 	//@Disabled
 	void saveCartWithUser() {
 		Cart cart = Cart.builder()
-						.cartId(1L)
+						.cartId(null)
 						.build();
+		
+	cartRepository.save(cart);	
 	}
 
 

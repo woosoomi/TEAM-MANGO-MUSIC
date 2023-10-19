@@ -1,6 +1,8 @@
 package com.itwill.jpa.dto.cart;
 
 
+import java.util.List;
+
 import com.itwill.jpa.entity.user.User;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +19,6 @@ import lombok.ToString;
 public class CartDto {
 	
 	private int cartNo;
-	private User userInfo;
-	private CartItemDto cartItem;
+	private User user;
+	private List<CartItemDto> cartItems;
 }
