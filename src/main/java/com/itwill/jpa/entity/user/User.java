@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.cart.Cart;
-import com.itwill.jpa.entity.order.Orders;
+import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.product.Product;
 
 import jakarta.persistence.CascadeType;
