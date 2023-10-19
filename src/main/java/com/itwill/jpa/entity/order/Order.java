@@ -54,7 +54,7 @@ public class Order {
 	private OrderStatus orderStatus;
 	
 	//FK 주문을 넣은 유저정보(다대일 관계 매핑)
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "userId")
 	private User user;
 	
