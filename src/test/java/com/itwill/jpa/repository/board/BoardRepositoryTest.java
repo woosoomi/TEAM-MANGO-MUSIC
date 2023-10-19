@@ -45,6 +45,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 		
 		board.setUser(user);
 		System.out.println(board);
+		userRepository.save(user);
 		boardRepository.save(board);
 	}
 	
