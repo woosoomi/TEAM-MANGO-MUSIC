@@ -18,6 +18,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,21 +35,21 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long cartId;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn
 	@Builder.Default
 	private User user =new User();
 	
-	private CartItemDto cartItemDto;
-    @CreationTimestamp
+	private int CartTotPrice;
+	
+	@CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
     public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
-    				.user(dto.getUserInfo())
-    				.cartItemDto(dto.getCartItem())
+    				.CartTotPrice(dto.getCartTotPrice())
     				.build();
     }
     

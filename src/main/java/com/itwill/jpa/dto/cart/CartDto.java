@@ -17,6 +17,5 @@ import lombok.ToString;
 public class CartDto {
 	
 	private int cartNo;
-	private User userInfo;
-	private CartItemDto cartItem;
+	private int cartTotPrice;
 }

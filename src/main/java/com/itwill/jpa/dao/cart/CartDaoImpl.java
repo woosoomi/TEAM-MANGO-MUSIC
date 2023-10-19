@@ -19,20 +19,20 @@ public class CartDaoImpl implements CartDao {
 		cartRepository.save(cart);
 	}
 
-	@Override
-	public Cart updateCart(Cart updateCart) throws Exception {
-		Optional<Cart> findcartOptional = cartRepository.findById(updateCart.getCartId());
-		Cart updatedCart = null;
-		if (findcartOptional.isPresent()) {
-			Cart cart = findcartOptional.get();
-			cart.getCartItemDto().setCartItemQty(updateCart.getCartItemDto().getCartItemQty());
-			updateCart = cartRepository.save(cart);
-	
-		}else {
-			throw new Exception("존재하지 않는 장바구니입니다.");
-		}
-		return updatedCart;
-	}
+//	@Override
+//	public Cart updateCart(Cart updateCart) throws Exception {
+//		Optional<Cart> findcartOptional = cartRepository.findById(updateCart.getCartId());
+//		Cart updatedCart = null;
+//		if (findcartOptional.isPresent()) {
+//			Cart cart = findcartOptional.get();
+//			cart.getCartItemDto().setCartItemQty(updateCart.getCartItemDto().getCartItemQty());
+//			updateCart = cartRepository.save(cart);
+//	
+//		}else {
+//			throw new Exception("존재하지 않는 장바구니입니다.");
+//		}
+//		return updatedCart;
+//	}
 
 	@Override
 	public void deleteAllbyUserId(String userId) throws Exception {
