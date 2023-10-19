@@ -1,6 +1,7 @@
 package com.itwill.jpa.entity.cart;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,21 +36,21 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long cartId;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn
-	@Builder.Default
-	private User user =new User();
+	private User user;
 	
-	private CartItemDto cartItemDto;
+	//@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+//	private List<CartItemDto> cartItems;
+	
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
-    public static Cart toEntity(CartDto dto) {
+    public static Cart toEntity(CartDto dto, User user, List<CartItemDto> cartItems) {
     	return Cart.builder()
-    				.user(dto.getUserInfo())
-    				.cartItemDto(dto.getCartItem())
+    				.user(user)
     				.build();
     }
     

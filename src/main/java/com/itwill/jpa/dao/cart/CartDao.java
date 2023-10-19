@@ -10,7 +10,7 @@ public interface CartDao {
 	void createCart(Cart cart) throws Exception;
 	
 	//카트 정보 업데이트
-	Cart updateCart(Cart cart) throws Exception;
+	//Cart updateCart(Cart cart) throws Exception;
 	
 	//cartId로 카트 정보 조회
 	//Cart getCartById(Long cartId) throws Exception;
