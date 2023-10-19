@@ -23,8 +23,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>479</x>
-        <y>93</y>
+        <x>481</x>
+        <y>63</y>
       </constraint>
       <sourceConnections>
         <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -107,8 +107,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>471</x>
-                          <y>345</y>
+                          <x>434</x>
+                          <y>307</y>
                         </constraint>
                         <sourceConnections>
                           <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -825,6 +825,22 @@
                 <primaryKey>true</primaryKey>
                 <description></description>
                 <autoIncrement>true</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>cart_tot_price</columnName>
+                <logicalName>cart_tot_price</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>NUMBER</name>
+                  <logicalName>Numeric</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>2</type>
+                </columnType>
+                <size>10</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
                 <defaultValue></defaultValue>
               </net.java.amateras.db.visual.model.ColumnModel>
               <net.java.amateras.db.visual.model.ColumnModel>

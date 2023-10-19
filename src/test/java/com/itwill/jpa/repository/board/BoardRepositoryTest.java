@@ -23,7 +23,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	void saveBoardWithUser() {
 		Board board=Board.builder()
-				.boardId("board테스트")
+				.boardId(null)
 				.boardCategory("event")
 				.boardTitle("테스트")
 				.boardContent("테스트중입니다")

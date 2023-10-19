@@ -30,7 +30,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Board {
     @Id
-	private String boardId;
+	private Long boardId;
 	
     private String boardCategory;
     private String boardTitle;
