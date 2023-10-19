@@ -11,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.criteria.Order;
 import lombok.AllArgsConstructor;
@@ -52,9 +53,10 @@ public class User {
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	  private List<Order> orders = new ArrayList<>();
 	  
-	  // user와 cart 1대N 관계설정
-	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	  private List<Cart> carts = new ArrayList<>();
+	  // user와 cart 1대1 관계설정
+	  @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private Cart cart = new Cart();
+	  
 	 
 }
 
