@@ -26,14 +26,23 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 	@Override
-	public Delivery updateDelivery(Delivery delivery) {
-//		//Delivery가 존재하는지 확인
-//		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(delivery.getDeliveryNo());
-//		if(findDeliveryOptional.isPresent()) {
-//			Delivery delivery = findDeliveryOptional.get();
-//		
-//		}
-		return null;
+	public Delivery updateDelivery(Delivery updateDelivery) throws Exception{
+		//Delivery가 존재하는지 확인
+		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryNo());
+		Delivery updatedDelivery = null;
+		if(findDeliveryOptional.isPresent()) {
+			//존재한다면 업데이트 실행
+			Delivery delivery = findDeliveryOptional.get();
+			delivery.setDeliveryName(updateDelivery.getDeliveryName());
+			delivery.setDeliveryCompany(updateDelivery.getDeliveryCompany());
+			delivery.setDeliveryAddress(updateDelivery.getDeliveryAddress());
+			delivery.setDeliveryPhone(updateDelivery.getDeliveryPhone());
+			//업데이트된 Delivery를 저장
+			updatedDelivery = deliveryRepository.save(delivery);
+		}else {
+			throw new Exception("존재하지 않는 주소입니다.");
+		}
+		return updatedDelivery;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public interface DeliveryDao {
 	
 	Delivery selectDelivery(Long deliveryNo);
 	
-	Delivery updateDelivery(Delivery delivery);
+	Delivery updateDelivery(Delivery updateDelivery) throws Exception;
 	
 	void deleteDelivery(Long deliveryNo) throws Exception;
 	
