@@ -5,28 +5,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale.Category;
 
+import com.itwill.jpa.dto.product.ProductDto;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "DTYPE")
-@Getter
 public class Product {
 	@Id
-	@GeneratedValue
+	@SequenceGenerator(name = "PRODUCT_PRODUCT_NO_SEQ",sequenceName = "PRODUCT_PRODUCT_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCT_NO_SEQ")
 	@Column(name = "product_no")
 	private Long productNo;
 
@@ -42,8 +53,7 @@ public class Product {
 
 	/** music **/
 	@Entity
-	@DiscriminatorValue("MUSIC")
-	@Getter
+	@DiscriminatorValue("music")
 	public class Music extends Product {
 		private String productMovie;
 		private String productArtist;
@@ -56,8 +66,7 @@ public class Product {
 
 	/** goods **/
 	@Entity
-	@DiscriminatorValue("GOODS")
-	@Getter
+	@DiscriminatorValue("goods")
 	public class Goods extends Product {
 		// private String content;
 		// private String reply;
@@ -68,8 +77,7 @@ public class Product {
 
 	/** ticket **/
 	@Entity
-	@DiscriminatorValue("MUSIC")
-	@Getter
+	@DiscriminatorValue("ticket")
 	public class Ticket extends Product {
 		private String productAddress;
 		// private String content;
@@ -82,12 +90,18 @@ public class Product {
 
 	/** membership **/
 	@Entity
-	@DiscriminatorValue("MEMBERSHIP")
-	@Getter
+	@DiscriminatorValue("membership")
 	public class Membership extends Product {
 		private Date startPeriod;
 		private int periodOfUse;
 	}
 	// private User userId;
 
+	public static Product toEntity(ProductDto productDto) {
+		return Product.builder()
+				.productName(productDto.getProductName())
+				.productPrice(productDto.getProductPrice())
+				.build();
+	}
+	
 }

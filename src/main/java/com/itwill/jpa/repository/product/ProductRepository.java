@@ -11,7 +11,6 @@ import com.itwill.jpa.entity.product.Product.Music;
 
 
 @Repository
-//@RequiredArgsConstructor
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 //	private final EntityManager em;
@@ -31,6 +30,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 //        return em.createQuery("select p from Product p",Product.class)
 //                .getResultList();
 //    }    
-	List<Music> findAllMusicByProductNoDesc(); // 음악 내립차순 정렬
+//	List<Music> findAllMusicByProductNoDesc(); // 음악 내립차순 정렬
 	
 }

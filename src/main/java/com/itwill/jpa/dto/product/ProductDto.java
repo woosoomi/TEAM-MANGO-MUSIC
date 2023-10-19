@@ -8,12 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
+@Builder
 public class ProductDto {
 	
 	private Long productNo;
@@ -21,11 +20,7 @@ public class ProductDto {
 	private int productPrice;
 	private Long readCount;
 	
-	public ProductDto(Music music) {
-		this.productNo = music.getProductNo();
-		this.productName = music.getProductName();
-		this.readCount = music.getReadCount();
-	}
+	
 	
 //	private String productName;
 }

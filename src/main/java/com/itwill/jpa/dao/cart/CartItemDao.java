@@ -11,7 +11,7 @@ public interface CartItemDao {
 	int cartRowCount(String userId) throws Exception;
 	
 	//cartitem 삭제
-	int deleteByCartId(Long cartItemId) throws Exception;
+	void deleteByCartId(Long cartItemId) throws Exception;
 	
 	//cartitem 업데이트
 	int updateByUserId(CartItem cartItem) throws Exception;
