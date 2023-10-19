@@ -1,10 +1,5 @@
 package com.itwill.jpa.repository.board;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.time.LocalDateTime;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -14,7 +9,6 @@ import com.itwill.jpa.TeamProjectMangoApplication;
 import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
-
 
 class BoardRepositoryTest extends TeamProjectMangoApplication{
 
@@ -63,3 +57,5 @@ class BoardRepositoryTest extends TeamProjectMangoApplication{
 //		System.out.println("1. >>>>"+board);
 //	}
 }
+
+
