@@ -1,12 +1,8 @@
 package com.itwill.jpa.entity.order;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
-import com.itwill.jpa.exception.OrderItemNotFoundException;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +13,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -53,5 +48,6 @@ public class OrderItem {
 				.build();
 				
 	}
+				
 	   
 }

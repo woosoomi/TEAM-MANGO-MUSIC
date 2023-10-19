@@ -3,8 +3,10 @@ package com.itwill.jpa.entity.order;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.OrderItemNotFoundException;
 
@@ -18,13 +20,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "orders") //클래스 이름이 테이블명과 같지 않기 때문에 해당 어노테이션 추가
@@ -61,6 +62,10 @@ public class Order {
 	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
+	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
+	@OneToOne(mappedBy = "orders")
+	@JoinColumn(name = "delivery_id")
+	private Delivery delivery;
 	
 	
 	/*메서드*/
@@ -73,10 +78,12 @@ public class Order {
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Order toEntity(OrderDto dto) {
+		
+		 
+		
 		return Order.builder()
-					.orderDate(dto.getOrderDate())
 					.orderStatus(dto.getOrderStatus())
-					.orderItems(dto.getOrderItems())
+//					.orderItems(dto.getOrderItems())
 					.build();	
 	}
 	
