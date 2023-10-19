@@ -22,7 +22,7 @@ public class UserRepositoryTest extends TeamProjectMangoApplication{
 	
 	@DisplayName("회원가입")
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void testSave() {
