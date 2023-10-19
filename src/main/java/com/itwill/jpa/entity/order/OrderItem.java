@@ -26,7 +26,8 @@ public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long oiNo;
-	private Long oiQty;
+	
+	private int oiQty;
 
 	/*
 	 * 다대일 관계

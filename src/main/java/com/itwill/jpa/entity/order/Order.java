@@ -46,6 +46,8 @@ public class Order {
 	//PK 주문 번호
 	private Long orderNo;
 	
+	private int orderPrice;
+	
 	//주문 날짜시간
 	private LocalDateTime orderDate;
 	
@@ -88,8 +90,11 @@ public class Order {
 	}
 	
 	/*
-	 * 총가격
+	 * 전체 가격 계산 메서드 -> 엔티티에서는 멤버필드에 orderPrice로 넣고 해당 메서드는 서비스에서 구현
+	 * why? 나중에 유지보수를 쉽게 하려고 & 코드 가독성 ↑
 	 */
+	
+	/*
 	   public double calculateTotalPrice() {
 	    double totalPrice = 0.0;
 	    
@@ -103,5 +108,6 @@ public class Order {
 	    
 	    return totalPrice;
 	}
-
+	*/
+	
 }
