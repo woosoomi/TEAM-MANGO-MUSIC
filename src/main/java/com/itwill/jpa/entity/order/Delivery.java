@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,7 @@ public class Delivery {
 	
 	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
 	@OneToOne
+	@JoinColumn(name = "order_no")
 	private Order order;
 	
 	//Dto -> entity 변환해주는 매서드

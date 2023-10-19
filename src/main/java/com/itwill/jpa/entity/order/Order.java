@@ -63,7 +63,7 @@ public class Order {
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
-	@OneToOne(mappedBy = "orders")
+	@OneToOne(mappedBy = "order")
 	@JoinColumn(name = "delivery_id")
 	private Delivery delivery;
 	
