@@ -18,9 +18,4 @@ public interface UserRepository extends JpaRepository<User, String> {
 	@Query("SELECT u.userPw FROM User u WHERE u.userPhone = :userPhone")
     String findUserPwByUserPhone(String userPhone);
 	
-	
-	 
-	 
-	 
-
 }
