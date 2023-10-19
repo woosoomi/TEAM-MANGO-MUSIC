@@ -15,7 +15,7 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
 	UserRepository userRepository;
 
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void testSave() {
@@ -23,11 +23,11 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
 						 .userId("kbs")
 						 .userPw("1111")
 						 .userName("고범석")
-						 .userAddress("충남 서천군")
+						 .userAddress("서울시 강남")
 						 .userEmail("kbs@naver.com")
 						 .userJumin("970000-0000000")
 						 .userPhone("010-1234-5678")
-						 .userGender("상남자")
+						 .userGender("남")
 						 .build();
 
 		Board board1 = Board.builder()
@@ -39,10 +39,11 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
 							.updateTime(null)
 							.build();
 
-		user1.getBoards().add(board1);
+		//user1.getBoards().add(board1);
 		board1.setUser(user1);
 
 		userRepository.save(user1);
+		
 
 	}
 }
