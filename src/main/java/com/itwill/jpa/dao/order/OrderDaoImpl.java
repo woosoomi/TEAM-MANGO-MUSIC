@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.itwill.jpa.entity.order.Order;
+import com.itwill.jpa.entity.order.Orders;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 
@@ -15,25 +15,25 @@ public class OrderDaoImpl implements OrderDao{
 	OrderRepository orderRepository;
 	
 	@Override
-	public List<Order> selectList() {
+	public List<Orders> selectList() {
 		return orderRepository.findAll();
 	}
 	
 	@Override
-	public Order insertOrder(Order order) {
-		Order savedOrder = orderRepository.save(order);
+	public Orders insertOrder(Orders order) {
+		Orders savedOrder = orderRepository.save(order);
 		return savedOrder;
 	}
 
 	@Override
-	public Order selectOrder(Long no) {
-		Order selectedOrder = orderRepository.findById(no).get();
+	public Orders selectOrder(Long no) {
+		Orders selectedOrder = orderRepository.findById(no).get();
 		return selectedOrder;
 	}
 
 	@Override
 	public void deleteOrder(Long no) throws Exception {
-		Optional<Order> selectedOrderOptional = orderRepository.findById(no); 
+		Optional<Orders> selectedOrderOptional = orderRepository.findById(no); 
 		if(selectedOrderOptional.isEmpty()) {
 			throw new Exception("존재하지않는주문입니다.");
 		}
@@ -41,7 +41,7 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public Order updateOrder(Order order) throws Exception {
+	public Orders updateOrder(Orders order) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

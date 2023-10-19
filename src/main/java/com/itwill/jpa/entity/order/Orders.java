@@ -3,12 +3,9 @@ package com.itwill.jpa.entity.order;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.itwill.jpa.dto.order.OrderDto;
-import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.dto.order.OrdersDto;
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.exception.OrderItemNotFoundException;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -35,7 +32,7 @@ import lombok.NoArgsConstructor;
 @Builder //Dto를 Entity로 변환하는 메서드를 쓰기위해서 사용함
 
 //데이터베이스에 들어갈 중요한 데이터를 포함한 객체(Entity)
-public class Order {
+public class Orders {
 	
 	
 	/*멤버필드*/
@@ -61,11 +58,11 @@ public class Order {
 	private User user;
 	
 	//주문 제품들(일대다 관계 매핑), 매핑된 엔티티 끼리 변경된 정보를 전부 공유하도록 설정
-	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "orders", cascade = CascadeType.PERSIST)
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
-	@OneToOne(mappedBy = "order")
+	@OneToOne(mappedBy = "orders")
 	@JoinColumn(name = "delivery_id")
 	private Delivery delivery;
 	
@@ -79,18 +76,16 @@ public class Order {
 	}
 	
 	//Dto -> entity 변환해주는 매서드
-	public static Order toEntity(OrderDto dto) {
+	public static Orders toEntity(OrdersDto dto) {
 		
-		 
-		
-		return Order.builder()
+		return Orders.builder()
 					.orderStatus(dto.getOrderStatus())
-//					.orderItems(dto.getOrderItems())
+	//				.orderItems(dto.getOrderItems())
 					.build();	
 	}
 	
 	/*
-	 * 전체 가격 계산 메서드 -> 엔티티에서는 멤버필드에 orderPrice로 넣고 해당 메서드는 서비스에서 구현
+	 * 전체 가격 계산 메서드 -> 엔티티에서는 멤버필드에 orderPrice로 넣고 해당 메서드는 오더서비스에서 구현
 	 * why? 나중에 유지보수를 쉽게 하려고 & 코드 가독성 ↑
 	 */
 	
