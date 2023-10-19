@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder //Dto를 Entity로 변환하는 메서드를 쓰기위해서 사용함
-
+//
 //데이터베이스에 들어갈 중요한 데이터를 포함한 객체(Entity)
 public class Order {
 	
