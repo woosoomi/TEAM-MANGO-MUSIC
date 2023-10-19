@@ -42,7 +42,7 @@ public class Product {
 
 	/** music **/
 	@Entity
-	@DiscriminatorValue("MUSIC")
+	@DiscriminatorValue("music")
 	@Getter
 	public class Music extends Product {
 		private String productMovie;
@@ -56,7 +56,7 @@ public class Product {
 
 	/** goods **/
 	@Entity
-	@DiscriminatorValue("GOODS")
+	@DiscriminatorValue("goods")
 	@Getter
 	public class Goods extends Product {
 		// private String content;
@@ -68,7 +68,7 @@ public class Product {
 
 	/** ticket **/
 	@Entity
-	@DiscriminatorValue("MUSIC")
+	@DiscriminatorValue("ticket")
 	@Getter
 	public class Ticket extends Product {
 		private String productAddress;
@@ -82,7 +82,7 @@ public class Product {
 
 	/** membership **/
 	@Entity
-	@DiscriminatorValue("MEMBERSHIP")
+	@DiscriminatorValue("membership")
 	@Getter
 	public class Membership extends Product {
 		private Date startPeriod;
