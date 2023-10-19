@@ -22,7 +22,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
+@Entity(name = "user")
 @Table(name = "userinfo")
 @Data
 @NoArgsConstructor

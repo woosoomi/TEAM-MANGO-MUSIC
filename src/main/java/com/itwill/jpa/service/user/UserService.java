@@ -18,11 +18,31 @@ public interface UserService {
 		int updateUser(User userid) throws Exception;
 		
 		// 회원탈퇴
-		int removeUser(String userid) throws Exception;
+		int deleteUser(String userid) throws Exception;
 
 		// 전체회원리스트
 		List<User> findUserList() throws Exception;
 		
 		// 아이디중복체크
-		boolean isDuplicateId(String userid) throws Exception;
+		boolean existsById(String userId) throws Exception;
+		
+		//이메일로 아이디 찾기
+		User findUserIdByUserEmail(String userEmail) throws Exception;
+		
+		// 번호로 비밀번호 찾기
+		User findUserPwByUserPhone(String userPhone) throws Exception; 
+		
+		
+		
+		
+		
+		
 }
+
+
+
+
+
+
+
+

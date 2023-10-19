@@ -10,38 +10,34 @@ import com.itwill.jpa.entity.user.User;
 public class UserServiceImpl implements UserService{
 	private UserDao userDao;
 	
-	
 	// 회원가입
 	@Override
-	public User createUser(User userid) throws Exception {
-		if (userDao.existedUser(userid.getUserId())) {
-			//중복인 경우, exception 처리 만들어야함.
-		}return userDao.createUser(userid);
+	public User createUser(User userId) throws Exception {
+		
+		return userDao.createUser(userId);
 	}
-
 	
 	// 로그인
 	@Override
-	public int login(String userid, String password) throws Exception {
+	public int login(String userId, String password) throws Exception {
 		
 		return 0;
-		
 	}
 
 	@Override
-	public User findUser(String userid) throws Exception {
+	public User findUser(String userId) throws Exception {
 		
 		return null;
 	}
 
 	@Override
-	public int updateUser(User userid) throws Exception {
+	public int updateUser(User userId) throws Exception {
 		
 		return 0;
 	}
 
 	@Override
-	public int removeUser(String userid) throws Exception {
+	public int deleteUser(String userId) throws Exception {
 		
 		return 0;
 	}
@@ -53,9 +49,23 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public boolean isDuplicateId(String userid) throws Exception {
-		
+	public boolean existsById(String userId) throws Exception {
+		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public User findUserIdByUserEmail(String userEmail) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findUserPwByUserPhone(String userPhone) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
