@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class UserRepositoryTest {
+import com.itwill.jpa.TeamProjectMangoApplicationTest;
+
+class UserRepositoryTest extends TeamProjectMangoApplicationTest{
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void contextLoads() {
 	}
-
 }

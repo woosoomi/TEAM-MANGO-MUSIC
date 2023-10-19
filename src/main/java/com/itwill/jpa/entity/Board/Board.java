@@ -54,7 +54,7 @@ public class Board {
     }
     //user와 board N대1관계설정.
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn(name = "userId")
+	@JoinColumn
 	@Builder.Default
 	private User user =new User();
 	

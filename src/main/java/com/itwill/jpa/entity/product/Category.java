@@ -1,8 +1,15 @@
 package com.itwill.jpa.entity.product;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.product.*;
+import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,6 +27,10 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Category {
 	
  @Id @GeneratedValue

@@ -54,11 +54,11 @@ public class Order {
 	
 	//FK 주문을 넣은 유저정보(다대일 관계 매핑)
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userId")
 	private User user;
 	
 	//주문 제품들(일대다 관계 매핑), 매핑된 엔티티 끼리 변경된 정보를 전부 공유하도록 설정
-	@OneToMany(mappedBy = "Order", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	

@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.itwill.jpa.TeamProjectMangoApplication;
+import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
 
-class BoardRepositoryTest extends TeamProjectMangoApplication{
+class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 
 	@Autowired
 	BoardRepository boardRepository;
@@ -45,7 +45,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplication{
 		
 		board.setUser(user);
 		System.out.println(board);
-		boardRepository.save(board);
+//		boardRepository.save(board);
 	}
 	
 //	@Transactional

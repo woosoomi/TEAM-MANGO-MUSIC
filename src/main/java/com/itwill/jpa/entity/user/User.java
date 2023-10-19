@@ -52,18 +52,18 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private List<Board> boards = new ArrayList<>();
 	
-	// user와 order 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	private List<Order> orders = new ArrayList<>();
-	
-	// user와 cart 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	private List<Cart> carts = new ArrayList<>();
-	
-	// user와 product N대1 관계설정
-	@ManyToOne
-	@JoinColumn(name = "product_no")
-	private Product product = new Product();
+//	// user와 order 1대N 관계설정
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+//	private List<Order> orders = new ArrayList<>();
+//	
+//	// user와 cart 1대N 관계설정
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+//	private List<Cart> carts = new ArrayList<>();
+//	
+//	// user와 product N대1 관계설정
+//	@ManyToOne
+//	@JoinColumn(name = "product_no")
+//	private Product product = new Product();
 	
 	
 }
