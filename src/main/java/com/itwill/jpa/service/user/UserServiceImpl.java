@@ -17,29 +17,23 @@ public class UserServiceImpl implements UserService{
 		return userDao.createUser(userId);
 	}
 	
-	// 로그인
-	@Override
-	public int login(String userId, String password) throws Exception {
-		
-		return 0;
-	}
-
 	@Override
 	public User findUser(String userId) throws Exception {
+		
 		
 		return null;
 	}
 
 	@Override
-	public int updateUser(User userId) throws Exception {
+	public User updateUser(User userId) throws Exception {
 		
-		return 0;
+		return null;
 	}
 
 	@Override
-	public int deleteUser(String userId) throws Exception {
+	public void deleteUser(String userId) throws Exception {
 		
-		return 0;
+		return ;
 	}
 
 	@Override
@@ -55,13 +49,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User findUserIdByUserEmail(String userEmail) throws Exception {
+	public String findUserIdByUserEmail(String userEmail) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User findUserPwByUserPhone(String userPhone) throws Exception {
+	public String findUserPwByUserPhone(String userPhone) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
