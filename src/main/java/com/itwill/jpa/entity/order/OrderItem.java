@@ -34,7 +34,7 @@ public class OrderItem {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "order_no")
-	private Order order = new Order();
+	private Orders order;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_no")

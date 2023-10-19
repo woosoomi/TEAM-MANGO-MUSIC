@@ -38,7 +38,7 @@ public class Delivery {
 	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
 	@OneToOne
 	@JoinColumn(name = "order_no")
-	private Order order;
+	private Orders order;
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {
