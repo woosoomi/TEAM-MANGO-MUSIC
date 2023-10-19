@@ -20,11 +20,7 @@ public class ProductDto {
 	private int productPrice;
 	private Long readCount;
 	
-	public ProductDto(Music music) {
-		this.productNo = music.getProductNo();
-		this.productName = music.getProductName();
-		this.readCount = music.getReadCount();
-	}
+	
 	
 //	private String productName;
 }

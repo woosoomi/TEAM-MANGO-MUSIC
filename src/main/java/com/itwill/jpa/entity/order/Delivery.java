@@ -4,6 +4,7 @@ package com.itwill.jpa.entity.order;
 import com.itwill.jpa.dto.order.DeliveryDto;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,7 +37,7 @@ public class Delivery {
 	private String deliveryCompany;
 	
 	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
-	@OneToOne
+	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_no")
 	private Order order;
 	

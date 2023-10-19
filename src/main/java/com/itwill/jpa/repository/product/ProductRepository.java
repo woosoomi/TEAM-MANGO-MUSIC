@@ -11,7 +11,6 @@ import com.itwill.jpa.entity.product.Product.Music;
 
 
 @Repository
-//@RequiredArgsConstructor
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 //	private final EntityManager em;

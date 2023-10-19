@@ -9,12 +9,12 @@ public interface ProductDao {
 	
 	Product insertProduct(Product product);
 	
-	Product selectProduct(Long no);
+	Product selectProduct(Long productNo);
 	
 	List<Product> selectList();
 	
-	void deleteProduct(Long no) throws Exception;
+	void deleteProduct(Long productNo) throws Exception;
 	
-	List<ProductDao> getAllMusicByProductNoDesc(); // 음악 내립차순 정렬
+//	List<ProductDao> getAllMusicByProductNoDesc(); // 음악 내립차순 정렬
 	
 }

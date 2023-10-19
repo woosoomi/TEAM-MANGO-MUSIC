@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 //@RequiredArgsConstructor
 public interface ProductService {
-	List<ProductDao> getAllMusicByProductNoDesc();  // 음악 내립차순 정렬
+	//List<ProductDao> getAllMusicByProductNoDesc();  // 음악 내립차순 정렬
 	
 	
 }
