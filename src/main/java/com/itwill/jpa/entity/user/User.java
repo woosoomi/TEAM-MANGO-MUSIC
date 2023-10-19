@@ -3,26 +3,18 @@ package com.itwill.jpa.entity.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.domain.Sort.Order;
-
 import com.itwill.jpa.entity.Board.Board;
-import com.itwill.jpa.entity.cart.Cart;
-import com.itwill.jpa.entity.order.Order;
-import com.itwill.jpa.entity.product.Product;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity(name = "user")
 @Table(name = "userinfo")

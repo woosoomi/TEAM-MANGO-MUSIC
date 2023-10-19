@@ -2,14 +2,12 @@ package com.itwill.jpa.dto.order;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
 import com.itwill.jpa.entity.order.OrderItem;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
