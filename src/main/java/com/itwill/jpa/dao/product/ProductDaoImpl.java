@@ -33,4 +33,10 @@ public class ProductDaoImpl implements ProductDao{
 		
 	}
 
+	@Override
+	public List<ProductDao> getAllMusicByProductNoDesc() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

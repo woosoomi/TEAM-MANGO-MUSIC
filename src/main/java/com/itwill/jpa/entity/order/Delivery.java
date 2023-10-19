@@ -1,5 +1,6 @@
 package com.itwill.jpa.entity.order;
 
+
 import com.itwill.jpa.dto.order.DeliveryDto;
 
 import jakarta.persistence.Entity;
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Builder
+
 public class Delivery {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
