@@ -37,8 +37,7 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_CART_NO_SEQ")
 	private Long cartId;
 	
-
-	private int CartTotPrice;
+	private int cartTotPrice;
 	
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -47,7 +46,7 @@ public class Cart {
     
     public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
-    				.CartTotPrice(dto.getCartTotPrice())
+    				.cartTotPrice(dto.getCartTotPrice())
     				.build();
     }
     

@@ -1,6 +1,7 @@
 package com.itwill.jpa.dao.board;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,14 +28,27 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public Board updateBoard(Board board) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Board updateBoard(Board updateboard) throws Exception {
+		Optional<Board> findBoardOptional=
+				boardRepository.findById(updateboard.getBoardId());
+		Board updateBoard=null;
+		if(findBoardOptional.isPresent()) {
+			Board board=findBoardOptional.get();
+			board.setBoardTitle(updateboard.getBoardTitle());
+			updateboard=boardRepository.save(board);
+		}else {
+			throw new Exception("존재하지않는제품입니다");
+		}
+		return updateBoard;
 	}
 
 	@Override
 	public void deleteBoard(Long no) throws Exception {
-		
+		Optional<Board> selectBoardOptional = boardRepository.findById(no);
+		if(selectBoardOptional.isEmpty()) {
+			throw new Exception();
+		}
+		boardRepository.delete(selectBoardOptional.get());
 	}
 
 	@Override
