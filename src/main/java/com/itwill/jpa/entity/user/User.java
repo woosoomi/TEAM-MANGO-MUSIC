@@ -57,10 +57,6 @@ public class User {
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
 	  List<Order> orders = new ArrayList<>();
 	  
-	  // user와 cart 1대N 관계설정
-	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
-	  List<Cart> carts = new ArrayList<>();
-	 
 	 // user와 cart 1대1 관계설정
 	  @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
 	  @JoinColumn(name="cart_Id")
