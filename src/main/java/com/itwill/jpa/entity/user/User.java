@@ -40,7 +40,7 @@ public class User {
 	
 	private String userName;		// 회원 이름
 	
-	@Column(length = 13, nullable = false)
+	@Column(length = 15, nullable = false)
 	private String userPhone;		// 회원 전화번호
 	
 	private String userAddress;	    // 회원 주소
