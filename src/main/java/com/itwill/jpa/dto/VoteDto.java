@@ -1,5 +1,5 @@
 package com.itwill.jpa.dto;
 
-public class Dto {
+public class VoteDto {
 
 }

@@ -21,8 +21,8 @@ public class VoteDto {
 
 	private int voteNo;				//  투표 번호
 
-	private Date date; 				//  투표 날짜
-	private long tot; 				//  투표 합산점수
+	private Date voteDate; 				//  투표 날짜
+	private int voteTot; 				//  투표 합산점수
 	
 	// private User user;	 		//  유저_회원 --> 조인연산
 	// private Product product;		// 	음악_상품 --> 조인연산

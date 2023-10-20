@@ -30,17 +30,13 @@ import lombok.NoArgsConstructor;
 public class Vote {
 //  투표번호
 	@Id 
-	@SequenceGenerator(name = "vote_no_seq",sequenceName = "vote_no_seq",initialValue = 1,allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "vote_no_seq")
-	private int voteNo;				
+	@SequenceGenerator(name = "VOTE_NO_SEQ",sequenceName = "VOTE_NO_SEQ",initialValue = 1,allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VOTE_NO_SEQ")
+	private Long voteNo;				
 
 	
 	// 유저_회원
-	@JoinColumn
-	private User user;	
 	
-	@JoinColumn
-	private Product product;
 	/* 음악_상품에서 가져와야하는 것
 	private int musicReplay;		//  음악 플레이 횟수
 	private int reply;				//  음악 댓글 수
@@ -52,13 +48,12 @@ public class Vote {
 	private Date voteDate; 				
 	
 	// 투표 합산점수
-	private long tot; 			
+	private int voteTot; 			
 	
-	public static Vote toEntity(VoteDto voteDto, User user, Product product) {
+	public static Vote toEntity(VoteDto dto) {
 		return Vote.builder()
-				   .voteNo(voteDto.getVoteNo())
-				   .user(user)
-				   .product(product)
+				   .voteDate(dto.getVoteDate())
+				   .voteTot(dto.getVoteTot())
 				   .build();
 		
 	}
