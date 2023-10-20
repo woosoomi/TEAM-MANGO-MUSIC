@@ -18,6 +18,7 @@ public class CartDaoImpl implements CartDao {
 	public void createCart(Cart cart) throws Exception {
 		cartRepository.save(cart);
 	}
+<<<<<<< HEAD
 
 //	@Override
 //	public Cart updateCart(Cart updateCart) throws Exception {
@@ -34,6 +35,24 @@ public class CartDaoImpl implements CartDao {
 //		return updatedCart;
 //	}
 
+=======
+/*
+	@Override
+	public Cart updateCart(Cart updateCart) throws Exception {
+		Optional<Cart> findcartOptional = cartRepository.findById(updateCart.getCartId());
+		Cart updatedCart = null;
+		if (findcartOptional.isPresent()) {
+			Cart cart = findcartOptional.get();
+			cart.getCartItem().setCartItemQty(updateCart.getCartItem().getCartItemQty());
+			updateCart = cartRepository.save(cart);
+	
+		}else {
+			throw new Exception("존재하지 않는 장바구니입니다.");
+		}
+		return updatedCart;
+	}
+*/
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
 	@Override
 	public void deleteAllbyUserId(String userId) throws Exception {
 		cartRepository.deleteAllByUserId(userId);

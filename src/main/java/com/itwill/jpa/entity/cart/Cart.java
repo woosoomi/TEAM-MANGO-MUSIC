@@ -1,6 +1,7 @@
 package com.itwill.jpa.entity.cart;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -37,19 +38,29 @@ public class Cart {
 	
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn
-	@Builder.Default
-	private User user =new User();
+	private User user;
 	
+<<<<<<< HEAD
 	private int CartTotPrice;
 	
 	@CreationTimestamp
+=======
+	//@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+//	private List<CartItemDto> cartItems;
+	
+    @CreationTimestamp
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
-    public static Cart toEntity(CartDto dto) {
+    public static Cart toEntity(CartDto dto, User user, List<CartItemDto> cartItems) {
     	return Cart.builder()
+<<<<<<< HEAD
     				.CartTotPrice(dto.getCartTotPrice())
+=======
+    				.user(user)
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
     				.build();
     }
     

@@ -1,19 +1,24 @@
 package com.itwill.jpa.entity.cart;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.itwill.jpa.dto.cart.CartDto;
+import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,4 +40,11 @@ public class CartItem {
 	private LocalDateTime createAt;
 	@UpdateTimestamp
 	private LocalDateTime updateAt;
+	
+	private CartDto cart;
+	
+	public static CartItem toEntity(CartItemDto dto) {
+    	return CartItem.builder()
+    					.build();
+    }
 }
