@@ -20,5 +20,6 @@ public class CartDto {
 	
 	private int cartNo;
 	private int cartTotPrice;
-	//private List<CartItemDto> cartItems;
+	private User user;
+	private List<CartItemDto> cartItems;
 }
