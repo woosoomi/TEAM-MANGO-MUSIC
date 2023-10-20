@@ -1,7 +1,4 @@
-package com.itwill.jpa.dto.cart;
-
-
-import java.util.List;
+package com.itwill.jpa.dto.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,11 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 @ToString
-public class CartDto {
-	
-	private int cartTotPrice;
+@Builder
+public class ProductCategoryDto {
+	 private String productCategoryName;
 }

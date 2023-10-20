@@ -1,15 +1,14 @@
 package com.itwill.jpa.entity.order;
 
 
+
 import com.itwill.jpa.dto.order.DeliveryDto;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +24,8 @@ import lombok.NoArgsConstructor;
 
 public class Delivery {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "DELIVERY_DELIVERY_NO_SEQ",sequenceName = "DELIVERY_DELIVERY_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DELIVERY_DELIVERY_NO_SEQ")
 	private Long deliveryNo;
 	
 	private String deliveryName;
@@ -36,10 +36,7 @@ public class Delivery {
 	
 	private String deliveryCompany;
 	
-	//일대일 양방향 (Order <-> Delivery) FK를 가진 Order가 주인
-	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
-	@JoinColumn(name = "order_no")
-	private Order order;
+
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {

@@ -1,13 +1,13 @@
 package com.itwill.jpa.entity.cart;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.dto.cart.CartDto;
-import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -17,9 +17,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,32 +33,31 @@ import lombok.NoArgsConstructor;
 public class Cart {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "CART_CART_NO_SEQ",sequenceName = "CART_CART_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_CART_NO_SEQ")
 	private Long cartId;
 	
-	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn
-	private User user;
-	
+
 	private int CartTotPrice;
-	
-	//@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-//	private List<CartItemDto> cartItems;
 	
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
-    public static Cart toEntity(CartDto dto, User user, List<CartItemDto> cartItems) {
+    public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
     				.CartTotPrice(dto.getCartTotPrice())
-    				.user(user)
     				.build();
     }
     
-	
-	
+	//product와 cartitem 1대n
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	private List<CartItem> cartitems = new ArrayList<CartItem>();
     
-    
+	//user- cart 1대1
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_no")
+	private User user;
 }

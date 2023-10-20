@@ -1,9 +1,0 @@
-package com.itwill.jpa.repository.product;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.itwill.jpa.entity.product.Category;
-
-public interface CategoryRepository extends JpaRepository<Category, Long> {
-
-}

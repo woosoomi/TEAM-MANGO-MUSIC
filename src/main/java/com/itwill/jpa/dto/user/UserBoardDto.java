@@ -1,4 +1,4 @@
-package com.itwill.jpa.dto.product;
+package com.itwill.jpa.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Builder
-public class CategoryDto {
-	 private String categoryName;
+public class UserBoardDto {
+	
+	private String userName;
+	
+	private String userEmail;
+	
 }

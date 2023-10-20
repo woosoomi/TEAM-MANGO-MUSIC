@@ -6,6 +6,7 @@ import java.util.jar.Attributes.Name;
 
 import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.cart.Cart;
+import com.itwill.jpa.entity.vote.Vote;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -48,28 +49,22 @@ public class User {
 	private String userGender;		// 회원 성별
 	
 	
-	  // user와 board 1대N 관계설정
+	  // user와 user_board 1대N 관계설정
 	  @Builder.Default
-	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
-	  List<Board> boards = new ArrayList<>();
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<User_Board> user_Boards = new ArrayList<>();
 	  
 	  // user와 order 1대N 관계설정
-	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) private
-	  List<Order> orders = new ArrayList<>();
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<Order> orders = new ArrayList<>();
 	  
-	 // user와 cart 1대1 관계설정
+	  // user와 vote 1대N 관계설정
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<Vote> votes = new ArrayList<>();
+	  
+	  // user와 cart 1대1 관계설정
 	  @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
 	  @JoinColumn(name="cart_Id")
 	  private Cart cart ;
 	 
 }
-
-
-
-
-
-
-
-
-
-

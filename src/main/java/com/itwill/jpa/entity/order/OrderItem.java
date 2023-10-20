@@ -1,6 +1,7 @@
 package com.itwill.jpa.entity.order;
 
 
+
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,8 +25,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class OrderItem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Id@SequenceGenerator(name = "ORDER_ITEM_NO_SEQ",sequenceName = "ORDER_ITEM_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_ITEM_NO_SEQ")
 	private Long oiNo;
 	
 	private int oiQty;
