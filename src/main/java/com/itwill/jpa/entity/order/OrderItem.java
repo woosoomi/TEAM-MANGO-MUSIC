@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 public class OrderItem {
 	@Id@SequenceGenerator(name = "ORDER_ITEM_NO_SEQ",sequenceName = "ORDER_ITEM_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_ITEM_NO_SEQ")
-	private Long oiNo;
+	private Long oiId;
 	
 	private int oiQty;
 
@@ -35,7 +35,7 @@ public class OrderItem {
 	 * 다대일 관계
 	 */
 	@ManyToOne
-	@JoinColumn(name = "order_no")
+	@JoinColumn(name = "order_id")
 	private Order order;
 	
 	@ManyToOne
