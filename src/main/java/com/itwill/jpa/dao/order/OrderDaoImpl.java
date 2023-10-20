@@ -20,8 +20,8 @@ public class OrderDaoImpl implements OrderDao{
 	}
 	
 	@Override
-	public Order selectOrder(Long no) {
-		Order selectedOrder = orderRepository.findById(no).get();
+	public Order selectOrder(Long orderId) {
+		Order selectedOrder = orderRepository.findById(orderId).get();
 		return selectedOrder;
 	}
 	
@@ -29,7 +29,7 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public Order updateOrder(Order updateOrder) throws Exception {
 		Optional<Order> findOrderOptional =
-				orderRepository.findById(updateOrder.getOrderNo());
+				orderRepository.findById(updateOrder.getOrderId());
 		Order updatedOrder=null;
 		if(findOrderOptional.isPresent()) {
 			Order order = findOrderOptional.get();
@@ -43,8 +43,8 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public void deleteOrder(Long no) throws Exception {
-		Optional<Order> selectedOrderOptional = orderRepository.findById(no); 
+	public void deleteOrder(Long orderId) throws Exception {
+		Optional<Order> selectedOrderOptional = orderRepository.findById(orderId); 
 		if(selectedOrderOptional.isEmpty()) {
 			throw new Exception("존재하지않는주문입니다.");
 		}

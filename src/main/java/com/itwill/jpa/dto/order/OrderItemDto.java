@@ -24,7 +24,7 @@ public class OrderItemDto {
 //	public OrderItemDto(OrderItem orderItem) {
 //		this.productName = orderItem.getProduct().getProductName();
 //		this.productPrice = orderItem.getProduct().getProductPrice();
-////		this.ProductImage = orderItem.getProduct().getImage();
+//		this.ProductImage = orderItem.getProduct().getImage();
 //	}
 	
 	

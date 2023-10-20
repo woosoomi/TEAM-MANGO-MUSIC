@@ -21,15 +21,15 @@ public class OrderItemImpl implements OrderItemDao{
 	}
 
 	@Override
-	public OrderItem selectOrderItem(Long orderItemNo) {
-		OrderItem selectedOrderItem = orderItemRepository.findById(orderItemNo).get();
+	public OrderItem selectOrderItem(Long orderItemId) {
+		OrderItem selectedOrderItem = orderItemRepository.findById(orderItemId).get();
 		return selectedOrderItem;
 	}
 
 	@Override
 	public OrderItem updateOrderItem(OrderItem updateOrderItem) {
 		Optional<OrderItem> findOrderItemOptional =
-				orderItemRepository.findById(updateOrderItem.getOiNo());
+				orderItemRepository.findById(updateOrderItem.getOiId());
 		OrderItem updatedOrderItem = null;
 		if(findOrderItemOptional.isPresent()) {
 			OrderItem orderItem = findOrderItemOptional.get();
@@ -43,8 +43,8 @@ public class OrderItemImpl implements OrderItemDao{
 			
 
 	@Override
-	public void deleteOrderItem(Long orderItemNo) {
-		Optional<OrderItem> selectedOrderItemOptional = orderItemRepository.findById(orderItemNo);
+	public void deleteOrderItem(Long orderItemId) {
+		Optional<OrderItem> selectedOrderItemOptional = orderItemRepository.findById(orderItemId);
 		if(selectedOrderItemOptional.isEmpty()) {
 			throw new OrderItemNotFoundException("삭제하실 상품이 존재하지 않습니다.");
 		}
