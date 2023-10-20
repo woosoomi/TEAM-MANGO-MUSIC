@@ -15,9 +15,7 @@ class VoteRepositoryTest extends TeamProjectMangoApplicationTest{
 	   void testSave() {
 		   
 	     Vote vote = Vote.builder()
-	    		 		 .user(null)
-	    		 		 .product(null)
-	    		 		 .tot(0)
+	    		 		 .voteTot(0)
 	    		 		 .build();
 
 	      voteRepository.save(vote);

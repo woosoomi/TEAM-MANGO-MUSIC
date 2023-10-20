@@ -30,15 +30,21 @@ import lombok.NoArgsConstructor;
 public class Vote {
 //  투표번호
 	@Id 
-	@SequenceGenerator(name = "vote_no_seq",sequenceName = "vote_no_seq",initialValue = 1,allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "vote_no_seq")
+	@SequenceGenerator(name = "VOTE_NO_SEQ",sequenceName = "VOTE_NO_SEQ",initialValue = 1,allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VOTE_NO_SEQ")
 	private Long voteNo;				
 
 	
 	// 유저_회원
+
 	@JoinColumn
 	private User user;				
-	
+
+	/* 음악_상품에서 가져와야하는 것
+	private int musicReplay;		//  음악 플레이 횟수
+	private int reply;				//  음악 댓글 수
+	private int likes;				//  음악 좋아요 수
+=======
 	@JoinColumn
 	private Product product;
 	/* 
@@ -47,6 +53,7 @@ public class Vote {
 	private int reply;				//  음악 댓글
 	private int likes;				//  음악 별점
 	
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
 	*/
 	
 	// 투표 날짜
@@ -54,13 +61,12 @@ public class Vote {
 	private Date voteDate; 				
 	
 	// 투표 합산점수
-	private long tot; 			
+	private int voteTot; 			
 	
-	public static Vote toEntity(VoteDto voteDto, User user, Product product) {
+	public static Vote toEntity(VoteDto dto) {
 		return Vote.builder()
-				   .voteNo(voteDto.getVoteNo())
-				   .user(user)
-				   .product(product)
+				   .voteDate(dto.getVoteDate())
+				   .voteTot(dto.getVoteTot())
 				   .build();
 		
 	}
