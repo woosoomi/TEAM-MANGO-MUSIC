@@ -46,6 +46,8 @@ public class ProductDto {
 	
 	private int periodOfUse; // 멤버십 사용기간
 	
+	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
+	
 	
 	
 
