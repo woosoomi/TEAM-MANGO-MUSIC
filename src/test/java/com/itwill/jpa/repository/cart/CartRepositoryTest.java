@@ -24,7 +24,7 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 	void saveCartWithUser() {
 		Cart cart = Cart.builder()
 						.cartId(null)
-						.cartTotPrice(0)
+						.CartTotPrice(0)
 						.build();
 		
 	cartRepository.save(cart);	
