@@ -36,7 +36,6 @@ public class Vote {
 
 	
 	// 유저_회원
-	
 	/* 음악_상품에서 가져와야하는 것
 	private int musicReplay;		//  음악 플레이 횟수
 	private int reply;				//  음악 댓글 수
