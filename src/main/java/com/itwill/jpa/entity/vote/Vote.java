@@ -2,7 +2,6 @@ package com.itwill.jpa.entity.vote;
 
 import java.sql.Date;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -15,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,24 +36,11 @@ public class Vote {
 
 	
 	// 유저_회원
-
-	@JoinColumn
-	private User user;				
-
+	
 	/* 음악_상품에서 가져와야하는 것
 	private int musicReplay;		//  음악 플레이 횟수
 	private int reply;				//  음악 댓글 수
 	private int likes;				//  음악 좋아요 수
-=======
-	@JoinColumn
-	private Product product;
-	/* 
-	★ 음악_상품에서 가져와야하는 것 ★
-	private int musicReplay;		// 	음악 조회수
-	private int reply;				//  음악 댓글
-	private int likes;				//  음악 별점
-	
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
 	*/
 	
 	// 투표 날짜
@@ -70,5 +57,13 @@ public class Vote {
 				   .build();
 		
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "user_Id")
+	private User user ;
+	
+	@ManyToOne
+	@JoinColumn(name = "product_no")
+	private Product product;
 	
 }

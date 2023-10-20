@@ -3,33 +3,35 @@ package com.itwill.jpa.entity.product;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale.Category;
 
 import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.entity.cart.CartItem;
+import com.itwill.jpa.entity.order.OrderItem;
+import com.itwill.jpa.entity.vote.Vote;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Builder
+@Table(name = "product")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,18 +48,11 @@ public class Product {
 	@Column(nullable = false)
 	private int productPrice;
 	
-	//(c)1:N(p)
-	/*
-	 * @ManyToOne(cascade = CascadeType.PERSIST)
-	 * 
-	 * @JoinColumn(name="category_id") private List<Category> categories = new
-	 * ArrayList<Category>();
-	 */
+
 	/** music **/
 	@Entity
 	@DiscriminatorValue("music")
 	public class Music extends Product {
-
 		private String productMovie; // 음악 뮤직비디오
 		private String productArtist; // 음악 아티스트
 		private String productContent; // 음악 설명
@@ -106,5 +101,25 @@ public class Product {
 				.productPrice(productDto.getProductPrice())
 				.build();
 	}
+	
+	//product와 orderitem 1대n
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+	
+	//product와 productcategory  1대1
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "product_category_Id")
+	private ProductCategory productCategory;
+	
+	//product와 cartitem 1대n
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	private List<CartItem> cartitems = new ArrayList<CartItem>();
+	
+	//product와 vote 1대n
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	private List<Vote> vote = new ArrayList<Vote>();
 	
 }

@@ -1,24 +1,20 @@
 package com.itwill.jpa.entity.cart;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
-import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.product.Product;
-import com.itwill.jpa.entity.user.User;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,20 +27,32 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CartItem {
 	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "CART_ITEM_NO_SEQ",sequenceName = "CART_ITEM_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_ITEM_NO_SEQ")
 	private Long cartItemId;
 	private int cartItemQty;
-	private Product product;
 	@CreationTimestamp
 	private LocalDateTime createAt;
 	@UpdateTimestamp
 	private LocalDateTime updateAt;
 	
-	private CartDto cart;
 	
 	public static CartItem toEntity(CartItemDto dto) {
     	return CartItem.builder()
-    					.build();
+    			       .cartItemQty(dto.getCartItemQty())
+    				   .build();
     }
+	
+	//cartitem -cart설정
+	@ManyToOne
+	@JoinColumn(name = "cart_no")
+	private Cart cart;
+	
+
+	//cartitem -product설정
+	@ManyToOne
+	@JoinColumn(name = "product_no")
+	private Product product;
 }
