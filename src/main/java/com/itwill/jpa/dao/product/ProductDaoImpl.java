@@ -14,14 +14,14 @@ public class ProductDaoImpl implements ProductDao{
 	ProductRepository productRepository;
 	
 	@Override
+	public List<Product> selectList() {
+		return	productRepository.findAll();
+	}
+
+	@Override
 	public Product insertProduct(Product product) {
 		Product insertProduct = productRepository.save(product);
 		return insertProduct;
-	}
-	
-	@Override
-	public void deleteProduct(Long productNo) throws Exception {
-		
 	}
 	
 	@Override
@@ -31,8 +31,10 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public List<Product> selectList() {
-	
-		return	productRepository.findAll();
+	public void deleteProduct(Long productNo) throws Exception {
+		
 	}
+	
+
+	
 }
