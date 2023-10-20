@@ -28,7 +28,9 @@ import lombok.NoArgsConstructor;
 @Data
 @DynamicUpdate
 public class Vote {
-//  투표번호
+
+	
+	//  투표번호
 	@Id 
 	@SequenceGenerator(name = "VOTE_NO_SEQ",sequenceName = "VOTE_NO_SEQ",initialValue = 1,allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VOTE_NO_SEQ")
