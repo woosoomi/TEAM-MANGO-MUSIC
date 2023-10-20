@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.jpa.entity.order.Order;
-import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 
 public class OrderDaoImpl implements OrderDao{
@@ -15,20 +14,32 @@ public class OrderDaoImpl implements OrderDao{
 	OrderRepository orderRepository;
 	
 	@Override
-	public List<Order> selectList() {
-		return orderRepository.findAll();
-	}
-	
-	@Override
 	public Order insertOrder(Order order) {
 		Order savedOrder = orderRepository.save(order);
 		return savedOrder;
 	}
-
+	
 	@Override
 	public Order selectOrder(Long no) {
 		Order selectedOrder = orderRepository.findById(no).get();
 		return selectedOrder;
+	}
+	
+	//관리자 권한(오더 수정)
+	@Override
+	public Order updateOrder(Order updateOrder) throws Exception {
+		Optional<Order> findOrderOptional =
+				orderRepository.findById(updateOrder.getOrderNo());
+		Order updatedOrder=null;
+		if(findOrderOptional.isPresent()) {
+			Order order = findOrderOptional.get();
+			//관리자가 수정할 수 있는 주문 정보(주문상태)
+			order.setOrderStatus(updateOrder.getOrderStatus());
+			updatedOrder=orderRepository.save(order);
+		}else {
+			throw new Exception("존재하지 않는 주문입니다.");
+		}
+		return updatedOrder;
 	}
 
 	@Override
@@ -41,9 +52,8 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public Order updateOrder(Order order) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Order> selectList() {
+		return orderRepository.findAll();
 	}
 
 }
