@@ -2,22 +2,23 @@ package com.itwill.jpa.entity.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes.Name;
 
-import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.cart.Cart;
+import com.itwill.jpa.entity.order.Coupon;
+import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.vote.Vote;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.criteria.Order;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,7 +32,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class User {
 
-	@Id 
+	@Id
 	//@Column(name = "user_Id")
 	private String userId;			// 회원 아이디
 	
@@ -58,13 +59,18 @@ public class User {
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	  private List<Order> orders = new ArrayList<>();
 	  
+	  // user와 coupon 1대N 관계설정
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<Coupon> coupons = new ArrayList<>();
+	  
 	  // user와 vote 1대N 관계설정
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	  private List<Vote> votes = new ArrayList<>();
 	  
 	  // user와 cart 1대1 관계설정
 	  @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	  @JoinColumn(name="cart_Id")
+	  @JoinColumn(name="cart_id")
 	  private Cart cart ;
+	  
 	 
 }
