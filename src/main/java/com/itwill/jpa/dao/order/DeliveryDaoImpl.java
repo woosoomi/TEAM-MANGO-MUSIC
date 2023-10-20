@@ -20,15 +20,15 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 	@Override
-	public Delivery selectDelivery(Long deliveryNo){
-		Delivery selectDelivery = deliveryRepository.findById(deliveryNo).get();
+	public Delivery selectDelivery(Long deliveryId){
+		Delivery selectDelivery = deliveryRepository.findById(deliveryId).get();
 		return selectDelivery;
 	}
 
 	@Override
 	public Delivery updateDelivery(Delivery updateDelivery) throws Exception{
 		//Delivery가 존재하는지 확인
-		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryNo());
+		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryId());
 		Delivery updatedDelivery = null;
 		if(findDeliveryOptional.isPresent()) {
 			//존재한다면 업데이트 실행
@@ -46,9 +46,9 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 	@Override
-	public void deleteDelivery(Long deliveryNo) throws Exception{
+	public void deleteDelivery(Long deliveryId) throws Exception{
 		//Delivery가 존재하는지 확인 -> 없으면 오류 메세지 던지기
-		Optional<Delivery> deleteDeliveryOptional = deliveryRepository.findById(deliveryNo);
+		Optional<Delivery> deleteDeliveryOptional = deliveryRepository.findById(deliveryId);
 		if(deleteDeliveryOptional.isEmpty()) {
 			throw new Exception("삭제할 주소가 존재하지 않습니다.");
 		}

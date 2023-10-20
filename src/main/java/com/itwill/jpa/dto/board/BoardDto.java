@@ -23,4 +23,6 @@ public class BoardDto {
     private LocalDateTime createdTime;
     private LocalDateTime updateTime;
 
+    
+	
 }
