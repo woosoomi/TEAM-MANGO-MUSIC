@@ -13,6 +13,7 @@ public class VoteDaoImpl implements VoteDao{
 	@Autowired
 	VoteRepository voteRepository;
 
+	// 투표 생성
 	@Override
 	public Vote createVote(Vote vote) throws Exception {
 		Vote createVote = voteRepository.save(vote);
@@ -20,16 +21,27 @@ public class VoteDaoImpl implements VoteDao{
 		
 		
 	}
-
+	
+	// 투표 번호로 1개 선택
 	@Override
-	public Vote voteUserforArtist(Vote voteNo) throws Exception {
-		Vote voteNouserForArtist = voteRepository.save(voteNo);
-		return voteNouserForArtist;
+	public Vote selectByVoteNo(Vote vote) throws Exception {
+		Vote selectByVoteNo = voteRepository.findById(vote.getVoteNo()).get();
+		
+		return selectByVoteNo;
+	}
+
+	
+	@Override
+	public Vote voteUserforArtist(Vote vote) throws Exception {
+		voteRepository.findByUserId(vote.getUser().getUserId());
+		
+		
+		return null;
 	}
 
 	@Override
-	public Vote removeVoteArtist(Vote voteNo) throws Exception {
-		// TODO Auto-generated method stub
+	public Vote removeVoteByArtist(Vote vote) throws Exception {
+		
 		return null;
 	}
 
@@ -50,4 +62,6 @@ public class VoteDaoImpl implements VoteDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 }
