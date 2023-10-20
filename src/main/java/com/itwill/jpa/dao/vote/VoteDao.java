@@ -3,8 +3,12 @@ package com.itwill.jpa.dao.vote;
 import java.util.List;
 
 import com.itwill.jpa.dto.vote.VoteDto;
+import com.itwill.jpa.entity.vote.Vote;
 
 public interface VoteDao {
+	
+	// 투표 생성
+	Vote createVote(Vote vote) throws Exception;
 	
 	// 회원이 가수에게 투표하기
 	int voteUserforArtist(VoteDto userId) throws Exception;
