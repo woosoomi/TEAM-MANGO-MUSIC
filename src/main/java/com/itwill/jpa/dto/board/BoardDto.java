@@ -14,9 +14,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class boardDto {
+public class BoardDto {
     
-	private String boardCategory;
 	private String boardTitle;
 	private String boardContent;
 	private String boardImage;

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.itwill.jpa.dto.board.boardDto;
+import com.itwill.jpa.dto.board.BoardDto;
 import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -42,9 +42,8 @@ public class Board {
     @UpdateTimestamp
     private LocalDateTime updateTime;
     
-    public static Board toEntity(boardDto dto) {
+    public static Board toEntity(BoardDto dto) {
     	return Board.builder()
-    				.boardCategory(dto.getBoardCategory())
     				.boardTitle(dto.getBoardTitle())
     				.boardContent(dto.getBoardContent())
     				.boardImage(dto.getBoardImage())
