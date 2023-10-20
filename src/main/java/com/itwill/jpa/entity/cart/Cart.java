@@ -40,6 +40,8 @@ public class Cart {
 	@JoinColumn
 	private User user;
 	
+	private int CartTotPrice;
+	
 	//@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
 //	private List<CartItemDto> cartItems;
 	
@@ -50,6 +52,7 @@ public class Cart {
     
     public static Cart toEntity(CartDto dto, User user, List<CartItemDto> cartItems) {
     	return Cart.builder()
+    				.CartTotPrice(dto.getCartTotPrice())
     				.user(user)
     				.build();
     }
