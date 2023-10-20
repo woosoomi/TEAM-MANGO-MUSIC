@@ -2,6 +2,7 @@ package com.itwill.jpa.dto.board;
 
 import java.time.LocalDateTime;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +14,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class BoardCategoryDto {
+public class BoardDto {
+    
+	private String boardTitle;
+	private String boardContent;
+	private String boardImage;
+    private LocalDateTime createdTime;
+    private LocalDateTime updateTime;
+
+    
 	
-	private String  boardCategoryName;
 }
