@@ -8,11 +8,11 @@ public interface OrderItemDao {
 
 	OrderItem insertOrderItem(OrderItem orderItem);
 	
-	OrderItem selectOrderItem(Long orderItemNo);
+	OrderItem selectOrderItem(Long orderItemId);
 	
 	OrderItem updateOrderItem(OrderItem orderItem);
 	
-	void deleteOrderItem(Long orderItemNo);
+	void deleteOrderItem(Long orderItemId);
 	
 	List<OrderItem> selectList();
 }

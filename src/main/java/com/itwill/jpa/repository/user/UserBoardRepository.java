@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.entity.user.User_Board;
+import com.itwill.jpa.entity.user.UserBoard;
 
 @Repository
-public interface User_BoardRepository extends JpaRepository<User_Board, Long> {
+public interface UserBoardRepository extends JpaRepository<UserBoard, Long> {
 	 
 
 }
