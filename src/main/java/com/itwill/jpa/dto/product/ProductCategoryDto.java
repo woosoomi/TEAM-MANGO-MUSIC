@@ -11,6 +11,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class CategoryDto {
-	 private String categoryName;
+public class ProductCategoryDto {
+	 private String productCategoryName;
 }

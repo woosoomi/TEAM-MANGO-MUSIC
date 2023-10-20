@@ -1,7 +1,5 @@
 package com.itwill.jpa.dto.order;
 
-import com.itwill.jpa.entity.order.OrderItem;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,11 +21,11 @@ public class OrderItemDto {
 
 
 	
-	public OrderItemDto(OrderItem orderItem) {
-		this.productName = orderItem.getProduct().getProductName();
-		this.productPrice = orderItem.getProduct().getProductPrice();
-//		this.ProductImage = orderItem.getProduct().getImage();
-	}
+//	public OrderItemDto(OrderItem orderItem) {
+//		this.productName = orderItem.getProduct().getProductName();
+//		this.productPrice = orderItem.getProduct().getProductPrice();
+////		this.ProductImage = orderItem.getProduct().getImage();
+//	}
 	
 	
 	

@@ -3,8 +3,6 @@ package com.itwill.jpa.dto.cart;
 
 import java.util.List;
 
-import com.itwill.jpa.entity.user.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,8 +16,5 @@ import lombok.ToString;
 @ToString
 public class CartDto {
 	
-	private int cartNo;
 	private int cartTotPrice;
-	private User user;
-	private List<CartItemDto> cartItems;
 }
