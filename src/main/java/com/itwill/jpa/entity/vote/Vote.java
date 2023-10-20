@@ -36,13 +36,6 @@ public class Vote {
 
 	
 	// 유저_회원
-<<<<<<< HEAD
-=======
-	@JoinColumn
-	private User user;				
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
-	
-<<<<<<< HEAD
 	/* 음악_상품에서 가져와야하는 것
 	private int musicReplay;		//  음악 플레이 횟수
 	private int reply;				//  음악 댓글 수
@@ -56,7 +49,6 @@ public class Vote {
 	private int reply;				//  음악 댓글
 	private int likes;				//  음악 별점
 	
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
 	*/
 	
 	// 투표 날짜

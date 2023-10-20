@@ -1,5 +1,5 @@
 package com.itwill.jpa.service.order;
 
-public class DeliveryServiceImpl implements DeliceryService{
+public class DeliveryServiceImpl implements DeliveryService{
 
 }

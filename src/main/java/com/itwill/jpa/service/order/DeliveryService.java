@@ -1,5 +1,5 @@
 package com.itwill.jpa.service.order;
 
-public interface DeliceryService {
+public interface DeliveryService {
 
 }
