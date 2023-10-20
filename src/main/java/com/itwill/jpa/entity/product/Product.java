@@ -57,7 +57,7 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("music")
 	public class Music extends Product {
-		private String productMovie;
+		private String productMovie;  	
 		private String productArtist;
 		private String productContent;
 		private String productReply;
