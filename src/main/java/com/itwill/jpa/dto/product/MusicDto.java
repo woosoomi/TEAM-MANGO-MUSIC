@@ -1,10 +1,8 @@
 package com.itwill.jpa.dto.product;
 
-
 import java.sql.Date;
 import java.util.List;
 
-import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
 import com.itwill.jpa.entity.product.Product.Music;
@@ -21,8 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ProductDto {
-	
+public class MusicDto {
 	private Long productNo;
 	
 	private String productName;  // 프로덕트 이름
@@ -52,27 +49,13 @@ public class ProductDto {
 	private int periodOfUse; // 멤버십 사용기간
 	
 	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
-	
+
 	private List<Music> musics;
-	private List<Goods> goodss;
-	private List<Ticket> tickets;
-	private List<Membership> memberships;
 	
-	
-public ProductDto(Product product) {
-	this.productName = product.getProductName();
-	this.productPrice = product.getProductPrice();
-	this.productContent = product.getProductContent();
-	this.productReply = product.getProductReply();
-	this.productStar = product.getProductStar();
-	this.productDate = product.getProductDate();
-	this.readCount = product.getReadCount();
-	this.productStock = product.getProductStock();
-	this.productImage = product.getProductImage();
-	this.productArtist = product.getProductArtist();
-}
-
-
-
+	public MusicDto(Music music) {
+		super();
+		this.productMovie = music.getProductMovie();
+		this.productArtist = music.getProductArtist();
+	}
 }
 

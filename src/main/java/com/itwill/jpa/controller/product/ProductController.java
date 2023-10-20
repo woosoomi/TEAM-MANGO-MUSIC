@@ -1,5 +1,10 @@
 package com.itwill.jpa.controller.product;
 
-public class ProductController {
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.itwill.jpa.repository.product.ProductRepository;
+
+public class ProductController {
+	@Autowired
+	private ProductController productController;
 }

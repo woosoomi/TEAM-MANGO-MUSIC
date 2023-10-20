@@ -55,54 +55,37 @@ public class Product {
 	private Long readCount; // 프로덕트(음악,콘서트) 조회수
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
 	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
+	private String productMovie; // 음악 뮤직비디오
+	private String productArtist; // 음악 아티스트
+	private String productAddress; // 콘서트 장소
+	private Date startPeriod; // 멤버십 시작날짜
+	private int periodOfUse; // 멤버십 사용기간
 	
 
 	/** music **/
+	
 	@Entity
 	@DiscriminatorValue("music")
-	public class Music extends Product {
-		private String productMovie; // 음악 뮤직비디오
-		private String productArtist; // 음악 아티스트
-//		private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
-//		private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
-//		private String productStar; // 프로덕트(음악,굿즈,콘서트) 별점
-//		private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
-//		private Long readCount; // 프로덕트(음악,콘서트) 조회수
-//		private int productStock; // 프로덕트(굿즈, 티켓) 재고
+	public static class Music extends Product {
 	}
 
 	/** goods **/
 	@Entity
 	@DiscriminatorValue("goods")
 	public class Goods extends Product {
-		// private String content; // 굿즈 설명
-		// private String reply; // 굿즈 댓글
-		// private Date date; // 굿즈 등록날짜
-		// private String star; // 굿즈 뱔점
-		// private int productStock; // 굿즈 재고
 	}
 
 	/** ticket **/
 	@Entity
 	@DiscriminatorValue("ticket")
 	public class Ticket extends Product {
-		private String productAddress; // 콘서트 장소
-		// private String content; // 콘서트 설명
-		// private String reply; // 콘서트 댓글
-		// private Date date; // 콘서트 날짜 
-
-		// private Long readCount; // 콘서트 조회수
-		// private int stock; // 티켓 재고
 	}
 
 	/** membership **/
 	@Entity
 	@DiscriminatorValue("membership")
 	public class Membership extends Product {
-		private Date startPeriod; // 멤버십 시작날짜
-		private int periodOfUse; // 멤버십 사용기간
 	}
-	// private User userId;
 
 	public static Product toEntity(ProductDto productDto) {
 		return Product.builder()
