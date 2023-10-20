@@ -36,9 +36,9 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long cartId;
 	
-	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn
-	private User user;
+	
+	
+	private int cartTotPrice;
 	
 	//@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
 //	private List<CartItemDto> cartItems;
@@ -48,14 +48,16 @@ public class Cart {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
-    public static Cart toEntity(CartDto dto, User user, List<CartItemDto> cartItems) {
+    public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
-    				.user(user)
+    				.cartTotPrice(dto.getCartTotPrice())
     				.build();
     }
     
 	
-	
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn
+	User user = new User();
     
     
 }
