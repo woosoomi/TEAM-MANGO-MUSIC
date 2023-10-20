@@ -54,6 +54,7 @@ public class Product {
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
 	private Long readCount; // 프로덕트(음악,콘서트) 조회수
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
+	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
 	
 
 	/** music **/
