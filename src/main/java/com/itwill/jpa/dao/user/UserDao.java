@@ -10,7 +10,7 @@ public interface UserDao {
 
     User updateUser(User user);
 
-    void deleteUser(String userId);
+    void deleteUser(String userId) throws Exception;
 
     User findUser(String userId);
 

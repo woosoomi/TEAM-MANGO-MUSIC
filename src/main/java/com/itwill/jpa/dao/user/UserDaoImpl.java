@@ -1,6 +1,7 @@
 package com.itwill.jpa.dao.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,8 +28,12 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public void deleteUser(String userId) {
-		userRepository.deleteById(userId);
+	public void deleteUser(String userId) throws Exception {
+		Optional<User> selectedUserOptional = userRepository.findById(userId);
+		if(selectedUserOptional.isEmpty()) {
+			throw new Exception("존재하지 않는 아이디입니다.");
+		}
+		userRepository.delete(selectedUserOptional.get());
 	}
 
 	@Override
