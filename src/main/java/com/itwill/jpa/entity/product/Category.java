@@ -31,7 +31,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Category {
-   
+
+	
+	
  @Id @GeneratedValue
  @Column(name = "category_id")
  private Long categoryId;
@@ -41,7 +43,8 @@ public class Category {
    @OneToMany(mappedBy = "category",cascade = CascadeType.PERSIST)
    private List<Product> products  = new ArrayList();
     
- 
+
+
 /* @ManyToOne(fetch = FetchType.LAZY)
  @JoinColumn(name = "parent_id")
  private Category parent;
@@ -55,4 +58,6 @@ public class Category {
  this.child.add(child);
  child.setParent(this);
  }*/
+	
+	
 }
