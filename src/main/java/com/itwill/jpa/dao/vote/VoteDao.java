@@ -11,10 +11,10 @@ public interface VoteDao {
 	Vote createVote(Vote vote) throws Exception;
 	
 	// 회원이 가수에게 투표하기
-	int voteUserforArtist(VoteDto userId) throws Exception;
+	Vote voteUserforArtist(Vote voteNo) throws Exception;
 	
 	// 투표 대상(가수?? 앨범??) 삭제
-	int removeVoteArtist(VoteDto artist) throws Exception;
+	Vote removeVoteArtist(Vote voteNo) throws Exception;
 
 	// 해당가수 투표율 상세보기
 	VoteDto findVoteArtist() throws Exception;

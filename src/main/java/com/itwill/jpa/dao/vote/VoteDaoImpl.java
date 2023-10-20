@@ -22,15 +22,15 @@ public class VoteDaoImpl implements VoteDao{
 	}
 
 	@Override
-	public int voteUserforArtist(VoteDto userId) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public Vote voteUserforArtist(Vote voteNo) throws Exception {
+		Vote voteNouserForArtist = voteRepository.save(voteNo);
+		return voteNouserForArtist;
 	}
 
 	@Override
-	public int removeVoteArtist(VoteDto artist) throws Exception {
+	public Vote removeVoteArtist(Vote voteNo) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 	@Override
@@ -50,8 +50,4 @@ public class VoteDaoImpl implements VoteDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-		
-		
-		
-	
 }

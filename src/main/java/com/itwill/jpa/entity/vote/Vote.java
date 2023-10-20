@@ -32,7 +32,7 @@ public class Vote {
 	@Id 
 	@SequenceGenerator(name = "vote_no_seq",sequenceName = "vote_no_seq",initialValue = 1,allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "vote_no_seq")
-	private int voteNo;				
+	private Long voteNo;				
 
 	
 	// 유저_회원

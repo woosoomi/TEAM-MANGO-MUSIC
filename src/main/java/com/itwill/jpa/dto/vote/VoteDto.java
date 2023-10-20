@@ -21,7 +21,7 @@ import lombok.ToString;
 @Builder
 public class VoteDto {
 
-	private int voteNo;				//  투표 번호
+	private Long voteNo;				//  투표 번호
 
 	private Date voteDate; 			//  투표 날짜
 	private long tot; 				//  투표 합산점수
