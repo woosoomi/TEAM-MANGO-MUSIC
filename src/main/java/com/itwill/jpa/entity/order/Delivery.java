@@ -26,7 +26,7 @@ public class Delivery {
 	@Id
 	@SequenceGenerator(name = "DELIVERY_DELIVERY_NO_SEQ",sequenceName = "DELIVERY_DELIVERY_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DELIVERY_DELIVERY_NO_SEQ")
-	private Long deliveryNo;
+	private Long deliveryId;
 	
 	private String deliveryName;
 	
