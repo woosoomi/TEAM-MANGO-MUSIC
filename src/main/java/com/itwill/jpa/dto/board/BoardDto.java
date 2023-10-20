@@ -16,12 +16,11 @@ import lombok.ToString;
 @Builder
 public class BoardDto {
     
+	private String boardCategory;
 	private String boardTitle;
 	private String boardContent;
 	private String boardImage;
     private LocalDateTime createdTime;
     private LocalDateTime updateTime;
 
-    
-	
 }
