@@ -22,15 +22,21 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public User updateUser(User user) {
-		User updatedUser = userRepository.save(user);
-		return updatedUser;
+	public User updateUser(User user) throws Exception {
+		Optional<User> findedUserOptional = userRepository.findById(user.getUserId());
+		if(findedUserOptional.isPresent()) {
+			User user1 = findedUserOptional.get();
+			user1.setUserName(user.getUserName());
+		}else {
+			throw new Exception("존재하지 않는 아이디입니다!");
+		}
+		return null;
 	}
 
 	@Override
 	public void deleteUser(String userId) throws Exception {
 		Optional<User> selectedUserOptional = userRepository.findById(userId);
-		if(selectedUserOptional.isEmpty()) {
+		if(selectedUserOptional == null) {
 			throw new Exception("존재하지 않는 아이디입니다.");
 		}
 		userRepository.delete(selectedUserOptional.get());

@@ -8,7 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.dto.board.BoardDto;
-import com.itwill.jpa.entity.user.User_Board;
+import com.itwill.jpa.entity.user.UserBoard;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -27,11 +27,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
 @Table(name = "board")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Board {
     @Id
     @SequenceGenerator(name = "BOARD_BOARD_NO_SEQ",sequenceName = "BOARD_BOARD_NO_SEQ",initialValue = 1 , allocationSize =1)
@@ -64,7 +64,7 @@ public class Board {
 	//board- userboard 1대n
 	@OneToMany(mappedBy = "board",  cascade = CascadeType.PERSIST)
 	@Builder.Default
-	private List<User_Board> userBoard = new ArrayList<User_Board>();
+	private List<UserBoard> userBoard = new ArrayList<UserBoard>();
 	
 	
 	

@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User_Board {
+public class UserBoard {
 
 	@Id
 	@SequenceGenerator(name = "USER_BOARD_NO_SEQ",sequenceName = "USER_BOARD_NO_SEQ",initialValue = 1 , allocationSize =1)

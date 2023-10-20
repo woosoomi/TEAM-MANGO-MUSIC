@@ -52,7 +52,7 @@ public class User {
 	  // user와 user_board 1대N 관계설정
 	  @Builder.Default
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	  private List<User_Board> user_Boards = new ArrayList<>();
+	  private List<UserBoard> user_Boards = new ArrayList<>();
 	  
 	  // user와 order 1대N 관계설정
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)

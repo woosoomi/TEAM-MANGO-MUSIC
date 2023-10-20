@@ -8,7 +8,7 @@ public interface UserDao {
 
 	User createUser(User user);
 
-    User updateUser(User user);
+    User updateUser(User user) throws Exception;
 
     void deleteUser(String userId) throws Exception;
 
