@@ -1366,16 +1366,17 @@ vote 채린&#xd;
         </java.beans.PropertyChangeSupport>
       </listeners>
       <constraint>
-        <height>96</height>
-        <width>238</width>
-        <x>173</x>
-        <y>12</y>
+        <height>109</height>
+        <width>278</width>
+        <x>158</x>
+        <y>6</y>
       </constraint>
       <sourceConnections/>
       <targetConnections/>
       <content>notice&#xd;
 &#xd;
-10/19 delivery 테이블 추가&#xd;
+10/19 delivery, product_cartegory 테이블 추가&#xd;
+10/20 user_board, board_category 테이블 추가&#xd;
 </content>
     </net.java.amateras.db.visual.model.NoteModel>
     <net.java.amateras.db.visual.model.TableModel reference="../net.java.amateras.db.visual.model.TableModel/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target"/>
