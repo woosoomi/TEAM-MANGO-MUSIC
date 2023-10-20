@@ -6,7 +6,7 @@ import com.itwill.jpa.entity.vote.Vote;
 
 
 
-public interface VoteRepository extends JpaRepository<Vote, Long>{
+public interface VoteRepository extends JpaRepository<Vote, String>{
 	
 	
 }

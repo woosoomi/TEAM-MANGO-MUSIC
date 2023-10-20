@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.itwill.jpa.dto.cart.VoteDto;
+import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.user.User;
 
@@ -50,7 +50,7 @@ public class Cart {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
-    public static Cart toEntity(VoteDto dto, User user, List<CartItemDto> cartItems) {
+    public static Cart toEntity(CartDto dto, User user, List<CartItemDto> cartItems) {
     	return Cart.builder()
     				.CartTotPrice(dto.getCartTotPrice())
     				.user(user)

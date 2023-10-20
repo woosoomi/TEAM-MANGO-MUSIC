@@ -16,7 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class VoteDto {
+public class CartDto {
 	
 	private int cartNo;
 	private int cartTotPrice;
