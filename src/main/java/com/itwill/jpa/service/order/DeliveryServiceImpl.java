@@ -30,7 +30,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 	@Transactional
 	@Override
 	public Delivery updateDelivery(Delivery delivery) {
-		Delivery findDelivery = deliveryRepository.findById(delivery.getDeliveryNo()).get();
+		Delivery findDelivery = deliveryRepository.findById(delivery.getDeliveryId()).get();
 		findDelivery.setDeliveryName(delivery.getDeliveryName());
 		findDelivery.setDeliveryCompany(delivery.getDeliveryCompany());
 		findDelivery.setDeliveryName(delivery.getDeliveryName());
