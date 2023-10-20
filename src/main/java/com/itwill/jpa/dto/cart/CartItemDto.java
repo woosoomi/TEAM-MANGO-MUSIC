@@ -1,6 +1,5 @@
 package com.itwill.jpa.dto.cart;
 
-import com.itwill.jpa.entity.product.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +15,6 @@ import lombok.ToString;
 public class CartItemDto {
 	
 	private int cartItemQty;
-	private Product product;
 
 	
 }
