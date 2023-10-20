@@ -1,7 +1,9 @@
+
+
+
 package com.itwill.jpa.entity.user;
 
 
-import com.itwill.jpa.dto.user.UserBoardDto;
 import com.itwill.jpa.entity.Board.Board;
 
 import jakarta.persistence.Entity;
