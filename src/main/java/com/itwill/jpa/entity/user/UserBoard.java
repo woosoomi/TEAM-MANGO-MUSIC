@@ -4,7 +4,7 @@
 package com.itwill.jpa.entity.user;
 
 
-import com.itwill.jpa.entity.Board.Board;
+import com.itwill.jpa.entity.board.Board;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

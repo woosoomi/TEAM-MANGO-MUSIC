@@ -1,7 +1,8 @@
 package com.itwill.jpa.dao.board;
 
 import java.util.List;
-import com.itwill.jpa.entity.Board.Board;
+
+import com.itwill.jpa.entity.board.Board;
 
 public interface BoardDao {
 	

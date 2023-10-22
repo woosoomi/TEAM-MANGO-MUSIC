@@ -1,4 +1,4 @@
-package com.itwill.jpa.entity.Board;
+package com.itwill.jpa.entity.board;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.dto.board.BoardDto;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.user.UserBoard;
 
 import jakarta.persistence.CascadeType;
@@ -17,6 +18,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -56,11 +58,11 @@ public class Board {
     				.updateTime(dto.getUpdateTime())
     				.build();
     }
-    //board - boardcategory 1대1
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //board - boardcategory  n대1
+	@ManyToOne
 	@JoinColumn(name = "board_category_id")
 	private BoardCategory boardCategory;
-	
+		
 	//board- userboard 1대n
 	@OneToMany(mappedBy = "board",  cascade = CascadeType.PERSIST)
 	@Builder.Default

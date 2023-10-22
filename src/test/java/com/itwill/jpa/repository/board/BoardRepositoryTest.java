@@ -9,8 +9,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
-import com.itwill.jpa.entity.Board.Board;
-import com.itwill.jpa.entity.Board.BoardCategory;
+import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardCategory;
 
 class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	
