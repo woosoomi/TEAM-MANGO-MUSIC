@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductRepository{
 	
 	private final EntityManager em;
-	
+	//Product
 	public void insertProduct(Product product) {
 		if (product.getProductNo() == null) {
 			em.persist(product);
@@ -30,6 +30,38 @@ public class ProductRepository{
 			em.merge(product);
 		}
 	}
+	//Music
+	public void insertMusic(Product music) {
+		if (music.getProductNo() == null) {
+			em.persist(music);
+		}else {
+			em.merge(music);
+		}
+	}
+	//Goods
+	public void insertGoods(Product goods) {
+		if (goods.getProductNo() == null) {
+			em.persist(goods);
+		}else {
+			em.merge(goods);
+		}
+	}
+	//Ticket
+	public void insertTicket(Product ticket) {
+		if (ticket.getProductNo() == null) {
+			em.persist(ticket);
+		}else {
+			em.merge(ticket);
+		}
+	}
+	//Membership
+	public void insertMembership(Product membership) {
+		if (membership.getProductNo() == null) {
+			em.persist(membership);
+		}else {
+			em.merge(membership);
+		}
+	}	
 /*Product 찾기*/
 	public Product findOne(Long productNo) {
 		return em.find(Product.class, productNo);

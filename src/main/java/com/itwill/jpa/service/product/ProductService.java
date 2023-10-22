@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 
@@ -20,6 +21,7 @@ public class ProductService{
 	private final ProductRepository productRepository;
 	
 	@Transactional
+//Product//	
 	public void insertProduct(Product product) {
 		productRepository.insertProduct(product);
 	}
@@ -28,7 +30,19 @@ public class ProductService{
 		return productRepository.findAll();
 	}
 	
-	public Product findOneProduct(Long productNo) {
+	public Product findOneMusic(Long productNo) {
 		return productRepository.findOne(productNo);
 	}
+	//Music//	
+		public void insertMusic(Music music) {
+			productRepository.insertMusic(music);
+		}
+		
+		public List<Music> findMusics() {
+			return productRepository.findAllMusic();
+		}
+		
+		public Product findOneProduct(Long productNo) {
+			return productRepository.findOne(productNo);
+		}	
 }

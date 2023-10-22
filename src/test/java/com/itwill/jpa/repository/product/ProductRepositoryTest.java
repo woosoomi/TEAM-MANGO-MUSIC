@@ -31,6 +31,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
 		 * ProductCategory productCategory2 = ProductCategory.builder()
 		 * .productCategoryName("goods").build();
 		 */
+		
 	}
 
 }
