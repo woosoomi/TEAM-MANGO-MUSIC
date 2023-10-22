@@ -86,4 +86,10 @@ public class Order {
 	@Builder.Default
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
+	//order와 coupon 1대1
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "coupon_Id")
+	private Coupon coupon;
+	
+	
 }

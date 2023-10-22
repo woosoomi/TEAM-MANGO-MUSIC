@@ -53,5 +53,5 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 		boardRepository.save(board1);
 	   
 	}
-	
+	 
 }
