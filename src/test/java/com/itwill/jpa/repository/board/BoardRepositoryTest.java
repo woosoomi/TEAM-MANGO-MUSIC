@@ -1,13 +1,12 @@
 package com.itwill.jpa.repository.board;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.itwill.jpa.TeamProjectMangoApplication;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.entity.Board.Board;
 import com.itwill.jpa.entity.Board.BoardCategory;
@@ -22,6 +21,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
+	//@Disabled
 	void boardSaveTest() {
 		
 		BoardCategory boardCategory= BoardCategory.builder()
@@ -51,7 +51,17 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 		
 		board1.setBoardCategory(boardCategory1);
 		boardRepository.save(board1);
-	   
 	}
-	 
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	void findAll() {
+	    List<Board> boards = boardRepository.findAll();
+	    for (Board board : boards) {
+	        System.err.println("Board Title 은 무엇?: " + board.getBoardTitle());
+	    }
+	}
+
+	
 }
