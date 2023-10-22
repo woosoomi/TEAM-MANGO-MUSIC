@@ -2,6 +2,7 @@ package com.itwill.jpa.repository.board;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -21,11 +22,11 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void boardSaveTest() {
 		
 		BoardCategory boardCategory= BoardCategory.builder()
-			.boardCategoryId(null)
+			.id(null)
 			.boardCategoryName("이벤트")
 			.build();
 		Board board = Board.builder()
@@ -36,7 +37,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 						   .build();
 		
 		BoardCategory boardCategory1= BoardCategory.builder()
-				.boardCategoryId(null)
+				.id(null)
 				.boardCategoryName("매거진")
 				.build();
 		Board board1 = Board.builder()
@@ -56,12 +57,20 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
+	@Disabled
 	void findAll() {
 	    List<Board> boards = boardRepository.findAll();
 	    for (Board board : boards) {
 	        System.err.println("Board Title 은 무엇?: " + board.getBoardTitle());
 	    }
 	}
-
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	void findByCategoryId() {
+		List<Board> boards = boardRepository.findByBoardCategory_IdOrderByCreatedTime(1L);
+		System.out.println(boards);
+	}
 	
 }

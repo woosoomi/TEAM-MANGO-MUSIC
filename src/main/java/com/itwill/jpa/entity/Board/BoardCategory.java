@@ -23,9 +23,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardCategory {
 	@Id
-    @SequenceGenerator(name = "BOARD_CATEGORY_NO_SEQ",sequenceName = "BOARD_CATEGORY_NO_SEQ",initialValue = 1 , allocationSize =1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_CATEGORY_NO_SEQ")
-	private Long boardCategoryId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE) 
+	private Long id;
 	
 	private String boardCategoryName;
 	

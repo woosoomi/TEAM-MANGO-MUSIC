@@ -58,7 +58,7 @@ public class Board {
     }
     //board - boardcategory 1대1
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "boardcategory_no")
+	@JoinColumn(name = "board_category_id")
 	private BoardCategory boardCategory;
 	
 	//board- userboard 1대n
