@@ -22,7 +22,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void boardSaveTest() {
 		
 		BoardCategory boardCategory= BoardCategory.builder()
