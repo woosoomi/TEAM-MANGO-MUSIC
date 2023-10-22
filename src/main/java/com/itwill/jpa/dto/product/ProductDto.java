@@ -22,9 +22,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class ProductDto {
-	
-	private Long productNo;
-	
+	 	
 	private String productName;  // 프로덕트 이름
 	
 	private int productPrice; // 프로덕트 가격
@@ -53,6 +51,7 @@ public class ProductDto {
 	
 	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
 	
+	private List<Product> products;
 	private List<Music> musics;
 	private List<Goods> goodss;
 	private List<Ticket> tickets;
@@ -70,9 +69,13 @@ public ProductDto(Product product) {
 	this.productStock = product.getProductStock();
 	this.productImage = product.getProductImage();
 	this.productArtist = product.getProductArtist();
-}
+	this.productAddress = product.getProductAddress();
+	this.startPeriod = product.getStartPeriod();
+	this.periodOfUse = product.getPeriodOfUse();
+	
 
 
+	}
 
 }
 

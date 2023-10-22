@@ -8,6 +8,7 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.vote.Vote;
+import com.itwill.jpa.exception.NotEnoughProductStockException;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -41,7 +42,8 @@ public class Product {
 	@SequenceGenerator(name = "PRODUCT_PRODUCT_NO_SEQ",sequenceName = "PRODUCT_PRODUCT_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCT_NO_SEQ")
 	@Column(name = "product_no")
-	private Long productNo;
+
+	private Long productNo; //PK
 
 	@Column(nullable = false)
 	private String productName;
@@ -113,5 +115,20 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	private List<Vote> vote = new ArrayList<Vote>();
+	
+	//---- 비즈니스 로직----//
+	/* productStock 증가 */
+	public void addproductStock(int quantity) {
+		this.productStock += quantity;
+	}
+	/* productStock 감소 */
+	public void removeproductStock(int quantity) {
+		int restproductStock = this.productStock - quantity;
+		if (restproductStock < 0) {
+			throw new NotEnoughProductStockException("품절입니다.");
+		}
+		this.productStock = restproductStock;
+	}
+	
 	
 }
