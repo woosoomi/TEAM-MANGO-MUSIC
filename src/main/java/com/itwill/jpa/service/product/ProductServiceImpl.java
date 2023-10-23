@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 @Service
@@ -15,32 +16,48 @@ import com.itwill.jpa.repository.product.ProductRepository;
 public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
-	ProductRepository productRepository;
+	private ProductRepository productRepository;
 	
 	@Override
-	public ProductDto saveProduct(ProductDto productDto) {
+	public Product getProduct(Long productNo) {
+		return productRepository.findById(productNo).get();
+	}
+	
+	@Override
+	public Product saveProduct(Product product) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
-	public ProductDto getProduct(Long productNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<ProductDto> productList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ProductDto updateProduct(Product product) throws Exception {
+	public List<Product> productList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
+	@Override
+	public Product checkLikeService(Long productNo) {
+		Product findProduct = productRepository.findById(productNo).get();
+		//int checkLike = findProduct.getProductStar();
+		
+		return null;
+	}
+	
+	@Override
+	public Product outOfStockMsg(Long productNo) {
+		Product findProduct =productRepository.findById(productNo).get();
+		int stockCount=findProduct.getProductStock();
+		
+		if(stockCount==0) {
+			throw new NotEnoughProductStockException("품절된 상품입니다.");
+		}
+		
+		return findProduct;
+	}
 }
