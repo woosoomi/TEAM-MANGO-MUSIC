@@ -1,6 +1,7 @@
 package com.itwill.jpa.dao.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,14 +32,25 @@ public class ProductDaoImpl implements ProductDao{
 	
 	@Override
 	public Product updateProduct(Product product) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Product> findProductOptional = productRepository.findById(product.getProductNo());
+		Product updateProduct=null;
+		if(findProductOptional.isPresent()) {
+			Product findProduct = findProductOptional.get();
+			findProduct.setProductName(product.getProductName());
+			updateProduct=productRepository.save(findProduct);
+		}else {
+			throw new Exception("존재하지 않는 제품입니다.");
+		}
+		return updateProduct;
 	}
 	
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Optional<Product> selectProductOptional= productRepository.findById(productNo);
+		if(selectProductOptional.isEmpty()) {
+			throw new Exception("존재하지 않는 제품입니다.");
+		}
+		productRepository.delete(selectProductOptional.get());
 	}
 
 }

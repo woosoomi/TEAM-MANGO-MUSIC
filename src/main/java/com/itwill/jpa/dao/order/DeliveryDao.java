@@ -8,11 +8,13 @@ public interface DeliveryDao {
 	
 	Delivery insertDelivery(Delivery delivery);
 	
-	Delivery selectDelivery(Long deliveryId);
-	
 	Delivery updateDelivery(Delivery updateDelivery) throws Exception;
 	
 	void deleteDelivery(Long deliveryId) throws Exception;
 	
 	List<Delivery> selectList();
+	
+	List<Delivery> getDeliveriesByUserId(String userId);
+	
+	Delivery findByDeliveryId(Long id);
 }
