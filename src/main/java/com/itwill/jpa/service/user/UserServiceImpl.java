@@ -4,10 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
 
+@Service
+@Transactional
 public class UserServiceImpl implements UserService{
 
 	@Autowired
@@ -25,7 +29,6 @@ public class UserServiceImpl implements UserService{
 	       if (selectedUserOptional.isEmpty()) {
 	           throw new Exception("존재하지 않는 아이디입니다.");
 	       }
-
 	       User selectedUser = selectedUserOptional.get();
 
 	       if (!selectedUser.getUserPw().equals(userPw)) {
@@ -70,8 +73,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean existsById(String userId) throws Exception {
-		   return userRepository.existsById(userId);
-    }
+		return userRepository.existsById(userId);
+		
+	}
 
 	@Override
 	public String findUserIdByUserEmail(String userEmail) throws Exception {
