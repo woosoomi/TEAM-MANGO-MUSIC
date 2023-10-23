@@ -5,6 +5,7 @@ import java.util.List;
 import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
+import com.itwill.jpa.entity.user.User;
 
 public interface DeliveryService {
 	
@@ -16,9 +17,9 @@ public interface DeliveryService {
 	
 	List<Delivery> deliverys();
 	
-	Delivery findDelivery(Order order);
+	Delivery findDelivery(User user);
 	
-	List<Delivery> deliverysFindById(Order order);
+	List<Delivery> deliverysFindById(User user);
 	
 	
 }

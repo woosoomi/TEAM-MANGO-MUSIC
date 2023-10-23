@@ -1,13 +1,16 @@
 package com.itwill.jpa.entity.order;
 
 
-
 import com.itwill.jpa.dto.order.DeliveryDto;
+import com.itwill.jpa.entity.user.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -36,7 +39,6 @@ public class Delivery {
 	
 	private String deliveryCompany;
 	
-
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {
@@ -48,5 +50,8 @@ public class Delivery {
 					   .build();
 	}
 	
-	
+	// delivery와 user n대1
+		@ManyToOne(cascade = CascadeType.PERSIST)
+		@JoinColumn(name = "userId")
+		private User user;
 }
