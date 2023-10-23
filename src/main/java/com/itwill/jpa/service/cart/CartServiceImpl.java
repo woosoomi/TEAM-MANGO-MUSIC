@@ -19,10 +19,8 @@ public class CartServiceImpl implements CartService {
 	CartRepository cartRepository;
 	
 	@Override
-	public void deleteAll(List<Cart> cartList) {
-		Cart cart = new Cart();
-		
-		cartRepository.deleteAllById(null);
+	public void deleteAll(String userId) {
+		cartRepository.deleteAllByUserId(userId);
 	}
 
 	@Override
@@ -42,6 +40,15 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<Cart> getCartItems(Cart cart) {
 		return cartRepository.findAll();
+	}
+
+	@Override
+	public Cart insert(List<CartItem> cartItems) {
+		Cart cart= new Cart();
+		for (CartItem cartItem : cartItems) {
+			cart.setCartitems(cartItems);
+		}
+		return cartRepository.save(cart);
 	}
 	
 }

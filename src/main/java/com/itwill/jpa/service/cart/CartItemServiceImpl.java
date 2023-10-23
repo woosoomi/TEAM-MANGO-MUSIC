@@ -36,8 +36,8 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 
 	@Override
-	public void delete(Long cartItemId) {
-		// TODO Auto-generated method stub
+	public void deleteCartItemByUserIdAndCartItemId(String userId, Long cartItemId) {
+		cartItemRepository.deleteByUserIdAndCartItemId(userId, cartItemId);
 		
 	}
 
