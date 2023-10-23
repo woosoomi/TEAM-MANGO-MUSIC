@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 @Service
@@ -15,37 +16,67 @@ import com.itwill.jpa.repository.product.ProductRepository;
 public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
-	ProductRepository productRepository;
+	private ProductRepository productRepository;
 	
 	@Override
-	public ProductDto saveProduct(ProductDto productDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product getProduct(Long productNo) {
+		return productRepository.findById(productNo).get();
 	}
+	
+	@Override
+	public Product saveProduct(Product product) {
+		return productRepository.save(product);
+	}
+	
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
-		// TODO Auto-generated method stub
+		productRepository.deleteById(productNo);
 		
 	}
+	
 	@Override
-	public ProductDto getProduct(Long productNo) {
-		// TODO Auto-generated method stub
+	public List<Product> productList() {
+		return productRepository.findAll();
+	}
+	
+	@Override
+	public Product checkLikeService(Long productNo) {
+		Product findProduct = productRepository.findById(productNo).get();
+		int checkLike = findProduct.getProductStar();
+		if(checkLike%2==1) {
+			
+		}else if(checkLike%2==0) {
+			
+		}
+		
 		return null;
 	}
+	
 	@Override
-	public List<ProductDto> productList() {
-		// TODO Auto-generated method stub
-		return null;
+	public Product outOfStockMsg(Long productNo) {
+		Product findProduct =productRepository.findById(productNo).get();
+		int stockCount=findProduct.getProductStock();
+		
+		if(stockCount==0) {
+			throw new NotEnoughProductStockException("품절된 상품입니다.");
+		}
+		
+		return findProduct;
 	}
-	@Override
-	public ProductDto updateProduct(Product product) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	//제목키워드로 검색
 	@Override
 	public List<Product> searchProductsByKeyword(String keyword) {
-		return productRepository.findByProductNameContaining(keyword);
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+//	@Override
+//	public List<Product> searchProductsByKeyword(String keyword) {
+//		return productRepository.findByProductNameContaining(keyword);
+//	}
+	
+	// >> List인데 return이 저렇게 들어갈 수 없지 않을까요? 확인 후 삭제 해주세요~
+	
 	
 }

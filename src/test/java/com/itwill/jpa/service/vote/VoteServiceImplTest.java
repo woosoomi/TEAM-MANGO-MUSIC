@@ -4,6 +4,7 @@ package com.itwill.jpa.service.vote;
 
 import java.sql.Date;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,6 +49,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
+	@Disabled
 	void creatVoteTest() throws Exception {
 		
 		Date localDate = new Date(2023);
@@ -69,7 +71,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 						.productName("아름다운사실")
 						.productContent("명곡입니다.")
 						.productReply("아름다워요")
-						.productStar("5")
+						.productStar(5)
 						.productArtist("부활")
 						.build();
 		
@@ -89,7 +91,25 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		System.out.println("~~~~~~~~~~~~~~~"+insertVote);
 		
 	}
-	
+	@Test
+	void findAllVoteListTest() throws Exception {
+		Date localDate = new Date(2023);
+		Vote vote1 = Vote.builder()
+		 		  .voteTot(10)
+		 		  .voteDate(localDate)
+		 		  .build();
+		Vote vote2 = Vote.builder()
+				.voteTot(20)
+				.voteDate(localDate)
+				.build();
+		
+		voteServiceImpl.createVote(vote1);
+		voteServiceImpl.createVote(vote2);
+		
+		
+		voteServiceImpl.findVoteListAll();
+		System.out.println("/n/n------------------"+voteServiceImpl.findVoteListAll());
+	}
 	
 
 }
