@@ -37,18 +37,24 @@ public class OrderItemServiceImpl implements OrderItemService{
 		orderItemRepository.deleteAll();
 	}
 
-	@Override
-	public List<OrderItem> orderItems(Order order) {
-		List<OrderItem> orderItems = orderItemRepository.findByOrder(order.getOrderId());
-		if(orderItems ==null) {
-			return new ArrayList<>();
-		}
-		return orderItems;
-	}
+//	@Override
+//	public List<OrderItem> orderItems(Order order) {
+//		List<OrderItem> orderItems = orderItemRepository.findByOrder(order.getOrderId());
+//		if(orderItems ==null) {
+//			return new ArrayList<>();
+//		}
+//		return orderItems;
+//	}
 
 	@Override
 	public OrderItem findOrderItem(Order order) {
 		return orderItemRepository.findById(order.getOrderId()).get();
+	}
+
+	@Override
+	public List<OrderItem> orderItems(Order order) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
