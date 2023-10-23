@@ -25,26 +25,29 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public Product saveProduct(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		return productRepository.save(product);
 	}
 	
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
-		// TODO Auto-generated method stub
+		productRepository.deleteById(productNo);
 		
 	}
 	
 	@Override
 	public List<Product> productList() {
-		// TODO Auto-generated method stub
-		return null;
+		return productRepository.findAll();
 	}
 	
 	@Override
 	public Product checkLikeService(Long productNo) {
 		Product findProduct = productRepository.findById(productNo).get();
-		//int checkLike = findProduct.getProductStar();
+		int checkLike = findProduct.getProductStar();
+		if(checkLike%2==1) {
+			
+		}else if(checkLike%2==0) {
+			
+		}
 		
 		return null;
 	}

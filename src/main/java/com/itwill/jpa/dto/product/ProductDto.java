@@ -33,7 +33,7 @@ public class ProductDto {
 	
 	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
 	
-	private String productStar; // 프로덕트(음악,굿즈,콘서트) 별점
+	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
 	
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
 	
