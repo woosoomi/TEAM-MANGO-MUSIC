@@ -59,7 +59,7 @@ public class Cart {
     
 	//user- cart 1대1
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_no")
+	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
 }
