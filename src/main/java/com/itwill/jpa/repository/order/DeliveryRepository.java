@@ -6,7 +6,8 @@ import com.itwill.jpa.entity.order.Delivery;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Long>{
 
-
 //	List<Delivery> findByUserId(String userId);
+
+
 
 }
