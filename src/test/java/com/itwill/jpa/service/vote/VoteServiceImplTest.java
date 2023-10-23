@@ -27,6 +27,8 @@ import jakarta.persistence.PersistenceContext;
 @SpringBootTest
 @Transactional
 class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
+	
+
 	@PersistenceContext
 	EntityManager em;
 	
@@ -49,18 +51,45 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	void creatVoteTest() throws Exception {
 		
 		Date localDate = new Date(2023);
+		 
+		User user1 = new User();
+			 user1 = User.builder()
+                 .userId("kbs")
+                 .userPw("1111")
+                 .userName("고범석")
+                 .userAddress("서울시 강남")
+                 .userEmail("kbs@naver.com")
+                 .userJumin("970000-0000000")
+                 .userPhone("010-1234-5678")
+                 .userGender("남")
+                 .build();
+			 
+	
+		Product product1= Product.builder()
+						.productName("아름다운사실")
+						.productContent("명곡입니다.")
+						.productReply("아름다워요")
+						.productStar("5")
+						.productArtist("부활")
+						.build();
 		
+			
 		 Vote vote = Vote.builder()
-				 		  .voteTot(112)
+				 		  .voteTot(250)
 				 		  .voteDate(localDate)
 				 		  .build();
-		 em.persist(vote);
+		vote.setUser(user1);
+		vote.setProduct(product1);
+		em.persist(user1);
+		em.persist(product1);
+		em.persist(vote);
 		
 		Vote insertVote = voteServiceImpl.createVote(vote);
 		em.persist(insertVote);
 		System.out.println("~~~~~~~~~~~~~~~"+insertVote);
 		
 	}
+	
 	
 
 }
