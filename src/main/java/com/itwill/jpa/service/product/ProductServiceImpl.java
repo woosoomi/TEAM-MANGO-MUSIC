@@ -40,16 +40,15 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public Product checkLikeService(Long productNo) {
+	public Long checkLikeService(Long productNo) {
 		Product findProduct = productRepository.findById(productNo).get();
-		int checkLike = findProduct.getProductStar();
+		Long checkLike = Long.valueOf(findProduct.getProductStar());
 		if(checkLike%2==1) {
-			
+			checkLike=1L;
 		}else if(checkLike%2==0) {
-			
+			checkLike=0L;
 		}
-		
-		return null;
+		return checkLike;
 	}
 	
 	@Override
