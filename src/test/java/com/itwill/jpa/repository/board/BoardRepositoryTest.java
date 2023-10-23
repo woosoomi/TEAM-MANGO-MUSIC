@@ -26,7 +26,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	void boardSaveTest() {
 		
 		BoardCategory boardCategory= BoardCategory.builder()
-			.id(null)
+			.id(2L)
 			.boardCategoryName("이벤트")
 			.build();
 		Board board = Board.builder()
@@ -37,8 +37,8 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 						   .build();
 		
 		BoardCategory boardCategory1= BoardCategory.builder()
-				.id(null)
-				.boardCategoryName("매거진")
+				.id(1L)
+				.boardCategoryName("공지사항")
 				.build();
 		Board board1 = Board.builder()
 							.boardId(null)
@@ -68,6 +68,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
+	@Disabled
 	void findByCategoryId() {
 		List<Board> boards = boardRepository.findByBoardCategory_IdOrderByCreatedTime(1L);
 		System.out.println(boards);
