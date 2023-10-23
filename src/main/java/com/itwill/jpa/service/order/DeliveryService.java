@@ -11,15 +11,15 @@ public interface DeliveryService {
 	
 	Delivery saveDelivery(Delivery delivery);
 	
-	Delivery updateDelivery(Delivery delivery);
+	Delivery updateDelivery(Delivery delivery) throws Exception;
 	
 	void deleteDelivery(Long id) throws Exception;
 	
 	List<Delivery> deliverys();
-	
-	Delivery findDelivery(User user);
-	
-	List<Delivery> deliverysFindById(User user);
+//	
+//	Delivery findDelivery(User user);
+//	
+//	List<Delivery> deliverysFindById(User user);
 	
 	
 }

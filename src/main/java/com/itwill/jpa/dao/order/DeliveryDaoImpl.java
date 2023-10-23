@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.repository.order.DeliveryRepository;
-
+@Repository
 public class DeliveryDaoImpl implements DeliveryDao {
 
 	@Autowired

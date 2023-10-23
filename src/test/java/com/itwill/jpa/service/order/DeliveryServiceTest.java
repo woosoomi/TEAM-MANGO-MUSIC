@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
+import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
@@ -33,6 +35,8 @@ class DeliveryServiceTest {
 	DeliveryRepository deliveryRepository;
 	
 	@Autowired
+	DeliveryDao deliveryDao;
+	@Autowired
 	UserRepository userRepository;
 	
 	@Test
@@ -45,6 +49,41 @@ class DeliveryServiceTest {
 		delivery.setDeliveryId(null);
 		delivery.setDeliveryName("집");
 		delivery.setDeliveryPhone("1234");
+		
+		Delivery savedDelivery = deliveryService.saveDelivery(delivery);
+		System.out.println(savedDelivery);
+		
+		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void update() throws Exception {
+		Delivery delivery = new Delivery();
+		delivery.setDeliveryAddress("서울시");
+		delivery.setDeliveryCompany("우체국");
+		delivery.setDeliveryName("집");
+		delivery.setDeliveryPhone("12345");
+		
+		Delivery savedDelivery = deliveryService.updateDelivery(delivery);
+		System.out.println(savedDelivery);
+		
+		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void delete() {
+		Delivery delivery = new Delivery();
+		delivery.setDeliveryAddress("서울시");
+		delivery.setDeliveryCompany("우체국");
+		delivery.setDeliveryId(null);
+		delivery.setDeliveryName("집");
+		delivery.setDeliveryPhone("12345");
 		
 		Delivery savedDelivery = deliveryService.saveDelivery(delivery);
 		System.out.println(savedDelivery);
