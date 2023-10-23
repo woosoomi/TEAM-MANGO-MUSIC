@@ -44,7 +44,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
             .productName("아름다운사실")
             .productContent("명곡입니다.")
             .productReply("아름다워요")
-            .productStar("5")
+            .productStar(5)
             .productArtist("부활")
             .build();
       em.persist(product1);
@@ -54,7 +54,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
             .productName("강남스타일")
             .productContent("인기곡입니다.")
             .productReply("오빤 강남스타일")
-            .productStar("4")
+            .productStar(4)
             .productArtist("싸이")
             .build();
       em.persist(product2);
@@ -64,7 +64,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
             .productName("로마네스크")
             .productContent("숨겨진 명곡입니다.")
             .productReply("좋습니다.")
-            .productStar("4")
+            .productStar(4)
             .productArtist("쏜애플")
             .build();
       em.persist(product3);
@@ -74,7 +74,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
             .productName("강북멋쟁이")
             .productContent("신납니다.")
             .productReply("강북멋쟁~")
-            .productStar("3")
+            .productStar(3)
             .build();
       em.persist(product4);
 
