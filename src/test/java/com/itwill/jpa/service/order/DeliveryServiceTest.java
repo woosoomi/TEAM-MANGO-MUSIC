@@ -20,6 +20,7 @@ import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
+import com.itwill.jpa.service.user.UserService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -61,33 +62,20 @@ class DeliveryServiceTest {
 	@Rollback(false)
 	//@Disabled
 	void update() throws Exception {
-		Delivery delivery = new Delivery();
-		delivery.setDeliveryAddress("서울시");
-		delivery.setDeliveryCompany("우체국");
-		delivery.setDeliveryName("집");
-		delivery.setDeliveryPhone("12345");
+		Delivery delivery = deliveryService.findByDeliveryId(1L);
+		delivery.setDeliveryAddress("부산광역시");
 		
-		Delivery savedDelivery = deliveryService.updateDelivery(delivery);
-		System.out.println(savedDelivery);
-		
+		Delivery updateDelivery = deliveryService.updateDelivery(delivery);
+		System.out.println(updateDelivery);
 		
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
-	void delete() {
-		Delivery delivery = new Delivery();
-		delivery.setDeliveryAddress("서울시");
-		delivery.setDeliveryCompany("우체국");
-		delivery.setDeliveryId(null);
-		delivery.setDeliveryName("집");
-		delivery.setDeliveryPhone("12345");
-		
-		Delivery savedDelivery = deliveryService.saveDelivery(delivery);
-		System.out.println(savedDelivery);
-		
+	//@Disabled
+	void delete() throws Exception{
+		deliveryService.deleteDelivery(1L);
 		
 	}
 

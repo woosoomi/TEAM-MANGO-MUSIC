@@ -17,7 +17,9 @@ public interface DeliveryService {
 	
 	List<Delivery> deliverys();
 //	
-//	Delivery findDelivery(User user);
+	Delivery findDelivery(User user);
+	
+	Delivery findByDeliveryId(Long id);
 //	
 //	List<Delivery> deliverysFindById(User user);
 	

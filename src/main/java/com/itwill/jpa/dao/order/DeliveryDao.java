@@ -15,4 +15,6 @@ public interface DeliveryDao {
 	void deleteDelivery(Long deliveryId) throws Exception;
 	
 	List<Delivery> selectList();
+	
+	Delivery findByDeliveryId(Long id);
 }

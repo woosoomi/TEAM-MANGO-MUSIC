@@ -46,6 +46,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
 		return updatedDelivery;
 	}
 
+	
 	@Override
 	public void deleteDelivery(Long deliveryId) throws Exception{
 		//Delivery가 존재하는지 확인 -> 없으면 오류 메세지 던지기
@@ -60,6 +61,12 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	public List<Delivery> selectList() {
 		
 		return deliveryRepository.findAll();
+	}
+
+	@Override
+	public Delivery findByDeliveryId(Long id) {
+		Delivery delivery = deliveryRepository.findById(id).get();
+		return delivery;
 	}
 
 }
