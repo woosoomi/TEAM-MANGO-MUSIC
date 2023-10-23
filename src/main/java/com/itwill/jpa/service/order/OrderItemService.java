@@ -10,14 +10,14 @@ public interface OrderItemService {
 
 	OrderItem saveOrderItem(OrderItem orderItem);
 	
-//	OrderItem updateOrderItem(OrderItem orderItem);
-//	
-//	void deleteOrderItem(Long id) throws Exception;
-//	
-//	void deleteAllOrderItem() throws Exception;
-//	
-//	List<OrderItem> orderItems(Long orderId);
-//	
-//	OrderItem findOrderItem(Long id);
+	OrderItem updateOrderItem(OrderItem orderItem);
+	
+	void deleteOrderItem(Long id) throws Exception;
+	
+	void deleteAllOrderItem() throws Exception;
+	
+	List<OrderItem> orderItems(Long orderId);
+	
+	OrderItem findOrderItem(Long id);
 
 }
