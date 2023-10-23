@@ -32,13 +32,14 @@ public class CartItem {
 	@SequenceGenerator(name = "CART_ITEM_NO_SEQ",sequenceName = "CART_ITEM_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_ITEM_NO_SEQ")
 	private Long cartItemId;
-	
 	private int cartItemQty;
+	
+	/*
 	@CreationTimestamp
 	private LocalDateTime createAt;
 	@UpdateTimestamp
 	private LocalDateTime updateAt;
-	
+	*/
 	
 	public static CartItem toEntity(CartItemDto dto) {
     	return CartItem.builder()
