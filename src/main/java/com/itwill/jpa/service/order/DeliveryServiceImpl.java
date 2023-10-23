@@ -1,17 +1,12 @@
 package com.itwill.jpa.service.order;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.order.Delivery;
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
-import com.itwill.jpa.repository.order.OrderRepository;
 
 import jakarta.transaction.Transactional;
 

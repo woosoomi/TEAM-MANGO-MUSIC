@@ -8,7 +8,7 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.vote.Vote;
-import com.itwill.jpa.exception.NotEnoughProductStockException;
+import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
