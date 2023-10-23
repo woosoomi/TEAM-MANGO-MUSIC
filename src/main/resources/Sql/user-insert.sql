@@ -14,6 +14,11 @@ INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER
 VALUES('채린님', '7777', '유채린', '구리', 'ycl@gmail.com', '777777-7777777', '010-7777-7777', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('범석님', '8888', '고범석', '충남', 'kbs@gmail.com', '888888-8888888', '010-8888-8888', '남');
+INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
+VALUES('aaa', '9999', '에이', '에이군', 'a@gmail.com', 'aaaaaa-aaaaaaa', '010-aaaa-aaaa', 'A');
+INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
+VALUES('bbb', '1234', '비', '비군', 'b@gmail.com', 'bbbbbb-bbbbbbb', '010-bbbb-bbbb', 'B');
+
 
 
 
