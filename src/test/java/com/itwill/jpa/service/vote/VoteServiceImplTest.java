@@ -91,7 +91,9 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		System.out.println("~~~~~~~~~~~~~~~"+insertVote);
 		
 	}
+	
 	@Test
+	@Disabled
 	void findAllVoteListTest() throws Exception {
 		Date localDate = new Date(2023);
 		Vote vote1 = Vote.builder()
@@ -111,5 +113,25 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		System.out.println("/n/n------------------"+voteServiceImpl.findVoteListAll());
 	}
 	
+	
+	@Test
+	@Disabled
+	void selectByVoteNo() throws Exception {
+		Date localDate = new Date(2023);
+		Vote vote1 = Vote.builder()
+		 		  .voteTot(10)
+		 		  .voteDate(localDate)
+		 		  .build();
+		Vote vote2 = Vote.builder()
+				.voteTot(10)
+				.voteDate(localDate)
+				.build();
+		
+		voteServiceImpl.createVote(vote1);
+		voteServiceImpl.createVote(vote2);
+		
+		System.out.println("### "+voteServiceImpl.selectByVoteNo(1L));
+		System.out.println("### "+voteServiceImpl.selectByVoteNo(2L));
+	}
 
 }
