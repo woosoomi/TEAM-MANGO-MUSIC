@@ -1,7 +1,6 @@
 package com.itwill.jpa.entity.order;
 
 
-
 import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.user.User;
 
@@ -44,6 +43,7 @@ public class Delivery {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "userId")
 	private User user;
+
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {
@@ -54,6 +54,5 @@ public class Delivery {
 					   .deliveryCompany(dto.getDeliveryCompany())
 					   .build();
 	}
-	
 	
 }

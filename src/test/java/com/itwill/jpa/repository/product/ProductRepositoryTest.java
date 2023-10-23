@@ -10,10 +10,13 @@ import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
-
+	@PersistenceContext
+	EntityManager em;
 	@Autowired
 	ProductRepository productRepository;
 	@Autowired
@@ -23,14 +26,55 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
 	@Transactional
 	@Rollback(false)
 	void productInsertTest() {
+		
 		ProductCategory productCategory1 = ProductCategory.builder()
 				.productCategoryName("music").build();
-		/*
-		 * Product product1 = Product1 = Product.builder() .
-		 * 
-		 * ProductCategory productCategory2 = ProductCategory.builder()
-		 * .productCategoryName("goods").build();
-		 */
+		ProductCategory productCategory2 = ProductCategory.builder()
+				.productCategoryName("goods").build();
+		ProductCategory productCategory3 = ProductCategory.builder()
+				.productCategoryName("ticket").build();
+		ProductCategory productCategory4 = ProductCategory.builder()
+				.productCategoryName("membership").build();
+		Product product1= Product.builder()
+				.productCategory(productCategory1)
+				.productName("아름다운사실")
+				.productContent("명곡입니다.")
+				.productReply("아름다워요")
+				.productStar("5")
+				.productArtist("부활")
+				.build();
+		em.persist(product1);
+		
+		Product product2= Product.builder()
+				.productCategory(productCategory2)
+				.productName("강남스타일")
+				.productContent("인기곡입니다.")
+				.productReply("오빤 강남스타일")
+				.productStar("4")
+				.productArtist("싸이")
+				.build();
+		em.persist(product2);
+		
+		Product product3= Product.builder()
+				.productCategory(productCategory3)
+				.productName("로마네스크")
+				.productContent("숨겨진 명곡입니다.")
+				.productReply("좋습니다.")
+				.productStar("4")
+				.productArtist("쏜애플")
+				.build();
+		em.persist(product3);
+		
+		Product product4= Product.builder()
+				.productCategory(productCategory4)
+				.productName("강북멋쟁이")
+				.productContent("신납니다.")
+				.productReply("강북멋쟁~")
+				.productStar("3")
+				.build();
+		em.persist(product4);
+
+		
 		
 	}
 

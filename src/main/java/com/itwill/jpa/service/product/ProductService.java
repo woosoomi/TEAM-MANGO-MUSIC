@@ -1,11 +1,13 @@
 package com.itwill.jpa.service.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.repository.product.ProductRepository;
@@ -15,34 +17,22 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional(readOnly = true)
-@RequiredArgsConstructor
-public class ProductService{
-	
-	private final ProductRepository productRepository;
+//@RequiredArgsConstructor
+public interface ProductService{
 	
 	@Transactional
 //Product//	
-	public void insertProduct(Product product) {
-		productRepository.insertProduct(product);
-	}
+	ProductDto getProduct(Long productNo); 
 	
-	public List<Product> findProducts() {
-		return productRepository.findAll();
-	}
+	ProductDto saveProduct(ProductDto productDto);
 	
-	public Product findOneMusic(Long productNo) {
-		return productRepository.findOne(productNo);
-	}
-	//Music//	
-		public void insertMusic(Music music) {
-			productRepository.insertMusic(music);
-		}
-		
-		public List<Music> findMusics() {
-			return productRepository.findAllMusic();
-		}
-		
-		public Product findOneProduct(Long productNo) {
-			return productRepository.findOne(productNo);
-		}	
+	ProductDto updateProduct(Product product) throws Exception;
+	
+	void deleteProduct(Long productNo) throws Exception;
+	
+	List<ProductDto> productList(); 
+	
+	
+	
+
 }

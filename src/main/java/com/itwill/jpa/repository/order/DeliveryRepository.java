@@ -9,5 +9,5 @@ import com.itwill.jpa.entity.order.Order;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Long>{
 
-//	List<Delivery> findByUserId(String userId);
+	//List<Delivery> findByUserId(String userId);
 }

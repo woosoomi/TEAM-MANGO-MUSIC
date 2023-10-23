@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -50,13 +51,15 @@ public class Cart {
     				.build();
     }
     
-	//product와 cartitem 1대n
+	//cart와 cartitem 1대n
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.PERSIST)
 	@Builder.Default
+	@ToString.Exclude
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
     
 	//user- cart 1대1
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_no")
+	@ToString.Exclude
 	private User user;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.order.Coupon;
+import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.vote.Vote;
 
@@ -49,7 +50,6 @@ public class User {
 	private String userJumin;		// 회원 주민번호
 	private String userGender;		// 회원 성별
 	
-	
 	  // user와 user_board 1대N 관계설정
 	  @Builder.Default
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
@@ -72,7 +72,9 @@ public class User {
 	  @JoinColumn(name="cart_id")
 	  private Cart cart ;
 	  
-	  
+	  // user와 order 1대N 관계설정
+	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	  private List<Delivery> deliverys = new ArrayList<>();
 	  
 	 
 }
