@@ -66,6 +66,23 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	@Transactional
 	@Rollback(false)
+	@DisplayName("회원로그인")
+	void testlogin() throws Exception {
+		String UserId = "범석님";
+        String UserPw = "8888";
+
+        User loginUser = userDao.loginUser(UserId, UserPw);
+
+        assertNotNull(loginUser);
+        assertEquals(UserId, loginUser.getUserId());
+
+        System.out.println("로그인 성공: " + loginUser);
+	}
+	
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
 	@DisplayName("회원업데이트")
 	   void testUpdate() throws Exception {
 	      User user1 = userDao.findUser("범석님");

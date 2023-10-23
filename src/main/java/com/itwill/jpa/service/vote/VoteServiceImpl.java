@@ -1,5 +1,7 @@
 package com.itwill.jpa.service.vote;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +16,20 @@ public class VoteServiceImpl implements VoteService {
 	@Autowired
 	VoteRepository voteRepository;
 
-	@Autowired
-	private ProductRepository productRepository;
-
+	// 투표 생성
 	@Override
 	public Vote createVote(Vote vote) {
 		// Product 엔티티를 불러옴
 
-		voteRepository.save(vote); // Vote 저장
+		Vote creatVote = voteRepository.save(vote); // Vote 저장
 
-		return vote;
+		return creatVote;
 	}
-
+	
+	// 전체 투표 리스트 검색
+	@Override
+	public List<Vote> findVoteListAll() throws Exception {
+		List<Vote> findVoteList = voteRepository.findAll();
+		return findVoteList;
+	}
 }

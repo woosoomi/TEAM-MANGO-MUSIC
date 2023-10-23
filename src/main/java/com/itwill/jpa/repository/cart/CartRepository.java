@@ -7,4 +7,5 @@ import com.itwill.jpa.entity.cart.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Long> {
 	//int deleteAllByUserId(String userId);
+	void deleteAllByUserId(String userId);
 }
