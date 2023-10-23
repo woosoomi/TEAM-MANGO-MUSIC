@@ -51,7 +51,7 @@ public class Cart {
     				.build();
     }
     
-	//product와 cartitem 1대n
+	//cart와 cartitem 1대n
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
