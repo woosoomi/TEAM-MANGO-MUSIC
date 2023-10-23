@@ -32,7 +32,9 @@ public interface ProductService{
 	
 	List<ProductDto> productList(); 
 	
+	// 좋아요 누르기 기능
 	
+	// 품절 안내 기능
 	
 
 }

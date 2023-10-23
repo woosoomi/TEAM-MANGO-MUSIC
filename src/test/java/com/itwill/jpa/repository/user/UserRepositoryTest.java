@@ -48,16 +48,16 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
                  .userGender("여")
                  .build();
 	      
-	      Cart cart = Cart.builder()
-					.cartId(1L)
-					.build();
+			/*
+			 * Cart cart = Cart.builder() .cartId(1L) .build();
+			 */
 	      
 	      System.out.println(">>> " + user1);
 	      userRepository.save(user1);
 	      
 
 
-		cartRepository.save(cart);
+		//cartRepository.save(cart);
 		userRepository.save(user1);
 		userRepository.save(user2);
 	}

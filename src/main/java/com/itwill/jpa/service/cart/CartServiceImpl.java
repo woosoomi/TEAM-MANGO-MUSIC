@@ -1,11 +1,9 @@
 package com.itwill.jpa.service.cart;
 
-import java.util.List;
 
-import org.apache.ibatis.annotations.Insert;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.user.User;
