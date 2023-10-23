@@ -71,7 +71,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 						.productName("아름다운사실")
 						.productContent("명곡입니다.")
 						.productReply("아름다워요")
-						.productStar("5")
+						.productStar(5)
 						.productArtist("부활")
 						.build();
 		

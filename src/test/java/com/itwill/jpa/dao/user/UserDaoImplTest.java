@@ -68,8 +68,8 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@DisplayName("회원로그인")
 	void testlogin() throws Exception {
-		String UserId = "범석님"; // 실제로 데이터베이스에 있는 아이디로 바꿔주세요
-        String UserPw = "8888"; // 해당 아이디의 실제 비밀번호로 바꿔주세요
+		String UserId = "범석님";
+        String UserPw = "8888";
 
         User loginUser = userDao.loginUser(UserId, UserPw);
 
