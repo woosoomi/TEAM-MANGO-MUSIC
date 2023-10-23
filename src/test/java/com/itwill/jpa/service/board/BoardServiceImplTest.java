@@ -17,6 +17,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired
 	BoardServiceImpl boardServiceImpl;
 	
+	//게시글저장
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -31,7 +32,6 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest{
 		Board insertBoard = boardServiceImpl.insert(board);
 		System.out.println(insertBoard);
 	}
-	
 	
 
 }
