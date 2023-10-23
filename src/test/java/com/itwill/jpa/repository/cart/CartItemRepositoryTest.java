@@ -38,10 +38,14 @@ class CartItemRepositoryTest extends TeamProjectMangoApplicationTest{
 										.build();
 		
 		Cart cart1 = Cart.builder()
+							.cartId(1L)
 							.build();
 		
+		Product product= new Product();
+		product.setProductNo(1L);
+		
 		Product product1 = Product.builder()
-									.productNo(1L)
+									.productNo(product.getProductNo())
 									.productAddress(null)
 									.productArtist(null)
 									.productContent(null)
