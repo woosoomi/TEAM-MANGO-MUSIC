@@ -41,7 +41,7 @@ class ProductServiceTest {
       em.persist(product);
       
       //when
-      Optional<Product> productNo = productService.findOneProduct(product.getProductNo());
+     // Optional<Product> productNo = productService.findOneProduct(product.getProductNo());
       //then
       
       //Product findMusic = productRepository.findOneMusic(productNo);
