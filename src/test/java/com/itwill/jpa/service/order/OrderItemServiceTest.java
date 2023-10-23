@@ -35,18 +35,23 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void insert() {
 		OrderItem orderItem = new OrderItem();
-		Order order = orderDao.selectOrder(1L);
+//		Order order = orderDao.selectOrder(1L);
 		orderItem.setOiId(null);
 		orderItem.setOiQty(3);
 		
-//	
+		OrderItem orderItem2 = new OrderItem();
+//		Order order = orderDao.selectOrder(1L);
+		orderItem.setOiId(null);
+		orderItem.setOiQty(5);
 		
-		orderItem.setOrder(order);
+//		orderItem.setOrder(order);
 		OrderItem savedOrderItem = orderItemService.saveOrderItem(orderItem);
+		OrderItem savedOrderItem2 = orderItemService.saveOrderItem(orderItem2);
 		System.out.println(savedOrderItem);
+		System.out.println(savedOrderItem2);
 	}
 	
 	@Test
@@ -54,9 +59,29 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void update(){
-//		OrderItem orderItem = new 
+		OrderItem orderItem = orderItemService.findOrderItem(1L);
+		orderItem.setOiQty(8);
+		
+		OrderItem updateOrderItem = orderItemService.updateOrderItem(orderItem);
+		System.out.println(updateOrderItem);
 		
 		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void delete() throws Exception{
+		orderItemService.deleteOrderItem(1L);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void deleteAll() throws Exception{
+		orderItemService.deleteAllOrderItem();
 	}
 
 }
