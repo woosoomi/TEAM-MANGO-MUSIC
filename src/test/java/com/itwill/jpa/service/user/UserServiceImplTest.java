@@ -56,7 +56,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
     }
 
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	@DisplayName("회원로그인")
