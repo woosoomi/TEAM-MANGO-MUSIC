@@ -29,6 +29,8 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
 		
 		ProductCategory productCategory1 = ProductCategory.builder()
 				.productCategoryName("music").build();
+		ProductCategory productCategory5 = ProductCategory.builder()
+				.productCategoryName("music").build();
 		ProductCategory productCategory2 = ProductCategory.builder()
 				.productCategoryName("goods").build();
 		ProductCategory productCategory3 = ProductCategory.builder()
@@ -46,7 +48,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
 		em.persist(product1);
 		
 		Product product2= Product.builder()
-				.productCategory(productCategory2)
+				.productCategory(productCategory5)
 				.productName("강남스타일")
 				.productContent("인기곡입니다.")
 				.productReply("오빤 강남스타일")
