@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.repository.order.DeliveryRepository;
@@ -22,18 +23,21 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@Transactional
 class DeliveryServiceTest {
 
-	@InjectMocks
+	@Autowired
 	DeliveryService deliveryService;
-	@Mock
+	@Autowired
 	DeliveryRepository deliveryRepository;
 	
-	@Mock
+	@Autowired
 	UserRepository userRepository;
 	
 	@Test
+	@Transactional
+	@Rollback(false)
 	void insert() {
 		Delivery delivery = new Delivery();
 		delivery.setDeliveryAddress("서울시");
@@ -42,8 +46,8 @@ class DeliveryServiceTest {
 		delivery.setDeliveryName("집");
 		delivery.setDeliveryPhone("1234");
 		
-		deliveryService.saveDelivery(delivery);
-		
+		Delivery savedDelivery = deliveryService.saveDelivery(delivery);
+		System.out.println(savedDelivery);
 		
 		
 	}
