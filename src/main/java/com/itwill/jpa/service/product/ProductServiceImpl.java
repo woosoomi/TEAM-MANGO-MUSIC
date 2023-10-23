@@ -42,5 +42,10 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	//제목키워드로 검색
+	@Override
+	public List<Product> searchProductsByKeyword(String keyword) {
+		return productRepository.findByProductNameContaining(keyword);
+	}
 	
 }

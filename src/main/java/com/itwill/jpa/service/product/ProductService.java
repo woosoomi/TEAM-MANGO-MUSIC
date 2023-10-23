@@ -36,5 +36,9 @@ public interface ProductService{
 	
 	// 품절 안내 기능
 	
-
+	// 검색 기능
+	
+	// 키워드로 검색[성공]
+	public List<Product> searchProductsByKeyword(String keyword);
+	
 }
