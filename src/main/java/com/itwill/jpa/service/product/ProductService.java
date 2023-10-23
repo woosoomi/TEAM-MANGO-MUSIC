@@ -32,7 +32,13 @@ public interface ProductService{
 	
 	List<ProductDto> productList(); 
 	
+	// 좋아요 누르기 기능
 	
+	// 품절 안내 기능
 	
-
+	// 검색 기능
+	
+	// 키워드로 검색[성공]
+	public List<Product> searchProductsByKeyword(String keyword);
+	
 }

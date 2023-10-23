@@ -8,6 +8,9 @@ public interface UserService {
 		// 회원가입
 		User createUser(User user) throws Exception;
 		
+		//로그인
+		User loginUser(String userId, String userPw) throws Exception;
+		
 		// 회원수정
 		User updateUser(User user) throws Exception;
 

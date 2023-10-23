@@ -17,8 +17,15 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    //Product insertProduct(Product product);
+	
+//    Product insertProduct(Product product);
 
-    //Product findbyId(Long productNo);
+//    Product findOne(Long productNo);
+    
+//    List<Product> findAll();
 
+//    Product findbyId(Long productNo);
+
+//	keyword가 포함된 title 찾기
+    List<Product> findByProductNameContaining(String keyword);
 }

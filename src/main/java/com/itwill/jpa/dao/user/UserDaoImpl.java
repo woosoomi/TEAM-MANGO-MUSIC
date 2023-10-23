@@ -19,7 +19,20 @@ public class UserDaoImpl implements UserDao{
 	public User createUser(User user) {
 		User createdUser = userRepository.save(user);
 		return createdUser;
-		
+	}
+	
+	@Override
+	public User loginUser(String userId, String userPw) throws Exception {
+		Optional<User> selectedUserOptional = userRepository.findById(userId);
+
+	    if (selectedUserOptional.isPresent()) {
+	        User selectedUser = selectedUserOptional.get();
+	        if (selectedUser.getUserPw().equals(userPw)) {
+	            return selectedUser;
+	        }
+	    }
+
+	    return null;
 	}
 
 	@Override
@@ -31,9 +44,6 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public void deleteUser(String userId) throws Exception {
 		Optional<User> selectedUserOptional = userRepository.findById(userId);
-		if(selectedUserOptional.isEmpty()) {
-			throw new Exception("존재하지 않는 아이디입니다.");
-		}
 		userRepository.delete(selectedUserOptional.get());
 	}
 
@@ -64,6 +74,8 @@ public class UserDaoImpl implements UserDao{
 		String findPw = userRepository.findUserPwByUserPhone(userPhone);
 		return findPw;
 	}
+
+	
 
 
 }
