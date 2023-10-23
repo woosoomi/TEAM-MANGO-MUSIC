@@ -11,7 +11,7 @@ public interface CartItemService {
 	public CartItem update(CartItem cartItem) throws Exception;
 	
 	//상품 삭제
-	public void deleteCartItemByUserIdAndCartItemId(String userId, Long cartItemId) throws Exception;
+	public void deleteByCartItemId(Long cartItemId) throws Exception;
 	
 	
 }

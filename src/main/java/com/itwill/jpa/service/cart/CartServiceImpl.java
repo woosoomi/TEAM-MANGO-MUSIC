@@ -20,7 +20,7 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public void deleteAll(String userId) {
-		cartRepository.deleteAllByUserId(userId);
+		cartRepository.deleteByUser_UserId(userId);
 	}
 
 	@Override
