@@ -52,9 +52,12 @@ public class Product {
 	@Column(nullable = false)
 	private int productPrice;
 	
+	@SequenceGenerator(name = "PRODUCT_PRODUCT_STAR_SEQ" , sequenceName = "PRODUCT_PRODUCT_STAR_SEQ", initialValue = 0 , allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCT_STAR_SEQ")
+	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
+	
 	private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
 	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
-	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
 	private Long readCount; // 프로덕트(음악,콘서트) 조회수
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
