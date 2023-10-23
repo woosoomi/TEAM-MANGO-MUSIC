@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -39,6 +40,7 @@ public class BoardCategory {
 	//1대N관계설정
 	@OneToMany(mappedBy = "boardCategory", cascade = CascadeType.PERSIST)
 	@Builder.Default
+	@ToString.Exclude
 	private List<Board> boards = new ArrayList<Board>();
 
 }

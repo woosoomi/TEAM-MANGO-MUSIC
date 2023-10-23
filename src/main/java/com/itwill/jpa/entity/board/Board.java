@@ -27,6 +27,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Tolerate;
 
 @Entity
 @Table(name = "board")
@@ -61,11 +63,13 @@ public class Board {
     //board - boardcategory  n대1
 	@ManyToOne
 	@JoinColumn(name = "board_category_id")
+	@ToString.Exclude
 	private BoardCategory boardCategory;
 		
 	//board- userboard 1대n
 	@OneToMany(mappedBy = "board",  cascade = CascadeType.PERSIST)
 	@Builder.Default
+	@ToString.Exclude
 	private List<UserBoard> userBoard = new ArrayList<UserBoard>();
 	
 	
