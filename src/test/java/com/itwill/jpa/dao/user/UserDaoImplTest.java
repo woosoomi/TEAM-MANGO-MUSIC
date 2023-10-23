@@ -44,21 +44,24 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
                  .userPhone("011-1234-5678")
                  .userGender("여")
                  .build();
-	      
-			/*
-			 * Cart cart = Cart.builder() .cartId(1L) .build();
-			 */
 	
 	      System.out.println("===" + user1);
 	      System.out.println("===" + user2);
-	      //user1.setCart(cart);
-	      //user2.setCart(cart);
-	      
+	    
 	      userDao.createUser(user1);
 	      userDao.createUser(user2);
 	      
-	      
 }
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
+	@DisplayName("회원한명찾기")
+	   void testfindUser() throws Exception {
+	      User user1 = userDao.findUser("범석님");
+	      System.out.println(user1);
+	}
+	
 	@Test
 	@Disabled
 	@Transactional
@@ -95,9 +98,35 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	@Transactional
 	@Rollback(false)
+	@DisplayName("회원중복테스트")
+	   void testexistsById() throws Exception {
+		Boolean existById = userDao.existsById("회원님");
+		System.out.println(">>> : " + existById);
+	}
+	
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
 	@DisplayName("아이디찾기1")
 	   void testfindUserIdByUserEmail() throws Exception {
-		userDao.findUserIdByUserEmail("");
+		String userEmail = "kbs@gmail.com";
+		String findUserId1 = userDao.findUserIdByUserEmail(userEmail);
+		
+		System.out.println(">>> testfindUserIdByUserEmail: " + findUserId1);
+		
+	}
+	
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
+	@DisplayName("아이디찾기2")
+	   void testfindUserIdByUserPhone() throws Exception {
+		String userPhone = "010-1111-1111";
+		String findUserId2 = userDao.findUserPwByUserPhone(userPhone);
+		
+		System.out.println(">>> testfindUserIdByUserPhone: " + findUserId2);
 		
 	}
 }
