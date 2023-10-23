@@ -75,7 +75,7 @@ public class BoardServiceImpl implements BoardService{
 	//키워드로 검색
 	@Override
 	public List<Board> searchBoardsByKeyword(String keyword) {
-		return boardRepository.findByTitleContaining(keyword);
+		return boardRepository.findByBoardTitleContaining(keyword);
 	}
 	
 	//기간으로 검색
