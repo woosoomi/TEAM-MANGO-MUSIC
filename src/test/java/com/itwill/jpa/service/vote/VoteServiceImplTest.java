@@ -54,7 +54,8 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		vote.setUser(user1);
 		vote.setVoteDate(localDate);
 		vote.setVoteTot(20);
-		 
+		
+		
 		Vote insertVote = voteServiceImpl.createVote(vote);
 		System.out.println("~~~~~~~~~~~~~~~"+insertVote);
 	}
