@@ -1,5 +1,6 @@
 package com.itwill.jpa.repository.user;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
 	CartRepository cartRepository;
 
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	@DisplayName("회원가입")

@@ -190,7 +190,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		@Rollback(false)
 		@DisplayName("번호로 비밀번호 찾기")
 		public void testFindUserPwByUserPhone() {
-			String userPhone = "010-8888-8888";
+			String userPhone = "010-8888-9999";
 
 			try {
 				String foundUserPw = userService.findUserPwByUserPhone(userPhone);
