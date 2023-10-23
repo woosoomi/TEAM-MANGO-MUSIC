@@ -32,8 +32,6 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired
 	VoteRepository voteRepository;
 	
-	@Autowired
-	 EntityManager em;
 	
 	@Test
 	void creatVoteTest() throws Exception {
