@@ -1,6 +1,7 @@
 package com.itwill.jpa.service.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,26 +24,16 @@ public class ProductService{
 	@Transactional
 //Product//	
 	public void insertProduct(Product product) {
-		productRepository.insertProduct(product);
+		((ProductService) productRepository).insertProduct(product);
 	}
 	
 	public List<Product> findProducts() {
 		return productRepository.findAll();
 	}
-	
-	public Product findOneMusic(Long productNo) {
-		return productRepository.findOne(productNo);
+
+	public Optional<Product> findOneProduct(Long productNo) {
+		return productRepository.findById(productNo);
 	}
-	//Music//	
-		public void insertMusic(Music music) {
-			productRepository.insertMusic(music);
-		}
-		
-		public List<Music> findMusics() {
-			return productRepository.findAllMusic();
-		}
-		
-		public Product findOneProduct(Long productNo) {
-			return productRepository.findOne(productNo);
-		}	
+	
+
 }
