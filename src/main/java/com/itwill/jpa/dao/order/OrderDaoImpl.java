@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.repository.order.OrderRepository;
-
+@Repository
 public class OrderDaoImpl implements OrderDao{
 	
 	@Autowired

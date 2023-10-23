@@ -35,18 +35,28 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void insert() {
 		OrderItem orderItem = new OrderItem();
-		Order order = orderDao.selectOrder(null);
+		Order order = orderDao.selectOrder(1L);
 		orderItem.setOiId(null);
 		orderItem.setOiQty(3);
 		
 //	
 		
-//		orderItem.setOrder(order);
+		orderItem.setOrder(order);
 		OrderItem savedOrderItem = orderItemService.saveOrderItem(orderItem);
 		System.out.println(savedOrderItem);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void update(){
+//		OrderItem orderItem = new 
+		
+		
 	}
 
 }
