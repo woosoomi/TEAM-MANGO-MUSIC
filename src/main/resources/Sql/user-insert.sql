@@ -19,7 +19,10 @@ VALUES('aaa', '9999', '에이', '에이군', 'a@gmail.com', 'aaaaaa-aaaaaaa', '0
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('bbb', '1234', '비', '비군', 'b@gmail.com', 'bbbbbb-bbbbbbb', '010-bbbb-bbbb', 'B');
 
-
+INSERT INTO user_board (user_board_id, board_id, user_id)
+VALUES (USER_BOARD_NO_SEQ.nextval, 1, '팀장님');
+INSERT INTO user_board (user_board_id, board_id, user_id)
+VALUES (USER_BOARD_NO_SEQ.nextval, 2, '승규님');
 
 
 commit;

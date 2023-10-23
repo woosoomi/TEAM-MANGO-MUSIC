@@ -39,4 +39,12 @@ public class VoteServiceImpl implements VoteService {
 		Object selectByVoteNo = voteRepository.findById(no);
 		return selectByVoteNo;
 	}
+	
+	// 투표번호로 투표 삭제
+	@Override
+	public void deleteByVoteNo(Long no) throws Exception {
+	voteRepository.deleteById(no);
+	}
+	
+	
 }

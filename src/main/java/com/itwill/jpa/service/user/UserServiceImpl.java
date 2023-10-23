@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
 
@@ -17,9 +18,12 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	UserDao userDao;
+	
 	@Override
 	public User createUser(User user) throws Exception {
-		User insert =  userRepository.save(user);
+		User insert = userDao.createUser(user);
 		return insert;
 	}
 	
@@ -94,7 +98,7 @@ public class UserServiceImpl implements UserService{
 	        }
 	        return userPw;
 	    }
-	}
+	}//테스트
 	
 	
 
