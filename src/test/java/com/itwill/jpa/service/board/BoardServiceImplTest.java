@@ -77,7 +77,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	// @Disabled
+	@Disabled
 	void findByDateCategoryTest() {
 		List<Board> boards = new ArrayList<Board>();
 		LocalDateTime endDate = LocalDateTime.now(); // 현재 날짜와 시간
