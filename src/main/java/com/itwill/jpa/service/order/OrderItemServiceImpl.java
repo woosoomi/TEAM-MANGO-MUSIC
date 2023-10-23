@@ -1,15 +1,14 @@
 package com.itwill.jpa.service.order;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.repository.order.OrderItemRepository;
-import com.itwill.jpa.repository.order.OrderRepository;
-
+@Service
 public class OrderItemServiceImpl implements OrderItemService{
 
 	@Autowired

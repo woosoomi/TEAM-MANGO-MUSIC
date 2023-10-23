@@ -72,7 +72,7 @@ public class Order {
 	}
 	
 	//order와 delivery 1대1
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "delivery_id")
 	private Delivery delivery;
 	

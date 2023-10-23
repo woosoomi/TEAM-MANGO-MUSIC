@@ -14,7 +14,9 @@ public interface OrderService {
 	//주문 전체 삭제
 	void deleteAllOrder() throws Exception;
 	//유저 Id로 전체 주문 불러오기
-	List<Order> OrdersByUserId(String UserId);
-
+	List<Order> ordersByUserId(String UserId);
+	//전체 주문 불러오기(관리자)
+	List<Order> orders();
+	
 
 }
