@@ -61,9 +61,10 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		Cart inserCart1=cartServiceImpl.insert(cart2);
 		System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+inserCart1);
 	}
-	
+	/*
 	@Test
 	void cartDelete() {
 		cartServiceImpl.deleteAll("123");
 	}
+	*/
 }

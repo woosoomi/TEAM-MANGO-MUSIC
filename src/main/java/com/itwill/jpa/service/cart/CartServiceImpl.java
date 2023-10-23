@@ -18,12 +18,13 @@ import jakarta.transaction.Transactional;
 public class CartServiceImpl implements CartService {
 	@Autowired
 	CartRepository cartRepository;
-	
+	/*
 	@Override
 	public void deleteAll(String userId) {
 		cartRepository.deleteByUser_UserId(userId);
 		
 	}
+	*/
 
 	@Override
 	public double calculateTotalPrice(Cart cart) {
