@@ -28,6 +28,14 @@ public interface ProductService{
 	// 좋아요 누르기 기능
 	Product checkLikeService(Long productNo);
 	// 품절 안내 기능
+
 	Product outOfStockMsg(Long productNo);
 
+
+	
+	// 검색 기능
+	
+	// 키워드로 검색[성공]
+	public List<Product> searchProductsByKeyword(String keyword);
+	
 }

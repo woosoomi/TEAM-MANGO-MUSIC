@@ -63,4 +63,20 @@ public class ProductServiceImpl implements ProductService{
 		
 		return findProduct;
 	}
+	
+	//제목키워드로 검색
+	@Override
+	public List<Product> searchProductsByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+//	@Override
+//	public List<Product> searchProductsByKeyword(String keyword) {
+//		return productRepository.findByProductNameContaining(keyword);
+//	}
+	
+	// >> List인데 return이 저렇게 들어갈 수 없지 않을까요? 확인 후 삭제 해주세요~
+	
+	
 }
