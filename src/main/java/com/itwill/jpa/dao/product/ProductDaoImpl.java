@@ -19,14 +19,14 @@ public class ProductDaoImpl implements ProductDao{
 	
 	@Override
 	public Product insertProduct(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		Product insertProduct = productRepository.save(product);
+		return insertProduct;
 	}
 	
 	@Override
 	public Product selectProduct(Long productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		Product selectProduct = productRepository.findById(productNo).get();
+		return selectProduct;
 	}
 	
 	@Override

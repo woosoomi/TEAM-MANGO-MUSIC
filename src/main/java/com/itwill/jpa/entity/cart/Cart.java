@@ -40,11 +40,13 @@ public class Cart {
 	
 	private int cartTotPrice;
 	
+	/*
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    
+    */
+	
     public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
     				.cartTotPrice(dto.getCartTotPrice())
