@@ -51,7 +51,7 @@ public class Cart {
     				.build();
     }
     
-	//product와 cartitem 1대n
+	//cart와 cartitem 1대n
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
@@ -59,7 +59,7 @@ public class Cart {
     
 	//user- cart 1대1
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_no")
+	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
 }

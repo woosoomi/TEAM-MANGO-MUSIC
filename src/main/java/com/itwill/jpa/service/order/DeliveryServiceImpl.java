@@ -62,10 +62,16 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryRepository.findById(findUser).get();
 	}
 
-	// userId를 기준으로 해당 유저에 대한 모든 배송 정보를 조회
 	@Override
 	public List<Delivery> deliverysFindById(User user) {
-	    return deliveryRepository.findByUserId(user.getUserId());
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+//	// userId를 기준으로 해당 유저에 대한 모든 배송 정보를 조회
+//	@Override
+//	public List<Delivery> deliverysFindById(User user) {
+//	    return deliveryRepository.findByUserId(user.getUserId());
+//	}
 
 }

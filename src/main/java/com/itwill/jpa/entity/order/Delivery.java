@@ -39,6 +39,11 @@ public class Delivery {
 	
 	private String deliveryCompany;
 	
+	// delivery와 user n대1
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "userId")
+	private User user;
+
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {
@@ -50,8 +55,4 @@ public class Delivery {
 					   .build();
 	}
 	
-	// delivery와 user n대1
-		@ManyToOne(cascade = CascadeType.PERSIST)
-		@JoinColumn(name = "userId")
-		private User user;
 }

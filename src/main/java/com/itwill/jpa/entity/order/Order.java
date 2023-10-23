@@ -86,10 +86,9 @@ public class Order {
 	@Builder.Default
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
-	//order와 coupon 1대1
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "coupon_Id")
-	private Coupon coupon;
+	//order와 coupon 1대n
+	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	private List<Coupon> coupons = new ArrayList<>();
 	
 	
 }

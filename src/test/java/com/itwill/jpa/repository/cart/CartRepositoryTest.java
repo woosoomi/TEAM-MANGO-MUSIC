@@ -27,20 +27,16 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 	UserRepository userRepository;
 	@Test
 	//@Disabled
+	@Rollback(false)
 	@Transactional
-	void saveCartWithCartItems() {
+	void saveCartWithUser() {
 		Cart cart1 = Cart.builder()
+							.cartId(1L)
 							.cartTotPrice(0)
 							.build();
-	
-		CartItem cartItems = CartItem.builder()
-										.cartItemQty(0)
-										.build();
-	
-	
-	
-		User user=User.builder()
-					  .userId(null)
+
+		User user1=User.builder()
+					  .userId("2222")
 					  .userAddress("2")
 					  .user_Boards(null)
 					  .userEmail("2")
@@ -50,14 +46,9 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 					  .userPhone("2")
 					  .userPw("2")
 					  .build();
-
-
-		cart1.getCartitems().add(cartItems);
-		cart1.setUser(user);
-		cartItems.setCart(cart1);
-		cartItemRepository.save(cartItems);
-		userRepository.save(user);
+		cart1.setUser(user1);
 		cartRepository.save(cart1);
+	
 
 	}
 	

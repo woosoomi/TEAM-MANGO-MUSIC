@@ -21,6 +21,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -29,6 +30,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -101,9 +103,10 @@ public class Product {
 	@Builder.Default
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
-	//product와 productcategory  1대1
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_category_Id")
+	//product와 productcategory  n대1
+	@ManyToOne
+	@JoinColumn(name = "product_category_id")
+	@ToString.Exclude
 	private ProductCategory productCategory;
 	
 	//product와 cartitem 1대n
