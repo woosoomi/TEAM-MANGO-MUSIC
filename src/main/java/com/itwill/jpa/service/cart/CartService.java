@@ -8,7 +8,7 @@ import com.itwill.jpa.entity.cart.CartItem;
 public interface CartService {
 	
 	//장바구니 추가
-	public Cart insert(List<CartItem> cartItems);
+	public Cart insert(Cart cart) throws Exception;
 	
 	//장바구니 비우기
 	public void deleteAll(String userId) throws Exception;
@@ -18,6 +18,8 @@ public interface CartService {
 	
 	//장바구니 조회
 	List<Cart> getCartItems(Cart cart) throws Exception;
+
+	
 	
 	
 	
