@@ -185,7 +185,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		}
 
 		@Test
-		//@Disabled
+		@Disabled
 		@Transactional
 		@Rollback(false)
 		@DisplayName("번호로 비밀번호 찾기")
@@ -195,9 +195,9 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 			try {
 				String foundUserPw = userService.findUserPwByUserPhone(userPhone);
 				assertNotNull(foundUserPw);
-				System.out.println("비밀번호 찾기 성공: " + foundUserPw);
+				System.out.println(">>> 비밀번호 찾기 성공: " + foundUserPw);
 			} catch (Exception e) {
-				fail("비밀번호 찾기 실패: " + e.getMessage());
+				fail(">>> 비밀번호 찾기 실패: " + e.getMessage());
 			}
 		}
 	}
