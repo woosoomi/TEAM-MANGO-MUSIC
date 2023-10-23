@@ -82,7 +82,7 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	@DisplayName("회원전체리스트")
