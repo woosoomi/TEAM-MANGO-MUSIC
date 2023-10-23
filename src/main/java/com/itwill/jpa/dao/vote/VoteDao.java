@@ -13,7 +13,6 @@ public interface VoteDao {
 	// 투표 1개 선택
 	Vote selectByVoteNo(Vote vote)throws Exception;
 	
-	
 	// 회원이 가수에게 투표하기
 	Vote voteUserforArtist(Vote voteNo) throws Exception;
 	
