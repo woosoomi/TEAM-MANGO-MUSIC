@@ -1,5 +1,6 @@
 package com.itwill.jpa.dao.order;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,12 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.order.Delivery;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
+import com.itwill.jpa.repository.user.UserRepository;
 @Repository
 public class DeliveryDaoImpl implements DeliveryDao {
 
 	@Autowired
 	DeliveryRepository deliveryRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Override
 	public Delivery insertDelivery(Delivery delivery) {
@@ -20,11 +26,6 @@ public class DeliveryDaoImpl implements DeliveryDao {
 		return savedDelivery;
 	}
 
-	@Override
-	public Delivery selectDelivery(Long deliveryId){
-		Delivery selectDelivery = deliveryRepository.findById(deliveryId).get();
-		return selectDelivery;
-	}
 
 	@Override
 	public Delivery updateDelivery(Delivery updateDelivery) throws Exception{
@@ -67,6 +68,18 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	public Delivery findByDeliveryId(Long id) {
 		Delivery delivery = deliveryRepository.findById(id).get();
 		return delivery;
+	}
+
+
+	@Override
+	public List<Delivery> getDeliveriesByUserId(String userId) {
+		Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return deliveryRepository.findByUser(user);
+        } else {
+            return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+        }
 	}
 
 }

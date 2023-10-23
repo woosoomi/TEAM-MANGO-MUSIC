@@ -14,12 +14,11 @@ public interface DeliveryService {
 	void deleteDelivery(Long id) throws Exception;
 	
 	List<Delivery> deliverys();
-//	
-	Delivery findDelivery(User user);
+	
+	List<Delivery> findDelivery(String userId);
 	
 	Delivery findByDeliveryId(Long id);
-//	
-//	List<Delivery> deliverysFindById(User user);
+	
 	
 	
 }

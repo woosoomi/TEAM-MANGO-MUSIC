@@ -2,6 +2,7 @@ package com.itwill.jpa.service.order;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Disabled;
@@ -12,6 +13,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.entity.order.Delivery;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 import com.itwill.jpa.service.user.UserService;
@@ -44,6 +46,18 @@ class DeliveryServiceTest {
 		delivery.setDeliveryName("집");
 		delivery.setDeliveryPhone("1234");
 		
+		User user1 = User.builder()
+                .userId("kbs")
+                .userPw("1111")
+                .userName("고범석")
+                .userAddress("서울시 강남")
+                .userEmail("kbs@naver.com")
+                .userJumin("970000-0000000")
+                .userPhone("010-1234-5678")
+                .userGender("남")
+                .build();
+
+		delivery.setUser(user1);
 		Delivery savedDelivery = deliveryService.saveDelivery(delivery);
 		System.out.println(savedDelivery);
 		
@@ -53,7 +67,7 @@ class DeliveryServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void update() throws Exception {
 		Delivery delivery = deliveryService.findByDeliveryId(1L);
 		delivery.setDeliveryAddress("부산광역시");
@@ -66,10 +80,20 @@ class DeliveryServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void delete() throws Exception{
 		deliveryService.deleteDelivery(1L);
 		
 	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void findDelivery(){
+		List<Delivery> findDelivery = deliveryService.findDelivery("kbs");
+		System.out.println(findDelivery);
+	}
 
+	
 }
