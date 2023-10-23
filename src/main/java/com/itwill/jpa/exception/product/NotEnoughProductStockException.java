@@ -1,4 +1,4 @@
-package com.itwill.jpa.exception;
+package com.itwill.jpa.exception.product;
 
 public class NotEnoughProductStockException extends RuntimeException{
 

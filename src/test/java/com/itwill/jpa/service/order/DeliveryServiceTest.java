@@ -1,18 +1,12 @@
 package com.itwill.jpa.service.order;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
@@ -22,7 +16,6 @@ import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 import com.itwill.jpa.service.user.UserService;
 
-import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 
