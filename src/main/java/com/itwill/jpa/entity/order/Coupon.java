@@ -37,6 +37,8 @@ public class Coupon {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPON_COUPON_NO_SEQ")
 //	//PK 쿠폰 번호
 	private Long couponId;
+//	//쿠폰 이름(ex.회원가입 쿠폰, 10월 감사제 쿠폰등)
+	private String couponName;
 //	
 //	//1개월짜리 쿠폰, 2개월짜리 쿠폰, 12개월짜리 쿠폰 등등
 	private String couponType;
@@ -63,22 +65,31 @@ public class Coupon {
 	@JoinColumn(name = "userId", referencedColumnName = "userId")
 	private User user;
 	
+	// 쿠폰과 주문 n대 1
+	//PK 주문 번호
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "orderId", referencedColumnName = "orderId")
+	private Order order;
+	
+	
 	
 	
 //	/*메서드*/
-
-
-
+	
+	
+	
 //Dto -> entity 변환해주는 매서드
 	public static Coupon toEntity(CouponDto dto) {
 		return Coupon.builder()
-					 .couponType(dto.getCouponType())
-					 .couponCode(dto.getCouponCode())
-					 .couponDiscount(dto.getCouponDiscount())
-					 .couponExpirationDate(dto.getCouponExpirationDate())
-					 .couponIsUsed(dto.getCouponIsUsed())
-					 .createdAt(dto.getCreatedAt())
-					 .updatedAt(dto.getUpdatedAt())
-					 .build();	
-		}
+				.couponName(dto.getCouponName())
+				.couponType(dto.getCouponType())
+				.couponCode(dto.getCouponCode())
+				.couponDiscount(dto.getCouponDiscount())
+				.couponExpirationDate(dto.getCouponExpirationDate())
+				.couponIsUsed(dto.getCouponIsUsed())
+				.createdAt(dto.getCreatedAt())
+				.updatedAt(dto.getUpdatedAt())
+				.build();	
+	}
 }
+	
