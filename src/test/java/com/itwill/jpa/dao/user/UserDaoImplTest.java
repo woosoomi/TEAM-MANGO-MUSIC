@@ -85,10 +85,19 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	@Transactional
 	@Rollback(false)
-	@DisplayName("회원삭제")
+	@DisplayName("회원전체리스트")
 	   void testUserList() throws Exception {
 		userDao.findUserList();
 		
+	}
 	
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
+	@DisplayName("아이디찾기1")
+	   void testfindUserIdByUserEmail() throws Exception {
+		userDao.findUserIdByUserEmail("");
+		
 	}
 }

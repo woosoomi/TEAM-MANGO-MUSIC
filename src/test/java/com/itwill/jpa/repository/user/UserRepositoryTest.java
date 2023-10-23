@@ -56,7 +56,6 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
 	      userRepository.save(user1);
 	      
 
-		user1.setCart(cart);
 
 		cartRepository.save(cart);
 		userRepository.save(user1);

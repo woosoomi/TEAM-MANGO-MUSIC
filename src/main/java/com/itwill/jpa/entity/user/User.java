@@ -67,11 +67,7 @@ public class User {
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	  private List<Vote> votes = new ArrayList<>();
 	  
-	  // user와 cart 1대1 관계설정
-	  @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	  @JoinColumn(name="cart_id")
-	  private Cart cart ;
-	  
+
 	  
 	  
 	 
