@@ -65,10 +65,10 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@DisplayName("회원업데이트")
 	   void testUpdate() throws Exception {
-	      User user1 = userDao.findUser("zzz");
-	      user1.setUserGender("남자ㅋㅋ");
+	      User user1 = userDao.findUser("범석님");
+	      user1.setUserAddress("충남 서천군ㅋㅋ");
 	      userDao.updateUser(user1);
-	
+	      
 	}
 	
 	@Test
@@ -77,7 +77,7 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@DisplayName("회원삭제")
 	   void testDelete() throws Exception {
-	      userDao.deleteUser("zzz");
+	      userDao.deleteUser("aaa");
 	
 	}
 	
@@ -85,10 +85,19 @@ class UserDaoImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	@Transactional
 	@Rollback(false)
-	@DisplayName("회원삭제")
+	@DisplayName("회원전체리스트")
 	   void testUserList() throws Exception {
-		userDao.findUserList();
+		System.out.println(">>> 회원전체리스트: " + userDao.findUserList());
 		
+	}
 	
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
+	@DisplayName("아이디찾기1")
+	   void testfindUserIdByUserEmail() throws Exception {
+		userDao.findUserIdByUserEmail("");
+		
 	}
 }

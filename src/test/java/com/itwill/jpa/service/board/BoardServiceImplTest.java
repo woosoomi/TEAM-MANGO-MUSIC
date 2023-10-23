@@ -1,6 +1,5 @@
 package com.itwill.jpa.service.board;
 
-import org.apache.ibatis.annotations.Insert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -9,8 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardCategory;
-import com.itwill.jpa.repository.board.BoardCategoryRepository;
-import com.itwill.jpa.repository.board.BoardRepository;
 
 class BoardServiceImplTest extends TeamProjectMangoApplicationTest{
 
