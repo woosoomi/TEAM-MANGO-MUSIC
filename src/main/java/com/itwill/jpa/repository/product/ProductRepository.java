@@ -17,8 +17,8 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product insertProduct(Product product);
+    //Product insertProduct(Product product);
 
-    Product findOne(Long productNo);
+    //Product findbyId(Long productNo);
 
 }
