@@ -38,9 +38,9 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 										.build();
 	
 	
-	
+	/*
 		User user=User.builder()
-					  .userId(null)
+					  .userId("88")
 					  .userAddress("2")
 					  .user_Boards(null)
 					  .userEmail("2")
@@ -50,13 +50,13 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 					  .userPhone("2")
 					  .userPw("2")
 					  .build();
-
+	*/
 
 		cart1.getCartitems().add(cartItems);
-		cart1.setUser(user);
+		//cart1.setUser(user);
 		cartItems.setCart(cart1);
 		cartItemRepository.save(cartItems);
-		userRepository.save(user);
+		//userRepository.save(user);
 		cartRepository.save(cart1);
 
 	}
