@@ -2,13 +2,14 @@ package com.itwill.jpa.service.cart;
 
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
-import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.cart.CartRepository;
-import com.itwill.jpa.repository.user.UserRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -17,11 +18,13 @@ import jakarta.transaction.Transactional;
 public class CartServiceImpl implements CartService {
 	@Autowired
 	CartRepository cartRepository;
-	
+	/*
 	@Override
 	public void deleteAll(String userId) {
 		cartRepository.deleteByUser_UserId(userId);
+		
 	}
+	*/
 
 	@Override
 	public double calculateTotalPrice(Cart cart) {
@@ -43,12 +46,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public Cart insert(List<CartItem> cartItems) {
-		Cart cart= new Cart();
-		for (CartItem cartItem : cartItems) {
-			cart.setCartitems(cartItems);
-		}
+	public Cart insert(Cart cart) {
 		return cartRepository.save(cart);
 	}
+
 	
 }
