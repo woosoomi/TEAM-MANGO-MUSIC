@@ -2,6 +2,8 @@ package com.itwill.jpa.service.order;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void insert() {
 		OrderItem orderItem = new OrderItem();
 		Order order = orderDao.selectOrder(1L);
@@ -43,7 +45,7 @@ class OrderItemServiceTest {
 		orderItem.setOiQty(3);
 		
 		OrderItem orderItem2 = new OrderItem();
-		Order order2 = orderDao.selectOrder(2L);
+		Order order2 = orderDao.selectOrder(1L);
 		orderItem2.setOiId(null);
 		orderItem2.setOiQty(5);
 		
@@ -56,14 +58,6 @@ class OrderItemServiceTest {
 		System.out.println(savedOrderItem2);
 	}
 	
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	void test() {
-		Order order = orderDao.selectOrder(1L);
-		System.out.println(order);
-	}
 	
 	@Test
 	@Transactional
@@ -107,9 +101,10 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void orderItems() {
-//		OrderItem orderItems = orderItemService.orderItems(null)
+		List<OrderItem> orderItems = orderItemService.orderItems(1L);
+		System.out.println("오더아이템들-->"+orderItems);
 	}
 	
 }
