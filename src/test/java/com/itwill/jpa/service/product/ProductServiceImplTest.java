@@ -21,9 +21,9 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void searchProductsByKeywordTest() {
-		String keyword = "강북멋쟁이";
+		String keyword = "설명";
 		List<Product> products = productServiceImpl.searchProductsByKeyword(keyword);
 		System.out.println("검색결과>>>" + products);
 	}
