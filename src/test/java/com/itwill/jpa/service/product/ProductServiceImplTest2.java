@@ -15,7 +15,7 @@ class ProductServiceImplTest2 {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void checkLikeServiceTest() {
 		System.out.println(productService.checkLikeService(1L));
 	}
@@ -23,7 +23,7 @@ class ProductServiceImplTest2 {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void outOfStockTest() {
 		System.out.println(productService.outOfStockMsg(1L));
 	}
