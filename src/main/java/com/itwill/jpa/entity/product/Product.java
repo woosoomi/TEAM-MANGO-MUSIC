@@ -41,21 +41,23 @@ import lombok.ToString;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Product {
 	@Id
-	@SequenceGenerator(name = "PRODUCT_PRODUCT_NO_SEQ",sequenceName = "PRODUCT_PRODUCT_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@SequenceGenerator(name = "PRODUCT_PRODUCT_NO_SEQ", sequenceName = "PRODUCT_PRODUCT_NO_SEQ", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCT_NO_SEQ")
 	@Column(name = "product_no")
 
-	private Long productNo; //PK
+	private Long productNo; // PK
 
 	@Column(nullable = false)
 	private String productName;
 	@Column(nullable = false)
 	private int productPrice;
-	
-	//@SequenceGenerator(name = "PRODUCT_PRODUCT_STAR_SEQ" , sequenceName = "PRODUCT_PRODUCT_STAR_SEQ", initialValue = 0 , allocationSize = 1)
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCT_STAR_SEQ")
+
+	// @SequenceGenerator(name = "PRODUCT_PRODUCT_STAR_SEQ" , sequenceName =
+	// "PRODUCT_PRODUCT_STAR_SEQ", initialValue = 0 , allocationSize = 1)
+	// @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =
+	// "PRODUCT_PRODUCT_STAR_SEQ")
 	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
-	
+
 	private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
 	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
@@ -67,10 +69,9 @@ public class Product {
 	private String productAddress; // 콘서트 장소
 	private Date startPeriod; // 멤버십 시작날짜
 	private int periodOfUse; // 멤버십 사용기간
-	
 
 	/** music **/
-	
+
 	@Entity
 	@DiscriminatorValue("music")
 	public static class Music extends Product {
@@ -95,38 +96,38 @@ public class Product {
 	}
 
 	public static Product toEntity(ProductDto productDto) {
-		return Product.builder()
-				.productName(productDto.getProductName())
-				.productPrice(productDto.getProductPrice())
+		return Product.builder().productName(productDto.getProductName()).productPrice(productDto.getProductPrice())
 				.build();
 	}
+
+	//1대N 관계설정
+	@ManyToOne
+	@JoinColumn(name = "vote_id")
+	@ToString.Exclude
+	private Vote vote;
 	
-	//product와 orderitem 1대n
+	// product와 orderitem 1대n
 	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
-	
-	//product와 productcategory  n대1
+
+	// product와 productcategory n대1
 	@ManyToOne
 	@JoinColumn(name = "product_category_id")
 	@ToString.Exclude
 	private ProductCategory productCategory;
-	
-	//product와 cartitem 1대n
+
+	// product와 cartitem 1대n
 	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
-	
-	//product와 vote 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
-	@Builder.Default
-	private List<Vote> vote = new ArrayList<Vote>();
-	
-	//---- 비즈니스 로직----//
+
+	// ---- 비즈니스 로직----//
 	/* productStock 증가 */
 	public void addproductStock(int quantity) {
 		this.productStock += quantity;
 	}
+
 	/* productStock 감소 */
 	public void removeproductStock(int quantity) {
 		int restproductStock = this.productStock - quantity;
@@ -135,6 +136,5 @@ public class Product {
 		}
 		this.productStock = restproductStock;
 	}
-	
-	
+
 }

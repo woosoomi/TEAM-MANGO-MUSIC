@@ -49,7 +49,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void testUpdateBoardTest() {
 		// 가상의 Board 객체 생성
 		Board board = new Board();
@@ -67,7 +67,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void findByCategoryTest() {
 		List<Board> boards = new ArrayList<Board>();
 		boards = boardServiceImpl.findBycategory(4L); // 1대1문의 찾기

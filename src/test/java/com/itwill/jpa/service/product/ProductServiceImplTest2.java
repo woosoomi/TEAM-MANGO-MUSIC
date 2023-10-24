@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-class ProductServiceImplTest2 {
+import com.itwill.jpa.TeamProjectMangoApplicationTest;
+
+class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Autowired
 	ProductService productService;
 	
@@ -23,8 +25,8 @@ class ProductServiceImplTest2 {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
-	void outOfStockTest() {
+	//@Disabled
+	void outOfStockTest() { 
 		System.out.println(productService.outOfStockMsg(1L));
 	}
 

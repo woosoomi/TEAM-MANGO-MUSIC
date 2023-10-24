@@ -29,7 +29,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	void cartInsert() {
 		Cart cart1 = new Cart();
 		CartItem cartItem =new CartItem(3L,1000,null,null);
-		User user =new User("123","1111","한영","010-1111","안양","why","960410","남", null, null, null, null);
+		User user =new User("한영1","1111","한영","010-1111","안양","why","960410","남", null, null, null, null);
 		
 		
 		cart1.setUser(user);
@@ -45,14 +45,14 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+inserCart);
 		
 		Cart cart2 = new Cart();
-		CartItem cartItem2 =new CartItem(4L,1000,null,null);
-		User user2 =new User("234","1111","한영","010-1111","안양","why","960410","남", null, null, null, null);
+		CartItem cartItem2 =new CartItem(4L,10000,null,null);
+		User user2 =new User("한영2","11112","한영2","010-11112","안양2","why2","9604102","남", null, null, null, null);
 		
 		
 		cart1.setUser(user2);
 		cart1.getCartitems();
 		cart1.setCartId(0L);
-		cart1.setCartTotPrice(1000);
+		cart1.setCartTotPrice(78000);
 		
 		cartRepository.save(cart2);
 		cartItemRepository.save(cartItem2);
