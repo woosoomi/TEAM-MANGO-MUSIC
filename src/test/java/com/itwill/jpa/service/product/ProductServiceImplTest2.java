@@ -22,10 +22,9 @@ class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void getProductTest() {
-		
-		System.out.println(productService.getProduct(1L));
+
 	}
 	
 	@Test
@@ -49,7 +48,7 @@ class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void checkLikeServiceTest() {
 		System.out.println(productService.checkLikeService(1L));
 	}
