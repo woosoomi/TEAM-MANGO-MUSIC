@@ -21,7 +21,7 @@ public class BoardController {
 	
 	private BoardServiceImpl boardServiceImpl;
 	
-    @GetMapping("/events")
+//    @GetMapping("/events")
     public String eventPage(Model model) {
         List<Board> events = boardServiceImpl.findBycategory(2L);
         model.addAttribute("events", events); 
