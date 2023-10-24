@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,7 +69,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	//product 추가
 	@Override
-	public Product insert(Product product) {
+	public Product insertProduct(Product product) {
 		return productRepository.save(product);
 	}
 
@@ -88,7 +89,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	//product 수정
 	@Override
-	public Product update(Product product) {
+	public Product updateProduct(Product product) {
 		Product isProduct = productRepository.findById(product.getProductNo()).orElse(null);
 		if(isProduct != null) {
 			isProduct.setProductCategory(product.getProductCategory()); // product 카테고리 수정
@@ -125,8 +126,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	// product 조회수별 정렬
-	public List<Product> getProductOrderByReadCount() {
-		return null;
+	public List<Product> getProductOrderByReadCountDesc() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
+		return productRepository.findAll();
 	}
 	
 	//제목키워드로 검색

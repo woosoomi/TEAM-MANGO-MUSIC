@@ -33,13 +33,13 @@ public interface ProductService{
 
 
 	// product 등록
-	public Product insert(Product product);
+	public Product insertProduct(Product product);
 	
 	// product 삭제
 	public void delete(Long productNo);
 	
 	// product 업데이트
-	public Product update(Product product);
+	public Product updateProduct(Product product);
 	
 	// product category별 분류
 	public List<Product> findByCategory(Long categoryId);
@@ -48,7 +48,7 @@ public interface ProductService{
 	public Product increaseReadCount(Product product);
 	
 	// product 조회수별 정렬
-	public List<Product> getProductOrderByReadCount();
+	public List<Product> getProductOrderByReadCountDesc();
 	
 	// 키워드로 검색[성공]
 	public List<Product> searchProductsByKeyword(String keyword);

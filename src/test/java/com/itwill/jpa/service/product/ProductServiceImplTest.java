@@ -22,11 +22,17 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void searchProductsByKeywordTest() {
 		String keyword = "설명";
 		List<Product> products = productServiceImpl.searchProductsByKeyword(keyword);
 		System.out.println("검색결과>>>" + products);
 	}
-
+	@Test
+	public void testGetProductOrderByReadCountDesc() {
+		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
+		for (Product product : products) {
+			System.out.println("Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+		}
+	}
 }
