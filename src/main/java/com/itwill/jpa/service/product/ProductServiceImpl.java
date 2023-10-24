@@ -1,8 +1,10 @@
 package com.itwill.jpa.service.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +12,8 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 @Transactional
@@ -63,19 +67,74 @@ public class ProductServiceImpl implements ProductService{
 		return findProduct;
 	}
 	
-	//제목키워드로 검색
+	//product 추가
 	@Override
-	public List<Product> searchProductsByKeyword(String keyword) {
-		// TODO Auto-generated method stub
+	public Product insertProduct(Product product) {
+		return productRepository.save(product);
+	}
+
+	//product 삭제
+	@Override
+	public void delete(Long productNo) {
+		Optional<Product> productOptional = productRepository.findById(productNo);
+		if(productOptional.isPresent()) {			
+			Product product = productOptional.get();
+			productRepository.delete(product);
+			//product 객체 있으면 꺼내서 삭제
+		}else {
+			
+			//예외처리
+		}
+		
+	}
+	//product 수정
+	@Override
+	public Product updateProduct(Product product) {
+		Product isProduct = productRepository.findById(product.getProductNo()).orElse(null);
+		if(isProduct != null) {
+			isProduct.setProductCategory(product.getProductCategory()); // product 카테고리 수정
+			isProduct.setProductName(product.getProductName()); // product 이름 수정
+			isProduct.setProductPrice(product.getProductPrice()); // product 가격 수정
+			isProduct.setProductStar(product.getProductStar()); // product 좋아요 수정
+			isProduct.setProductContent(product.getProductContent()); // product 설명 수정
+			isProduct.setProductReply(product.getProductReply()); // product 댓글 수정
+			isProduct.setReadCount(product.getReadCount()); // product 조회수 수정
+			isProduct.setProductStock(product.getProductStock()); // product 재고 수정
+			isProduct.setProductImage(product.getProductImage()); // product 이미지 수정
+			isProduct.setProductMovie(product.getProductMovie()); // music 뮤직비디오 수정
+			isProduct.setProductArtist(product.getProductArtist()); // product 아티스트 수정
+			isProduct.setProductAddress(product.getProductAddress()); // 콘서트 장소 수정
+			isProduct.setStartPeriod(product.getStartPeriod()); // membership 시작날짜 수정
+			isProduct.setPeriodOfUse(product.getPeriodOfUse()); // membership 사용기간 수정
+			return productRepository.save(isProduct); //수정내용 저장
+		}else {
+			//제품 없으면 예외처리
+			throw new EntityNotFoundException("제품을 찾을 수 없습니다.");
+		}
+	}
+	
+	// product 카테고리별 구분
+	@Override
+	public List<Product> findByCategory(Long categoryId) {
 		return null;
 	}
 	
-//	@Override
-//	public List<Product> searchProductsByKeyword(String keyword) {
-//		return productRepository.findByProductNameContaining(keyword);
-//	}
+	// product 조회수 올리기
+	@Override
+	public Product increaseReadCount(Product product) {
+		return null;
+	}
 	
+	// product 조회수별 정렬
+	public List<Product> getProductOrderByReadCountDesc() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
+		return productRepository.findAll();
+	}
+	
+	//제목키워드로 검색
+	@Override
+	public List<Product> searchProductsByKeyword(String keyword) {
+		return productRepository.findByProductNameContaining(keyword);
+	}
 	// >> List인데 return이 저렇게 들어갈 수 없지 않을까요? 확인 후 삭제 해주세요~
-	
-	
 }
