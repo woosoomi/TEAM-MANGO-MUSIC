@@ -35,7 +35,7 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void insert() {
 		OrderItem orderItem = new OrderItem();
 //		Order order = orderDao.selectOrder(1L);
@@ -71,7 +71,7 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void delete() throws Exception{
 		orderItemService.deleteOrderItem(1L);
 	}
@@ -84,4 +84,21 @@ class OrderItemServiceTest {
 		orderItemService.deleteAllOrderItem();
 	}
 
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void findOrderItem() {
+		OrderItem findItem = orderItemService.findOrderItem(1L);
+		System.out.println(findItem);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void orderItems() {
+//		OrderItem orderItems = orderItemService.orderItems(null)
+	}
+	
 }

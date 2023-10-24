@@ -56,8 +56,9 @@ public class OrderDaoImpl implements OrderDao{
 		Optional<Order> selectedOrderOptional = orderRepository.findById(orderId); 
 		if(selectedOrderOptional.isEmpty()) {
 			throw new Exception("존재하지않는주문입니다.");
+		}else {
+			orderRepository.delete(selectedOrderOptional.get());
 		}
-		orderRepository.delete(selectedOrderOptional.get());
 	}
 
 	@Override
