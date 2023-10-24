@@ -1,50 +1,50 @@
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
+values (delivery_delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
+values (delivery_delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
+values (delivery_delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
+values (delivery_delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
+values (delivery_delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
+values (delivery_delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
+values (delivery_delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
+values (delivery_delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
+values (delivery_delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
+values (delivery_delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
+values (delivery_delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
+values (delivery_delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
+values (delivery_delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
+values (delivery_delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
+values (delivery_delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
+values (delivery_delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
 
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
