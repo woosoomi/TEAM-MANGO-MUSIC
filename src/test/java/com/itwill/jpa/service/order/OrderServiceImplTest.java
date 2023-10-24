@@ -1,6 +1,6 @@
 package com.itwill.jpa.service.order;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
-import com.itwill.jpa.dao.order.OrderDao;
+import com.itwill.jpa.dao.order.DeliveryDao;
+import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
@@ -16,6 +17,7 @@ import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 import com.itwill.jpa.repository.user.UserRepository;
+import com.itwill.jpa.service.user.UserServiceImpl;
 
 import jakarta.transaction.Transactional;
 
@@ -25,29 +27,41 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	OrderServiceImpl orderServiceImpl;
 	
 	@Autowired
+	UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	DeliveryServiceImpl deliveryServiceImpl;
+	
+	@Autowired
 	OrderRepository orderRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	DeliveryRepository deliveryRepository;
 	
 	@Autowired
-	UserRepository userRepository;
+	UserDao userDao;
 	
+	@Autowired
+	DeliveryDao deliveryDao;
 	
-	//주문 생성(실패)
+	//주문 생성(진행중)
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
-	void OrderCreateTest() {
+	//@Disabled
+	void orderCreateTest() {
 		Order order = new Order();
-		User user = new User("149511951","1111","한영","010-1111","안양","why","960410","남", null, null, null, null);
-		Delivery delivery = new Delivery(110L, null, null, null, null, user);
+		User user = userDao.findUser("팀장님");
+		Delivery delivery = deliveryDao.findByDeliveryId(1L);
 		
+		
+		order.setOrderId(null);
 		order.setOrderPrice(20000);
 		order.setDelivery(delivery);
 		order.setOrderDate(null);
-		order.setOrderId(10001L);
 		order.setOrderStatus(OrderStatus.배송준비중);
 		order.setUser(user);
 		
@@ -63,7 +77,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Transactional
 	@Rollback(false)
 	@Disabled
-	void OrderUpdateTest() throws Exception {
+	void orderUpdateTest() throws Exception {
 		Order order = orderRepository.findById(1L).get();
 		order.setOrderPrice(333333333);
 		order.setOrderStatus(OrderStatus.결제완료);
@@ -71,16 +85,63 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 		System.out.println(updatedOrder);
 	}
 	
-	//주문 한개 삭제(진행중)
+	//주문 한개 삭제(성공)
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
-	void OrderDeleteTest() throws Exception {
-		
+	@Disabled
+	void orderDeleteOneTest() throws Exception {
+		orderServiceImpl.deleteOrder(3L);
 		
 	}
 
+	//주문 전체 삭제(성공)
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void orderDeleteAllTest() throws Exception {
+		/*
+		// 모든 주문(Order)을 가져온다
+		List<Order> orders = orderServiceImpl.orders();
 
+		// 주문과 연결된 유저(User)와 배송(Delivery)를 삭제
+		for (Order order : orders) {
+			User user = order.getUser();
+			Delivery delivery = order.getDelivery();
+			
+			order.setUser(null);
+			order.setDelivery(null);
+			
+			
+			// 유저(User)와 배송(Delivery) 삭제
+			userServiceImpl.deleteUser(user.getUserId());
+			deliveryServiceImpl.deleteDelivery(delivery.getDeliveryId());
 
+			// 주문(Order) 삭제
+			orderServiceImpl.deleteAllOrder();
+		}
+		*/
+		orderServiceImpl.deleteAllOrder();
+	}
+	
+	//유저 아이디로 주문 전체 불러오기(성공)
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void orderByUserIdTest() {
+		List<Order> orderList = orderServiceImpl.ordersByUserId("팀장님");
+		System.out.println(orderList);
+	}
+	
+	//전체 주문 불러오기(관리자)(성공)
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void findAllOrders() {
+		List<Order> orderList = orderServiceImpl.orders();
+		System.out.println(orderList);
+	}
 }
