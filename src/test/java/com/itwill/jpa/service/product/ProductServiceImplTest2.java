@@ -9,10 +9,42 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
+import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.repository.product.ProductRepository;
 
 class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Autowired
+	ProductRepository productRepository;
+	
+	@Autowired
 	ProductService productService;
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void getProductTest() {
+		Product findProduct = productService.getProduct(1L);
+		System.out.println(findProduct);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void saveProductTest() {
+		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void deleteProductTest() {
+		
+	}
+	
+	
 	
 	@Test
 	@Transactional
@@ -25,7 +57,7 @@ class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void outOfStockTest() { 
 		System.out.println(productService.outOfStockMsg(1L));
 	}
