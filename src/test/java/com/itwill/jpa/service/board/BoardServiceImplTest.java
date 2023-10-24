@@ -49,7 +49,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void testUpdateBoardTest() {
 		// 가상의 Board 객체 생성
 		Board board = new Board();

@@ -19,13 +19,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor //Lombok 라이브러리
 public class BoardController {
 	
-//	private BoardServiceImpl boardServiceImpl;
-//	
-//    @GetMapping("/events")
-//    public String eventPage(Model model) {
-//        List<Board> events = boardServiceImpl.findBycategory(2L);
-//        model.addAttribute("events", events); 
-//        return "board/event"; 
-//    }
-//	//미완성
+	private BoardServiceImpl boardServiceImpl;
+	
+    @GetMapping("/events")
+    public String eventPage(Model model) {
+        List<Board> events = boardServiceImpl.findBycategory(2L);
+        model.addAttribute("events", events); 
+        return "board/event"; 
+    }
+	//미완성
 }
