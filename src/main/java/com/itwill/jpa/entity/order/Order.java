@@ -44,8 +44,8 @@ public class Order {
 	
 	
 	@Id
-	@SequenceGenerator(name = "ORDER_ORDER_NO_SEQ",sequenceName = "ORDER_ORDER_NO_SEQ",initialValue = 1 , allocationSize =1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_ORDER_NO_SEQ")
+	@SequenceGenerator(name = "ORDER_NO_SEQ",sequenceName = "ORDER_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_NO_SEQ")
 	//PK 주문 번호
 	private Long orderId;
 	
