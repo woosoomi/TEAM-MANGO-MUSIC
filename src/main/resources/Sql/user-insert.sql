@@ -35,10 +35,14 @@ INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER
 VALUES('shy888', 'gkdP888', '송하예', '서울시 강북구 미아동', 'shy@naver.com', '940220-2315789', '010-9876-5432', '여');
 
 
+<<<<<<< HEAD
+
+=======
 INSERT INTO user_board (user_board_id, board_id, user_id)
 VALUES (USER_BOARD_NO_SEQ.nextval, 1, '팀장님');
 INSERT INTO user_board (user_board_id, board_id, user_id)
 VALUES (USER_BOARD_NO_SEQ.nextval, 2, '승규님');
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
 
 
 commit;

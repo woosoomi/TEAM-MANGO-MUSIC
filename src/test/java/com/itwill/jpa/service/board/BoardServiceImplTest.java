@@ -67,7 +67,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void findByCategoryTest() {
 		List<Board> boards = new ArrayList<Board>();
 		boards = boardServiceImpl.findBycategory(4L); // 1대1문의 찾기

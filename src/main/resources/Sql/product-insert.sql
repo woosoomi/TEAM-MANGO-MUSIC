@@ -12,6 +12,7 @@ VALUES (4, 'membership');
 
 -- "음악" 카테고리 제품 1
 INSERT INTO PRODUCT (product_No, product_Name, product_Price, dtype, product_Content, product_Reply, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use)
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
 VALUES (1, '음악 제품 1', 100, 'music', '음악 제품 설명 1', '음악 제품 댓글 1', 0 , TO_DATE('2023-10-23', 'YYYY-MM-DD'), 100, 50, '이미지 URL 1', '뮤직비디오 URL 1', '아티스트 1', 30);
 
 -- "음악" 카테고리 제품 2
