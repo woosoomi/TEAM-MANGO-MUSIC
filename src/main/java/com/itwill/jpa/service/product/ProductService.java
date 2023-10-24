@@ -44,11 +44,14 @@ public interface ProductService{
 	// product category별 분류
 	public List<Product> findByCategory(Long categoryId);
 	
-	// product 조회수 올리기
+	// product 조회수 올리기[성공]
 	public Product increaseReadCount(Product product);
 	
-	// product 조회수별 정렬
+	// product 조회수별 내림차순 정렬 [성공]
 	public List<Product> getProductOrderByReadCountDesc();
+	
+	// product 조회수별 오름차순 정렬 [성공]
+	public List<Product> getProductOrderByReadCountAsc();
 	
 	// 키워드로 검색[성공]
 	public List<Product> searchProductsByKeyword(String keyword);
