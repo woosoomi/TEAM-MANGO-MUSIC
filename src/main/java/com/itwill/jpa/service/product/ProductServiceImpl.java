@@ -56,16 +56,19 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public Product outOfStockMsg(Long productNo) {
-		Product findProduct =productRepository.findById(productNo).get();
-		int stockCount=findProduct.getProductStock();
-		
-		if(stockCount==0) {
-			throw new NotEnoughProductStockException("품절된 상품입니다.");
-		}
-		
-		return findProduct;
-	}
+	   public Product outOfStockMsg(Long productNo) {
+	      Product findProduct =productRepository.findById(productNo).get();
+	      String msg="";
+	      int stockCount=findProduct.getProductStock();
+	      
+	      if(stockCount==0) {
+	         throw new NotEnoughProductStockException("품절된 상품입니다.");
+	      }else {
+	         msg=stockCount+"개 남았습니다.";
+	      }
+	      System.out.println(msg);
+	      return null;
+	   }
 	
 	//product 추가
 	@Override
@@ -133,22 +136,24 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(product);
 	}
 	
-	// product 조회수별 내림차순 정렬
+	// product 조회수별 내림차순 정렬[성공]
 	public List<Product> getProductOrderByReadCountDesc() {
 		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
-		return productRepository.findAll();
+		return productRepository.findAll(sort);
 	}
 	
-	// product 조회수별 오름차순 정렬
+	// product 조회수별 오름차순 정렬[성공]
 	public List<Product> getProductOrderByReadCountAsc() {
 		Sort sort = Sort.by(Sort.Direction.ASC, "readCount");
-		return productRepository.findAll();
+		return productRepository.findAll(sort);
 	}
 	
-	//제목키워드로 검색
+	//제목키워드로 검색[진행중]
 	@Override
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
 	// >> List인데 return이 저렇게 들어갈 수 없지 않을까요? 확인 후 삭제 해주세요~
+
+
 }
