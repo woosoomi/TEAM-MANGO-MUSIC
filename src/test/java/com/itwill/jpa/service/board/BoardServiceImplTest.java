@@ -24,7 +24,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void boardInsertTest() {
 		Board board = new Board();
 		board.setBoardCategory(new BoardCategory(2L, "이벤트", null));
