@@ -18,6 +18,7 @@ import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.ToString;
 @SpringBootTest
 @Transactional
 class OrderItemServiceTest {
