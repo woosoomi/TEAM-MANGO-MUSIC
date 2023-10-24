@@ -17,19 +17,19 @@ public class ProductDaoImpl implements ProductDao{
 	public List<Product> selectList(){
 		return null;
 	}
-	
+	// 제품 등록
 	@Override
 	public Product insertProduct(Product product) {
 		Product insertProduct = productRepository.save(product);
 		return insertProduct;
 	}
-	
+	// 제품 조회
 	@Override
 	public Product selectProduct(Long productNo) {
 		Product selectProduct = productRepository.findById(productNo).get();
 		return selectProduct;
 	}
-	
+	// 제품 업데이트
 	@Override
 	public Product updateProduct(Product product) throws Exception {
 		Optional<Product> findProductOptional = productRepository.findById(product.getProductNo());
@@ -37,13 +37,13 @@ public class ProductDaoImpl implements ProductDao{
 		if(findProductOptional.isPresent()) {
 			Product findProduct = findProductOptional.get();
 			findProduct.setProductName(product.getProductName());
-			updateProduct=productRepository.save(findProduct);
+			product=productRepository.save(findProduct);
 		}else {
 			throw new Exception("존재하지 않는 제품입니다.");
 		}
 		return updateProduct;
 	}
-	
+	// 제품 삭제
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
 		Optional<Product> selectProductOptional= productRepository.findById(productNo);

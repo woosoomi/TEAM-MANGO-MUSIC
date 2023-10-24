@@ -32,8 +32,23 @@ public interface ProductService{
 	Product outOfStockMsg(Long productNo);
 
 
+	// product 등록
+	public Product insert(Product product);
 	
-	// 검색 기능
+	// product 삭제
+	public void delete(Long productNo);
+	
+	// product 업데이트
+	public Product update(Product product);
+	
+	// product category별 분류
+	public List<Product> findByCategory(Long categoryId);
+	
+	// product 조회수 올리기
+	public Product increaseReadCount(Product product);
+	
+	// product 조회수별 정렬
+	public List<Product> getProductOrderByReadCount();
 	
 	// 키워드로 검색[성공]
 	public List<Product> searchProductsByKeyword(String keyword);
