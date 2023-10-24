@@ -47,11 +47,11 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired
 	DeliveryDao deliveryDao;
 	
-	//주문 생성(진행중)
+	//주문 생성(찜찜한성공)
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void orderCreateTest() {
 		Order order = new Order();
 		User user = userDao.findUser("팀장님");

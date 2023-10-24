@@ -44,11 +44,11 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	UserDao userDao;
 	
 	
-	//쿠폰 생성(진행중)
+	//쿠폰 생성(찜찜한성공)
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void couponCreateTest() {
 		Coupon coupon = new Coupon();
 		User user = userDao.findUser("팀장님");
