@@ -56,16 +56,19 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public Product outOfStockMsg(Long productNo) {
-		Product findProduct =productRepository.findById(productNo).get();
-		int stockCount=findProduct.getProductStock();
-		
-		if(stockCount==0) {
-			throw new NotEnoughProductStockException("품절된 상품입니다.");
-		}
-		
-		return findProduct;
-	}
+	   public Product outOfStockMsg(Long productNo) {
+	      Product findProduct =productRepository.findById(productNo).get();
+	      String msg="";
+	      int stockCount=findProduct.getProductStock();
+	      
+	      if(stockCount==0) {
+	         throw new NotEnoughProductStockException("품절된 상품입니다.");
+	      }else {
+	         msg=stockCount+"개 남았습니다.";
+	      }
+	      System.out.println(msg);
+	      return null;
+	   }
 	
 	//product 추가
 	@Override
@@ -119,22 +122,38 @@ public class ProductServiceImpl implements ProductService{
 		return null;
 	}
 	
-	// product 조회수 올리기
+	// product 조회수 올리기[성공]
 	@Override
 	public Product increaseReadCount(Product product) {
-		return null;
+        // 현재 조회수를 가져와서 1 증가
+        Long currentReadCount = product.getReadCount();
+        Long newReadCount = currentReadCount + 1L; // 1을 Long으로 캐스팅해서 증가
+        
+        // 증가된 조회수를 엔티티에 설정
+        product.setReadCount(newReadCount);
+
+        // 업데이트된 엔티티를 저장하고 반환
+        return productRepository.save(product);
 	}
 	
-	// product 조회수별 정렬
+	// product 조회수별 내림차순 정렬[성공]
 	public List<Product> getProductOrderByReadCountDesc() {
 		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
-		return productRepository.findAll();
+		return productRepository.findAll(sort);
 	}
 	
-	//제목키워드로 검색
+	// product 조회수별 오름차순 정렬[성공]
+	public List<Product> getProductOrderByReadCountAsc() {
+		Sort sort = Sort.by(Sort.Direction.ASC, "readCount");
+		return productRepository.findAll(sort);
+	}
+	
+	//제목키워드로 검색[진행중]
 	@Override
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
 	// >> List인데 return이 저렇게 들어갈 수 없지 않을까요? 확인 후 삭제 해주세요~
+
+
 }

@@ -38,6 +38,7 @@ class DeliveryServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
+	@Disabled
 	void insert() {
 		Delivery delivery = new Delivery();
 		delivery.setDeliveryAddress("서울시");

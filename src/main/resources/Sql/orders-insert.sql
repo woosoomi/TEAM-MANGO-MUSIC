@@ -47,6 +47,30 @@ values (70000, 7, SYSTIMESTAMP, 7, '배송중', '채린님');
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
 values (80000, 8, SYSTIMESTAMP, 8, '배송완료', '범석님');
 
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (50000, 1, SYSTIMESTAMP, 9, '배송중', '팀장님');
+
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (40000, 2, SYSTIMESTAMP, 10, '결제완료', '경진님');
+
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (30000, 3, SYSTIMESTAMP, 11, '배송중', '승규님');
+
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (20000, 4, SYSTIMESTAMP, 12, '배송중', '예린님');
+
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (10000, 5, SYSTIMESTAMP, 13, '배송완료', '수미님');
+
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (70000, 6, SYSTIMESTAMP, 14, '배송준비중', '광훈님');
+
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (60000, 7, SYSTIMESTAMP, 15, '배송중', '채린님');
+
+INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
+values (80000, 8, SYSTIMESTAMP, 16, '배송완료', '범석님');
+
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, 1, 1);
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (5, order_item_no_seq.nextval, 1, 2);
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (6, order_item_no_seq.nextval, 3, 3);
