@@ -5,7 +5,7 @@ VALUES('cgj22', 'rudwls22', '차경진', '경기도 수원시 팔달구 ', 'cgj@
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('lsg33', 'tmdrb33', '이승규', '인천 남동구 정각로', 'lsg@naver.com', '960419-1567829', '010-3333-3333', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('myl44', 'dPfls44', '문예린', '서울 송파구 송파대로', 'myl@kakao.com', '991109-2467892', '010-4444-4444', '여');
+VALUES('myr44', 'dPfls44', '문예린', '서울 송파구 송파대로', 'myr@kakao.com', '991109-2467892', '010-4444-4444', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('wsm55', 'tnal55', '우수미', '경기 남양주시 퇴계원읍', 'wsm@gmail.com', '001104-2509178', '010-5555-5555', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
@@ -14,7 +14,6 @@ INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER
 VALUES('ycl77', 'cofls77', '유채린', '경기 구리시 수택동', 'ycl@gmail.com', '950117-2587413', '010-7777-7777', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('kbs88', 'qjatjr88', '고범석', '충남 서천군 서천읍', 'kbs@naver.com', '971013-1459977', '010-8888-8888', '남');
-
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('ksy99', 'thdud99', '고소영', '서울시 강남구 봉은사로', 'ksy@naver.com', '721006-2459674', '010-9999-9999', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
@@ -35,14 +34,11 @@ INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER
 VALUES('shy888', 'gkdP888', '송하예', '서울시 강북구 미아동', 'shy@naver.com', '940220-2315789', '010-9876-5432', '여');
 
 
-<<<<<<< HEAD
 
-=======
 INSERT INTO user_board (user_board_id, board_id, user_id)
 VALUES (USER_BOARD_NO_SEQ.nextval, 1, '팀장님');
 INSERT INTO user_board (user_board_id, board_id, user_id)
 VALUES (USER_BOARD_NO_SEQ.nextval, 2, '승규님');
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
 
 
 commit;
