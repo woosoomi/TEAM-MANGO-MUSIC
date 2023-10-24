@@ -1,9 +1,8 @@
-INSERT INTO vote (product_no, user_id, vote_date, vote_tot, vote_no)
-SELECT p.product_no, u.user_id, SYSTIMESTAMP, 20, vote_no_seq.nextval
-FROM product p, userinfo u
-WHERE p.product_no = 2 AND u.user_id = '채린님';
-
-INSERT INTO vote (product_no, user_id, vote_date, vote_tot, vote_no)
-SELECT p.product_no, u.user_id, SYSTIMESTAMP, 30, vote_no_seq.nextval
-FROM product p, userinfo u
-WHERE p.product_no = 3 AND u.user_id = '팀장님';
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, s, 10);
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, '2023-10-24', 20);
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, sysdate, 30);
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, '2023-10-25', 40);
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, '2023-10-26', 50);
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, '2023-10-27', 60);
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, '2023-10-28', 70);
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, '2023-10-29', 80);
