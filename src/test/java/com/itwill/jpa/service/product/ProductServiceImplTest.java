@@ -47,6 +47,16 @@ class ProductServiceImplTest {
 	@Transactional
 	@Rollback(false)
 	@Disabled
+	public void testGetProductOrderByReadCountAsc() {
+		List<Product> products = productServiceImpl.getProductOrderByReadCountAsc();
+		for (Product product : products) {
+			System.out.println("Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+		}
+	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
 	    public void testIncreaseReadCount() {
 		 	Optional<Product> productOptional = productRepository.findById(1L);
 		 	if(productOptional.isPresent()) {

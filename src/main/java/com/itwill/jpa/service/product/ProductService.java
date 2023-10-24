@@ -53,7 +53,7 @@ public interface ProductService{
 	// product 조회수별 오름차순 정렬 [성공]
 	public List<Product> getProductOrderByReadCountAsc();
 	
-	// 키워드로 검색[성공]
+	// 키워드로 검색[테스트중]
 	public List<Product> searchProductsByKeyword(String keyword);
 	
 }
