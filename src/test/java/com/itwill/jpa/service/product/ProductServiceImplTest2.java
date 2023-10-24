@@ -17,7 +17,7 @@ class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void checkLikeServiceTest() {
 		System.out.println(productService.checkLikeService(1L));
 	}
