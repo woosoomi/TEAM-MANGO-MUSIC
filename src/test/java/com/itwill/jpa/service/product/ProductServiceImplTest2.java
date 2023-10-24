@@ -22,10 +22,10 @@ class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void getProductTest() {
-		Product findProduct = productService.getProduct(1L);
-		System.out.println(findProduct);
+		
+		System.out.println(productService.getProduct(1L));
 	}
 	
 	@Test
