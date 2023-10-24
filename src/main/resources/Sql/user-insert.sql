@@ -1,27 +1,27 @@
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('why3795', 'gksdud3795', '우한영', '서울시 강남구 테헤란로', 'why@gmail.com', '960410-1234567', '010-1111-1111', '남');
+VALUES('why3795', 'gksdud3795', '우한영', '서울시 강남구 테헤란로', 'why@gmail.com', '960410-1234567', '010-1028-8123', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('cgj22', 'rudwls22', '차경진', '경기도 수원시 팔달구 ', 'cgj@daum.net', '940219-1357246', '010-2222-2222', '남');
+VALUES('cgj22', 'rudwls22', '차경진', '경기도 수원시 팔달구 ', 'cgj@daum.net', '940219-1357246', '010-3289-2398', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('lsg33', 'tmdrb33', '이승규', '인천 남동구 정각로', 'lsg@naver.com', '960419-1567829', '010-3333-3333', '남');
+VALUES('lsg33', 'tmdrb33', '이승규', '인천 남동구 정각로', 'lsg@naver.com', '960419-1567829', '010-7805-4138', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('myr44', 'dPfls44', '문예린', '서울 송파구 송파대로', 'myr@kakao.com', '991109-2467892', '010-4444-4444', '여');
+VALUES('myr1109', 'dPfls1109', '문예린', '서울 송파구 송파대로', 'myr@kakao.com', '991109-2467892', '010-8365-8533', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('wsm55', 'tnal55', '우수미', '경기 남양주시 퇴계원읍', 'wsm@gmail.com', '001104-2509178', '010-5555-5555', '여');
+VALUES('wsm55', 'tnal55', '우수미', '경기 남양주시 퇴계원읍', 'wsm@gmail.com', '001104-2509178', '010-7908-7438', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('rgh66', 'rhkdgns66', '류광훈', '경기 성남시 중원구 둔촌대로', 'rgh@daum.net', '960423-1357918', '010-6666-6666', '남');
+VALUES('rgh66', 'rhkdgns66', '류광훈', '경기 성남시 중원구 둔촌대로', 'rgh@daum.net', '960423-1357918', '010-4189-4603', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('ycl77', 'cofls77', '유채린', '경기 구리시 수택동', 'ycl@gmail.com', '950117-2587413', '010-7777-7777', '여');
+VALUES('ycl77', 'cofls77', '유채린', '경기 구리시 수택동', 'ycl@gmail.com', '950117-2587413', '010-5038-3168', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('kbs88', 'qjatjr88', '고범석', '충남 서천군 서천읍', 'kbs@naver.com', '971013-1459977', '010-8888-8888', '남');
+VALUES('kbs88', 'qjatjr88', '고범석', '충남 서천군 서천읍', 'kbs@naver.com', '971013-1459977', '010-4039-4937', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('ksy99', 'thdud99', '고소영', '서울시 강남구 봉은사로', 'ksy@naver.com', '721006-2459674', '010-9999-9999', '여');
+VALUES('ksy99', 'thdud99', '고소영', '서울시 강남구 봉은사로', 'ksy@naver.com', '721006-2459674', '010-0413-0149', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('jdg111', 'ehdrjs111', '장동건', '서울시 강남구 봉은사로', 'jdg@naver.com', '720307-1459671', '010-1234-5678', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('kjy222', 'wlsdud222', '김진영', '전라남도 순천시', 'kjy@naver.com', '950609-1577892', '010-3339-7541', '남');
+VALUES('kjy222', 'wlsdud222', '김진영', '전라남도 순천시', 'kjy@naver.com', '950609-1577892', '010-1357-8394', '남');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
-VALUES('keb333', 'dmsql333', '권은비', '서울시 금천구 시흥동', 'keb@naver.com', '950907-2459977', '010-3321-0819', '여');
+VALUES('keb333', 'dmsql333', '권은비', '서울시 금천구 시흥동', 'keb@naver.com', '950907-2459977', '010-8950-0153', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
 VALUES('kyj444', 'dbswjd444', '고윤정', '서울시 영등포구 문래동', 'kyj@naver.com', '960422-1247741', '010-7714-1699', '여');
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER) 
