@@ -29,10 +29,10 @@ public class Controller {
 		return forwardPath;
 
 	}
-	@GetMapping("/event")
-	public String event() {
-		String forwardPath ="event";
-		return forwardPath;
-
-	}
+//	@GetMapping("/event")
+//	public String event() {
+//		String forwardPath ="event";
+//		return forwardPath;
+//
+//	}
 }
