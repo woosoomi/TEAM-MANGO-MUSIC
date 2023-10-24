@@ -16,16 +16,21 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "order_item")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class OrderItem {
-	@Id@SequenceGenerator(name = "ORDER_ITEM_NO_SEQ",sequenceName = "ORDER_ITEM_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@Id
+	@SequenceGenerator(name = "ORDER_ITEM_NO_SEQ",sequenceName = "ORDER_ITEM_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_ITEM_NO_SEQ")
 	private Long oiId;
 	
@@ -51,6 +56,10 @@ public class OrderItem {
 				.build();
 				
 	}
-				
-	   
+
+//	@Override
+//	public String toString() {
+//		return "OrderItem [oiId=" + oiId + ", oiQty=" + oiQty + ", order=" + order + ", product=" + product + "]";
+//	}
+
 }
