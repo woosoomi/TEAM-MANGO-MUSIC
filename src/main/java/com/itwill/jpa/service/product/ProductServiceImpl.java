@@ -133,22 +133,24 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(product);
 	}
 	
-	// product 조회수별 내림차순 정렬
+	// product 조회수별 내림차순 정렬[성공]
 	public List<Product> getProductOrderByReadCountDesc() {
 		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
-		return productRepository.findAll();
+		return productRepository.findAll(sort);
 	}
 	
-	// product 조회수별 오름차순 정렬
+	// product 조회수별 오름차순 정렬[성공]
 	public List<Product> getProductOrderByReadCountAsc() {
 		Sort sort = Sort.by(Sort.Direction.ASC, "readCount");
-		return productRepository.findAll();
+		return productRepository.findAll(sort);
 	}
 	
-	//제목키워드로 검색
+	//제목키워드로 검색[진행중]
 	@Override
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
 	// >> List인데 return이 저렇게 들어갈 수 없지 않을까요? 확인 후 삭제 해주세요~
+
+
 }

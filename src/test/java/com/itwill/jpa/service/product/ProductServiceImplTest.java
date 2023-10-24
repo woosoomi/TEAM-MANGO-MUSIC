@@ -34,9 +34,9 @@ class ProductServiceImplTest {
 		System.out.println("검색결과>>>" + products);
 	}
 	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
 	public void testGetProductOrderByReadCountDesc() {
 		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
 		for (Product product : products) {
