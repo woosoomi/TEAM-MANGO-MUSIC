@@ -60,7 +60,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	public void testGetProductOrderByReadCountDesc() {
 		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
 		for (Product product : products) {
