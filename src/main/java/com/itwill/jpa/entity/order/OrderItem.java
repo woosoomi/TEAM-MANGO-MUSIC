@@ -57,9 +57,5 @@ public class OrderItem {
 				
 	}
 
-//	@Override
-//	public String toString() {
-//		return "OrderItem [oiId=" + oiId + ", oiQty=" + oiQty + ", order=" + order + ", product=" + product + "]";
-//	}
 
 }
