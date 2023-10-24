@@ -16,6 +16,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -49,6 +50,10 @@ public class User {
 	private String userJumin;		// 회원 주민번호
 	private String userGender;		// 회원 성별
 	
+	@ManyToOne
+	@JoinColumn(name = "vote_no")
+	private Vote vote ;	
+	
 	
 	  // user와 user_board 1대N 관계설정
 	  @Builder.Default
@@ -63,10 +68,7 @@ public class User {
 	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	  private List<Coupon> coupons = new ArrayList<>();
 	  
-	  // user와 vote 1대N 관계설정
-	  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	  private List<Vote> votes = new ArrayList<>();
-	  
+	
 
 	  
 	  
