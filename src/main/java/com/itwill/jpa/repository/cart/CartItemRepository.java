@@ -8,5 +8,7 @@ import com.itwill.jpa.entity.cart.CartItem;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Long>{
 	 //List<CartItem> getCartItemsByUserId(String userId);
+
 //	 void deleteByUserIdAndCartItemId(String userId, Long cartItemId);
+
 }

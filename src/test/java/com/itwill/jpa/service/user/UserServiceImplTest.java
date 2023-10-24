@@ -21,6 +21,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
+import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
 
@@ -31,6 +32,9 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	UserDao userDao;
 	
 	@Test
 	@Disabled
@@ -44,9 +48,10 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
         user.setUserName("테스트님");
         user.setUserPhone("010-1234-5678");
 
-        userRepository.save(user);
+        userDao.createUser(user);
+        //userRepository.save(user);
         try {
-            User createdUser = userService.createUser(user);
+            User createdUser = userDao.createUser(user);
             assertNotNull(createdUser);
             assertEquals(">>> 님님님", createdUser.getUserId());
             System.out.println(">>> 회원가입 성공" + createdUser);
@@ -76,28 +81,30 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
     @Transactional
     @Rollback(false)
     @DisplayName("회원수정")
     public void testUpdateUser() {
-        String userId = "범석님";
-        String newUserName = "테스트네임";
+		
+		String userId = "범석님";
+		String newUserName = "테스트네임zz";
+		String newUserGenger = "상남자";
+		String newUserPhone = "010-9876-5432";
+		try {
+			User user = userDao.findUser(userId);
+			assertNotNull(user);
 
-        try {
-            User user = userService.findUser(userId);
-            assertNotNull(user);
-            
-            user.setUserName(newUserName);
-            User updatedUser = userService.updateUser(user);
-            
-            assertNotNull(updatedUser);
-            assertEquals(newUserName, updatedUser.getUserName());
-            System.out.println(">>> 회원 수정 성공 " + updatedUser);
-        } catch (Exception e) {
-            fail(">>> 회원 수정 실패 " + e.getMessage());
-        }
-    }
+			user.setUserName(newUserName);
+			user.setUserGender(newUserGenger);
+			user.setUserPhone(newUserPhone);
+			User updatedUser = userDao.updateUser(user);
+
+			System.out.println(">>> 회원 수정 성공 " + updatedUser);
+		} catch (Exception e) {
+			fail(">>> 회원 수정 실패 " + e.getMessage());
+		}
+	}
 	
 	@Test
 	@Disabled

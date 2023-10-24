@@ -32,4 +32,19 @@ public class VoteServiceImpl implements VoteService {
 		List<Vote> findVoteList = voteRepository.findAll();
 		return findVoteList;
 	}
+	
+	//투표번호로 투표 1개 선택
+	@Override
+	public Object selectByVoteNo(Long no) throws Exception {
+		Object selectByVoteNo = voteRepository.findById(no);
+		return selectByVoteNo;
+	}
+	
+	// 투표번호로 투표 삭제
+	@Override
+	public void deleteByVoteNo(Long no) throws Exception {
+	voteRepository.deleteById(no);
+	}
+	
+	
 }

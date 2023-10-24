@@ -26,7 +26,7 @@ public interface ProductService{
 	
 	
 	// 좋아요 누르기 기능
-	Product checkLikeService(Long productNo);
+	Long checkLikeService(Long productNo);
 	// 품절 안내 기능
 
 	Product outOfStockMsg(Long productNo);

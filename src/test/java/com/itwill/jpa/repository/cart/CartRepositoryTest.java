@@ -25,6 +25,7 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 	CartItemRepository cartItemRepository;
 	@Autowired
 	UserRepository userRepository;
+	
 	@Test
 	//@Disabled
 	@Rollback(false)
@@ -48,9 +49,8 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 					  .build();
 		cart1.setUser(user1);
 		cartRepository.save(cart1);
-	
+		
 
 	}
 	
-
 }

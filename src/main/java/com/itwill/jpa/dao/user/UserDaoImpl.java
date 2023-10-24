@@ -31,7 +31,6 @@ public class UserDaoImpl implements UserDao{
 	            return selectedUser;
 	        }
 	    }
-
 	    return null;
 	}
 

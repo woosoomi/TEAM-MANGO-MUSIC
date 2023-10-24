@@ -1,5 +1,6 @@
 package com.itwill.jpa.dao.order;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,12 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.order.Order;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.OrderRepository;
+
+import com.itwill.jpa.repository.user.UserRepository;
+
 @Repository
 public class OrderDaoImpl implements OrderDao{
 	
 	@Autowired
 	OrderRepository orderRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Override
 	public Order insertOrder(Order order) {
@@ -55,6 +63,18 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public List<Order> selectList() {
 		return orderRepository.findAll();
+	}
+
+	@Override
+	public List<Order> getOrdersByUserId(String userId) {
+		Optional<User> userOptional = userRepository.findById(userId);
+		if	(userOptional.isPresent()) {
+			User user = userOptional.get();
+			return orderRepository.findOrdersByUser(user);
+		} else {
+			
+			return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+		}
 	}
 
 }

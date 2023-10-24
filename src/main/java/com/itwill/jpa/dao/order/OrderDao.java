@@ -15,6 +15,8 @@ public interface OrderDao {
 		
 		void deleteOrder(Long orderId) throws Exception;
 		
+		List<Order> getOrdersByUserId(String userId);
+		
 		List<Order> selectList();
 				
 }
