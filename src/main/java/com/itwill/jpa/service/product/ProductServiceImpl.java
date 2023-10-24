@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService{
 	      return null;
 	   }
 	
-	//product 추가
+	//product 추가[성공]
 	@Override
 	public Product insertProduct(Product product) {
 		return productRepository.save(product);

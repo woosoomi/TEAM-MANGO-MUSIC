@@ -101,6 +101,10 @@ public class Product {
 				.build();
 	}
 	
+	@ManyToOne
+	@JoinColumn(name = "vote_no")
+	private Vote vote ;
+	
 	//product와 orderitem 1대n
 	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
@@ -117,10 +121,7 @@ public class Product {
 	@Builder.Default
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
 	
-	//product와 vote 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
-	@Builder.Default
-	private List<Vote> vote = new ArrayList<Vote>();
+	
 	
 	//---- 비즈니스 로직----//
 	/* productStock 증가 */

@@ -32,7 +32,7 @@ public interface ProductService{
 	Product outOfStockMsg(Long productNo);
 
 
-	// product 등록
+	// product 등록[성공]
 	public Product insertProduct(Product product);
 	
 	// product 삭제
