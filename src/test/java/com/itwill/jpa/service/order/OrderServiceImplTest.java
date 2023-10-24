@@ -34,11 +34,11 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	UserRepository userRepository;
 	
 	
-	//주문 생성
+	//주문 생성(실패)
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void OrderCreateTest() {
 		Order order = new Order();
 		User user = new User("149511951","1111","한영","010-1111","안양","why","960410","남", null, null, null, null);
@@ -58,7 +58,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	}
 	
 	
-	//주문 정보 수정(Good!)
+	//주문 정보 수정(성공)
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -67,12 +67,11 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 		Order order = orderRepository.findById(1L).get();
 		order.setOrderPrice(333333333);
 		order.setOrderStatus(OrderStatus.결제완료);
-		
 		Order updatedOrder = orderServiceImpl.updateOrder(order);
 		System.out.println(updatedOrder);
 	}
 	
-	//주문 한개 삭제
+	//주문 한개 삭제(진행중)
 	@Test
 	@Transactional
 	@Rollback(false)
