@@ -19,11 +19,8 @@ public class VoteServiceImpl implements VoteService {
 	// 투표 생성
 	@Override
 	public Vote createVote(Vote vote) {
-		// Product 엔티티를 불러옴
-
-		Vote creatVote = voteRepository.save(vote); // Vote 저장
-
-		return creatVote;
+		
+		return voteRepository.save(vote);
 	}
 	
 	// 전체 투표 리스트 검색
