@@ -38,20 +38,31 @@ class OrderItemServiceTest {
 	//@Disabled
 	void insert() {
 		OrderItem orderItem = new OrderItem();
-//		Order order = orderDao.selectOrder(1L);
+		Order order = orderDao.selectOrder(1L);
 		orderItem.setOiId(null);
 		orderItem.setOiQty(3);
 		
 		OrderItem orderItem2 = new OrderItem();
-//		Order order = orderDao.selectOrder(1L);
-		orderItem.setOiId(null);
-		orderItem.setOiQty(5);
+		Order order2 = orderDao.selectOrder(2L);
+		orderItem2.setOiId(null);
+		orderItem2.setOiQty(5);
 		
-//		orderItem.setOrder(order);
+		orderItem.setOrder(order);
+		orderItem2.setOrder(order2);
+		
 		OrderItem savedOrderItem = orderItemService.saveOrderItem(orderItem);
 		OrderItem savedOrderItem2 = orderItemService.saveOrderItem(orderItem2);
 		System.out.println(savedOrderItem);
 		System.out.println(savedOrderItem2);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void test() {
+		Order order = orderDao.selectOrder(1L);
+		System.out.println(order);
 	}
 	
 	@Test
