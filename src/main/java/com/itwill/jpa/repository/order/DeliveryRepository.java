@@ -11,6 +11,10 @@ import com.itwill.jpa.entity.user.User;
 public interface DeliveryRepository extends JpaRepository<Delivery, Long>{
 
 
+//	List<Delivery> findByUserId(String userId);
+	//List<Delivery> findByUserId(String userId);
+
+
 
 
  List<Delivery> findByUser(User user);
