@@ -29,44 +29,34 @@ import jakarta.persistence.PersistenceContext;
 @Transactional
 class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	
-/*
+
 	@PersistenceContext
 	EntityManager em;
 	
-	@Autowired
-	VoteServiceImpl voteServiceImpl;
 	
 	@Autowired
 	VoteRepository voteRepository;
-	
+
 	@Autowired
-	UserRepository userRepository;
-	
-	@Autowired
-	ProductRepository productRepository;
-	
+	VoteServiceImpl voteServiceImpl;
 	
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void creatVoteTest() throws Exception {
 		
 		Date localDate = new Date(2023);
-
-			
-		 Vote vote = Vote.builder()
-				 		  .voteTot(250)
-				 		  .voteDate(localDate)
-				 		  .build();
-
-		em.persist(vote);
-		
-		Vote insertVote = voteServiceImpl.createVote(vote);
-		em.persist(insertVote);
-		System.out.println("~~~~~~~~~~~~~~~"+insertVote);
-		
+		Vote vote1 = Vote.builder()
+		 		 		 .voteTot(320)
+		 		 		 .build();
+		  vote1.setVoteDate(localDate);
+		  voteServiceImpl.createVote(vote1);
+		  System.out.println("~~~~~~~~~~~~~~~"+voteServiceImpl.createVote(vote1));
+		   
 	}
+
+		
 	
-*/
+
 }
