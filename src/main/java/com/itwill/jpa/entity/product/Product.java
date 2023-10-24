@@ -79,19 +79,19 @@ public class Product {
 	/** goods **/
 	@Entity
 	@DiscriminatorValue("goods")
-	public class Goods extends Product {
+	public static class Goods extends Product {
 	}
 
 	/** ticket **/
 	@Entity
 	@DiscriminatorValue("ticket")
-	public class Ticket extends Product {
+	public static class Ticket extends Product {
 	}
 
 	/** membership **/
 	@Entity
 	@DiscriminatorValue("membership")
-	public class Membership extends Product {
+	public static class Membership extends Product {
 	}
 
 	public static Product toEntity(ProductDto productDto) {
