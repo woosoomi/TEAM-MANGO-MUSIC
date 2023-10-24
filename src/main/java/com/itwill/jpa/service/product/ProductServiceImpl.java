@@ -56,16 +56,19 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public Product outOfStockMsg(Long productNo) {
-		Product findProduct =productRepository.findById(productNo).get();
-		int stockCount=findProduct.getProductStock();
-		
-		if(stockCount==0) {
-			throw new NotEnoughProductStockException("품절된 상품입니다.");
-		}
-		
-		return findProduct;
-	}
+	   public Product outOfStockMsg(Long productNo) {
+	      Product findProduct =productRepository.findById(productNo).get();
+	      String msg="";
+	      int stockCount=findProduct.getProductStock();
+	      
+	      if(stockCount==0) {
+	         throw new NotEnoughProductStockException("품절된 상품입니다.");
+	      }else {
+	         msg=stockCount+"개 남았습니다.";
+	      }
+	      System.out.println(msg);
+	      return null;
+	   }
 	
 	//product 추가
 	@Override

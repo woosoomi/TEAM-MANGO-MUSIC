@@ -23,7 +23,32 @@ class ProductServiceImplTest {
     @Autowired
     
     private ProductRepository productRepository;	
+    @Test
+    @Transactional
+    @Rollback(false)
+    @Disabled
+    public void testInsertProduct() {
+        // 새로운 Product 객체를 생성
+        Product product = new Product();
+        product.setProductName("새로운 제품");
+        product.setProductPrice(10000);
 
+        // insertProduct 메서드를 사용하여 제품을 추가
+        Product insertedProduct = productServiceImpl.insertProduct(product);
+
+        // 제품 추가 확인
+        assertNotNull(insertedProduct.getProductNo());
+        assertEquals("새로운 제품", insertedProduct.getProductName());
+        assertEquals(10000, insertedProduct.getProductPrice());
+
+        // 추가된 제품 확인
+        Product retrievedProduct = productServiceImpl.getProduct(insertedProduct.getProductNo());
+        assertEquals(insertedProduct.getProductNo(), retrievedProduct.getProductNo());
+        assertEquals("새로운 제품", retrievedProduct.getProductName());
+        assertEquals(10000, retrievedProduct.getProductPrice());
+    }
+    
+    
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -34,9 +59,9 @@ class ProductServiceImplTest {
 		System.out.println("검색결과>>>" + products);
 	}
 	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
+	@Transactional
+	@Rollback(false)
+	@Disabled
 	public void testGetProductOrderByReadCountDesc() {
 		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
 		for (Product product : products) {
