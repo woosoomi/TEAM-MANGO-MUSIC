@@ -40,11 +40,13 @@ public class Cart {
 	
 	private int cartTotPrice;
 	
+	/*
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    
+    */
+	
     public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
     				.cartTotPrice(dto.getCartTotPrice())
@@ -59,7 +61,7 @@ public class Cart {
     
 	//user- cart 1대1
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_no")
+	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
 }
