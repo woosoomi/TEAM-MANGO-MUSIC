@@ -28,52 +28,66 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
 	void productInsertTest() {
 		
 		ProductCategory productCategory1 = ProductCategory.builder()
-				.productCategoryName("music").build();
+		        .productCategoryName("music")
+		        .build();
 		ProductCategory productCategory2 = ProductCategory.builder()
-				.productCategoryName("goods").build();
+		        .productCategoryName("goods")
+		        .build();
 		ProductCategory productCategory3 = ProductCategory.builder()
-				.productCategoryName("ticket").build();
+		        .productCategoryName("ticket")
+		        .build();
 		ProductCategory productCategory4 = ProductCategory.builder()
-				.productCategoryName("membership").build();
-		Product product1= Product.builder()
-				.productCategory(productCategory1)
-				.productName("아름다운사실")
-				.productContent("명곡입니다.")
-				.productReply("아름다워요")
-				.productStar("5")
-				.productArtist("부활")
-				.build();
-		em.persist(product1);
-		
-		Product product2= Product.builder()
-				.productCategory(productCategory2)
-				.productName("강남스타일")
-				.productContent("인기곡입니다.")
-				.productReply("오빤 강남스타일")
-				.productStar("4")
-				.productArtist("싸이")
-				.build();
-		em.persist(product2);
-		
-		Product product3= Product.builder()
-				.productCategory(productCategory3)
-				.productName("로마네스크")
-				.productContent("숨겨진 명곡입니다.")
-				.productReply("좋습니다.")
-				.productStar("4")
-				.productArtist("쏜애플")
-				.build();
-		em.persist(product3);
-		
-		Product product4= Product.builder()
-				.productCategory(productCategory4)
-				.productName("강북멋쟁이")
-				.productContent("신납니다.")
-				.productReply("강북멋쟁~")
-				.productStar("3")
-				.build();
-		em.persist(product4);
+		        .productCategoryName("membership")
+		        .build();
 
+		categoryRepository.save(productCategory1);
+		categoryRepository.save(productCategory2);
+		categoryRepository.save(productCategory3);
+		categoryRepository.save(productCategory4);
+		
+		Product product1 = Product.builder()
+		        .productCategory(productCategory1)
+		        .productName("아름다운사실")
+		        .productContent("명곡입니다.")
+		        .productReply("아름다워요")
+		        .productStar(5)
+		        .productArtist("부활")
+		        .build();
+		//em.persist(product1);
+
+		Product product2 = Product.builder()
+		        .productCategory(productCategory1) // Reusing the same category
+		        .productName("강남스타일")
+		        .productContent("인기곡입니다.")
+		        .productReply("오빤 강남스타일")
+		        .productStar(4)
+		        .productArtist("싸이")
+		        .build();
+		//em.persist(product2);
+
+		Product product3 = Product.builder()
+		        .productCategory(productCategory3)
+		        .productName("로마네스크")
+		        .productContent("숨겨진 명곡입니다.")
+		        .productReply("좋습니다.")
+		        .productStar(4)
+		        .productArtist("쏜애플")
+		        .build();
+		//em.persist(product3);
+
+		Product product4 = Product.builder()
+		        .productCategory(productCategory4)
+		        .productName("강북멋쟁이")
+		        .productContent("신납니다.")
+		        .productReply("강북멋쟁~")
+		        .productStar(3)
+		        .build();
+		//em.persist(product4);
+
+		productRepository.save(product1);
+		productRepository.save(product2);
+		productRepository.save(product3);
+		productRepository.save(product4);
 		
 		
 	}

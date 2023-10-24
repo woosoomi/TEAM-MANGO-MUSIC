@@ -2,6 +2,7 @@ package com.itwill.jpa.dto.vote;
 
 import java.sql.Date;
 
+import com.itwill.jpa.entity.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,7 @@ import lombok.ToString;
 public class VoteDto {
 
 	private Long voteNo;				//  투표 번호
-
+	
 	private Date voteDate; 				//  투표 날짜
 	private int voteTot; 				//  투표 합산점수
 

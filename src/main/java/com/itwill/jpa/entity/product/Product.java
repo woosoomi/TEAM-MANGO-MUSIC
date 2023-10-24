@@ -8,7 +8,7 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.vote.Vote;
-import com.itwill.jpa.exception.NotEnoughProductStockException;
+import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -21,6 +21,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -29,6 +30,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -50,9 +52,12 @@ public class Product {
 	@Column(nullable = false)
 	private int productPrice;
 	
+	//@SequenceGenerator(name = "PRODUCT_PRODUCT_STAR_SEQ" , sequenceName = "PRODUCT_PRODUCT_STAR_SEQ", initialValue = 0 , allocationSize = 1)
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCT_STAR_SEQ")
+	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
+	
 	private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
 	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
-	private String productStar; // 프로덕트(음악,굿즈,콘서트) 별점
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
 	private Long readCount; // 프로덕트(음악,콘서트) 조회수
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
@@ -74,19 +79,19 @@ public class Product {
 	/** goods **/
 	@Entity
 	@DiscriminatorValue("goods")
-	public class Goods extends Product {
+	public static class Goods extends Product {
 	}
 
 	/** ticket **/
 	@Entity
 	@DiscriminatorValue("ticket")
-	public class Ticket extends Product {
+	public static class Ticket extends Product {
 	}
 
 	/** membership **/
 	@Entity
 	@DiscriminatorValue("membership")
-	public class Membership extends Product {
+	public static class Membership extends Product {
 	}
 
 	public static Product toEntity(ProductDto productDto) {
@@ -101,9 +106,10 @@ public class Product {
 	@Builder.Default
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
-	//product와 productcategory  1대1
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_category_Id")
+	//product와 productcategory  n대1
+	@ManyToOne
+	@JoinColumn(name = "product_category_id")
+	@ToString.Exclude
 	private ProductCategory productCategory;
 	
 	//product와 cartitem 1대n

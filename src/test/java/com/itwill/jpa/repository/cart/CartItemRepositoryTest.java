@@ -53,7 +53,6 @@ class CartItemRepositoryTest extends TeamProjectMangoApplicationTest{
 									.productName(null)
 									.productPrice(0)
 									.productReply(null)
-									.productStar(null)
 									.productStock(0)
 									.productCategory(null)
 									.build();

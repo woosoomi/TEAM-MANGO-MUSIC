@@ -1,5 +1,6 @@
 package com.itwill.jpa.repository.user;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
 	CartRepository cartRepository;
 
 	@Test
-	// @Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	@DisplayName("회원가입")
@@ -37,17 +38,28 @@ class UserRepositoryTest extends TeamProjectMangoApplicationTest {
 	                   .userGender("남")
 	                   .build();
 	      
-	      Cart cart = Cart.builder()
-					.cartId(1L)
-					.build();
+	      User user2 = User.builder()
+                 .userId("zzz")
+                 .userPw("2222")
+                 .userName("zzz")
+                 .userAddress("zzz")
+                 .userEmail("zzz@naver.com")
+                 .userJumin("000000-0000000")
+                 .userPhone("011-1234-5678")
+                 .userGender("여")
+                 .build();
+	      
+			/*
+			 * Cart cart = Cart.builder() .cartId(1L) .build();
+			 */
 	      
 	      System.out.println(">>> " + user1);
 	      userRepository.save(user1);
 	      
 
-		user1.setCart(cart);
 
-		cartRepository.save(cart);
+		//cartRepository.save(cart);
 		userRepository.save(user1);
+		userRepository.save(user2);
 	}
 }

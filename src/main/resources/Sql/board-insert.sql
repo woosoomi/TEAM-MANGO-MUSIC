@@ -36,3 +36,4 @@ INSERT INTO BOARD (board_id, board_category_id, created_time, update_time, board
 VALUES (board_board_no_seq.nextval, 4,  SYSTIMESTAMP, SYSTIMESTAMP, '문의테스트내용2', '문의테스트이미지2', '문의테스트타이틀2');
 
 
+commit;

@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.jpa.entity.order.OrderItem;
-import com.itwill.jpa.exception.OrderItemNotFoundException;
+import com.itwill.jpa.exception.order.OrderItemNotFoundException;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 
 public class OrderItemImpl implements OrderItemDao{
