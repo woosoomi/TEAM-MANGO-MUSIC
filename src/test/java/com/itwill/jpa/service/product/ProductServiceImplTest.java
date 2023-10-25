@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.repository.product.ProductRepository;
 @SpringBootTest
 class ProductServiceImplTest {
@@ -29,7 +30,7 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
-//    @Disabled
+    @Disabled
     public void testFindByProductNo() {       
         Long productNo = 1L; // 제품 번호 지정
         Optional<Product> productOptional = productServiceImpl.findByProductNo(productNo); // 제품 조회
@@ -40,7 +41,7 @@ class ProductServiceImplTest {
 	// productName 찾기
     @Test
     @Transactional
-    @Rollback(false)
+ //   @Rollback(false)
     @Disabled
     public void testFindByProductName() {
         // 제품 이름 지정
@@ -64,17 +65,26 @@ class ProductServiceImplTest {
 
     }
     
-	// 카테고리별 구분 --성공
-	/*
-	 * @Test
-	 * 
-	 * @Transactional
-	 * 
-	 * @Rollback(false) //@Disabled void findByProductCategory() { List<Product>
-	 * products = new ArrayList<Product>(); products =
-	 * productServiceImpl.findByProductCategory(1L); // 1대1문의 찾기
-	 * System.out.println("music 모음 >>>>>" + products); }
-	 */
+	// 카테고리별 구분[성공]
+    @Test
+    @Transactional
+    @Rollback(false)
+    @Disabled
+    public void testFindByProductCategory() {
+        Long categoryId = 1L;
+        ProductCategory category = new ProductCategory();
+        category.setCategoryId(1L);
+
+        List<Product> products = productServiceImpl.findByProductCategory(category);
+
+        for (Product product : products) {
+            System.out.println("상품명: " + product.getProductName());
+            System.out.println("카테고리: " + product.getProductCategory().getProductCategoryName());
+            System.out.println("Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+            }
+        System.out.println("music 모음 >>>>>" + products);
+        
+    }
     
 	//product 추가[성공]    
     @Test
@@ -140,13 +150,13 @@ class ProductServiceImplTest {
         Product updatedProduct = productServiceImpl.updateProduct(product);
     }
 
-	//제목키워드로 검색[진행중]    
+	//제목키워드로 검색[성공]    
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void searchProductsByKeywordTest() {
-		String keyword = "음악 제품 설명1";
+		String keyword = "굿즈 제품";
 		List<Product> products = productServiceImpl.searchProductsByKeyword(keyword);
 		System.out.println("검색결과>>>" + products);
 	}
