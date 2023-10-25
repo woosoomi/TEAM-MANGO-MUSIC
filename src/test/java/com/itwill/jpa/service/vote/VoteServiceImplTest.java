@@ -43,7 +43,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void creatVoteTest() throws Exception {
 		
 		Date localDate = new Date(2023);
@@ -56,7 +56,23 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		   
 	}
 
-		
+	@Test
+	@Disabled
+	void deleteVoteTest() throws Exception {
+	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().size());		
+	voteRepository.deleteById(272L);
+	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().size());
+	System.out.println("@@@@@-->>"+voteServiceImpl.selectByVoteNo(494L));
 	
+	}	
+	
+	
+	@Test
+	@Disabled
+	void selectVoteTest() throws Exception {
+		System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().get(1));
+		System.out.println("@@@@@-->>"+voteServiceImpl.selectByVoteNo(1L));
+		
+		}	
 
 }

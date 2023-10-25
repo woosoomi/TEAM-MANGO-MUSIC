@@ -1,13 +1,12 @@
 package com.itwill.jpa.service.vote;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.vote.Vote;
-import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.repository.vote.VoteRepository;
 
 @Service
@@ -16,31 +15,34 @@ public class VoteServiceImpl implements VoteService {
 	@Autowired
 	VoteRepository voteRepository;
 
-	// 투표 생성
+	// 투표 생성 --> 테스트완료
 	@Override
 	public Vote createVote(Vote vote) {
 		
 		return voteRepository.save(vote);
 	}
 	
-	// 전체 투표 리스트 검색
+	// 전체 투표 리스트 검색--> 테스트완료
 	@Override
 	public List<Vote> findVoteListAll() throws Exception {
 		List<Vote> findVoteList = voteRepository.findAll();
 		return findVoteList;
 	}
 	
-	//투표번호로 투표 1개 선택
+	//투표번호로 투표 1개 선택--> 테스트완료
 	@Override
-	public Object selectByVoteNo(Long no) throws Exception {
-		Object selectByVoteNo = voteRepository.findById(no);
-		return selectByVoteNo;
+	public Vote selectByVoteNo(Long no) throws Exception {
+		Optional<Vote> selectByVoteNo = voteRepository.findById(no);
+		if (selectByVoteNo.isEmpty()) {
+			throw new Exception("존재하지 않는 투표번호입니다.");
+		}
+		Vote selectedByVoteNo = selectByVoteNo.get();
+		return selectedByVoteNo;
 	}
 	
-	// 투표번호로 투표 삭제
-	@Override
+	// 투표번호로 투표 삭제 --> 테스트완료
 	public void deleteByVoteNo(Long no) throws Exception {
-	voteRepository.deleteById(no);
+	    voteRepository.deleteById(no);
 	}
 	
 	
