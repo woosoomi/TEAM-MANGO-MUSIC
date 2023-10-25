@@ -47,7 +47,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired
 	DeliveryDao deliveryDao;
 	
-	//주문 생성(찜찜한성공)
+	//주문 생성(성공)
 	@Test
 	@Transactional
 	@Rollback(false)
