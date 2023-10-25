@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Manggo MusicAward</title>
-<link rel=stylesheet href="C:\Users\ITWILL\Desktop\voteMain.css" type="text/css">
+<link rel="stylesheet" href="css/voteMain.css" type="text/css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+</style>
 </head>
 <body>
     <!-- 각 월 선택-->
     <div class="topbar">
         <a class="logo" href="">
-         <img src="logo/logo.png" height="40px">
+         <img src="images/mango.jpg" height="40px">
         </a>
         <ul>
             <li><a href="">10월</a></li>
@@ -18,10 +21,10 @@
     </div>
     <!-- 각 월 선택 종료-->  
 
-
+    <!-- show_Vote_Summary >> 투표 주차 및 남은시간 전체 -->
     <div class="show_Vote_Summary">
-        <a>월별 투표 시작</a>
-
+  
+  
     <!-- 투표 주차 안내-->
     <div class="area">
 		<div class="sec-title">
@@ -30,7 +33,7 @@
 			    	<span class="term_month_text">월</span>
 					<span class="term_week_no">4</span>
 					<span class="term_week_text">주차</span>
-					<p>Manggo 인기상 투표시작</p>
+					<p style="margin-top: 0px;">Manggo 인기상 투표시작</p>
 				</h2>
 		</div>
     </div>    
@@ -40,10 +43,10 @@
     <!-- 남은 시간 안내 __>  js로 날짜 카운트 구현할 예정-->
     
     <div class="area">
-		<div class="row-voteinfo-area">
+		<div class="voteInfo-area">
 				<div class="col-closing-time">
 					<a>남은시간</a>
-					<div>
+					<div class="timeCount">
                         <span class="num-wrap">
                             <span class="num0">0</span>
                             <span class="num4">4</span>
@@ -67,8 +70,8 @@
 				</div>
 
 				<div class="col-participate">
+                    <a>투표수</a>
 					<div class="voteTot">
-				    	<a>투표수</a>
                            <span class="n2">2</span>
                            <span class="n0">0</span>
                            <span class="n7">7</span>
@@ -107,70 +110,339 @@
 
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>1위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage1"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/007/25/987/725987_20230927151422_500.jpg">
+        <h1>2위
+        <a class="battle_1st_name">정국</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>60%</a>        
+            <div class="percentage-bar">
+                <div class="percentage2"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/026/32/253/2632253_20231013103136_500.jpg">
+        <h1>3위
+        <a class="battle_1st_name">투모로우바이투게더</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
 
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>4위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
+    
+
 
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>5위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>6위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>7위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>8위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>9위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>10위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
 
     
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>11위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>12위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+    
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>13위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>14위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
+        <button class="choose-btn">투표하기</button>    
+    </div>
+
+
+    <div class="battle_rank">
+        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+        <h1>15위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
 
     
+
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>16위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
 
-    
+
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>17위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
 
-    
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>18위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
 
-    
+
+
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>19위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
 
-    
     <div class="battle_rank">
         <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
+        <h1>20위
+        <a class="battle_1st_name">임영웅</a>
+        </h1>
+        <h3>노래제목</h3>
+        <div class="vote_percentage-bar">
+            <a>70%</a>        
+            <div class="percentage-bar">
+                <div class="percentage"> </div>
+            </div>
+        </div>
         <button class="choose-btn">투표하기</button>    
     </div>
 
-    
-    <div class="battle_rank">
-        <img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
-        <h3 class="battle_1st_name">임영웅</h3>
-        <button class="choose-btn">투표하기</button>    
-    </div>
+
+
+
 
 </div>
 
