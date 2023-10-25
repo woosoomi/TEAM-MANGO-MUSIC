@@ -1,102 +1,102 @@
 -- 배송 정보 인서트
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
+values (delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
+values (delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
+values (delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
+values (delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
+values (delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
+values (delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
+values (delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
+values (delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
+values (delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우한영', '010-3333-4442', 'why3795');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
+values (delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차경진', '011-2918-3324', 'cgj22');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
+values (delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승규', '011-3503-3404', 'lsg33');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
+values (delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예린', '011-6545-5489', 'myr1109');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
+values (delivery_no_seq.nextval, '서울시 노원구', '로젠택배', '우수미', '011-4399-3249', 'wsm55');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
+values (delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마동석', '011-2304-3498', 'rgh66');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
+values (delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유채린', '011-3485-3490', 'ycl77');
 
 INSERT INTO DELIVERY (DELIVERY_ID, DELIVERY_ADDRESS, DELIVERY_COMPANY, DELIVERY_NAME, DELIVERY_PHONE, USER_ID) 
-values (delivery_delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
+values (delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리', '011-1432-2355', 'kbs88');
 
 -- 주문 정보 인서트
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (10000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'why3795');
+values (10000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'why3795');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (20000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'cgj22');
+values (20000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'cgj22');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (30000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'lsg33');
+values (30000, deliver_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'lsg33');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (40000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'myr1109');
+values (40000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'myr1109');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (50000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'wsm55');
+values (50000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'wsm55');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (60000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'rgh66');
+values (60000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'rgh66');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (70000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'ycl77');
+values (70000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'ycl77');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (80000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'kbs88');
+values (80000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'kbs88');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (50000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'why3795');
+values (50000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'why3795');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (40000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'cgj22');
+values (40000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'cgj22');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (30000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'lsg33');
+values (30000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'lsg33');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (20000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'myr1109');
+values (20000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'myr1109');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (10000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'wsm55');
+values (10000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'wsm55');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (70000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'rgh66');
+values (70000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'rgh66');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (60000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'ycl77');
+values (60000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'ycl77');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (80000, delivery_delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'kbs88');
+values (80000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'kbs88');
 
 -- 주문 항목 인서트
 
