@@ -58,13 +58,13 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Order> orderListByNewer() {
-		return orderRepository.findAllByOrderByCreatedAtDesc();
+	public List<Order> orderListByNewer(String userId) {
+		return orderDao.orderListByNewer(userId);
 	}
 
 	@Override
-	public List<Order> orderListByOlder() {
-		return orderRepository.findAllByOrderByCreatedAtAsc();
+	public List<Order> orderListByOlder(String userId) {
+		return orderRepository.orderListByOlder(userId);
 	}
 
 }

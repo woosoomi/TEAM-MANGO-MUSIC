@@ -19,7 +19,7 @@ public interface OrderDao {
 		
 		List<Order> selectList();
 				
-		List<Order> orderListByNewer();
+		List<Order> orderListByNewer(String userId);
 		
-		List<Order> orderListByOlder();
+		List<Order> orderListByOlder(String userId);
 }

@@ -146,13 +146,23 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	}
 	
 	
-	//주문 최신순으로 나열하기
+	//주문 최신순으로 나열하기(성공)
 	@Test
 	@Transactional
-	@Rollback(false)
-	//@Disabled
+	@Rollback(true)
+	@Disabled
 	void orderListByNewer() {
-		List<Order> orderList = orderServiceImpl.orderListByNewer();
+		List<Order> orderList = orderServiceImpl.orderListByNewer("why3795");
+		System.out.println(orderList);
+	}
+	
+	//주문 오래된순으로 나열하기(성공)
+	@Test
+	@Transactional
+	@Rollback(true)
+	@Disabled
+	void orderListByOlder() {
+		List<Order> orderList = orderServiceImpl.orderListByOlder("why3795");
 		System.out.println(orderList);
 	}
 	
