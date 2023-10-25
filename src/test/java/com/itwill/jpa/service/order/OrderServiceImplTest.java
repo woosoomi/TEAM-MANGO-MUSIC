@@ -54,8 +54,8 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	void orderCreateTest() {
 		Order order = new Order();
-		User user = userDao.findUser("팀장님");
-		Delivery delivery = deliveryDao.findByDeliveryId(1L);
+		User user = userDao.findUser("why3795");
+		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(30L).build());
 		
 		
 		order.setOrderId(null);
