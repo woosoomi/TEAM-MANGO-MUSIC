@@ -16,7 +16,7 @@ import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.service.order.OrderService;
 
 @RestController
-@RequestMapping("/testorders")
+@RequestMapping("/order")
 public class OrderRestController {
 	
     private final OrderService orderService;
