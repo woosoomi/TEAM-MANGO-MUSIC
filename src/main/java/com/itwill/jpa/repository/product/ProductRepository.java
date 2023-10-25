@@ -29,3 +29,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	keyword가 포함된 product 찾기
     List<Product> findByProductNameContaining(String keyword);
 }
+

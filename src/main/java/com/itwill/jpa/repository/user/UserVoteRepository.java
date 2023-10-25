@@ -10,4 +10,7 @@ public interface UserVoteRepository extends JpaRepository<Vote, Long>{
 
 	@Query(value = "SELECT * FROM userinfo u JOIN vote v ON u.vote_id = v.vote_id WHERE u.vote_id = :voteId", nativeQuery = true)
 	String findUserVoteId(@Param("voteId") Long voteId);
+	
+	@Query(value = "SELECT u.*, p.*, v.* FROM product p INNER JOIN userinfo u ON p.vote_id = u.vote_id INNER JOIN vote v ON u.vote_id = v.vote_id WHERE p.vote_id = :voteId", nativeQuery = true)
+	String findUserVoteIdWithProduct(@Param("voteId") Long voteId);
 }
