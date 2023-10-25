@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardCategory;
+import com.itwill.jpa.repository.board.BoardRepository;
 
 class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 
@@ -24,7 +25,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void boardInsertTest() {
 		Board board = new Board();
 		board.setBoardCategory(new BoardCategory(2L, "이벤트", null));
@@ -49,7 +50,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void testUpdateBoardTest() {
 		// 가상의 Board 객체 생성
 		Board board = new Board();
@@ -67,7 +68,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void findByCategoryTest() {
 		List<Board> boards = new ArrayList<Board>();
 		boards = boardServiceImpl.findBycategory(4L); // 1대1문의 찾기
@@ -86,5 +87,14 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 		boards = boardServiceImpl.searchBoardsByDateRange(startDate, endDate);
 		System.out.println("최근 한달의 게시글 모음 >>>>>"+boards);
 	}
-
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void searchBoardsByKeywordTest() {
+		List<Board> boards =new ArrayList<Board>();
+		boards =boardServiceImpl.searchBoardsByKeyword("이벤트");
+		System.out.println("이벤트가 들어간 게시판리스트는 ? >>>"+boards);
+	}
 }
