@@ -17,13 +17,13 @@ import com.itwill.jpa.service.board.BoardServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/event")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class BoardController {
     
     private final BoardServiceImpl boardServiceImpl;
     
-    @GetMapping // 경로를 "/event"로 설정
+    @GetMapping("/event")
     public String eventPage(Model model) {
         try {
             List<Board> events = boardServiceImpl.findBycategory(2L);
@@ -35,6 +35,51 @@ public class BoardController {
             model.addAttribute("errorMSG : " + e.getMessage());
             return null;
         }
+    }
+    
+    @GetMapping("/notification")
+    public String notificationPage(Model model) {
+    	try {
+    		List<Board> notifications = boardServiceImpl.findBycategory(1L);
+    		model.addAttribute("notifications",notifications);
+    		System.out.println("notifications리스트 : " + notifications);
+    		return "notification";
+    	}catch (Exception e) {
+    		e.printStackTrace();
+            model.addAttribute("errorMSG : " + e.getMessage());
+            return null;
+		}
+    }
+    
+    @GetMapping("/magazine")
+    public String magazine(Model model) {
+    	try {
+    		List<Board> magazines = boardServiceImpl.findBycategory(3L);
+    		model.addAttribute("magazines",magazines);
+    		System.out.println("magazine 리스트 : " + magazines);
+    		return "magazine";
+    	}catch (Exception e) {
+    		e.printStackTrace();
+            model.addAttribute("errorMSG : " + e.getMessage());
+            return null;
+		}
+    }
+    @GetMapping("/inquiries")
+    public String inquiries(Model model) {
+    	try {
+    		List<Board> inquiriesList = boardServiceImpl.findBycategory(4L);
+    		model.addAttribute("inquiries",inquiriesList);
+    		System.out.println("inquiries 리스트 : " + inquiriesList);
+    		return "inquiries";
+    	}catch (Exception e) {
+    		e.printStackTrace();
+            model.addAttribute("errorMSG : " + e.getMessage());
+            return null;
+		}
+    }
+    @GetMapping("/faq")
+    public String faq(Model model) {
+    		return "faq";
     }
 }
 
