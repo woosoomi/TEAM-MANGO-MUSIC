@@ -47,24 +47,33 @@ public class OrderRestController {
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody Order order) {
-	    try {
-	        Order createdOrder = orderService.saveOrder(order);
-	        return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        Map<String, String> errorResponse = new HashMap<>();
-	        errorResponse.put("error", e.getMessage());
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-	    }
+		try {
+			return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(order));
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
 	}
 
-//	// 주문수정(관리자권한)
-//
-//	@PutMapping("/update")
-//	public Order updateOrder(@RequestBody Order order) throws Exception {
-//		return orderService.updateOrder(order);
-//	}
-//
+	// 주문수정(관리자권한)
+
+	@PutMapping("/update")
+	public ResponseEntity<?> updateOrder(@RequestBody Order order) throws Exception {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(order));
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+	}
+			
+			
+			
+
 //	// 주문번호로 주문 1개 삭제
 //
 //	@DeleteMapping("/{orderId}")
