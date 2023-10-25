@@ -2,8 +2,6 @@ package com.itwill.jpa.service.order;
 
 import java.util.List;
 
-import com.itwill.jpa.dto.order.OrderItemDto;
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 
 public interface OrderItemService {
