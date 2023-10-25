@@ -41,7 +41,7 @@ class ProductServiceImplTest {
 	// productName 찾기
     @Test
     @Transactional
-    @Rollback(false)
+ //   @Rollback(false)
     @Disabled
     public void testFindByProductName() {
         // 제품 이름 지정
@@ -150,13 +150,13 @@ class ProductServiceImplTest {
         Product updatedProduct = productServiceImpl.updateProduct(product);
     }
 
-	//제목키워드로 검색[진행중]    
+	//제목키워드로 검색[성공]    
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void searchProductsByKeywordTest() {
-		String keyword = "음악 제품 설명1";
+		String keyword = "굿즈 제품";
 		List<Product> products = productServiceImpl.searchProductsByKeyword(keyword);
 		System.out.println("검색결과>>>" + products);
 	}

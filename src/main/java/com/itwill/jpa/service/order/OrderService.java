@@ -17,6 +17,11 @@ public interface OrderService {
 	List<Order> ordersByUserId(String UserId);
 	//전체 주문 불러오기(관리자)
 	List<Order> orders();
+	//주문 최신순으로 나열하기
+	List<Order> orderListByNewer(String userId);
+	//주문 오래된순으로 나열하기
+	List<Order> orderListByOlder(String userId);
+	
 	
 
 }
