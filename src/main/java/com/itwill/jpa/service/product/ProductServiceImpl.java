@@ -137,7 +137,7 @@ public class ProductServiceImpl implements ProductService{
 		}
 	}
 	
-	// product 카테고리별 구분
+	// product 카테고리별 구분[성공]
 	@Override
 	public List<Product> findByProductCategory(ProductCategory categoryId) {
 		return productRepository.findByProductCategory(categoryId);
