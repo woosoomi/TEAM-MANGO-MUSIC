@@ -22,28 +22,28 @@ public class ProductController {
 	@GetMapping("/GoodsList")
 	public String GoodsList() {
 		log.info("GoodsList");
-		return "GoodsList";
+		return "/GoodsList";
 	}
 	
 	// 티켓리스트
 	@GetMapping("/TicketList")
 	public String TicketList() {
 		log.info("TicketList");
-		return "TicketList";
+		return "/TicketList";
 	}
 	
 	// 티켓디테일
 	@GetMapping("/TicketDetail")
 	public String TicketDetail() {
 		log.info("TicketDetail");
-		return "TicketDetail";
+		return "/TicketDetail";
 	}
 	
 	// 굿즈디테일
 	@GetMapping("/GoodsDetail")
 	public String GoodsDetail() {
 		log.info("GoodsDetail");
-		return "GoodsDetail";
+		return "/GoodsDetail";
 	}
 	
 
