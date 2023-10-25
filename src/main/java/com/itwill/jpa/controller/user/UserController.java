@@ -17,8 +17,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
     
+    @GetMapping("/index")
+    public String main() {
+    	String forwardPath = "index";
+    	return forwardPath;
+    }
     
     
     
