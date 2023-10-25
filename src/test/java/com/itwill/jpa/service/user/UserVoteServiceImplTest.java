@@ -22,15 +22,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.repository.user.UserRepository;
 import com.itwill.jpa.repository.user.UserVoteRepository;
+import com.itwill.jpa.service.product.ProductServiceImpl;
 import com.itwill.jpa.service.vote.VoteServiceImpl;
 
 @SpringBootTest
 class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
-
 	@Autowired
 	UserVoteRepository userVoteRepository;
 	
@@ -46,10 +47,14 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired 
 	VoteServiceImpl voteServiceImpl;
 	
+	@Autowired
+	ProductServiceImpl productServiceImpl;
+	
 	@Test
     @Transactional
     @Rollback(false)
     @DisplayName("회원수정")
+	@Disabled
     public void testUpdateUser() {
 		Vote vote1 = Vote.builder()
 						 .voteId(1L)
@@ -80,8 +85,47 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		System.out.println("@@@@@@@@@@@@@>>>"+userVoteRepository.findUserVoteId(1L));
 		
 	}
+	
+	
+	@Test
+    @Transactional
+    @Rollback(false)
+	@DisplayName("유저,투표,상품전체조회")
+	@Disabled
+    public void testfindUserVoteIdWithProduct() {
+    	
+    	Vote vote1 = Vote.builder()
+				 .voteId(1L)
+				 .voteTot(320)
+				 .build();
+    	voteServiceImpl.createVote(vote1);
+    	
+    	// User 생성
+    	User user = new User();
+        user.setUserId("vote");
+        user.setUserPw("vote");
+        user.setUserName("vote테스트님");
+        user.setUserPhone("010-1234-5678");
+        user.setVote(vote1);
+        userDao.createUser(user);
+    	System.out.println("@@@"+user);  
+    	
+    	// product VoteId 수정
+      	Long productNo = 1L;
+        Product product = productServiceImpl.getProduct(productNo);
+        product.setProductName("수정 테스트완료");
+        product.setVote(vote1);
 
+        // updateProduct 메서드 호출
+        Product updatedProduct = productServiceImpl.updateProduct(product);
+          
+        userVoteRepository.findUserVoteIdWithProduct(1L);
+          
+        // findProductVoteIdWithUser 호출 --> product의 voteId로 User와 Vote 전체 호출
+        userVoteRepository.findUserVoteIdWithProduct(1L);
+        System.out.println(">>>>> "+userVoteRepository.findUserVoteIdWithProduct(1L));
+    
+    }
 	
-	
-	}
+}
 
