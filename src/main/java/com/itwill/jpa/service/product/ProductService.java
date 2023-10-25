@@ -1,11 +1,13 @@
 package com.itwill.jpa.service.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.ProductCategory;
 
 
 
@@ -18,32 +20,28 @@ public interface ProductService{
 //Product//	
 	Product getProduct(Long productNo); 
 	
-	Product saveProduct(Product productDto);
-	
-	void deleteProduct(Long productNo) throws Exception;
-	
 	List<Product> productList(); 
 	
 	
-	// 좋아요 누르기 기능[성공]
+	// 좋아요 누르기 기능
 	Long checkLikeService(Long productNo);
-	
-	// 품절 안내 기능[성공]
+	// 품절 안내 기능
+
 	Product outOfStockMsg(Long productNo);
 
 
 	// product 등록[성공]
 	public Product insertProduct(Product product);
 	
-	// product 삭제
-	public void delete(Long productNo);
+	// product 삭제[성공]		
+	void deleteProduct(Long productNo) throws Exception;
 	
-	// product 업데이트
+	// product 삭제[성공]
+//	public void deleteProduct2(Long productNo);
+	
+	// product 업데이트[성공]
 	public Product updateProduct(Product product);
-	
-	// product category별 분류
-	public List<Product> findByCategory(Long categoryId);
-	
+		
 	// product 조회수 올리기[성공]
 	public Product increaseReadCount(Product product);
 	
@@ -55,5 +53,21 @@ public interface ProductService{
 	
 	// 키워드로 검색[테스트중]
 	public List<Product> searchProductsByKeyword(String keyword);
+	
+	// product category별 분류
+//	public List<Product> findByProductCategory(Long categoryId);
+	List<Product> findByProductCategory(ProductCategory categoryId);
+	
+	// productNo 찾기
+	public Optional<Product> findByProductNo(Long productNo);
+	
+	// productName 찾기
+	public Product findByProductName(String productName);
+	
+	// productArtist 찾기
+	public Product findByProductAtrist(String productArtist);
+
+
+	
 	
 }
