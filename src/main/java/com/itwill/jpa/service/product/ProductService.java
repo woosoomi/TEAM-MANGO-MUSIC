@@ -23,10 +23,10 @@ public interface ProductService{
 	List<Product> productList(); 
 	
 	
-	// 좋아요 누르기 기능
+	// 좋아요 누르기 기능[성공]
 	Long checkLikeService(Long productNo);
-	// 품절 안내 기능
 
+	// 품절 안내 기능[성공]
 	Product outOfStockMsg(Long productNo);
 
 
