@@ -44,7 +44,7 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	UserDao userDao;
 	
 	
-	//쿠폰 생성(찜찜한성공)
+	//쿠폰 생성(성공)
 	@Test
 	@Transactional
 	@Rollback(false)
