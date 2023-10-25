@@ -57,4 +57,14 @@ public class OrderServiceImpl implements OrderService{
 		return orderRepository.findAll();
 	}
 
+	@Override
+	public List<Order> orderListByNewer(String userId) {
+		return orderDao.orderListByNewer(userId);
+	}
+
+	@Override
+	public List<Order> orderListByOlder(String userId) {
+		return orderRepository.orderListByOlder(userId);
+	}
+
 }

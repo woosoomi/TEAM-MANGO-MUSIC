@@ -54,8 +54,8 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	void orderCreateTest() {
 		Order order = new Order();
-		User user = userDao.findUser("팀장님");
-		Delivery delivery = deliveryDao.findByDeliveryId(1L);
+		User user = userDao.findUser("why3795");
+		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(30L).build());
 		
 		
 		order.setOrderId(null);
@@ -144,4 +144,26 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 		List<Order> orderList = orderServiceImpl.orders();
 		System.out.println(orderList);
 	}
+	
+	
+	//주문 최신순으로 나열하기(성공)
+	@Test
+	@Transactional
+	@Rollback(true)
+	@Disabled
+	void orderListByNewer() {
+		List<Order> orderList = orderServiceImpl.orderListByNewer("why3795");
+		System.out.println(orderList);
+	}
+	
+	//주문 오래된순으로 나열하기(성공)
+	@Test
+	@Transactional
+	@Rollback(true)
+	@Disabled
+	void orderListByOlder() {
+		List<Order> orderList = orderServiceImpl.orderListByOlder("why3795");
+		System.out.println(orderList);
+	}
+	
 }
