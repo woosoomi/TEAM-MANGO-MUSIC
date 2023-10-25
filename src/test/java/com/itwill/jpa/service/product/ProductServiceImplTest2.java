@@ -19,36 +19,11 @@ class ProductServiceImplTest2 extends TeamProjectMangoApplicationTest{
 	@Autowired
 	ProductService productService;
 	
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	void getProductTest() {
-
-	}
 	
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
-	void saveProductTest() {
-		
-	}
-	
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	void deleteProductTest() {
-		
-	}
-	
-	
-	
-	@Test
-	@Transactional
-	@Rollback(false)
-	//@Disabled
 	void checkLikeServiceTest() {
 		System.out.println(productService.checkLikeService(1L));
 	}
