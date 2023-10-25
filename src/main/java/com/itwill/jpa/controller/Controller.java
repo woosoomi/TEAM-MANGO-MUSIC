@@ -16,23 +16,5 @@ public class Controller {
 		return forwardPath;
 
 	}
-	@GetMapping("/notification")
-	public String notification() {
-		String forwardPath ="notification";
-		return forwardPath;
-		
-	}
-	
-	@GetMapping("/magazine")
-	public String magazine() {
-		String forwardPath ="magazine";
-		return forwardPath;
 
-	}
-//	@GetMapping("/event")
-//	public String event() {
-//		String forwardPath ="event";
-//		return forwardPath;
-//
-//	}
 }
