@@ -67,7 +67,5 @@ public interface ProductService{
 	// productArtist 찾기
 	public Product findByProductAtrist(String productArtist);
 
-
-	
 	
 }
