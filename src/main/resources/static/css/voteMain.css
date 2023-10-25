@@ -1,0 +1,98 @@
+
+/* 상단 메뉴 시작*/
+.topbar{
+  font-family: 'Noto Sans KR', sans-serif;
+  width: auto;
+  height: 110px;
+  padding-left: 40px;
+  padding-top: 15px;
+  background-color: black;
+}
+
+.logo{
+  line-height: 80px;
+  float: left;
+  
+}
+
+.logo img{
+  vertical-align: middle;
+  padding-top: 10px;
+  height: 70px;
+}
+
+.topbar ul{
+  margin-top: 23px;
+  font-family: 'Noto Sans KR', sans-serif;	
+  float: left;
+
+}
+
+.topbar li{
+  font-family: 'Noto Sans KR', sans-serif;
+  list-style-type: none;
+  float: left;
+  margin-right: 30px;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.topbar a{
+  text-decoration: none;
+  color: white;
+  font-style: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+/* 상단 메뉴 종료*/
+
+
+/* 1위 2위 배틀 시작 */
+.battle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    position: relative;
+    max-width: 90vw;
+    width: 800px;
+}
+
+.battle img{
+    width: 300px;
+}
+
+.battle_left_name{
+text-align: center;
+}
+
+.battle_right_name{
+    text-align: center;  
+}
+
+.battle button{
+    display: block;
+    position: relative;
+    width: 256px;
+    height: 48px;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 0;
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+/* 1위 2위 배틀 종료*/
+.battle_list{
+    display: grid;
+    grid-template-columns: 320px 320px 320px 320px 320px;
+    justify-content: center;
+}
+
+
+.battle_rank img{
+    width: 300px;
+    height: 300px;
+}
