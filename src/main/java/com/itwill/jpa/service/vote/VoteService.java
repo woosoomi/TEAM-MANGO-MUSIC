@@ -12,7 +12,7 @@ public interface VoteService {
 		List<Vote> findVoteListAll() throws Exception;
 		
 		//투표번호로 투표 1개 선택
-		Object selectByVoteNo(Long no) throws Exception;
+		Vote selectByVoteNo(Long no) throws Exception;
 		
 		//투표번호로 투표 1개 삭제
 		void deleteByVoteNo(Long no) throws Exception;

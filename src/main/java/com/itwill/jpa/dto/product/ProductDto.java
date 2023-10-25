@@ -72,10 +72,27 @@ public ProductDto(Product product) {
 	this.productAddress = product.getProductAddress();
 	this.startPeriod = product.getStartPeriod();
 	this.periodOfUse = product.getPeriodOfUse();
-	
-
 
 	}
+
+public static ProductDto toDto(Product entity) {
+	return ProductDto.builder()
+			.productName(entity.getProductName())
+			.productPrice(entity.getProductPrice())
+			.productContent(entity.getProductContent())
+			.productReply(entity.getProductReply())
+			.productStar(entity.getProductStar())
+			.productDate(entity.getProductDate())
+			.readCount(entity.getReadCount())
+			.productStock(entity.getProductStock())
+			.productImage(entity.getProductImage())
+			.productArtist(entity.getProductArtist())
+			.productAddress(entity.getProductAddress())
+			.startPeriod(entity.getStartPeriod())
+			.periodOfUse(entity.getPeriodOfUse())
+			.build();
+}
+
 
 }
 
