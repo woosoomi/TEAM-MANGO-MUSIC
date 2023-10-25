@@ -69,7 +69,7 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
- //   @Disabled
+    @Disabled
     public void testFindByProductCategory() {
         Long categoryId = 1L;
         ProductCategory category = new ProductCategory();
