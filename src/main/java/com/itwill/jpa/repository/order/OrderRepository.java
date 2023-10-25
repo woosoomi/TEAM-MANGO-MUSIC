@@ -11,4 +11,6 @@ import com.itwill.jpa.entity.user.User;
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
 	List<Order> findOrdersByUser(User user);
+	List<Order> findAllByOrderByCreatedAtDesc();
+	List<Order> findAllByOrderByCreatedAtAsc();
 }

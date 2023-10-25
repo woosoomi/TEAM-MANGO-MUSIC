@@ -78,4 +78,14 @@ public class OrderDaoImpl implements OrderDao{
 		}
 	}
 
+	@Override
+	public List<Order> orderListByNewer() {
+		return orderRepository.findAllByOrderByCreatedAtDesc();
+	}
+
+	@Override
+	public List<Order> orderListByOlder() {
+		return orderRepository.findAllByOrderByCreatedAtAsc();
+	}
+
 }

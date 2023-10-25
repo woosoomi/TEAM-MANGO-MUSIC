@@ -144,4 +144,16 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 		List<Order> orderList = orderServiceImpl.orders();
 		System.out.println(orderList);
 	}
+	
+	
+	//주문 최신순으로 나열하기
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void orderListByNewer() {
+		List<Order> orderList = orderServiceImpl.orderListByNewer();
+		System.out.println(orderList);
+	}
+	
 }

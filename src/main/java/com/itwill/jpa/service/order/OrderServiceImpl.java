@@ -57,4 +57,14 @@ public class OrderServiceImpl implements OrderService{
 		return orderRepository.findAll();
 	}
 
+	@Override
+	public List<Order> orderListByNewer() {
+		return orderRepository.findAllByOrderByCreatedAtDesc();
+	}
+
+	@Override
+	public List<Order> orderListByOlder() {
+		return orderRepository.findAllByOrderByCreatedAtAsc();
+	}
+
 }
