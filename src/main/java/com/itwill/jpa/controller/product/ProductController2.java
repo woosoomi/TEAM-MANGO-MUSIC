@@ -14,38 +14,30 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/")
 @RequiredArgsConstructor
 @Slf4j
-public class ProductController {
+public class ProductController2 {
 	@Autowired
 	private final ProductServiceImpl productServiceImpl;
 
-	// 굿즈리스트
-	@GetMapping("/GoodsList")
-	public String GoodsList() {
-		log.info("GoodsList");
-		return "GoodsList";
+	// 뮤직리스트 
+	@GetMapping("/MusicList")
+	public String musicList() {
+		log.info("MusicList");
+		return "MusicList";
+	}
+
+	// 뮤직디테일
+	@GetMapping("/MusicDetail")
+	public String MusicDetail() {
+		log.info("MusicDetail");
+		return "MusicDetail";
 	}
 	
-	// 티켓리스트
-	@GetMapping("/TicketList")
-	public String TicketList() {
-		log.info("TicketList");
-		return "TicketList";
+	// 멤버십
+	@GetMapping("/MembershipDetail")
+	public String MembershipDetail() {
+		log.info("MembershipDetail");
+		return "MembershipDetail";
 	}
-	
-	// 티켓디테일
-	@GetMapping("/TicketDetail")
-	public String TicketDetail() {
-		log.info("TicketDetail");
-		return "TicketDetail";
-	}
-	
-	// 굿즈디테일
-	@GetMapping("/GoodsDetail")
-	public String GoodsDetail() {
-		log.info("GoodsDetail");
-		return "GoodsDetail";
-	}
-	
 
 	
 	

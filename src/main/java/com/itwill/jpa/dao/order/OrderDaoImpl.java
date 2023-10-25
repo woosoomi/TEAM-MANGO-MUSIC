@@ -78,4 +78,28 @@ public class OrderDaoImpl implements OrderDao{
 		}
 	}
 
+	@Override
+	public List<Order> orderListByNewer(String userId) {
+		Optional<User> userOptional = userRepository.findById(userId);
+		if	(userOptional.isPresent()) {
+			return orderRepository.orderListByNewer(userId);
+		} else {
+			
+			return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+		}
+	}
+	
+	@Override
+	public List<Order> orderListByOlder(String userId) {
+		Optional<User> userOptional = userRepository.findById(userId);
+		if	(userOptional.isPresent()) {
+			return orderRepository.orderListByNewer(userId);
+		} else {
+			
+			return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+		}
+	}
+
+
+
 }

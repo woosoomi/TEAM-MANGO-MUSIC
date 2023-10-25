@@ -43,10 +43,6 @@ public class VoteDaoImpl implements VoteDao {
 		voteRepository.deleteById(no);
 	}
 
-	@Override
-	public Vote updateVote(Vote vote) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
