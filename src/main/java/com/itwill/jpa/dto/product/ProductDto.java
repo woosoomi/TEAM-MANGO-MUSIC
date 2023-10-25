@@ -22,8 +22,6 @@ import lombok.ToString;
 @ToString
 @Builder
 public class ProductDto {
-	
-	private String productCategory; // 프로덕트 카테고리
 	 	
 	private String productName;  // 프로덕트 이름
 	
@@ -33,7 +31,7 @@ public class ProductDto {
 	
 	private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
 	
-//	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
+	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
 	
 	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
 	
@@ -64,6 +62,7 @@ public ProductDto(Product product) {
 	this.productName = product.getProductName();
 	this.productPrice = product.getProductPrice();
 	this.productContent = product.getProductContent();
+	this.productReply = product.getProductReply();
 	this.productStar = product.getProductStar();
 	this.productDate = product.getProductDate();
 	this.readCount = product.getReadCount();
@@ -81,6 +80,7 @@ public static ProductDto toDto(Product entity) {
 			.productName(entity.getProductName())
 			.productPrice(entity.getProductPrice())
 			.productContent(entity.getProductContent())
+			.productReply(entity.getProductReply())
 			.productStar(entity.getProductStar())
 			.productDate(entity.getProductDate())
 			.readCount(entity.getReadCount())
