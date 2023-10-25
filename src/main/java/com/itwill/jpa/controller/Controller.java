@@ -17,12 +17,12 @@ public class Controller {
 
 	}
 	
-	@GetMapping("/userJoinForm")
-	public String userJoinForm() {
-		String forwardPath = "userJoinForm";
-		return forwardPath;
-
-	}
+	/*
+	 * @GetMapping("/userJoinForm") public String userJoinForm() { String
+	 * forwardPath = "userJoinForm"; return forwardPath;
+	 * 
+	 * }
+	 */
 	
 	@GetMapping("/userCheckId")
 	public String userCheckId() {
