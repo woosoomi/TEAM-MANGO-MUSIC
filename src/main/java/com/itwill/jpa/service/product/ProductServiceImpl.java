@@ -58,6 +58,7 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findAll();
 	}
 	
+	// 좋아요 누르기 기능[성공]
 	@Override
 	public Long checkLikeService(Long productNo) {
 		Product findProduct = productRepository.findById(productNo).get();
@@ -70,6 +71,7 @@ public class ProductServiceImpl implements ProductService{
 		return checkLike;
 	}
 	
+	// 품절 안내 기능[성공]
 	@Override
 	   public Product outOfStockMsg(Long productNo) {
 	      Product findProduct =productRepository.findById(productNo).get();
