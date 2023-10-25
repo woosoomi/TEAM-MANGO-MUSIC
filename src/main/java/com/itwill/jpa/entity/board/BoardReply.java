@@ -34,7 +34,7 @@ public class BoardReply {
     @Id
     @SequenceGenerator(name = "BOARD_REPLY_NO_SEQ",sequenceName = "BOARD_REPLY_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_REPLY_NO_SEQ")
-	private Long boardreplyId;
+	private Long boardReplyId;
     
     private String boardReplyTitle;
     private String boardReplyContent;
@@ -49,5 +49,7 @@ public class BoardReply {
 	@ManyToOne
 	@JoinColumn(name = "user_Id")
 	private User user;
+	
+
     
 }
