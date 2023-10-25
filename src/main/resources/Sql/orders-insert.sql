@@ -51,13 +51,13 @@ values (delivery_no_seq.nextval, '서울시 강남구', '로젠택배', '개리'
 -- 주문 정보 인서트
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (10000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'why3795');
+values (10000, delivery_no_seq.nextval, SYSTIMESTAMP, order_no_seq.nextval, '결제완료', 'why3795');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (20000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'cgj22');
+values (20000, delivery_no_seq.nextval, SYSTIMESTAMP, order_no_seq.nextval, '배송준비중', 'cgj22');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
-values (30000, deliver_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'lsg33');
+values (30000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송중', 'lsg33');
 
 INSERT INTO ORDERS (order_price, delivery_id, order_date, order_id, order_status, user_id) 
 values (40000, delivery_no_seq.currval, SYSTIMESTAMP, order_no_seq.nextval, '배송완료', 'myr1109');

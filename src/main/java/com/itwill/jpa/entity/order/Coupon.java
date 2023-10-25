@@ -36,8 +36,8 @@ public class Coupon {
 //	
 //	
 	@Id
-	@SequenceGenerator(name = "COUPON_NO_SEQ",sequenceName = "COUPON_NO_SEQ",initialValue = 1 , allocationSize =1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPON_NO_SEQ")
+	@SequenceGenerator(name = "COUPON_COUPON_NO_SEQ",sequenceName = "COUPON_COUPON_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPON_COUPON_NO_SEQ")
 //	//PK 쿠폰 번호
 	private Long couponId;
 //	//쿠폰 이름(ex.회원가입 쿠폰, 10월 감사제 쿠폰등)
