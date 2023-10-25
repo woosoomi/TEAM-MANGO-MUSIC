@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductRepository;
 
@@ -22,21 +23,35 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ProductRepository productRepository;
 	
+	// productNo 찾기[성공]	
+	@Override
+	public Optional<Product> findByProductNo(Long productNo) {
+		return productRepository.findById(productNo);
+	}
+	
+	// productName 찾기	
+	@Override
+	public Product findByProductName(String productName) {
+		return productRepository.findByProductName(productName);
+	}
+	
+	// productArtist 찾기
+	@Override
+	public Product findByProductAtrist(String productArtist) {
+		return productRepository.findByProductArtist(productArtist);
+	}
+	
+	
 	@Override
 	public Product getProduct(Long productNo) {
 		return productRepository.findById(productNo).get();
 	}
 	
-	@Override
-	public Product saveProduct(Product product) {
-		return productRepository.save(product);
-	}
+	/*
+	 * @Override public Product saveProduct(Product product) { return
+	 * productRepository.save(product); }
+	 */
 	
-	@Override
-	public void deleteProduct(Long productNo) throws Exception {
-		productRepository.deleteById(productNo);
-		
-	}
 	
 	@Override
 	public List<Product> productList() {
@@ -76,21 +91,25 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.save(product);
 	}
 
-	//product 삭제
+	//product 삭제[성공]	
 	@Override
-	public void delete(Long productNo) {
-		Optional<Product> productOptional = productRepository.findById(productNo);
-		if(productOptional.isPresent()) {			
-			Product product = productOptional.get();
-			productRepository.delete(product);
-			//product 객체 있으면 꺼내서 삭제
-		}else {
-			
-			//예외처리
-		}
+	public void deleteProduct(Long productNo) throws Exception {
+		productRepository.deleteById(productNo);
 		
 	}
-	//product 수정
+	
+	//product 삭제[성공]
+	/*
+	 * @Override public void deleteProduct2(Long productNo) { Optional<Product>
+	 * productOptional = productRepository.findById(productNo);
+	 * if(productOptional.isPresent()) { Product product = productOptional.get();
+	 * productRepository.delete(product); //product 객체 있으면 꺼내서 삭제 }else {
+	 * 
+	 * //예외처리 }
+		
+	}
+	 */
+	//product 수정[성공]
 	@Override
 	public Product updateProduct(Product product) {
 		Product isProduct = productRepository.findById(product.getProductNo()).orElse(null);
@@ -118,8 +137,8 @@ public class ProductServiceImpl implements ProductService{
 	
 	// product 카테고리별 구분
 	@Override
-	public List<Product> findByCategory(Long categoryId) {
-		return null;
+	public List<Product> findByProductCategory(ProductCategory categoryId) {
+		return productRepository.findByProductCategory(categoryId);
 	}
 	
 	// product 조회수 올리기[성공]
@@ -153,6 +172,7 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
+
 
 
 }

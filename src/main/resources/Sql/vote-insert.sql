@@ -1,3 +1,4 @@
+INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (1, s, 1);
 INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, s, 10);
 INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, '2023-10-24', 20);
 INSERT INTO vote (vote_id, vote_date, vote_tot) VALUES (vote_no_seq.NEXTVAL, sysdate, 30);
