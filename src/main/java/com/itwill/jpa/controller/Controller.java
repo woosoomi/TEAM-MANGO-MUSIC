@@ -12,18 +12,5 @@ public class Controller {
 
 	}
 
-	@GetMapping("/userCheckId")
-	public String userCheckId() {
-		String forwardPath = "userCheckId";
-		return forwardPath;
-
-	}
-
-	@GetMapping("/userCheckPw")
-	public String userCheckPw() {
-		String forwardPath = "userCheckPw";
-		return forwardPath;
-
-	}
 
 }
