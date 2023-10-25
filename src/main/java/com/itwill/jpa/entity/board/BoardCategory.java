@@ -46,9 +46,5 @@ public class BoardCategory {
 	@ToString.Exclude
 	private List<Board> boards = new ArrayList<Board>();
 
-    //boardcategory-boardType  n대1
-	@ManyToOne
-	@JoinColumn(name = "board_type_id")
-	@ToString.Exclude
-	private BoardType boardType;
+
 }

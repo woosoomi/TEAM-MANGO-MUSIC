@@ -35,7 +35,6 @@ public class BoardType {
 	@OneToMany(mappedBy = "boardType", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
-	private List<BoardCategory> boardCategories = new ArrayList<>();
-	
+	private List<Board> boards = new ArrayList<Board>();
     
 }
