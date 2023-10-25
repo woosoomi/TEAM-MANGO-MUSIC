@@ -71,7 +71,11 @@ public class Board {
 	@Builder.Default
 	@ToString.Exclude
 	private List<UserBoard> userBoard = new ArrayList<UserBoard>();
-	
+    
+	@OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@ToString.Exclude
+	private List<BoardReply> boardReply = new ArrayList<>();
 	
 	
 }
