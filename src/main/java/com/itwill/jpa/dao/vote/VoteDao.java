@@ -19,7 +19,8 @@ public interface VoteDao {
 	// 투표번호로 투표 1개 삭제
 	void deleteByVoteNo(Long no) throws Exception;
 
-	// 투표 업데이트
-	Vote updateVote(Vote vote) throws Exception;
+	/* 투표 업데이트 --> 구현 안하기로 함
+	   Vote updateVote(Vote vote) throws Exception;
+	*/
 
 }
