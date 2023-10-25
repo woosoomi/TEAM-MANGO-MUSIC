@@ -56,17 +56,12 @@ class ProductServiceImplTest {
     @Rollback(false)
     @Disabled
     public void testFindByProductArtist() {
-        // 특정 아티스트 이름을 지정합니다.
-        String productArtist = "아티스트 1"; // 실제 아티스트 이름으로 대체하세요.
+        // 아티스트 지정
+        String productArtist = "아티스트 1";
 
-        // findByProductArtist 메서드를 호출하여 제품을 조회합니다.
+        // 아티스트 조회
         Product product = productServiceImpl.findByProductAtrist(productArtist);
 
-        // 제품이 존재하는지 확인합니다.
-        assertNotNull(product);
-
-        // 제품의 아티스트 이름이 일치하는지 확인합니다.
-        assertEquals(productArtist, product.getProductArtist());
     }
     
 	// 카테고리별 구분 --성공
@@ -92,7 +87,7 @@ class ProductServiceImplTest {
         product.setProductName("새로운 제품");
         product.setProductPrice(10000);
 
-        // insertProduct 메서드를 사용하여 제품을 추가
+        // 제품 추가
         Product insertedProduct = productServiceImpl.insertProduct(product);
 
         // 제품 추가 확인

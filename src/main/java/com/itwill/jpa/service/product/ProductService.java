@@ -23,10 +23,10 @@ public interface ProductService{
 	List<Product> productList(); 
 	
 	
-	// 좋아요 누르기 기능
+	// 좋아요 누르기 기능[성공]
 	Long checkLikeService(Long productNo);
-	// 품절 안내 기능
 
+	// 품절 안내 기능[성공]
 	Product outOfStockMsg(Long productNo);
 
 
@@ -54,11 +54,11 @@ public interface ProductService{
 	// 키워드로 검색[테스트중]
 	public List<Product> searchProductsByKeyword(String keyword);
 	
-	// product category별 분류
+	// product category별 분류[성공]
 //	public List<Product> findByProductCategory(Long categoryId);
 	List<Product> findByProductCategory(ProductCategory categoryId);
 	
-	// productNo 찾기
+	// productNo 찾기[성공]
 	public Optional<Product> findByProductNo(Long productNo);
 	
 	// productName 찾기
