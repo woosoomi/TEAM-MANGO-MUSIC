@@ -54,9 +54,7 @@
               <x>375</x>
               <y>340</y>
             </constraint>
-<<<<<<< HEAD
-            <sourceConnections/>
-=======
+
             <sourceConnections>
               <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>
               <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -211,7 +209,6 @@
                 <references/>
               </net.java.amateras.db.visual.model.ForeignKeyModel>
             </sourceConnections>
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
             <targetConnections>
               <net.java.amateras.db.visual.model.ForeignKeyModel>
                 <listeners serialization="custom">
@@ -236,13 +233,7 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
-<<<<<<< HEAD
-                    <x>323</x>
-                    <y>600</y>
-=======
-                    <x>878</x>
-                    <y>744</y>
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/2023-05-JAVA-DEVELOPER-final-project-team1-mango.git
+
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.db.visual.model.ForeignKeyModel>
