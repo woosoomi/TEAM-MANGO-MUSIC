@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductRepository;
 
@@ -136,8 +137,8 @@ public class ProductServiceImpl implements ProductService{
 	
 	// product 카테고리별 구분
 	@Override
-	public List<Product> findByCategory(Long categoryId) {
-		return null;
+	public List<Product> findByProductCategory(ProductCategory categoryId) {
+		return productRepository.findByProductCategory(categoryId);
 	}
 	
 	// product 조회수 올리기[성공]

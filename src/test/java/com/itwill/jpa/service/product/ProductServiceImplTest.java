@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.product.ProductRepository;
 @SpringBootTest
@@ -28,7 +29,7 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
- //   @Disabled
+//    @Disabled
     public void testFindByProductNo() {       
         Long productNo = 1L; // 제품 번호 지정
         Optional<Product> productOptional = productServiceImpl.findByProductNo(productNo); // 제품 조회
@@ -66,7 +67,19 @@ class ProductServiceImplTest {
 
         // 제품의 아티스트 이름이 일치하는지 확인합니다.
         assertEquals(productArtist, product.getProductArtist());
-    }    
+    }
+    
+	// 카테고리별 구분 --성공
+	/*
+	 * @Test
+	 * 
+	 * @Transactional
+	 * 
+	 * @Rollback(false) //@Disabled void findByProductCategory() { List<Product>
+	 * products = new ArrayList<Product>(); products =
+	 * productServiceImpl.findByProductCategory(1L); // 1대1문의 찾기
+	 * System.out.println("music 모음 >>>>>" + products); }
+	 */
     
 	//product 추가[성공]    
     @Test

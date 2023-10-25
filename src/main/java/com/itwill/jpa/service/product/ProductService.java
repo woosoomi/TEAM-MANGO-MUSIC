@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.ProductCategory;
 
 
 
@@ -54,7 +55,8 @@ public interface ProductService{
 	public List<Product> searchProductsByKeyword(String keyword);
 	
 	// product category별 분류
-	public List<Product> findByCategory(Long categoryId);
+//	public List<Product> findByProductCategory(Long categoryId);
+	List<Product> findByProductCategory(ProductCategory categoryId);
 	
 	// productNo 찾기
 	public Optional<Product> findByProductNo(Long productNo);
@@ -64,6 +66,8 @@ public interface ProductService{
 	
 	// productArtist 찾기
 	public Product findByProductAtrist(String productArtist);
+
+
 	
 	
 }
