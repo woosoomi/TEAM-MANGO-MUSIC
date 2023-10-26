@@ -50,7 +50,7 @@ public interface ProductService{
 	void deleteProduct(Long productNo) throws Exception;
 	
 	// product 삭제[성공]
-//	public void deleteProduct2(Long productNo);
+	public void deleteProduct2(Long productNo);
 	
 	// product 업데이트[성공]
 	public Product updateProduct(Product product);

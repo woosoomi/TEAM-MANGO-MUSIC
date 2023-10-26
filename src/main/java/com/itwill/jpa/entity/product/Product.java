@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Builder
+@Builder //Dto를 Entity로 변환하는 메서드를 쓰기위해서 사용
 @Table(name = "product")
 @Data
 @NoArgsConstructor
@@ -44,6 +44,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCT_NO_SEQ")
 	@Column(name = "product_no")
 
+	/*==================멤버필드==================*/
 	private Long productNo; // PK
 
 	@Column(nullable = false)
@@ -58,7 +59,6 @@ public class Product {
 	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
 
 	private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
-//	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글		 ----------- 테이블 분리로 인한 주석처리
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
 	private Long readCount; // 프로덕트(음악,콘서트) 조회수
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
@@ -93,25 +93,11 @@ public class Product {
 	@DiscriminatorValue("membership")
 	public static class Membership extends Product {
 	}
-
-	public static Product toEntity(ProductDto productDto) {
-		return Product.builder()
-				.productCategory(productDto.getProductCategory())
-				.productName(productDto.getProductName())
-				.productPrice(productDto.getProductPrice())
-				.productStar(productDto.getProductStar())
-				.productDate(productDto.getProductDate())
-				.readCount(productDto.getReadCount())
-				.productStock(productDto.getProductStock())
-				.productImage(productDto.getProductImage())
-				.productMovie(productDto.getProductMovie())
-				.productArtist(productDto.getProductArtist())
-				.productAddress(productDto.getProductAddress())
-				.startPeriod(productDto.getStartPeriod())
-				.periodOfUse(productDto.getPeriodOfUse())
-				.build();
-	}
-
+	/*============================================*/
+		
+	/*/////////////////////////매서드/////////////////////////*/
+	
+	/*==================관게설정==================*/
 	//1대N 관계설정
 	@ManyToOne
 	@JoinColumn(name = "vote_id")
@@ -140,6 +126,31 @@ public class Product {
 	@ToString.Exclude
 	private List<ProductReply> productReply = new ArrayList<>();
 
+	/*============================================*/
+	
+	/*============Dto -> entity 변환해주는 매서드============*/
+
+	public static Product toEntity(ProductDto productDto) {
+		return Product.builder()
+				.productCategory(productDto.getProductCategory())
+				.productName(productDto.getProductName())
+				.productPrice(productDto.getProductPrice())
+				.productStar(productDto.getProductStar())
+				.productDate(productDto.getProductDate())
+				.readCount(productDto.getReadCount())
+				.productStock(productDto.getProductStock())
+				.productImage(productDto.getProductImage())
+				.productMovie(productDto.getProductMovie())
+				.productArtist(productDto.getProductArtist())
+				.productAddress(productDto.getProductAddress())
+				.startPeriod(productDto.getStartPeriod())
+				.periodOfUse(productDto.getPeriodOfUse())
+				.build();
+	}
+	/*=======================================================*/
+	
+	/*============================================*/
+	
 	// ---- 비즈니스 로직----//
 	/* productStock 증가 */
 	public void addproductStock(int quantity) {

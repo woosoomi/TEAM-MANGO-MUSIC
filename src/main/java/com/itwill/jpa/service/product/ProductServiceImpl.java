@@ -131,16 +131,19 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	//product 삭제[성공]
-	/*
-	 * @Override public void deleteProduct2(Long productNo) { Optional<Product>
-	 * productOptional = productRepository.findById(productNo);
-	 * if(productOptional.isPresent()) { Product product = productOptional.get();
-	 * productRepository.delete(product); //product 객체 있으면 꺼내서 삭제 }else {
-	 * 
-	 * //예외처리 }
+	
+	  @Override
+	  public void deleteProduct2(Long productNo) { 
+		  Optional<Product> productOptional = productRepository.findById(productNo);
+	  if(productOptional.isPresent()) { 
+		  Product product = productOptional.get();
+		  productRepository.delete(product); //product 객체 있으면 꺼내서 삭제
+		  }else {	  
+	  //예외처리
+	  }
 		
 	}
-	 */
+	 
 	//product 수정[성공]
 	@Override
 	public Product updateProduct(Product product) {
