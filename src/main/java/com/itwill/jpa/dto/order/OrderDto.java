@@ -21,11 +21,11 @@ public class OrderDto {
 	
 	private OrderStatus orderStatus; //주문 상태
 
-	//private String userName;
+	private String userId;
+	
+	private Long deliveryId;
 
-	//private String userPhone;
-
-	//private String userAddress;
+	
 		
 	
 	//private List<OrderItem> orderItems; // 주문한 아이템 정보들(수량, 가격등)
@@ -38,9 +38,9 @@ public class OrderDto {
 		this.orderId = order.getOrderId();
 		this.orderPrice = order.getOrderPrice();
 		this.orderStatus = order.getOrderStatus();
+		this.userId = order.getUser().getUserId();
+		this.deliveryId = order.getDelivery().getDeliveryId();
 		//this.userName = order.getUser().getUserName();
-		//this.userPhone = order.getUser().getUserPhone();
-		//this.userAddress = order.getUser().getUserAddress();
 		//this.coupons = order.getCoupons();
 		//this.orderItems = order.getOrderItems();
 		// 주문 아이템(OrderItem)엔티티를 OrderItemDto로 변환하여 리스트로 저장
@@ -53,6 +53,8 @@ public class OrderDto {
 				.orderId(entity.getOrderId())
 				.orderPrice(entity.getOrderPrice())
 				.orderStatus(entity.getOrderStatus())
+				.userId(entity.getUser().getUserId())
+				.deliveryId(entity.getDelivery().getDeliveryId())
 				.build();
 		
 	}

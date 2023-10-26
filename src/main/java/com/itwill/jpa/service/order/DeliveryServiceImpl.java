@@ -5,12 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.itwill.jpa.dao.order.DeliveryDao;
-import com.itwill.jpa.dto.order.DeliveryDto;
-
 import com.itwill.jpa.entity.order.Delivery;
-import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 
 import jakarta.transaction.Transactional;
