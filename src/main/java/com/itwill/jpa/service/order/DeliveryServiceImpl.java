@@ -22,9 +22,12 @@ public class DeliveryServiceImpl implements DeliveryService{
 	
 	//배송지 정보 저장
 	@Override
-	public DeliveryDto saveDelivery(DeliveryDto delivery) {
+	public DeliveryDto saveDelivery(DeliveryDto dto) {
 		
-		return deliveryDao.insertDelivery(delivery);
+		Delivery delivery = deliveryRepository.save(Delivery.toEntity(dto));
+		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
+		
+		return deliveryDto;
 	}
 	
 	//배송지 정보 수정

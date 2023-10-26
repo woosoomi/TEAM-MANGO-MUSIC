@@ -26,7 +26,6 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	
 	
 	@Override
-	//이것만 일단 롤백할게요 오더서비스임플 Create 테스트 때문에
 	public Delivery insertDelivery(Delivery delivery) {
 		Delivery savedDelivery = deliveryRepository.save(delivery);
 		return savedDelivery;

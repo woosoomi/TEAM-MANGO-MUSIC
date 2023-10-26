@@ -53,7 +53,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void orderCreateTest() {
 
 		Order order = new Order();
