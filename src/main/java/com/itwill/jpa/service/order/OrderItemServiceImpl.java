@@ -58,7 +58,7 @@ public class OrderItemServiceImpl implements OrderItemService{
 	}
 
 	@Override
-	public List<OrderItem> orderItems(String userId) {
+	public List<OrderItemDto> orderItems(String userId) {
 		return orderItemDao.orderItems(userId);
 	}
 

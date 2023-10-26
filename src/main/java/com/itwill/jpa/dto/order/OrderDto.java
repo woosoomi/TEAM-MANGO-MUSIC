@@ -2,6 +2,7 @@ package com.itwill.jpa.dto.order;
 
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
+import com.itwill.jpa.entity.order.OrderItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +26,6 @@ public class OrderDto {
 	
 	private Long deliveryId;
 
-	
 		
 	
 	//private List<OrderItem> orderItems; // 주문한 아이템 정보들(수량, 가격등)

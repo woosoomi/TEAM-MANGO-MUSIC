@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.dao.order.OrderDao;
+import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
 import com.itwill.jpa.entity.order.OrderItem;
@@ -40,12 +42,12 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void insert() {
-		OrderItem orderItem = new OrderItem();
+		OrderItemDto orderItem = new OrderItemDto();
 		Order order = orderDao.selectOrder(1L);
 		orderItem.setOiId(null);
 		orderItem.setOiQty(3);
 		
-		OrderItem orderItem2 = new OrderItem();
+		OrderItemDto orderItem2 = new OrderItemDto();
 		Order order2 = orderDao.selectOrder(1L);
 		orderItem2.setOiId(null);
 		orderItem2.setOiQty(5);
@@ -53,8 +55,8 @@ class OrderItemServiceTest {
 		orderItem.setOrder(order);
 		orderItem2.setOrder(order2);
 		
-		OrderItem savedOrderItem = orderItemService.saveOrderItem(orderItem);
-		OrderItem savedOrderItem2 = orderItemService.saveOrderItem(orderItem2);
+		OrderItemDto savedOrderItem = orderItemService.saveOrderItem(orderItem);
+		OrderItemDto savedOrderItem2 = orderItemService.saveOrderItem(orderItem2);
 		System.out.println(savedOrderItem);
 		System.out.println(savedOrderItem2);
 	}
@@ -65,10 +67,10 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void update(){
-		OrderItem orderItem = orderItemService.findOrderItem(1L);
+		OrderItemDto orderItem = orderItemService.findOrderItem(1L);
 		orderItem.setOiQty(8);
 		
-		OrderItem updateOrderItem = orderItemService.updateOrderItem(orderItem);
+		OrderItemDto updateOrderItem = orderItemService.updateOrderItem(orderItem);
 		System.out.println(updateOrderItem);
 		
 		
@@ -95,7 +97,7 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void findOrderItem() {
-		OrderItem findItem = orderItemService.findOrderItem(1L);
+		OrderItemDto findItem = orderItemService.findOrderItem(1L);
 		System.out.println(findItem);
 	}
 	
@@ -104,7 +106,7 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void orderItems() {
-		List<OrderItem> orderItems = orderItemService.orderItems(1L);
+		List<OrderItemDto> orderItems = orderItemService.orderItems(1L);
 		System.out.println("오더아이템들-->"+orderItems);
 	}
 	
@@ -113,7 +115,7 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void orderItems2() {
-		List<OrderItem> orderItems = orderItemService.orderItems("why3795");
+		List<OrderItemDto> orderItems = orderItemService.orderItems("why3795");
 		System.out.println(orderItems);
 	}
 	

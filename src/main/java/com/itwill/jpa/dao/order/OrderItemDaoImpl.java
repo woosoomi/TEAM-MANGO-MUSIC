@@ -88,24 +88,26 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	}
 
 	@Override
-	public List<OrderItem> orderItems(String userId) {
+	public List<OrderItemDto> orderItems(String userId) {
 		  Optional<User> userOptional = userRepository.findById(userId);
 
 	        if (userOptional.isPresent()) {
 	            User user = userOptional.get();
+	            List<OrderItemDto> userOrderedItems = new ArrayList<>();
 	            
-	            List<OrderItem> userOrderedItems = new ArrayList<>();
 
 	            // 사용자 엔티티에서 주문 목록을 가져옴
-	            List<Order> orders = user.getOrders();
+	            List<Order
+	            
+	            
+	            > orders = user.getOrders();
 
 	            // 각 주문에 속한 주문 항목 및 연결된 제품을 가져옴
 	            for (Order order : orders) {
 	                List<OrderItem> orderItems = order.getOrderItems();
-
 	                for (OrderItem orderItem : orderItems) {
 	                    Product product = orderItem.getProduct();
-	                    userOrderedItems.add(orderItem);
+	                    userOrderedItems.add(OrderItemDto.toDto(orderItem));
 	                }
 	            }
 

@@ -13,7 +13,7 @@ public interface OrderItemDao {
 	
 	List<OrderItemDto> orderItems(Long orderId);
 	
-	List<OrderItem> orderItems(String userId);
+	List<OrderItemDto> orderItems(String userId);
 	
 	OrderItemDto updateOrderItem(OrderItemDto orderItem);
 	
