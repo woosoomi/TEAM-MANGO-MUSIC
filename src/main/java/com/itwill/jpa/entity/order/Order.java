@@ -75,6 +75,8 @@ public class Order {
 	public static Order toEntity(OrderDto dto) {
 		
 		return Order.builder()
+				.orderId(dto.getOrderId())
+				.orderPrice(dto.getOrderPrice())
 				.orderStatus(dto.getOrderStatus())
 				.build();	
 	}

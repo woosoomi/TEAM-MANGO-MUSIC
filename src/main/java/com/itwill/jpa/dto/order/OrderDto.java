@@ -15,9 +15,9 @@ public class OrderDto {
 
 	private Long orderId;
 	
-	private OrderStatus orderStatus; //주문 상태
-	
 	private int orderPrice;
+	
+	private OrderStatus orderStatus; //주문 상태
 
 	private String userName;
 
@@ -34,8 +34,8 @@ public class OrderDto {
 	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정하는 생성자(초기화)
 	public OrderDto(Order order) {
 		this.orderId = order.getOrderId();
-		this.orderStatus = order.getOrderStatus();
 		this.orderPrice = order.getOrderPrice();
+		this.orderStatus = order.getOrderStatus();
 		this.userName = order.getUser().getUserName();
 		this.userPhone = order.getUser().getUserPhone();
 		this.userAddress = order.getUser().getUserAddress();
