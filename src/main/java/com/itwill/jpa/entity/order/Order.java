@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.user.User;
 
@@ -51,7 +54,10 @@ public class Order {
 	private int orderPrice;
 	
 	//주문 날짜시간
-	private LocalDateTime orderDate;
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
 	
 	//주문 진행상황
 	@Enumerated(EnumType.STRING)

@@ -61,7 +61,6 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 		order.setOrderId(null);
 		order.setOrderPrice(20000);
 		order.setDelivery(delivery);
-		order.setOrderDate(null);
 		order.setOrderStatus(OrderStatus.배송준비중);
 		order.setUser(user);
 		
