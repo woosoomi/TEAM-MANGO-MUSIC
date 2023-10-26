@@ -162,12 +162,11 @@
 							</p><label>Sort by:</label><select>
 							<option value="popularity">최신순</option>
 							<option value="popularity">오래된순</option>
-						</select><a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a><a
-							href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+						</select>
 					</div>
 					<div class="movie-item-style-2"><img src="images/uploads/mv1.jpg" alt="">
 						<div class="mv-item-infor">
-							<h6><a href="#" th:text="${orderList[0].order" <span>(2012)</span></a></h6>
+							<h6><a th:text="${orderList[0].orderId}"></a> [총 <a th:text="${#lists.size(orderList)}"></a>개]<span></span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span>8.1</span>/10</p>
 							<p class="describe">Earth's mightiest heroes must come together and learn to fight as a team
 								if they are to stop the mischievous Loki and his alien army from enslaving humanity...
