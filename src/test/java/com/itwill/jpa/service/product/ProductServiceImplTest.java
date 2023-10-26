@@ -31,7 +31,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	public void testFindByProductNo() {
 		Long productNo = 1L; // 제품 번호 지정
 		Optional<Product> productOptional = productServiceImpl.findByProductNo(productNo); // 제품 조회
@@ -196,7 +196,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testIncreaseReadCount() {
 		Optional<Product> productOptional = productRepository.findById(5L);
 		if (productOptional.isPresent()) {

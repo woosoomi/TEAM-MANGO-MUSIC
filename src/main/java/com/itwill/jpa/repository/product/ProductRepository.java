@@ -33,4 +33,3 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	categoryId 별로 찾기
 //    List<Product> findByCategoryId(Long categoryId);
 }
-

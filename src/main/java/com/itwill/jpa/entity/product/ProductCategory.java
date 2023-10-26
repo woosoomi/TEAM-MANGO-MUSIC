@@ -52,8 +52,8 @@ public class ProductCategory {
 	/*============Dto -> entity 변환해주는 매서드============*/
 	 public static ProductCategory toEntity(ProductCategoryDto dto) {
 		 return ProductCategory.builder()
+				 				.categoryId(dto.getCategoryId())
 				 			   .productCategoryName(dto.getProductCategoryName())
-				 			   .categoryId(dto.getCategoryId())
 				 			   .build();
 	 }
 	/*========================================================*/	

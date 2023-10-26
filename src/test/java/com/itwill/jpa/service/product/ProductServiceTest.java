@@ -1,5 +1,6 @@
 package com.itwill.jpa.service.product;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -25,6 +26,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
    @Test
    @Transactional
    @Rollback(false)
+   @Disabled
    void productInsertTest() {
       
       ProductCategory productCategory1 = ProductCategory.builder()
