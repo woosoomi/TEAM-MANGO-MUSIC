@@ -23,19 +23,19 @@ public class BoardController {
     
     private final BoardServiceImpl boardServiceImpl;
     
-    @GetMapping("/event")
-    public String eventPage(Model model) {
-        try {
-            List<Board> events = boardServiceImpl.findBycategory(2L);
-            model.addAttribute("events", events);
-            System.out.println("이벤트 리스트 :"+events);
-            return "event"; // 뷰 템플릿의 경로를 "event"로 설정
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("errorMSG : " + e.getMessage());
-            return null;
-        }
-    }
+//    @GetMapping("/event")
+//    public String eventPage(Model model) {
+//        try {
+//            List<Board> events = boardServiceImpl.findBycategory(2L);
+//            model.addAttribute("events", events);
+//            System.out.println("이벤트 리스트 :"+events);
+//            return "event"; // 뷰 템플릿의 경로를 "event"로 설정
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            model.addAttribute("errorMSG : " + e.getMessage());
+//            return null;
+//        }
+//    }
     
     @GetMapping("/notification")
     public String notificationPage(Model model) {
