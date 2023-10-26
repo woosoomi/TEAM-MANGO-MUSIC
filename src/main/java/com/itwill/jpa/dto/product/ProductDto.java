@@ -25,8 +25,6 @@ import lombok.ToString;
 public class ProductDto {
 	
 	private ProductCategory productCategory; // 프로덕트 카테고리
-	
-	private Long categoryId;
 	 	
 	private String productName;  // 프로덕트 이름
 	

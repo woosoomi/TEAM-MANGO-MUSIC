@@ -91,10 +91,11 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
-    @Disabled
+ //   @Disabled
     public void testInsertProduct() {
         // 새로운 Product 객체를 생성
         Product product = new Product();
+//        product.setCategoryId(1L);
         product.setProductName("새로운 제품");
         product.setProductPrice(10000);
 
@@ -117,11 +118,11 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
-//    @Disabled
+    @Disabled
     public void testInsertMusic() {
     	// 새로운 Product 객체를 생성
     	Music music = new Music();
-    	
+    	music.setCategoryId(1L);
     	music.getProductCategory();
     	music.setProductName("새로운 제품");
     	music.setProductPrice(10000);
