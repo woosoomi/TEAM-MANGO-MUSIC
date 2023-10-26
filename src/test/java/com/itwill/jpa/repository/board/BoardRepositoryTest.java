@@ -57,24 +57,34 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 
 	}
 	
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	void findAll() {
-//	    List<Board> boards = boardRepository.findAll();
-//	    for (Board board : boards) {
-//	        System.err.println("Board Title 은 무엇?: " + board.getBoardTitle());
-//	    }
-//	}
-//	
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	void findByCategoryId() {
-//		List<Board> boards = boardRepository.findByBoardCategory_IdOrderByCreatedTime(1L);
-//		System.out.println(boards);
-//	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void findAll() {
+	    List<Board> boards = boardRepository.findAll();
+	    for (Board board : boards) {
+	        System.err.println("Board Title 은 무엇?: " + board.getBoardTitle());
+	    }
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void findByCategoryId() {
+		List<Board> boards = boardRepository.findByBoardCategory_IdOrderByCreatedTime(2L);
+		System.out.println("2L >>>>>>>>>>"+boards);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void findByTypeId() {
+		List<Board> boards =boardRepository.findByBoardType_TypeIdOrderByCreatedTime(1L);
+		System.out.println("2L ???????????????"+boards);
+		
+	}
 	
 }
