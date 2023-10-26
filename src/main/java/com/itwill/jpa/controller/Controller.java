@@ -12,6 +12,10 @@ public class Controller {
     	String forwardPath = "event";
     	return forwardPath;
     }
-
+	@GetMapping("/userprofile")
+	public String userprofile() {
+		String forwardPath = "userprofile";
+		return forwardPath;
+	}
 
 }
