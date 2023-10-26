@@ -7,7 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.jpa.dto.order.DeliveryDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Delivery;
+import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
@@ -20,7 +23,10 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	@Autowired
 	UserRepository userRepository;
 	
+	
+	
 	@Override
+	//이것만 일단 롤백할게요 오더서비스임플 Create 테스트 때문에
 	public Delivery insertDelivery(Delivery delivery) {
 		Delivery savedDelivery = deliveryRepository.save(delivery);
 		return savedDelivery;
@@ -28,7 +34,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
 
 
 	@Override
-	public Delivery updateDelivery(Delivery updateDelivery) throws Exception{
+	public DeliveryDto updateDelivery(DeliveryDto updateDelivery) throws Exception{
 		//Delivery가 존재하는지 확인
 		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryId());
 		Delivery updatedDelivery = null;
@@ -44,7 +50,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
 		}else {
 			throw new Exception("존재하지 않는 주소입니다.");
 		}
-		return updatedDelivery;
+		return DeliveryDto.toDto(updatedDelivery);
 	}
 
 	
@@ -59,24 +65,31 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 	@Override
-	public List<Delivery> selectList() {
+	public void selectList() {
 		
-		return deliveryRepository.findAll();
+		deliveryRepository.findAll();
 	}
 
 	@Override
-	public Delivery findByDeliveryId(Long id) {
+	public DeliveryDto findByDeliveryId(Long id) {
 		Delivery delivery = deliveryRepository.findById(id).get();
-		return delivery;
+		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
+		return deliveryDto;
 	}
 
 
 	@Override
-	public List<Delivery> getDeliveriesByUserId(String userId) {
+	public List<DeliveryDto> getDeliveriesByUserId(String userId) {
 		Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            return deliveryRepository.findByUser(user);
+            List<Delivery> deliveryItems = deliveryRepository.findByUser(user);
+            List<DeliveryDto> deliveryItemDtos = new ArrayList<>();
+            for (Delivery deliveryItem : deliveryItems) {
+            	DeliveryDto deliveryItemDto = DeliveryDto.toDto(deliveryItem);
+            	deliveryItemDtos.add(deliveryItemDto);
+        	}
+        	return deliveryItemDtos;
         } else {
             return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
         }

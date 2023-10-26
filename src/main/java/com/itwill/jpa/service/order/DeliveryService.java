@@ -2,21 +2,21 @@ package com.itwill.jpa.service.order;
 
 import java.util.List;
 
-import com.itwill.jpa.entity.order.Delivery;
+import com.itwill.jpa.dto.order.DeliveryDto;
 
 public interface DeliveryService {
 	
-	Delivery saveDelivery(Delivery delivery);
+	DeliveryDto saveDelivery(DeliveryDto delivery);
 	
-	Delivery updateDelivery(Delivery delivery) throws Exception;
+	DeliveryDto updateDelivery(DeliveryDto delivery) throws Exception;
 	
 	void deleteDelivery(Long id) throws Exception;
 	
-	List<Delivery> deliverys();
+	void deliverys();
 	
-	List<Delivery> findDelivery(String userId);
+	List<DeliveryDto> findDelivery(String userId);
 	
-	Delivery findByDeliveryId(Long id);
+	DeliveryDto findByDeliveryId(Long id);
 	
 	
 	

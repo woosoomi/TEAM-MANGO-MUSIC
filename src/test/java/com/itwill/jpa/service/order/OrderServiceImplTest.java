@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
@@ -52,12 +53,13 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void orderCreateTest() {
-		
+
 		Order order = new Order();
 		
 		User user = userDao.findUser("why3795");
+		
 		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(20L).build());
 		
 		order.setDelivery(delivery);
@@ -70,6 +72,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 		orderDto.setOrderStatus(OrderStatus.배송준비중);
 		
 		OrderDto createdOrderDto = orderServiceImpl.saveOrder(orderDto);
+		
 		System.out.println(createdOrderDto);
 		
 	}
@@ -81,7 +84,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void orderUpdateTest() throws Exception {
-		Order order = orderRepository.findById(1L).get();
+		Order order = orderRepository.findById(3041L).get();
 		OrderDto orderDto = OrderDto.toDto(order);
 		orderDto.setOrderPrice(333333333);
 		orderDto.setOrderStatus(OrderStatus.결제완료);

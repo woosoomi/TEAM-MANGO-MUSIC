@@ -13,10 +13,11 @@ import com.itwill.jpa.entity.user.User;
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
 	List<Order> findOrdersByUser(User user);
-	
-	 @Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY CREATED_AT DESC", nativeQuery = true)
-	  List<Order> orderListByNewer(@Param("user_id")String userId);
+
+	@Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY CREATED_AT DESC", nativeQuery = true)
+	List<Order> orderListByNewer(@Param("user_id") String userId);
+
+	@Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY CREATED_AT ASC", nativeQuery = true)
+	List<Order> orderListByOlder(@Param("user_id") String userId);
 	 
-	 @Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY CREATED_AT ASC", nativeQuery = true)
-	 List<Order> orderListByOlder(@Param("user_id")String userId);
 }
