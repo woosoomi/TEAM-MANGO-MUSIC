@@ -70,7 +70,7 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
-    @Disabled
+ //   @Disabled
     public void testFindByProductCategory() {
         Long categoryId = 1L;
         ProductCategory category = new ProductCategory();
@@ -91,7 +91,7 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
- //   @Disabled
+    @Disabled
     public void testInsertProduct() {
         // 새로운 Product 객체를 생성
         Product product = new Product();

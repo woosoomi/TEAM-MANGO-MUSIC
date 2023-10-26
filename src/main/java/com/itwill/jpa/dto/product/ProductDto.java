@@ -93,19 +93,7 @@ public static ProductDto toDto(Product entity) {
 			.periodOfUse(entity.getPeriodOfUse())
 			.build();
 }
-/************ GOODS ************/
-public void goodsDto(Goods goods) {
-	this.productCategory = goods.getProductCategory();
-	this.productName = goods.getProductName();
-	this.productPrice = goods.getProductPrice();
-	this.productStar = goods.getProductStar();
-	this.productDate = goods.getProductDate();
-	this.productStock = goods.getProductStock();
-	this.productImage = goods.getProductImage();
-	
-}
 
-/************ MEMBERSHIP ************/
 
 
 }
