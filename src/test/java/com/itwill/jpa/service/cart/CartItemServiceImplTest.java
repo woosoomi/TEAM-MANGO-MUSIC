@@ -41,8 +41,8 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Rollback(false)
 	@Disabled
 	void cartItemInsert() {
-		/*
-		User user = new User("test1", "1111", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
+
+		User user = new User("test1", "1111", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null, null);
 		Cart cart = new Cart();
 		cart.setUser(user);
 		cart.setCartId(138L);
@@ -65,7 +65,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		
 		cartRepository.save(cart);
 		userRepository.save(user);
-		*/
+		
 	}
 	@Test
 	//@Disabled
