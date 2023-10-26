@@ -20,9 +20,9 @@ public interface UserDao {
     
     boolean existsById(String userId); //중복된 아이디 체크
     
-    String findUserIdByUserEmail(String userEmail); // 이메일로 아이디 찾기
+    String findUserIdByUserNameUserEmail(String userName ,String userEmail); // 이름과 이메일로 아이디 찾기
 
-    String findUserPwByUserPhone(String userPhone); // 번호로 비밀번호 찾기
+    String findUserPwByUserIdUserPhone(String userId ,String userPhone); // 아이디와 번호로 비밀번호 찾기
     
     
     

@@ -1,5 +1,7 @@
 package com.itwill.jpa.dto.user;
 
+import com.itwill.jpa.entity.user.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +23,20 @@ public class UserDto {
 	private String userJumin;		// 회원 주민번호
 	private String userPhone;		// 회원 전화번호
 	private String userGender;		// 회원 성별
+	
+	public static UserDto toDto(User entity) {
+		return UserDto.builder()
+					  .userId(entity.getUserId())
+					  .userPw(entity.getUserPw())
+					  .userName(entity.getUserName())
+					  .userAddress(entity.getUserAddress())
+					  .userEmail(entity.getUserEmail())
+					  .userJumin(entity.getUserJumin())
+					  .userPhone(entity.getUserPhone())
+					  .userGender(entity.getUserGender())
+					  .build();
+	}
+	
 	
 }
 

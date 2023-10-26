@@ -4,14 +4,17 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 
 import com.itwill.jpa.entity.order.Coupon;
+import com.itwill.jpa.entity.order.Order;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 //웹에서 고객에게 보여주기 위한 정보를 담은 객체(Dto)
 public class CouponDto {
 	
@@ -41,6 +44,19 @@ public class CouponDto {
 		this.couponExpirationDate = coupon.getCouponExpirationDate();
 		this.couponIsUsed = coupon.getCouponIsUsed();
 		
+		
+	}
+	
+	public static CouponDto toDto(Coupon entity) {
+		return CouponDto.builder()
+				.couponId(entity.getCouponId())
+				.couponName(entity.getCouponName())
+				.couponType(entity.getCouponType())
+				.couponCode(entity.getCouponCode())
+				.couponDiscount(entity.getCouponDiscount())
+				.couponExpirationDate(entity.getCouponExpirationDate())
+				.couponIsUsed(entity.getCouponIsUsed())
+				.build();
 		
 	}
 
