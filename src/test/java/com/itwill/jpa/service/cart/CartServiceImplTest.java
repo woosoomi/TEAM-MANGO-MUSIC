@@ -3,6 +3,7 @@ package com.itwill.jpa.service.cart;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,11 +32,11 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Autowired
 	CartRepository cartRepository;
-	
 	@Test
 	@Transactional
 	@Disabled
 	@Rollback(false)
+	
 	void cartInsert() {
 		User user1 =new User("test102", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
 		userRepository.save(user1);
@@ -48,7 +49,6 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		Cart insertedCart=cartServiceImpl.insert(cart1);
 		
 		System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart);
-		
 		/*
 		Cart cart2 = new Cart();
 		CartItem cartItem2 =new CartItem(0L,10000,null,null);
@@ -65,8 +65,8 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		userRepository.save(user2);
 		Cart insertedCart1=cartServiceImpl.insert(cart2);
 		System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart1);
-		*/
 		
+		 */ 
 	}
 	
 	@Test
@@ -88,17 +88,24 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		System.out.println("cartItems>>>>>>>>>>"+cartItems);
 	}
 	
-	/*
+
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void calTotPrice() {
-		Optional<Cart> findCart = cartRepository.findById(138L);
-		List<Cart> cartItems = cartServiceImpl.getCartItems(findCart.get());
-		cartServiceImpl.calculateTotalPrice(cartItems);
-		System.out.println("caltot>>>>>>>>>>>>"+cartItems);
+		Optional<Cart> findCartItem = cartRepository.findById(642L);
+		System.out.println();
+		if(findCartItem.isPresent()) {
+			Cart cart = findCartItem.get();
+			System.out.println("cart>>>>>>>>>>>>>>>>"+cart);
+			double totalPrice = cartServiceImpl.calculateTotalPrice(Collections.singletonList(cart));
+			System.out.println("tot price>>>>>>>"+totalPrice);
+		}else {
+			System.out.println("error");
+		}
+		
 	}
-	*/
+	
 
 }
