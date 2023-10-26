@@ -8,6 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Membership;
+import com.itwill.jpa.entity.product.Product.Music;
+import com.itwill.jpa.entity.product.Product.Ticket;
 
 
 
@@ -29,9 +33,18 @@ public interface ProductService{
 	// 품절 안내 기능[성공]
 	Product outOfStockMsg(Long productNo);
 
-
+	/******************** insert ********************/
 	// product 등록[성공]
-	public Product insertProduct(Product product);
+	public Product insertProduct(Product product);	
+	// music 등록[성공]
+	public Music insertMusic(Music music);
+	// music 등록[성공]
+	public Goods insertGoods(Goods goods);
+	// music 등록[성공]
+	public Ticket insertTicket(Ticket ticket);
+	// music 등록[성공]
+	public Membership insertMembership(Membership membership);
+	/*********************************************/
 	
 	// product 삭제[성공]		
 	void deleteProduct(Long productNo) throws Exception;
@@ -54,8 +67,10 @@ public interface ProductService{
 	// 키워드로 검색[테스트중]
 	public List<Product> searchProductsByKeyword(String keyword);
 	
+	// product categoryId별 분류
+	public List<Product> findByCategoryId(Long categoryId);
+	
 	// product category별 분류[성공]
-//	public List<Product> findByProductCategory(Long categoryId);
 	List<Product> findByProductCategory(ProductCategory categoryId);
 	
 	// productNo 찾기[성공]

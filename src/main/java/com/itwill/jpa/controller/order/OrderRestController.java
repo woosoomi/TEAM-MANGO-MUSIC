@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
@@ -46,9 +47,9 @@ public class OrderRestController {
 	// 주문생성
 
 	@PostMapping("/create")
-	public ResponseEntity<?> createOrder(@RequestBody Order order) {
+	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
 		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(order));
+			return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(orderDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 			Map<String, String> errorResponse = new HashMap<>();
@@ -60,9 +61,9 @@ public class OrderRestController {
 	// 주문수정(관리자권한)
 
 	@PutMapping("/update")
-	public ResponseEntity<?> updateOrder(@RequestBody Order order) throws Exception {
+	public ResponseEntity<?> updateOrder(@RequestBody OrderDto orderDto) throws Exception {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(order));
+			return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(orderDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 			Map<String, String> errorResponse = new HashMap<>();

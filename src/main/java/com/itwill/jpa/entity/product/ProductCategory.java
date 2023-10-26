@@ -38,6 +38,7 @@ public class ProductCategory {
  public static ProductCategory toEntity(ProductCategoryDto dto) {
 	 return ProductCategory.builder()
 			 			   .productCategoryName(dto.getProductCategoryName())
+			 			   .categoryId(dto.getCategoryId())
 			 			   .build();
  }
  
@@ -46,4 +47,6 @@ public class ProductCategory {
 	@Builder.Default
 	@ToString.Exclude
 	private List<Product> products = new ArrayList<Product>();
+	
+	
 }

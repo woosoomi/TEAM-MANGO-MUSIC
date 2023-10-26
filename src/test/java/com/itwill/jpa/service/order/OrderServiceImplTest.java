@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
@@ -53,22 +54,20 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void orderCreateTest() {
-		Order order = new Order();
+		OrderDto orderDto = new OrderDto();
 		User user = userDao.findUser("why3795");
 		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(30L).build());
 		
 		
-		order.setOrderId(null);
-		order.setOrderPrice(20000);
-		order.setDelivery(delivery);
-		order.setOrderDate(null);
-		order.setOrderStatus(OrderStatus.배송준비중);
-		order.setUser(user);
+		orderDto.setOrderId(null);
+		orderDto.setOrderPrice(20000);
+		orderDto.setOrderStatus(OrderStatus.배송준비중);
+		
 		
 		userRepository.save(user);
 		deliveryRepository.save(delivery);
-		Order createdOrder = orderServiceImpl.saveOrder(order);
-		System.out.println(createdOrder);
+		OrderDto createdOrderDto = orderServiceImpl.saveOrder(orderDto);
+		System.out.println(createdOrderDto);
 	}
 	
 	
@@ -79,10 +78,11 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	void orderUpdateTest() throws Exception {
 		Order order = orderRepository.findById(1L).get();
-		order.setOrderPrice(333333333);
-		order.setOrderStatus(OrderStatus.결제완료);
-		Order updatedOrder = orderServiceImpl.updateOrder(order);
-		System.out.println(updatedOrder);
+		OrderDto orderDto = OrderDto.toDto(order);
+		orderDto.setOrderPrice(333333333);
+		orderDto.setOrderStatus(OrderStatus.결제완료);
+		OrderDto updatedOrderDto = orderServiceImpl.updateOrder(orderDto);
+		System.out.println(updatedOrderDto);
 	}
 	
 	//주문 한개 삭제(성공)
@@ -131,8 +131,8 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void orderByUserIdTest() {
-		List<Order> orderList = orderServiceImpl.ordersByUserId("팀장님");
-		System.out.println(orderList);
+		List<OrderDto> orderDtoList = orderServiceImpl.ordersByUserId("팀장님");
+		System.out.println(orderDtoList);
 	}
 	
 	//전체 주문 불러오기(관리자)(성공)
@@ -141,8 +141,8 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void findAllOrders() {
-		List<Order> orderList = orderServiceImpl.orders();
-		System.out.println(orderList);
+		List<OrderDto> orderDtoList = orderServiceImpl.orders();
+		System.out.println(orderDtoList);
 	}
 	
 	
@@ -152,8 +152,8 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(true)
 	@Disabled
 	void orderListByNewer() {
-		List<Order> orderList = orderServiceImpl.orderListByNewer("why3795");
-		System.out.println(orderList);
+		List<OrderDto> orderDtoList = orderServiceImpl.orderListByNewer("why3795");
+		System.out.println(orderDtoList);
 	}
 	
 	//주문 오래된순으로 나열하기(성공)
@@ -162,8 +162,8 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(true)
 	@Disabled
 	void orderListByOlder() {
-		List<Order> orderList = orderServiceImpl.orderListByOlder("why3795");
-		System.out.println(orderList);
+		List<OrderDto> orderDtoList = orderServiceImpl.orderListByOlder("why3795");
+		System.out.println(orderDtoList);
 	}
 	
 }

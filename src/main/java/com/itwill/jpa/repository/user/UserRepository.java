@@ -12,10 +12,11 @@ import com.itwill.jpa.entity.user.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 	
-	  @Query(value = "SELECT u.user_id FROM userinfo u WHERE u.user_email = :user_email", nativeQuery = true)
-	  String findUserIdByUserEmail(@Param("user_email") String userEmail);
+	  @Query(value = "SELECT u.user_id FROM userinfo u WHERE u.user_name = :user_name and u.user_email = :user_email", nativeQuery = true)
+	  String findUserIdByUserNameUserEmail(@Param("user_name") String userName, @Param("user_email") String userEmail);
 	  
-	  @Query(value = "SELECT u.user_pw FROM userinfo u WHERE u.user_phone = :user_phone", nativeQuery = true)
-	  String findUserPwByUserPhone(@Param("user_phone") String userPhone);
+	  @Query(value = "SELECT u.user_pw FROM userinfo u WHERE u.user_id = :user_id and u.user_phone = :user_phone", nativeQuery = true)
+	  String findUserPwByUserIdUserPhone(@Param("user_id") String userId , @Param("user_phone") String userPhone);
 	 
+
 }

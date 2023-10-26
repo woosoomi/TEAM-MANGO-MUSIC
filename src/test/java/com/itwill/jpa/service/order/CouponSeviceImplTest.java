@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.OrderDao;
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.dto.order.CouponDto;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.user.User;
@@ -50,23 +51,23 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void couponCreateTest() {
-		Coupon coupon = new Coupon();
+		CouponDto couponDto = new CouponDto();
 		User user = userDao.findUser("why3795");
 		Order order = orderDao.selectOrder(2L);
 		
-		coupon.setCouponCode("00000033");
-		coupon.setCouponId(null);
-		coupon.setCouponDiscount(50.0);
-		coupon.setCouponExpirationDate(null);
-		coupon.setCouponIsUsed(0);
-		coupon.setCouponName("테스트쿠폰");
-		coupon.setCouponType("100년쿠폰");
+		couponDto.setCouponCode("00000033");
+		couponDto.setCouponId(null);
+		couponDto.setCouponDiscount(50.0);
+		couponDto.setCouponExpirationDate(null);
+		couponDto.setCouponIsUsed(0);
+		couponDto.setCouponName("테스트쿠폰");
+		couponDto.setCouponType("100년쿠폰");
 		
 		userRepository.save(user);
 		orderRepository.save(order);
 		
-		Coupon createdCoupon = couponSeviceImpl.saveCoupon(coupon);
-		System.out.println(createdCoupon);
+		CouponDto createdCouponDto = couponSeviceImpl.saveCoupon(couponDto);
+		System.out.println(createdCouponDto);
 		
 		
 	}
@@ -79,14 +80,15 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	void couponUpdateTest() throws Exception {
 
 		Coupon coupon = couponRepository.findById(1L).get();
-		coupon.setCouponCode("33333333");
-		coupon.setCouponDiscount(30.0);
-		coupon.setCouponExpirationDate(null);
-		coupon.setCouponIsUsed(1);
-		coupon.setCouponName("날이면 날마다 오는 쿠폰");
-		coupon.setCouponType("12개월쿠폰");
-		Coupon updatedCoupon = couponSeviceImpl.updateCoupon(coupon);
-		System.out.println(updatedCoupon);
+		CouponDto couponDto = CouponDto.toDto(coupon);
+		couponDto.setCouponCode("33333333");
+		couponDto.setCouponDiscount(30.0);
+		couponDto.setCouponExpirationDate(null);
+		couponDto.setCouponIsUsed(1);
+		couponDto.setCouponName("날이면 날마다 오는 쿠폰");
+		couponDto.setCouponType("12개월쿠폰");
+		CouponDto updatedCouponDto = couponSeviceImpl.updateCoupon(couponDto);
+		System.out.println(updatedCouponDto);
 	
 	}
 
@@ -119,8 +121,8 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	void couponByUserIdTest(){
 		
-		List<Coupon> couponList = couponSeviceImpl.couponsByUserId("팀장님");
-		System.out.println(couponList);
+		List<CouponDto> couponDtoList = couponSeviceImpl.couponsByUserId("팀장님");
+		System.out.println(couponDtoList);
 
 	}
 
@@ -131,7 +133,7 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	void findCouponByOrderIdTest(){
 		
-		Coupon coupon = couponSeviceImpl.findCouponByOrderId(3L);
-		System.out.println(coupon);
+		CouponDto couponDto = couponSeviceImpl.findCouponByOrderId(3L);
+		System.out.println(couponDto);
 	}
 }

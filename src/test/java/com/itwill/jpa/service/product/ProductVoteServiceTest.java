@@ -40,6 +40,7 @@ class ProductVoteServiceTest {
 	
 	@Autowired
 	UserRepository userRepository;
+		
 	
 	@Autowired
     private ProductVoteRepository productVoteRepository;	
@@ -106,5 +107,11 @@ class ProductVoteServiceTest {
     
     }
     
-    
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void testselectVoteTop20() {
+    	List<Product> a = productVoteRepository.selectVoteTop20();
+    	System.out.println("@@@@@"+a); 
+    }
 }

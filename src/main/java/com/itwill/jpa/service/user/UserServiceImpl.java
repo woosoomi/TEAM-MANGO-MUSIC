@@ -23,6 +23,10 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User createUser(User user) throws Exception {
+		if(userDao.existsById(user.getUserId())) {
+			throw new Exception(user.getUserId() + "는 이미 존재하는 아이디입니다.");
+		}
+		
 		User insert = userDao.createUser(user);
 		return insert;
 	}
@@ -44,8 +48,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User updateUser(User user) throws Exception {
-		 if (userRepository.existsById(user.getUserId())) {
-	            return userRepository.save(user);
+		 if (userDao.existsById(user.getUserId())) {
+	            return userDao.updateUser(user);
 	        } else {
 	            throw new Exception("존재하지 않는 사용자입니다.");
 	        }
@@ -82,23 +86,36 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String findUserIdByUserEmail(String userEmail) throws Exception {
-		 String userId = userRepository.findUserIdByUserEmail(userEmail);
-	        if (userId == null) {
-	            throw new Exception("해당 이메일로 등록된 사용자가 없습니다.");
-	        }
-	        return userId;
+	public String findUserIdByUserNameUserEmail(String userName, String userEmail) throws Exception {
+	    if (userName == null || userName.isEmpty()) {
+	        throw new Exception("사용자 이름이 잘못되었습니다.");
 	    }
+	    if (userEmail == null || userEmail.isEmpty()) {
+	        throw new Exception("사용자 이메일이 잘못되었습니다.");
+	    }
+	    String userId = userDao.findUserIdByUserNameUserEmail(userName, userEmail);
+	    if (userId == null) {
+	        throw new Exception("해당 정보로 등록된 사용자가 없습니다.");
+	    }
+	    return userId;
+	}
 
 	@Override
-	public String findUserPwByUserPhone(String userPhone) throws Exception {
-		  String userPw = userRepository.findUserPwByUserPhone(userPhone);
-	        if (userPw == null) {
-	            throw new Exception("해당 전화번호로 등록된 사용자가 없습니다.");
-	        }
-	        return userPw;
-	    }
-	}//테스트
+	public String findUserPwByUserIdUserPhone(String userId, String userPhone) throws Exception {
+		if (userId == null || userId.isEmpty()) {
+			throw new Exception("사용자 아이디가 잘못되었습니다.");
+		}
+		if (userPhone == null || userPhone.isEmpty()) {
+			throw new Exception("사용자 번호가 잘못되었습니다.");
+		}
+
+		String userPw = userRepository.findUserPwByUserIdUserPhone(userId, userPhone);
+		if (userPw == null) {
+			throw new Exception("해당 정보로 등록된 사용자가 없습니다.");
+		}
+		return userPw;
+	}
+}
 	
 	
 
