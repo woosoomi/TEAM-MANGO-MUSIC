@@ -25,5 +25,8 @@ public interface BoardRepository extends JpaRepository<Board,Long >{
     //기간으로 찾기 
     List<Board> findByCreatedTimeBetween(LocalDateTime startDate, LocalDateTime endDate);
 
+    // boardCount 필드로 내림차순 정렬
+    List<Board> findAllByOrderByBoardReadCountDesc();
+
 
 }
