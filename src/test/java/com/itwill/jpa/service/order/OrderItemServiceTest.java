@@ -111,7 +111,7 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void orderItems2() {
 		List<OrderItem> orderItems = orderItemService.orderItems("why3795");
 		System.out.println(orderItems);

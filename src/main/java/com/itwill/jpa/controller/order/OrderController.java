@@ -33,10 +33,10 @@ public class OrderController {
 	public String order_page(Model model, HttpServletRequest request) {
 		try {
 			HttpSession session = request.getSession();
-			session.setAttribute("userId", "why3795");
-			String userId = (String) session.getAttribute("userId");
+			session.setAttribute("user_id", "why3795");
+			String userId = (String) session.getAttribute("user_id");
 			List<OrderItem> orderItemList = orderItemService.orderItems(userId);
-			model.addAttribute(orderItemList);
+			 model.addAttribute("orderItemList", orderItemList);
 			System.out.println("주문 아이템: "+ orderItemList);
 			return "order";
 		}catch(Exception e){
@@ -44,7 +44,6 @@ public class OrderController {
 			model.addAttribute("errorMsg: "+ e.getMessage());
 			return "index";
 		}
-//		return "order";
 	}
 
 	@GetMapping("/orderdetail")

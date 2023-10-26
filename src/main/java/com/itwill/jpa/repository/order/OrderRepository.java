@@ -14,9 +14,9 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
 
 	List<Order> findOrdersByUser(User user);
 	
-	 @Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY order_date DESC", nativeQuery = true)
+	 @Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC", nativeQuery = true)
 	  List<Order> orderListByNewer(@Param("user_id")String userId);
 	 
-	 @Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY order_date ASC", nativeQuery = true)
+	 @Query(value = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at ASC", nativeQuery = true)
 	 List<Order> orderListByOlder(@Param("user_id")String userId);
 }
