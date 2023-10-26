@@ -47,11 +47,10 @@ public class VoteRestController {
 
 	@Operation(summary = "투표생성")
 	@PutMapping("/create")
-	public ResponseEntity<VoteDto> createVote(@RequestBody VoteDto voteDto) throws Exception {
-	    /* VoteDto를 Vote 엔티티로 변환
-	    Vote vote = new Vote(voteDto.getVoteId(), voteDto.getVoteDate(), voteDto.getVoteTot());
-	    */
+	public ResponseEntity<VoteDto> createVote(@RequestBody VoteDto voteDto) {
+	    
 		Vote vote = new Vote(null, null, 0, null, null);
+		VoteDto.toDto(vote);
 		vote.setVoteId(voteDto.getVoteId());
 		vote.setVoteDate(voteDto.getVoteDate());
 		vote.setVoteTot(voteDto.getVoteTot());
