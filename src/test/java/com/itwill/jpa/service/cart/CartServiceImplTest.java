@@ -34,14 +34,14 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	CartRepository cartRepository;
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	
 	void cartInsert() {
 
-		//User user1 =new User("test102", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
-		//userRepository.save(user1);
-		Optional<User> findUser = userRepository.findById("lsg33");
+		User user1 =new User("lsg34", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
+		userRepository.save(user1);
+		Optional<User> findUser = userRepository.findById("lsg34");
 		System.out.println("findUser>>>>>>>>>>>>>>>"+findUser);
 		if (findUser.isPresent()) {
 			User user = findUser.get();
@@ -50,6 +50,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 			Cart insertedCart=cartServiceImpl.insert(cart1);
 			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart);
 		}
+	
 		//cart1.setUser();
 		//cart1.getCartitems();
 		//cart1.setCartId(0L);
@@ -97,7 +98,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void calTotPrice() {
