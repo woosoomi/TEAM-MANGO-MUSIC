@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.CouponDao;
-import com.itwill.jpa.dao.order.OrderDao;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.repository.order.CouponRepository;
 
