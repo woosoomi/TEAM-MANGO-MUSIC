@@ -1,5 +1,6 @@
 package com.itwill.jpa.service.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.repository.order.OrderRepository;
 
 import jakarta.transaction.Transactional;
+import jakarta.websocket.Session;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -21,101 +23,78 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
 	OrderDao orderDao;
 
+	//주문 생성
 	@Override
-	public OrderDto saveOrder(OrderDto orderDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public OrderDto saveOrder(OrderDto dto) {
+		
+		Order order = orderRepository.save(Order.toEntity(dto));
+		OrderDto orderDto = OrderDto.toDto(order);
+		return orderDto;
+	}
+	
+	//주문 정보 수정
+	@Transactional
+	@Override
+	public OrderDto updateOrder(OrderDto dto) throws Exception{
+		Order order = orderDao.updateOrder(Order.toEntity(dto));
+		OrderDto orderDto = OrderDto.toDto(order);
+		return orderDto;
 	}
 
-	@Override
-	public OrderDto updateOrder(OrderDto orderDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	//주문 한개 삭제
 	@Override
 	public void deleteOrder(Long orderId) throws Exception {
-		// TODO Auto-generated method stub
-		
+		orderRepository.deleteById(orderId);
 	}
-
+	
+	//주문 전체 삭제
 	@Override
 	public void deleteAllOrder() throws Exception {
-		// TODO Auto-generated method stub
-		
+		orderRepository.deleteAll();
 	}
 
+	//유저 아이디로 주문 전체 불러오기
 	@Override
 	public List<OrderDto> ordersByUserId(String UserId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Order> orderList = orderDao.getOrdersByUserId(UserId);
+		List<OrderDto> orderDtoList = new ArrayList<OrderDto>();
+		for (Order order : orderList) {
+			orderDtoList.add(OrderDto.toDto(order));
+		}
+		return orderDtoList;
 	}
-
+	
+	//전체 주문 불러오기(관리자)
 	@Override
 	public List<OrderDto> orders() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Order> orderList = orderRepository.findAll();
+		List<OrderDto> orderDtoList = new ArrayList<OrderDto>();
+		for (Order order : orderList) {
+			orderDtoList.add(OrderDto.toDto(order));
+		}
+		return orderDtoList;
 	}
 
 	@Override
 	public List<OrderDto> orderListByNewer(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Order> orderList = orderDao.orderListByNewer(userId);
+		List<OrderDto> orderDtoList = new ArrayList<OrderDto>();
+		for (Order order : orderList) {
+			orderDtoList.add(OrderDto.toDto(order));
+		}
+		return orderDtoList;
 	}
 
 	@Override
 	public List<OrderDto> orderListByOlder(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Order> orderList = orderRepository.orderListByOlder(userId);
+		List<OrderDto> orderDtoList = new ArrayList<OrderDto>();
+		for (Order order : orderList) {
+			orderDtoList.add(OrderDto.toDto(order));
+		}
+		return orderDtoList;
 	}
-	
-//	//주문 생성
-//	@Override
-//	public OrderDto saveOrder(OrderDto dto) {
-//		Order order = orderDao.insertOrder(Order.toEntity(dto));
-//		OrderDto orderDto = OrderDto.toDto(order);
-//		return orderDto;
-//	}
-//	
-//	//주문 정보 수정
-//	@Transactional
-//	@Override
-//	public Order updateOrder(Order order) throws Exception{
-//		return orderDao.updateOrder(order);
-//	}
-//
-//	//주문 한개 삭제
-//	@Override
-//	public void deleteOrder(Long orderId) throws Exception {
-//		orderRepository.deleteById(orderId);
-//	}
-//	
-//	//주문 전체 삭제
-//	@Override
-//	public void deleteAllOrder() throws Exception {
-//		orderRepository.deleteAll();
-//	}
-//
-//	//유저 아이디로 주문 전체 불러오기
-//	@Override
-//	public List<Order> ordersByUserId(String UserId) {
-//		return orderDao.getOrdersByUserId(UserId);
-//	}
-//	
-//	//전체 주문 불러오기(관리자)
-//	@Override
-//	public List<Order> orders() {
-//		return orderRepository.findAll();
-//	}
-//
-//	@Override
-//	public List<Order> orderListByNewer(String userId) {
-//		return orderDao.orderListByNewer(userId);
-//	}
-//
-//	@Override
-//	public List<Order> orderListByOlder(String userId) {
-//		return orderRepository.orderListByOlder(userId);
-//	}
+
+
 
 }
