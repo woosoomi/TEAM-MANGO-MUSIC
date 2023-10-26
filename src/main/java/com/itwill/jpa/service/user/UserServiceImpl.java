@@ -23,6 +23,10 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User createUser(User user) throws Exception {
+		if(userDao.existsById(user.getUserId())) {
+			throw new Exception(user.getUserId() + "는 이미 존재하는 아이디입니다.");
+		}
+		
 		User insert = userDao.createUser(user);
 		return insert;
 	}
@@ -44,8 +48,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User updateUser(User user) throws Exception {
-		 if (userRepository.existsById(user.getUserId())) {
-	            return userRepository.save(user);
+		 if (userDao.existsById(user.getUserId())) {
+	            return userDao.updateUser(user);
 	        } else {
 	            throw new Exception("존재하지 않는 사용자입니다.");
 	        }
@@ -83,7 +87,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public String findUserIdByUserEmail(String userEmail) throws Exception {
-		 String userId = userRepository.findUserIdByUserEmail(userEmail);
+		 String userId = userDao.findUserIdByUserEmail(userEmail);
 	        if (userId == null) {
 	            throw new Exception("해당 이메일로 등록된 사용자가 없습니다.");
 	        }

@@ -43,7 +43,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@DisplayName("회원가입")
     public void testCreateUser() {
         User user = new User();
-        user.setUserId("님님님");
+        user.setUserId("kbs88");
         user.setUserPw("9876");
         user.setUserName("테스트님");
         user.setUserPhone("010-1234-5678");
@@ -53,7 +53,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
         try {
             User createdUser = userDao.createUser(user);
             assertNotNull(createdUser);
-            assertEquals(">>> 님님님", createdUser.getUserId());
+            assertEquals("kbs88", createdUser.getUserId());
             System.out.println(">>> 회원가입 성공" + createdUser);
         } catch (Exception e) {
             fail(">>> 회원가입 실패 " + e.getMessage());
@@ -87,8 +87,8 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
     @DisplayName("회원수정")
     public void testUpdateUser() {
 		
-		String userId = "범석님";
-		String newUserName = "테스트네임zz";
+		String userId = "kbs88";
+		String newUserName = "고범석테스트";
 		String newUserGenger = "상남자";
 		String newUserPhone = "010-9876-5432";
 		try {
@@ -112,10 +112,10 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
     @Rollback(false)
     @DisplayName("회원탈퇴")
     public void testDeleteUser() {
-        String userId = "aaaas";
+        String userId = "shy888";
 
         try {
-            userService.deleteUser(userId);
+            userDao.deleteUser(userId);
             
         } catch (Exception e) {
             fail(">>> 회원 탈퇴 실패 " + e.getMessage());
@@ -128,10 +128,10 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@DisplayName("회원상세보기")
 	public void testFindUser() {
-		String userId = "범석님";
+		String userId = "kbs88";
 
 		try {
-			User user = userService.findUser(userId);
+			User user = userDao.findUser(userId);
 			assertNotNull(user);
 			assertEquals(userId, user.getUserId());
 			System.out.println(">>> 회원 조회 성공 " + user);
@@ -147,7 +147,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@DisplayName("전체회원리스트")
 	public void testFindUserList() {
 		try {
-			List<User> userList = userService.findUserList();
+			List<User> userList = userDao.findUserList();
 			assertNotNull(userList);
 			assertFalse(userList.isEmpty());
 			System.out.println(">>> 전체 회원 리스트 " + userList);
@@ -162,9 +162,9 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@DisplayName("아이디중복체크")
 	public void testExistsById() throws Exception {
-		 String existingUserId = "팀장님";
+		 String existingUserId = "kbs87";
 
-		    boolean isExists = userService.existsById(existingUserId);
+		    boolean isExists = userDao.existsById(existingUserId);
 		    if (isExists) {
 		        System.out.println(">>> 아이디 중복됨.");
 		        assertTrue(isExists);
@@ -180,7 +180,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		@Rollback(false)
 		@DisplayName("이메일로 아이디 찾기")
 		public void testFindUserIdByUserEmail() {
-			String userEmail = "kbs@gmail.com";
+			String userEmail = "kbs1@naver.com";
 
 			try {
 				String foundUserId = userService.findUserIdByUserEmail(userEmail);
@@ -197,7 +197,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		@Rollback(false)
 		@DisplayName("번호로 비밀번호 찾기")
 		public void testFindUserPwByUserPhone() {
-			String userPhone = "010-8888-8888";
+			String userPhone = "010-4039-4937";
 
 			try {
 				String foundUserPw = userService.findUserPwByUserPhone(userPhone);

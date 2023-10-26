@@ -9,7 +9,6 @@ import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
 import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
-import com.itwill.jpa.entity.product.ProductCategory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,9 +21,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ProductDto {
+public class ProductMusicDto {
 	
-	private ProductCategory productCategory; // 프로덕트 카테고리
+	private String productCategory; // 프로덕트 카테고리
 	 	
 	private String productName;  // 프로덕트 이름
 	
@@ -61,7 +60,7 @@ public class ProductDto {
 	private List<Membership> memberships;
 	
 	
-public ProductDto(Product product) {
+public ProductMusicDto(Product product) {
 	this.productName = product.getProductName();
 	this.productPrice = product.getProductPrice();
 	this.productContent = product.getProductContent();
@@ -77,8 +76,8 @@ public ProductDto(Product product) {
 
 	}
 
-public static ProductDto toDto(Product entity) {
-	return ProductDto.builder()
+public static ProductMusicDto toDto(Product entity) {
+	return ProductMusicDto.builder()
 			.productName(entity.getProductName())
 			.productPrice(entity.getProductPrice())
 			.productContent(entity.getProductContent())
@@ -93,19 +92,6 @@ public static ProductDto toDto(Product entity) {
 			.periodOfUse(entity.getPeriodOfUse())
 			.build();
 }
-/************ GOODS ************/
-public void goodsDto(Goods goods) {
-	this.productCategory = goods.getProductCategory();
-	this.productName = goods.getProductName();
-	this.productPrice = goods.getProductPrice();
-	this.productStar = goods.getProductStar();
-	this.productDate = goods.getProductDate();
-	this.productStock = goods.getProductStock();
-	this.productImage = goods.getProductImage();
-	
-}
-
-/************ MEMBERSHIP ************/
 
 
 }

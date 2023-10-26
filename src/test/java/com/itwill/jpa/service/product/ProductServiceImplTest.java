@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.repository.product.ProductRepository;
 @SpringBootTest
 class ProductServiceImplTest {
@@ -90,10 +91,11 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
-    @Disabled
+ //   @Disabled
     public void testInsertProduct() {
         // 새로운 Product 객체를 생성
         Product product = new Product();
+//        product.setCategoryId(1L);
         product.setProductName("새로운 제품");
         product.setProductPrice(10000);
 
@@ -110,6 +112,34 @@ class ProductServiceImplTest {
         assertEquals(insertedProduct.getProductNo(), retrievedProduct.getProductNo());
         assertEquals("새로운 제품", retrievedProduct.getProductName());
         assertEquals(10000, retrievedProduct.getProductPrice());
+    }
+    
+    //music 추가[성공]    
+    @Test
+    @Transactional
+    @Rollback(false)
+    @Disabled
+    public void testInsertMusic() {
+    	// 새로운 Product 객체를 생성
+    	Music music = new Music();
+    	music.setCategoryId(1L);
+    	music.getProductCategory();
+    	music.setProductName("새로운 제품");
+    	music.setProductPrice(10000);
+    	
+    	// 제품 추가
+    	Music insertedMusic = productServiceImpl.insertMusic(music);
+    	
+    	// 제품 추가 확인
+    	assertNotNull(insertedMusic.getProductNo());
+    	assertEquals("새로운 제품", insertedMusic.getProductName());
+    	assertEquals(10000, insertedMusic.getProductPrice());
+    	
+    	// 추가된 제품 확인
+    	Product retrievedMusic= productServiceImpl.getProduct(insertedMusic.getProductNo());
+    	assertEquals(insertedMusic.getProductNo(), retrievedMusic.getProductNo());
+    	assertEquals("새로운 제품", retrievedMusic.getProductName());
+    	assertEquals(10000, retrievedMusic.getProductPrice());
     }
 
     //product 삭제[성공]	    

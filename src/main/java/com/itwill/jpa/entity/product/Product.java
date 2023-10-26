@@ -14,7 +14,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +22,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -59,7 +58,7 @@ public class Product {
 	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
 
 	private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
-	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
+//	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글		 ----------- 테이블 분리로 인한 주석처리
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
 	private Long readCount; // 프로덕트(음악,콘서트) 조회수
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
@@ -96,7 +95,20 @@ public class Product {
 	}
 
 	public static Product toEntity(ProductDto productDto) {
-		return Product.builder().productName(productDto.getProductName()).productPrice(productDto.getProductPrice())
+		return Product.builder()
+				.productCategory(productDto.getProductCategory())
+				.productName(productDto.getProductName())
+				.productPrice(productDto.getProductPrice())
+				.productStar(productDto.getProductStar())
+				.productDate(productDto.getProductDate())
+				.readCount(productDto.getReadCount())
+				.productStock(productDto.getProductStock())
+				.productImage(productDto.getProductImage())
+				.productMovie(productDto.getProductMovie())
+				.productArtist(productDto.getProductArtist())
+				.productAddress(productDto.getProductAddress())
+				.startPeriod(productDto.getStartPeriod())
+				.periodOfUse(productDto.getPeriodOfUse())
 				.build();
 	}
 
@@ -121,6 +133,12 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
+	
+	// product와 productreply 1대n
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@ToString.Exclude
+	private List<ProductReply> productReply = new ArrayList<>();
 
 	// ---- 비즈니스 로직----//
 	/* productStock 증가 */
@@ -136,5 +154,20 @@ public class Product {
 		}
 		this.productStock = restproductStock;
 	}
+
+//	public String setProductCategory(ProductCategory productCategory) {
+//		return productCategory.getProductCategoryName();
+//		
+//	}
+//	public Long setCategoryId(Long categoryId) {
+//		return productCategory.getCategoryId();
+//		
+//	}
+    public void setCategoryId(Long categoryId) {
+        // Product 클래스의 setProductCategory 메서드 호출
+        setProductCategory(new ProductCategory(categoryId, "Music", null));
+    }
+
+		
 
 }

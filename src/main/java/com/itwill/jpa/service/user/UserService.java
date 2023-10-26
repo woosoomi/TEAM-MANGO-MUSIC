@@ -32,5 +32,4 @@ public interface UserService {
 		// 번호로 비밀번호 찾기
 		String findUserPwByUserPhone(String userPhone) throws Exception; 
 		
-	
 }
