@@ -3,6 +3,7 @@ package com.itwill.jpa.entity.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.entity.order.Order;
@@ -46,6 +47,20 @@ public class User {
 	private String userEmail; // 회원 이메일
 	private String userJumin; // 회원 주민번호
 	private String userGender; // 회원 성별
+	
+	public static User toEntity(UserDto dto) {
+		return User.builder()
+				   .userId(dto.getUserId())
+				   .userPw(dto.getUserPw())
+				   .userName(dto.getUserName())
+				   .userPhone(dto.getUserPhone())
+				   .userAddress(dto.getUserAddress())
+				   .userEmail(dto.getUserEmail())
+				   .userJumin(dto.getUserJumin())
+				   .userGender(dto.getUserGender())
+				   .build();
+	}
+	
 	
 	//1대N 관계설정
 	@ManyToOne

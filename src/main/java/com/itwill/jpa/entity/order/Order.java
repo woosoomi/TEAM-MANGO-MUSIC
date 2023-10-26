@@ -99,6 +99,7 @@ public class Order {
 				.orderPrice(dto.getOrderPrice())
 				.orderStatus(dto.getOrderStatus())
 				.build();	
+				
 	}
 	
 }
