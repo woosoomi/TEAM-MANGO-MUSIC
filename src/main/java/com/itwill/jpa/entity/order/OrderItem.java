@@ -52,6 +52,7 @@ public class OrderItem {
 	 */
 	public static OrderItem toEntity(OrderItemDto orderItemDto) {
 		return OrderItem.builder()
+				.oiId(orderItemDto.getOiId())
 				.oiQty(orderItemDto.getOiQty())
 				.build();
 				

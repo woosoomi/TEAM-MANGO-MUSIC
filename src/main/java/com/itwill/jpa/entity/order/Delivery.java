@@ -49,6 +49,7 @@ public class Delivery {
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {
 		return Delivery.builder()
+					   .deliveryId(dto.getDeliveryId())
 					   .deliveryName(dto.getDeliveryName())
 					   .deliveryPhone(dto.getDeliveryPhone())
 					   .deliveryAddress(dto.getDeliveryAddress())

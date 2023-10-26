@@ -13,7 +13,6 @@ public interface CartService {
 	public Cart insert(Cart cart) throws Exception;
 	
 	//장바구니 비우기
-	//public void deleteAll(String userId) throws Exception;
 	public void deleteAllByCartId(Long cartId) throws Exception;
 	
 	//총합 계산

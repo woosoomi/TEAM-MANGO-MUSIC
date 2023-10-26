@@ -32,7 +32,7 @@ public class CartServiceImpl implements CartService {
 	// 장바구니에 담긴 상품들 조회
 	@Override
 	public List<Cart> getCartItems(Cart cart) {
-		return cartRepository.findAll();
+	 	return cartRepository.findAll();
 	}
 
 	// 카트번호를 이용하여 장바구니 아이템 전체삭제
@@ -45,7 +45,7 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public double calculateTotalPrice(List<Cart> cartItems) {
 		double total = 0.0;
-
+		
 		for (Cart cart : cartItems) {
 			List<CartItem> findCartItems = cart.getCartitems();
 			for (CartItem cartItem : findCartItems) {
