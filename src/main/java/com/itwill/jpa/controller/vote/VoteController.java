@@ -24,7 +24,7 @@ public class VoteController {
 		return forwardPath;
 	}
 
-	
+	/*
 	@PostMapping(value = "/user_vote_action")
 	private String user_vote_action(@ModelAttribute 
 									User user,
@@ -38,15 +38,7 @@ public class VoteController {
 	}
 	
 	
-	/***********GET방식요청시 main page redirection*********/
-	@GetMapping({
-		"user_vote_action"
-	})
-	public String user_get() {
-		String forwardPath = "redirect:index";
-		return forwardPath;
-	}
-    
+	*/
 	
 }
 
