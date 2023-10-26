@@ -12,7 +12,7 @@ public interface BoardRepository extends JpaRepository<Board,Long >{
 	List<Board> findAll();
 	
 	//카테고리ID로 분류하기
-	List<Board> findByBoardCategory_IdOrderByCreatedTime(Long categoryId);
+	List<Board> findByBoardCategory_IdOrderByCreatedTime(Long boardcategoryid);
 	
 	//keyword가 포함된 title찾기 
     List<Board> findByBoardTitleContaining(String keyword);

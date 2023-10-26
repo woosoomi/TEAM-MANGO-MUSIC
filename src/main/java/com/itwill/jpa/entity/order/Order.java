@@ -79,17 +79,17 @@ public class Order {
 	private Delivery delivery;
 	
 	// order와 user n대1
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "userId")
 	private User user;
 	
 	//order와 orderitem 1대n
-	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@Builder.Default
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//order와 coupon 1대n
-	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<Coupon> coupons = new ArrayList<>();
 	
 	

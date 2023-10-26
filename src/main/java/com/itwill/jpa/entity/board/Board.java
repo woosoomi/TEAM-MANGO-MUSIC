@@ -45,6 +45,8 @@ public class Board {
     private String boardTitle;
     private String boardContent;
     private String boardImage;
+    private String boardPrize;
+    private int boardReadCount;
 
     @CreationTimestamp
     private LocalDateTime createdTime;
@@ -65,13 +67,22 @@ public class Board {
 	@JoinColumn(name = "board_category_id")
 	@ToString.Exclude
 	private BoardCategory boardCategory;
+	
+	@ManyToOne
+	@JoinColumn(name = "board_type_id")
+	@ToString.Exclude
+	private BoardType boardType;
 		
 	//board- userboard 1대n
 	@OneToMany(mappedBy = "board",  cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
 	private List<UserBoard> userBoard = new ArrayList<UserBoard>();
-	
+    
+	@OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@ToString.Exclude
+	private List<BoardReply> boardReply = new ArrayList<>();
 	
 	
 }

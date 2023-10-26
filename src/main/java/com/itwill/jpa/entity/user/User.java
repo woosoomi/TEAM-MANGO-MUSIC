@@ -3,9 +3,9 @@ package com.itwill.jpa.entity.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.entity.order.Order;
-import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.vote.Vote;
 
 import jakarta.persistence.CascadeType;
@@ -66,4 +66,7 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private List<Coupon> coupons = new ArrayList<>();
 
+	// user와 board_Reply 1대N 관계설정
+	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	private List<BoardReply> boardReply = new ArrayList<>();
 }

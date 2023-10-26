@@ -18,4 +18,5 @@ public interface CouponService {
 	List<Coupon> couponsByUserId(String userId);
 	//주문내역에서 해당 주문에 사용된 쿠폰 불러오기
 	Coupon findCouponByOrderId(Long orderId);
+	
 }
