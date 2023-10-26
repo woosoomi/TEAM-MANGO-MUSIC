@@ -71,15 +71,6 @@ public class Order {
 		결제완료, 배송준비중, 배송중, 배송완료
 	}
 	
-	//Dto -> entity 변환해주는 매서드
-	public static Order toEntity(OrderDto dto) {
-		
-		return Order.builder()
-				.orderId(dto.getOrderId())
-				.orderPrice(dto.getOrderPrice())
-				.orderStatus(dto.getOrderStatus())
-				.build();	
-	}
 	
 	//order와 delivery 1대1
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -100,5 +91,14 @@ public class Order {
 	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<Coupon> coupons = new ArrayList<>();
 	
+	//Dto -> entity 변환해주는 매서드
+	public static Order toEntity(OrderDto dto) {
+		
+		return Order.builder()
+				.orderId(dto.getOrderId())
+				.orderPrice(dto.getOrderPrice())
+				.orderStatus(dto.getOrderStatus())
+				.build();	
+	}
 	
 }

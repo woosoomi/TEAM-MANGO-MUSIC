@@ -4,12 +4,14 @@ import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 //웹에서 고객에게 보여주기 위한 정보를 담은 객체(Dto)
 public class OrderDto {
 
@@ -19,11 +21,11 @@ public class OrderDto {
 	
 	private OrderStatus orderStatus; //주문 상태
 
-	private String userName;
+	//private String userName;
 
-	private String userPhone;
+	//private String userPhone;
 
-	private String userAddress;
+	//private String userAddress;
 		
 	
 	//private List<OrderItem> orderItems; // 주문한 아이템 정보들(수량, 가격등)
@@ -36,14 +38,23 @@ public class OrderDto {
 		this.orderId = order.getOrderId();
 		this.orderPrice = order.getOrderPrice();
 		this.orderStatus = order.getOrderStatus();
-		this.userName = order.getUser().getUserName();
-		this.userPhone = order.getUser().getUserPhone();
-		this.userAddress = order.getUser().getUserAddress();
+		//this.userName = order.getUser().getUserName();
+		//this.userPhone = order.getUser().getUserPhone();
+		//this.userAddress = order.getUser().getUserAddress();
 		//this.coupons = order.getCoupons();
 		//this.orderItems = order.getOrderItems();
 		// 주문 아이템(OrderItem)엔티티를 OrderItemDto로 변환하여 리스트로 저장
 		// why? 데이터 무결성을 위해서 Entity는 건들지않고 Dto만 사용하기위해서
 		//this.orderItems = order.getOrderItems().stream().map(OrderItemDto::fromOrderItem).collect(Collectors.toList());
+	}
+	//Entity to Dto 변환
+	public static OrderDto toDto(Order entity) {
+		return OrderDto.builder()
+				.orderId(entity.getOrderId())
+				.orderPrice(entity.getOrderPrice())
+				.orderStatus(entity.getOrderStatus())
+				.build();
+		
 	}
 	
 }
