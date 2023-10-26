@@ -3,6 +3,9 @@ package com.itwill.jpa.entity.order;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.itwill.jpa.dto.order.CouponDto;
 import com.itwill.jpa.entity.user.User;
 
@@ -59,8 +62,10 @@ public class Coupon {
 //	//사용된 쿠폰인지 확인 여부
 	private int couponIsUsed;
 	
+	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
+	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
 	// 쿠폰과 유저 n대 1
@@ -84,15 +89,15 @@ public class Coupon {
 	
 //Dto -> entity 변환해주는 매서드
 	public static Coupon toEntity(CouponDto dto) {
+		//클라이언트 페이지에서 전부 관리자 권한을 가진 유저만 해당 쿠폰 DTO 데이터 입력가능(일반유저는 쿠폰정보 변경불가)
 		return Coupon.builder()
+				.couponId(dto.getCouponId())
 				.couponName(dto.getCouponName())
 				.couponType(dto.getCouponType())
 				.couponCode(dto.getCouponCode())
 				.couponDiscount(dto.getCouponDiscount())
 				.couponExpirationDate(dto.getCouponExpirationDate())
 				.couponIsUsed(dto.getCouponIsUsed())
-				.createdAt(dto.getCreatedAt())
-				.updatedAt(dto.getUpdatedAt())
 				.build();	
 	}
 }
