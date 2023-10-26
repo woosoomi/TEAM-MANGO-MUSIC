@@ -43,17 +43,17 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@DisplayName("회원가입")
     public void testCreateUser() {
         User user = new User();
-        user.setUserId("kbs88");
-        user.setUserPw("9876");
-        user.setUserName("테스트님");
-        user.setUserPhone("010-1234-5678");
+        user.setUserId("cat111");
+        user.setUserPw("cat111");
+        user.setUserName("냐옹이");
+        user.setUserPhone("010-1234-56789");
 
         userDao.createUser(user);
         //userRepository.save(user);
         try {
             User createdUser = userDao.createUser(user);
             assertNotNull(createdUser);
-            assertEquals("kbs88", createdUser.getUserId());
+            assertEquals("cat1112", createdUser.getUserId());
             System.out.println(">>> 회원가입 성공" + createdUser);
         } catch (Exception e) {
             fail(">>> 회원가입 실패 " + e.getMessage());
@@ -193,7 +193,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		}
 
 		@Test
-		//@Disabled
+		@Disabled
 		@Transactional
 		@Rollback(false)
 		@DisplayName("비밀번호 찾기")
