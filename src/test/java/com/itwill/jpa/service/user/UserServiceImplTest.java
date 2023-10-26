@@ -193,7 +193,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		}
 
 		@Test
-		//@Disabled
+		@Disabled
 		@Transactional
 		@Rollback(false)
 		@DisplayName("비밀번호 찾기")

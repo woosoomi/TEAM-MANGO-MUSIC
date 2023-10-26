@@ -102,16 +102,20 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public String findUserPwByUserIdUserPhone(String userId, String userPhone) throws Exception {
-		  String userPw = userRepository.findUserPwByUserIdUserPhone(userId, userPhone);
-		  
-		  
-		  
-	        if (userPw == null) {
-	            throw new Exception("해당 전화번호로 등록된 사용자가 없습니다.");
-	        }
-	        return userPw;
-	    }
-	}//테스트
+		if (userId == null || userId.isEmpty()) {
+			throw new Exception("사용자 아이디가 잘못되었습니다.");
+		}
+		if (userPhone == null || userPhone.isEmpty()) {
+			throw new Exception("사용자 번호가 잘못되었습니다.");
+		}
+
+		String userPw = userRepository.findUserPwByUserIdUserPhone(userId, userPhone);
+		if (userPw == null) {
+			throw new Exception("해당 정보로 등록된 사용자가 없습니다.");
+		}
+		return userPw;
+	}
+}
 	
 	
 
