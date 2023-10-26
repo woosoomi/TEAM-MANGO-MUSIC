@@ -1,4 +1,4 @@
-package com.itwill.jpa.controller.vote;
+ package com.itwill.jpa.controller.vote;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

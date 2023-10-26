@@ -96,18 +96,19 @@ public class Product {
 
 	public static Product toEntity(ProductDto productDto) {
 		return Product.builder()
+				.productCategory(productDto.getProductCategory())
 				.productName(productDto.getProductName())
 				.productPrice(productDto.getProductPrice())
-//				.productStar(productDto.getProductStar())
-//				.productDate(productDto.getProductDate())
-//				.readCount(productDto.getReadCount())
-//				.productStock(productDto.getProductStock())
-//				.productImage(productDto.getProductImage())
-//				.productMovie(productDto.getProductMovie())
-//				.productArtist(productDto.getProductArtist())
-//				.productAddress(productDto.getProductAddress())
-//				.startPeriod(productDto.getStartPeriod())
-//				.periodOfUse(productDto.getPeriodOfUse())
+				.productStar(productDto.getProductStar())
+				.productDate(productDto.getProductDate())
+				.readCount(productDto.getReadCount())
+				.productStock(productDto.getProductStock())
+				.productImage(productDto.getProductImage())
+				.productMovie(productDto.getProductMovie())
+				.productArtist(productDto.getProductArtist())
+				.productAddress(productDto.getProductAddress())
+				.startPeriod(productDto.getStartPeriod())
+				.periodOfUse(productDto.getPeriodOfUse())
 				.build();
 	}
 
@@ -153,5 +154,20 @@ public class Product {
 		}
 		this.productStock = restproductStock;
 	}
+
+//	public String setProductCategory(ProductCategory productCategory) {
+//		return productCategory.getProductCategoryName();
+//		
+//	}
+//	public Long setCategoryId(Long categoryId) {
+//		return productCategory.getCategoryId();
+//		
+//	}
+    public void setCategoryId(Long categoryId) {
+        // Product 클래스의 setProductCategory 메서드 호출
+        setProductCategory(new ProductCategory(categoryId, "Music", null));
+    }
+
+		
 
 }
