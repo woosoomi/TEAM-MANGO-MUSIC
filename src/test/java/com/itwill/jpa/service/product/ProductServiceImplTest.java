@@ -70,7 +70,7 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
- //   @Disabled
+    @Disabled
     public void testFindByProductCategory() {
         Long categoryId = 1L;
         ProductCategory category = new ProductCategory();
@@ -86,7 +86,24 @@ class ProductServiceImplTest {
         System.out.println("music 모음 >>>>>" + products);
         
     }
-    
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    @Disabled
+    public void testFindByCategoryId() {
+        // 테스트할 실제 카테고리 ID로 'categoryId'를 대체하세요.
+        Long categoryId = 1L;  // 테스트에 사용할 실제 카테고리 ID로 대체해 주세요.
+
+        List<Product> products = productServiceImpl.findByCategoryId(categoryId);
+
+        for (Product product : products) {
+            // 결과를 유효성 검사하기 위해 여기에 어서션(assertions)을 추가할 수 있습니다.
+            System.out.println("상품 ID: " + product.getProductNo());
+            System.out.println("상품 이름: " + product.getProductName());
+            System.out.println("카테고리 ID: " + product.getProductCategory().getCategoryId());
+        }
+    }
 	//product 추가[성공]    
     @Test
     @Transactional
@@ -195,7 +212,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	public void testGetProductOrderByReadCountDesc() {
 		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
 		for (Product product : products) {
@@ -210,6 +227,9 @@ class ProductServiceImplTest {
 	@Disabled
 	public void testGetProductOrderByReadCountAsc() {
 		List<Product> products = productServiceImpl.getProductOrderByReadCountAsc();
+//    	Product product = new Product();
+//    	products.setCategoryId(1L);
+//    	products.getProductCategory();
 		for (Product product : products) {
 			System.out.println("Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
 		}
