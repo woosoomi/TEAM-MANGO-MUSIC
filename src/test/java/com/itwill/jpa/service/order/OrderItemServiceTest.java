@@ -102,10 +102,19 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void orderItems() {
 		List<OrderItem> orderItems = orderItemService.orderItems(1L);
 		System.out.println("오더아이템들-->"+orderItems);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void orderItems2() {
+		List<OrderItem> orderItems = orderItemService.orderItems("why3795");
+		System.out.println(orderItems);
 	}
 	
 }

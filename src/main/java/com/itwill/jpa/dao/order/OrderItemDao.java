@@ -13,6 +13,8 @@ public interface OrderItemDao {
 	
 	List<OrderItem> orderItems(Long orderId);
 	
+	List<OrderItem> orderItems(String userId);
+	
 	OrderItem updateOrderItem(OrderItem orderItem);
 	
 	void deleteOrderItem(Long orderItemId);

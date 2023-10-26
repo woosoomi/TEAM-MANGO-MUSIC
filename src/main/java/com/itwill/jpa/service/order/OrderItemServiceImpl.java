@@ -57,6 +57,11 @@ public class OrderItemServiceImpl implements OrderItemService{
 		return orderItemDao.orderItems(orderId);
 	}
 
+	@Override
+	public List<OrderItem> orderItems(String userId) {
+		return orderItemDao.orderItems(userId);
+	}
+
 	
 
 	

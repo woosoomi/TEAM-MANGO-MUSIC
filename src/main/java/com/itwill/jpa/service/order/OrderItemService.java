@@ -16,6 +16,8 @@ public interface OrderItemService {
 	
 	List<OrderItem> orderItems(Long orderId);
 	
+	List<OrderItem> orderItems(String userId);
+	
 	OrderItem findOrderItem(Long id);
 
 }

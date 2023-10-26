@@ -1,6 +1,7 @@
 package com.itwill.jpa.dao.order;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,10 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.order.OrderItemNotFoundException;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
+import com.itwill.jpa.repository.user.UserRepository;
 @Repository
 public class OrderItemDaoImpl implements OrderItemDao{
 
@@ -22,6 +25,9 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	
 	@Autowired
 	OrderRepository orderRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	//아이템 추가
 	@Override
@@ -79,6 +85,36 @@ public class OrderItemDaoImpl implements OrderItemDao{
             return new ArrayList<>(); // 오더 아이디를 찾지 못한 경우 빈 목록을 반환
         }
 	}
+
+	@Override
+	public List<OrderItem> orderItems(String userId) {
+		  Optional<User> userOptional = userRepository.findById(userId);
+
+	        if (userOptional.isPresent()) {
+	            User user = userOptional.get();
+	            
+	            List<OrderItem> userOrderedItems = new ArrayList<>();
+
+	            // 사용자 엔티티에서 주문 목록을 가져옴
+	            List<Order> orders = user.getOrders();
+
+	            // 각 주문에 속한 주문 항목 및 연결된 제품을 가져옴
+	            for (Order order : orders) {
+	                List<OrderItem> orderItems = order.getOrderItems();
+
+	                for (OrderItem orderItem : orderItems) {
+	                    Product product = orderItem.getProduct();
+	                    userOrderedItems.add(orderItem);
+	                }
+	            }
+
+	            return userOrderedItems;
+	        } else {
+	            return Collections.emptyList(); // 사용자를 찾을 수 없는 경우 빈 리스트 반환
+	        }
+	    }
+
+	
 	
 
 	
