@@ -28,8 +28,6 @@ public class UserController {
     	return forwardPath;
     }
     
-    
-    
     @GetMapping("/user_write_form")
 	public String user_write_form() {
 		String forward_path = "user_write_form";
