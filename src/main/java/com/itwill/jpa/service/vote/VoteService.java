@@ -17,4 +17,6 @@ public interface VoteService {
 		//투표번호로 투표 1개 삭제
 		void deleteByVoteNo(Long no) throws Exception;
 
+		//투표 업데이트---> 투표 전체 합 수정 필요!!(실시간 업데이트해야함)
+		Vote updateVote(Vote vote) throws Exception;
 }

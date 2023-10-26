@@ -90,7 +90,7 @@ class ProductServiceImplTest {
     @Test
     @Transactional
     @Rollback(false)
-    @Disabled
+ //   @Disabled
     public void testInsertProduct() {
         // 새로운 Product 객체를 생성
         Product product = new Product();
