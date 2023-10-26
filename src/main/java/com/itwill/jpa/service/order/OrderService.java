@@ -10,7 +10,7 @@ public interface OrderService {
 	//주문 정보 수정
 	OrderDto updateOrder(OrderDto orderDto) throws Exception;
 	//주문 한개 삭제
-	void deleteOrder(Long orderId) throws Exception;
+	OrderDto deleteOrder(Long orderId) throws Exception;
 	//주문 전체 삭제
 	void deleteAllOrder() throws Exception;
 	//유저 Id로 전체 주문 불러오기

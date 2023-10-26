@@ -43,11 +43,15 @@ public class OrderServiceImpl implements OrderService{
 
 	//주문 한개 삭제
 	@Override
-	public void deleteOrder(Long orderId) throws Exception {
+	public OrderDto deleteOrder(Long orderId) throws Exception {
+		Order order = orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("대상이 존재하지 않습니다."));
 		orderRepository.deleteById(orderId);
+		OrderDto orderDto = OrderDto.toDto(order);
+		return orderDto;
 	}
+		
 	
-	//주문 전체 삭제
+	//주문 전체 삭제(바꿔야됨)
 	@Override
 	public void deleteAllOrder() throws Exception {
 		orderRepository.deleteAll();

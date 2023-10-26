@@ -48,7 +48,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired
 	DeliveryDao deliveryDao;
 	
-	//주문 생성(성공)
+	//주문 생성(실패)
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -56,7 +56,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	void orderCreateTest() {
 		OrderDto orderDto = new OrderDto();
 		User user = userDao.findUser("why3795");
-		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(30L).build());
+		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(20L).build());
 		
 		
 		orderDto.setOrderId(null);
