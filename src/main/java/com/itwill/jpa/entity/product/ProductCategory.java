@@ -38,6 +38,7 @@ public class ProductCategory {
  public static ProductCategory toEntity(ProductCategoryDto dto) {
 	 return ProductCategory.builder()
 			 			   .productCategoryName(dto.getProductCategoryName())
+			 			   .categoryId(dto.getCategoryId())
 			 			   .build();
  }
  

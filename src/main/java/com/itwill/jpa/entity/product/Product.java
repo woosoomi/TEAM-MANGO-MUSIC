@@ -96,18 +96,20 @@ public class Product {
 
 	public static Product toEntity(ProductDto productDto) {
 		return Product.builder()
+//				.productCategory(productDto.getProductCategory())
+//				.productCategory(productDto.getCategoryId())
 				.productName(productDto.getProductName())
 				.productPrice(productDto.getProductPrice())
-//				.productStar(productDto.getProductStar())
-//				.productDate(productDto.getProductDate())
-//				.readCount(productDto.getReadCount())
-//				.productStock(productDto.getProductStock())
-//				.productImage(productDto.getProductImage())
-//				.productMovie(productDto.getProductMovie())
-//				.productArtist(productDto.getProductArtist())
-//				.productAddress(productDto.getProductAddress())
-//				.startPeriod(productDto.getStartPeriod())
-//				.periodOfUse(productDto.getPeriodOfUse())
+				.productStar(productDto.getProductStar())
+				.productDate(productDto.getProductDate())
+				.readCount(productDto.getReadCount())
+				.productStock(productDto.getProductStock())
+				.productImage(productDto.getProductImage())
+				.productMovie(productDto.getProductMovie())
+				.productArtist(productDto.getProductArtist())
+				.productAddress(productDto.getProductAddress())
+				.startPeriod(productDto.getStartPeriod())
+				.periodOfUse(productDto.getPeriodOfUse())
 				.build();
 	}
 
@@ -153,5 +155,16 @@ public class Product {
 		}
 		this.productStock = restproductStock;
 	}
+
+	public String setProductCategory(ProductCategory productCategory) {
+		return productCategory.getProductCategoryName();
+		
+	}
+	public Long setProductCategoryId(Long categoryId) {
+		return productCategory.getCategoryId();
+		
+	}
+
+		
 
 }
