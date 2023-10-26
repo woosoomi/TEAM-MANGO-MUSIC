@@ -28,12 +28,6 @@ public class UserController {
     	return forwardPath;
     }
     
-    @GetMapping("/userCheckIdPw")
-	public String userCheckIdPw() {
-		String forward_path = "userCheckIdPw";
-		return forward_path;
-	}
-    
     @GetMapping("/user_write_form")
 	public String user_write_form() {
 		String forward_path = "user_write_form";
@@ -73,6 +67,12 @@ public class UserController {
 			forwardPath="user_login_form";
 		}
 		return forwardPath;
+	}
+    
+    @GetMapping("/userCheckIdPw")
+	public String userCheckIdPw() {
+		String forward_path = "userCheckIdPw";
+		return forward_path;
 	}
     
 	@RequestMapping("/user_view")
@@ -125,18 +125,25 @@ public class UserController {
 		String forwardPath = "";
 		/************** login check **************/
 		request.getSession(false).invalidate();
-		forwardPath="redirect:user_main";
+		forwardPath="redirect:index";
 		
+		return forwardPath;
+	}
+	
+	/***********GET방식요청시 guest_main redirection*********/
+	@GetMapping({
+		"user_write_action",
+		"user_login_action",
+		"user_modify_form",
+		"user_modify_action",
+		"user_remove_action"
+	})
+	public String user_get() {
+		String forwardPath = "redirect:index";
 		return forwardPath;
 	}
     
     
-    
-    
-    
-    
-    
-    
-    
+	
     
 }
