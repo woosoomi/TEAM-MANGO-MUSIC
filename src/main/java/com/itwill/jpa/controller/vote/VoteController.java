@@ -10,9 +10,11 @@ public class VoteController {
 	@Autowired
 	private VoteController voteController;
 	*/
+	
 	@GetMapping(value = "/vote")
 	public String vote_html() {
-		return "voteMain";
+		String forwardPath = "vote_Main";
+		return forwardPath;
 	}
 
 }
