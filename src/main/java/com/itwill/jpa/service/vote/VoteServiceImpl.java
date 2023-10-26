@@ -46,4 +46,19 @@ public class VoteServiceImpl implements VoteService {
 	}
 	
 	
+	//투표 업데이트
+	@Override
+	public Vote updateVote(Vote vote) throws Exception {
+		Vote updateByVoteNo = voteRepository.findById(vote.getVoteId()).orElse(null);
+		if (updateByVoteNo!=null) {
+			updateByVoteNo.setVoteTot(vote.getVoteTot());
+			return voteRepository.save(vote);
+			
+			}else {
+				throw new Exception("존재하지 않는 투표번호입니다.");
+			}
+			
+		}
+		
+	
 }

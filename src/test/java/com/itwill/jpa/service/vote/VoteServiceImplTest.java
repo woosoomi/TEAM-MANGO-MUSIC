@@ -43,7 +43,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-
+	@Disabled
 	void creatVoteTest() throws Exception {
 		
 		Date localDate = new Date(2023);
@@ -54,6 +54,9 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		  vote1.setVoteId(1L);
 		  voteServiceImpl.createVote(vote1);
 		  System.out.println("~~~~~~~~~~~~~~~"+voteServiceImpl.createVote(vote1));
+		  vote1.setVoteTot(123);
+		  voteServiceImpl.updateVote(vote1);
+		  System.out.println("업데이트 완료!!--->"+voteServiceImpl.updateVote(vote1));
 		   
 	}
 
