@@ -66,7 +66,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 		
 		
 		userRepository.save(user);
-		deliveryRepository.save(delivery);
+		deliveryDao.insertDelivery(delivery);
 		OrderDto createdOrderDto = orderServiceImpl.saveOrder(orderDto);
 		System.out.println(createdOrderDto);
 	}

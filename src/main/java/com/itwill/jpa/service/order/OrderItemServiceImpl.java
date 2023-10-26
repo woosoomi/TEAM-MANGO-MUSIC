@@ -50,7 +50,6 @@ public class OrderItemServiceImpl implements OrderItemService{
 	    if (findOrderItemOptional.isPresent()) {
 	        OrderItem orderItem = findOrderItemOptional.get();
 	        updatedOrderItem = orderItemRepository.save(orderItem);
-	        OrderItemDto orderItemDto = OrderItemDto.toDto(updatedOrderItem);
 	    } else {
 	        throw new OrderItemNotFoundException("수정하실 상품이 존재하지 않습니다.");
 	    }
@@ -111,10 +110,7 @@ public class OrderItemServiceImpl implements OrderItemService{
 	            
 
 	            // 사용자 엔티티에서 주문 목록을 가져옴
-	            List<Order
-	            
-	            
-	            > orders = user.getOrders();
+	            List<Order> orders = user.getOrders();
 
 	            // 각 주문에 속한 주문 항목 및 연결된 제품을 가져옴
 	            for (Order order : orders) {

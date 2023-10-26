@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.dto.order.DeliveryDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Delivery;
+import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
@@ -23,19 +25,20 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	
 	@Override
 	public DeliveryDto insertDelivery(DeliveryDto delivery) {
-		DeliveryDto savedDelivery = deliveryRepository.save(delivery);
-		return savedDelivery;
+		Delivery savedDelivery = deliveryRepository.save(Delivery.toEntity(delivery));
+		DeliveryDto deliveryDto = DeliveryDto.toDto(savedDelivery);
+		return deliveryDto;
 	}
 
 
 	@Override
 	public DeliveryDto updateDelivery(DeliveryDto updateDelivery) throws Exception{
 		//Delivery가 존재하는지 확인
-		Optional<DeliveryDto> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryId());
-		DeliveryDto updatedDelivery = null;
+		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryId());
+		Delivery updatedDelivery = null;
 		if(findDeliveryOptional.isPresent()) {
 			//존재한다면 업데이트 실행
-			DeliveryDto delivery = findDeliveryOptional.get();
+			Delivery delivery = findDeliveryOptional.get();
 			delivery.setDeliveryName(updateDelivery.getDeliveryName());
 			delivery.setDeliveryCompany(updateDelivery.getDeliveryCompany());
 			delivery.setDeliveryAddress(updateDelivery.getDeliveryAddress());
@@ -45,14 +48,14 @@ public class DeliveryDaoImpl implements DeliveryDao {
 		}else {
 			throw new Exception("존재하지 않는 주소입니다.");
 		}
-		return updatedDelivery;
+		return DeliveryDto.toDto(updatedDelivery);
 	}
 
 	
 	@Override
 	public void deleteDelivery(Long deliveryId) throws Exception{
 		//Delivery가 존재하는지 확인 -> 없으면 오류 메세지 던지기
-		Optional<DeliveryDto> deleteDeliveryOptional = deliveryRepository.findById(deliveryId);
+		Optional<Delivery> deleteDeliveryOptional = deliveryRepository.findById(deliveryId);
 		if(deleteDeliveryOptional.isEmpty()) {
 			throw new Exception("삭제할 주소가 존재하지 않습니다.");
 		}
@@ -60,15 +63,16 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 	@Override
-	public List<DeliveryDto> selectList() {
+	public void selectList() {
 		
-		return deliveryRepository.findAll();
+		deliveryRepository.findAll();
 	}
 
 	@Override
 	public DeliveryDto findByDeliveryId(Long id) {
-		DeliveryDto delivery = deliveryRepository.findById(id).get();
-		return delivery;
+		Delivery delivery = deliveryRepository.findById(id).get();
+		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
+		return deliveryDto;
 	}
 
 
@@ -77,7 +81,13 @@ public class DeliveryDaoImpl implements DeliveryDao {
 		Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            return deliveryRepository.findByUser(user);
+            List<Delivery> deliveryItems = deliveryRepository.findByUser(user);
+            List<DeliveryDto> deliveryItemDtos = new ArrayList<>();
+            for (Delivery deliveryItem : deliveryItems) {
+            	DeliveryDto deliveryItemDto = DeliveryDto.toDto(deliveryItem);
+            	deliveryItemDtos.add(deliveryItemDto);
+        	}
+        	return deliveryItemDtos;
         } else {
             return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
         }

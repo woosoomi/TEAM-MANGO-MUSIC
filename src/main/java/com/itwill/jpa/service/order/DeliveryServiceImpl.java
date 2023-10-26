@@ -24,7 +24,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 	@Override
 	public DeliveryDto saveDelivery(DeliveryDto delivery) {
 		
-		return deliveryRepository.save(delivery);
+		return deliveryDao.insertDelivery(delivery);
 	}
 	
 	//배송지 정보 수정
@@ -44,8 +44,8 @@ public class DeliveryServiceImpl implements DeliveryService{
 
 	//배송지 정보들 불러오기
 	@Override
-	public List<DeliveryDto> deliverys() {
-		return deliveryRepository.findAll();
+	public void deliverys() {
+		deliveryDao.selectList();;
 	}
 
 	

@@ -13,7 +13,7 @@ public interface DeliveryDao {
 	
 	void deleteDelivery(Long DeliveryDtoId) throws Exception;
 	
-	List<DeliveryDto> selectList();
+	void selectList();
 	
 	List<DeliveryDto> getDeliveriesByUserId(String userId);
 	

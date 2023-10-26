@@ -26,6 +26,7 @@ public class DeliveryDto {
 	
 	private String deliveryCompany; //담당 택배 회사(ex. 우체국, CJ대한통운)
 	
+	private User user;
 	
 	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정하는 생성자(초기화)
 	public  DeliveryDto(Delivery delivery) {
@@ -36,13 +37,13 @@ public class DeliveryDto {
 	}
 	
 	//Dto -> entity 변환해주는 매서드
-	public static Delivery toDto(DeliveryDto dto) {
-		return Delivery.builder()
-					   .deliveryId(dto.getDeliveryId())
-					   .deliveryName(dto.getDeliveryName())
-					   .deliveryPhone(dto.getDeliveryPhone())
-					   .deliveryAddress(dto.getDeliveryAddress())
-					   .deliveryCompany(dto.getDeliveryCompany())
+	public static DeliveryDto toDto(Delivery updatedDelivery) {
+		return DeliveryDto.builder()
+					   .deliveryId(updatedDelivery.getDeliveryId())
+					   .deliveryName(updatedDelivery.getDeliveryName())
+					   .deliveryPhone(updatedDelivery.getDeliveryPhone())
+					   .deliveryAddress(updatedDelivery.getDeliveryAddress())
+					   .deliveryCompany(updatedDelivery.getDeliveryCompany())
 					   .build();
 	}
 

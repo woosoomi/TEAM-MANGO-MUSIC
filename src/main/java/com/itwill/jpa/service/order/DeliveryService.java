@@ -12,7 +12,7 @@ public interface DeliveryService {
 	
 	void deleteDelivery(Long id) throws Exception;
 	
-	List<DeliveryDto> deliverys();
+	void deliverys();
 	
 	List<DeliveryDto> findDelivery(String userId);
 	
