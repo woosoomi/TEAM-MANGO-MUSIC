@@ -2,7 +2,6 @@ package com.itwill.jpa.service.order;
 
 import java.util.List;
 
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 
 public interface OrderItemService {
@@ -15,8 +14,8 @@ public interface OrderItemService {
 	
 	void deleteAllOrderItem() throws Exception;
 	
-	List<OrderItem> orderItems(Order order);
+	List<OrderItem> orderItems(Long orderId);
 	
-	OrderItem findOrderItem(Order order);
+	OrderItem findOrderItem(Long id);
 
 }

@@ -33,18 +33,12 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@PersistenceContext
 	EntityManager em;
 	
-	@Autowired
-	VoteServiceImpl voteServiceImpl;
 	
 	@Autowired
 	VoteRepository voteRepository;
-	
+
 	@Autowired
-	UserRepository userRepository;
-	
-	@Autowired
-	ProductRepository productRepository;
-	
+	VoteServiceImpl voteServiceImpl;
 	
 	@Test
 	@Transactional
@@ -53,106 +47,36 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	void creatVoteTest() throws Exception {
 		
 		Date localDate = new Date(2023);
-		 
-		User user1 = new User();
-			 user1 = User.builder()
-                 .userId("kbs")
-                 .userPw("1111")
-                 .userName("고범석")
-                 .userAddress("서울시 강남")
-                 .userEmail("kbs@naver.com")
-                 .userJumin("970000-0000000")
-                 .userPhone("010-1234-5678")
-                 .userGender("남")
-                 .build();
-			 
-	
-		Product product1= Product.builder()
-						.productName("아름다운사실")
-						.productContent("명곡입니다.")
-						.productReply("아름다워요")
-						.productStar(5)
-						.productArtist("부활")
-						.build();
-		
-			
-		 Vote vote = Vote.builder()
-				 		  .voteTot(250)
-				 		  .voteDate(localDate)
-				 		  .build();
-		vote.setUser(user1);
-		vote.setProduct(product1);
-		em.persist(user1);
-		em.persist(product1);
-		em.persist(vote);
-		
-		Vote insertVote = voteServiceImpl.createVote(vote);
-		em.persist(insertVote);
-		System.out.println("~~~~~~~~~~~~~~~"+insertVote);
-		voteServiceImpl.deleteByVoteNo(1L);
-		System.out.println();
-		System.out.println("~~~~~~~~~~~~~~~"+voteRepository.findAll());
+		Vote vote1 = Vote.builder()
+		 		 		 .voteTot(320)
+		 		 		 .build();
+		  vote1.setVoteDate(localDate);
+		  vote1.setVoteId(1L);
+		  voteServiceImpl.createVote(vote1);
+		  System.out.println("~~~~~~~~~~~~~~~"+voteServiceImpl.createVote(vote1));
+		  vote1.setVoteTot(123);
+		  voteServiceImpl.updateVote(vote1);
+		  System.out.println("업데이트 완료!!--->"+voteServiceImpl.updateVote(vote1));
+		   
 	}
-	
+
 	@Test
 	@Disabled
-	void findAllVoteListTest() throws Exception {
-		Date localDate = new Date(2023);
-		Vote vote1 = Vote.builder()
-		 		  .voteTot(10)
-		 		  .voteDate(localDate)
-		 		  .build();
-		Vote vote2 = Vote.builder()
-				.voteTot(20)
-				.voteDate(localDate)
-				.build();
-		
-		voteServiceImpl.createVote(vote1);
-		voteServiceImpl.createVote(vote2);
-		
-		
-		voteServiceImpl.findVoteListAll();
-		System.out.println("/n/n------------------"+voteServiceImpl.findVoteListAll());
-	}
+	void deleteVoteTest() throws Exception {
+	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().size());		
+	voteRepository.deleteById(272L);
+	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().size());
+	System.out.println("@@@@@-->>"+voteServiceImpl.selectByVoteNo(1L));
+	
+	}	
 	
 	
 	@Test
 	@Disabled
-	void selectByVoteNo() throws Exception {
-		Date localDate = new Date(2023);
-		Vote vote1 = Vote.builder()
-		 		  .voteTot(10)
-		 		  .voteDate(localDate)
-		 		  .build();
-		Vote vote2 = Vote.builder()
-				.voteTot(10)
-				.voteDate(localDate)
-				.build();
+	void selectVoteTest() throws Exception {
+		System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().get(1));
+		System.out.println("@@@@@-->>"+voteServiceImpl.selectByVoteNo(1L));
 		
-		voteServiceImpl.createVote(vote1);
-		voteServiceImpl.createVote(vote2);
-		
-		System.out.println("### "+voteServiceImpl.selectByVoteNo(1L));
-		System.out.println("### "+voteServiceImpl.selectByVoteNo(2L));
-	}
-	
-	
-	@Test
-	void deleteByVoteNo() throws Exception {
-		Date localDate = new Date(2023);
-		Vote vote1 = Vote.builder()
-		 		  .voteTot(10)
-		 		  .voteDate(localDate)
-		 		  .build();
-		Vote vote2 = Vote.builder()
-				.voteTot(10)
-				.voteDate(localDate)
-				.build();
-		
-		voteServiceImpl.createVote(vote1);
-		voteServiceImpl.createVote(vote2);
-		voteServiceImpl.deleteByVoteNo(1L);
-	
-	}
+		}	
 
 }

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.OrderRepository;
+
 import com.itwill.jpa.repository.user.UserRepository;
+
 @Repository
 public class OrderDaoImpl implements OrderDao{
 	
@@ -54,8 +56,9 @@ public class OrderDaoImpl implements OrderDao{
 		Optional<Order> selectedOrderOptional = orderRepository.findById(orderId); 
 		if(selectedOrderOptional.isEmpty()) {
 			throw new Exception("존재하지않는주문입니다.");
+		}else {
+			orderRepository.delete(selectedOrderOptional.get());
 		}
-		orderRepository.delete(selectedOrderOptional.get());
 	}
 
 	@Override
@@ -74,5 +77,29 @@ public class OrderDaoImpl implements OrderDao{
 			return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
 		}
 	}
+
+	@Override
+	public List<Order> orderListByNewer(String userId) {
+		Optional<User> userOptional = userRepository.findById(userId);
+		if	(userOptional.isPresent()) {
+			return orderRepository.orderListByNewer(userId);
+		} else {
+			
+			return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+		}
+	}
+	
+	@Override
+	public List<Order> orderListByOlder(String userId) {
+		Optional<User> userOptional = userRepository.findById(userId);
+		if	(userOptional.isPresent()) {
+			return orderRepository.orderListByNewer(userId);
+		} else {
+			
+			return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+		}
+	}
+
+
 
 }

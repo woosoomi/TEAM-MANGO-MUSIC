@@ -1,6 +1,8 @@
 package com.itwill.jpa.entity.vote;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
@@ -9,17 +11,19 @@ import com.itwill.jpa.dto.vote.VoteDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -32,9 +36,10 @@ public class Vote {
 	
 	//  투표번호
 	@Id 
-	@SequenceGenerator(name = "VOTE_NO_SEQ",sequenceName = "VOTE_NO_SEQ",initialValue = 1,allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VOTE_NO_SEQ")
-	private Long voteNo;				
+	@Column(name = "vote_id")
+	@SequenceGenerator(name = "VOTE_VOTE_NO_SEQ",sequenceName = "VOTE_VOTE_NO_SEQ",initialValue = 1,allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VOTE_VOTE_NO_SEQ")
+	private Long voteId;				
 
 	
 	// 유저_회원
@@ -59,12 +64,16 @@ public class Vote {
 		
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "user_Id")
-	private User user ;
-	
-	@ManyToOne
-	@JoinColumn(name = "product_no")
-	private Product product;
+	// 1대n
+	@OneToMany(mappedBy = "vote", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@ToString.Exclude
+	private List<User> users = new ArrayList<User>();
+
+	// 1대n
+	@OneToMany(mappedBy = "vote", cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@ToString.Exclude
+	private List<Product> products = new ArrayList<Product>();
 	
 }

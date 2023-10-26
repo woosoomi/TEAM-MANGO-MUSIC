@@ -23,14 +23,16 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "orders") //클래스 이름이 테이블명과 같지 않기 때문에 해당 어노테이션 추가
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder //Dto를 Entity로 변환하는 메서드를 쓰기위해서 사용함
 
 //데이터베이스에 들어갈 중요한 데이터를 포함한 객체(Entity)
@@ -41,8 +43,8 @@ public class Order {
 	
 	
 	@Id
-	@SequenceGenerator(name = "ORDER_ORDER_NO_SEQ",sequenceName = "ORDER_ORDER_NO_SEQ",initialValue = 1 , allocationSize =1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_ORDER_NO_SEQ")
+	@SequenceGenerator(name = "ORDER_NO_SEQ",sequenceName = "ORDER_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_NO_SEQ")
 	//PK 주문 번호
 	private Long orderId;
 	
@@ -77,17 +79,17 @@ public class Order {
 	private Delivery delivery;
 	
 	// order와 user n대1
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "userId")
 	private User user;
 	
 	//order와 orderitem 1대n
-	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@Builder.Default
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//order와 coupon 1대n
-	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<Coupon> coupons = new ArrayList<>();
 	
 	
