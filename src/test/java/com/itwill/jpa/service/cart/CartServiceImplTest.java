@@ -38,6 +38,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Rollback(false)
 	
 	void cartInsert() {
+
 		//User user1 =new User("test102", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
 		//userRepository.save(user1);
 		Optional<User> findUser = userRepository.findById("lsg33");
@@ -53,6 +54,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		//cart1.getCartitems();
 		//cart1.setCartId(0L);
 		//cart1.setCartTotPrice(1000);
+
 		
 		/*
 		Cart cart2 = new Cart();

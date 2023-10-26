@@ -2,19 +2,20 @@ package com.itwill.jpa.dao.order;
 
 import java.util.List;
 
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.order.Delivery;
 
 public interface DeliveryDao {
 	
 	Delivery insertDelivery(Delivery delivery);
 	
-	Delivery updateDelivery(Delivery updateDelivery) throws Exception;
+	DeliveryDto updateDelivery(DeliveryDto updateDeliveryDto) throws Exception;
 	
-	void deleteDelivery(Long deliveryId) throws Exception;
+	void deleteDelivery(Long DeliveryDtoId) throws Exception;
 	
-	List<Delivery> selectList();
+	void selectList();
 	
-	List<Delivery> getDeliveriesByUserId(String userId);
+	List<DeliveryDto> getDeliveriesByUserId(String userId);
 	
-	Delivery findByDeliveryId(Long id);
+	DeliveryDto findByDeliveryId(Long id);
 }

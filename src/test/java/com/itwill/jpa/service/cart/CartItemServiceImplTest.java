@@ -41,13 +41,16 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Rollback(false)
 	@Disabled
 	void cartItemInsert() {
+
 		//User user = new User("test1", "1111", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null, null);
+
 		//User user = null;
 		//Cart cart = new Cart();
 		//cart.setUser(user);
 		//cart.setCartId(642L);
 		Optional<Cart> cart = cartRepository.findById(642L);
 		System.out.println("cart>>>>>>>>>>>"+cart);
+
 		List<CartItem> cartItems = new ArrayList<>();
 		CartItem cartItem1 = CartItem.builder().cartItemId(0L).cartItemQty(10).cart(cart.get()).build();
 		CartItem cartItem2 = CartItem.builder().cartItemId(0L).cartItemQty(15).cart(cart.get()).build();
@@ -66,9 +69,13 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 			e.printStackTrace();
 		}
 		
+
 		//cartRepository.save(cart);
 		//userRepository.save(user);
 	
+
+		
+
 	}
 	@Test
 	//@Disabled

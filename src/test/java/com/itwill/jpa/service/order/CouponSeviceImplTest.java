@@ -53,7 +53,7 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	void couponCreateTest() {
 		CouponDto couponDto = new CouponDto();
 		User user = userDao.findUser("why3795");
-		Order order = orderDao.selectOrder(2L);
+		Order order = orderDao.selectOrder(9L);
 		
 		couponDto.setCouponCode("00000033");
 		couponDto.setCouponId(null);
