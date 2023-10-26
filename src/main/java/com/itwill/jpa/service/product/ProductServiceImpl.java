@@ -45,6 +45,11 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findByProductArtist(productArtist);
 	}
 	
+	@Override
+	public List<Product> findByCategoryId(Long categoryId) {
+//		return productRepository.findByCategoryId(categoryId);
+		return null;
+	}
 	
 	@Override
 	public Product getProduct(Long productNo) {
@@ -199,6 +204,7 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
+
 
 
 

@@ -67,8 +67,10 @@ public interface ProductService{
 	// 키워드로 검색[테스트중]
 	public List<Product> searchProductsByKeyword(String keyword);
 	
+	// product categoryId별 분류
+	public List<Product> findByCategoryId(Long categoryId);
+	
 	// product category별 분류[성공]
-//	public List<Product> findByProductCategory(Long categoryId);
 	List<Product> findByProductCategory(ProductCategory categoryId);
 	
 	// productNo 찾기[성공]
