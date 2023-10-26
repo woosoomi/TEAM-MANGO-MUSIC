@@ -1,6 +1,7 @@
 package com.itwill.jpa.entity.cart;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -57,4 +58,11 @@ public class CartItem {
 	@ManyToOne
 	@JoinColumn(name = "product_no")
 	private Product product;
+	
+	public void addToCart(Cart cart) {
+	   if(cart.getCartitems()==null) {
+		   cart.setCartitems(new ArrayList<>());
+	   }
+	   cart.getCartitems().add(this);
+	}
 }

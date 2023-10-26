@@ -26,6 +26,22 @@ public class VoteController {
 		return "voteMain";
 	}
 
+	/*
+	@PostMapping(value = "/user_vote_action")
+	private String user_vote_action(@ModelAttribute 
+									User user,
+									HttpServletRequest request) {
+		String sUserId=(String)request.getSession().getAttribute("sUserId");
+		Vote sVoteId= (Vote)request.getSession().getAttribute("sVoteId");
+		
+
+		String forwardPath = "vote_Main";
+		return forwardPath;
+	}
+	
+	
+	*/
+	
 	@Operation(summary = "투표생성")
 	@GetMapping
 	public ResponseEntity<Response> createVote(@RequestBody Vote vote) {

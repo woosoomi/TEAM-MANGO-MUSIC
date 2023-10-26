@@ -1,5 +1,6 @@
 package com.itwill.jpa.dao.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,13 +14,18 @@ public class CartItemDaoImpl implements CartItemDao{
 	
 	@Autowired
 	CartItemRepository cartItemRepository;
-		
+	/*	
 	@Override
 	public CartItem insert(CartItem cartItem) throws Exception {
 		CartItem insertCart = cartItemRepository.save(cartItem);
 		return insertCart;
 	}
-
+	 */
+    @Override
+    public List<CartItem> insertCartItems(List<CartItem> cartItems) throws Exception {
+        return cartItemRepository.saveAll(cartItems);
+    }
+    
 	@Override
 	public void deleteByCartId(Long cartItemId) throws Exception {
 		try {
