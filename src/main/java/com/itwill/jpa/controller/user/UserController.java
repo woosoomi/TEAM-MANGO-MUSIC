@@ -21,13 +21,13 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    
+    /*
     @GetMapping("/index") //main 화면
     public String main() {
     	String forwardPath = "index";
     	return forwardPath;
     }
-    
+    */
     @GetMapping("/user_write_form")
 	public String user_write_form() {
 		String forward_path = "user_write_form";

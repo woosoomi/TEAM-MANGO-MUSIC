@@ -152,7 +152,10 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter user">
 						<p>총
-							<span th:text="${#lists.size(events)}"></span>개의 event
+							<!--
+								th:text="${#lists.size(events)}"
+							-->
+							<span ></span>개의 event
 						</p>
 
 						<select>
@@ -163,9 +166,14 @@
 					<div class="flex-wrap-movielist user-fav-list">
 						<div class="movie-item-style-2"><img src="images/uploads/mv1.jpg" alt="">
 							<div class="mv-item-infor">
-								<h6><a href="#" th:text="${events[0].boardTitle}"></a></h6>
+								<!--
+									th:text="${events[0].boardTitle}"
+									th:text="${events[0].boardContent}"
+								-->
+								
+								<h6><a href="#" ></a></h6>
 								<p class="rate"><i class="ion-android-star"></i><span>8.1</span>/10</p>
-								<p class="describe" th:text="${events[0].boardContent}"></p>
+								<p class="describe" ></p>
 								</p>
 								<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
 										2015</span></p>
@@ -176,10 +184,15 @@
 						</div>
 						<div class="movie-item-style-2"><img src="images/uploads/mv2.jpg" alt="">
 							<div class="mv-item-infor">
-								<h6><a href="#" th:text="${events[1].boardTitle}" ></a></h6>
+								<!--
+									th:text="${events[1].boardTitle}"
+									th:text="${events[1].boardContent}"
+								-->
+								
+								<h6><a href="#"  ></a></h6>
 								<p class="rate"><i class="ion-android-star"></i><span>7.8</span>/10</p>
 								<p class="describe"
-											th:text="${events[1].boardContent}"></p>
+											></p>
 								</p>
 								</p>
 								<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
