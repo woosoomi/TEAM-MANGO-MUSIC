@@ -74,7 +74,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	//@Disabled
 	void findByCategoryId() {
 		List<Board> boards = boardRepository.findByBoardCategory_IdOrderByCreatedTime(2L);
-		System.out.println("2L >>>>>>>>>>"+boards);
+		System.out.println("CATEGORY : 2L >>>>>>>>>>"+boards);
 	}
 	
 	@Test
@@ -83,7 +83,7 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	//@Disabled
 	void findByTypeId() {
 		List<Board> boards =boardRepository.findByBoardType_TypeIdOrderByCreatedTime(1L);
-		System.out.println("2L ???????????????"+boards);
+		System.out.println("TYPE : 1L ???????????????"+boards);
 		
 	}
 	
