@@ -43,17 +43,17 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@DisplayName("회원가입")
     public void testCreateUser() {
         User user = new User();
-        user.setUserId("kbs88");
-        user.setUserPw("9876");
-        user.setUserName("테스트님");
-        user.setUserPhone("010-1234-5678");
+        user.setUserId("cat111");
+        user.setUserPw("cat111");
+        user.setUserName("냐옹이");
+        user.setUserPhone("010-1234-56789");
 
         userDao.createUser(user);
         //userRepository.save(user);
         try {
             User createdUser = userDao.createUser(user);
             assertNotNull(createdUser);
-            assertEquals("kbs88", createdUser.getUserId());
+            assertEquals("cat1112", createdUser.getUserId());
             System.out.println(">>> 회원가입 성공" + createdUser);
         } catch (Exception e) {
             fail(">>> 회원가입 실패 " + e.getMessage());
@@ -178,12 +178,13 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		@Disabled
 		@Transactional
 		@Rollback(false)
-		@DisplayName("이메일로 아이디 찾기")
-		public void testFindUserIdByUserEmail() {
-			String userEmail = "kbs1@naver.com";
+		@DisplayName("아이디 찾기")
+		public void testFindUserIdByUserNameUserEmail() {
+			String userName = "고범석";
+			String userEmail = "kbs@naver.com";
 
 			try {
-				String foundUserId = userService.findUserIdByUserEmail(userEmail);
+				String foundUserId = userService.findUserIdByUserNameUserEmail(userName ,userEmail);
 				assertNotNull(foundUserId);
 				System.out.println(">>> 아이디 찾기 성공: " + foundUserId);
 			} catch (Exception e) {
@@ -195,12 +196,13 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		@Disabled
 		@Transactional
 		@Rollback(false)
-		@DisplayName("번호로 비밀번호 찾기")
-		public void testFindUserPwByUserPhone() {
+		@DisplayName("비밀번호 찾기")
+		public void testFindUserPwByUserIdUserPhone() {
+			String userId = "kbs88";
 			String userPhone = "010-4039-4937";
 
 			try {
-				String foundUserPw = userService.findUserPwByUserPhone(userPhone);
+				String foundUserPw = userService.findUserPwByUserIdUserPhone(userId, userPhone);
 				assertNotNull(foundUserPw);
 				System.out.println(">>> 비밀번호 찾기 성공: " + foundUserPw);
 			} catch (Exception e) {
