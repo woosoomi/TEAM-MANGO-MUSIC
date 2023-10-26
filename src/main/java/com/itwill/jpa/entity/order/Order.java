@@ -83,12 +83,13 @@ public class Order {
 	private User user;
 	
 	//order와 orderitem 1대n
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@Builder.Default
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//order와 coupon 1대n
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Coupon> coupons = new ArrayList<>();
 	
 	//Dto -> entity 변환해주는 매서드

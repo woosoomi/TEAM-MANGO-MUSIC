@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
@@ -54,20 +55,26 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void orderCreateTest() {
-		OrderDto orderDto = new OrderDto();
-		User user = userDao.findUser("why3795");
-		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(30L).build());
+
+		Order order = new Order();
 		
+		User user = userDao.findUser("why3795");
+		
+		Delivery delivery = deliveryDao.insertDelivery(Delivery.builder().deliveryId(20L).build());
+		
+		order.setDelivery(delivery);
+		order.setUser(user);
+		
+		OrderDto orderDto = OrderDto.toDto(order);
 		
 		orderDto.setOrderId(null);
 		orderDto.setOrderPrice(20000);
 		orderDto.setOrderStatus(OrderStatus.배송준비중);
 		
-		
-		userRepository.save(user);
-		deliveryRepository.save(delivery);
 		OrderDto createdOrderDto = orderServiceImpl.saveOrder(orderDto);
+		
 		System.out.println(createdOrderDto);
+		
 	}
 	
 	
@@ -77,7 +84,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void orderUpdateTest() throws Exception {
-		Order order = orderRepository.findById(1L).get();
+		Order order = orderRepository.findById(3041L).get();
 		OrderDto orderDto = OrderDto.toDto(order);
 		orderDto.setOrderPrice(333333333);
 		orderDto.setOrderStatus(OrderStatus.결제완료);
@@ -101,28 +108,9 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void orderDeleteAllTest() throws Exception {
-		/*
-		// 모든 주문(Order)을 가져온다
-		List<Order> orders = orderServiceImpl.orders();
-
-		// 주문과 연결된 유저(User)와 배송(Delivery)를 삭제
-		for (Order order : orders) {
-			User user = order.getUser();
-			Delivery delivery = order.getDelivery();
-			
-			order.setUser(null);
-			order.setDelivery(null);
-			
-			
-			// 유저(User)와 배송(Delivery) 삭제
-			userServiceImpl.deleteUser(user.getUserId());
-			deliveryServiceImpl.deleteDelivery(delivery.getDeliveryId());
-
-			// 주문(Order) 삭제
-			orderServiceImpl.deleteAllOrder();
-		}
-		*/
+		
 		orderServiceImpl.deleteAllOrder();
+	
 	}
 	
 	//유저 아이디로 주문 전체 불러오기(성공)

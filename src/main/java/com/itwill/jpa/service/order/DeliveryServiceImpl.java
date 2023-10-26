@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.DeliveryDao;
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 
@@ -21,15 +22,18 @@ public class DeliveryServiceImpl implements DeliveryService{
 	
 	//배송지 정보 저장
 	@Override
-	public Delivery saveDelivery(Delivery delivery) {
+	public DeliveryDto saveDelivery(DeliveryDto dto) {
 		
-		return deliveryRepository.save(delivery);
+		Delivery delivery = deliveryRepository.save(Delivery.toEntity(dto));
+		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
+		
+		return deliveryDto;
 	}
 	
 	//배송지 정보 수정
 	@Transactional
 	@Override
-	public Delivery updateDelivery(Delivery delivery) throws Exception{
+	public DeliveryDto updateDelivery(DeliveryDto delivery) throws Exception{
 	
 		return deliveryDao.updateDelivery(delivery);
 	}
@@ -43,21 +47,21 @@ public class DeliveryServiceImpl implements DeliveryService{
 
 	//배송지 정보들 불러오기
 	@Override
-	public List<Delivery> deliverys() {
-		return deliveryRepository.findAll();
+	public void deliverys() {
+		deliveryDao.selectList();;
 	}
 
 	
 	//아이디로 배송지 정보 불러오기
 	@Override
-	public List<Delivery> findDelivery(String userId) {
+	public List<DeliveryDto> findDelivery(String userId) {
 		return deliveryDao.getDeliveriesByUserId(userId);
 	}
 
 
 	//배송지아이디로 배송지 정보 찾기
 	@Override
-	public Delivery findByDeliveryId(Long id) {
+	public DeliveryDto findByDeliveryId(Long id) {
 		return deliveryDao.findByDeliveryId(id);
 	}
 

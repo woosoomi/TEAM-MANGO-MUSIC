@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.dao.order.DeliveryDao;
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
@@ -40,7 +41,7 @@ class DeliveryServiceTest {
 	@Rollback(false)
 	@Disabled
 	void insert() {
-		Delivery delivery = new Delivery();
+		DeliveryDto delivery = new DeliveryDto();
 		delivery.setDeliveryAddress("서울시");
 		delivery.setDeliveryCompany("롯데");
 		delivery.setDeliveryId(null);
@@ -59,7 +60,7 @@ class DeliveryServiceTest {
                 .build();
 
 		delivery.setUser(user1);
-		Delivery savedDelivery = deliveryService.saveDelivery(delivery);
+		DeliveryDto savedDelivery = deliveryService.saveDelivery(delivery);
 		System.out.println(savedDelivery);
 		
 		
@@ -70,10 +71,10 @@ class DeliveryServiceTest {
 	@Rollback(false)
 	@Disabled
 	void update() throws Exception {
-		Delivery delivery = deliveryService.findByDeliveryId(1L);
+		DeliveryDto delivery = deliveryService.findByDeliveryId(1L);
 		delivery.setDeliveryAddress("부산광역시");
 		
-		Delivery updateDelivery = deliveryService.updateDelivery(delivery);
+		DeliveryDto updateDelivery = deliveryService.updateDelivery(delivery);
 		System.out.println(updateDelivery);
 		
 	}
@@ -92,7 +93,7 @@ class DeliveryServiceTest {
 	@Rollback(false)
 	@Disabled
 	void findDelivery(){
-		List<Delivery> findDelivery = deliveryService.findDelivery("kbs");
+		List<DeliveryDto> findDelivery = deliveryService.findDelivery("kbs");
 		System.out.println(findDelivery);
 	}
 
