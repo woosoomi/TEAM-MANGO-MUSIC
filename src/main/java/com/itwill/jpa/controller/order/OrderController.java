@@ -28,14 +28,13 @@ public class OrderController {
 	private OrderItemService orderItemService;
 
 	
-	
 	@GetMapping("/order")
 	public String order_page(Model model, HttpServletRequest request) {
 		try {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", "why3795");
 			String userId = (String) session.getAttribute("user_id");
-			List<OrderItem> orderItemList = orderItemService.orderItems(userId);
+			List<OrderItemDto> orderItemList = orderItemService.orderItems(userId);
 			 model.addAttribute("orderItemList", orderItemList);
 			System.out.println("주문 아이템: "+ orderItemList);
 			return "order";

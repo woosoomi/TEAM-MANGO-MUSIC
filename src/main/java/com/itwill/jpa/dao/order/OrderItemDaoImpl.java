@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
@@ -31,26 +32,26 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	
 	//아이템 추가
 	@Override
-	public OrderItem insertOrderItem(OrderItem orderItem) {
-		OrderItem savedOrderItem = orderItemRepository.save(orderItem);
+	public OrderItemDto insertOrderItem(OrderItemDto orderItem) {
+		OrderItemDto savedOrderItem = orderItemRepository.save(orderItem);
 		return savedOrderItem;
 	}
 
 	//아이템 아이디로 아이템 선택하기
 	@Override
-	public OrderItem selectOrderItem(Long orderItemId) {
-		OrderItem selectedOrderItem = orderItemRepository.findById(orderItemId).get();
+	public OrderItemDto selectOrderItem(Long orderItemId) {
+		OrderItemDto selectedOrderItem = orderItemRepository.findById(orderItemId).get();
 		return selectedOrderItem;
 	}
 
 	//아이템 업데이트
 	@Override
-	public OrderItem updateOrderItem(OrderItem updateOrderItem) {
-		Optional<OrderItem> findOrderItemOptional =
+	public OrderItemDto updateOrderItem(OrderItemDto updateOrderItem) {
+		Optional<OrderItemDto> findOrderItemOptional =
 				orderItemRepository.findById(updateOrderItem.getOiId());
-		OrderItem updatedOrderItem = null;
+		OrderItemDto updatedOrderItem = null;
 		if(findOrderItemOptional.isPresent()) {
-			OrderItem orderItem = findOrderItemOptional.get();
+			OrderItemDto orderItem = findOrderItemOptional.get();
 			orderItem.setOiQty(updateOrderItem.getOiQty());
 			updatedOrderItem=orderItemRepository.save(orderItem);
 		}else {
@@ -62,7 +63,7 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	//아이템 삭제
 	@Override
 	public void deleteOrderItem(Long orderItemId) {
-		Optional<OrderItem> selectedOrderItemOptional = orderItemRepository.findById(orderItemId);
+		Optional<OrderItemDto> selectedOrderItemOptional = orderItemRepository.findById(orderItemId);
 		if(selectedOrderItemOptional.isEmpty()) {
 			throw new OrderItemNotFoundException("삭제하실 상품이 존재하지 않습니다.");
 		}
@@ -76,11 +77,11 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	}
 
 	@Override
-	public List<OrderItem> orderItems(Long orderId) {
+	public List<OrderItemDto> orderItems(Long orderId) {
 		Optional<Order> orderOptional = orderRepository.findById(orderId);
         if (orderOptional.isPresent()) {
-            Order order = orderOptional.get();
-            return orderItemRepository.findByOrder(order);
+        	Order order = orderOptional.get();
+            return orderItemRepository.findByOrder(OrderDto.toDto(order));
         } else {
             return new ArrayList<>(); // 오더 아이디를 찾지 못한 경우 빈 목록을 반환
         }

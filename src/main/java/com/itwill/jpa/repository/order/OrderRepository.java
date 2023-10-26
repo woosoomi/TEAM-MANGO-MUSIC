@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.user.User;
 @Repository

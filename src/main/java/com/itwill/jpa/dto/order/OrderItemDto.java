@@ -1,5 +1,7 @@
 package com.itwill.jpa.dto.order;
 
+import com.itwill.jpa.entity.order.OrderItem;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderItemDto {
 
+	private Long oiId;
+	
 	private int oiQty;
 	
 	private String productName;
@@ -31,7 +35,7 @@ public class OrderItemDto {
 	
 	//OrderDto에서 OrderItemDto를 쓰기위한 메서드
 	//(OrderItem entity를 건들지 않기위해 OrderItemDto를 대신해서 사용 = 데이터 무결성 유지 목적)
-	/*
+	
 	public static OrderItemDto fromOrderItem(OrderItem orderItem) {
 		
 		OrderItemDto dto = new OrderItemDto();
@@ -42,7 +46,15 @@ public class OrderItemDto {
 		return dto;
 		
 	}
-	*/
+	
+	public static OrderItem toDto(OrderItemDto orderItemDto) {
+		return OrderItem.builder()
+				.oiId(orderItemDto.getOiId())
+				.oiQty(orderItemDto.getOiQty())
+				.build();
+				
+	}
+	
 }
 	
 

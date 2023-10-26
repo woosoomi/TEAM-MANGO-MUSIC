@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 //웹에서 고객에게 보여주기 위한 정보를 담은 객체(Dto)
 public class DeliveryDto {
+	
+	private Long deliveryId;
 
 	private String deliveryName;
 	

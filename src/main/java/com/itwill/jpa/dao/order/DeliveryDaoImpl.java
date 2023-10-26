@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
@@ -21,20 +22,20 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	UserRepository userRepository;
 	
 	@Override
-	public Delivery insertDelivery(Delivery delivery) {
-		Delivery savedDelivery = deliveryRepository.save(delivery);
+	public DeliveryDto insertDelivery(DeliveryDto delivery) {
+		DeliveryDto savedDelivery = deliveryRepository.save(delivery);
 		return savedDelivery;
 	}
 
 
 	@Override
-	public Delivery updateDelivery(Delivery updateDelivery) throws Exception{
+	public DeliveryDto updateDelivery(DeliveryDto updateDelivery) throws Exception{
 		//Delivery가 존재하는지 확인
-		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryId());
-		Delivery updatedDelivery = null;
+		Optional<DeliveryDto> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryId());
+		DeliveryDto updatedDelivery = null;
 		if(findDeliveryOptional.isPresent()) {
 			//존재한다면 업데이트 실행
-			Delivery delivery = findDeliveryOptional.get();
+			DeliveryDto delivery = findDeliveryOptional.get();
 			delivery.setDeliveryName(updateDelivery.getDeliveryName());
 			delivery.setDeliveryCompany(updateDelivery.getDeliveryCompany());
 			delivery.setDeliveryAddress(updateDelivery.getDeliveryAddress());
@@ -51,7 +52,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	@Override
 	public void deleteDelivery(Long deliveryId) throws Exception{
 		//Delivery가 존재하는지 확인 -> 없으면 오류 메세지 던지기
-		Optional<Delivery> deleteDeliveryOptional = deliveryRepository.findById(deliveryId);
+		Optional<DeliveryDto> deleteDeliveryOptional = deliveryRepository.findById(deliveryId);
 		if(deleteDeliveryOptional.isEmpty()) {
 			throw new Exception("삭제할 주소가 존재하지 않습니다.");
 		}
@@ -59,20 +60,20 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 	@Override
-	public List<Delivery> selectList() {
+	public List<DeliveryDto> selectList() {
 		
 		return deliveryRepository.findAll();
 	}
 
 	@Override
-	public Delivery findByDeliveryId(Long id) {
-		Delivery delivery = deliveryRepository.findById(id).get();
+	public DeliveryDto findByDeliveryId(Long id) {
+		DeliveryDto delivery = deliveryRepository.findById(id).get();
 		return delivery;
 	}
 
 
 	@Override
-	public List<Delivery> getDeliveriesByUserId(String userId) {
+	public List<DeliveryDto> getDeliveriesByUserId(String userId) {
 		Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();

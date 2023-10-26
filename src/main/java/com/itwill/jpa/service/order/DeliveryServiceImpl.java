@@ -21,7 +21,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 	
 	//배송지 정보 저장
 	@Override
-	public Delivery saveDelivery(Delivery delivery) {
+	public DeliveryDto saveDelivery(DeliveryDto delivery) {
 		
 		return deliveryRepository.save(delivery);
 	}
@@ -29,7 +29,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 	//배송지 정보 수정
 	@Transactional
 	@Override
-	public Delivery updateDelivery(Delivery delivery) throws Exception{
+	public DeliveryDto updateDelivery(DeliveryDto delivery) throws Exception{
 	
 		return deliveryDao.updateDelivery(delivery);
 	}
@@ -43,21 +43,21 @@ public class DeliveryServiceImpl implements DeliveryService{
 
 	//배송지 정보들 불러오기
 	@Override
-	public List<Delivery> deliverys() {
+	public List<DeliveryDto> deliverys() {
 		return deliveryRepository.findAll();
 	}
 
 	
 	//아이디로 배송지 정보 불러오기
 	@Override
-	public List<Delivery> findDelivery(String userId) {
+	public List<DeliveryDto> findDelivery(String userId) {
 		return deliveryDao.getDeliveriesByUserId(userId);
 	}
 
 
 	//배송지아이디로 배송지 정보 찾기
 	@Override
-	public Delivery findByDeliveryId(Long id) {
+	public DeliveryDto findByDeliveryId(Long id) {
 		return deliveryDao.findByDeliveryId(id);
 	}
 

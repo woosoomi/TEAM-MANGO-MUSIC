@@ -2,22 +2,24 @@ package com.itwill.jpa.service.order;
 
 import java.util.List;
 
-import com.itwill.jpa.entity.order.OrderItem;
+import com.itwill.jpa.dto.order.OrderItemDto;
 
 public interface OrderItemService {
 
-	OrderItem saveOrderItem(OrderItem orderItem);
+	OrderItemDto saveOrderItem(OrderItemDto orderItem);
 	
-	OrderItem updateOrderItem(OrderItem orderItem);
+	OrderItemDto updateOrderItem(OrderItemDto orderItem);
 	
 	void deleteOrderItem(Long id) throws Exception;
 	
 	void deleteAllOrderItem() throws Exception;
 	
-	List<OrderItem> orderItems(Long orderId);
+	List<OrderItemDto> orderItems(Long orderId);
 	
-	List<OrderItem> orderItems(String userId);
+
+	List<OrderItemDto> orderItems(String userId);
 	
-	OrderItem findOrderItem(Long id);
+	OrderItemDto findOrderItem(Long id);
+
 
 }

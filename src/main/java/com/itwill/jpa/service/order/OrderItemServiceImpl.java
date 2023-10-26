@@ -22,13 +22,13 @@ public class OrderItemServiceImpl implements OrderItemService{
 
 	//아이템 추가
 	@Override
-	public OrderItem saveOrderItem(OrderItem orderItem) {
+	public OrderItemDto saveOrderItem(OrderItemDto orderItem) {
 		return orderItemRepository.save(orderItem);
 	}
 
 	//아이템 업데이트
 	@Override
-	public OrderItem updateOrderItem(OrderItem orderItem) {
+	public OrderItemDto updateOrderItem(OrderItemDto orderItem) {
 		return orderItemDao.updateOrderItem(orderItem);
 	}
 	
@@ -47,13 +47,13 @@ public class OrderItemServiceImpl implements OrderItemService{
 
 	//아이템 아이디로 아이템 선택하기
 	@Override
-	public OrderItem findOrderItem(Long id) {
+	public OrderItemDto findOrderItem(Long id) {
 		return orderItemDao.selectOrderItem(id);
 	}
 
 	//오더 아이디를 받아와서 아이템리스트 나열
 	@Override
-	public List<OrderItem> orderItems(Long orderId) {
+	public List<OrderItemDto> orderItems(Long orderId) {
 		return orderItemDao.orderItems(orderId);
 	}
 
