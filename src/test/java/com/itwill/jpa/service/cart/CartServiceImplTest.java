@@ -37,7 +37,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Disabled
 	@Rollback(false)
 	void cartInsert() {
-		User user1 =new User("test102", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null);
+		User user1 =new User("test102", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
 		userRepository.save(user1);
 		
 		Cart cart1 = new Cart();
