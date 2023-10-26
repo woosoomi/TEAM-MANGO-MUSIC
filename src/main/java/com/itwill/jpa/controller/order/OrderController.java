@@ -48,15 +48,16 @@ public class OrderController {
 
 	@GetMapping("/orderdetail")
 	public String orderdetail_page(Model model) {
-		try {
-			List<Order> orderList = orderService.orderListByNewer("why3795");
-			model.addAttribute(orderList);
-			System.out.println("주문내역:" + orderList);
-			return "orderdetail";
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("errorMsg: " + e.getMessage());
-			return "index";
-		}
+//		try {
+//			List<Order> orderList = orderService.orderListByNewer("why3795");
+//			model.addAttribute(orderList);
+//			System.out.println("주문내역:" + orderList);
+//			return "orderdetail";
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			model.addAttribute("errorMsg: " + e.getMessage());
+//			return "index";
+//		}
+		return "orderdetail";
 	}
 }
