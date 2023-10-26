@@ -56,6 +56,11 @@ public class BoardServiceImpl implements BoardService{
 		return boardRepository.findByBoardCategory_IdOrderByCreatedTime(id);
 	}
 	
+	@Override
+	public List<Board> findByType(Long id){
+		return boardRepository.findByBoardType_TypeIdOrderByCreatedTime(id);
+	}
+	
 // 아직 readcount 추가안함
 	
 //	@Override
@@ -82,5 +87,9 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<Board> searchBoardsByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
 		return boardRepository.findByCreatedTimeBetween(startDate, endDate);
+	}
+	@Override
+	public List<Board> findAllByOrderByBoardReadCountDesc(){
+		return boardRepository.findAllByOrderByBoardReadCountDesc();
 	}
 }

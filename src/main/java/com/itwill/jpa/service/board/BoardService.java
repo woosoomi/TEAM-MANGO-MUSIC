@@ -19,6 +19,8 @@ public interface BoardService {
 	//category별 분류
 	public List<Board> findBycategory(Long id);
 	
+	public List<Board> findByType(Long id);
+	
 //	// 조회수 올리기
 //	public Board increaseReadCount(Board board);
 	
@@ -33,5 +35,9 @@ public interface BoardService {
     
     //최근일주일,한달,등 시간으로 검색
     public List<Board> searchBoardsByDateRange(LocalDateTime startDate, LocalDateTime endDate);
+
+	List<Board> findAllByOrderByBoardReadCountDesc();
+
+    
 
 }
