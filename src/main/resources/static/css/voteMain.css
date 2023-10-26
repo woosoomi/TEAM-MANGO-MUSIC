@@ -49,7 +49,8 @@
 .select_Month{
   font-family: 'Noto Sans KR', sans-serif;
   width: auto;
- /*
+ 
+  /*
   스트롤 이동시 고정
 
   position: fixed;
@@ -72,7 +73,7 @@
  
 }
 
-.select_Month li,a{
+.select_Month li{
   font-family: 'Noto Sans KR', sans-serif;
   list-style-type: none;
   float: left;
@@ -81,6 +82,10 @@
   text-align: center;
   text-decoration-line: none;
 
+}
+
+.select_Month li a{
+  text-decoration-line: none;
 }
 
 
@@ -133,6 +138,10 @@
 .battle img{
     width: 300px;
 }
+.battle_totPercent{
+  display: grid;
+  grid-template-columns: 145px 50px 40px;
+}
 
 .battle_left_name{
 text-align: center;
@@ -152,6 +161,7 @@ text-align: center;
     line-height: 0;
     border-radius: 20px;
     margin-left: 15px;
+    margin-top: 10px;
 }
 
 /* 1위 2위 배틀 종료*/

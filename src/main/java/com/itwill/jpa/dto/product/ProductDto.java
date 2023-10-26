@@ -9,6 +9,7 @@ import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
 import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
+import com.itwill.jpa.entity.product.ProductCategory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +24,7 @@ import lombok.ToString;
 @Builder
 public class ProductDto {
 	
-	private String productCategory; // 프로덕트 카테고리
+	private ProductCategory productCategory; // 프로덕트 카테고리
 	 	
 	private String productName;  // 프로덕트 이름
 	
@@ -92,6 +93,19 @@ public static ProductDto toDto(Product entity) {
 			.periodOfUse(entity.getPeriodOfUse())
 			.build();
 }
+/************ GOODS ************/
+public void goodsDto(Goods goods) {
+	this.productCategory = goods.getProductCategory();
+	this.productName = goods.getProductName();
+	this.productPrice = goods.getProductPrice();
+	this.productStar = goods.getProductStar();
+	this.productDate = goods.getProductDate();
+	this.productStock = goods.getProductStock();
+	this.productImage = goods.getProductImage();
+	
+}
+
+/************ MEMBERSHIP ************/
 
 
 }
