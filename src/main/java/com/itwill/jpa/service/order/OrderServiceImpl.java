@@ -12,7 +12,6 @@ import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.repository.order.OrderRepository;
 
 import jakarta.transaction.Transactional;
-import jakarta.websocket.Session;
 
 @Service
 public class OrderServiceImpl implements OrderService{
