@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -35,27 +36,29 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Autowired
 	UserRepository userRepository;
 
-	
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void cartItemInsert() {
 
-		User user = new User("test1", "1111", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null, null);
+		//User user = new User("test1", "1111", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null, null);
+		User user = null;
+
 		Cart cart = new Cart();
 		cart.setUser(user);
-		cart.setCartId(138L);
+		cart.setCartId(642L);
 		List<CartItem> cartItems = new ArrayList<>();
 		CartItem cartItem1 = CartItem.builder().cartItemId(0L).cartItemQty(10).cart(cart).build();
 		CartItem cartItem2 = CartItem.builder().cartItemId(0L).cartItemQty(15).cart(cart).build();
 		CartItem cartItem3 = CartItem.builder().cartItemId(0L).cartItemQty(16).cart(cart).build();
-
+		System.out.println(">>>>>>>>>>>>>>>>>>>"+cartItems);
 		cartItems.add(cartItem1);
 		cartItems.add(cartItem2);
 		cartItems.add(cartItem3);
 		
 		cart.setCartitems(cartItems);
+		
 		try {
 		List<CartItem> insertedCartItems = cartItemServiceImpl.insertAll(cartItems);
 			System.out.println("insert>>>>>>>>>>>>>>>>>>" + insertedCartItems);
@@ -68,7 +71,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		
 	}
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void deleteByCartItemId() {
@@ -76,11 +79,11 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void updateCartItemsQty() throws Exception {
-		Long cartItemId = 330L;
+		Long cartItemId = 684L;
 		int updateQty = 5;
 		cartItemServiceImpl.update(cartItemId, updateQty);
 		
