@@ -34,21 +34,26 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	CartRepository cartRepository;
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
 	
 	void cartInsert() {
-		User user1 =new User("test102", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
-		userRepository.save(user1);
+		//User user1 =new User("test102", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
+		//userRepository.save(user1);
+		Optional<User> findUser = userRepository.findById("lsg33");
+		System.out.println("findUser>>>>>>>>>>>>>>>"+findUser);
+		if (findUser.isPresent()) {
+			User user = findUser.get();
+			Cart cart1 = Cart.builder().cartId(0L).cartTotPrice(1000).user(user).build();
+			System.out.println("cart1>>>>>>>>>>>>>>>>"+cart1);
+			Cart insertedCart=cartServiceImpl.insert(cart1);
+			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart);
+		}
+		//cart1.setUser();
+		//cart1.getCartitems();
+		//cart1.setCartId(0L);
+		//cart1.setCartTotPrice(1000);
 		
-		Cart cart1 = new Cart();
-		cart1.setUser(user1);
-		cart1.getCartitems();
-		cart1.setCartId(0L);
-		cart1.setCartTotPrice(1000);
-		Cart insertedCart=cartServiceImpl.insert(cart1);
-		
-		System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart);
 		/*
 		Cart cart2 = new Cart();
 		CartItem cartItem2 =new CartItem(0L,10000,null,null);

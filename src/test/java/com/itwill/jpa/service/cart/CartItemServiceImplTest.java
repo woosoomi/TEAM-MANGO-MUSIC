@@ -42,20 +42,22 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Disabled
 	void cartItemInsert() {
 		//User user = new User("test1", "1111", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null, null);
-		User user = null;
-		Cart cart = new Cart();
-		cart.setUser(user);
-		cart.setCartId(642L);
+		//User user = null;
+		//Cart cart = new Cart();
+		//cart.setUser(user);
+		//cart.setCartId(642L);
+		Optional<Cart> cart = cartRepository.findById(642L);
+		System.out.println("cart>>>>>>>>>>>"+cart);
 		List<CartItem> cartItems = new ArrayList<>();
-		CartItem cartItem1 = CartItem.builder().cartItemId(0L).cartItemQty(10).cart(cart).build();
-		CartItem cartItem2 = CartItem.builder().cartItemId(0L).cartItemQty(15).cart(cart).build();
-		CartItem cartItem3 = CartItem.builder().cartItemId(0L).cartItemQty(16).cart(cart).build();
+		CartItem cartItem1 = CartItem.builder().cartItemId(0L).cartItemQty(10).cart(cart.get()).build();
+		CartItem cartItem2 = CartItem.builder().cartItemId(0L).cartItemQty(15).cart(cart.get()).build();
+		CartItem cartItem3 = CartItem.builder().cartItemId(0L).cartItemQty(16).cart(cart.get()).build();
 		System.out.println(">>>>>>>>>>>>>>>>>>>"+cartItems);
 		cartItems.add(cartItem1);
 		cartItems.add(cartItem2);
 		cartItems.add(cartItem3);
 		
-		cart.setCartitems(cartItems);
+		//cart.setCartitems(cartItems);
 		
 		try {
 		List<CartItem> insertedCartItems = cartItemServiceImpl.insertAll(cartItems);
@@ -64,16 +66,16 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 			e.printStackTrace();
 		}
 		
-		cartRepository.save(cart);
-		userRepository.save(user);
+		//cartRepository.save(cart);
+		//userRepository.save(user);
 	
 	}
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void deleteByCartItemId() {
-		cartItemServiceImpl.deleteByCartItemId(401L);
+		cartItemServiceImpl.deleteByCartItemId(2088L);
 	}
 	
 	@Test
