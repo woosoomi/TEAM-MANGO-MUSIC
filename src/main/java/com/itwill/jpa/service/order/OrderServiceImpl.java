@@ -41,20 +41,23 @@ public class OrderServiceImpl implements OrderService{
 		return orderDto;
 	}
 
-	//주문 한개 삭제
+	//주문 한개 삭제하고 Dto에 삭제 객체 저장
 	@Override
 	public OrderDto deleteOrder(Long orderId) throws Exception {
-		Order order = orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("대상이 존재하지 않습니다."));
+		Order order = orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("주문이 존재하지 않습니다."));
 		orderRepository.deleteById(orderId);
 		OrderDto orderDto = OrderDto.toDto(order);
 		return orderDto;
 	}
 		
 	
-	//주문 전체 삭제(바꿔야됨)
+	//주문 전체 삭제하고 Dto에 삭제 객체 리스트 저장
 	@Override
-	public void deleteAllOrder() throws Exception {
+	public List<OrderDto> deleteAllOrder() throws Exception {
+		List<Order> orderList = orderRepository.findAll();
 		orderRepository.deleteAll();
+		List<OrderDto> orderDtoList = OrderDto.toDto(orderList);
+		return orderDtoList;
 	}
 
 	//유저 아이디로 주문 전체 불러오기
