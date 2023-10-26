@@ -178,12 +178,13 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		@Disabled
 		@Transactional
 		@Rollback(false)
-		@DisplayName("이메일로 아이디 찾기")
-		public void testFindUserIdByUserEmail() {
-			String userEmail = "kbs1@naver.com";
+		@DisplayName("아이디 찾기")
+		public void testFindUserIdByUserNameUserEmail() {
+			String userName = "고범석";
+			String userEmail = "kbs@naver.com";
 
 			try {
-				String foundUserId = userService.findUserIdByUserEmail(userEmail);
+				String foundUserId = userService.findUserIdByUserNameUserEmail(userName ,userEmail);
 				assertNotNull(foundUserId);
 				System.out.println(">>> 아이디 찾기 성공: " + foundUserId);
 			} catch (Exception e) {
@@ -192,15 +193,16 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		}
 
 		@Test
-		@Disabled
+		//@Disabled
 		@Transactional
 		@Rollback(false)
-		@DisplayName("번호로 비밀번호 찾기")
-		public void testFindUserPwByUserPhone() {
+		@DisplayName("비밀번호 찾기")
+		public void testFindUserPwByUserIdUserPhone() {
+			String userId = "kbs88";
 			String userPhone = "010-4039-4937";
 
 			try {
-				String foundUserPw = userService.findUserPwByUserPhone(userPhone);
+				String foundUserPw = userService.findUserPwByUserIdUserPhone(userId, userPhone);
 				assertNotNull(foundUserPw);
 				System.out.println(">>> 비밀번호 찾기 성공: " + foundUserPw);
 			} catch (Exception e) {

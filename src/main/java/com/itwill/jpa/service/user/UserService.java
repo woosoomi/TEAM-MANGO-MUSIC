@@ -27,9 +27,9 @@ public interface UserService {
 		boolean existsById(String userId) throws Exception;
 		
 		//이메일로 아이디 찾기
-		String findUserIdByUserEmail(String userEmail) throws Exception;
+		String findUserIdByUserNameUserEmail(String userName ,String userEmail) throws Exception;
 		
 		// 번호로 비밀번호 찾기
-		String findUserPwByUserPhone(String userPhone) throws Exception; 
+		String findUserPwByUserIdUserPhone(String userId, String userPhone) throws Exception; 
 		
 }

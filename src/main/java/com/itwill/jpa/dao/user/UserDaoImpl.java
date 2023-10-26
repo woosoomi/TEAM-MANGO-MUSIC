@@ -63,14 +63,14 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public String findUserIdByUserEmail(String userEmail) {
-		String findId = userRepository.findUserIdByUserEmail(userEmail);
+	public String findUserIdByUserNameUserEmail(String userName ,String userEmail) {
+		String findId = userRepository.findUserIdByUserNameUserEmail(userName ,userEmail);
 		return findId;
 	}
 
 	@Override
-	public String findUserPwByUserPhone(String userPhone) {
-		String findPw = userRepository.findUserPwByUserPhone(userPhone);
+	public String findUserPwByUserIdUserPhone(String userId, String userPhone) {
+		String findPw = userRepository.findUserPwByUserIdUserPhone(userId, userPhone);
 		return findPw;
 	}
 
