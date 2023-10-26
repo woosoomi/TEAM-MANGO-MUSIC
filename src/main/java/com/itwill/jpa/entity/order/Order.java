@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.user.User;
 
@@ -51,7 +54,10 @@ public class Order {
 	private int orderPrice;
 	
 	//주문 날짜시간
-	private LocalDateTime orderDate;
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
 	
 	//주문 진행상황
 	@Enumerated(EnumType.STRING)
@@ -65,13 +71,6 @@ public class Order {
 		결제완료, 배송준비중, 배송중, 배송완료
 	}
 	
-	//Dto -> entity 변환해주는 매서드
-	public static Order toEntity(OrderDto dto) {
-		
-		return Order.builder()
-				.orderStatus(dto.getOrderStatus())
-				.build();	
-	}
 	
 	//order와 delivery 1대1
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -92,5 +91,14 @@ public class Order {
 	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<Coupon> coupons = new ArrayList<>();
 	
+	//Dto -> entity 변환해주는 매서드
+	public static Order toEntity(OrderDto dto) {
+		
+		return Order.builder()
+				.orderId(dto.getOrderId())
+				.orderPrice(dto.getOrderPrice())
+				.orderStatus(dto.getOrderStatus())
+				.build();	
+	}
 	
 }

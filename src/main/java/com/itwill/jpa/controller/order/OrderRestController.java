@@ -34,44 +34,44 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderRestController {
 
-	private final OrderService orderService;
-	private final OrderItemService orderItemService;
-	private final DeliveryService deliveryService;
-	private final CouponService couponService;
-
-	
-	/* Restful Order */
-
-	
-	// 주문생성
-
-	@PostMapping("/create")
-	public ResponseEntity<?> createOrder(@RequestBody Order order) {
-		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(order));
-		} catch (Exception e) {
-			e.printStackTrace();
-			Map<String, String> errorResponse = new HashMap<>();
-			errorResponse.put("error", e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-		}
-	}
-
-	// 주문수정(관리자권한)
-
-	@PutMapping("/update")
-	public ResponseEntity<?> updateOrder(@RequestBody Order order) throws Exception {
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(order));
-		} catch (Exception e) {
-			e.printStackTrace();
-			Map<String, String> errorResponse = new HashMap<>();
-			errorResponse.put("error", e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-		}
-	}
-			
-			
+//	private final OrderService orderService;
+//	private final OrderItemService orderItemService;
+//	private final DeliveryService deliveryService;
+//	private final CouponService couponService;
+//
+//	
+//	/* Restful Order */
+//
+//	
+//	// 주문생성
+//
+//	@PostMapping("/create")
+//	public ResponseEntity<?> createOrder(@RequestBody Order order) {
+//		try {
+//			return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(order));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			Map<String, String> errorResponse = new HashMap<>();
+//			errorResponse.put("error", e.getMessage());
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+//		}
+//	}
+//
+//	// 주문수정(관리자권한)
+//
+//	@PutMapping("/update")
+//	public ResponseEntity<?> updateOrder(@RequestBody Order order) throws Exception {
+//		try {
+//			return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(order));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			Map<String, String> errorResponse = new HashMap<>();
+//			errorResponse.put("error", e.getMessage());
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+//		}
+//	}
+//			
+//			
 			
 
 //	// 주문번호로 주문 1개 삭제

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.OrderDao;
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.repository.order.OrderRepository;
 
@@ -19,52 +20,102 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	OrderDao orderDao;
-	
-	//주문 생성
+
 	@Override
-	public Order saveOrder(Order order) {
-		return orderRepository.save(order);
-	}
-	
-	//주문 정보 수정
-	@Transactional
-	@Override
-	public Order updateOrder(Order order) throws Exception{
-		return orderDao.updateOrder(order);
+	public OrderDto saveOrder(OrderDto orderDto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	//주문 한개 삭제
+	@Override
+	public OrderDto updateOrder(OrderDto orderDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@Override
 	public void deleteOrder(Long orderId) throws Exception {
-		orderRepository.deleteById(orderId);
+		// TODO Auto-generated method stub
+		
 	}
-	
-	//주문 전체 삭제
+
 	@Override
 	public void deleteAllOrder() throws Exception {
-		orderRepository.deleteAll();
+		// TODO Auto-generated method stub
+		
 	}
 
-	//유저 아이디로 주문 전체 불러오기
 	@Override
-	public List<Order> ordersByUserId(String UserId) {
-		return orderDao.getOrdersByUserId(UserId);
+	public List<OrderDto> ordersByUserId(String UserId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderDto> orders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderDto> orderListByNewer(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderDto> orderListByOlder(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	//전체 주문 불러오기(관리자)
-	@Override
-	public List<Order> orders() {
-		return orderRepository.findAll();
-	}
-
-	@Override
-	public List<Order> orderListByNewer(String userId) {
-		return orderDao.orderListByNewer(userId);
-	}
-
-	@Override
-	public List<Order> orderListByOlder(String userId) {
-		return orderRepository.orderListByOlder(userId);
-	}
+//	//주문 생성
+//	@Override
+//	public OrderDto saveOrder(OrderDto dto) {
+//		Order order = orderDao.insertOrder(Order.toEntity(dto));
+//		OrderDto orderDto = OrderDto.toDto(order);
+//		return orderDto;
+//	}
+//	
+//	//주문 정보 수정
+//	@Transactional
+//	@Override
+//	public Order updateOrder(Order order) throws Exception{
+//		return orderDao.updateOrder(order);
+//	}
+//
+//	//주문 한개 삭제
+//	@Override
+//	public void deleteOrder(Long orderId) throws Exception {
+//		orderRepository.deleteById(orderId);
+//	}
+//	
+//	//주문 전체 삭제
+//	@Override
+//	public void deleteAllOrder() throws Exception {
+//		orderRepository.deleteAll();
+//	}
+//
+//	//유저 아이디로 주문 전체 불러오기
+//	@Override
+//	public List<Order> ordersByUserId(String UserId) {
+//		return orderDao.getOrdersByUserId(UserId);
+//	}
+//	
+//	//전체 주문 불러오기(관리자)
+//	@Override
+//	public List<Order> orders() {
+//		return orderRepository.findAll();
+//	}
+//
+//	@Override
+//	public List<Order> orderListByNewer(String userId) {
+//		return orderDao.orderListByNewer(userId);
+//	}
+//
+//	@Override
+//	public List<Order> orderListByOlder(String userId) {
+//		return orderRepository.orderListByOlder(userId);
+//	}
 
 }
