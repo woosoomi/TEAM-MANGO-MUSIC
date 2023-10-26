@@ -17,5 +17,17 @@ public class VoteController {
 		return forwardPath;
 	}
 
+	
+	
+	/***********GET방식요청시 guest_main redirection*********/
+	@GetMapping({
+		"user_vote_action"
+	})
+	public String user_get() {
+		String forwardPath = "redirect:index";
+		return forwardPath;
+	}
+    
+	
 }
 
