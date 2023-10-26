@@ -28,7 +28,7 @@ public class OrderItemDto {
 	
 	private Order order;
 
-	private Product product;
+	
 	
 //	public OrderItemDto(OrderItem orderItem) {
 //		this.productName = orderItem.getProduct().getProductName();

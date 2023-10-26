@@ -30,19 +30,20 @@ public class OrderController {
 	
 	@GetMapping("/order")
 	public String order_page(Model model, HttpServletRequest request) {
-		try {
-			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "why3795");
-			String userId = (String) session.getAttribute("user_id");
-			List<OrderItemDto> orderItemList = orderItemService.orderItems(userId);
-			 model.addAttribute("orderItemList", orderItemList);
-			System.out.println("주문 아이템: "+ orderItemList);
-			return "order";
-		}catch(Exception e){
-			e.printStackTrace();
-			model.addAttribute("errorMsg: "+ e.getMessage());
-			return "index";
-		}
+//		try {
+//			HttpSession session = request.getSession();
+//			session.setAttribute("user_id", "why3795");
+//			String userId = (String) session.getAttribute("user_id");
+//			List<OrderItemDto> orderItemList = orderItemService.orderItems(userId);
+//			 model.addAttribute("orderItemList", orderItemList);
+//			System.out.println("주문 아이템: "+ orderItemList);
+//			return "order";
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			model.addAttribute("errorMsg: "+ e.getMessage());
+//			return "index";
+//		}
+	return "order";
 	}
 
 	@GetMapping("/orderdetail")

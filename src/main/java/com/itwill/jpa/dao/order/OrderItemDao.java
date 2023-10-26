@@ -2,20 +2,18 @@ package com.itwill.jpa.dao.order;
 
 import java.util.List;
 
-import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 
 public interface OrderItemDao {
 
-	OrderItemDto insertOrderItem(OrderItemDto orderItem);
+	OrderItem insertOrderItem(OrderItem orderItem);
 	
-	OrderItemDto selectOrderItem(Long orderItemId);
+	OrderItem selectOrderItem(Long orderItemId);
 	
-	List<OrderItemDto> orderItems(Long orderId);
+	List<OrderItem> orderItems(Long orderId);
 	
-	List<OrderItemDto> orderItems(String userId);
-	
-	OrderItemDto updateOrderItem(OrderItemDto orderItem);
+	OrderItem updateOrderItem(OrderItem orderItem);
 	
 	void deleteOrderItem(Long orderItemId);
 	

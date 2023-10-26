@@ -36,7 +36,6 @@ public class OrderItem {
 	
 	private int oiQty;
 
-	private String userId;
 	/*
 	 * 다대일 관계
 	 */
