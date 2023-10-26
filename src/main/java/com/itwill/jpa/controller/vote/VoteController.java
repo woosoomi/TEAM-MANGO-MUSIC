@@ -1,10 +1,15 @@
 package com.itwill.jpa.controller.vote;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,22 +31,8 @@ public class VoteController {
 		return "voteMain";
 	}
 
-	/*
-	@PostMapping(value = "/user_vote_action")
-	private String user_vote_action(@ModelAttribute 
-									User user,
-									HttpServletRequest request) {
-		String sUserId=(String)request.getSession().getAttribute("sUserId");
-		Vote sVoteId= (Vote)request.getSession().getAttribute("sVoteId");
-		
 
-		String forwardPath = "vote_Main";
-		return forwardPath;
-	}
-	
-	
-	*/
-	
+	/*
 	@Operation(summary = "투표생성")
 	@GetMapping
 	public ResponseEntity<Response> createVote(@RequestBody Vote vote) {
@@ -63,6 +54,21 @@ public class VoteController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
 	    }
 	}
-    
+    */
+	
+	
+	@DeleteMapping("/{voteId}")
+	public ResponseEntity<Map> deleteVote(@PathVariable(name="voteID") Long voteId) throws Exception{
+		if (voteServiceImpl.selectByVoteNo(voteId)==null) {
+			Response response = new Response();
+			response.setMessage("없는 투표 번호입니다.");
+		}
+		
+		voteServiceImpl.deleteByVoteNo(voteId);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(new HashMap<>());
+	}
+	
+	
 
 }
