@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Membership;
+import com.itwill.jpa.entity.product.Product.Music;
+import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductRepository;
@@ -86,13 +90,34 @@ public class ProductServiceImpl implements ProductService{
 	      System.out.println(msg);
 	      return null;
 	   }
-	
+/******************** insert ********************/	
 	//product 추가[성공]
 	@Override
 	public Product insertProduct(Product product) {
 		return productRepository.save(product);
 	}
-
+	
+	//music 추가[성공]
+	@Override
+	public Music insertMusic(Music music) {
+		return productRepository.save(music);
+	}
+	//goods 추가[성공]
+	@Override
+	public Goods insertGoods(Goods goods) {
+		return productRepository.save(goods);
+	}
+	//ticket 추가[성공]
+	@Override
+	public Ticket insertTicket(Ticket ticket) {
+		return productRepository.save(ticket);
+	}
+	//membership 추가[성공]
+	@Override
+	public Membership insertMembership(Membership membership) {
+		return productRepository.save(membership);
+	}
+	/*********************************************/
 	//product 삭제[성공]	
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
