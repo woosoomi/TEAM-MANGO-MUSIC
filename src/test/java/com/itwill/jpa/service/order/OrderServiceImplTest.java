@@ -119,7 +119,7 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void orderByUserIdTest() {
-		List<OrderDto> orderDtoList = orderServiceImpl.ordersByUserId("팀장님");
+		List<OrderDto> orderDtoList = orderServiceImpl.ordersByUserId("cgj22");
 		System.out.println(orderDtoList);
 	}
 	

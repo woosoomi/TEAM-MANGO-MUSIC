@@ -45,7 +45,6 @@ public class ProductMembershipDto {
 	
 	
 public ProductMembershipDto(Product product) {
-//	this.productCategory = 
 	this.productName = product.getProductName();
 	this.productPrice = product.getProductPrice();
 	this.productContent = product.getProductContent();

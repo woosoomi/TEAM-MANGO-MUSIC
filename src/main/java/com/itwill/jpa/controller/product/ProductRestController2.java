@@ -28,13 +28,10 @@ public class ProductRestController2 {
 	
 //	@GetMapping
 //	public ResponseEntity<List<Product>> getMusicList(){
-//		ProductCategory productCategory = 
-//		productService.findByProductCategory();
-//		List<Product> productList = ;
 //		return ResponseEntity.status(HttpStatus.OK).body(productList);
 //	}
 
-	@PostMapping
+	@PostMapping("/music/create")
 	public ResponseEntity<Product> createMusic(@RequestBody Product product){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(productService.insertProduct(product));
@@ -42,7 +39,7 @@ public class ProductRestController2 {
 	//나중에 뮤직dto쪽에 연결해서 쓸 생각 - 서비스에도 dto 연결 필요
 	
 
-	@PutMapping
+	@PutMapping("/update")
 	public ResponseEntity<Product> updateProduct(@RequestBody Product updateProduct)throws Exception{
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(productService.updateProduct(updateProduct));

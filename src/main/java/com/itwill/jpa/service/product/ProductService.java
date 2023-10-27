@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.product.Product.Goods;
@@ -33,44 +35,105 @@ public interface ProductService{
 	// 품절 안내 기능[성공]
 	Product outOfStockMsg(Long productNo);
 
-	/******************** insert ********************/
+	/******************** INSERT ********************/
 	// product 등록[성공]
 	public Product insertProduct(Product product);	
+	
 	// music 등록[성공]
 	public Music insertMusic(Music music);
-	// music 등록[성공]
+	
+	// goods 등록[성공]
 	public Goods insertGoods(Goods goods);
-	// music 등록[성공]
+	
+	// goods 등록 - DTO
+	GoodsDto insertGoodsDto(GoodsDto goodsDto);
+	
+	// ticket 등록[성공]
 	public Ticket insertTicket(Ticket ticket);
-	// music 등록[성공]
+	
+	// ticket 등록 - DTO	
+	TicketDto insertTicketDto(TicketDto ticketDto);
+	
+	// membership 등록[성공]
 	public Membership insertMembership(Membership membership);
 	/*********************************************/
-	
+
+	/******************** DELETE ********************/
 	// product 삭제[성공]		
 	void deleteProduct(Long productNo) throws Exception;
 	
+	// goods 등록 - DTO
+	GoodsDto deledtGoodsDto(GoodsDto goodsDto) throws Exception;
+	
+	// ticket 등록 - DTO	
+	TicketDto deleteTicketDto(TicketDto ticketDto) throws Exception;
+	
 	// product 삭제[성공]
 	public void deleteProduct2(Long productNo);
+	/*********************************************/
 	
+	/******************** UPDATE ********************/	
 	// product 업데이트[성공]
 	public Product updateProduct(Product product);
-		
+	
+	// goods 업데이트 - DTO
+	GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception;
+	
+	// ticket 업데이트 - DTO
+	TicketDto updateTicketDto(TicketDto ticketDto) throws Exception;
+	/*********************************************/
+	
+	/******************** INCREASE READCOUNT ********************/	
 	// product 조회수 올리기[성공]
 	public Product increaseReadCount(Product product);
-	
+	// goods 조회수 올리기 - DTO
+	GoodsDto increaseGoodsReadCountDto(GoodsDto goodsDto) throws Exception;
+
+	// ticket 조회수 올리기 - DTO
+	TicketDto increaseTicketReadCountDto(TicketDto ticketDto) throws Exception;
+	/*************************************************************/
+
+	/******************** 내림차순 ********************/		
 	// product 조회수별 내림차순 정렬 [성공]
 	public List<Product> getProductOrderByReadCountDesc();
 	
+	// ticket 조회수별 내림차순 정렬 - DTO	
+	GoodsDto GoodsByReadCountDescDto(GoodsDto goodsDto) throws Exception;
+	
+	// ticket 조회수별 내림차순 정렬 - DTO	
+	TicketDto TicketByReadCountDescDto(TicketDto ticketDto) throws Exception;
+	
+	/*********************************************/	
+	
+	/******************** 오름차순 ********************/		
 	// product 조회수별 오름차순 정렬 [성공]
 	public List<Product> getProductOrderByReadCountAsc();
 	
-	// 키워드로 검색[테스트중]
-	public List<Product> searchProductsByKeyword(String keyword);
+	// ticket 조회수별 내림차순 정렬 - DTO	
+	GoodsDto GoodsByReadCountAscDto(GoodsDto goodsDto) throws Exception;
 	
+	// ticket 조회수별 내림차순 정렬 - DTO	
+	TicketDto TicketByReadCountAscDto(TicketDto ticketDto) throws Exception;
+	/*********************************************/	
+	
+	/******************** 키워드로 검색 ********************/	
+	// 키워드로 검색[성공]
+	public List<Product> searchProductsByKeyword(String keyword);
+	/*********************************************/	
+
+	/******************** categoryId별로 전체나열 ********************/		
 	// product categoryId별 분류
 	public List<Product> findByCategoryId(Long categoryId);
 	
-	// product category별 분류[성공]
+	// ticket categoryId별로 전체나열 - DTO	
+	List<GoodsDto> findGoodsByCategoryId(Long categoryId);
+	
+	// ticket categoryId별로 전체나열 - DTO	
+	List<TicketDto> findTicketByCategoryId(Long categoryId);
+		
+	/*********************************************/	
+	
+	// product category별 분류
 	List<Product> findByProductCategory(ProductCategory categoryId);
 	
 	// productNo 찾기[성공]
