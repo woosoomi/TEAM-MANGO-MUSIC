@@ -18,4 +18,6 @@ public interface OrderItemService {
 		
 	OrderItemDto findOrderItem(Long oiId);
 	
+//	List<OrderItemDto> orderItems(String userId);
+	
 }

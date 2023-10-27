@@ -86,7 +86,18 @@ public class OrderItemServiceImpl implements OrderItemService{
 		return orderItemDtoList;
 	}
 
+//	//유저 아이디를 받아서 아이템리스트 나열
+//	@Override
+//	public List<OrderItemDto> orderItems(String UserId) {
+//		List<OrderItem> orderItemList = orderItemRepository.findByUserId(UserId);
+//		List<OrderItemDto> orderItemDtoList = new ArrayList<OrderItemDto>();
+//		for (OrderItem orderItem : orderItemList) {
+//			orderItemDtoList.add(OrderItemDto.toDto(orderItem));
+//		}
+//		return orderItemDtoList;
+//	}
 
+	
 }
 	
 
