@@ -221,32 +221,29 @@ public class ProductServiceImpl implements ProductService{
 	
 	// goods 등록 - DTO	
 	@Override
-	public GoodsDto insertGoodsDto(GoodsDto goodsDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public GoodsDto insertGoodsDto(GoodsDto dto) {
+		Goods goods = productRepository.save(Goods.toEntity(dto));
+		GoodsDto goodsDto = GoodsDto.toDto(goods);
+		return goodsDto;
 	}
 	
 	// ticket 등록 - DTO
 	@Override
-	public TicketDto insertTicketDto(TicketDto ticketDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public TicketDto insertTicketDto(TicketDto dto) {
+		Ticket ticket = productRepository.save(Ticket.toEntity(dto));
+		TicketDto ticketDto = TicketDto.toDto(ticket);
+		return ticketDto;
 	}
 	/*********************************************/
 	
 	/******************** DELETE[DTO] ********************/	
 	// goods 삭제 - DTO	
 	@Override
-	public GoodsDto deledtGoodsDto(GoodsDto goodsDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	// ticket 삭제 - DTO	
-	@Override
-	public TicketDto deleteTicketDto(TicketDto ticketDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDto deledtProductDto(Long productNo) throws Exception {
+		Product product = productRepository.findById(productNo).orElseThrow(() -> new IllegalArgumentException("제품이 존재하지 않습니다."));
+		productRepository.deleteById(productNo);
+		ProductDto productDto = ProductDto.toDto(product);
+		return productDto;
 	}
 	
 	/*********************************************/
@@ -314,6 +311,16 @@ public class ProductServiceImpl implements ProductService{
 	
 	/******************** categoryId별로 전체나열 ********************/
 	
+	// product categoryId별로 전체나열 - DTO
+	@Override
+	public List<ProductDto> findProductByCategoryId(Long categoryId) {
+		List<Product> productList = productDao.getProductByCategoryId(categoryId);
+		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
+		for (Product product : productList) {
+			productDtoList.add(ProductDto.toDto(product));
+		}
+		return productDtoList;
+	}
 	// goods categoryId별로 전체나열 - DTO
 	@Override
 	public List<GoodsDto> findGoodsByCategoryId(Long categoryId) {

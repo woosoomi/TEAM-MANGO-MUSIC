@@ -18,9 +18,10 @@ public interface ProductDao {
 	
 	List<Product> selectList();
 	
+	List<Product> getProductByCategoryId(Long categoryId);
+	
 	List<Ticket> getTicketByCategoryId(Long categoryId);
 	
 	List<Goods> getGoodsByCategoryId(Long categoryId);
 
-	List<Product> getProductByCategoryId(Long categoryId);
 }

@@ -35,6 +35,8 @@ public class GoodsDto {
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
 	
 	private String productImage; // 프로덕트(음악,굿즈,티켓,멤버십) 이미지
+
+	private Long categoryId;
 	
 	//Dto에서 보여주는 goods 정보가 무엇인지 설정하는 생성자(초기화)
 	
@@ -78,5 +80,8 @@ public class GoodsDto {
 			 goodsDtoList.add(goodsDto);
 		 }
 		 return goodsDtoList;
+	}
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 	}
