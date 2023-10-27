@@ -14,6 +14,8 @@ public interface ProductDao {
 	
 	Product updateProduct(Product product) throws Exception;
 	
+	Goods updateGoods(Goods goods) throws Exception;
+	
 	void deleteProduct(Long productNo) throws Exception;
 	
 	List<Product> selectList();

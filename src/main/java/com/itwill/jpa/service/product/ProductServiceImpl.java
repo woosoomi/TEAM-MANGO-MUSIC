@@ -41,17 +41,6 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findById(productNo);
 	}
 	
-	// productName 찾기	
-	@Override
-	public Product findByProductName(String productName) {
-		return productRepository.findByProductName(productName);
-	}
-	
-	// productArtist 찾기
-	@Override
-	public Product findByProductAtrist(String productArtist) {
-		return productRepository.findByProductArtist(productArtist);
-	}
 	
 	@Override
 	public List<Product> findByCategoryId(Long categoryId) {
@@ -251,9 +240,10 @@ public class ProductServiceImpl implements ProductService{
 	/******************** UPDATE[DTO] ********************/	
 	// goods 수정 - DTO
 	@Override
-	public GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public GoodsDto updateGoodsDto(GoodsDto dto) throws Exception {
+		Goods goods = productDao.updateGoods(Goods.toEntity(dto));
+		GoodsDto goodsDto = GoodsDto.toDto(goods);
+		return goodsDto;
 	}
 	
 	// ticket 수정 - DTO
@@ -342,7 +332,18 @@ public class ProductServiceImpl implements ProductService{
 		return ticketDtoList;
 	}
 	/*********************************************/	
+	/****************진행중인거****************/	
 
-
+	// productName 찾기	
+	@Override
+	public Product findByProductName(String productName) {
+		return productRepository.findByProductName(productName);
+	}
+	
+	// productArtist 찾기
+	@Override
+	public Product findByProductAtrist(String productArtist) {
+		return productRepository.findByProductArtist(productArtist);
+	}
 
 }

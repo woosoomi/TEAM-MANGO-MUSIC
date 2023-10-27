@@ -90,6 +90,11 @@ public class ProductDaoImpl implements ProductDao{
 			return new ArrayList<>();
 	}
 	}
+	@Override
+	public Goods updateGoods(Goods goods) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 
