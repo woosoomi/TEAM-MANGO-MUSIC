@@ -11,6 +11,7 @@ import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.OrderDao;
 import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.order.CouponDto;
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.user.User;
@@ -51,9 +52,14 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	@Rollback(false)
 	@Disabled
 	void couponCreateTest() {
-		CouponDto couponDto = new CouponDto();
+		Coupon coupon = new Coupon();
 		User user = userDao.findUser("why3795");
 		Order order = orderDao.selectOrder(9L);
+		
+		coupon.setUser(user);
+		coupon.setOrder(order);
+		
+		CouponDto couponDto = CouponDto.toDto(coupon);
 		
 		couponDto.setCouponCode("00000033");
 		couponDto.setCouponId(null);
@@ -63,10 +69,8 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 		couponDto.setCouponName("테스트쿠폰");
 		couponDto.setCouponType("100년쿠폰");
 		
-		userRepository.save(user);
-		orderRepository.save(order);
-		
 		CouponDto createdCouponDto = couponSeviceImpl.saveCoupon(couponDto);
+		
 		System.out.println(createdCouponDto);
 		
 		
@@ -114,14 +118,14 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 
 	}
 	
-	//유저 아이디로 주문 전체 불러오기(성공)
+	//유저 아이디로 쿠폰 전체 불러오기(성공)
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void couponByUserIdTest(){
 		
-		List<CouponDto> couponDtoList = couponSeviceImpl.couponsByUserId("팀장님");
+		List<CouponDto> couponDtoList = couponSeviceImpl.couponsByUserId("cgj22");
 		System.out.println(couponDtoList);
 
 	}
@@ -133,7 +137,7 @@ class CouponSeviceImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	void findCouponByOrderIdTest(){
 		
-		CouponDto couponDto = couponSeviceImpl.findCouponByOrderId(3L);
+		CouponDto couponDto = couponSeviceImpl.findCouponByOrderId(35L);
 		System.out.println(couponDto);
 	}
 }

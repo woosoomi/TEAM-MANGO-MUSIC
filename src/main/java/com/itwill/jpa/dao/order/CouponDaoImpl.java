@@ -48,8 +48,10 @@ public class CouponDaoImpl implements CouponDao{
 			Coupon coupon = findCouponOptional.get();
 			//관리자가 수정할 수 있는 주문 정보(주문상태)
 			coupon.setCouponName(updateCoupon.getCouponName());
-			coupon.setCouponDiscount(updateCoupon.getCouponDiscount());
 			coupon.setCouponType(updateCoupon.getCouponType());
+			coupon.setCouponCode(updateCoupon.getCouponCode());
+			coupon.setCouponDiscount(updateCoupon.getCouponDiscount());
+			coupon.setCouponExpirationDate(updateCoupon.getCouponExpirationDate());
 			coupon.setCouponIsUsed(updateCoupon.getCouponIsUsed());
 			updatedCoupon=couponRepository.save(coupon);
 		}else {
