@@ -44,7 +44,7 @@ public class OrderRestController {
 	/* Restful Order */
 
 	
-	// swagger-ui test 주문생성 ((성공) User(FK), Delivery(FK) 아직 null)
+	// 주문생성 (User(FK), Delivery(FK) 아직 null) 실패!
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
@@ -58,7 +58,7 @@ public class OrderRestController {
 		}
 	}
 
-	// 주문수정(관리자권한)
+	// 주문수정(관리자권한 orderPrice, orderStatus 수정가능) 성공!
 
 	@PutMapping("/update")
 	public ResponseEntity<?> updateOrder(@RequestBody OrderDto orderDto) throws Exception {
@@ -72,16 +72,21 @@ public class OrderRestController {
 		}
 	}
 			
+	// 주문 1개 삭제		
 			
-			
+	@DeleteMapping("/delete/{orderId}")
+	public ResponseEntity<?> deleteOrder(@PathVariable Long orderId) {
+	    try {
+	        orderService.deleteOrder(orderId);
+	        return ResponseEntity.status(HttpStatus.OK).body("주문번호" + orderId + "번이 삭제 되었습니다.");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        Map<String, String> errorResponse = new HashMap<>();
+	        errorResponse.put("error", e.getMessage());
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+	    }
+	}
 
-//	// 주문번호로 주문 1개 삭제
-//
-//	@DeleteMapping("/{orderId}")
-//	public void deleteOrder(@PathVariable Long orderId) throws Exception {
-//		orderService.deleteOrder(orderId);
-//	}
-//
 //	// 주문 전체 삭제
 //
 //	@DeleteMapping("/delete/all")
