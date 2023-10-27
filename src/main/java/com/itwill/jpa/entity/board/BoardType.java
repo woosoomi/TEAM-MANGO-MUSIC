@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Builder
 @Table(name = "board_type")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class BoardType {
     @Id
     @SequenceGenerator(name = "BOARD_TYPE_NO_SEQ",sequenceName = "BOARD_TYPE_NO_SEQ",initialValue = 1 , allocationSize =1)
