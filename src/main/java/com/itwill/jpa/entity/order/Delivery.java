@@ -54,6 +54,7 @@ public class Delivery {
 					   .deliveryPhone(dto.getDeliveryPhone())
 					   .deliveryAddress(dto.getDeliveryAddress())
 					   .deliveryCompany(dto.getDeliveryCompany())
+					   .user(User.builder().userId(dto.getUserId()).build()) // userId 설정
 					   .build();
 	}
 	

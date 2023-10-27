@@ -32,7 +32,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Autowired
 	CartItemRepository cartItemRepository;
-
+	
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -52,10 +52,10 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		CartItem cartItem1 = CartItem.builder().cartItemId(0L).cartItemQty(10).cart(cart.get()).build();
 		CartItem cartItem2 = CartItem.builder().cartItemId(0L).cartItemQty(15).cart(cart.get()).build();
 		CartItem cartItem3 = CartItem.builder().cartItemId(0L).cartItemQty(16).cart(cart.get()).build();
-		System.out.println(">>>>>>>>>>>>>>>>>>>"+cartItems);
 		cartItems.add(cartItem1);
 		cartItems.add(cartItem2);
 		cartItems.add(cartItem3);
+		System.out.println(">>>>>>>>>>>>>>>>>>>"+cartItems);
 		
 		//cart.setCartitems(cartItems);
 		

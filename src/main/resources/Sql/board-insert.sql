@@ -127,6 +127,13 @@ VALUES (board_board_no_seq.nextval,
                 SYSTIMESTAMP, SYSTIMESTAMP, 
                 '환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!', 'images/board/notifition/image_notifition_2.jpg', '환불해주세요!!',null);
 
+
+
+INSERT INTO user_board (user_board_id, board_id, user_id)
+VALUES (USER_BOARD_NO_SEQ.nextval, 1, 'why3795');
+INSERT INTO user_board (user_board_id, board_id, user_id)
+VALUES (USER_BOARD_NO_SEQ.nextval, 2, 'myr1109');
+
 INSERT INTO BOARD_REPLY(board_reply_id,
                                                 board_id,
                                                 user_id,
@@ -134,7 +141,7 @@ INSERT INTO BOARD_REPLY(board_reply_id,
                                                 board_reply_title,board_reply_content)
 VALUES(board_reply_no_seq.nextval,
               board_board_no_seq.currval,
-              '팀장님',
+              'myr1109',
               SYSTIMESTAMP,
               '환불문의답변드립니다','차경진씨에게문의하세요');
               

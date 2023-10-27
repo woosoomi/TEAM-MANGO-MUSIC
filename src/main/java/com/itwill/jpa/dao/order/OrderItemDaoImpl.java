@@ -71,13 +71,14 @@ public class OrderItemDaoImpl implements OrderItemDao{
 
 	@Override
 	public List<OrderItem> orderItems(Long orderId) {
-		Optional<Order> orderOptional = orderRepository.findById(orderId);
-        if (orderOptional.isPresent()) {
-            Order order = orderOptional.get();
-            return orderItemRepository.findByOrder(order);
-        } else {
-            return new ArrayList<>(); // 오더 아이디를 찾지 못한 경우 빈 목록을 반환
-        }
+		return null;
+//		Optional<Order> orderOptional = orderRepository.findById(orderId);
+//        if (orderOptional.isPresent()) {
+//            Order order = orderOptional.get();
+//            return orderItemRepository.findByOrder(order);
+//        } else {
+//            return new ArrayList<>(); // 오더 아이디를 찾지 못한 경우 빈 목록을 반환
+//        }
 	}
 	
 
