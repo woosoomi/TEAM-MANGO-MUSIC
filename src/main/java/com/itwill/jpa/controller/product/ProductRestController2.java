@@ -25,12 +25,16 @@ import com.itwill.jpa.service.product.ProductService;
 public class ProductRestController2 {
 	@Autowired
 	private ProductService productService;
-	
-//	@GetMapping
-//	public ResponseEntity<List<Product>> getMusicList(){
-//		return ResponseEntity.status(HttpStatus.OK).body(productList);
-//	}
 
+	@GetMapping("/MusicDetail/{productNo}")
+	public ResponseEntity<Product> getProduct(@PathVariable(name="productNo") Long productNo) {
+		if(productService.getProduct(productNo).getProductCategory().getCategoryId()==1L) {
+			return ResponseEntity.status(HttpStatus.OK).body(productService.getProduct(productNo));
+		}else {
+			return null;
+		}
+	}
+	
 	@PostMapping("/music/create")
 	public ResponseEntity<Product> createMusic(@RequestBody Product product){
 		return ResponseEntity.status(HttpStatus.CREATED)
