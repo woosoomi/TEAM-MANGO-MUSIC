@@ -34,7 +34,8 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	ProductDao productDao;
-	
+
+	/*========================== [ENTITY] ==========================*/	
 	// productNo 찾기[성공]	
 	@Override
 	public Optional<Product> findByProductNo(Long productNo) {
@@ -204,6 +205,8 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
+	/*==============================================================*/
+	
 	/*========================== [DTO] *==========================*/	
 	
 	/******************** INSERT[DTO] ********************/
@@ -248,9 +251,10 @@ public class ProductServiceImpl implements ProductService{
 	
 	// ticket 수정 - DTO
 	@Override
-	public TicketDto updateTicketDto(TicketDto ticketDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public TicketDto updateTicketDto(TicketDto dto) throws Exception {
+		Ticket ticket = productDao.updateTicket(Ticket.toEntity(dto));
+		TicketDto ticketDto = TicketDto.toDto(ticket);
+		return ticketDto;
 	}
 	/*********************************************/
 	
@@ -258,16 +262,29 @@ public class ProductServiceImpl implements ProductService{
 	// goods 조회수 올리기 - DTO	
 	@Override
 	public GoodsDto increaseGoodsReadCountDto(GoodsDto goodsDto) throws Exception {
-		// TODO Auto-generated method stub
+//		Goods goods = 
 		return null;
 	}
 	
 	// ticket 조회수 올리기 - DTO
 	@Override
-	public TicketDto increaseTicketReadCountDto(TicketDto ticketDto) throws Exception {
-		// TODO Auto-generated method stub
+	public TicketDto increaseTicketReadCountDto(TicketDto ticketReadCountDto) throws Exception {
+		Ticket ticket = productDao.updateTicket(Ticket.toEntity(ticketReadCountDto));
+		
 		return null;
 	}
+//	@Override
+//	public Product increaseReadCount(Product product) {
+//        // 현재 조회수를 가져와서 1 증가
+//        Long currentReadCount = product.getReadCount();
+//        Long newReadCount = currentReadCount + 1L; // 1을 Long으로 캐스팅해서 증가
+//        
+//        // 증가된 조회수를 엔티티에 설정
+//        product.setReadCount(newReadCount);
+//
+//        // 업데이트된 엔티티를 저장하고 반환
+//        return productRepository.save(product);
+//	}
 	/*********************************************/
 	
 	/******************** 내림차순[DTO] ********************/		
@@ -331,6 +348,8 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return ticketDtoList;
 	}
+	/*============================================================*/
+	
 	/*********************************************/	
 	/****************진행중인거****************/	
 

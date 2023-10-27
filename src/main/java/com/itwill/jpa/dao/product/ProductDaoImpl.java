@@ -95,6 +95,11 @@ public class ProductDaoImpl implements ProductDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public Ticket updateTicket(Ticket ticket) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 
