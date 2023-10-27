@@ -1,5 +1,5 @@
 
-package com.itwill.jpa.controller.order;
+package com.itwill.jpa.controller.order.restful;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.order.OrderDto;
-import com.itwill.jpa.service.order.CouponService;
-import com.itwill.jpa.service.order.DeliveryService;
-import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,10 +28,6 @@ import lombok.RequiredArgsConstructor;
 public class OrderRestController {
 
 	private final OrderService orderService;
-	private final OrderItemService orderItemService;
-	private final DeliveryService deliveryService;
-	private final CouponService couponService;
-
 	
 	/* Restful Order */
 
@@ -173,14 +166,6 @@ public class OrderRestController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
 	}
-	
-	
-	/* Restful OrderItem */
-	
 
-	/* Restful Delivery */
-
-
-	/* Restful Coupon */
 
 }
