@@ -22,7 +22,9 @@ public interface ProductVoteRepository extends JpaRepository<Vote, Long>{
 	String findProductVoteIdWithUser(@Param("voteId") Long voteId);
 
 
+
 	// 상품에서 음악 조회수(readCount), 음악 별점(productStar)의 합산해서 Top 20명 추출
 	@Query("SELECT p FROM Product p ORDER BY (COALESCE(p.readCount, 0) + COALESCE(p.productStar, 0)) DESC")
     List<Product> findTop20ByTotalScore();
+
 }

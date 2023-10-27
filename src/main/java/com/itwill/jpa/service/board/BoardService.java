@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardType;
+import com.itwill.jpa.entity.user.User;
 
 public interface BoardService {
 	
@@ -37,8 +38,10 @@ public interface BoardService {
     //최근일주일,한달,등 시간으로 검색
     public List<Board> searchBoardsByDateRange(LocalDateTime startDate, LocalDateTime endDate);
 
-	List<Board> findAllByOrderByBoardReadCountDesc();
+    public List<Board> findAllByOrderByBoardReadCountDesc();
 
     public List<BoardType> findAllByOrderByTypeIdAsc();
+
+    //public List<Board> findBoardsByUsername(User user);
 
 }
