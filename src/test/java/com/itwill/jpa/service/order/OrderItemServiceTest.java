@@ -52,8 +52,8 @@ class OrderItemServiceTest {
 		orderItem2.setOiId(null);
 		orderItem2.setOiQty(5);
 		
-		orderItem.setOrder(order);
-		orderItem2.setOrder(order2);
+//		orderItem.setOrder(order);
+//		orderItem2.setOrder(order2);
 		
 		OrderItemDto savedOrderItem = orderItemService.saveOrderItem(orderItem);
 		OrderItemDto savedOrderItem2 = orderItemService.saveOrderItem(orderItem2);
@@ -105,8 +105,8 @@ class OrderItemServiceTest {
 	@Transactional
 	@Rollback(false)
 	@Disabled
-	void orderItems() {
-		List<OrderItemDto> orderItems = orderItemService.orderItems(1L);
+	void orderItemsByOrderId() {
+		List<OrderItemDto> orderItems = orderItemService.orderItemsByOrderId(1L);
 		System.out.println("오더아이템들-->"+orderItems);
 	}
 	
@@ -114,8 +114,8 @@ class OrderItemServiceTest {
 	@Transactional
 	@Rollback(false)
 	@Disabled
-	void orderItems2() {
-		List<OrderItemDto> orderItems = orderItemService.orderItems("why3795");
+	void orderItemsByUserId() {
+		List<OrderItemDto> orderItems = orderItemService.orderItemsByUserId("why3795");
 		System.out.println(orderItems);
 	}
 	

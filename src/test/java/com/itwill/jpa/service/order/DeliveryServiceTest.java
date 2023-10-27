@@ -59,7 +59,7 @@ class DeliveryServiceTest {
                 .userGender("남")
                 .build();
 
-		delivery.setUser(user1);
+//		delivery.setUser(user1);
 		DeliveryDto savedDelivery = deliveryService.saveDelivery(delivery);
 		System.out.println(savedDelivery);
 		
