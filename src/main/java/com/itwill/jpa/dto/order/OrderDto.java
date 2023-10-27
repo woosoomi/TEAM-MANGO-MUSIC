@@ -1,8 +1,5 @@
 package com.itwill.jpa.dto.order;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
 
