@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.vote.Vote;
 
-@Repository
 public interface ProductVoteRepository extends JpaRepository<Vote, Long>{
 
 	// findProductVoteId --> product의 voteId로 product와 Vote 전체 호출
