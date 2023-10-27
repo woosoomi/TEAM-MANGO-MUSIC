@@ -35,10 +35,5 @@ VALUES('shy888', 'gkdP888', '송하예', '서울시 강북구 미아동', 'shy@n
 
 
 
-INSERT INTO user_board (user_board_id, board_id, user_id)
-VALUES (USER_BOARD_NO_SEQ.nextval, 1, '팀장님');
-INSERT INTO user_board (user_board_id, board_id, user_id)
-VALUES (USER_BOARD_NO_SEQ.nextval, 2, '승규님');
-
 
 commit;

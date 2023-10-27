@@ -46,12 +46,12 @@ public class ProductController2 {
 	public String MusicDetail(Model model) {
 		try {
 			
+			return "MusicDetail";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());
 			return "index";
 		}
-		return "MusicDetail";
 	}
 	
 	// 멤버십
@@ -59,12 +59,12 @@ public class ProductController2 {
 	public String MembershipDetail(Model model) {
 		try {
 			
+			return "MembershipDetail";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());
 			return "index";
 		}
-		return "MembershipDetail";
 	}
 
 	
