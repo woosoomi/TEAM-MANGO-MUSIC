@@ -35,7 +35,7 @@ VALUES(11,'종료된이벤트');  //문의
 ////////////여기까지 변경사항없는 테이블정보/////////////////
 
 //공지사항 -서비스공지
-/*
+
 INSERT INTO BOARD (board_id,
                                     board_category_id,
                                     board_type_id,
@@ -181,6 +181,6 @@ VALUES (board_board_no_seq.nextval,
                 SYSTIMESTAMP, SYSTIMESTAMP, 
                 '환불은 해드리지않습니다.', 'images/board/faq/faq2.jpg', '환불관련FAQ...',null);
               
-*/
+
               
 commit;
