@@ -1,5 +1,6 @@
 package com.itwill.jpa.dao.product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Ticket;
+import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.repository.product.ProductCategoryRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 @Repository
 public class ProductDaoImpl implements ProductDao{
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	ProductCategoryRepository productCategoryRepository;
 	
 	public List<Product> selectList(){
 		return null;
@@ -51,6 +58,37 @@ public class ProductDaoImpl implements ProductDao{
 			throw new Exception("존재하지 않는 제품입니다.");
 		}
 		productRepository.delete(selectProductOptional.get());
+	}
+	
+	@Override
+	public List<Product> getProductByCategoryId(Long categoryId) {
+		Optional<ProductCategory> categoryOptional = productCategoryRepository.findById(categoryId);
+		if(categoryOptional.isPresent()) {
+			ProductCategory productCategory = categoryOptional.get();
+			return productRepository.findByProductCategory(productCategory);
+		}else {
+			return new ArrayList<>();
+		}
+	}
+	@Override
+	public List<Goods> getGoodsByCategoryId(Long categoryId) {
+		Optional<ProductCategory> categoryOptional = productCategoryRepository.findById(categoryId);
+		if(categoryOptional.isPresent()) {
+			ProductCategory productCategory = categoryOptional.get();
+			return productRepository.findGoodsByProductCategory(productCategory);
+		}else {
+			return new ArrayList<>();
+	}
+}
+	@Override
+	public List<Ticket> getTicketByCategoryId(Long categoryId) {
+		Optional<ProductCategory> categoryOptional = productCategoryRepository.findById(categoryId);
+		if(categoryOptional.isPresent()) {
+			ProductCategory productCategory = categoryOptional.get();
+			return productRepository.findTicketByProductCategory(productCategory);
+		}else {
+			return new ArrayList<>();
+	}
 	}
 
 }

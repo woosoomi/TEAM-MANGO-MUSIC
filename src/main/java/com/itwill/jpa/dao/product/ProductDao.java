@@ -3,6 +3,8 @@ package com.itwill.jpa.dao.product;
 import java.util.List;
 
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Ticket;
 
 public interface ProductDao {
 
@@ -15,4 +17,10 @@ public interface ProductDao {
 	void deleteProduct(Long productNo) throws Exception;
 	
 	List<Product> selectList();
+	
+	List<Ticket> getTicketByCategoryId(Long categoryId);
+	
+	List<Goods> getGoodsByCategoryId(Long categoryId);
+
+	List<Product> getProductByCategoryId(Long categoryId);
 }
