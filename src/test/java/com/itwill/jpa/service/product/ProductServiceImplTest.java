@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
@@ -31,7 +32,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testFindByProductNo() {
 		Long productNo = 1L; // 제품 번호 지정
 		Optional<Product> productOptional = productServiceImpl.findByProductNo(productNo); // 제품 조회
@@ -39,11 +40,11 @@ class ProductServiceImplTest {
 
 	}
 
-	// 카테고리별 구분[진행중] - 테스트는 성공하는데 결과물이 안나옴
+	// 카테고리별 구분[성공]
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	public void testFindByProductCategory() {
 		Long categoryId = 1L;
 		ProductCategory category = new ProductCategory();
@@ -60,8 +61,18 @@ class ProductServiceImplTest {
 		System.out.println("music 모음 >>>>>" + products);
 
 	}
-
-	// product 추가[성공] - 이건 dType가 product로 되기대문에 사용 x
+	// 카테고리별 구분-DTO로 받기[성공]
+	@Test
+	@Transactional
+	@Rollback(false)
+//	@Disabled
+	void findGoodsByCategoryIdtest() {
+		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(2L);
+		System.out.println("굿즈리스트" + ticketDtoList);
+	}		
+	
+	
+	// product 추가[성공] - 이건 dType가 product로 되기때문에 사용 x
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -210,6 +221,9 @@ class ProductServiceImplTest {
 			// 엔티티 못찾았을 경우의 예외처리
 		}
 	}
+	/*====================== DTO 테스트 ======================*/
+
+	
 	/******************* 진행중 *******************/
 //	// productName 찾기
 //    @Test
