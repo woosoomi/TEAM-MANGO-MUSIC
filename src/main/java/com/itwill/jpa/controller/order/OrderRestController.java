@@ -39,8 +39,8 @@ public class OrderRestController {
 	/* Restful Order */
 
 	
-	// 주문생성 (User(FK), Delivery(FK) 아직 null) -- 실패
-	@Operation(summary = "주문생성[실패]")
+	// 주문생성
+	@Operation(summary = "주문생성[성공]")
 	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
 		try {
@@ -50,6 +50,8 @@ public class OrderRestController {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("error", e.getMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+			
+			
 		}
 	}
 
