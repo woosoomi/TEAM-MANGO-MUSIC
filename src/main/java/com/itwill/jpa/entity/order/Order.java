@@ -99,6 +99,8 @@ public class Order {
 				.orderId(dto.getOrderId())
 				.orderPrice(dto.getOrderPrice())
 				.orderStatus(dto.getOrderStatus())
+				.user(User.builder().userId(dto.getUserId()).build()) // userId 설정
+				.delivery(Delivery.builder().deliveryId(dto.getDeliveryId()).build()) // deliveryId 설정
 				.build();	
 				
 				
