@@ -9,13 +9,13 @@ public interface DeliveryDao {
 	
 	Delivery insertDelivery(Delivery delivery);
 	
-	DeliveryDto updateDelivery(DeliveryDto updateDeliveryDto) throws Exception;
+	Delivery updateDelivery(Delivery updateDeliveryDto) throws Exception;
 	
 	void deleteDelivery(Long DeliveryDtoId) throws Exception;
 	
 	void selectList();
 	
-	List<DeliveryDto> getDeliveriesByUserId(String userId);
+	List<Delivery> getDeliveriesByUserId(String userId);
 	
-	DeliveryDto findByDeliveryId(Long id);
+	Delivery findByDeliveryId(Long id);
 }
