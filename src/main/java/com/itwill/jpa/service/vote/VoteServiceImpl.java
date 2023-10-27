@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.jpa.dto.vote.VoteDto;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.repository.user.UserRepository;
@@ -23,7 +24,7 @@ public class VoteServiceImpl implements VoteService {
 	// 투표 생성 --> 테스트완료
 	@Override
 	public Vote createVote(Vote vote) {
-		
+	
 		return voteRepository.save(vote);
 	}
 	
