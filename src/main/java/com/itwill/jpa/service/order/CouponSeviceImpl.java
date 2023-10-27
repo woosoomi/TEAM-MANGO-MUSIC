@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.CouponDao;
 import com.itwill.jpa.dto.order.CouponDto;
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Coupon;
+import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.repository.order.CouponRepository;
 
 import jakarta.transaction.Transactional;
@@ -48,17 +50,28 @@ public class CouponSeviceImpl implements CouponService{
 		return couponDto;
 	}
 	
-	//쿠폰 한개 삭제
+	//쿠폰 한개 삭제하고 Dto에 삭제 쿠폰 정보 저장
 	@Override
-	public void deleteCoupon(Long couponId) throws Exception {
+	public CouponDto deleteCoupon(Long couponId) throws Exception {
+		Coupon coupon = couponRepository.findById(couponId).orElseThrow(() -> new IllegalArgumentException("쿠폰이 존재하지 않습니다."));
 		couponRepository.deleteById(couponId);
+		CouponDto couponDto = CouponDto.toDto(coupon);
+		return couponDto;
 	}
 	
-	//쿠폰 전체 삭제
+	//쿠폰 전체 삭제하고 Dto에 삭제 쿠폰 리스트 저장
 	@Override
-	public void deleteAllCoupons() throws Exception {
+	public List<CouponDto> deleteAllCoupons() throws Exception {
+		List<Coupon> couponList = couponRepository.findAll();
+		List<CouponDto> couponDtoList = new ArrayList<CouponDto>();
+		for (Coupon coupon : couponList) {
+			couponDtoList.add(CouponDto.toDto(coupon));
+		}
 		couponRepository.deleteAll();
+		return couponDtoList;
 	}
+		
+		
 	
 	//유저의 쿠폰들 불러오기
 	@Override

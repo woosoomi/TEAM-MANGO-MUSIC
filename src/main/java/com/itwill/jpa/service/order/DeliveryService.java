@@ -10,13 +10,13 @@ public interface DeliveryService {
 	
 	DeliveryDto updateDelivery(DeliveryDto delivery) throws Exception;
 	
-	void deleteDelivery(Long id) throws Exception;
+	DeliveryDto deleteDelivery(Long deliveryId) throws Exception;
 	
-	void deliverys();
+	List<DeliveryDto> deliverys();
 	
 	List<DeliveryDto> findDelivery(String userId);
 	
-	DeliveryDto findByDeliveryId(Long id);
+	DeliveryDto findByDeliveryId(Long deliveryId);
 	
 	
 	

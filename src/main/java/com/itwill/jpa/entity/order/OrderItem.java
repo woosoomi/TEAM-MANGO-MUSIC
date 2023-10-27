@@ -50,10 +50,12 @@ public class OrderItem {
 	/*
 	 * DTO -> ENTITY로 변환해주는 작업
 	 */
-	public static OrderItem toEntity(OrderItemDto orderItemDto) {
+	public static OrderItem toEntity(OrderItemDto dto) {
 		return OrderItem.builder()
-				.oiId(orderItemDto.getOiId())
-				.oiQty(orderItemDto.getOiQty())
+				.oiId(dto.getOiId())
+				.oiQty(dto.getOiQty())
+				.product(Product.builder().productNo(dto.getProductNo()).build()) // productNo 설정
+				.order(Order.builder().orderId(dto.getOrderId()).build()) // orderId 설정
 				.build();
 				
 	}
