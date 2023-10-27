@@ -30,7 +30,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	keyword가 포함된 product 찾기
     List<Product> findByProductNameContaining(String keyword);
     
-//	categoruId 별로 찾기
+//	categoryId 별로 찾기
 //    List<Product> findByCategoryId(Long categoryId);
 }
-

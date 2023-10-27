@@ -40,7 +40,7 @@ public class BoardReply {
     private String boardReplyContent;
     
     @CreationTimestamp
-    private LocalDateTime creDateTime;
+    private LocalDateTime createDateTime;
     
 	@ManyToOne
 	@JoinColumn(name = "board_Id")

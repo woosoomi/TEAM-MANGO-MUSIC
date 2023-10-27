@@ -28,7 +28,7 @@ public class BoardType {
     @Id
     @SequenceGenerator(name = "BOARD_TYPE_NO_SEQ",sequenceName = "BOARD_TYPE_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_TYPE_NO_SEQ")
-    //@Column(name = "board_type_id")
+    @Column(name = "board_type_id")
     private Long typeId;
     
     private String boardTypeTitle;

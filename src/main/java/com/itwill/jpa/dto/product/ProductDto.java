@@ -32,13 +32,13 @@ public class ProductDto {
 	
 	private Long readCount; // 조회수
 	
-	private String productContent; // 프로덕트(음악,굿즈,콘서트) 설명
+	private String productContent; // 프로덕트(음악,굿즈,티켓) 설명
 	
-//	private String productReply; // 프로덕트(음악,굿즈,콘서트) 댓글
+//	private String productReply; // 프로덕트(음악,굿즈,티켓) 댓글
 	
-	private int productStar; // 프로덕트(음악,굿즈,콘서트) 별점
+	private int productStar; // 프로덕트(음악,굿즈,티켓) 별점
 	
-	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
+	private Date productDate; // 프로덕트(음악,굿즈,티켓) 등록날짜
 	
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
 	
@@ -46,13 +46,13 @@ public class ProductDto {
 
 	private String productArtist; // 음악 아티스트
 	
-	private String productAddress; // 콘서트 장소
+	private String productAddress; // 티켓 장소
 	
 	private Date startPeriod; // 멤버십 시작날짜
 	
 	private int periodOfUse; // 멤버십 사용기간
 	
-	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
+	private String productImage; // 프로덕트(음악,굿즈,티켓,멤버십) 이미지
 	
 	private List<Product> products;
 	private List<Music> musics;

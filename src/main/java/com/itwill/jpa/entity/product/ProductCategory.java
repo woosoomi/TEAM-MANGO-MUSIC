@@ -32,21 +32,30 @@ public class ProductCategory {
  @Column(name = "category_id")
  @SequenceGenerator(name = "PRODUCT_CATEGORY_NO_SEQ",sequenceName = "PRODUCT_CATEGORY_NO_SEQ",initialValue = 1 , allocationSize =1)
 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_CATEGORY_NO_SEQ")
+ 
+	/*==================멤버필드==================*/
  private Long categoryId;
  private String productCategoryName;
+	/*============================================*/
+
+	/*/////////////////////////매서드/////////////////////////*/
  
- public static ProductCategory toEntity(ProductCategoryDto dto) {
-	 return ProductCategory.builder()
-			 			   .productCategoryName(dto.getProductCategoryName())
-			 			   .categoryId(dto.getCategoryId())
-			 			   .build();
- }
- 
+	/*==================관게설정==================*/ 
+
  //productcategory와 product -> 1:n관계
 	@OneToMany(mappedBy = "productCategory", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
 	private List<Product> products = new ArrayList<Product>();
+	/*============================================*/
 	
+	/*============Dto -> entity 변환해주는 매서드============*/
+	 public static ProductCategory toEntity(ProductCategoryDto dto) {
+		 return ProductCategory.builder()
+				 				.categoryId(dto.getCategoryId())
+				 			   .productCategoryName(dto.getProductCategoryName())
+				 			   .build();
+	 }
+	/*========================================================*/	
 	
 }
