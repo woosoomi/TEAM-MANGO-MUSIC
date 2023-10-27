@@ -1,5 +1,5 @@
 
-package com.itwill.jpa.controller.order;
+package com.itwill.jpa.controller.order.restful;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.order.OrderDto;
-import com.itwill.jpa.service.order.CouponService;
-import com.itwill.jpa.service.order.DeliveryService;
-import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,20 +24,16 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/order")
-@RequiredArgsConstructor
+@RequiredArgsConstructor//생성자를 자동으로 생성하여 멤버필드(DI)주입 해주는 어노테이션
 public class OrderRestController {
 
 	private final OrderService orderService;
-	private final OrderItemService orderItemService;
-	private final DeliveryService deliveryService;
-	private final CouponService couponService;
-
 	
 	/* Restful Order */
 
 	
-	// 주문생성 (User(FK), Delivery(FK) 아직 null) -- 실패
-	@Operation(summary = "주문생성[실패]")
+	// 주문생성
+	@Operation(summary = "주문생성[성공]")
 	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
 		try {
@@ -50,6 +43,8 @@ public class OrderRestController {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("error", e.getMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+			
+			
 		}
 	}
 
@@ -171,14 +166,6 @@ public class OrderRestController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
 	}
-	
-	
-	/* Restful OrderItem */
-	
 
-	/* Restful Delivery */
-
-
-	/* Restful Coupon */
 
 }
