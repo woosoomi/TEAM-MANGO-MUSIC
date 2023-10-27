@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.jpa.dto.user.UserDto;
+import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.entity.order.Order;
@@ -70,10 +71,6 @@ public class User {
 	private Vote vote;
 
 
-	// user와 user_board 1대N 관계설정
-	@Builder.Default
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	private List<UserBoard> user_Boards = new ArrayList<>();
 
 	// user와 order 1대N 관계설정
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
@@ -90,4 +87,9 @@ public class User {
 	// user와 product_Reply 1대N 관계설정
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private List<ProductReply> productReply = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	private List<Board> Board = new ArrayList<>();
+	
+
 }
