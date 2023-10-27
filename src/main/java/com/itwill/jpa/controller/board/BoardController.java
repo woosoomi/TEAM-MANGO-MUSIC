@@ -67,9 +67,6 @@ public class BoardController {
 			List<Board> magazines = boardServiceImpl.findBycategory(3L);
 			model.addAttribute("magazines", magazines);
 			System.out.println("magazine 리스트 : " + magazines);
-			
-			
-			
 			return "magazine";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,11 +82,16 @@ public class BoardController {
 			model.addAttribute("inquiries", inquiriesList);
 			System.out.println("inquiries 리스트 : " + inquiriesList);
 			
-	        //User user = userServiceImpl.fin
-
-			
-			
-			
+//	        User user = userServiceImpl.findUserByUsername("우한영");
+//	        if (user == null) {
+//	            // 사용자가 존재하지 않는 경우에 대한 처리 (예: 에러 페이지 렌더링)
+//	            return "index";
+//	        }
+//			
+//	        List<Board> boards = boardServiceImpl.findBoardsByUsername(user);
+//	        model.addAttribute("username", user.getUserName());
+//	        model.addAttribute("boards", boards);
+//			
 			
 			return "inquiries";
 		} catch (Exception e) {

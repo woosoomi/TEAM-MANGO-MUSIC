@@ -42,6 +42,6 @@ public interface BoardService {
 
     public List<BoardType> findAllByOrderByTypeIdAsc();
 
-    public List<Board> findBoardsByUsername(User user);
+    //public List<Board> findBoardsByUsername(User user);
 
 }
