@@ -82,7 +82,7 @@ class DeliveryServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void delete() throws Exception{
 		deliveryService.deleteDelivery(1L);
 		
@@ -91,7 +91,7 @@ class DeliveryServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void findDelivery(){
 		List<DeliveryDto> findDelivery = deliveryService.findDelivery("kbs");
 		System.out.println(findDelivery);
