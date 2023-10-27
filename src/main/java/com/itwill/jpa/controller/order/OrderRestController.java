@@ -67,10 +67,10 @@ public class OrderRestController {
 		}
 	}
 			
-	// 주문 1개 삭제 (파라미터가 orderId자체를 롱타입이 아닌 문자타입으로 가는거 같음) -- 실패
-	@Operation(summary = "주문한개삭제[실패]")
+	// 주문 1개 삭제
+	@Operation(summary = "주문한개삭제[성공]")
 	@DeleteMapping("/delete/{orderId}")
-	public ResponseEntity<?> deleteOrder(@PathVariable Long orderId) {
+	public ResponseEntity<?> deleteOrder(@PathVariable(value = "orderId") Long orderId) {
 	    try {
 	        orderService.deleteOrder(orderId);
 	        return ResponseEntity.status(HttpStatus.OK).body("주문번호" + orderId + "번이 삭제 되었습니다.");
@@ -100,7 +100,7 @@ public class OrderRestController {
 	// 유저가 만든 주문 전체 불러오기
 	@Operation(summary = "로그인한 유저 주문내역 불러오기[성공]")
 	@GetMapping("/{userId}")
-	public ResponseEntity<?> getOrdersByUserId(@PathVariable("userId") String userId) {
+	public ResponseEntity<?> getOrdersByUserId(@PathVariable(value = "userId") String userId) {
 		try {
 			List<OrderDto> userOrders = orderService.ordersByUserId(userId);
 			return ResponseEntity.status(HttpStatus.OK).body(userOrders);
