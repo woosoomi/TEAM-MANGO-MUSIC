@@ -1,6 +1,5 @@
 package com.itwill.jpa.dto.order;
 
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 
 import lombok.AllArgsConstructor;

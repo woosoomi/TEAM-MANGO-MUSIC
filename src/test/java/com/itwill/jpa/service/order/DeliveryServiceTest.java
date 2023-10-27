@@ -3,7 +3,6 @@ package com.itwill.jpa.service.order;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -13,11 +12,9 @@ import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.dto.order.DeliveryDto;
-import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
-import com.itwill.jpa.service.user.UserService;
 
 import jakarta.transaction.Transactional;
 

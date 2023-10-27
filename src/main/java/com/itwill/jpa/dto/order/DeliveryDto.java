@@ -2,7 +2,6 @@ package com.itwill.jpa.dto.order;
 
 
 import com.itwill.jpa.entity.order.Delivery;
-import com.itwill.jpa.entity.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

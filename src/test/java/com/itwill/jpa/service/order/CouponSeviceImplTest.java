@@ -11,7 +11,6 @@ import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.OrderDao;
 import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.order.CouponDto;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Coupon;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.user.User;

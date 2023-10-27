@@ -1,7 +1,5 @@
 package com.itwill.jpa.service.order;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
@@ -11,16 +9,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.dao.order.OrderDao;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Order;
-import com.itwill.jpa.entity.order.Order.OrderStatus;
-import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 
 import jakarta.transaction.Transactional;
-import lombok.ToString;
 @SpringBootTest
 @Transactional
 class OrderItemServiceTest {
