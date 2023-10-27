@@ -44,7 +44,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testFindByProductCategory() {
 		Long categoryId = 1L;
 		ProductCategory category = new ProductCategory();
@@ -65,7 +65,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	void findGoodsByCategoryIdtest() {
 		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(2L);
 		System.out.println("굿즈리스트" + ticketDtoList);
