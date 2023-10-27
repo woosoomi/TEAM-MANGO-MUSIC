@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardType;
 
 public interface BoardService {
 	
@@ -38,6 +39,6 @@ public interface BoardService {
 
 	List<Board> findAllByOrderByBoardReadCountDesc();
 
-    
+    public List<BoardType> findAllByOrderByTypeIdAsc();
 
 }

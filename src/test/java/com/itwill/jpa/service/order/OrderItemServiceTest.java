@@ -81,7 +81,7 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void delete() throws Exception{
-		orderItemService.deleteOrderItem(1L);
+		orderItemService.deleteOrderItem(82L);
 	}
 	
 	@Test

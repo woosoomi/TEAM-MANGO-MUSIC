@@ -80,8 +80,19 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("goods")
 	public static class Goods extends Product {
+//		public static Goods toEntity(GoodsDto goodsDto) {
+//			return Goods.builder()
+//					.productCategory(goodsDto.getProductCategory())
+//					.productName(goodsDto.getProductName())
+//					.productPrice(goodsDto.getProductPrice())
+//					.productStar(goodsDto.getProductStar())
+//					.productDate(productDto.getProductDate())
+//					.readCount(goodsDto.getReadCount())
+//					.productStock(goodsDto.getProductStock())
+//					.productImage(goodsDto.getProductImage())
+//					.build();		
 	}
-
+	
 	/** ticket **/
 	@Entity
 	@DiscriminatorValue("ticket")
@@ -179,6 +190,5 @@ public class Product {
         setProductCategory(new ProductCategory(categoryId, "Music", null));
     }
 
-		
-
+	
 }

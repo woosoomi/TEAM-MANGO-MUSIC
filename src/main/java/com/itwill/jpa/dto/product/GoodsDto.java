@@ -18,7 +18,7 @@ import lombok.ToString;
 @ToString
 @Builder
 
-public class ProductGoodsDto {
+public class GoodsDto {
 
 	private String productName;  // 프로덕트 이름
 	
@@ -38,7 +38,7 @@ public class ProductGoodsDto {
 	
 	//Dto에서 보여주는 goods 정보가 무엇인지 설정하는 생성자(초기화)
 	
-	public ProductGoodsDto(Goods goods) {
+	public GoodsDto(Goods goods) {
 		this.productName = goods.getProductName();
 		this.productPrice = goods.getProductPrice();
 		this.readCount = goods.getReadCount();
@@ -49,8 +49,8 @@ public class ProductGoodsDto {
 		this.productImage = goods.getProductImage();
 	}
 	//Entity to Dto 변환
-	public static ProductGoodsDto toDto(Goods entity) {
-		return ProductGoodsDto.builder()
+	public static GoodsDto toDto(Goods entity) {
+		return GoodsDto.builder()
 				.productName(entity.getProductName())
 				.productPrice(entity.getProductPrice())
 				.readCount(entity.getReadCount())
@@ -62,10 +62,10 @@ public class ProductGoodsDto {
 				.build();
 }
 	//List<Entity> to List<Dto> 변환
-	public static List<ProductGoodsDto> toDto(List<Goods> entities) {
-		List<ProductGoodsDto> productGoodsDtoList = new ArrayList<>();
+	public static List<GoodsDto> toDto(List<Goods> entities) {
+		List<GoodsDto> goodsDtoList = new ArrayList<>();
 		 for(Goods entity : entities) {
-			 ProductGoodsDto productGoodsDto = ProductGoodsDto.builder()
+			 GoodsDto goodsDto = GoodsDto.builder()
 						.productName(entity.getProductName())
 						.productPrice(entity.getProductPrice())
 						.readCount(entity.getReadCount())
@@ -75,8 +75,8 @@ public class ProductGoodsDto {
 						.productStock(entity.getProductStock())
 						.productImage(entity.getProductImage())
 						.build();
-			 productGoodsDtoList.add(productGoodsDto);
+			 goodsDtoList.add(goodsDto);
 		 }
-		 return productGoodsDtoList;
+		 return goodsDtoList;
 	}
 	}

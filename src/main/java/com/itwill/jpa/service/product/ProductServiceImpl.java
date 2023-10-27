@@ -1,5 +1,6 @@
 package com.itwill.jpa.service.product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +9,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dao.product.ProductDao;
+import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
@@ -26,6 +31,9 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	ProductDao productDao;
 	
 	// productNo 찾기[성공]	
 	@Override
@@ -207,7 +215,126 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
+	/*========================== [DTO] *==========================*/	
+	
+	/******************** INSERT[DTO] ********************/
+	
+	// goods 등록 - DTO	
+	@Override
+	public GoodsDto insertGoodsDto(GoodsDto goodsDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// ticket 등록 - DTO
+	@Override
+	public TicketDto insertTicketDto(TicketDto ticketDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/*********************************************/
+	
+	/******************** DELETE[DTO] ********************/	
+	// goods 삭제 - DTO	
+	@Override
+	public GoodsDto deledtGoodsDto(GoodsDto goodsDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// ticket 삭제 - DTO	
+	@Override
+	public TicketDto deleteTicketDto(TicketDto ticketDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*********************************************/
 
+	/******************** UPDATE[DTO] ********************/	
+	// goods 수정 - DTO
+	@Override
+	public GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// ticket 수정 - DTO
+	@Override
+	public TicketDto updateTicketDto(TicketDto ticketDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/*********************************************/
+	
+	/******************** INCREASE READCOUNT[DTO] ********************/
+	// goods 조회수 올리기 - DTO	
+	@Override
+	public GoodsDto increaseGoodsReadCountDto(GoodsDto goodsDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// ticket 조회수 올리기 - DTO
+	@Override
+	public TicketDto increaseTicketReadCountDto(TicketDto ticketDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/*********************************************/
+	
+	/******************** 내림차순[DTO] ********************/		
+	@Override
+	public GoodsDto GoodsByReadCountDescDto(GoodsDto goodsDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TicketDto TicketByReadCountDescDto(TicketDto ticketDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*********************************************/
+	/******************** 오름차순[DTO] ********************/
+	@Override
+	public GoodsDto GoodsByReadCountAscDto(GoodsDto goodsDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TicketDto TicketByReadCountAscDto(TicketDto ticketDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*********************************************/
+	
+	/******************** categoryId별로 전체나열 ********************/
+	
+	// goods categoryId별로 전체나열 - DTO
+	@Override
+	public List<GoodsDto> findGoodsByCategoryId(Long categoryId) {
+		List<Goods> goodsList = productDao.getGoodsByCategoryId(categoryId);
+		List<GoodsDto> goodsDtoList = new ArrayList<GoodsDto>();
+		for (Goods goods : goodsList) {
+			goodsDtoList.add(GoodsDto.toDto(goods));
+		}
+		return goodsDtoList;
+	}
+	// ticket categoryId별로 전체나열 - DTO
+	@Override
+	public List<TicketDto> findTicketByCategoryId(Long categoryId) {
+		List<Ticket> ticketList = productDao.getTicketByCategoryId(categoryId);
+		List<TicketDto> ticketDtoList = new ArrayList<TicketDto>();
+		for (Ticket ticket : ticketList) {
+			ticketDtoList.add(TicketDto.toDto(ticket));
+		}
+		return ticketDtoList;
+	}
+	/*********************************************/	
 
 
 

@@ -24,7 +24,7 @@ import lombok.ToString;
 @ToString
 @Builder
 
-public class ProductTicketDto {
+public class TicketDto {
 	
 	private String productName;  // 프로덕트(티켓) 이름
 	
@@ -45,7 +45,7 @@ public class ProductTicketDto {
 	private String productImage; // 프로덕트(티켓) 이미지
 	
 	//Dto에서 보여주는 ticket 정보가 무엇인지 설정하는 생성자(초기화)
-	public ProductTicketDto(Ticket ticket) {
+	public TicketDto(Ticket ticket) {
 		this.productName = ticket.getProductName();
 		this.productPrice = ticket.getProductPrice();
 		this.readCount = ticket.getReadCount();
@@ -58,8 +58,8 @@ public class ProductTicketDto {
 	}
 	
 	//Entity to Dto 변환
-	public static ProductTicketDto toDto(Ticket entity) {
-		return ProductTicketDto.builder()
+	public static TicketDto toDto(Ticket entity) {
+		return TicketDto.builder()
 				.productName(entity.getProductName())
 				.productPrice(entity.getProductPrice())
 				.readCount(entity.getReadCount())
@@ -72,10 +72,10 @@ public class ProductTicketDto {
 				.build();
 	}	
 	//List<Entity> to List<Dto> 변환
-	public static List<ProductTicketDto> toDto(List<Ticket> entities) {
-		List<ProductTicketDto> productTicketDtoList = new ArrayList<>();
+	public static List<TicketDto> toDto(List<Ticket> entities) {
+		List<TicketDto> ticketDtoList = new ArrayList<>();
 		 for(Ticket entity : entities) {
-			 ProductTicketDto productTicketDto = ProductTicketDto.builder()
+			 TicketDto ticketDto = TicketDto.builder()
 						.productName(entity.getProductName())
 						.productPrice(entity.getProductPrice())
 						.readCount(entity.getReadCount())
@@ -86,8 +86,8 @@ public class ProductTicketDto {
 						.productAddress(entity.getProductAddress())
 						.productImage(entity.getProductImage())
 						.build();
-			 productTicketDtoList.add(productTicketDto);
+			 ticketDtoList.add(ticketDto);
 		 }
-		 return productTicketDtoList;
+		 return ticketDtoList;
 	}
 }
