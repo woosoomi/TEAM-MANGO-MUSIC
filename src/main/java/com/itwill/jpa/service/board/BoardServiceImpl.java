@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardType;
 import com.itwill.jpa.repository.board.BoardRepository;
+import com.itwill.jpa.repository.board.BoardTypeRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -19,6 +21,8 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardRepository boardRepository;
 	
+	@Autowired
+	private BoardTypeRepository boardTypeRepository;
 	//게시글 저장
 	@Override
 	public Board insert(Board board) {
@@ -91,5 +95,9 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<Board> findAllByOrderByBoardReadCountDesc(){
 		return boardRepository.findAllByOrderByBoardReadCountDesc();
+	}
+	
+	public List<BoardType> findAllByOrderByTypeIdAsc(){
+		return boardTypeRepository.findAllByOrderByTypeIdAsc();
 	}
 }

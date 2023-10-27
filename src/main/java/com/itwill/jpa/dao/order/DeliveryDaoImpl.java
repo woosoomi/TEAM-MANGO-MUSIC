@@ -33,7 +33,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
 
 
 	@Override
-	public DeliveryDto updateDelivery(DeliveryDto updateDelivery) throws Exception{
+	public Delivery updateDelivery(Delivery updateDelivery) throws Exception{
 		//Delivery가 존재하는지 확인
 		Optional<Delivery> findDeliveryOptional = deliveryRepository.findById(updateDelivery.getDeliveryId());
 		Delivery updatedDelivery = null;
@@ -49,7 +49,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
 		}else {
 			throw new Exception("존재하지 않는 주소입니다.");
 		}
-		return DeliveryDto.toDto(updatedDelivery);
+		return updatedDelivery;
 	}
 
 	
@@ -70,25 +70,22 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 	@Override
-	public DeliveryDto findByDeliveryId(Long id) {
+	public Delivery findByDeliveryId(Long id) {
 		Delivery delivery = deliveryRepository.findById(id).get();
-		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
-		return deliveryDto;
+		return delivery;
 	}
 
 
 	@Override
-	public List<DeliveryDto> getDeliveriesByUserId(String userId) {
+	public List<Delivery> getDeliveriesByUserId(String userId) {
 		Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             List<Delivery> deliveryItems = deliveryRepository.findByUser(user);
-            List<DeliveryDto> deliveryItemDtos = new ArrayList<>();
             for (Delivery deliveryItem : deliveryItems) {
-            	DeliveryDto deliveryItemDto = DeliveryDto.toDto(deliveryItem);
-            	deliveryItemDtos.add(deliveryItemDto);
+            	deliveryItems.add(deliveryItem);
         	}
-        	return deliveryItemDtos;
+        	return deliveryItems;
         } else {
             return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
         }

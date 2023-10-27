@@ -45,15 +45,9 @@ public class OrderItemServiceImpl implements OrderItemService{
 	//아이템 업데이트
 	@Override
 	public OrderItemDto updateOrderItem(OrderItemDto updateOrderItem) {
-	    Optional<OrderItem> findOrderItemOptional = orderItemRepository.findById(updateOrderItem.getOiId());
-	    OrderItem updatedOrderItem = null;
-	    if (findOrderItemOptional.isPresent()) {
-	        OrderItem orderItem = findOrderItemOptional.get();
-	        updatedOrderItem = orderItemRepository.save(orderItem);
-	    } else {
-	        throw new OrderItemNotFoundException("수정하실 상품이 존재하지 않습니다.");
-	    }
-	    return OrderItemDto.toDto(updatedOrderItem);
+	  OrderItem orderItem = orderItemDao.updateOrderItem(OrderItem.toEntity(updateOrderItem));
+	  OrderItemDto orderItemDto = OrderItemDto.toDto(orderItem);
+	    return orderItemDto;
 	}
 	
 	//아이템아이디 받아와서 삭제

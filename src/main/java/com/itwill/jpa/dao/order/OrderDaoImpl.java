@@ -43,6 +43,7 @@ public class OrderDaoImpl implements OrderDao{
 		if(findOrderOptional.isPresent()) {
 			Order order = findOrderOptional.get();
 			//관리자가 수정할 수 있는 주문 정보(주문상태)
+			order.setOrderPrice(updateOrder.getOrderPrice());
 			order.setOrderStatus(updateOrder.getOrderStatus());
 			updatedOrder=orderRepository.save(order);
 		}else {
