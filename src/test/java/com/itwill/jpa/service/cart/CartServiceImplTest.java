@@ -77,13 +77,16 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		 */ 
 	}
 	
+	
+	
 	@Test
 	@Disabled
 	@Transactional
 	@Rollback(false)
 	void cartDelete() {
-		cartServiceImpl.deleteAllByCartId(306L);;
+		cartServiceImpl.deleteAllByCartId(1L);
 	}
+	
 	
 	@Test
 	@Disabled
@@ -98,22 +101,18 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void calTotPrice() {
-		Optional<Cart> findCartItem = cartRepository.findById(642L);
-		System.out.println();
-		if(findCartItem.isPresent()) {
-			Cart cart = findCartItem.get();
-			System.out.println("cart>>>>>>>>>>>>>>>>"+cart);
-			double totalPrice = cartServiceImpl.calculateTotalPrice(Collections.singletonList(cart));
-			System.out.println("tot price>>>>>>>"+totalPrice);
-		}else {
-			System.out.println("error");
-		}
-		
+		Optional<Cart> findCart = cartRepository.findById(1L);
+		 if (findCart.isPresent()) {
+		        Cart cart = findCart.get();
+		        List<CartItem> cartItems = cart.getCartitems();
+		        int totalPrice = cartServiceImpl.calculateTotalPrice(cartItems);
+		        cart.setCartTotPrice(totalPrice);
+		        cartRepository.save(cart);
+		        System.out.println("totalprice>>>>>>>>>>"+totalPrice);
+		 }
 	}
-	
-
 }

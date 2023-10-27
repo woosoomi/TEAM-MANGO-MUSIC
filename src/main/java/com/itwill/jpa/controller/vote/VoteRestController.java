@@ -65,6 +65,17 @@ public class VoteRestController {
 	    return ResponseEntity.status(HttpStatus.CREATED).body(createdVoteDto);
 	}
     
+	@Operation(summary = "투표 총합 업데이트")
+	@PutMapping("/update")
+	public ResponseEntity<Vote> updateVote(@RequestBody Vote vote) throws Exception {
+		
+		
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(voteServiceImpl.updateVote(vote));
+		
+	}
+		
+	
 	
 	@Operation(summary = "투표삭제")
 	@DeleteMapping("/{voteId}")

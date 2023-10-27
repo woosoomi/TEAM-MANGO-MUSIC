@@ -116,7 +116,6 @@ class ProductVoteServiceTest {
     }
     */
 	
-	/*
     @Test
     @Transactional
     @Rollback(false)
@@ -125,5 +124,4 @@ class ProductVoteServiceTest {
     	List<Product> a = productVoteRepository.findTop20ByTotalScore();
     	System.out.println("@@@@@"+a); 
     }
-    */
 }

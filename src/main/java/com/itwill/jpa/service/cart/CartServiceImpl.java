@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
+import com.itwill.jpa.repository.cart.CartItemRepository;
 import com.itwill.jpa.repository.cart.CartRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 
@@ -22,6 +24,8 @@ public class CartServiceImpl implements CartService {
 	CartRepository cartRepository;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	CartItemRepository cartItemRepository;
 
 	// 장바구니 생성
 	@Override
@@ -32,30 +36,30 @@ public class CartServiceImpl implements CartService {
 	// 장바구니에 담긴 상품들 조회
 	@Override
 	public List<Cart> getCartItems(Cart cart) {
-	 	return cartRepository.findAll();
+		return cartRepository.findAll();
 	}
-
 	// 카트번호를 이용하여 장바구니 아이템 전체삭제
 	@Override
 	public void deleteAllByCartId(Long cartId) {
-		cartRepository.deleteById(cartId);
+		Cart cart = cartRepository.findById(cartId).orElse(null);
+		if (cart != null) {
+	        cart.getCartitems().clear(); // 카트 아이템 리스트를 비웁니다.
+	        cartRepository.save(cart); // 변경사항을 저장합니다.
+	    }
 	}
-
 	// 장바구니에 담긴 상품들 총액계산
 	@Override
-	public double calculateTotalPrice(List<Cart> cartItems) {
-		double total = 0.0;
-		
-		for (Cart cart : cartItems) {
-			List<CartItem> findCartItems = cart.getCartitems();
-			for (CartItem cartItem : findCartItems) {
-				double itemPrice = cartItem.getProduct().getProductPrice();
-				int quantity = cartItem.getCartItemQty();
-				total += itemPrice * quantity;
+	public int calculateTotalPrice(List<CartItem> cartItems) {
+		int totPrice = 0;
+		for (CartItem cartItem : cartItems) {
+			Product product = cartItem.getProduct();
+			int qty = cartItem.getCartItemQty();
+
+			if (product != null) {
+				int productPrice = product.getProductPrice();
+				totPrice += productPrice * qty;
 			}
 		}
-
-		return total;
+		return totPrice;
 	}
-
 }
