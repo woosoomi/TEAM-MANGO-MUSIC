@@ -39,17 +39,9 @@ public class ProductMusicDto {
 	
 	private Date productDate; // 프로덕트(음악,굿즈,콘서트) 등록날짜
 	
-	private int productStock; // 프로덕트(굿즈, 티켓) 재고
-	
 	private String productMovie; // 음악 뮤직비디오
 
 	private String productArtist; // 음악 아티스트
-	
-	private String productAddress; // 콘서트 장소
-	
-	private Date startPeriod; // 멤버십 시작날짜
-	
-	private int periodOfUse; // 멤버십 사용기간
 	
 	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
 	
@@ -67,12 +59,8 @@ public ProductMusicDto(Product product) {
 	this.productStar = product.getProductStar();
 	this.productDate = product.getProductDate();
 	this.readCount = product.getReadCount();
-	this.productStock = product.getProductStock();
 	this.productImage = product.getProductImage();
 	this.productArtist = product.getProductArtist();
-	this.productAddress = product.getProductAddress();
-	this.startPeriod = product.getStartPeriod();
-	this.periodOfUse = product.getPeriodOfUse();
 
 	}
 
@@ -84,12 +72,8 @@ public static ProductMusicDto toDto(Product entity) {
 			.productStar(entity.getProductStar())
 			.productDate(entity.getProductDate())
 			.readCount(entity.getReadCount())
-			.productStock(entity.getProductStock())
 			.productImage(entity.getProductImage())
 			.productArtist(entity.getProductArtist())
-			.productAddress(entity.getProductAddress())
-			.startPeriod(entity.getStartPeriod())
-			.periodOfUse(entity.getPeriodOfUse())
 			.build();
 }
 

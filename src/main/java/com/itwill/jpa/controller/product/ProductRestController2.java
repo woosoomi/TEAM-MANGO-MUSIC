@@ -28,9 +28,6 @@ public class ProductRestController2 {
 	
 //	@GetMapping
 //	public ResponseEntity<List<Product>> getMusicList(){
-//		ProductCategory productCategory = 
-//		productService.findByProductCategory();
-//		List<Product> productList = ;
 //		return ResponseEntity.status(HttpStatus.OK).body(productList);
 //	}
 
