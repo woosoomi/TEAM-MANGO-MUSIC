@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.vote.Vote;
 
+@Repository
 public interface ProductVoteRepository extends JpaRepository<Vote, Long>{
 
 	// findProductVoteId --> product의 voteId로 product와 Vote 전체 호출
@@ -22,6 +24,6 @@ public interface ProductVoteRepository extends JpaRepository<Vote, Long>{
 
 
 	// 상품에서 음악 조회수(readCount), 음악 별점(productStar)의 합산해서 Top 20명 추출
-	@Query("SELECT p FROM Product p ORDER BY (NVL(p.readCount, 0) + NVL(p.productStar, 0)) DESC")
-	List<Product> selectVoteTop20();
+	@Query(value = "SELECT * FROM (SELECT p.*, (NVL(p.read_Count, 0) + NVL(p.product_Star, 0)) AS total_score FROM Product p ORDER BY total_score DESC) WHERE ROWNUM <= 20")
+    List<Product> findTop20ByTotalScore();
 }

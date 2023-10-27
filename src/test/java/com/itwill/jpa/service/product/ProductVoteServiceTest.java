@@ -1,7 +1,5 @@
 package com.itwill.jpa.service.product;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,16 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.entity.product.Product;
-import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.vote.Vote;
-import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.repository.product.ProductVoteRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 import com.itwill.jpa.service.vote.VoteServiceImpl;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 
 @SpringBootTest
 class ProductVoteServiceTest {
@@ -45,6 +38,8 @@ class ProductVoteServiceTest {
 	@Autowired
     private ProductVoteRepository productVoteRepository;	
 	
+	
+	/*
     //product내 VoteId 수정 Vote Join [성공]   
     @Test
     @Transactional
@@ -69,9 +64,14 @@ class ProductVoteServiceTest {
         productVoteRepository.findProductVoteId(1L);
         System.out.println(productVoteRepository.findProductVoteId(1L));
     }
+    
+    */
+	
+	/*
     @Test
     @Transactional
     @Rollback(false)
+    @Disabled
     public void testfindProductVoteIdWithUser() {
     	
     	Vote vote1 = Vote.builder()
@@ -93,8 +93,13 @@ class ProductVoteServiceTest {
     	// product VoteId 수정
       	Long productNo = 1L;
         Product product = productServiceImpl.getProduct(productNo);
+ 
+        product.setProductStar(20);
         product.setProductName("수정 테스트완료");
         product.setVote(vote1);
+       
+        
+        
 
         // updateProduct 메서드 호출
         productServiceImpl.updateProduct(product);
@@ -102,16 +107,21 @@ class ProductVoteServiceTest {
         productVoteRepository.findProductVoteId(1L);
           
         //findProductVoteIdWithUser
-        productVoteRepository.findProductVoteIdWithUser(1L);
-        System.out.println(">>>>> "+productVoteRepository.findProductVoteIdWithUser(1L));
+        //productVoteRepository.findProductVoteIdWithUser(1L);
+       // System.out.println(">>>>> "+productVoteRepository.findProductVoteIdWithUser(1L));
+        
+    	List<Product> a = productVoteRepository.selectVoteTop20();
+    	System.out.println("@@@@@"+a); 
     
     }
-    
+    */
+	
     @Test
     @Transactional
     @Rollback(false)
-    public void testselectVoteTop20() {
-    	List<Product> a = productVoteRepository.selectVoteTop20();
+   // @Disabled
+    public void testfindTop20ByTotalScore() {
+    	List<Product> a = productVoteRepository.findTop20ByTotalScore();
     	System.out.println("@@@@@"+a); 
     }
 }
