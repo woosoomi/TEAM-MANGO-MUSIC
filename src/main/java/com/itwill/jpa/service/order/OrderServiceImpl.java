@@ -54,8 +54,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List<OrderDto> deleteAllOrder() throws Exception {
 		List<Order> orderList = orderRepository.findAll();
+		List<OrderDto> orderDtoList = new ArrayList<OrderDto>();
+		for (Order order : orderList) {
+			orderDtoList.add(OrderDto.toDto(order));
+		}
 		orderRepository.deleteAll();
-		List<OrderDto> orderDtoList = OrderDto.toDto(orderList);
 		return orderDtoList;
 	}
 

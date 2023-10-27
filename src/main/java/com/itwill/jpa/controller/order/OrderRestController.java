@@ -44,7 +44,7 @@ public class OrderRestController {
 	/* Restful Order */
 
 	
-	// 주문생성
+	// swagger-ui test 주문생성 ((성공) User(FK), Delivery(FK) 아직 null)
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
