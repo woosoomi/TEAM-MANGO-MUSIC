@@ -1952,8 +1952,8 @@
       <constraint>
         <height>101</height>
         <width>131</width>
-        <x>23</x>
-        <y>660</y>
+        <x>1387</x>
+        <y>656</y>
       </constraint>
       <sourceConnections/>
       <targetConnections/>
@@ -1981,8 +1981,8 @@ vote 채린&#xd;
       <constraint>
         <height>109</height>
         <width>278</width>
-        <x>162</x>
-        <y>654</y>
+        <x>1260</x>
+        <y>514</y>
       </constraint>
       <sourceConnections/>
       <targetConnections/>

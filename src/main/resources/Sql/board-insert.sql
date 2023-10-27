@@ -1,3 +1,26 @@
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(1,'기타');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(2,'일반공지');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(3,'서비스공지');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(4,'시스템공지');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(5,'회원정보');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(6,'결제/환불');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(7,'이벤트');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(8,'답변완료');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(9,'답변대기중');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(10,'진행중이벤트');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(11,'종료된이벤트');
+
 INSERT INTO board_category (board_category_id,board_category_name)
 VALUES (1, '공지사항');
 INSERT INTO board_category (board_category_id, board_category_name)
@@ -8,33 +31,6 @@ INSERT INTO board_category (board_category_id, board_category_name)
 VALUES (4, '1대1문의');
 INSERT INTO board_category (board_category_id, board_category_name)
 VALUES (5, 'FAQ');
-
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(1,'기타');     //공지사항 and FAQ
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(2,'일반공지'); //공지사항
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(3,'서비스공지');   //공지사항
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(4,'시스템공지');   //공지사항
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(5,'회원정보');   //FAQ
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(6,'결제/환불');   //FAQ
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(7,'이벤트');   //FAQ
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(8,'답변완료');   //문의
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(9,'답변대기중');  //문의
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(10,'진행중이벤트');  //문의
-INSERT INTO board_type(board_type_id,board_type_title)
-VALUES(11,'종료된이벤트');  //문의
-
-////////////여기까지 변경사항없는 테이블정보/////////////////
-
-//공지사항 -서비스공지
 
 INSERT INTO BOARD (board_id,
                                     board_category_id,
@@ -131,14 +127,6 @@ VALUES (board_board_no_seq.nextval,
                 SYSTIMESTAMP, SYSTIMESTAMP, 
                 '환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!', 'images/board/notifition/image_notifition_2.jpg', '환불해주세요!!',null);
 
-INSERT INTO USER_BOARD(user_board_id,
-                                              user_id,
-                                              board_id)
-VALUES(user_board_no_seq.nextval,
-                'why3795',
-                board_board_no_seq.currval);
-                              
-
 INSERT INTO BOARD_REPLY(board_reply_id,
                                                 board_id,
                                                 user_id,
@@ -146,7 +134,7 @@ INSERT INTO BOARD_REPLY(board_reply_id,
                                                 board_reply_title,board_reply_content)
 VALUES(board_reply_no_seq.nextval,
               board_board_no_seq.currval,
-              'why3795',
+              '팀장님',
               SYSTIMESTAMP,
               '환불문의답변드립니다','차경진씨에게문의하세요');
               
