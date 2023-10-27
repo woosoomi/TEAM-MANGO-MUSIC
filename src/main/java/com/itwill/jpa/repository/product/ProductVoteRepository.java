@@ -23,6 +23,6 @@ public interface ProductVoteRepository extends JpaRepository<Vote, Long>{
 
 
 	// 상품에서 음악 조회수(readCount), 음악 별점(productStar)의 합산해서 Top 20명 추출
-	@Query(value = "SELECT * FROM (SELECT p.*, (NVL(p.read_Count, 0) + NVL(p.product_Star, 0)) AS total_score FROM Product p ORDER BY total_score DESC) WHERE ROWNUM <= 20")
+	@Query("SELECT p FROM Product p ORDER BY (COALESCE(p.readCount, 0) + COALESCE(p.productStar, 0)) DESC")
     List<Product> findTop20ByTotalScore();
 }
