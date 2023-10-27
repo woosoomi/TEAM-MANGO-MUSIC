@@ -32,9 +32,6 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Autowired
 	CartItemRepository cartItemRepository;
-	
-	@Autowired
-	UserRepository userRepository;
 
 	@Test
 	@Transactional
@@ -86,7 +83,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void updateCartItemsQty() throws Exception {
