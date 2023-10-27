@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardType;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.board.BoardRepository;
 import com.itwill.jpa.repository.board.BoardTypeRepository;
 
@@ -100,4 +101,9 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardType> findAllByOrderByTypeIdAsc(){
 		return boardTypeRepository.findAllByOrderByTypeIdAsc();
 	}
+	public List<Board> findBoardsByUsername(User user) {
+	    return boardRepository.findBoardsByUsername(user.getUserName());
+	}
+
+	
 }

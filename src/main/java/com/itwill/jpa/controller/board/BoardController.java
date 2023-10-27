@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardType;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.board.BoardServiceImpl;
+import com.itwill.jpa.service.user.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +25,8 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 
 	private final BoardServiceImpl boardServiceImpl;
+	
+	private UserServiceImpl userServiceImpl;
 
 	@GetMapping("/event")
 	public String eventPage(Model model) {
@@ -63,6 +67,9 @@ public class BoardController {
 			List<Board> magazines = boardServiceImpl.findBycategory(3L);
 			model.addAttribute("magazines", magazines);
 			System.out.println("magazine 리스트 : " + magazines);
+			
+			
+			
 			return "magazine";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,6 +84,13 @@ public class BoardController {
 			List<Board> inquiriesList = boardServiceImpl.findBycategory(4L);
 			model.addAttribute("inquiries", inquiriesList);
 			System.out.println("inquiries 리스트 : " + inquiriesList);
+			
+	        //User user = userServiceImpl.fin
+
+			
+			
+			
+			
 			return "inquiries";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,8 +99,23 @@ public class BoardController {
 		}
 	}
 
+	
+	
 	@GetMapping("/faq")
 	public String faq(Model model) {
-		return "faq";
+		try {
+			List<Board> faqs = boardServiceImpl.findBycategory(5L);
+			model.addAttribute("faqs", faqs);
+			System.out.println("FAQ 리스트 :" + faqs);
+			List<BoardType> boardTypes =boardServiceImpl.findAllByOrderByTypeIdAsc();
+			System.out.println("boardTypeList" + boardTypes);
+			model.addAttribute("boardTypes",boardTypes);
+			return "faq"; // 뷰 템플릿의 경로를 "faq"로 설정
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMSG : " + e.getMessage());
+			return null;
+		}
 	}
 }
