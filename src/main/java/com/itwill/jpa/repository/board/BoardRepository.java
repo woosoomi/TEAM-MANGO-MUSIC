@@ -30,8 +30,9 @@ public interface BoardRepository extends JpaRepository<Board,Long >{
     // boardCount 필드로 내림차순 정렬
     List<Board> findAllByOrderByBoardReadCountDesc();
     
-//    @Query("SELECT b FROM Board b JOIN b.users u WHERE u.username = :username")
-//    List<Board> findBoardsByUsername(@Param("username") String username);
+//
+//    @Query("SELECT b FROM Board b WHERE b.id IN (SELECT ub.board.id FROM UserBoard ub WHERE ub.user.username = :username)")
+//    List<Board> findBoardsByUsername(String username);
 
 
 
