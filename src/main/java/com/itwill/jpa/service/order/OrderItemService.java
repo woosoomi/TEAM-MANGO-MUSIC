@@ -15,9 +15,7 @@ public interface OrderItemService {
 	List<OrderItemDto> deleteAllOrderItem() throws Exception;
 	
 	List<OrderItemDto> orderItemsByOrderId(Long orderId);
-	
-	List<OrderItemDto> orderItemsByUserId(String userId);
-	
-	OrderItemDto findOrderItem(Long id);
+		
+	OrderItemDto findOrderItem(Long oiId);
 	
 }

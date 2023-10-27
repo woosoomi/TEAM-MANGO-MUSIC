@@ -86,19 +86,6 @@ public class OrderItemServiceImpl implements OrderItemService{
 		return orderItemDtoList;
 	}
 
-	// 유저 아이디로 주문아이템 전체 불러오기
-	@Override
-	public List<OrderItemDto> orderItemsByUserId(String userId) {
-		return null;
-		
-//		List<OrderItem> orderItemList = orderItemRepository.findByUserId(userId);
-//		List<OrderItemDto> orderItemDtoList = new ArrayList<OrderItemDto>();
-//		for (OrderItem orderItem : orderItemList) {
-//			orderItemDtoList.add(OrderItemDto.toDto(orderItem));
-//		}
-//		return orderItemDtoList;
-
-	}
 
 }
 	

@@ -5,7 +5,9 @@ package com.itwill.jpa.entity.order;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,11 +39,11 @@ public class OrderItem {
 	/*
 	 * 다대일 관계
 	 */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "product_no")
 	private Product product;
 	

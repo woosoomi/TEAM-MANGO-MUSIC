@@ -8,16 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
+import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.OrderDao;
+import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Order;
+import com.itwill.jpa.entity.order.OrderItem;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 
 import jakarta.transaction.Transactional;
-@SpringBootTest
-@Transactional
-class OrderItemServiceTest {
+
+class OrderItemServiceTest extends TeamProjectMangoApplicationTest {
 
 	@Autowired
 	OrderItemService orderItemService;
@@ -31,30 +34,34 @@ class OrderItemServiceTest {
 	@Autowired
 	OrderDao orderDao;
 	
+	@Autowired
+	ProductDao productDao;
+	
+	//오더 아이템 생성 실패
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void insert() {
-		OrderItemDto orderItem = new OrderItemDto();
+		
+		OrderItem orderItem = new OrderItem();
+		
 		Order order = orderDao.selectOrder(1L);
-		orderItem.setOiId(null);
-		orderItem.setOiQty(3);
 		
-		OrderItemDto orderItem2 = new OrderItemDto();
-		Order order2 = orderDao.selectOrder(1L);
-		orderItem2.setOiId(null);
-		orderItem2.setOiQty(5);
+		Product product = productDao.insertProduct(Product.builder().productNo(36L).build());
 		
-//		orderItem.setOrder(order);
-//		orderItem2.setOrder(order2);
+		orderItem.setOrder(order);
+		orderItem.setProduct(product);
 		
-		OrderItemDto savedOrderItem = orderItemService.saveOrderItem(orderItem);
-		OrderItemDto savedOrderItem2 = orderItemService.saveOrderItem(orderItem2);
-		System.out.println(savedOrderItem);
-		System.out.println(savedOrderItem2);
+		OrderItemDto orderItemDto = OrderItemDto.toDto(orderItem);
+		
+		orderItemDto.setOiId(null);
+		orderItemDto.setOiQty(3);
+
+		OrderItemDto savedOrderItemDto = orderItemService.saveOrderItem(orderItemDto);
+
+		System.out.println(savedOrderItemDto);
 	}
-	
 	
 	@Test
 	@Transactional
@@ -75,7 +82,7 @@ class OrderItemServiceTest {
 	@Rollback(false)
 	@Disabled
 	void delete() throws Exception{
-		orderItemService.deleteOrderItem(82L);
+		orderItemService.deleteOrderItem(64L);
 	}
 	
 	@Test
@@ -104,13 +111,5 @@ class OrderItemServiceTest {
 		System.out.println("오더아이템들-->"+orderItems);
 	}
 	
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	void orderItemsByUserId() {
-		List<OrderItemDto> orderItems = orderItemService.orderItemsByUserId("why3795");
-		System.out.println(orderItems);
-	}
 	
 }
