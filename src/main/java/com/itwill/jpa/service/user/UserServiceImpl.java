@@ -1,5 +1,6 @@
 package com.itwill.jpa.service.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.dto.user.UserDto;
+import com.itwill.jpa.dto.user.UserLoginDto;
+import com.itwill.jpa.dto.user.UserUpdateDto;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
 
@@ -22,66 +26,83 @@ public class UserServiceImpl implements UserService{
 	UserDao userDao;
 	
 	@Override
-	public User createUser(User user) throws Exception {
-		if(userDao.existsById(user.getUserId())) {
-			throw new Exception(user.getUserId() + "는 이미 존재하는 아이디입니다.");
+	public UserDto createUser(UserDto userDto) throws Exception {
+		if(userDao.existsById(userDto.getUserId())) {
+			throw new Exception(userDto.getUserId() + "는 이미 존재하는 아이디입니다.");
 		}
 		
-		User insert = userDao.createUser(user);
-		return insert;
+		User createdUser = userDao.createUser(User.toEntity(userDto));
+		UserDto insertUser = UserDto.toDto(createdUser);
+		return insertUser;
 	}
 	
 	@Override
-	public User loginUser(String userId, String userPw) throws Exception {
-	      Optional<User> selectedUserOptional = userRepository.findById(userId);
-	       if (selectedUserOptional.isEmpty()) {
-	           throw new Exception("존재하지 않는 아이디입니다.");
-	       }
-	       User selectedUser = selectedUserOptional.get();
+	public User loginUser(UserLoginDto userLoginDto) throws Exception {
+        User user = userDao.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
 
-	       if (!selectedUser.getUserPw().equals(userPw)) {
-	           throw new Exception("비밀번호가 일치하지 않습니다.");
-	       }
-
-	       return selectedUser;
-	   }
-
-	@Override
-	public User updateUser(User user) throws Exception {
-		 if (userDao.existsById(user.getUserId())) {
-	            return userDao.updateUser(user);
-	        } else {
-	            throw new Exception("존재하지 않는 사용자입니다.");
-	        }
-	    }
-
-	@Override
-	public void deleteUser(String userId) throws Exception {
-		 Optional<User> userOptional = userRepository.findById(userId);
-	        if (userOptional.isPresent()) {
-	            userRepository.delete(userOptional.get());
-	        } else {
-	            throw new Exception("존재하지 않는 아이디입니다.");
-	        }
-	    }
-
-	@Override
-	public User findUser(String userId) throws Exception {
-		  Optional<User> userOptional = userRepository.findById(userId);
-	        if (userOptional.isEmpty()) {
-	            throw new Exception("존재하지 않는 아이디입니다.");
-	        }
-	        return userOptional.get();
-	    }
-
-	@Override
-	public List<User> findUserList() throws Exception {
-		   return userRepository.findAll();
+        if (user == null) {
+            throw new Exception("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
+        return user;
     }
 
 	@Override
+	public UserUpdateDto updateUser(UserUpdateDto userUpdateDto) throws Exception {
+		// 아이디로 사용자 찾기
+		User user = userDao.findUser(userUpdateDto.getUserName());
+
+		if (user == null) {
+			throw new Exception("사용자를 찾을 수 없습니다.");
+		}
+
+		// UserUpdateDto에서 User 엔터티로 정보 업데이트
+		user.setUserPw(userUpdateDto.getUserPw());
+		user.setUserName(userUpdateDto.getUserName());
+		user.setUserPhone(userUpdateDto.getUserPhone());
+		user.setUserAddress(userUpdateDto.getUserAdress());
+		user.setUserEmail(userUpdateDto.getUserEmail());
+
+		// 업데이트된 사용자 정보를 저장
+		User updatedUser = userDao.updateUser(user);
+
+		return UserUpdateDto.toDto(updatedUser);
+	}
+
+	@Override
+    public void deleteUser(String userId) throws Exception {
+        User user = userDao.findUser(userId);
+
+        if (user == null) {
+            throw new Exception("사용자를 찾을 수 없습니다.");
+        }
+        userDao.deleteUser(userId);
+    }
+
+	@Override
+    public User findUser(String userId) throws Exception {
+        User user = userDao.findUser(userId);
+
+        if (user == null) {
+            throw new Exception("사용자를 찾을 수 없습니다.");
+        }
+        return user;
+    }
+
+	@Override
+	public List<UserDto> findUserList() {
+	    List<User> userList = userDao.findUserList();
+
+	    List<UserDto> userDtoList = new ArrayList<UserDto>();
+
+	    for (User user : userList) {
+	        userDtoList.add(UserDto.toDto(user));
+	    }
+	    return userDtoList;
+	}
+
+	@Override
 	public boolean existsById(String userId) throws Exception {
-		return userRepository.existsById(userId);
+		return userDao.existsById(userId);
 		
 	}
 

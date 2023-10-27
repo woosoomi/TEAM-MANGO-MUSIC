@@ -47,6 +47,7 @@ public class User {
 	private String userEmail; // 회원 이메일
 	private String userJumin; // 회원 주민번호
 	private String userGender; // 회원 성별
+	//private int membership;// 멤버쉽
 	
 	public static User toEntity(UserDto dto) {
 		return User.builder()
