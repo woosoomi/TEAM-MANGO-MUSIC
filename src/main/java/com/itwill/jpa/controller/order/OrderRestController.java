@@ -101,7 +101,7 @@ public class OrderRestController {
 	// 유저가 만든 주문 전체 불러오기(요청은 성공하지만 Responsbody에 주문 리스트가 안 나타남, userId를 못찾는듯) -- 실패
 	@Operation(summary = "로그인한 유저 주문내역 불러오기[실패]")
 	@GetMapping("/{userId}")
-	public ResponseEntity<?> getOrdersByUserId(@PathVariable String userId) {
+	public ResponseEntity<?> getOrdersByUserId(@PathVariable("userId") String userId) {
 		try {
 			List<OrderDto> userOrders = orderService.ordersByUserId(userId);
 			return ResponseEntity.status(HttpStatus.OK).body(userOrders);
