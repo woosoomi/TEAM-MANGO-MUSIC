@@ -53,21 +53,6 @@ public class OrderDto {
 		
 	}
 	
-	//List<Entity> to List<Dto> 변환
-	public static List<OrderDto> toDto(List<Order> entities) {
-	    List<OrderDto> orderDtoList = new ArrayList<>();
-	    for (Order entity : entities) {
-	        OrderDto orderDto = OrderDto.builder()
-	                .orderId(entity.getOrderId())
-	                .orderPrice(entity.getOrderPrice())
-	                .orderStatus(entity.getOrderStatus())
-	                //.userId(entity.getUser().getUserId())
-	                //.deliveryId(entity.getDelivery().getDeliveryId())
-	                .build();
-	        orderDtoList.add(orderDto);
-	    }
-	    return orderDtoList;
-	}
 	
 }
 	
