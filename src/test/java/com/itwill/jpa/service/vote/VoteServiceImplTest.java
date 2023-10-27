@@ -61,7 +61,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void creatVoteTest() throws Exception {
 		
 		Date localDate = new Date(2023);

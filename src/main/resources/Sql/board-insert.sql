@@ -131,6 +131,14 @@ VALUES (board_board_no_seq.nextval,
                 SYSTIMESTAMP, SYSTIMESTAMP, 
                 '환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!', 'images/board/notifition/image_notifition_2.jpg', '환불해주세요!!',null);
 
+INSERT INTO USER_BOARD(user_board_id,
+                                              user_id,
+                                              board_id)
+VALUES(user_board_no_seq.nextval,
+                'why3795',
+                board_board_no_seq.currval);
+                              
+
 INSERT INTO BOARD_REPLY(board_reply_id,
                                                 board_id,
                                                 user_id,
@@ -181,6 +189,6 @@ VALUES (board_board_no_seq.nextval,
                 SYSTIMESTAMP, SYSTIMESTAMP, 
                 '환불은 해드리지않습니다.', 'images/board/faq/faq2.jpg', '환불관련FAQ...',null);
               
-
+      
               
 commit;
