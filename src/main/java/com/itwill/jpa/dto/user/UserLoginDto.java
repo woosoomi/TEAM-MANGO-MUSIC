@@ -19,7 +19,6 @@ public class UserLoginDto {
 	private String UserPw;
 	
 	public static UserLoginDto toDto(User entity) {
-		
 		return UserLoginDto.builder()
 						   .UserId(entity.getUserId())
 						   .UserPw(entity.getUserPw())
