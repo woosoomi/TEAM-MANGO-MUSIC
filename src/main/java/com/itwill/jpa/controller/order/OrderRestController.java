@@ -98,8 +98,8 @@ public class OrderRestController {
 	    }
 	}
 
-	// 유저가 만든 주문 전체 불러오기(서비스에서는 잘만 주문리스트 불러오는데, 스웨거에서는 성공이지만 왜 주문리스트가 비어있는지..) -- 성공
-	@Operation(summary = "로그인한 유저 주문내역 불러오기[성공]")
+	// 유저가 만든 주문 전체 불러오기(요청은 성공하지만 Responsbody에 주문 리스트가 안 나타남, userId를 못찾는듯) -- 실패
+	@Operation(summary = "로그인한 유저 주문내역 불러오기[실패]")
 	@GetMapping("/{userId}")
 	public ResponseEntity<?> getOrdersByUserId(@PathVariable String userId) {
 		try {
@@ -114,7 +114,7 @@ public class OrderRestController {
 
 	}
 
-	// 전체 유저의 주문 전체 불러오기(관리자권한) -- 성공!
+	// 전체 유저의 주문 전체 불러오기(관리자권한) -- 성공
 	@Operation(summary = "사이트 전체 주문 내역 불러오기(관리자)[성공]")
 	@GetMapping("/all") 
 	public ResponseEntity<?> getAllOrders() {
@@ -128,7 +128,51 @@ public class OrderRestController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
 	}
+	
+	//주문 최신순으로 나열하기 -- 실패(요청은 성공하지만 Responsbody에 주문 리스트가 안 나타남, userId를 못찾는듯)
+	@Operation(summary = "주문 최신순으로 나열하기[실패]")
+	@GetMapping("/SortByLatestOrder/{userId}")
+	public ResponseEntity<?> getNewerOrdersByUserId(@PathVariable String userId) {
+	    try {
+	        List<OrderDto> orders = orderService.orderListByNewer(userId);
 
+	        if (orders.isEmpty()) {
+	            // 주문 내역이 없을 경우 404 Not Found를 반환
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("주문 내역이 없습니다.");
+			}
+
+			return ResponseEntity.status(HttpStatus.OK).body(orders);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+	}
+
+	//주문 오래된순으로 나열하기 -- 실패(요청은 성공하지만 Responsbody에 주문 리스트가 안 나타남, userId를 못찾는듯)
+	@Operation(summary = "주문 오래된순으로 나열하기[실패]")
+	@GetMapping("/SortByOldestOrder/{userId}")
+	public ResponseEntity<?> getOlderOrdersByUserId(@PathVariable String userId) {
+	    try {
+	        List<OrderDto> orders = orderService.orderListByOlder(userId);
+
+	        if (orders.isEmpty()) {
+	            // 주문 내역이 없을 경우 404 Not Found를 반환
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("주문 내역이 없습니다.");
+			}
+
+			return ResponseEntity.status(HttpStatus.OK).body(orders);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+	}
+	
 	
 	/* Restful OrderItem */
 	
