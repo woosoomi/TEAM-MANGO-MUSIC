@@ -39,7 +39,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void cartItemInsert() {
 
 		//User user = new User("test1", "1111", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null, null);
