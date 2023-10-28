@@ -39,9 +39,7 @@ public class Cart {
 	@SequenceGenerator(name = "CART_CART_NO_SEQ",sequenceName = "CART_CART_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_CART_NO_SEQ")
 	private Long cartId;
-	
 	private int cartTotPrice;
-	
 	/*
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -51,6 +49,7 @@ public class Cart {
 	
     public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
+    				.cartId(dto.getCartId())
     				.cartTotPrice(dto.getCartTotPrice())
     				.build();
     }

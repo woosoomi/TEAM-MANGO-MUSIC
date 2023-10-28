@@ -16,8 +16,17 @@ import lombok.ToString;
 @ToString
 public class CartItemDto {
 	
+	private Long cartItemId;
 	private int cartItemQty;
-	private Product product;
+	private Long cartId;
+	private Long productNo;
 
-	
+	public static CartItemDto toDto(CartItemDto entity) {
+		return CartItemDto.builder()
+							.cartItemId(entity.getCartItemId())
+							.cartItemQty(entity.getCartItemQty())
+							.cartId(entity.getCartId())
+							.productNo(entity.getProductNo())
+							.build();
+	}
 }

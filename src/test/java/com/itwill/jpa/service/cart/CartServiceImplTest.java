@@ -13,13 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
+import com.itwill.jpa.dao.cart.CartDaoImpl;
+import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.cart.CartItemRepository;
 import com.itwill.jpa.repository.cart.CartRepository;
+import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 class CartServiceImplTest extends TeamProjectMangoApplicationTest {
@@ -29,25 +35,25 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	UserRepository userRepository;
 	@Autowired
 	CartItemRepository cartItemRepository;
-	
 	@Autowired
 	CartRepository cartRepository;
+
+	
 	@Test
 	@Transactional
 	@Disabled
 	@Rollback(false)
-	
-	void cartInsert() {
+	void cartInsert() throws Exception {
 
-		User user1 =new User("lsg34", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
-		userRepository.save(user1);
-		Optional<User> findUser = userRepository.findById("lsg34");
+		//User user1 =new User("lsg34", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
+		//userRepository.save(user1);
+		Optional<User> findUser = userRepository.findById("lsg33");
 		System.out.println("findUser>>>>>>>>>>>>>>>"+findUser);
 		if (findUser.isPresent()) {
 			User user = findUser.get();
-			Cart cart1 = Cart.builder().cartId(0L).cartTotPrice(1000).user(user).build();
+			CartDto cart1 = CartDto.builder().cartId(0L).cartTotPrice(1000).userId(user.getUserId()).build();
 			System.out.println("cart1>>>>>>>>>>>>>>>>"+cart1);
-			Cart insertedCart=cartServiceImpl.insert(cart1);
+			CartDto insertedCart=cartServiceImpl.insert(cart1);
 			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart);
 		}
 	
@@ -83,36 +89,44 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Disabled
 	@Transactional
 	@Rollback(false)
-	void cartDelete() {
-		cartServiceImpl.deleteAllByCartId(1L);
-	}
-	
-	
-	@Test
-	@Disabled
-	@Transactional
-	@Rollback(false)
-	void getCartItems() {
-		Optional<Cart> findCart = cartRepository.findById(138L);
-		List<Cart> cartItems = cartServiceImpl.getCartItems(findCart.get());
-		System.out.println("find>>>>>>>>>>"+findCart);
-		System.out.println("cartItems>>>>>>>>>>"+cartItems);
+	void cartDelete() throws Exception {
+		Optional<Cart> findCart = cartRepository.findById(1L);
+		System.out.println("findCart>>>>>>>>>>>>>>"+findCart);
+	    if (findCart.isPresent()) {
+	        Cart cart = findCart.get();
+	        cartServiceImpl.deleteAllByCartId(cart.getCartId());
+	    }
 	}
 	
 
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
-	void calTotPrice() {
+	void calTotPrice() throws Exception {
 		Optional<Cart> findCart = cartRepository.findById(1L);
 		 if (findCart.isPresent()) {
 		        Cart cart = findCart.get();
 		        List<CartItem> cartItems = cart.getCartitems();
-		        int totalPrice = cartServiceImpl.calculateTotalPrice(cartItems);
-		        cart.setCartTotPrice(totalPrice);
+		        CartDto totalPrice = cartServiceImpl.calculateTotalPrice(cartItems);
+		        cart.setCartTotPrice(totalPrice.getCartTotPrice());
 		        cartRepository.save(cart);
 		        System.out.println("totalprice>>>>>>>>>>"+totalPrice);
+		        System.out.println("cart>>>>>>>>>>>>"+cart);
 		 }
 	}
+
+	/*
+	@Test
+	//@Disabled
+	@Transactional
+	@Rollback(false)
+	void getCartItems() throws Exception {
+		Cart findCart = cartRepository.findById(1L).orElse(null);
+		CartDto toDto = CartDto.toDto(findCart); 
+		List<CartDto> dtos = cartServiceImpl.getCartItems(toDto);
+		System.out.println("find>>>>>>>>>>"+findCart);
+		System.out.println("cartItems>>>>>>>>>>"+dtos);
+	}
+	*/
 }
