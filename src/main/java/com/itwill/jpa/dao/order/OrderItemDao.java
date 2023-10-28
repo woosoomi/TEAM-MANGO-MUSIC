@@ -2,6 +2,7 @@ package com.itwill.jpa.dao.order;
 
 import java.util.List;
 
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.OrderItem;
 
 public interface OrderItemDao {
@@ -11,6 +12,8 @@ public interface OrderItemDao {
 	OrderItem selectOrderItem(Long orderItemId);
 	
 	List<OrderItem> orderItems(Long orderId);
+	
+	List<OrderItem> orderItems(String userId);
 	
 	OrderItem updateOrderItem(OrderItem orderItem);
 	

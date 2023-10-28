@@ -5,9 +5,7 @@ package com.itwill.jpa.entity.order;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,9 +15,11 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "order_item")
@@ -36,26 +36,25 @@ public class OrderItem {
 	
 	private int oiQty;
 
+//	private String userId;
 	/*
 	 * 다대일 관계
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "product_no")
 	private Product product;
 	
 	/*
 	 * DTO -> ENTITY로 변환해주는 작업
 	 */
-	public static OrderItem toEntity(OrderItemDto dto) {
+	public static OrderItem toEntity(OrderItemDto orderItemDto) {
 		return OrderItem.builder()
-				.oiId(dto.getOiId())
-				.oiQty(dto.getOiQty())
-				.product(Product.builder().productNo(dto.getProductNo()).build()) // productNo 설정
-				.order(Order.builder().orderId(dto.getOrderId()).build()) // orderId 설정
+				.oiId(orderItemDto.getOiId())
+				.oiQty(orderItemDto.getOiQty())
 				.build();
 				
 	}

@@ -14,10 +14,12 @@ public interface OrderItemService {
 	
 	List<OrderItemDto> deleteAllOrderItem() throws Exception;
 	
-	List<OrderItemDto> orderItemsByOrderId(Long orderId);
-		
-	OrderItemDto findOrderItem(Long oiId);
+	List<OrderItemDto> orderItems(Long orderId);
 	
-//	List<OrderItemDto> orderItems(String userId);
 	
+	List<OrderItemDto> orderItems(String userId);
+	
+	OrderItemDto findOrderItem(Long id);
+
+
 }
