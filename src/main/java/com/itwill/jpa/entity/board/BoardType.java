@@ -30,8 +30,14 @@ public class BoardType {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_TYPE_NO_SEQ")
     @Column(name = "board_type_id")
     private Long typeId;
-    
     private String boardTypeTitle;
+    
+    public static BoardType toEntity(BoardType dto) {
+    	return BoardType.builder()
+    					.typeId(dto.getTypeId())
+    					.boardTypeTitle(dto.getBoardTypeTitle())
+    					.build();
+    }
     
 	//1대N관계설정
 	@OneToMany(mappedBy = "boardType", cascade = CascadeType.PERSIST)

@@ -27,18 +27,19 @@ public class BoardDto {
     private LocalDateTime createdTime;
     private LocalDateTime updateTime;
 
-    public static Board toDto(Board entity) {
-    	return Board.builder()
-    				.boardId(entity.getBoardId())
-    				.boardTitle(entity.getBoardTitle())
-    				.boardContent(entity.getBoardContent())
-    				.boardImage(entity.getBoardImage())
-    				.boardPrize(entity.getBoardPrize())
-    				.boardReadCount(entity.getBoardReadCount())
-    				.createdTime(entity.getCreatedTime())
-    				.updateTime(entity.getUpdateTime())
-    				.build();
+    public static BoardDto toDto(Board entity) {
+        return BoardDto.builder()
+                .boardId(entity.getBoardId())
+                .boardTitle(entity.getBoardTitle())
+                .boardContent(entity.getBoardContent())
+                .boardImage(entity.getBoardImage())
+                .boardPrize(entity.getBoardPrize())
+                .boardReadCount(entity.getBoardReadCount())
+                .createdTime(entity.getCreatedTime())
+                .updateTime(entity.getUpdateTime())
+                .build();
     }
+
     
 	
 }

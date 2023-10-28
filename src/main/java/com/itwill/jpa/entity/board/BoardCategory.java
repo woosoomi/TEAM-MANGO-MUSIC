@@ -34,12 +34,17 @@ public class BoardCategory {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_CATEGORY_NO_SEQ")
 	@Column(name = "board_category_id" )
 	private Long id;
-
 	private String boardCategoryName;
 
+	
+	
 	public static BoardCategory toEntity(BoardCategoryDto dto) {
-		return BoardCategory.builder().boardCategoryName(dto.getBoardCategoryName()).build();
+		return BoardCategory.builder()
+							.id(dto.getId())
+							.boardCategoryName(dto.getBoardCategoryName())
+							.build();
 	}
+	
 	//1대N관계설정
 	@OneToMany(mappedBy = "boardCategory", cascade = CascadeType.PERSIST)
 	@Builder.Default

@@ -42,6 +42,15 @@ public class BoardReply {
     @CreationTimestamp
     private LocalDateTime createDateTime;
     
+    public static BoardReply toEntity(BoardReply dto) {
+    	return BoardReply.builder()
+    					 .boardReplyId(dto.boardReplyId)
+    					 .boardReplyTitle(dto.boardReplyTitle)
+    					 .boardReplyContent(dto.boardReplyContent)
+    					 .build();
+    }
+    
+    
 	@ManyToOne
 	@JoinColumn(name = "board_Id")
 	private Board board;
