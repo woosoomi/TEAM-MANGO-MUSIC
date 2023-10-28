@@ -39,7 +39,6 @@ class CartRepositoryTest extends TeamProjectMangoApplicationTest {
 		User user1=User.builder()
 					  .userId("2222")
 					  .userAddress("2")
-					  .user_Boards(null)
 					  .userEmail("2")
 					  .userGender("2")
 					  .userJumin("2")

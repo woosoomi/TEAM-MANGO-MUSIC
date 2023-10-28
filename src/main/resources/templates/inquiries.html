@@ -125,12 +125,12 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
-						
+
 						<li class="btn signupLink"><a href="#">sign up</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</nav><!-- top search form -->
-			
+
 	</header><!-- END | Header -->
 	<div class="hero common-hero">
 		<div class="container">
@@ -152,7 +152,9 @@
 			<div class="row ipad-width2">
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p class="pad-change">userName님의 문의 총 <span>N</span> 개 입니다</p>
+						<p class="pad-change"
+							th:text="${inquiries[0].getUser().getUserName + '님의 문의사항은 ' + inquiries.size() + '개입니다'}">
+							userName님의 문의 총 <span>N</span> 개 입니다</p>
 						<label>Sort by:</label>
 						<select>
 							<option value="popularity">최신순</option>
@@ -161,52 +163,40 @@
 
 					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<div class="ceb-item-style-2"><img src="images/uploads/물음표.png" alt="">
-								<div class="ceb-infor">
-									<h2>
-										<a href="celebritysingle.html">로그인</a>
-									</h2>
-									<p>회원가입했는데 로그인이안되요...</p>
-									<span> 답변완료 </span>
+						<div th:each="inquiries, iterStat : *{inquiries}" th:if="${iterStat.index lt 6}">
+
+							<div class="col-md-12">
+								<div class="ceb-item-style-2"><img src="images/uploads/물음표.png" alt="">
+									<div class="ceb-infor">
+										<h2>
+											<a href="celebritysingle.html" th:text="${inquiries.boardTitle}">로그인</a>
+										</h2>
+										<p th:text="${inquiries.createdTime}" >회원가입했는데 로그인이안되요...</p>
+										<p th:text="${inquiries.boardType.boardTypeTitle}" >회원가입했는데 로그인이안되요...</p>
+										<span th:text="${inquiries.boardContent}"> 답변완료 </span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="ceb-item-style-2"><img src="images/uploads/물음표.png" alt="">
-								<div class="ceb-infor">
-									<h2>
-										<a href="celebritysingle.html">환불문의</a>
-									</h2>
-									<p>환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요
-										환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요
-										환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요
-										환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요
-										환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요
-										환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요환불해주세요
-										환불해주세요환불해주세요.....</p>
-									<span> 답변대기중 </span>
-								</div>
-							</div>
+
+							
+
 						</div>
 
 					</div>
-					
-				</div>
-				<div class="col-md-3 col-xs-12 col-sm-12">
-					<div class="sidebar">
+					<div class="col-md-3 col-xs-12 col-sm-12">
+						<div class="sidebar">
 
-						<div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
-						<div class="celebrities">
+							<div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
+							<div class="celebrities">
+							</div>
+
+
+
 						</div>
-
-
-
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div><!-- end of celebrity list section--><!-- footer section-->
 	<footer class="ht-footer">
 		<div class="container">

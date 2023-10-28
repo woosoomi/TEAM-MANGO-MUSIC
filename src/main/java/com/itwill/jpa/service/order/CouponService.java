@@ -11,9 +11,9 @@ public interface CouponService {
 	//쿠폰수정(관리자)
 	CouponDto updateCoupon(CouponDto couponDto) throws Exception;
 	//쿠폰 삭제
-	void deleteCoupon(Long couponId) throws Exception;
+	CouponDto deleteCoupon(Long couponId) throws Exception;
 	//쿠폰 전체 삭제
-	void deleteAllCoupons() throws Exception;
+	List<CouponDto> deleteAllCoupons() throws Exception;
 	//유저의 쿠폰들 불러오기
 	List<CouponDto> couponsByUserId(String userId);
 	//주문내역에서 해당 주문에 사용된 쿠폰 불러오기

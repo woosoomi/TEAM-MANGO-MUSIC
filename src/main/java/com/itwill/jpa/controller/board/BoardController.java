@@ -78,20 +78,10 @@ public class BoardController {
 	@GetMapping("/inquiries")
 	public String inquiries(Model model) {
 		try {
-			List<Board> inquiriesList = boardServiceImpl.findBycategory(4L);
-			model.addAttribute("inquiries", inquiriesList);
-			System.out.println("inquiries 리스트 : " + inquiriesList);
-			
-//	        User user = userServiceImpl.findUserByUsername("우한영");
-//	        if (user == null) {
-//	            // 사용자가 존재하지 않는 경우에 대한 처리 (예: 에러 페이지 렌더링)
-//	            return "index";
-//	        }
-//			
-//	        List<Board> boards = boardServiceImpl.findBoardsByUsername(user);
-//	        model.addAttribute("username", user.getUserName());
-//	        model.addAttribute("boards", boards);
-//			
+			List<Board> inquiries 
+				= boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,"why3795");
+			model.addAttribute("inquiries", inquiries);
+			System.out.println("inquiries 리스트 : " + inquiries);
 			
 			return "inquiries";
 		} catch (Exception e) {

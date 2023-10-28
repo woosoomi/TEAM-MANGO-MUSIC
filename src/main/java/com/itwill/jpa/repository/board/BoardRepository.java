@@ -19,7 +19,9 @@ public interface BoardRepository extends JpaRepository<Board,Long >{
 	//타입ID로 분류하기
 	List<Board> findByBoardType_TypeIdOrderByCreatedTime(Long boardTypeId);
 	
-	
+	//보드카테고리 and 유저아이디로 찾기
+	List<Board> findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(Long boardCategoryId, String userId);
+
 	
 	//keyword가 포함된 title찾기 
     List<Board> findByBoardTitleContaining(String keyword);

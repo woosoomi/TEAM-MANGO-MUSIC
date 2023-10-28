@@ -117,15 +117,24 @@ VALUES (board_board_no_seq.nextval,
 INSERT INTO BOARD (board_id,
                                     board_category_id,
                                     board_type_id,
+                                    user_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
                                     board_content, board_image, board_title,board_prize)
 VALUES (board_board_no_seq.nextval, 
                 4,   
                 8,
+                'lsg33',
                 2, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
                 '환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!환불해주세요!!', 'images/board/notifition/image_notifition_2.jpg', '환불해주세요!!',null);
+
+
+
+INSERT INTO user_board (user_board_id, board_id, user_id)
+VALUES (USER_BOARD_NO_SEQ.nextval, 1, 'why3795');
+INSERT INTO user_board (user_board_id, board_id, user_id)
+VALUES (USER_BOARD_NO_SEQ.nextval, 2, 'myr1109');
 
 INSERT INTO BOARD_REPLY(board_reply_id,
                                                 board_id,
@@ -134,19 +143,21 @@ INSERT INTO BOARD_REPLY(board_reply_id,
                                                 board_reply_title,board_reply_content)
 VALUES(board_reply_no_seq.nextval,
               board_board_no_seq.currval,
-              '팀장님',
+              'myr1109',
               SYSTIMESTAMP,
               '환불문의답변드립니다','차경진씨에게문의하세요');
               
 INSERT INTO BOARD (board_id,
                                     board_category_id,
                                     board_type_id,
+                                    user_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
                                     board_content, board_image, board_title,board_prize)
 VALUES (board_board_no_seq.nextval, 
                 4,   
                 9,
+                'why3795',
                 0, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
                 '배송이 도대체 언제오는건가요?벌써 5달이나 기다렸습니다', 'images/board/notifition/image_notifition_2.jpg', '배송이안와요 ㅠㅠ',null);

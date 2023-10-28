@@ -2,6 +2,7 @@ package com.itwill.jpa.service.vote;
 
 import java.util.List;
 
+import com.itwill.jpa.dto.vote.VoteDto;
 import com.itwill.jpa.entity.vote.Vote;
 
 public interface VoteService {

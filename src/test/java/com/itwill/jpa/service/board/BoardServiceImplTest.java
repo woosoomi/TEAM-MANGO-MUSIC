@@ -122,9 +122,19 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void findByOrderByBoardCountDesc() {
 		List<Board> boards = boardServiceImpl.findAllByOrderByBoardReadCountDesc();
 		System.out.println("readcount로 내림차순정렬 : " + boards);
+	}
+	//카테고리와 아이디로 찾기 -성공
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime() {
+		List<Board> boards 
+			=boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,"why3795");
+		System.out.println("4L이고 why3795아이디를 사용하는 리스트 : " + boards);
 	}
 }

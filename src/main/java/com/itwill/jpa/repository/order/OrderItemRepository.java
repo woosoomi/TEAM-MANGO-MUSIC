@@ -16,7 +16,7 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 	
 //	List<OrderItem> findByUserId(String userId);
 	
-	List<OrderItem> findByOrder(OrderDto order);
+	List<OrderItemDto> findByOrder(OrderDto order);
 
 
 

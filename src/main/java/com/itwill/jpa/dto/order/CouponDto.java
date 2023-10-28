@@ -1,10 +1,8 @@
 package com.itwill.jpa.dto.order;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 import com.itwill.jpa.entity.order.Coupon;
-import com.itwill.jpa.entity.order.Order;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

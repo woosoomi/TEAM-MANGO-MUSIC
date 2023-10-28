@@ -42,6 +42,7 @@ public interface BoardService {
 
     public List<BoardType> findAllByOrderByTypeIdAsc();
 
-    //public List<Board> findBoardsByUsername(User user);
-
+    public List<Board> findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(Long boardCategoryId, String userId);
+    
+    
 }

@@ -1,8 +1,5 @@
 package com.itwill.jpa.repository.order;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
