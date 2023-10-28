@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Ticket;
@@ -25,16 +29,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	List<Product> findByProductCategory(ProductCategory categoryId);	
 	List<Goods> findGoodsByProductCategory(ProductCategory categoryId);	
 	List<Ticket> findTicketByProductCategory(ProductCategory categoryId);
+	// DTO
+//	List<ProductDto> findByProductCategoryDto(ProductDto productDto);
+//	List<TicketDto> findTicketByProductCategoryDto(TicketDto ticketDto);
+//	List<GoodsDto> findByGoodsProductCategoryDto(GoodsDto goodsDto);
 	/*****************************************************************/
+//	keyword가 포함된 product 찾기
+	List<Product> findByProductNameContaining(String keyword);
 
 //	productName로 찾기
 	Product findByProductName(String productName);
 	
 //	productArtist로 찾기
 	Product findByProductArtist(String productArtist);
-//	keyword가 포함된 product 찾기
-    List<Product> findByProductNameContaining(String keyword);
     
-//	categoryId 별로 찾기
-//    List<Product> findByCategoryId(Long categoryId);
 }

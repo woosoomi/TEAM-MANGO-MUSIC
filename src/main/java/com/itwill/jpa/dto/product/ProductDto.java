@@ -2,6 +2,7 @@ package com.itwill.jpa.dto.product;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.jpa.entity.product.Product;
@@ -76,7 +77,7 @@ public ProductDto(Product product) {
 	this.periodOfUse = product.getPeriodOfUse();
 
 	}
-
+//Entity to Dto 변환
 public static ProductDto toDto(Product entity) {
 	return ProductDto.builder()
 			.productName(entity.getProductName())
@@ -93,8 +94,27 @@ public static ProductDto toDto(Product entity) {
 			.periodOfUse(entity.getPeriodOfUse())
 			.build();
 }
-
-
-
+//List<Entity> to List<Dto> 변환
+	public static List<ProductDto> toDto(List<Product> entities) {
+		List<ProductDto> productDtoList = new ArrayList<>();
+		 for(Product entity : entities) {
+			 ProductDto productDto = ProductDto.builder()
+						.productName(entity.getProductName())
+						.productPrice(entity.getProductPrice())
+						.productContent(entity.getProductContent())
+						.productStar(entity.getProductStar())
+						.productDate(entity.getProductDate())
+						.readCount(entity.getReadCount())
+						.productStock(entity.getProductStock())
+						.productImage(entity.getProductImage())
+						.productArtist(entity.getProductArtist())
+						.productAddress(entity.getProductAddress())
+						.startPeriod(entity.getStartPeriod())
+						.periodOfUse(entity.getPeriodOfUse())
+						.build();
+			 productDtoList.add(productDto);
+	 }
+		 return productDtoList;
 }
+	}
 
