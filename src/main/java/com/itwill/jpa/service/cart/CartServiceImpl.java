@@ -31,7 +31,7 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public CartDto insert(CartDto dto) throws Exception {
-		User user = userRepository.findById(dto.getUserId()).orElseThrow();
+		User user = userRepository.findById(dto.getUserId()).orElse(null);
 		Cart cart = Cart.toEntity(dto);
 		cart.setUser(user);
 		cart = cartRepository.save(cart);
