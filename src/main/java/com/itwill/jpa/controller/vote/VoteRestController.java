@@ -42,8 +42,9 @@ public class VoteRestController {
 	@PutMapping("/create")
 	public ResponseEntity<VoteDto> createVote(@RequestBody VoteDto voteDto) throws Exception {
 	    
-		Vote vote = new Vote(null, null, 0, null, null);
+		Vote vote = new Vote(0L, null, 0, null, null);
 		VoteDto.toDto(vote);
+		vote.setVoteId(voteDto.getVoteId());
 		vote.setVoteId(voteDto.getVoteId());
 		vote.setVoteDate(voteDto.getVoteDate());
 		vote.setVoteTot(voteDto.getVoteTot());
@@ -60,7 +61,7 @@ public class VoteRestController {
     
 	
 	
-	
+	// User의 Json에서 vote가 String으로 받고 있어서 해결 필요
 	@Operation(summary = "투표 1개 총합 업데이트")
 	@PutMapping("/update")
 	public ResponseEntity<Map<String, Object>> updateVote(@RequestBody Vote vote) throws Exception {

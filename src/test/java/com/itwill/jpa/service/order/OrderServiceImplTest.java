@@ -10,7 +10,6 @@ import org.springframework.test.annotation.Rollback;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.dao.user.UserDao;
-import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;

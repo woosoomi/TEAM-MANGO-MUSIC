@@ -2,7 +2,6 @@ package com.itwill.jpa.service.order;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.entity.order.Delivery;
-import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 
@@ -40,50 +38,51 @@ public class DeliveryServiceImpl implements DeliveryService{
 	//배송지 정보 수정
 	@Transactional
 	@Override
-	public DeliveryDto updateDelivery(DeliveryDto delivery) throws Exception{
-		Delivery updateDelivery = deliveryDao.updateDelivery(Delivery.toEntity(delivery));
+	public DeliveryDto updateDelivery(DeliveryDto dto) throws Exception{
+		Delivery updateDelivery = deliveryDao.updateDelivery(Delivery.toEntity(dto));
 		DeliveryDto updateDeliveryDto = DeliveryDto.toDto(updateDelivery);
 		return updateDeliveryDto;
 	}
 
-	//배송지 정보 삭제
+	//배송지 정보 삭제 Dto에 삭제 배송지 정보 저장
 	@Override
-	public void deleteDelivery(Long id) throws Exception {
-		deliveryRepository.deleteById(id);
+	public DeliveryDto deleteDelivery(Long deliveryId) throws Exception {
+		Delivery delivery = deliveryRepository.findById(deliveryId).orElseThrow(() -> new IllegalArgumentException("배송지가 존재하지 않습니다."));
+		deliveryRepository.deleteById(deliveryId);
+		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
+		return deliveryDto;
 		
 	}
 
 	//배송지 정보들 불러오기
 	@Override
-	public void deliverys() {
-		deliveryDao.selectList();;
+	public List<DeliveryDto> deliverys() {
+		List<Delivery> deliveryList = deliveryRepository.findAll();
+		List<DeliveryDto> deliveryDtoList = new ArrayList<DeliveryDto>();
+		for (Delivery delivery : deliveryList) {
+			deliveryDtoList.add(DeliveryDto.toDto(delivery));
+		}
+		return deliveryDtoList;
+	
 	}
 
 	
-	//아이디로 배송지 정보 불러오기
+	//유저 아이디로 배송지 정보 불러오기
 	@Override
 	public List<DeliveryDto> findDelivery(String userId) {
-		Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            List<Delivery> deliveryItems = deliveryRepository.findByUser(user);
-            List<DeliveryDto> deliveryItemDtos = new ArrayList<>();
-            for (Delivery deliveryItem : deliveryItems) {
-            	DeliveryDto deliveryItemDto = DeliveryDto.toDto(deliveryItem);
-            	deliveryItemDtos.add(deliveryItemDto);
-        	}
-        	return deliveryItemDtos;
-        } else {
-            return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
-        }
-	
+		List<Delivery> deliveryList = deliveryDao.getDeliveriesByUserId(userId);
+		List<DeliveryDto> deliveryDtoList = new ArrayList<DeliveryDto>();
+		for (Delivery delivery : deliveryList) {
+			deliveryDtoList.add(DeliveryDto.toDto(delivery));
+		}
+		return deliveryDtoList;
 	}
 
 
 	//배송지아이디로 배송지 정보 찾기
 	@Override
-	public DeliveryDto findByDeliveryId(Long id) {
-		Delivery delivery = deliveryRepository.findById(id).get();
+	public DeliveryDto findByDeliveryId(Long deliveryId) {
+		Delivery delivery = deliveryRepository.findById(deliveryId).get();
 		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
 		return deliveryDto;
 	}

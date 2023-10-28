@@ -9,7 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.dto.board.BoardDto;
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.entity.user.UserBoard;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -73,12 +72,11 @@ public class Board {
 	@ToString.Exclude
 	private BoardType boardType;
 		
-	//board- userboard 1대n
-	@OneToMany(mappedBy = "board",  cascade = CascadeType.PERSIST)
-	@Builder.Default
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	@ToString.Exclude
-	private List<UserBoard> userBoard = new ArrayList<UserBoard>();
-    
+	private User user;
+	
 	@OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude

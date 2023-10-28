@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
 
@@ -41,24 +42,22 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Transactional
 	@Rollback(false)
 	@DisplayName("회원가입")
-    public void testCreateUser() {
-        User user = new User();
-        user.setUserId("cat111");
-        user.setUserPw("cat111");
-        user.setUserName("냐옹이");
-        user.setUserPhone("010-1234-56789");
+	void testCreateUser() {
+		UserDto userDto = new UserDto();
+		userDto.setUserId("testUser");
+		userDto.setUserPw("password");
+		userDto.setUserName("Test User");
+		userDto.setUserEmail("test@example.com");
+		userDto.setUserPhone("010-7777-7777");
 
-        userDao.createUser(user);
-        //userRepository.save(user);
-        try {
-            User createdUser = userDao.createUser(user);
-            assertNotNull(createdUser);
-            assertEquals("cat1112", createdUser.getUserId());
-            System.out.println(">>> 회원가입 성공" + createdUser);
-        } catch (Exception e) {
-            fail(">>> 회원가입 실패 " + e.getMessage());
-        }
-    }
+		try {
+			UserDto createdUser = userService.createUser(userDto);
+			assertNotNull(createdUser);
+			assertEquals(userDto.getUserId(), createdUser.getUserId());
+		} catch (Exception e) {
+			fail("회원가입 실패: " + e.getMessage());
+		}
+	}
 
 	@Test
 	@Disabled
@@ -69,7 +68,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		String UserId = "범석님";
         String UserPw = "8888";
         try {
-	        User loginUser = userService.loginUser(UserId, UserPw);
+	        User loginUser = userService.loginUser(null);
 	        assertNotNull(loginUser);
 	        assertEquals(UserId, loginUser.getUserId());
 	        

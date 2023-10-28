@@ -10,13 +10,13 @@ public interface OrderItemService {
 	
 	OrderItemDto updateOrderItem(OrderItemDto orderItem);
 	
-	void deleteOrderItem(Long id) throws Exception;
+	OrderItemDto deleteOrderItem(Long id) throws Exception;
 	
-	void deleteAllOrderItem() throws Exception;
+	List<OrderItemDto> deleteAllOrderItem() throws Exception;
 	
 	List<OrderItemDto> orderItems(Long orderId);
 	
-
+	
 	List<OrderItemDto> orderItems(String userId);
 	
 	OrderItemDto findOrderItem(Long id);

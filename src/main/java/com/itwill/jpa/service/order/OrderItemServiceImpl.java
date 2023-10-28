@@ -43,28 +43,34 @@ public class OrderItemServiceImpl implements OrderItemService{
 	}
 
 	//아이템 업데이트
-	@Override
-	public OrderItemDto updateOrderItem(OrderItemDto updateOrderItem) {
-	  OrderItem orderItem = orderItemDao.updateOrderItem(OrderItem.toEntity(updateOrderItem));
-	  OrderItemDto orderItemDto = OrderItemDto.toDto(orderItem);
-	    return orderItemDto;
-	}
+		@Override
+		public OrderItemDto updateOrderItem(OrderItemDto dto) {
+		  OrderItem orderItem = orderItemDao.updateOrderItem(OrderItem.toEntity(dto));
+		  OrderItemDto orderItemDto = OrderItemDto.toDto(orderItem);
+		    return orderItemDto;
+		}
 	
 	//아이템아이디 받아와서 삭제
 	@Override
-	public void deleteOrderItem(Long id) throws Exception {
-		Optional<OrderItem> selectedOrderItemOptional = orderItemRepository.findById(id);
-		if(selectedOrderItemOptional.isEmpty()) {
-			throw new OrderItemNotFoundException("삭제하실 상품이 존재하지 않습니다.");
-		}
-		orderItemRepository.delete(selectedOrderItemOptional.get());
+	public OrderItemDto deleteOrderItem(Long oiId) throws Exception {
+		OrderItem orderItem = orderItemRepository.findById(oiId)
+				.orElseThrow(() -> new IllegalArgumentException("주문아이템이 존재하지 않습니다."));
+		orderItemRepository.deleteById(oiId);
+		OrderItemDto orderItemDto = OrderItemDto.toDto(orderItem);
+		return orderItemDto;
 	}
-	
-	//유저 아이디 아이템 모두 삭제
+
+	// 유저 아이디 아이템 모두 삭제하고 Dto에 삭제 주문 정보 저장
 	@Override
-	public void deleteAllOrderItem() throws Exception {
-		orderItemRepository.deleteAll();
-		
+	public List<OrderItemDto> deleteAllOrderItem() throws Exception {
+		List<OrderItem> orderItemList = orderItemRepository.findAll();
+		List<OrderItemDto> orderItemDtoList = new ArrayList<OrderItemDto>();
+		for (OrderItem orderItem : orderItemList) {
+			orderItemDtoList.add(OrderItemDto.toDto(orderItem));
+		}
+		orderRepository.deleteAll();
+		return orderItemDtoList;
+
 	}
 
 	//아이템 아이디로 아이템 선택하기

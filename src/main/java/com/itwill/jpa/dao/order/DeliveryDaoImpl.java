@@ -7,10 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.itwill.jpa.dto.order.DeliveryDto;
-import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Delivery;
-import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
 import com.itwill.jpa.repository.user.UserRepository;

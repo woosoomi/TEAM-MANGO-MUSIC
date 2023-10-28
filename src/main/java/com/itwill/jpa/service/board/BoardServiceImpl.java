@@ -101,9 +101,14 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardType> findAllByOrderByTypeIdAsc(){
 		return boardTypeRepository.findAllByOrderByTypeIdAsc();
 	}
-//	public List<Board> findBoardsByUsername(User user) {
-//	    return boardRepository.findBoardsByUsername(user.getUserName());
-//	}
+
+    public List<Board> findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(Long boardCategoryId, String userId) {
+        return boardRepository.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(boardCategoryId, userId);
+    }
+
+
+
+
 
 	
 }
