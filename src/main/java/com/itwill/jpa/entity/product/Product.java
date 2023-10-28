@@ -4,7 +4,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.jpa.dto.product.GoodsDto;
 import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.vote.Vote;
@@ -80,23 +82,38 @@ public class Product {
 	@Entity
 	@DiscriminatorValue("goods")
 	public static class Goods extends Product {
-//		public static Goods toEntity(GoodsDto goodsDto) {
-//			return Goods.builder()
-//					.productCategory(goodsDto.getProductCategory())
-//					.productName(goodsDto.getProductName())
-//					.productPrice(goodsDto.getProductPrice())
-//					.productStar(goodsDto.getProductStar())
-//					.productDate(productDto.getProductDate())
-//					.readCount(goodsDto.getReadCount())
-//					.productStock(goodsDto.getProductStock())
-//					.productImage(goodsDto.getProductImage())
-//					.build();		
+		/*============Dto -> entity 변환해주는 매서드============*/		
+		public static Goods toEntity(GoodsDto goodsDto) {
+			return (Goods) Goods.builder()
+					.productName(goodsDto.getProductName())
+					.productPrice(goodsDto.getProductPrice())
+					.productStar(goodsDto.getProductStar())
+					.productDate(goodsDto.getProductDate())
+					.readCount(goodsDto.getReadCount())
+					.productStock(goodsDto.getProductStock())
+					.productImage(goodsDto.getProductImage())
+					.build();		
+	}
 	}
 	
 	/** ticket **/
 	@Entity
 	@DiscriminatorValue("ticket")
 	public static class Ticket extends Product {
+		/*============Dto -> entity 변환해주는 매서드============*/		
+		public static Ticket toEntity(TicketDto ticketDto) {
+			return (Ticket) Ticket.builder()
+					.productName(ticketDto.getProductName())
+					.productPrice(ticketDto.getProductPrice())
+					.readCount(ticketDto.getReadCount())					
+					.productContent(ticketDto.getProductContent())
+					.productStar(ticketDto.getProductStar())
+					.productDate(ticketDto.getProductDate())
+					.productStock(ticketDto.getProductStock())
+					.productAddress(ticketDto.getProductAddress())
+					.productImage(ticketDto.getProductImage())
+					.build();		
+	}
 	}
 
 	/** membership **/
@@ -167,7 +184,7 @@ public class Product {
 	public void addproductStock(int quantity) {
 		this.productStock += quantity;
 	}
-
+	
 	/* productStock 감소 */
 	public void removeproductStock(int quantity) {
 		int restproductStock = this.productStock - quantity;
@@ -190,5 +207,5 @@ public class Product {
         setProductCategory(new ProductCategory(categoryId, "Music", null));
     }
 
+	}
 	
-}

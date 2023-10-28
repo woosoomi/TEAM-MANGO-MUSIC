@@ -13,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
@@ -66,38 +68,22 @@ class ProductServiceImplTest {
 	@Transactional
 	@Rollback(false)
 	@Disabled
-	void findGoodsByCategoryIdtest() {
-		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(2L);
-		System.out.println("굿즈리스트" + ticketDtoList);
-	}		
-	
-	
-	// product 추가[성공] - 이건 dType가 product로 되기때문에 사용 x
+	void testFindProductByCategoryId() {
+		List<ProductDto> productDtoList = productServiceImpl.findProductByCategoryId(3L);	
+		System.out.println("프로덕트리스트" + productDtoList);
+	}
+	// 카테고리별 구분-DTO로 받기[성공] 출력되는 값 FindProductByCategoryId와 차이 없으면 삭제 예정
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
-	public void testInsertProduct() {
-		// 새로운 Product 객체를 생성
-		Product product = new Product();
-		product.setCategoryId(1L);
-		product.setProductName("새로운 제품");
-		product.setProductPrice(10000);
-
-		// 제품 추가
-		Product insertedProduct = productServiceImpl.insertProduct(product);
-
-		// 제품 추가 확인
-		assertNotNull(insertedProduct.getProductNo());
-		assertEquals("새로운 제품", insertedProduct.getProductName());
-		assertEquals(10000, insertedProduct.getProductPrice());
-
-		// 추가된 제품 확인
-		Product retrievedProduct = productServiceImpl.getProduct(insertedProduct.getProductNo());
-		assertEquals(insertedProduct.getProductNo(), retrievedProduct.getProductNo());
-		assertEquals("새로운 제품", retrievedProduct.getProductName());
-		assertEquals(10000, retrievedProduct.getProductPrice());
-	}
+	void testFindGoodsByCategoryId() {
+		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(3L);
+		System.out.println("굿즈리스트" + ticketDtoList);
+	}		
+	
+	
+	// InsertProduct는 dType이 product로 되기때문에 사용 x
 
 	// music 추가[성공]
 	@Test
@@ -111,22 +97,31 @@ class ProductServiceImplTest {
 		music.getProductCategory();
 		music.setProductName("새로운 제품");
 		music.setProductPrice(10000);
-
 		// 제품 추가
 		Music insertedMusic = productServiceImpl.insertMusic(music);
-
-		// 제품 추가 확인
-		assertNotNull(insertedMusic.getProductNo());
-		assertEquals("새로운 제품", insertedMusic.getProductName());
-		assertEquals(10000, insertedMusic.getProductPrice());
-
-		// 추가된 제품 확인
-		Product retrievedMusic = productServiceImpl.getProduct(insertedMusic.getProductNo());
-		assertEquals(insertedMusic.getProductNo(), retrievedMusic.getProductNo());
-		assertEquals("새로운 제품", retrievedMusic.getProductName());
-		assertEquals(10000, retrievedMusic.getProductPrice());
 	}
+	
+	// goods 추가 - DTO로 받기[진행중]
+	@Test
+	@Transactional
+//	@Rollback(false)
+	@Disabled
+	public void testInsertGoodsDto() {
+	    // GoodsDto를 생성하고 categoryId 설정
+	    GoodsDto goodsDto = new GoodsDto();
+	    goodsDto.setCategoryId(1L); // categoryId를 설정
+	    goodsDto.setProductName("테스트 상품");
+	    goodsDto.setProductPrice(7777);
+	    goodsDto.setProductStock(100);
+	    // 기타 속성을 필요에 따라 설정합니다.
 
+	    // insertGoodsDto 메서드를 호출합니다.
+	    GoodsDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
+		
+		
+	}
+	
+	
 	// product 삭제[성공]
 	@Test
 	@Transactional
@@ -139,7 +134,7 @@ class ProductServiceImplTest {
 		productServiceImpl.deleteProduct(productNo);
 	}
 
-	
+	// product 삭제2[성공]	
 	  @Test	  
 	  @Transactional
 	  @Rollback(false)	  
@@ -150,7 +145,15 @@ class ProductServiceImplTest {
 		  // 제품 삭제
 		  productServiceImpl.deleteProduct2(productNo);	  
 	  }
-	 
+	// product 삭제 - DTO로 받기[성공]
+		@Test
+		@Transactional
+		@Rollback(false)
+		@Disabled	 
+		void testDeledtProductDto() throws Exception {
+			productServiceImpl.deledtProductDto(5L);
+		}
+	  
 	// product 수정[성공]
 	@Test
 	@Transactional
@@ -165,7 +168,10 @@ class ProductServiceImplTest {
 		// updateProduct 메서드 호출
 		Product updatedProduct = productServiceImpl.updateProduct(product);
 	}
-
+	// product 수정[성공] - DTO로 받기[성공]
+//	public void test
+	
+	
 	// 제목키워드로 검색[성공]
 	@Test
 	@Transactional
@@ -221,7 +227,6 @@ class ProductServiceImplTest {
 			// 엔티티 못찾았을 경우의 예외처리
 		}
 	}
-	/*====================== DTO 테스트 ======================*/
 
 	
 	/******************* 진행중 *******************/

@@ -34,24 +34,14 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	ProductDao productDao;
-	
+
+	/*========================== [ENTITY] ==========================*/	
 	// productNo 찾기[성공]	
 	@Override
 	public Optional<Product> findByProductNo(Long productNo) {
 		return productRepository.findById(productNo);
 	}
 	
-	// productName 찾기	
-	@Override
-	public Product findByProductName(String productName) {
-		return productRepository.findByProductName(productName);
-	}
-	
-	// productArtist 찾기
-	@Override
-	public Product findByProductAtrist(String productArtist) {
-		return productRepository.findByProductArtist(productArtist);
-	}
 	
 	@Override
 	public List<Product> findByCategoryId(Long categoryId) {
@@ -215,38 +205,37 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> searchProductsByKeyword(String keyword) {
 		return productRepository.findByProductNameContaining(keyword);
 	}
+	/*==============================================================*/
+	
 	/*========================== [DTO] *==========================*/	
 	
 	/******************** INSERT[DTO] ********************/
 	
 	// goods 등록 - DTO	
 	@Override
-	public GoodsDto insertGoodsDto(GoodsDto goodsDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public GoodsDto insertGoodsDto(GoodsDto dto) {
+		Goods goods = productRepository.save(Goods.toEntity(dto));
+		GoodsDto goodsDto = GoodsDto.toDto(goods);
+		return goodsDto;
 	}
 	
 	// ticket 등록 - DTO
 	@Override
-	public TicketDto insertTicketDto(TicketDto ticketDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public TicketDto insertTicketDto(TicketDto dto) {
+		Ticket ticket = productRepository.save(Ticket.toEntity(dto));
+		TicketDto ticketDto = TicketDto.toDto(ticket);
+		return ticketDto;
 	}
 	/*********************************************/
 	
 	/******************** DELETE[DTO] ********************/	
 	// goods 삭제 - DTO	
 	@Override
-	public GoodsDto deledtGoodsDto(GoodsDto goodsDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	// ticket 삭제 - DTO	
-	@Override
-	public TicketDto deleteTicketDto(TicketDto ticketDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDto deledtProductDto(Long productNo) throws Exception {
+		Product product = productRepository.findById(productNo).orElseThrow(() -> new IllegalArgumentException("제품이 존재하지 않습니다."));
+		productRepository.deleteById(productNo);
+		ProductDto productDto = ProductDto.toDto(product);
+		return productDto;
 	}
 	
 	/*********************************************/
@@ -254,16 +243,18 @@ public class ProductServiceImpl implements ProductService{
 	/******************** UPDATE[DTO] ********************/	
 	// goods 수정 - DTO
 	@Override
-	public GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public GoodsDto updateGoodsDto(GoodsDto dto) throws Exception {
+		Goods goods = productDao.updateGoods(Goods.toEntity(dto));
+		GoodsDto goodsDto = GoodsDto.toDto(goods);
+		return goodsDto;
 	}
 	
 	// ticket 수정 - DTO
 	@Override
-	public TicketDto updateTicketDto(TicketDto ticketDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public TicketDto updateTicketDto(TicketDto dto) throws Exception {
+		Ticket ticket = productDao.updateTicket(Ticket.toEntity(dto));
+		TicketDto ticketDto = TicketDto.toDto(ticket);
+		return ticketDto;
 	}
 	/*********************************************/
 	
@@ -271,16 +262,29 @@ public class ProductServiceImpl implements ProductService{
 	// goods 조회수 올리기 - DTO	
 	@Override
 	public GoodsDto increaseGoodsReadCountDto(GoodsDto goodsDto) throws Exception {
-		// TODO Auto-generated method stub
+//		Goods goods = 
 		return null;
 	}
 	
 	// ticket 조회수 올리기 - DTO
 	@Override
-	public TicketDto increaseTicketReadCountDto(TicketDto ticketDto) throws Exception {
-		// TODO Auto-generated method stub
+	public TicketDto increaseTicketReadCountDto(TicketDto ticketReadCountDto) throws Exception {
+		Ticket ticket = productDao.updateTicket(Ticket.toEntity(ticketReadCountDto));
+		
 		return null;
 	}
+//	@Override
+//	public Product increaseReadCount(Product product) {
+//        // 현재 조회수를 가져와서 1 증가
+//        Long currentReadCount = product.getReadCount();
+//        Long newReadCount = currentReadCount + 1L; // 1을 Long으로 캐스팅해서 증가
+//        
+//        // 증가된 조회수를 엔티티에 설정
+//        product.setReadCount(newReadCount);
+//
+//        // 업데이트된 엔티티를 저장하고 반환
+//        return productRepository.save(product);
+//	}
 	/*********************************************/
 	
 	/******************** 내림차순[DTO] ********************/		
@@ -314,6 +318,16 @@ public class ProductServiceImpl implements ProductService{
 	
 	/******************** categoryId별로 전체나열 ********************/
 	
+	// product categoryId별로 전체나열 - DTO
+	@Override
+	public List<ProductDto> findProductByCategoryId(Long categoryId) {
+		List<Product> productList = productDao.getProductByCategoryId(categoryId);
+		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
+		for (Product product : productList) {
+			productDtoList.add(ProductDto.toDto(product));
+		}
+		return productDtoList;
+	}
 	// goods categoryId별로 전체나열 - DTO
 	@Override
 	public List<GoodsDto> findGoodsByCategoryId(Long categoryId) {
@@ -334,8 +348,21 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return ticketDtoList;
 	}
+	/*============================================================*/
+	
 	/*********************************************/	
+	/****************진행중인거****************/	
 
-
+	// productName 찾기	
+	@Override
+	public Product findByProductName(String productName) {
+		return productRepository.findByProductName(productName);
+	}
+	
+	// productArtist 찾기
+	@Override
+	public Product findByProductAtrist(String productArtist) {
+		return productRepository.findByProductArtist(productArtist);
+	}
 
 }
