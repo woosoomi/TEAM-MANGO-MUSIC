@@ -18,20 +18,19 @@
 </head>
 
 <body><!--preloading-->
-	<div 
-		th:insert="~{header :: headerFragment}">
+	<div th:insert="~{header :: headerFragment}">
 	</div>
-	
-	
 
 
 
-	<div class="page-single userfav_list">
+
+
+	<div class="page-single">
 		<div class="container">
-			<div class="row ipad-width2">
+			<div class="row">
 
 				<div class="col-md-9 col-sm-12 col-xs-12">
-					<div class="topbar-filter user">
+					<div class="topbar-filter ">
 						<p>총 <span th:text="${#lists.size(events)}"></span> 개의 이벤트 </p>
 						<select>
 							<option value="range">전체 이벤트</option>
@@ -40,48 +39,64 @@
 						</select>
 					</div>
 
-					<div class="flex-wrap-movielist user-fav-list">
-						<div class="movie-item-style-2" th:each="event, stat : ${events}">
-							<img th:src="${'images/uploads/mv1.jpg'}" alt="">
-							<div class="mv-item-infor">
-								<h6>
-									<a href="#" th:text="${event.boardTitle + ' (' + event.createdTime + ')'}"></a>
-								</h6>
-								<p class="describe"></p>
-								<p class="run-time" th:text="${event.boardType.boardTypeTitle}">Run Time: 2h21’</p>
-								<p>상품: <a href="#" th:text="${event.boardPrize}">1</a></p>
-								<p>조회수: <a href="#" th:text="${event.boardReadCount}">2</a></p>
+					<div class="row">
+							<div class="flex-wrap-movielist user-fav-list">
+								<div class="movie-item-style-2" th:each="event, stat : ${events}">
+									<img th:src="${'images/uploads/mv1.jpg'}" alt="">
+									<div class="mv-item-infor">
+										<h6>
+											<a href="#"
+												th:text="${event.boardTitle + ' (' + event.createdTime + ')'}"></a>
+										</h6>
+										<p class="describe"></p>
+										<p class="run-time" th:text="${event.boardType.boardTypeTitle}">Run Time: 2h21’
+										</p>
+										<p>상품: <a href="#" th:text="${event.boardPrize}">1</a></p>
+										<p>조회수: <a href="#" th:text="${event.boardReadCount}">2</a></p>
+									</div>
+								</div>
 							</div>
-						</div>
 					</div>
 
-
-
+					<ul class="pagination">
+						<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+					</ul>
 				</div>
 
+
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="sidebar">
+						<div class="sb-search sb-it">
+							<h4 class="sb-title">Search Title</h4><input type="text" placeholder="Enter keywords">
+						</div>
+
+						<!--userId가 admin일때 보이기 -->
+						<div class="searh-form">
+							<form class="form-style-1 celebrity-form" action="#">
+								<div class="row">
+									<div class="col-md-12 "><input class="submit" type="submit" value="작성하기">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
+			</div>
+
+		</div><!-- footer section-->
+		<div th:insert="~{footer :: footerFragment}">
 		</div>
-	</div>
-
-
-	<div class="col-md-3 col-sm-12 col-xs-12">
-		<div class="sidebar">
-			<div class="sb-search sb-it">
-			</div>
-			<div class="sb-cate sb-it">
-				<ul>
-
-			</div>
-		</div>
-	</div>
-
-	</div><!-- footer section-->
-	<div th:insert="~{footer :: footerFragment}">
-	</div>
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/plugins2.js"></script>
+		<script src="js/custom.js"></script>
 </body>
 
 </html>

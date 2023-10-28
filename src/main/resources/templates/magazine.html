@@ -18,13 +18,13 @@
 </head>
 
 <body><!--preloading-->
-<head>
-	
-		<div 
-		th:insert="~{header :: headerFragment}">
-	</div>
 
-</head>
+	<head>
+
+		<div th:insert="~{header :: headerFragment}">
+		</div>
+
+	</head>
 
 	<div class="page-single">
 		<div class="container">
@@ -51,6 +51,7 @@
 
 
 					</div>
+					
 					<div class="row">
 					</div>
 					<ul class="pagination">
@@ -82,16 +83,28 @@
 							</div>
 						</div>
 
+
+						<!--userId가 admin일때 보이기 -->
+						<div class="searh-form">
+							<form class="form-style-1 celebrity-form" action="#">
+								<div class="row">
+									<div class="col-md-12 "><input class="submit" type="submit" value="작성하기">
+									</div>
+								</div>
+							</form>
+
+
+
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div><!--end of  blog grid section--><!-- footer section-->
-	
-	<div 
-		th:insert="~{footer :: footerFragment}">
+
+	<div th:insert="~{footer :: footerFragment}">
 	</div>
-	
+
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
