@@ -48,15 +48,15 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		//cartItemServiceImpl.insert(cartItem1);
 	    CartItemDto cartItemDto1 = new CartItemDto();
 	    cartItemDto1.setCartItemQty(10);
-	    cartItemDto1.setProductId(1L);
+	    cartItemDto1.getProduct().setProductNo(1L);
 	    cartItemDto1.setCartId(cart.get().getCartId());
 	    CartItemDto cartItemDto2 = new CartItemDto();
 	    cartItemDto2.setCartItemQty(15);
-	    cartItemDto2.setProductId(2L);
+	    cartItemDto2.getProduct().setProductNo(2L);
 	    cartItemDto2.setCartId(cart.get().getCartId());
 	    CartItemDto cartItemDto3 = new CartItemDto();
 	    cartItemDto3.setCartItemQty(16);
-	    cartItemDto3.setProductId(3L);
+	    cartItemDto3.getProduct().setProductNo(3L);
 	    cartItemDto3.setCartId(cart.get().getCartId());
 	    cartItemServiceImpl.insert(cartItemDto1);
 	    cartItemServiceImpl.insert(cartItemDto2);

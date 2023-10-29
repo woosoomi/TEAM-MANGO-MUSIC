@@ -17,7 +17,7 @@ public interface CartService {
 	public CartDto deleteAllByCartId(Long cartId) throws Exception;
 	
 	//총합 계산
-	public CartDto calculateTotalPrice(List<CartItem> cartItems) throws Exception;
+	public CartDto calculateTotalPrice(List<CartItemDto> cartItemDtos) throws Exception;
 	
 	//장바구니 조회
 	//List<CartDto> getCartItems(CartDto dto) throws Exception;

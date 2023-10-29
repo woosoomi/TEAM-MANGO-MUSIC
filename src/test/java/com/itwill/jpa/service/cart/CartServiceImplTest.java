@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.springframework.test.annotation.Rollback;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.cart.CartDaoImpl;
 import com.itwill.jpa.dto.cart.CartDto;
+import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
@@ -41,7 +43,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void createCart() throws Exception {
 		
@@ -75,7 +77,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void calTotPrice() throws Exception {
@@ -83,13 +85,17 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		 if (findCart.isPresent()) {
 		        Cart cart = findCart.get();
 		        List<CartItem> cartItems = cart.getCartitems();
-		        CartDto totalPrice = cartServiceImpl.calculateTotalPrice(cartItems);
-		        cart.setCartTotPrice(totalPrice.getCartTotPrice());
+		        List<CartItemDto> cartItemDtos = cartItems.stream().map(CartItemDto::toDto).collect(Collectors.toList());
+		        CartDto totalPriceDto = cartServiceImpl.calculateTotalPrice(cartItemDtos);
+		        cart.setCartTotPrice(totalPriceDto.getCartTotPrice());
 		        cartRepository.save(cart);
-		        System.out.println("totalprice>>>>>>>>>>"+totalPrice);
+		        System.out.println("totalprice>>>>>>>>>>"+totalPriceDto);
 		        System.out.println("cart>>>>>>>>>>>>"+cart);
 		 }
 	}
+
+
+
 
 	/*
 	@Test
