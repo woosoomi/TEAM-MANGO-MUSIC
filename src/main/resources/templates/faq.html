@@ -18,16 +18,15 @@
 </head>
 
 <body><!--preloading-->
-			<div 
-		th:insert="~{header :: headerFragment}">
+	<div th:insert="~{header :: headerFragment}">
 	</div>
-	
-	
+
+
 	<div class="page-single">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9 col-sm-12 col-xs-12">
-					
+
 					<div th:each="faq : ${faqs}">
 						<div class="blog-item-style-1 blog-item-style-3">
 							<img src="images/uploads/faq.jpeg" alt="">
@@ -41,7 +40,7 @@
 						</div>
 					</div>
 
-					
+
 					<ul class="pagination">
 						<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
 						<li class="active"><a href="#">1</a></li>
@@ -91,8 +90,7 @@
 			</div>
 		</div>
 	</div><!--end of blog list section--><!-- footer section-->
-		<div 
-		th:insert="~{footer :: footerFragment}">
+	<div th:insert="~{footer :: footerFragment}">
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
