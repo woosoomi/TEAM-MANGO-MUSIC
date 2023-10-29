@@ -41,7 +41,7 @@ public class Delivery {
 	private String deliveryCompany;
 	
 	// delivery와 user n대1
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "userId", referencedColumnName = "userId")
 	private User user;
 

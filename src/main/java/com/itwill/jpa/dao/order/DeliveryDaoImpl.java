@@ -73,19 +73,29 @@ public class DeliveryDaoImpl implements DeliveryDao {
 	}
 
 
+//	@Override
+//	public List<Delivery> getDeliveriesByUserId(String userId) {
+//		Optional<User> userOptional = userRepository.findById(userId);
+//        if (userOptional.isPresent()) {
+//            User user = userOptional.get();
+//            List<Delivery> deliveryItems = deliveryRepository.findByUser(user);
+//            for (Delivery deliveryItem : deliveryItems) {
+//            	deliveryItems.add(deliveryItem);
+//        	}
+//        	return deliveryItems;
+//        } else {
+//            return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+//        }
+//	}
+	
 	@Override
 	public List<Delivery> getDeliveriesByUserId(String userId) {
 		Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            List<Delivery> deliveryItems = deliveryRepository.findByUser(user);
-            for (Delivery deliveryItem : deliveryItems) {
-            	deliveryItems.add(deliveryItem);
-        	}
-        	return deliveryItems;
-        } else {
-            return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
-        }
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			return deliveryRepository.findByUser(user);
+		} else {
+			return new ArrayList<>(); // 사용자를 찾지 못한 경우 빈 목록을 반환
+		}
 	}
-
 }

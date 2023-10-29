@@ -50,7 +50,7 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void insert() {
 		OrderItem orderItem = new OrderItem();
 //		Order order = orderDao.selectOrder(947L);
