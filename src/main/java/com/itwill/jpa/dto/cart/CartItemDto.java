@@ -20,14 +20,14 @@ public class CartItemDto {
 	private Long cartItemId;
 	private int cartItemQty;
 	private Long cartId;
-	private Long productId;
+	private Product product;
 
 	public static CartItemDto toDto(CartItem entity) {
 		return CartItemDto.builder()
 							.cartItemId(entity.getCartItemId())
 							.cartItemQty(entity.getCartItemQty())
 							.cartId(entity.getCart().getCartId())
-							.productId(entity.getProduct().getProductNo())
+							.product(entity.getProduct())
 							.build();
 	}
 }

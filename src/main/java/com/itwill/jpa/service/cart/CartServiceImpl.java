@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.jpa.dao.cart.CartDao;
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
@@ -18,6 +19,7 @@ import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.cart.CartItemRepository;
 import com.itwill.jpa.repository.cart.CartRepository;
+import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -29,10 +31,11 @@ public class CartServiceImpl implements CartService {
 	CartRepository cartRepository;
 	@Autowired
 	UserRepository userRepository;
-	
+	@Autowired
+	ProductRepository productRepository;
 	@Override
 	public CartDto createCart(CartDto dto) throws Exception {
-		User user = userRepository.findById(dto.getUserId()).orElse(null);
+		User user = userRepository.findById(dto.getUserId()).orElseThrow();
 		Cart cart = Cart.toEntity(dto);
 		cart.setUser(user);
 		cart = cartRepository.save(cart);
@@ -49,21 +52,23 @@ public class CartServiceImpl implements CartService {
 		return cartDto;
 	}
 	@Override
-	public CartDto calculateTotalPrice(List<CartItem> cartItems) throws Exception {
-		int totPrice = 0;
-		for (CartItem cartItem : cartItems) {
-			Product product = cartItem.getProduct();
-			int qty = cartItem.getCartItemQty();
+	public CartDto calculateTotalPrice(List<CartItemDto> cartItemDtos) throws Exception {
+	       int totPrice = 0;
+	        for (CartItemDto cartItemDto : cartItemDtos) {
+	            Product product = cartItemDto.getProduct();
+	            ProductDto productDto = ProductDto.toDto(product);
+	            int qty = cartItemDto.getCartItemQty();
 
-			if (product != null) {
-				int productPrice = product.getProductPrice();
-				totPrice += productPrice * qty;
-			}
-		}
-		CartDto cartDto = new CartDto();
-		cartDto.setCartTotPrice(totPrice);
-		return cartDto;
-	}
+	            if (productDto != null) {
+	                int productPrice = productDto.getProductPrice();
+	                totPrice += productPrice * qty;
+	            }
+	        }
+	        CartDto cartDto = new CartDto();
+	        cartDto.setCartTotPrice(totPrice);
+
+	        return cartDto;
+	    }
 	/*
 	@Override
 	public List<CartDto> getCartItems(CartDto dto) throws Exception {

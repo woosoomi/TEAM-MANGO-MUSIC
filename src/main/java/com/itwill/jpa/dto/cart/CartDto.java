@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
+import com.itwill.jpa.entity.product.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,7 @@ public class CartDto {
 	private Long cartId;
 	private int cartTotPrice;
 	private String userId;
+	private Product product;
 	
 	public static CartDto toDto(Cart entity) {
 		return CartDto.builder()
