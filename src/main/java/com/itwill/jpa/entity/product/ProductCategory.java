@@ -56,6 +56,12 @@ public class ProductCategory {
 				 			   .productCategoryName(dto.getProductCategoryName())
 				 			   .build();
 	 }
+//	public ProductCategory toEntity() {
+//	    return ProductCategory.builder()
+//	            .categoryId(this.getCategoryId())
+//	            .productCategoryName(this.getProductCategoryName())
+//	            .build();
+//	}
 	/*========================================================*/	
 	
 }

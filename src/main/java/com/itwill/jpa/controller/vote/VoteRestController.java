@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itwill.jpa.dao.user.UserVoteDao;
+import com.itwill.jpa.dao.user.UserVoteDaoImpl;
+import com.itwill.jpa.dto.user.UserUpdateDto;
 import com.itwill.jpa.dto.vote.VoteDto;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.service.vote.VoteService;
 import com.itwill.jpa.service.vote.VoteServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -80,7 +85,7 @@ public class VoteRestController {
 	}
 		
 	@Operation(summary = "투표 전체보기")
-	@PostMapping("")
+	@PostMapping()
 	public ResponseEntity<?> selectAllVote() throws Exception {
 
 			List<Vote> Votes = voteServiceImpl.findVoteListAll();
@@ -114,5 +119,15 @@ public class VoteRestController {
 	    return ResponseEntity.status(HttpStatus.OK).body(responseMap);
 	}
 	
+	@Operation(summary = "유저의 투표번호로 투표,상품전체조회")
+	@PutMapping("/User_voteing")
+	public String user_vote_action(@PathVariable(name = "voteId") Long voteId, 
+								   @ModelAttribute UserVoteDaoImpl userVoteDaoImpl,
+								   HttpServletRequest request) throws Exception {
+		String forwardPath = "";
+
+		forwardPath = "redirect:vote";
+		return forwardPath;
+	}
 
 }

@@ -35,6 +35,7 @@ public interface UserService {
 
 	// 아이디, 번호로 비밀번호 찾기
 	String findUserPwByUserIdUserPhone(String userId, String userPhone) throws Exception;
+
 }
 //이름으로 찾기
 //User findUserByUsername(String username);
