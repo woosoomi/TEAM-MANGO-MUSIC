@@ -2,6 +2,7 @@
 <!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html lang="en" class="no-js">
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head><!-- Basic need -->
 	<title>Open Pediatrics</title>
 	<meta charset="UTF-8">
@@ -156,7 +157,7 @@
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p>Select <span th:text="${#lists.size(orderItemList)}"></span>in total</p><label>Sort by:</label><select>
+						<p>Select <span th:text="${#lists.size(orderItemDtoList)}"></span>in total</p><label>Sort by:</label><select>
 							<option value="popularity">Popularity Descending</option>
 							<option value="popularity">Popularity Ascending</option>
 							<option value="rating">Rating Descending</option>

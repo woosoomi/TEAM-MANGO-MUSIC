@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "delivery")
@@ -43,6 +44,7 @@ public class Delivery {
 	// delivery와 user n대1
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "userId", referencedColumnName = "userId")
+	@ToString.Exclude
 	private User user;
 
 	
