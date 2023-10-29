@@ -69,16 +69,18 @@ class ProductServiceImplTest {
 	@Rollback(false)
 	@Disabled
 	void testFindProductByCategoryId() {
-		List<ProductDto> productDtoList = productServiceImpl.findProductByCategoryId(3L);	
+		List<ProductDto> productDtoList = productServiceImpl.findByProductCategoryId(3L);	
 		System.out.println("프로덕트리스트" + productDtoList);
 	}
-	// 카테고리별 구분-DTO로 받기[성공] 출력되는 값 FindProductByCategoryId와 차이 없으면 삭제 예정
+	// 카테고리별 구분-DTO로 받기[성공]
+	// 굿즈 categoryId의 값만 가져올 수 잇음 (categoruId 다르면 null값 받아옴)
+	// 출력되는 값 FindProductByCategoryId와 차이 없으면 삭제 예정
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void testFindGoodsByCategoryId() {
-		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(3L);
+		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(1L);
 		System.out.println("굿즈리스트" + ticketDtoList);
 	}		
 	
@@ -109,7 +111,7 @@ class ProductServiceImplTest {
 	public void testInsertGoodsDto() {
 	    // GoodsDto를 생성하고 categoryId 설정
 	    GoodsDto goodsDto = new GoodsDto();
-	    goodsDto.setCategoryId(1L); // categoryId를 설정
+	    goodsDto.setCategoryId(2L); // categoryId를 설정
 	    goodsDto.setProductName("테스트 상품");
 	    goodsDto.setProductPrice(7777);
 	    goodsDto.setProductStock(100);
