@@ -6,8 +6,6 @@ import com.itwill.jpa.entity.user.User;
 
 public interface UserVoteDao {
 
-	
-	
 	User findUserVoteIdWithProduct(UserVoteDto userVoteDto);
 
     

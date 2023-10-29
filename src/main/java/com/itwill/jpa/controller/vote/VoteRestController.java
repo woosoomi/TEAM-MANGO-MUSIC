@@ -120,12 +120,12 @@ public class VoteRestController {
 	}
 	
 	@Operation(summary = "유저의 투표번호로 투표,상품전체조회")
-	@PostMapping()
-	public String user_vote_action(@PathVariable(name = "voteId") Long voteId, @ModelAttribute UserVoteDaoImpl userVoteDaoImpl, HttpServletRequest request) throws Exception {
+	@PutMapping("/User_voteing")
+	public String user_vote_action(@PathVariable(name = "voteId") Long voteId, 
+								   @ModelAttribute UserVoteDaoImpl userVoteDaoImpl,
+								   HttpServletRequest request) throws Exception {
 		String forwardPath = "";
-		
-		String sUserId = (String) request.getSession().getAttribute("sUserId");
-		//userVoteDaoImpl.findUserVoteIdWithProduct(voteId);
+
 		forwardPath = "redirect:vote";
 		return forwardPath;
 	}
