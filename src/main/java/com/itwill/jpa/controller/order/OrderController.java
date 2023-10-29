@@ -31,19 +31,20 @@ public class OrderController {
 		try {
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "wsm5");
+			session.setAttribute("user_id", "wsm55");
 			String userId = (String) session.getAttribute("user_id");
 			
 			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
 			//로그인 체크가 생기면 아래 조건문 지울것
 			if(userId != null) {
+				//orderdetail.html에 리스트명 orderItemDtoList로 바꿈
 				List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
 				System.out.println("주문 아이템: " + orderItemDtoList);
-//				//이부분 위아래중 어떤 불러오기 서비스를 선택할지 논의가 필요
-//				List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
-//				model.addAttribute("orderDtoList", orderDtoList);
-//				System.out.println("주문 아이템: " + orderDtoList);
+				//이부분 위아래중 어떤 불러오기 서비스를 선택할지 논의가 필요
+				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
+				//model.addAttribute("orderDtoList", orderDtoList);
+				//System.out.println("주문 아이템: " + orderDtoList);
 				return "order";
 			} else {
 				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
@@ -52,28 +53,36 @@ public class OrderController {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("errorMsg", e.getMessage());
+			model.addAttribute("주문이 존재하지 않습니다.", e.getMessage());
 			return "index";
 		}
 	}
 			
 			
 	@GetMapping("/orderdetail")
-	public String orderDetailPage(Model model) {
+	public String orderDetailPage(Model model, HttpServletRequest request) {
 		try {
-			//테스트용 코드
-			List<OrderDto> testOrderDtoList = orderService.orders();
-			model.addAttribute("orderDtoNewerList", testOrderDtoList);
-			System.out.println("주문 내역 최신순:" + testOrderDtoList);
+			
+			HttpSession session = request.getSession();
+			//일단 임의로 세션 로그인 유저 설정함
+			session.setAttribute("user_id", "wsm55");
+			String userId = (String) session.getAttribute("user_id");
+			
+//			//테스트용 코드
+//			List<OrderDto> testOrderDtoList = orderService.orders();
+//			model.addAttribute("orderDtoNewerList", testOrderDtoList);
+//			System.out.println("주문 내역 최신순:" + testOrderDtoList);
+			
 			//원래 코드
-//			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer("why3795");
-//			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
-//			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
+			//orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
+			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
+			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
+			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
 			return "orderdetail";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("errorMsg", e.getMessage());
+			model.addAttribute("주문 내역이 없습니다.", e.getMessage());
 			return "index";
 		}
 	}
