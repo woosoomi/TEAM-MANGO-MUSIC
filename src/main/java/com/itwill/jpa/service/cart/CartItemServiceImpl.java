@@ -31,7 +31,7 @@ public class CartItemServiceImpl implements CartItemService {
 	
 	@Override
 	public CartItemDto insert(CartItemDto dto) throws Exception {
-		Product product = productRepository.findById(dto.getProductId()).orElse(null);
+		Product product = productRepository.findById(dto.getProduct().getProductNo()).orElse(null);
 		Cart cart = cartRepository.findById(dto.getCartId()).orElse(null);
 		CartItem cartItem = CartItem.toEntity(dto);
 		cartItem.setCart(cart);
