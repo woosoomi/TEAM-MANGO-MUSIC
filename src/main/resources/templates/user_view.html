@@ -21,33 +21,29 @@
 	<div id="preloader"><img class="logo" src="images/logo1.png" alt="" width="119" height="58">
 		<div id="status"><span></span><span></span></div>
 	</div><!--end of preloading--><!--login form popup-->
-	<div class="login-wrapper" id="login-content">
+	<!--end of login form popup--><!--signup form popup-->
+	<div class="login-wrapper" id="signup-content">
 		<div class="login-content"><a href="#" class="close">x</a>
-			<h3>Login</h3>
-			<form method="post" action="user_write_form">
-				<div class="row"><label for="username">Username:<input type="text" name="username" id="username"
+			<h3>sign up</h3>
+			<form method="post" action="signup.php">
+				<div class="row"><label for="username-2">Username:<input type="text" name="username" id="username-2"
 							placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
 							required="required" /></label></div>
-				<div class="row"><label for="password"> Password:<input type="password" name="password" id="password"
-							placeholder="******"
+				<div class="row"><label for="email-2"> your email:<input type="password" name="email" id="email-2"
+							placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+							required="required" /></label></div>
+				<div class="row"><label for="password-2"> Password:<input type="password" name="password"
+							id="password-2" placeholder=""
 							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
 							required="required" /></label></div>
-				<div class="row">
-					<div class="remember">
-						<div><input type="checkbox" name="remember" value="Remember me"><span>Remember me</span></div><a
-							href="#">Forget password ?</a>
-					</div>
-				</div>
-				<div class="row"><button type="submit">Login</button></div>
+				<div class="row"><label for="repassword-2"> re-type Password:<input type="password" name="password"
+							id="repassword-2" placeholder=""
+							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+							required="required" /></label></div>
+				<div class="row"><button type="submit">sign up</button></div>
 			</form>
-			<div class="row">
-				<p>Or via social</p>
-				<div class="social-btn-2"><a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a><a
-						class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a></div>
-			</div>
 		</div>
-	</div><!--end of login form popup--><!--signup form popup-->
-	<!--end of signup form popup--><!-- BEGIN | Header -->
+	</div><!--end of signup form popup--><!-- BEGIN | Header -->
 	<header class="ht-header">
 		<div class="container">
 			<nav class="navbar navbar-default navbar-custom">
@@ -123,8 +119,7 @@
 							</ul>
 						</li>
 						<li><a href="#">Help</a></li>
-						<li class="loginLink"><a href="#">LOG In</a></li>
-						<li class="btn signupLink"><a href="user_write_form">sign up</a></li>
+						<li class="btn signupLink"><a href="#">sign up</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</nav><!-- top search form -->
@@ -140,64 +135,72 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="hero-ct">
-						<h1>User1 님의 profile</h1>
+						<h1>user님의 profile</h1>
 						
-						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="page-single userfav_list">
+	<div class="page-single">
 		<div class="container">
-			<div class="row ipad-width2">
+			<div class="row ipad-width">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="user-information">
 						<div class="user-img"><a href="#"><img src="images/uploads/user-img.png" alt=""><br></a><a
-								href="#" class="redbtn">로그인</a></div>
+								href="#" class="redbtn">Change avatar</a></div>
 						<div class="user-fav">
+							<p>Account Details</p>
 							<ul>
-								<li><a href="user_write_form">01. 회원가입</a></li>
-								<li class="active"><a href="userCheckIdPw">02. 아이디,비번찾기</a></li>
+								<li class="active"><a href="user_view">내정보</a></li>
+								<li><a href="user_modify_form">회원정보수정</a></li>
+								<li><a href="user_cart">나의 장바구니</a></li>
 							</ul>
 						</div>
-						
+						<div class="user-fav">
+							<p>Others</p>
+							<ul>
+								<li><a href="#">Change password</a></li>
+								<li><a href="#">Log out</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
-               <div class="form-style-1 user-pro" action="">
-                  <form action="" class="user">
-                     <h4>02. UserCheckId, Pw</h4>
-                     <div class="row">
-                        <div class="col-md-6 form-it"><label>아이디찾기 [UserEmail]</label><input type="text"
-                              placeholder="이메일을 입력하세요."></div>
-                        <div class="col-md-6 form-it"><label>[UserName]</label><input type="text"
-                              placeholder="이름을 입력하세요."></div>
+					<div class="form-style-1 user-pro" action="">
+						<form action="" class="user">
+							<h4>01. 회원정보</h4>
+							<div class="row">
+                        <div class="col-md-6 form-it"><label>UserId</label><input type="text"
+                              placeholder="아이디"></div>
+                        <div class="col-md-6 form-it"><label>UserPassword</label><input type="text"
+                              placeholder="비밀번호"></div>
                      </div>
                      <div class="row">
-                        <div class="col-md-6 form-it"><label>비밀번호찾기 [UserId]</label><input type="text"
-                              placeholder="아이디를 입력하세요."></div>
-                        <div class="col-md-6 form-it"><label>[UserPhone]</label><input type="text"
-                              placeholder="전화번호를 입력하세요."></div>
-                              
-                              
+                        <div class="col-md-6 form-it"><label>UserName</label><input type="text"
+                              placeholder="이름"></div>
+                        <div class="col-md-6 form-it"><label>UserPhone</label><input type="text"
+                              placeholder="전화번호"></div>
                      </div>
-                     
-                     
                      <div class="row">
-                        <div class="col-md-2"><input class="submit" type="submit" value="찾기(Find)"></div>
+                        <div class="col-md-6 form-it"><label>UserEmail</label><input type="text"
+                              placeholder="이메일"></div>
+                        <div class="col-md-6 form-it"><label>UserJumin</label><input type="text"
+                              placeholder="주민번호"></div>
                      </div>
-                  </form>
-                  
-               </div>
-            </div>
-         </div>
-      </div>
-					
-						
-						
-						
-					
+                     <div class="row">
+                        <div class="col-md-6 form-it"><label>UserAddress</label><input type="text"
+                              placeholder="주소"></div>
+                        <div class="col-md-6 form-it"><label>UserGender</label><select>
+                              <option value="united">남</option>
+                              <option value="saab">여</option>
+                           </select></div>
+                     </div>
+							<div class="row">
+								<div class="col-md-2"><input class="submit" type="submit" value="save"></div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -260,24 +263,6 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-	<script>
-    // 버튼 클릭 시 새로운 페이지로 이동
-    document.getElementById('signup-button').addEventListener('click', function() {
-        window.location.href = 'user_write_form'; // user_write_form 페이지로 이동
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var signupButton = document.querySelector(".signupLink a");
-
-        if (signupButton) {
-            signupButton.addEventListener("click", function (event) {
-                event.preventDefault(); // Prevent the default link behavior
-                window.location.href = "user_write_form"; // Redirect to user_write_form
-            });
-        }
-    });
-</script>
 </body>
 
 </html>

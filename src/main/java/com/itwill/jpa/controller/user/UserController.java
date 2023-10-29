@@ -26,9 +26,21 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/user_mypage")
-	public String user_mypage() {
-		String forward_path = "user_mypage";
+	@GetMapping("/user_view")
+	public String user_view() {
+		String forward_path = "user_view";
+		return forward_path;
+	}
+	
+	@GetMapping("/user_modify_form")
+	public String user_modify_form() {
+		String forward_path = "user_modify_form";
+		return forward_path;
+	}
+	
+	@GetMapping("/user_cart")
+	public String user_cart() {
+		String forward_path = "user_cart";
 		return forward_path;
 	}
 
@@ -79,7 +91,7 @@ public class UserController {
 		String forward_path = "userCheckIdPw";
 		return forward_path;
 	}
-
+	/*
 	@RequestMapping("/user_view")
 	public String user_view(HttpServletRequest request, Model model) throws Exception {
 		String forwardPath = "";
@@ -91,7 +103,8 @@ public class UserController {
 
 		return forwardPath;
 	}
-
+	*/
+	/*
 	@GetMapping("/user_modify_form")
 	public String user_modify_form(HttpServletRequest request, Model model) throws Exception {
 		String forwardPath = "";
@@ -103,6 +116,7 @@ public class UserController {
 
 		return forwardPath;
 	}
+	*/
 
 	@PostMapping("user_modify_action")
 	public String user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto, HttpServletRequest request) throws Exception {
