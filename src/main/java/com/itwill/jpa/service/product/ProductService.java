@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
@@ -62,11 +64,8 @@ public interface ProductService{
 	// product 삭제[성공]		
 	void deleteProduct(Long productNo) throws Exception;
 	
-	// goods 등록 - DTO
-	GoodsDto deledtGoodsDto(GoodsDto goodsDto) throws Exception;
-	
-	// ticket 등록 - DTO	
-	TicketDto deleteTicketDto(TicketDto ticketDto) throws Exception;
+	// product 삭제 - DTO[성공]
+	ProductDto deledtProductDto(Long productNo) throws Exception;
 	
 	// product 삭제[성공]
 	public void deleteProduct2(Long productNo);
@@ -124,6 +123,9 @@ public interface ProductService{
 	/******************** categoryId별로 전체나열 ********************/		
 	// product categoryId별 분류
 	public List<Product> findByCategoryId(Long categoryId);
+	
+	// product categoryId별로 전체나열 - DTO	
+	List<ProductDto> findProductByCategoryId(Long categoryId);
 	
 	// ticket categoryId별로 전체나열 - DTO	
 	List<GoodsDto> findGoodsByCategoryId(Long categoryId);

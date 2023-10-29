@@ -44,6 +44,7 @@ public class CartItem {
 	
 	public static CartItem toEntity(CartItemDto dto) {
     	return CartItem.builder()
+    					.cartItemId(dto.getCartItemId())
     			       .cartItemQty(dto.getCartItemQty())
     				   .build();
     }

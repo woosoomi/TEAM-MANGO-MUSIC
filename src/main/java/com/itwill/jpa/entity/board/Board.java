@@ -52,15 +52,22 @@ public class Board {
     @UpdateTimestamp
     private LocalDateTime updateTime;
     
+    
+    
     public static Board toEntity(BoardDto dto) {
     	return Board.builder()
+    				.boardId(dto.getBoardId())
     				.boardTitle(dto.getBoardTitle())
     				.boardContent(dto.getBoardContent())
     				.boardImage(dto.getBoardImage())
+    				.boardPrize(dto.getBoardPrize())
+    				.boardReadCount(dto.getBoardReadCount())
     				.createdTime(dto.getCreatedTime())
     				.updateTime(dto.getUpdateTime())
     				.build();
     }
+    
+    
     //board - boardcategory  n대1
 	@ManyToOne
 	@JoinColumn(name = "board_category_id")

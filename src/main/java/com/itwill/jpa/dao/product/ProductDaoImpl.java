@@ -20,15 +20,28 @@ public class ProductDaoImpl implements ProductDao{
 	ProductRepository productRepository;
 	@Autowired
 	ProductCategoryRepository productCategoryRepository;
-	
+
+	// 제품 나열
+	@Override	
 	public List<Product> selectList(){
-		return null;
+		return productRepository.findAll();
 	}
+	
 	// 제품 등록
 	@Override
 	public Product insertProduct(Product product) {
 		Product insertProduct = productRepository.save(product);
 		return insertProduct;
+	}
+	@Override
+	public Ticket insertTicket(Ticket ticket) {
+		Ticket insertTicket = productRepository.save(ticket);
+		return insertTicket;
+	}
+	@Override
+	public Goods insertGoods(Goods goods) {
+		Goods insertGoods = productRepository.save(goods);
+		return insertGoods;
 	}
 	// 제품 조회
 	@Override
@@ -50,6 +63,16 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		return updateProduct;
 	}
+	@Override
+	public Goods updateGoods(Goods goods) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Ticket updateTicket(Ticket ticket) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	// 제품 삭제
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
@@ -59,7 +82,8 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		productRepository.delete(selectProductOptional.get());
 	}
-	
+
+	//제품 카테고리별 나열		
 	@Override
 	public List<Product> getProductByCategoryId(Long categoryId) {
 		Optional<ProductCategory> categoryOptional = productCategoryRepository.findById(categoryId);
@@ -67,7 +91,7 @@ public class ProductDaoImpl implements ProductDao{
 			ProductCategory productCategory = categoryOptional.get();
 			return productRepository.findByProductCategory(productCategory);
 		}else {
-			return new ArrayList<>();
+			return new ArrayList<>();  // 카테고리를 찾지 못한 경우 빈 목록을 반환
 		}
 	}
 	@Override
@@ -77,7 +101,7 @@ public class ProductDaoImpl implements ProductDao{
 			ProductCategory productCategory = categoryOptional.get();
 			return productRepository.findGoodsByProductCategory(productCategory);
 		}else {
-			return new ArrayList<>();
+			return new ArrayList<>();  // 카테고리를 찾지 못한 경우 빈 목록을 반환
 	}
 }
 	@Override
@@ -87,9 +111,11 @@ public class ProductDaoImpl implements ProductDao{
 			ProductCategory productCategory = categoryOptional.get();
 			return productRepository.findTicketByProductCategory(productCategory);
 		}else {
-			return new ArrayList<>();
+			return new ArrayList<>();  // 카테고리를 찾지 못한 경우 빈 목록을 반환
 	}
 	}
+
+
 
 }
 

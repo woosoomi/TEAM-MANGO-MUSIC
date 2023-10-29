@@ -7,16 +7,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class Controller {
 
+	@GetMapping("/index") 
+	public String index() { 
+		String forward_path = "index"; 
+		return forward_path; 
+	}
 	@GetMapping("/userprofile")
 	public String userprofile() {
 		String forwardPath = "userprofile";
 		return forwardPath;
 	}
-
-	@GetMapping("/index") 
-	public String index() { 
-		String forward_path = "index"; 
+	@GetMapping("/test") 
+	public String test() { 
+		String forward_path = "test"; 
 		return forward_path; 
-		}
+	}
+	@GetMapping("/common") 
+	public String common() { 
+		String forward_path = "common"; 
+		return forward_path; 
+	}
+	
+
 	
 }

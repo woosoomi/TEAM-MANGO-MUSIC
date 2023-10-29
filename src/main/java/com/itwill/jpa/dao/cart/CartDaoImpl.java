@@ -25,8 +25,12 @@ public class CartDaoImpl implements CartDao {
 
 	/*
 	@Override
-	public void deleteAllbyUserId(String userId) throws Exception {
-		cartRepository.deleteAllByUserId(userId);
+	public void deleteAllByCartId(Long cartId) throws Exception {
+		Cart cart = cartRepository.findById(cartId).orElse(null);
+		if (cart != null) {
+	        cart.getCartitems().clear();
+	        cartRepository.save(cart);
+	    }
 	}
 */
 	@Override

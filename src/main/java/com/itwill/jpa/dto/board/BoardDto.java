@@ -2,6 +2,7 @@ package com.itwill.jpa.dto.board;
 
 import java.time.LocalDateTime;
 
+import com.itwill.jpa.entity.board.Board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,12 +17,28 @@ import lombok.ToString;
 @Builder
 public class BoardDto {
     
+	private Long boardId;
 	private String boardCategory;
 	private String boardTitle;
 	private String boardContent;
 	private String boardImage;
+    private String boardPrize;
+    private int boardReadCount;
     private LocalDateTime createdTime;
     private LocalDateTime updateTime;
+
+    public static BoardDto toDto(Board entity) {
+        return BoardDto.builder()
+                .boardId(entity.getBoardId())
+                .boardTitle(entity.getBoardTitle())
+                .boardContent(entity.getBoardContent())
+                .boardImage(entity.getBoardImage())
+                .boardPrize(entity.getBoardPrize())
+                .boardReadCount(entity.getBoardReadCount())
+                .createdTime(entity.getCreatedTime())
+                .updateTime(entity.getUpdateTime())
+                .build();
+    }
 
     
 	
