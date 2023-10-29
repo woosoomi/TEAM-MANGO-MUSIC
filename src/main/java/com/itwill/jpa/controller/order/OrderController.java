@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -45,6 +47,15 @@ public class OrderController {
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
+				
+				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가
+	            Context context = new Context();
+	            context.setVariable("user_id", userId);
+	            context.setVariable("orderItemDtoList", orderItemDtoList);
+
+	            // Thymeleaf 템플릿에 컨텍스트를 전달
+	            model.addAttribute("context", context);
+	            
 				return "order";
 			} else {
 				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정

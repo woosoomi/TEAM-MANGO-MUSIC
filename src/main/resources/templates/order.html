@@ -151,8 +151,8 @@
 					<div class="hero-ct">
 						<h1>주문하기</h1>
 						<ul class="breadcumb">
-							<li class="active"><a href="#">Home</a></li>
-							<li><span class="ion-ios-arrow-right"></span>Order Page</li>
+							<li class="active"><a href="index">Home</a></li>
+							<li><span class="ion-ios-arrow-right"></span><a href="order">Order Page</a></li>
 						</ul>
 					</div>
 				</div>
@@ -164,25 +164,29 @@
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p>Select <span th:text="${#lists.size(orderItemDtoList)}"></span>in total</p><label>Sort by:</label><select>
-							<option value="popularity">Popularity Descending</option>
-							<option value="popularity">Popularity Ascending</option>
-							<option value="rating">Rating Descending</option>
-							<option value="rating">Rating Ascending</option>
-							<option value="date">Release date Descending</option>
-							<option value="date">Release date Ascending</option>
-						</select><a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a><a
-							href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
-					</div>
-					<div class="movie-item-style-2"><img src="images/uploads/mv1.jpg" alt="">
+						<p th:text="${context.user_id} + ' 님의 ' + ${#lists.size(context.orderItemDtoList)} + '개의 주문입니다.'"></p>
+						</div>
+					<div class="movie-item-style-2"><img src="images/iugoldenconcert.webp" alt="">
 						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">oblivion <span>(2012)</span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>8.1</span>/10</p>
-							<p class="describe">Earth's mightiest heroes must come together and learn to fight as a team
-								if they are to stop the mischievous Loki and his alien army from enslaving humanity...
+							<h6><a href="moviesingle.html">아이유 콘서트 : 더 골든 아워 <span>(2023)</span></a></h6>
+							<p class="rate"><i class="ion-android-star"></i><span>9.75</span>/10</p>
+							
+							<p class="describe">
+							데뷔 15주년 기념, <아이유 콘서트 : 더 골든 아워> CGV 개봉!
+
+							한국 여자 가수 최초로 올림픽주경기장에 입성한
+							아이유의 단독 콘서트 'The Golden Hour'를 극장에서 만난다!
+							
+							전율을 선사한 무반주 오프닝을 시작으로 우리가 사랑한 노래들로 꽉 채워진 셋 리스트,
+							올림픽주경기장에 뜬 스트로베리 문 열기구부터 불꽃놀이,
+							드론 쇼까지 눈과 귀를 황홀하게 만드는 마법 같은 무대연출!
+							
+							레전드 무대와 꽉 찬 라이브로 행복했던 우리들의 ‘골든 아워’
+							2023년 9월, 잊지 못할 감동이 스크린에서 펼쳐진다!
 							</p>
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
-									2015</span></p>
+							
+							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 13 Sep
+									2023</span></p>
 							<p>Director: <a href="#">Joss Whedon</a></p>
 							<p>Stars: <a href="#">Robert Downey Jr.,</a><a href="#">Chris Evans,</a><a href="#">Chris
 									Hemsworth</a></p>
@@ -252,12 +256,12 @@
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div class="sidebar">
 						<div class="searh-form">
-							<h4 class="sb-title">Search for movie</h4>
+							<h4 class="sb-title">결제상세</h4>
 							<form class="form-style-1" action="#">
 								<div class="row">
-									<div class="col-md-12 form-it"><label>Movie name</label><input type="text"
+									<div class="col-md-12 form-it"><label>주문금액</label><input type="text"
 											placeholder="Enter keywords"></div>
-									<div class="col-md-12 form-it"><label>Genres & Subgenres</label>
+									<div class="col-md-12 form-it"><label>상품금액</label>
 										<div class="group-ip"><select name="skills" multiple=""
 												class="ui fluid dropdown">
 												<option value="">Enter to filter genres</option>
@@ -268,13 +272,13 @@
 												<option value="Action5">Action 5</option>
 											</select></div>
 									</div>
-									<div class="col-md-12 form-it"><label>Rating Range</label><select>
+									<div class="col-md-12 form-it"><label>배송비</label><select>
 											<option value="range">-- Select the rating range below --</option>
 											<option value="saab">-- Select the rating range below --</option>
 											<option value="saab">-- Select the rating range below --</option>
 											<option value="saab">-- Select the rating range below --</option>
 										</select></div>
-									<div class="col-md-12 form-it"><label>Release Year</label>
+									<div class="col-md-12 form-it"><label>쿠폰할인</label>
 										<div class="row">
 											<div class="col-md-6"><select>
 													<option value="range">From</option>
@@ -290,22 +294,11 @@
 												</select></div>
 										</div>
 									</div>
-									<div class="col-md-12 "><input class="submit" type="submit" value="submit"></div>
+									<div class="col-md-12 "><input class="submit" type="submit" value="결제하기"></div>
 								</div>
 							</form>
 						</div>
-						<div class="sb-facebook sb-it">
-							<h4 class="sb-title">Find us on Facebook</h4><iframe src=""
-								data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhaintheme%2F%3Ffref%3Dts&tabs=timeline&width=340&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"
-								height="315" style="width:100%;border:none;overflow:hidden"></iframe>
-						</div>
-						<div class="sb-twitter sb-it">
-							<h4 class="sb-title">Tweet to us</h4>
-							<div class="slick-tw">
-								<div class="tweet item" id="599202861751410688"></div>
-								<div class="tweet item" id="297462728598122498"></div>
-							</div>
-						</div>
+						<div class="ads"><img src="images/giveonconcert.jpeg" alt=""></div>
 					</div>
 				</div>
 			</div>
