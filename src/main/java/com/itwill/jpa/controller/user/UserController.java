@@ -25,6 +25,12 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("/user_mypage")
+	public String user_mypage() {
+		String forward_path = "user_mypage";
+		return forward_path;
+	}
 
 	@GetMapping("/user_write_form")
 	public String user_write_form() {
