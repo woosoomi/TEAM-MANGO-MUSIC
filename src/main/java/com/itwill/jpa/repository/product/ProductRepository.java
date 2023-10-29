@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.product.Product;
@@ -26,11 +27,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	/******************** categoryId별로 전체나열 ********************/	
 //	category로 찾기
-	List<Product> findByProductCategory(ProductCategory categoryId);	
-	List<Goods> findGoodsByProductCategory(ProductCategory categoryId);	
-	List<Ticket> findTicketByProductCategory(ProductCategory categoryId);
+	List<Product> findByProductCategory(ProductCategory category);	
+	List<Goods> findGoodsByProductCategory(ProductCategory category);	
+	List<Ticket> findTicketByProductCategory(ProductCategory category);
 	// DTO
-//	List<ProductDto> findByProductCategoryDto(ProductDto productDto);
+//	List<ProductDto> findByProductCategoryDto(ProductCategoryDto categoryDto);
 //	List<TicketDto> findTicketByProductCategoryDto(TicketDto ticketDto);
 //	List<GoodsDto> findByGoodsProductCategoryDto(GoodsDto goodsDto);
 	/*****************************************************************/
