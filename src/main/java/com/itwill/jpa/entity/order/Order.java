@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -95,15 +96,24 @@ public class Order {
 	//Dto -> entity 변환해주는 매서드
 	public static Order toEntity(OrderDto dto) {
 		
-		return Order.builder()
-				.orderId(dto.getOrderId())
-				.orderPrice(dto.getOrderPrice())
-				.orderStatus(dto.getOrderStatus())
-				.user(User.builder().userId(dto.getUserId()).build()) // userId 설정
-				.delivery(Delivery.builder().deliveryId(dto.getDeliveryId()).build()) // deliveryId 설정
-				.build();	
-				
-				
+		Order order = Order.builder()
+							.orderId(dto.getOrderId())
+							.orderPrice(dto.getOrderPrice())
+							.orderStatus(dto.getOrderStatus())
+							.user(User.builder().userId(dto.getUserId()).build()) // userId 설정
+							.delivery(Delivery.builder().deliveryId(dto.getDeliveryId()).build()) // deliveryId 설정
+							.build();	
+		
+		// OrderItemDto 엔티티 목록을 OrderItem 목록으로 변환하여 설정
+	    List<OrderItem> orderItemList = new ArrayList<>();
+	    for (OrderItemDto orderItemDtos : dto.getOrderItemDtos()) {
+	        orderItemList.add(OrderItem.toEntity(orderItemDtos));
+	    }
+	    order.setOrderItems(orderItemList);
+		
+	    return order;
 	}
+				
+	
 	
 }
