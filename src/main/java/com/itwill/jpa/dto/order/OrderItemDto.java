@@ -1,8 +1,6 @@
 package com.itwill.jpa.dto.order;
 
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
-import com.itwill.jpa.entity.product.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,13 +18,15 @@ public class OrderItemDto {
 	
 	private int oiQty;
 	
-	private String productName;
+//	private String productName;
+//	
+//	private String productImage;
+//	
+//	private int productPrice;
 	
-	private String productImage;
+	private Long productNo;
 	
-	private int productPrice;
-	
-	private Order order;
+//	private Long orderId;
 
 	
 	
@@ -44,10 +44,13 @@ public class OrderItemDto {
 	public static OrderItemDto fromOrderItem(OrderItem orderItem) {
 		
 		OrderItemDto dto = new OrderItemDto();
+		dto.setOiId(orderItem.getOiId());
 		dto.setOiQty(orderItem.getOiQty());
-		dto.setProductName(orderItem.getProduct().getProductName());
-		dto.setProductPrice(orderItem.getProduct().getProductPrice());
-		//dto.setProductImage(orderItem.getProduct().getProductImage());
+		dto.setProductNo(orderItem.getProduct().getProductNo());
+//		dto.setOrderId(orderItem.getOrder().getOrderId());
+//		dto.setProductName(orderItem.getProduct().getProductName());
+//		dto.setProductPrice(orderItem.getProduct().getProductPrice());
+//		dto.setProductImage(orderItem.getProduct().getProductImage());
 		return dto;
 		
 	}
@@ -56,6 +59,8 @@ public class OrderItemDto {
 		return OrderItemDto.builder()
 				.oiId(orderItem.getOiId())
 				.oiQty(orderItem.getOiQty())
+				.productNo(orderItem.getProduct().getProductNo())
+//				.orderId(orderItem.getOrder().getOrderId())
 				.build();
 				
 	}

@@ -83,7 +83,7 @@ public class OrderItemServiceImpl implements OrderItemService{
 
 	//오더 아이디를 받아와서 아이템리스트 나열
 	@Override
-	public List<OrderItemDto> orderItems(Long orderId) {
+	public List<OrderItemDto> orderItemsByOrderId(Long orderId) {
 		Optional<Order> orderOptional = orderRepository.findById(orderId);
         if (orderOptional.isPresent()) {
         	Order order = orderOptional.get();
@@ -101,7 +101,7 @@ public class OrderItemServiceImpl implements OrderItemService{
 	}
 
 	@Override
-	public List<OrderItemDto> orderItems(String userId) {
+	public List<OrderItemDto> orderItemsByUserId(String userId) {
 		  Optional<User> userOptional = userRepository.findById(userId);
 
 	        if (userOptional.isPresent()) {
