@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.jpa.dao.cart.CartDao;
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
@@ -30,7 +31,7 @@ public class CartServiceImpl implements CartService {
 	UserRepository userRepository;
 	
 	@Override
-	public CartDto insert(CartDto dto) throws Exception {
+	public CartDto createCart(CartDto dto) throws Exception {
 		User user = userRepository.findById(dto.getUserId()).orElse(null);
 		Cart cart = Cart.toEntity(dto);
 		cart.setUser(user);

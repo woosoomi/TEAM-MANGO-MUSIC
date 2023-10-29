@@ -19,24 +19,6 @@ import com.itwill.jpa.service.cart.CartServiceImpl;
 
 @Controller
 public class CartController {
-	@Autowired
-	CartServiceImpl cartServiceImpl;
-	@Autowired
-	CartItemServiceImpl cartItemServiceImpl;
-    @GetMapping("/cart")
-    public String insertCart(CartDto dto, Model model) {
-    	CartDto insertCart;
-		try {
-			insertCart = cartServiceImpl.insert(dto);
-		  	model.addAttribute("insertCart",insertCart);  
-	    	System.out.println("insertCart :"+insertCart);
-	    	return "cart";
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-  
-    }
+
 	
 }

@@ -22,7 +22,6 @@ public class CartDto {
 	private Long cartId;
 	private int cartTotPrice;
 	private String userId;
-	private CartItem cartItem;
 	
 	public static CartDto toDto(Cart entity) {
 		return CartDto.builder()

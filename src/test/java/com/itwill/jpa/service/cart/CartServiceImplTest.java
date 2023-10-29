@@ -41,48 +41,21 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
-	void cartInsert() throws Exception {
-
-
-		//User user1 =new User("lsg34", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
-		//userRepository.save(user1);
+	void createCart() throws Exception {
+		
 		Optional<User> findUser = userRepository.findById("lsg33");
-
 		System.out.println("findUser>>>>>>>>>>>>>>>"+findUser);
 		if (findUser.isPresent()) {
 			User user = findUser.get();
+			System.out.println("user>>>>>>>>>>>>>>>>>>"+user);
 			CartDto cart1 = CartDto.builder().cartId(0L).cartTotPrice(1000).userId(user.getUserId()).build();
 			System.out.println("cart1>>>>>>>>>>>>>>>>"+cart1);
-			CartDto insertedCart=cartServiceImpl.insert(cart1);
+			CartDto insertedCart=cartServiceImpl.createCart(cart1);
 			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart);
 		}
-	
-		//cart1.setUser();
-		//cart1.getCartitems();
-		//cart1.setCartId(0L);
-		//cart1.setCartTotPrice(1000);
 
-		
-		/*
-		Cart cart2 = new Cart();
-		CartItem cartItem2 =new CartItem(0L,10000,null,null);
-		User user2 =new User("test11", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null);
-		
-		
-		cart2.setUser(user2);
-		cart2.getCartitems();
-		cart2.setCartId(1L);
-		cart2.setCartTotPrice(78000);
-		
-		cartRepository.save(cart2);
-		cartItemRepository.save(cartItem2);
-		userRepository.save(user2);
-		Cart insertedCart1=cartServiceImpl.insert(cart2);
-		System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart1);
-		
-		 */ 
 	}
 	
 	
@@ -102,7 +75,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void calTotPrice() throws Exception {

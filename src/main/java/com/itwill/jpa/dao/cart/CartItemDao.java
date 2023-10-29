@@ -8,7 +8,7 @@ public interface CartItemDao {
 	
 	//cartItem 추가
 	//CartItem insert(CartItem cartItem) throws Exception;
-	List<CartItem> insertCartItems(List<CartItem> cartItems) throws Exception;
+	CartItem insertCartItem(CartItem cartItem) throws Exception;
 	
 	//cartitem 삭제
 	void deleteByCartId(Long cartItemId) throws Exception;

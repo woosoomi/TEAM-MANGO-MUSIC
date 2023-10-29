@@ -33,19 +33,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Cart {
 	
-	
-	
 	@Id
 	@SequenceGenerator(name = "CART_CART_NO_SEQ",sequenceName = "CART_CART_NO_SEQ",initialValue = 1 , allocationSize =1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_CART_NO_SEQ")
 	private Long cartId;
 	private int cartTotPrice;
-	/*
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
-    */
 	
     public static Cart toEntity(CartDto dto) {
     	return Cart.builder()
@@ -53,7 +45,7 @@ public class Cart {
     				.cartTotPrice(dto.getCartTotPrice())
     				.build();
     }
-    
+
 	//cart와 cartitem 1대n
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.PERSIST,orphanRemoval = true)
 	@Builder.Default
@@ -65,6 +57,5 @@ public class Cart {
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
-	
 	
 }

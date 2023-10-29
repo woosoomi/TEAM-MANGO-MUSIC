@@ -11,7 +11,7 @@ import com.itwill.jpa.entity.user.User;
 
 public interface CartService {
 	//장바구니 생성
-	public CartDto insert(CartDto dto) throws Exception;
+	public CartDto createCart(CartDto dto) throws Exception;
 	
 	//장바구니 전체 비우기
 	public CartDto deleteAllByCartId(Long cartId) throws Exception;

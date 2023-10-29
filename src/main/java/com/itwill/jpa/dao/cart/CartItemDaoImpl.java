@@ -22,8 +22,8 @@ public class CartItemDaoImpl implements CartItemDao{
 	}
 	 */
     @Override
-    public List<CartItem> insertCartItems(List<CartItem> cartItems) throws Exception {
-        return cartItemRepository.saveAll(cartItems);
+    public CartItem insertCartItem(CartItem cartItem) throws Exception {
+        return cartItemRepository.save(cartItem);
     }
     
 	@Override
