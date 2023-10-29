@@ -42,7 +42,7 @@ public class Delivery {
 	
 	// delivery와 user n대1
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "userId", referencedColumnName = "userId")
 	private User user;
 
 	
@@ -54,7 +54,7 @@ public class Delivery {
 					   .deliveryPhone(dto.getDeliveryPhone())
 					   .deliveryAddress(dto.getDeliveryAddress())
 					   .deliveryCompany(dto.getDeliveryCompany())
-					   .user(User.builder().userId(dto.getUserId()).build()) // userId 설정
+//					   .user(User.builder().userId(dto.getUserId()).build()) // userId 설정
 					   .build();
 	}
 	

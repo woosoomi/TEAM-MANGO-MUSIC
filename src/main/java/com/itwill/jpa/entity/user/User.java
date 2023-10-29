@@ -7,6 +7,7 @@ import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.order.Coupon;
+import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.product.ProductReply;
 import com.itwill.jpa.entity.vote.Vote;
@@ -79,6 +80,10 @@ public class User {
 	// user와 coupon 1대N 관계설정
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private List<Coupon> coupons = new ArrayList<>();
+	
+	// user와 delivery 1대N 관계설정 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	private List<Delivery> deliverys = new ArrayList<>();
 
 	// user와 board_Reply 1대N 관계설정
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)

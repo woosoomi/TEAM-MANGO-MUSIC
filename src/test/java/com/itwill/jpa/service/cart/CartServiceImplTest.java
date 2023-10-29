@@ -45,9 +45,11 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Rollback(false)
 	void cartInsert() throws Exception {
 
+
 		//User user1 =new User("lsg34", "1111", "test", "1111", "1111", "1111", "1111", "1111", null, null, null, null, null, null);
 		//userRepository.save(user1);
 		Optional<User> findUser = userRepository.findById("lsg33");
+
 		System.out.println("findUser>>>>>>>>>>>>>>>"+findUser);
 		if (findUser.isPresent()) {
 			User user = findUser.get();

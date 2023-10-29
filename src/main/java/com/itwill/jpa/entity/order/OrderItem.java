@@ -5,7 +5,9 @@ package com.itwill.jpa.entity.order;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,11 +17,9 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "order_item")
@@ -55,6 +55,8 @@ public class OrderItem {
 		return OrderItem.builder()
 				.oiId(orderItemDto.getOiId())
 				.oiQty(orderItemDto.getOiQty())
+				.product(Product.builder().productNo(orderItemDto.getProductNo()).build())
+//				.order(Order.builder().orderId(orderItemDto.getOrderId()).build())
 				.build();
 				
 	}
