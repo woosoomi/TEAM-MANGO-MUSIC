@@ -81,6 +81,9 @@ public interface ProductService{
 	// product 업데이트[성공]
 	public Product updateProduct(Product product);
 	
+	// product 업데이트 - DTO	
+	ProductDto updateProductDto(ProductDto dto) throws Exception;
+	
 	// goods 업데이트 - DTO
 	GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception;
 	
@@ -148,6 +151,11 @@ public interface ProductService{
 	
 	// productNo 찾기[성공]
 	public Optional<Product> findByProductNo(Long productNo);
+	// productNo 찾기 - DTO
+	Optional<ProductDto> findProductDtoByProductNo(Long productNo);
+
+	/******************** UPDATE[DTO] ********************/
+
 	
 //	// productName 찾기
 //	public Product findByProductName(String productName);
