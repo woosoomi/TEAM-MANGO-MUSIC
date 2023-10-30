@@ -22,9 +22,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.servlet.http.HttpSession;
 
-@RestController
 
-@RequestMapping("/users")
+@RestController
+@RequestMapping("/user")
 public class UserRestController {
 
 	@Autowired
@@ -33,26 +33,32 @@ public class UserRestController {
 	@Operation(summary = "회원가입")
 	@PostMapping("/join")
 	public ResponseEntity<?> userCreate(@RequestBody UserDto userDto) {
-		try {
-			UserDto createdUser = userService.createUser(userDto);
-			return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		   try {
+		        if (userService.existsById(userDto.getUserId())) {
+		            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 존재하는 아이디입니다.");
+		        }
+
+		        UserDto createdUser = new UserDto();
+		        createdUser.setUserId(userDto.getUserId());
+		        createdUser.setUserPw(userDto.getUserPw());
+
+		        userService.createUser(createdUser);
+
+		        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공");
+		    } catch (Exception e) {
+		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입 실패: " + e.getMessage());
+		    }
 		}
-	}
 
 	@Operation(summary = "로그인")
 	@PostMapping("/login")
 	public ResponseEntity<?> userLogin(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
 		 try {
 		        User user = userService.findUser(userLoginDto.getUserId());
-
 		        if (user != null && user.getUserPw().equals(userLoginDto.getUserPw())) {
-		            // 로그인 성공
 		            session.setAttribute("sUserId", userLoginDto.getUserId());
 		            return ResponseEntity.status(HttpStatus.OK).build();
 		        } else {
-		            // 로그인 실패
 		            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
 		        }
 		    } catch (Exception e) {
