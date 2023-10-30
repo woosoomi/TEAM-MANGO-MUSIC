@@ -58,13 +58,13 @@ public class OrderDto {
 									.build();
 		
 		// OrderItem 엔티티 목록을 OrderItemDto 목록으로 변환하여 설정
-	    List<OrderItemDto> orderItemDtoList = new ArrayList<>();
-	    for (OrderItem orderItem : entity.getOrderItems()) {
-	        orderItemDtoList.add(OrderItemDto.toDto(orderItem));
-	    }
-	    orderDto.setOrderItemDtos(orderItemDtoList);
-		
-	    return orderDto;
+		List<OrderItemDto> orderItemDtoList = new ArrayList<>();
+		for (OrderItem orderItem : entity.getOrderItems()) {
+			orderItemDtoList.add(OrderItemDto.toDto(orderItem));
+		}
+		orderDto.setOrderItemDtos(orderItemDtoList);
+
+		return orderDto;
 	}
 	
 }

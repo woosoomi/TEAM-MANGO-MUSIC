@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
+import com.itwill.jpa.repository.product.ProductCategoryRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -32,6 +34,8 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ProductRepository productRepository;
 	
+	@Autowired
+	private ProductCategoryRepository productCategoryRepository;
 	@Autowired
 	ProductDao productDao;
 	
@@ -139,7 +143,10 @@ public class ProductServiceImpl implements ProductService{
 		return ticketDtoList;
 	}	
 /*********************************************/	
-	
+    public void saveProductCategory(ProductCategoryDto dto) {
+        ProductCategory productCategory = dto.toEntity();
+        productCategoryRepository.save(productCategory);
+    }
 /******************** insert[ENTITY] ********************/	
 	//product 추가[성공]
 	@Override
@@ -170,7 +177,7 @@ public class ProductServiceImpl implements ProductService{
 	
 /******************** INSERT[DTO] ********************/
 	
-	// goods 등록 - DTO	
+	// goods 등록 - DTO	[성공]
 	@Override
 	public GoodsDto insertGoodsDto(GoodsDto dto) {
 		Goods goods = productRepository.save(Goods.toEntity(dto));
@@ -360,6 +367,7 @@ public class ProductServiceImpl implements ProductService{
 	/*==============================================================*/
 
 
+
 		
 	/*============================================================*/
 	
@@ -377,9 +385,5 @@ public class ProductServiceImpl implements ProductService{
 //	public Product findByProductAtrist(String productArtist) {
 //		return productRepository.findByProductArtist(productArtist);
 //	}
-
-
-
-
 
 }

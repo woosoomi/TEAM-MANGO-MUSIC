@@ -30,7 +30,7 @@ import com.itwill.jpa.repository.user.UserVoteRepository;
 import com.itwill.jpa.service.product.ProductServiceImpl;
 import com.itwill.jpa.service.vote.VoteServiceImpl;
 
-@SpringBootTest
+
 class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired
 	UserVoteRepository userVoteRepository;
@@ -91,7 +91,7 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
     @Transactional
     @Rollback(false)
 	@DisplayName("유저,투표,상품전체조회")
-	@Disabled
+	//@Disabled
     public void testfindUserVoteIdWithProduct() {
     	
     	Vote vote1 = Vote.builder()

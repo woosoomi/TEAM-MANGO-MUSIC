@@ -36,26 +36,24 @@ import lombok.experimental.Tolerate;
 @AllArgsConstructor
 @Builder
 public class Board {
-    @Id
-    @SequenceGenerator(name = "BOARD_BOARD_NO_SEQ",sequenceName = "BOARD_BOARD_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@Id
+	@SequenceGenerator(name = "BOARD_BOARD_NO_SEQ", sequenceName = "BOARD_BOARD_NO_SEQ", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_BOARD_NO_SEQ")
 	private Long boardId;
-	
-    private String boardTitle;
-    private String boardContent;
-    private String boardImage;
-    private String boardPrize;
-    private int boardReadCount;
 
-    @CreationTimestamp
-    private LocalDateTime createdTime;
-    @UpdateTimestamp
-    private LocalDateTime updateTime;
-    
-    
-    
-    public static Board toEntity(BoardDto dto) {
-    	return Board.builder()
+	private String boardTitle;
+	private String boardContent;
+	private String boardImage;
+	private String boardPrize;
+	private int boardReadCount;
+
+	@CreationTimestamp
+	private LocalDateTime createdTime;
+	@UpdateTimestamp
+	private LocalDateTime updateTime;
+
+	public static Board toEntity(BoardDto dto) {
+    	Board board = Board.builder()
     				.boardId(dto.getBoardId())
     				.boardTitle(dto.getBoardTitle())
     				.boardContent(dto.getBoardContent())
@@ -64,31 +62,32 @@ public class Board {
     				.boardReadCount(dto.getBoardReadCount())
     				.createdTime(dto.getCreatedTime())
     				.updateTime(dto.getUpdateTime())
+    				.boardCategory(BoardCategory.builder().id(dto.getBoardCategoryId()).build())
+    				.boardType(BoardType.builder().typeId(dto.getBoardTypeId()).build())
+    				.user(User.builder().userId(dto.getUserId()).build())
     				.build();
+		return board;
     }
-    
-    
-    //board - boardcategory  n대1
+
+	// board - boardcategory n대1
 	@ManyToOne
 	@JoinColumn(name = "board_category_id")
 	@ToString.Exclude
 	private BoardCategory boardCategory;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "board_type_id")
 	@ToString.Exclude
 	private BoardType boardType;
-		
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
-	
-	@OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)
+
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
 	@Builder.Default
 	@ToString.Exclude
 	private List<BoardReply> boardReply = new ArrayList<>();
-	
-	
-}
 
+}

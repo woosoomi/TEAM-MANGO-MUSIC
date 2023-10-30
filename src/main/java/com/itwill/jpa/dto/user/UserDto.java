@@ -23,6 +23,7 @@ public class UserDto {
 	private String userJumin;		// 회원 주민번호
 	private String userPhone;		// 회원 전화번호
 	private String userGender;		// 회원 성별
+	private Boolean memberShip;		// 추가!!
 	
 	public static UserDto toDto(User entity) {
 		return UserDto.builder()
@@ -34,6 +35,7 @@ public class UserDto {
 					  .userJumin(entity.getUserJumin())
 					  .userPhone(entity.getUserPhone())
 					  .userGender(entity.getUserGender())
+					  .memberShip(entity.isMembership())
 					  .build();
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Ticket;
+import com.itwill.jpa.entity.product.ProductCategory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,8 +37,17 @@ public class GoodsDto {
 	
 	private String productImage; // 프로덕트(음악,굿즈,티켓,멤버십) 이미지
 
-	private Long categoryId;
-	
+	/*=============== ProductCategoryId 주입을 위한 Dto와 매서드 ===============*/
+    private ProductCategoryDto productCategory;
+    
+	public ProductCategoryDto getProductCategory() {
+		return productCategory;
+	}
+    public void setProductCategory(ProductCategoryDto productCategory) {
+        this.productCategory = productCategory;
+    }
+    /*=================================================================*/
+    
 	//Dto에서 보여주는 goods 정보가 무엇인지 설정하는 생성자(초기화)
 	
 	public GoodsDto(Goods goods) {
@@ -81,7 +91,5 @@ public class GoodsDto {
 		 }
 		 return goodsDtoList;
 	}
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
-	}
+
 	}
