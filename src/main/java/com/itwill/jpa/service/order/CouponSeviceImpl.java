@@ -71,8 +71,6 @@ public class CouponSeviceImpl implements CouponService{
 		return couponDtoList;
 	}
 		
-		
-	
 	//유저의 쿠폰들 불러오기
 	@Override
 	public List<CouponDto> couponsByUserId(String userId) {
@@ -91,5 +89,24 @@ public class CouponSeviceImpl implements CouponService{
 		CouponDto couponDto = CouponDto.toDto(coupon);
 		return couponDto;
 	}
-
+	
+	//쿠폰 할인 적용 시키기
+	@Override
+	public double applyCouponDiscount(Long couponId, double orderPrice) {
+		Coupon coupon = couponRepository.findById(couponId).get();
+		if (coupon != null) {
+			double discountRate = coupon.getCouponDiscount();
+			if (discountRate > 0) {
+				// 할인율을 적용하여 할인액 계산
+				double discountAmount = orderPrice * (discountRate / 100.0);
+				double discountedTotal = orderPrice - discountAmount;
+				return discountedTotal;
+			}
+		}
+		// 할인 적용되지 않는 경우 원래 총액 반환
+		return orderPrice;
+	}
+	
 }
+		
+	
