@@ -13,7 +13,7 @@ public interface UserService {
 	UserDto createUser(UserDto userDto) throws Exception;
 
 	// 로그인
-	User loginUser(UserLoginDto userLoginDto) throws Exception;
+	User loginUser(String userId, String userPw) throws Exception;
 
 	// 회원 정보 업데이트
 	UserUpdateDto updateUser(UserUpdateDto userUpdateDto) throws Exception;

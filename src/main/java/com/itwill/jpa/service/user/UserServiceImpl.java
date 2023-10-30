@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public User loginUser(UserLoginDto userLoginDto) throws Exception {
-        User user = userDao.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
+	public User loginUser(String userId, String userPw) throws Exception {
+        User user = userDao.loginUser(userId, userPw);
 
         if (user == null) {
             throw new Exception("아이디 또는 비밀번호가 일치하지 않습니다.");
