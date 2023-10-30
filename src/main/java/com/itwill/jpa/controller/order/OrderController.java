@@ -26,9 +26,9 @@ public class OrderController {
 	@Autowired
 	private OrderItemService orderItemService;
 
-	
-	@GetMapping("/order")
-	public String orderPage(Model model, HttpServletRequest request) {
+	//오더페이지를 일단 두개로 나눔 멤버쉽결제페이지 와 티켓결제페이지
+	@GetMapping("/order_membership")
+	public String orderMembershipPage(Model model, HttpServletRequest request) {
 		
 		try {
 			HttpSession session = request.getSession();
@@ -48,7 +48,7 @@ public class OrderController {
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
 				
-				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가
+				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가(유저님의 100개의 주문입니다.)
 	            Context context = new Context();
 	            context.setVariable("user_id", userId);
 	            context.setVariable("orderItemDtoList", orderItemDtoList);
@@ -56,7 +56,7 @@ public class OrderController {
 	            // Thymeleaf 템플릿에 컨텍스트를 전달
 	            model.addAttribute("context", context);
 	            
-				return "order";
+				return "order_membership";
 			} else {
 				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
 				return "index";
@@ -69,9 +69,56 @@ public class OrderController {
 		}
 	}
 			
+	
+	
+	//오더페이지를 일단 두개로 나눔 멤버쉽결제페이지 와 티켓결제페이지
+	@GetMapping("/order_ticket")
+	public String orderTicketPage(Model model, HttpServletRequest request) {
+		
+		try {
+			HttpSession session = request.getSession();
+			//일단 임의로 세션 로그인 유저 설정함
+			session.setAttribute("user_id", "wsm55");
+			String userId = (String) session.getAttribute("user_id");
 			
-	@GetMapping("/orderdetail")
-	public String orderDetailPage(Model model, HttpServletRequest request) {
+			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
+			//로그인 체크가 생기면 아래 조건문 지울것
+			if(userId != null) {
+				//orderdetail.html에 리스트명 orderItemDtoList로 바꿈
+				List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
+				model.addAttribute("orderItemDtoList", orderItemDtoList);
+				System.out.println("주문 아이템: " + orderItemDtoList);
+				//이부분 위아래중 어떤 불러오기 서비스를 선택할지 논의가 필요
+				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
+				//model.addAttribute("orderDtoList", orderDtoList);
+				//System.out.println("주문 아이템: " + orderDtoList);
+				
+				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가(유저님의 100개의 주문입니다.)
+	            Context context = new Context();
+	            context.setVariable("user_id", userId);
+	            context.setVariable("orderItemDtoList", orderItemDtoList);
+
+	            // Thymeleaf 템플릿에 컨텍스트를 전달
+	            model.addAttribute("context", context);
+	            
+				return "order_ticket";
+			} else {
+				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
+				return "index";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("주문이 존재하지 않습니다.", e.getMessage());
+			return "index";
+		}
+	}
+
+	
+	
+	//오더디테일에서 오더히스토리로 명명만 바꿈
+	@GetMapping("/order_history")
+	public String orderHistoryPage(Model model, HttpServletRequest request) {
 		try {
 			
 			HttpSession session = request.getSession();
@@ -89,7 +136,7 @@ public class OrderController {
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
-			return "orderdetail";
+			return "order_history";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
