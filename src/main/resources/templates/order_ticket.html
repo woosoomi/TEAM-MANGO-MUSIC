@@ -74,7 +74,7 @@
 		<div class="container">
 			<nav class="navbar navbar-default navbar-custom">
 				<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header logo">
+				<div class="navbar-header logo">
 					<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span
 							class="sr-only">Toggle navigation</span>
 						<div id="nav-icon1"><span></span><span></span><span></span></div>
@@ -153,7 +153,8 @@
 						<h1>주문하기</h1>
 						<ul class="breadcumb">
 							<li class="active"><a href="index">Home</a></li>
-							<li><span class="ion-ios-arrow-right"></span><a href="order_ticket">Order Ticket Page</a></li>
+							<li><span class="ion-ios-arrow-right"></span><a href="order_ticket">Order Ticket Page</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -165,33 +166,41 @@
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p th:text="${context.user_id} + ' 님의 ' + ${#lists.size(context.orderItemDtoList)} + '개의 티켓 주문입니다.'"></p>
-						</div>
+						<p
+							th:text="${context.user_id} + ' 님의 ' + ${#lists.size(context.orderItemDtoList)} + '개의 티켓 주문입니다.'">
+						</p>
+					</div>
 					<div class="movie-item-style-2"><img src="images/iugoldenconcert.webp" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="moviesingle.html">아이유 콘서트 : 더 골든 아워 <span>(2023)</span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>9.75</span>/10</p>
-							
-							<p class="describe">
-							데뷔 15주년 기념, <아이유 콘서트 : 더 골든 아워> CGV 개봉!
-
-							한국 여자 가수 최초로 올림픽주경기장에 입성한
-							아이유의 단독 콘서트 'The Golden Hour'를 극장에서 만난다!
-							
-							전율을 선사한 무반주 오프닝을 시작으로 우리가 사랑한 노래들로 꽉 채워진 셋 리스트,
-							올림픽주경기장에 뜬 스트로베리 문 열기구부터 불꽃놀이,
-							드론 쇼까지 눈과 귀를 황홀하게 만드는 마법 같은 무대연출!
-							
-							레전드 무대와 꽉 찬 라이브로 행복했던 우리들의 ‘골든 아워’
-							2023년 9월, 잊지 못할 감동이 스크린에서 펼쳐진다!
+							<p class="rate"><i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
 							</p>
-							
+
+							<p class="describe">
+								데뷔 15주년 기념, <아이유 콘서트 : 더 골든 아워> CGV 개봉!
+
+									한국 여자 가수 최초로 올림픽주경기장에 입성한
+									아이유의 단독 콘서트 'The Golden Hour'를 극장에서 만난다!
+
+									전율을 선사한 무반주 오프닝을 시작으로 우리가 사랑한 노래들로 꽉 채워진 셋 리스트,
+									올림픽주경기장에 뜬 스트로베리 문 열기구부터 불꽃놀이,
+									드론 쇼까지 눈과 귀를 황홀하게 만드는 마법 같은 무대연출!
+
+									레전드 무대와 꽉 찬 라이브로 행복했던 우리들의 ‘골든 아워’
+									2023년 9월, 잊지 못할 감동이 스크린에서 펼쳐진다!
+							</p>
+
 							<p class="run-time">러닝타임: 2h21’ <span>공연일자: 13 Sep 2023</span></p>
 							<p>Director: <a href="#">IU</a></p>
-							<p>Stars: <a href="#">Jordan Ayew,</a><a href="#">Andre Ayew,</a><a href="#">Ya Neun Nugu Ayew</a></p>
+							<p>Stars: <a href="#">Jordan Ayew,</a><a href="#">Andre Ayew,</a><a href="#">Ya Neun Nugu
+									Ayew</a></p>
 						</div>
 					</div>
-					
+
 					<div class="topbar-filter"><label>Tickets per page:</label><select>
 							<option value="range">5 Tickets</option>
 							<option value="saab">10 Tickets</option>
@@ -235,12 +244,12 @@
 									</div>
 									<div class="col-md-12 form-it"><label>결제금액</label><input type="text"
 											placeholder="최종금액"></div>
-									
+
 									<div class="col-md-12 "><input class="submit" type="submit" value="결제하기"></div>
 								</div>
 							</form>
 						</div>
-						<div class="ads"><img src="images/giveonconcert.jpeg" alt=""></div>
+						<div class="ads"><img src="" alt=""></div>
 					</div>
 				</div>
 			</div>
