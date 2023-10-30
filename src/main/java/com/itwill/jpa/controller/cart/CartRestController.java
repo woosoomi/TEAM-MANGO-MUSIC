@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.cart.CartDto;
@@ -32,25 +33,33 @@ public class CartRestController {
 	@Autowired
 	CartItemServiceImpl cartItemServiceImpl;
 	@Operation(summary = "장바구니생성")
-    @PostMapping("/cart")
-    public String createCart(CartDto dto, Model model) {
-    	CartDto createCart;
+    @PostMapping("/create")
+	public ResponseEntity<CartDto> createCart(@RequestParam CartDto dto) {
+	    try {
+	        CartDto createdCartDto = cartServiceImpl.createCart(dto);
+	        return new ResponseEntity<>(createdCartDto, HttpStatus.OK);
+	    } catch (Exception e) {
+	        e.printStackTrace(); 
+	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+		/*
 		try {
-			createCart = cartServiceImpl.createCart(dto);
-		  	model.addAttribute("insertCart",createCart);  
-	    	System.out.println("insertCart :"+createCart);
+			Cart cart = Cart.toEntity(dto);
+			CartDto cartDto = CartDto.toDto(cart);
+			CartDto createCart = cartServiceImpl.createCart(cartDto);
+		  	model.addAttribute("createCart",createCart);  
 	    	return "cart";
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+		*/
 	}
     @Operation(summary = "장바구니 상품전체삭제")
     @DeleteMapping("/cart/{cartId}")
     public String deleteAllItemsInCart(@PathVariable(value = "cartId") Long cartId) {
         try {
-            CartDto deletedCart = cartServiceImpl.deleteAllByCartId(cartId);
+            cartServiceImpl.deleteAllByCartId(cartId);
             return "삭제완료";
         } catch (Exception e) {
             e.printStackTrace();

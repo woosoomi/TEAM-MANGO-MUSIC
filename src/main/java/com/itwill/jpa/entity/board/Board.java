@@ -85,7 +85,7 @@ public class Board {
 	@ToString.Exclude
 	private User user;
 
-	@OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
 	@Builder.Default
 	@ToString.Exclude
 	private List<BoardReply> boardReply = new ArrayList<>();

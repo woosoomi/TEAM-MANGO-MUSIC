@@ -10,7 +10,8 @@ public interface ProductVoteService {
 
 	// Vote 대상 뽑기 --> 20위 뽑기
 	List<Product> findbyTop20ByTotalScore();
-	/*
-	Product findByProductByVoteId(Long voteNo);
-	*/
+
+	
+//	Product findByProductByVoteId(Long voteNo);
+
 }

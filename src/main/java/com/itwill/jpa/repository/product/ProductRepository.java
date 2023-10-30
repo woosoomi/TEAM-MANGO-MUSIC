@@ -57,10 +57,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 * @Query(value = "SELECT * FROM product WHERE vote_id = :voteId", nativeQuery =
 	 * true) List<Product> findProductByVoteId(@Param("voteId") Long voteId);
 	 */
-	/*
-	@Query(value = "SELECT * FROM product p WHERE p.vote_id = :voteId")
-	Product findByProductByVoteId(@Param("voteId") Long voteId);
-	*/
+
+		
+//	@Query(value = "SELECT * FROM product p WHERE p.vote_id = :voteId")
+//	Product findByProductByVoteId(@Param("voteId") Long voteId);
+	
+
 	
     
 }
