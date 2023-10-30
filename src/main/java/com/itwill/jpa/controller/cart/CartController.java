@@ -20,12 +20,12 @@ import com.itwill.jpa.service.cart.CartServiceImpl;
 @RequestMapping("/")
 
 public class CartController {
-
+/*
 	@GetMapping("/cart")
 	public String cart() {
 		String forward_path = "cart";
 		return forward_path;
 	}
-  
+  */
 
 }
