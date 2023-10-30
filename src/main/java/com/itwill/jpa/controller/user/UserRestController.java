@@ -31,7 +31,7 @@ public class UserRestController {
 	private UserService userService;
 
 	@Operation(summary = "회원가입")
-	@PostMapping("/join")
+	@PostMapping(value = "/join", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> userCreate(@RequestBody UserDto userDto) {
 		   try {
 		        if (userService.existsById(userDto.getUserId())) {
@@ -51,7 +51,7 @@ public class UserRestController {
 		}
 
 	@Operation(summary = "로그인")
-	@PostMapping("/login")
+	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> userLogin(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
 		 try {
 		        User user = userService.findUser(userLoginDto.getUserId());
@@ -67,7 +67,7 @@ public class UserRestController {
 		}
 
 	@Operation(summary = "회원상세보기")
-	@GetMapping("/{userId}")
+	@GetMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> userView(@PathVariable(name = "userId") String userId, HttpSession session) throws Exception {
 		String sUserId = (String) session.getAttribute("sUserId");
 		if (sUserId == null || !sUserId.equals(userId)) {
@@ -82,7 +82,7 @@ public class UserRestController {
 	}
 
 	@Operation(summary = "회원업데이트")
-	@PutMapping("/{userId}")
+	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> updateUser(@PathVariable(name = "userId") String userId, @RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
 		String sUserId = (String) session.getAttribute("sUserId");
 		if (sUserId == null || !sUserId.equals(userId)) {
@@ -98,7 +98,7 @@ public class UserRestController {
 	}
 
 	@Operation(summary = "회원탈퇴")
-	@DeleteMapping("/{userId}")
+	@DeleteMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> deleteUser(@PathVariable(name = "userId") String userId, HttpSession session) {
 		String sUserId = (String) session.getAttribute("sUserId");
 		if (sUserId == null || !sUserId.equals(userId)) {
@@ -115,7 +115,7 @@ public class UserRestController {
 	}
 
 	@Operation(summary = "로그아웃")
-	@GetMapping("/logout")
+	@GetMapping(value = "/logout", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> logout(HttpSession session) {
 		session.invalidate();
 		return ResponseEntity.status(HttpStatus.OK).build();
