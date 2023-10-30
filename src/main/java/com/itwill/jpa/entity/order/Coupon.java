@@ -97,6 +97,8 @@ public class Coupon {
 				.couponDiscount(dto.getCouponDiscount())
 				.couponExpirationDate(dto.getCouponExpirationDate())
 				.couponIsUsed(dto.getCouponIsUsed())
+				.order(Order.builder().orderId(dto.getOrderId()).build())
+				.user(User.builder().userId(dto.getUserId()).build())
 				.build();	
 	}
 }
