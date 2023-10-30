@@ -22,6 +22,7 @@ public interface CartDao {
 	//모든 카트리스트 조회
 	List<Cart> findAllCartList() throws Exception;
 	
+	Cart findByCartId(Long cartId) throws Exception;
 	
 
 }

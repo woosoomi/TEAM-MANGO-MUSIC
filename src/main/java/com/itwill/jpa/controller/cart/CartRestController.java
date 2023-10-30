@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
+import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.service.cart.CartItemServiceImpl;
 import com.itwill.jpa.service.cart.CartService;

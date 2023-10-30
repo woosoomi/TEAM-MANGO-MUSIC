@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html lang="en" class="no-js">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head><!-- Basic need -->
-	<title>Open Pediatrics</title>
+	<title>Mango</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -18,7 +19,7 @@
 </head>
 
 <body><!--preloading-->
-	<div id="preloader"><img class="logo" src="images/logo1.png" alt="" width="119" height="58">
+	<div id="preloader"><img class="logo" src="images/mango_logo2.png" alt="" width="119" height="58">
 		<div id="status"><span></span><span></span></div>
 	</div><!--end of preloading--><!--login form popup-->
 	<div class="login-wrapper" id="login-content">
@@ -73,12 +74,11 @@
 		<div class="container">
 			<nav class="navbar navbar-default navbar-custom">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
+					<div class="navbar-header logo">
 					<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span
 							class="sr-only">Toggle navigation</span>
 						<div id="nav-icon1"><span></span><span></span><span></span></div>
-					</div><a href="index.html"><img class="logo" src="images/logo1.png" alt="" width="119"
-							height="58"></a>
+					</div><a href="index"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
 				</div><!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav flex-child-menu menu-left">
@@ -86,65 +86,55 @@
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1"
 								data-toggle="dropdown">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li><a href="index.html">Home 01</a></li>
-								<li><a href="homev2.html">Home 02</a></li>
-								<li><a href="homev3.html">Home 03</a></li>
+								<li><a href="index">mango music</a></li>
+
 							</ul>
 						</li>
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> movies<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								data-hover="dropdown"> 멜론차트<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Movie
-										grid<i class="ion-ios-arrow-forward"></i></a>
-									<ul class="dropdown-menu level2">
-										<li><a href="moviegrid.html">Movie grid</a></li>
-										<li><a href="moviegridfw.html">movie grid full width</a></li>
-									</ul>
-								</li>
-								<li><a href="movielist.html">Movie list</a></li>
-								<li><a href="moviesingle.html">Movie single</a></li>
-								<li class="it-last"><a href="seriessingle.html">Series single</a></li>
+								<li><a href="moviesingle.html">TOP100</a></li>
+								<li><a href="movielist.html">최신음악</a></li>
+								<li><a href="moviesingle.html">장르음악</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> celebrities <i class="fa fa-angle-down"
-									aria-hidden="true"></i></a>
+								data-hover="dropdown"> shop<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle.html">celebrity single</a></li>
+
+								<li><a href="moviesingle.html">망고티켓</a></li>
+								<li><a href="movielist.html">망고굿즈</a></li>
+								<li><a href="moviesingle.html">멤버쉽</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> news <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								data-hover="dropdown"> 뮤직어워드 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">blog List</a></li>
-								<li><a href="bloggrid.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail.html">blog Detail</a></li>
+								<li><a href="bloglist.html">뮤직어워드</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> community <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								data-hover="dropdown"> 게시판 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li><a href="userfavoritegrid.html">user favorite grid</a></li>
-								<li><a href="userfavoritelist.html">user favorite list</a></li>
-								<li><a href="userprofile.html">user profile</a></li>
-								<li class="it-last"><a href="userrate.html">user rate</a></li>
+								<li><a href="notification">공지사항</a></li>
+								<li><a href="#">FAQ</a></li>
+								<li><a href="magazine">magazine</a></li>
+								<li><a href="#">1대1문의</a></li>
+								<li><a href="event">이벤트</a></li>
+							</ul>
+						</li>
+					
+					<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
+								data-hover="dropdown"> 결제 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+							<ul class="dropdown-menu level1">
+								<li><a href="order_membership">멤버쉽결제</a></li>
+								<li><a href="order_ticket">티켓결제</a></li>
+								<li><a href="order_history">주문내역</a></li>
 							</ul>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> pages <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Help</a></li>
-						<li class="loginLink"><a href="#">LOG In</a></li>
+
 						<li class="btn signupLink"><a href="#">sign up</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
@@ -161,10 +151,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="hero-ct">
-						<h1>movie listing - list</h1>
+						<h1>주문내역</h1>
 						<ul class="breadcumb">
-							<li class="active"><a href="#">Home</a></li>
-							<li><span class="ion-ios-arrow-right"></span>movie listing</li>
+							<li class="active"><a href="index">Home</a></li>
+							<li><span class="ion-ios-arrow-right"></span><a href="order_history">Order History Page</a></li>
 						</ul>
 					</div>
 				</div>
@@ -176,25 +166,17 @@
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p>Found <span>1,608 movies</span>in total</p><label>Sort by:</label><select>
-							<option value="popularity">Popularity Descending</option>
-							<option value="popularity">Popularity Ascending</option>
-							<option value="rating">Rating Descending</option>
-							<option value="rating">Rating Ascending</option>
-							<option value="date">Release date Descending</option>
-							<option value="date">Release date Ascending</option>
-						</select><a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a><a
-							href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+						<p>Found
+							<span th:text="${#lists.size(orderDtoNewerList)}"></span>
+							<span>개의 주문내역 
+							</p><label>Sort by:</label><select>
+							<option value="popularity">최신순</option>
+							<option value="popularity">오래된순</option>
+						</select>
 					</div>
-					
-					<!--
-					<div th:each class="movie-item-style-2"><img src="images/uploads/don.jpg" alt="">
-					-->
-						
-					
-					<div class="movie-item-style-2"><img src="images/uploads/don.jpg" alt="">
+					<div class="movie-item-style-2"><img src="images/uploads/mv1.jpg" alt="">
 						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">oblivion <span>(2012)</span></a></h6>
+							<h6><a th:text="${orderDtoNewerList[0].orderId}"></a> [총 <a th:text="${#lists.size(orderDtoNewerList)}"></a>개]<span></span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span>8.1</span>/10</p>
 							<p class="describe">Earth's mightiest heroes must come together and learn to fight as a team
 								if they are to stop the mischievous Loki and his alien army from enslaving humanity...
@@ -269,61 +251,9 @@
 				</div>
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div class="sidebar">
-						<div class="searh-form">
-							<h4 class="sb-title">Search for movie</h4>
-							<form class="form-style-1" action="#">
-								<div class="row">
-									<div class="col-md-12 form-it"><label>Movie name</label><input type="text"
-											placeholder="Enter keywords"></div>
-									<div class="col-md-12 form-it"><label>Genres & Subgenres</label>
-										<div class="group-ip"><select name="skills" multiple=""
-												class="ui fluid dropdown">
-												<option value="">Enter to filter genres</option>
-												<option value="Action1">Action 1</option>
-												<option value="Action2">Action 2</option>
-												<option value="Action3">Action 3</option>
-												<option value="Action4">Action 4</option>
-												<option value="Action5">Action 5</option>
-											</select></div>
-									</div>
-									<div class="col-md-12 form-it"><label>Rating Range</label><select>
-											<option value="range">-- Select the rating range below --</option>
-											<option value="saab">-- Select the rating range below --</option>
-											<option value="saab">-- Select the rating range below --</option>
-											<option value="saab">-- Select the rating range below --</option>
-										</select></div>
-									<div class="col-md-12 form-it"><label>Release Year</label>
-										<div class="row">
-											<div class="col-md-6"><select>
-													<option value="range">From</option>
-													<option value="number">10</option>
-													<option value="number">20</option>
-													<option value="number">30</option>
-												</select></div>
-											<div class="col-md-6"><select>
-													<option value="range">To</option>
-													<option value="number">20</option>
-													<option value="number">30</option>
-													<option value="number">40</option>
-												</select></div>
-										</div>
-									</div>
-									<div class="col-md-12 "><input class="submit" type="submit" value="submit"></div>
-								</div>
-							</form>
-						</div>
-						<div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
-						<div class="sb-facebook sb-it">
-							<h4 class="sb-title">Find us on Facebook</h4><iframe src=""
-								data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhaintheme%2F%3Ffref%3Dts&tabs=timeline&width=340&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"
-								height="315" style="width:100%;border:none;overflow:hidden"></iframe>
-						</div>
-						<div class="sb-twitter sb-it">
-							<h4 class="sb-title">Tweet to us</h4>
-							<div class="slick-tw">
-								<div class="tweet item" id="599202861751410688"></div>
-								<div class="tweet item" id="297462728598122498"></div>
-							</div>
+<!--<div class="ads"><img src="images/aespa.png" alt=""></div>-->
+					<div class="ads2"><img src="images/aespa.png" alt=""></div>
+	<!--	<div class="ads2"><img src="images/bpk.png" alt=""></div>-->
 						</div>
 					</div>
 				</div>

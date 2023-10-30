@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.repository.cart.CartItemRepository;
-
+@Repository
 public class CartItemDaoImpl implements CartItemDao{
 	
 	@Autowired
@@ -47,6 +48,12 @@ public class CartItemDaoImpl implements CartItemDao{
 			throw new Exception("존재하지 않는 장바구니입니다.");
 		}
 		return updatedCart;
+	}
+
+	@Override
+	public CartItem findByCartItemId(Long cartItemId) throws Exception {
+		CartItem findCartItem = cartItemRepository.findById(cartItemId).get();
+		return findCartItem;
 	}
 
 }

@@ -58,7 +58,6 @@ public class CartServiceImpl implements CartService {
 	            Product product = cartItemDto.getProduct();
 	            ProductDto productDto = ProductDto.toDto(product);
 	            int qty = cartItemDto.getCartItemQty();
-
 	            if (productDto != null) {
 	                int productPrice = productDto.getProductPrice();
 	                totPrice += productPrice * qty;
