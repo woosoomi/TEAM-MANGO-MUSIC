@@ -84,7 +84,14 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		  ///System.out.println("업데이트 완료!!--->"+voteServiceImpl.updateVote(vote1));
 		   
 	}
-
+	
+	@Test
+	@Disabled
+	void selecteVoteTest() throws Exception {
+		System.out.println("@@@@@"+voteServiceImpl.selectByVoteNo(1L));
+	
+	}
+	
 	@Test
 	@Disabled
 	void deleteVoteTest() throws Exception {

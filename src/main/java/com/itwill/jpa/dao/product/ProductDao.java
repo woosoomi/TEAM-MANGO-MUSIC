@@ -35,4 +35,8 @@ public interface ProductDao {
 
 // 제품 선택	
 	Product selectProduct(Long productNo);	
+	
+	
+	
+	
 }

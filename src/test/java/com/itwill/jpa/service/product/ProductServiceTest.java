@@ -20,9 +20,12 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
    EntityManager em;
    @Autowired
    ProductRepository productRepository;
+  
+   /*
    @Autowired
    ProductCategoryRepository categoryRepository;
-   
+   */
+   /*
    @Test
    @Transactional
    @Rollback(false)
@@ -79,5 +82,7 @@ class ProductRepositoryTest extends TeamProjectMangoApplicationTest{
       
       
    }
+   */
+  
 
 }

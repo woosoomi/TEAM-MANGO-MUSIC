@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html lang="en" class="no-js">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
 
 <head><!-- Basic need -->
 	<title>MusicList</title>
@@ -69,7 +68,9 @@
 				<div class="row"><button type="submit">sign up</button></div>
 			</form>
 		</div>
-	</div><!--end of signup form popup--><!-- BEGIN | Header -->
+	</div><!--end of signup form popup-->
+	
+	<!-- BEGIN | Header -->
 	<header class="ht-header">
 		<div class="container">
 			<nav class="navbar navbar-default navbar-custom">
@@ -157,6 +158,8 @@
 					placeholder="Search for a movie, TV Show or celebrity that you are looking for"></div>
 		</div>
 	</header><!-- END | Header -->
+	
+	
 	<div class="hero common-hero">
 		<div class="container">
 			<div class="row">
@@ -177,25 +180,27 @@
 			<div class="row ipad-width2">
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p class="pad-change">Found <span>1,608 celebrities</span>in total</p><label>Sort
-							by:</label><select>
-							<option value="popularity">Popularity Descending</option>
-							<option value="popularity">Popularity Ascending</option>
+						<p class="pad-change">Total <span>1,608 </span> music</p><label>정렬 기준:</label><select>
+							<option value="popularity">인기도 오름차순</option>
+							<option value="popularity">인기도 내림차순</option>
 							<option value="rating">Rating Descending</option>
 							<option value="rating">Rating Ascending</option>
-							<option value="date">Release date Descending</option>
-							<option value="date">Release date Ascending</option>
+							<option value="date">출시일 오름차순</option>
+							<option value="date">출시일 내림차순</option>
 						</select><a href="celebritylist.html" class="list"><i class="ion-ios-list-outline "></i></a><a
 							href="celebritygrid02.html" class="grid"><i class="ion-grid active"></i></a>
 					</div>
+				<div th:each="musics : ${musics}">
+					<!-- 아래 row div 세칸 날아감...why-->
 					<div class="row">
 						<div class="col-md-4">
 							<div class="ceb-item-style-2"><img src="images/uploads/ceb21.jpg" alt="">
 								<div class="ceb-infor">
-									<h2><a href="celebritysingle.html">Leonardo DiCaprio</a></h2><span>actor, uk</span>
+									<h2><a th:href="@{/music_detail{productNo}}">Leonardo DiCaprio</a></h2><span>actor, uk</span>
 								</div>
 							</div>
 						</div>
+					</div>
 						<div class="col-md-4">
 							<div class="ceb-item-style-2"><img src="images/uploads/ceb22.jpg" alt="">
 								<div class="ceb-infor">
@@ -211,6 +216,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="row">
 						<div class="col-md-4">
 							<div class="ceb-item-style-2"><img src="images/uploads/ceb24.jpg" alt="">
@@ -472,9 +478,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="topbar-filter"><label>Reviews per page:</label><select>
-							<option value="range">36 Reviews</option>
-							<option value="saab">18 Reviews</option>
+					<div class="topbar-filter"><label>페이지 개수 보기 : </label><select>
+							<option value="range">36개씩 보기</option>
+							<option value="saab">18개씩 보기</option>
 						</select>
 						<div class="pagination2"><span>Page 1 of 6:</span><a class="active" href="#">1</a><a
 								href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a

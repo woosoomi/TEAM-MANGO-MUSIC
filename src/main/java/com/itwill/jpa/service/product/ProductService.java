@@ -3,6 +3,7 @@ package com.itwill.jpa.service.product;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -155,9 +156,6 @@ public interface ProductService{
 //	public Product findByProductAtrist(String productArtist);
 
 	/******************** INCREASE READCOUNT[DTO] ********************/
-
-
-
 
 	
 }

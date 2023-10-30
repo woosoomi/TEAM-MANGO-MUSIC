@@ -143,17 +143,20 @@ public class Product {
 	// product와 orderitem 1대n
 	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
+	@ToString.Exclude
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
 	// product와 productcategory n대1
 	@ManyToOne
 	@JoinColumn(name = "product_category_id")
 	@ToString.Exclude
+	
 	private ProductCategory productCategory;
 
 	// product와 cartitem 1대n
 	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
+	@ToString.Exclude
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
 	
 	// product와 productreply 1대n
