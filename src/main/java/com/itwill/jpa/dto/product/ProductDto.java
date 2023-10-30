@@ -25,6 +25,8 @@ import lombok.ToString;
 @Builder
 public class ProductDto {
 	
+	private Long productNo;
+	
 	private ProductCategory productCategory; // 프로덕트 카테고리
 	 	
 	private String productName;  // 프로덕트 이름
@@ -63,6 +65,7 @@ public class ProductDto {
 	
 	
 public ProductDto(Product product) {
+	this.productNo = product.getProductNo();
 	this.productName = product.getProductName();
 	this.productPrice = product.getProductPrice();
 	this.productContent = product.getProductContent();
@@ -80,6 +83,7 @@ public ProductDto(Product product) {
 //Entity to Dto 변환
 public static ProductDto toDto(Product entity) {
 	return ProductDto.builder()
+			.productNo(entity.getProductNo())
 			.productName(entity.getProductName())
 			.productPrice(entity.getProductPrice())
 			.productContent(entity.getProductContent())
@@ -99,6 +103,7 @@ public static ProductDto toDto(Product entity) {
 		List<ProductDto> productDtoList = new ArrayList<>();
 		 for(Product entity : entities) {
 			 ProductDto productDto = ProductDto.builder()
+					 	.productNo(entity.getProductNo())
 						.productName(entity.getProductName())
 						.productPrice(entity.getProductPrice())
 						.productContent(entity.getProductContent())

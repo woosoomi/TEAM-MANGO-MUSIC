@@ -41,7 +41,20 @@ class ProductServiceImplTest {
 		System.out.println("찾은 번호" + productOptional);
 
 	}
+	// productNo 찾기-DTO로 받기[성공]	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+    public void testFindProductDtoByProductNo() {
+        // 가상의 Product 엔티티 생성
+        Long productNo = 1L;
 
+        // 테스트 실행
+        Optional<ProductDto> productDtoOptional = productServiceImpl.findProductDtoByProductNo(productNo);
+        System.out.println("찾은 번호" + productDtoOptional);
+    }
+    
 	// 카테고리별 구분[성공]
 	@Test
 	@Transactional
@@ -128,7 +141,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testInserTicketDto() {
 	    // GoodsDto를 생성하고 categoryId 설정
 	    TicketDto ticketDto = new TicketDto();
@@ -188,14 +201,23 @@ class ProductServiceImplTest {
 		Product product = productServiceImpl.getProduct(productNo);
 		// 수정
 		product.setProductName("수정 테스트완료");
-
 		// updateProduct 메서드 호출
 		Product updatedProduct = productServiceImpl.updateProduct(product);
 	}
 	// product 수정[성공] - DTO로 받기[성공]
-//	public void test
-	
-	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testUpdateProductDto() throws Exception {
+		ProductDto productDto = productServiceImpl.findProductDtoByProductNo(2L).get();
+//		orElseThrow(null);
+		//수정
+		productDto.setProductName("수정DTO 테스트완료");
+		productDto.setProductArtist("가수 수정");
+		// updateProductDto 메서드 호출
+		ProductDto updateProductDto = productServiceImpl.updateProductDto(productDto);
+	}
 	// 제목키워드로 검색[성공]
 	@Test
 	@Transactional
@@ -251,7 +273,11 @@ class ProductServiceImplTest {
 			// 엔티티 못찾았을 경우의 예외처리
 		}
 	}
-
+//    @Test
+//    public void testIncreaseProductReadCountDto() {
+//    	ProductDto productOptionalDto = productRepository.findByIdDto(1L);
+//    	if(productOptionalDto.isPresent())
+//    }
 	
 	/******************* 진행중 *******************/
 //	// productName 찾기

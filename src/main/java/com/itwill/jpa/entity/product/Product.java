@@ -110,17 +110,17 @@ public class Product {
 		public static Ticket toEntity(TicketDto ticketDto) {
 			ProductCategoryDto productCategoryDto = ticketDto.getProductCategory();
 			ProductCategory productCategory = productCategoryDto.toEntity(); // ProductCategoryDto를 ProductCategory 엔티티로 변환
-		    Ticket tocket = new Ticket();
+		    Ticket ticket = new Ticket();
 		    // GoodsDto에서 Goods 엔티티로 필드 값을 복사 또는 초기화
-		    tocket.setProductCategory(productCategory);
-		    tocket.setProductName(ticketDto.getProductName());
-		    tocket.setProductPrice(ticketDto.getProductPrice());
-		    tocket.setProductStar(ticketDto.getProductStar());
-		    tocket.setProductDate(ticketDto.getProductDate());
-		    tocket.setReadCount(ticketDto.getReadCount());
-		    tocket.setProductStock(ticketDto.getProductStock());
-		    tocket.setProductImage(ticketDto.getProductImage());
-		    return tocket;
+		    ticket.setProductCategory(productCategory);
+		    ticket.setProductName(ticketDto.getProductName());
+		    ticket.setProductPrice(ticketDto.getProductPrice());
+		    ticket.setProductStar(ticketDto.getProductStar());
+		    ticket.setProductDate(ticketDto.getProductDate());
+		    ticket.setReadCount(ticketDto.getReadCount());
+		    ticket.setProductStock(ticketDto.getProductStock());
+		    ticket.setProductImage(ticketDto.getProductImage());
+		    return ticket;
 	}
 	}
 
