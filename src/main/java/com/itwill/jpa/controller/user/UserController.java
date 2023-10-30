@@ -32,12 +32,6 @@ public class UserController {
 		return forward_path;
 	}
 	
-	@GetMapping("/index2")
-	public String index2() {
-		String forward_path = "index2";
-		return forward_path;
-	}
-	
 	@GetMapping("/user_modify_form")
 	public String user_modify_form() {
 		String forward_path = "user_modify_form";
