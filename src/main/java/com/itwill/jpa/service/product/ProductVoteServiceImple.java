@@ -25,11 +25,12 @@ public class ProductVoteServiceImple implements ProductVoteService{
 		List<Product> findTop20ByTotalScore = productRepository.findTop20ByTotalScore(); 	
 		return findTop20ByTotalScore;
 	}
-
+	/*
 	@Override
 	public Product findByProductByVoteId(Long voteNo) {
 		Product findByProductByVoteId = productRepository.findByProductByVoteId(voteNo);
 		return findByProductByVoteId;
 	}
+	*/
 
 }

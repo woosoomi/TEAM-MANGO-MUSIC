@@ -35,11 +35,11 @@ class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		}
 		
 	
-		@Transactional
-		@Rollback(false)
-		@ParameterizedTest
-		@Disabled
-		public void testfindByProductByVoteId(Long voteNO) {
-		    System.out.println(">>>>>>>>>>" + productVoteServiceImple.findByProductByVoteId(1L));
-		}
+//		@Transactional
+//		@Rollback(false)
+//		@ParameterizedTest
+//		@Disabled
+//		public void testfindByProductByVoteId(Long voteNO) {
+//		    System.out.println(">>>>>>>>>>" + productVoteServiceImple.findByProductByVoteId(1L));
+//		}
 }
