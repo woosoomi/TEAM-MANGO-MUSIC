@@ -1,6 +1,10 @@
 
 package com.itwill.jpa.controller.user;
 
+import java.net.http.HttpHeaders;
+import java.nio.charset.Charset;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.user.UserDto;
@@ -20,6 +25,7 @@ import com.itwill.jpa.service.user.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.models.media.MediaType;
 import jakarta.servlet.http.HttpSession;
 
 
@@ -80,39 +86,34 @@ public class UserRestController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
+	 @Operation(summary = "회원리스트")
+	 @GetMapping("/")
+	    public ResponseEntity<List<UserDto>> getAllUsers() throws Exception {
+	        List<UserDto> users = userService.findUserList();
+	        return new ResponseEntity<>(users, HttpStatus.OK);
+	    }
 
 	@Operation(summary = "회원업데이트")
 	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> updateUser(@PathVariable(name = "userId") String userId, @RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
-		String sUserId = (String) session.getAttribute("sUserId");
-		if (sUserId == null || !sUserId.equals(userId)) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-		}
-
-		try {
-			userService.updateUser(userUpdateDto);
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
+	public ResponseEntity<UserUpdateDto> updateUser(@PathVariable String userId, @RequestBody UserUpdateDto userUpdateDto) {
+	    try {
+	        UserUpdateDto updatedUser = userService.updateUser(userUpdateDto);
+	        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+	    } catch (Exception e) {
+	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	    }
 	}
 
 	@Operation(summary = "회원탈퇴")
 	@DeleteMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> deleteUser(@PathVariable(name = "userId") String userId, HttpSession session) {
-		String sUserId = (String) session.getAttribute("sUserId");
-		if (sUserId == null || !sUserId.equals(userId)) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-		}
-
-		try {
-			userService.deleteUser(userId);
-			session.invalidate();
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-	}
+	public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
+        try {
+            userService.deleteUser(userId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 	@Operation(summary = "로그아웃")
 	@GetMapping(value = "/logout", produces = "application/json;charset=UTF-8")
@@ -121,4 +122,34 @@ public class UserRestController {
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
+	// 아이디 중복 체크 API
+	@Operation(summary = "아이디중복체크")
+    @GetMapping("/{userId}")
+    public ResponseEntity<Boolean> checkUserIdExists(@PathVariable String userId) throws Exception {
+        boolean exists = userService.existsById(userId);
+        return new ResponseEntity<>(exists, HttpStatus.OK);
+    }
+
+    // 아이디, 이메일로 아이디 찾기 API
+    @GetMapping("/find-id")
+    public ResponseEntity<String> findUserIdByUserNameUserEmail(@RequestParam(name = "user_name") String userName, @RequestParam(name = "user_email") String userEmail) {
+        try {
+            String foundUserId = userService.findUserIdByUserNameUserEmail(userName, userEmail);
+            return new ResponseEntity<>(foundUserId, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // 아이디, 전화번호로 비밀번호 찾기 API
+    @GetMapping("/find-pw")
+    public ResponseEntity<String> findUserPwByUserIdUserPhone(@RequestParam(name = "userId") String userId, @RequestParam(name = "user_phone") String userPhone) {
+        try {
+            String foundUserPw = userService.findUserPwByUserIdUserPhone(userId, userPhone);
+            return new ResponseEntity<>(foundUserPw, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
+
