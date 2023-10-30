@@ -39,7 +39,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Rollback(false)
 	//@Disabled
 	void cartItemInsert() throws Exception{
-		Optional<Cart> cart = cartRepository.findById(1L);
+		Optional<Cart> cart = cartRepository.findById(2L);
 		System.out.println("cart>>>>>>>>>>>"+cart);
 		//CartItemDto cartItem1 = CartItem.builder().cartItemId(0L).cartItemQty(10).cart(cart.get()).productId(1L).build();
 		//CartItem cartItem2 = CartItem.builder().cartItemId(0L).cartItemQty(15).cart(cart.get()).productId(2L).build();
@@ -49,7 +49,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	    cartItemDto1.setCartItemQty(10);
 	    Product product1 = new Product();
 	    product1.setProductNo(1L);
-	    cartItemDto1.setProduct(product1);
+	    cartItemDto1.setProductId(product1.getProductNo());
 	    cartItemDto1.setCartId(cart.get().getCartId());
 	   /*
 	    CartItemDto cartItemDto2 = new CartItemDto();

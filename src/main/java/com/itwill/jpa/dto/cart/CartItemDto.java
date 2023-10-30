@@ -1,6 +1,7 @@
 package com.itwill.jpa.dto.cart;
 
 
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
 
@@ -20,14 +21,14 @@ public class CartItemDto {
 	private Long cartItemId;
 	private int cartItemQty;
 	private Long cartId;
-	private Product product;
-
+	private Long productId;
+	
 	public static CartItemDto toDto(CartItem entity) {
 		return CartItemDto.builder()
 							.cartItemId(entity.getCartItemId())
 							.cartItemQty(entity.getCartItemQty())
 							.cartId(entity.getCart().getCartId())
-							.product(entity.getProduct())
+							.productId(entity.getProduct().getProductNo())
 							.build();
 	}
 }

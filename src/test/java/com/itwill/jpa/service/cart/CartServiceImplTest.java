@@ -43,7 +43,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void createCart() throws Exception {
 		
@@ -96,17 +96,13 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		        System.out.println("cart>>>>>>>>>>>>"+cart);
 		 }
 	}
-
-
-
-
 	/*
 	@Test
 	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void getCartItems() throws Exception {
-		Cart findCart = cartRepository.findById(1L).orElse(null);
+		Cart findCart = cartRepository.findById(2L).orElse(null);
 		CartDto toDto = CartDto.toDto(findCart); 
 		List<CartDto> dtos = cartServiceImpl.getCartItems(toDto);
 		System.out.println("find>>>>>>>>>>"+findCart);

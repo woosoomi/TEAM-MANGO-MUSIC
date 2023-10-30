@@ -17,15 +17,14 @@ import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.service.cart.CartServiceImpl;
 
 @Controller
-@RequestMapping("/")
 
 public class CartController {
-/*
+
 	@GetMapping("/cart")
 	public String cart() {
-		String forward_path = "cart";
-		return forward_path;
+		
+		return "cart";
 	}
-  */
+  
 
 }
