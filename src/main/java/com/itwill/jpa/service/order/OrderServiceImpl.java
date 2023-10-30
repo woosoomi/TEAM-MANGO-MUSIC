@@ -119,7 +119,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public double calculateTotalOrderPrice(String userId) {
 		
-		double totalPrice=0;
+		double orderPrice=0;
 		
 		 // 유저아이디로 주문 목록을 가져오는 메서드
 	    List<Order> userOrders = orderDao.getOrdersByUserId(userId);
@@ -133,11 +133,11 @@ public class OrderServiceImpl implements OrderService{
 				OrderItemDto dto = OrderItemDto.toDto(orderItem);
 				double itemPrice = dto.getProductPrice();
 				int itemQty = dto.getOiQty();
-				totalPrice += itemPrice * itemQty;
+				orderPrice += itemPrice * itemQty;
 			}
 	        
 	    }
-		return totalPrice;
+		return orderPrice;
 	}
 	
 	//멤버쉽 구매 결과 받아서 확인하고 유저 DB에 MemberShip true로 저장
