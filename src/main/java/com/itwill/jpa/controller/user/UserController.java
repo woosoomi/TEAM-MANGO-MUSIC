@@ -75,7 +75,7 @@ public class UserController {
 			throws Exception {
 		String forwardPath = "";
 		try {
-			userService.loginUser(userLoginDto);
+			userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
 			session.setAttribute("sUserId", userLoginDto.getUserId());
 			forwardPath = "redirect:index";
 		} catch (Exception e) {
