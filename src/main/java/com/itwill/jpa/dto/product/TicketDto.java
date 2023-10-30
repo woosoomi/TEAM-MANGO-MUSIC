@@ -44,6 +44,17 @@ public class TicketDto {
 	
 	private String productImage; // 프로덕트(티켓) 이미지
 	
+	/*=============== ProductCategoryId 주입을 위한 Dto와 매서드 ===============*/
+    private ProductCategoryDto productCategory;
+    
+	public ProductCategoryDto getProductCategory() {
+		return productCategory;
+	}
+    public void setProductCategory(ProductCategoryDto productCategory) {
+        this.productCategory = productCategory;
+    }
+    /*=================================================================*/
+    
 	//Dto에서 보여주는 ticket 정보가 무엇인지 설정하는 생성자(초기화)
 	public TicketDto(Ticket ticket) {
 		this.productName = ticket.getProductName();
@@ -90,4 +101,5 @@ public class TicketDto {
 		 }
 		 return ticketDtoList;
 	}
+	
 }
