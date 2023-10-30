@@ -68,7 +68,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		String UserId = "범석님";
         String UserPw = "8888";
         try {
-	        User loginUser = userService.loginUser(null);
+	        User loginUser = userService.loginUser(UserId, UserPw);
 	        assertNotNull(loginUser);
 	        assertEquals(UserId, loginUser.getUserId());
 	        
