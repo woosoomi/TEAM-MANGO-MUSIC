@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dao.product.ProductVoteDaoImpl;
 import com.itwill.jpa.dto.product.GoodsDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
@@ -24,12 +25,18 @@ import com.itwill.jpa.repository.product.ProductRepository;
 
 @SpringBootTest
 class ProductServiceImplTest {
+	
 	@Autowired
 	ProductServiceImpl productServiceImpl;
-	@Autowired
 
+	@Autowired
+	ProductVoteServiceImple productVoteServiceImple;
+
+	@Autowired
 	private ProductRepository productRepository;
 
+	
+	
 	// productNo 찾기[성공]
 	@Test
 	@Transactional
@@ -272,5 +279,8 @@ class ProductServiceImplTest {
 //		System.out.println("카테고리 ID: " + product.getProductCategory().getCategoryId());
 //	}
 //}
-	/******************************************/
+	
+	
+	
+	
 }
