@@ -2,6 +2,7 @@ package com.itwill.jpa.service.order;
 
 import java.util.List;
 
+import org.apache.catalina.Cluster;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,14 @@ import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.order.DeliveryDao;
 import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
+import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.order.DeliveryRepository;
+import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 import com.itwill.jpa.service.user.UserServiceImpl;
@@ -34,6 +38,9 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	DeliveryServiceImpl deliveryServiceImpl;
 	
 	@Autowired
+	OrderItemServiceImpl orderItemServiceImpl;
+	
+	@Autowired
 	OrderRepository orderRepository;
 	
 	@Autowired
@@ -41,6 +48,9 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	
 	@Autowired
 	DeliveryRepository deliveryRepository;
+	
+	@Autowired
+	OrderItemRepository orderItemRepository;
 	
 	@Autowired
 	UserDao userDao;
@@ -151,6 +161,6 @@ class OrderServiceImplTest extends TeamProjectMangoApplicationTest{
 	void orderListByOlder() {
 		List<OrderDto> orderDtoList = orderServiceImpl.orderListByOlder("why3795");
 		System.out.println(orderDtoList);
-	}
+	}	
 	
 }

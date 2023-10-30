@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
+import com.itwill.jpa.repository.product.ProductCategoryRepository;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -84,15 +86,19 @@ public class Product {
 	public static class Goods extends Product {
 		/*============Dto -> entity 변환해주는 매서드============*/		
 		public static Goods toEntity(GoodsDto goodsDto) {
-			return (Goods) Goods.builder()
-					.productName(goodsDto.getProductName())
-					.productPrice(goodsDto.getProductPrice())
-					.productStar(goodsDto.getProductStar())
-					.productDate(goodsDto.getProductDate())
-					.readCount(goodsDto.getReadCount())
-					.productStock(goodsDto.getProductStock())
-					.productImage(goodsDto.getProductImage())
-					.build();		
+			ProductCategoryDto productCategoryDto = goodsDto.getProductCategory();
+			ProductCategory productCategory = productCategoryDto.toEntity(); // ProductCategoryDto를 ProductCategory 엔티티로 변환
+		    Goods goods = new Goods();
+		    // GoodsDto에서 Goods 엔티티로 필드 값을 복사 또는 초기화
+		    goods.setProductCategory(productCategory);
+		    goods.setProductName(goodsDto.getProductName());
+		    goods.setProductPrice(goodsDto.getProductPrice());
+		    goods.setProductStar(goodsDto.getProductStar());
+		    goods.setProductDate(goodsDto.getProductDate());
+		    goods.setReadCount(goodsDto.getReadCount());
+		    goods.setProductStock(goodsDto.getProductStock());
+		    goods.setProductImage(goodsDto.getProductImage());
+		    return goods;
 	}
 	}
 	
@@ -102,17 +108,19 @@ public class Product {
 	public static class Ticket extends Product {
 		/*============Dto -> entity 변환해주는 매서드============*/		
 		public static Ticket toEntity(TicketDto ticketDto) {
-			return (Ticket) Ticket.builder()
-					.productName(ticketDto.getProductName())
-					.productPrice(ticketDto.getProductPrice())
-					.readCount(ticketDto.getReadCount())					
-					.productContent(ticketDto.getProductContent())
-					.productStar(ticketDto.getProductStar())
-					.productDate(ticketDto.getProductDate())
-					.productStock(ticketDto.getProductStock())
-					.productAddress(ticketDto.getProductAddress())
-					.productImage(ticketDto.getProductImage())
-					.build();		
+			ProductCategoryDto productCategoryDto = ticketDto.getProductCategory();
+			ProductCategory productCategory = productCategoryDto.toEntity(); // ProductCategoryDto를 ProductCategory 엔티티로 변환
+		    Ticket tocket = new Ticket();
+		    // GoodsDto에서 Goods 엔티티로 필드 값을 복사 또는 초기화
+		    tocket.setProductCategory(productCategory);
+		    tocket.setProductName(ticketDto.getProductName());
+		    tocket.setProductPrice(ticketDto.getProductPrice());
+		    tocket.setProductStar(ticketDto.getProductStar());
+		    tocket.setProductDate(ticketDto.getProductDate());
+		    tocket.setReadCount(ticketDto.getReadCount());
+		    tocket.setProductStock(ticketDto.getProductStock());
+		    tocket.setProductImage(ticketDto.getProductImage());
+		    return tocket;
 	}
 	}
 
