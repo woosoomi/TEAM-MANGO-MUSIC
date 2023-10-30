@@ -42,7 +42,7 @@ public class BoardRestController {
 	}
 	
 	@Operation(summary = "오래된 순서로 정렬[성공]")
-	@GetMapping
+	@GetMapping("/reverseSort")
 	public ResponseEntity<List<BoardDto>> getSortData(@RequestParam(name="no") Long categoryId, @RequestParam(name="id") String userId) {
 		List<Board> boardList = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(categoryId, userId);
 		List<BoardDto> boardDtoList = new ArrayList<BoardDto>();
