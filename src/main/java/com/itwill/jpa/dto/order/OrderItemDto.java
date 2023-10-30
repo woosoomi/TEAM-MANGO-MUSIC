@@ -26,7 +26,7 @@ public class OrderItemDto {
 	
 	private Long productNo;
 	
-//	private Long orderId;
+	private Long orderId;
 
 	
 	
@@ -47,7 +47,7 @@ public class OrderItemDto {
 		dto.setOiId(orderItem.getOiId());
 		dto.setOiQty(orderItem.getOiQty());
 		dto.setProductNo(orderItem.getProduct().getProductNo());
-//		dto.setOrderId(orderItem.getOrder().getOrderId());
+		dto.setOrderId(orderItem.getOrder().getOrderId());
 //		dto.setProductName(orderItem.getProduct().getProductName());
 		dto.setProductPrice(orderItem.getProduct().getProductPrice());
 //		dto.setProductImage(orderItem.getProduct().getProductImage());
@@ -61,7 +61,7 @@ public class OrderItemDto {
 				.oiQty(orderItem.getOiQty())
 				.productNo(orderItem.getProduct().getProductNo())
 				.productPrice(orderItem.getProduct().getProductPrice())
-//				.orderId(orderItem.getOrder().getOrderId())
+				.orderId(orderItem.getOrder().getOrderId())
 				.build();
 				
 	}
