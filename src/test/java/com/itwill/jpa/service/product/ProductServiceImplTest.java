@@ -14,6 +14,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.board.Board;
@@ -27,7 +28,6 @@ class ProductServiceImplTest {
 	@Autowired
 	ProductServiceImpl productServiceImpl;
 	@Autowired
-
 	private ProductRepository productRepository;
 
 	// productNo 찾기[성공]
@@ -103,26 +103,48 @@ class ProductServiceImplTest {
 		Music insertedMusic = productServiceImpl.insertMusic(music);
 	}
 	
-	// goods 추가 - DTO로 받기[진행중]
+	// goods 추가 - DTO로 받기[성공]
 	@Test
 	@Transactional
-//	@Rollback(false)
+	@Rollback(false)
 	@Disabled
 	public void testInsertGoodsDto() {
 	    // GoodsDto를 생성하고 categoryId 설정
 	    GoodsDto goodsDto = new GoodsDto();
-	    goodsDto.setCategoryId(2L); // categoryId를 설정
+        ProductCategoryDto productCategory = new ProductCategoryDto();
+        productCategory.setCategoryId(2L);
 	    goodsDto.setProductName("테스트 상품");
 	    goodsDto.setProductPrice(7777);
 	    goodsDto.setProductStock(100);
-	    // 기타 속성을 필요에 따라 설정합니다.
-
-	    // insertGoodsDto 메서드를 호출합니다.
+	    goodsDto.setProductCategory(productCategory);
+	    // insertGoodsDto 메서드 호출
 	    GoodsDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
-		
+		System.out.println(goodsDto.getProductName());
+		System.out.println(goodsDto.getProductPrice());
+		System.out.println(goodsDto.getProductCategory());
 		
 	}
-	
+	// ticket 추가 - DTO로 받기[성공]
+	@Test
+	@Transactional
+	@Rollback(false)
+//	@Disabled
+	public void testInserTicketDto() {
+	    // GoodsDto를 생성하고 categoryId 설정
+	    TicketDto ticketDto = new TicketDto();
+        ProductCategoryDto productCategory = new ProductCategoryDto();
+        productCategory.setCategoryId(3L);
+	    ticketDto.setProductName("테스트 상품");
+	    ticketDto.setProductPrice(7777);
+	    ticketDto.setProductStock(100);
+	    ticketDto.setProductCategory(productCategory);
+	    // insertGoodsDto 메서드 호출
+	    TicketDto savedTicketDto = productServiceImpl.insertTicketDto(ticketDto);
+		System.out.println(ticketDto.getProductName());
+		System.out.println(ticketDto.getProductPrice());
+		System.out.println(ticketDto.getProductCategory());
+		
+	}	
 	
 	// product 삭제[성공]
 	@Test
