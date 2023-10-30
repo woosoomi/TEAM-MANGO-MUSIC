@@ -58,7 +58,9 @@ public class ProductController2 {
 	@GetMapping("/MembershipDetail")
 	public String MembershipDetail(Model model) {
 		try {
-			
+			List<Product> memberships = productServiceImpl.findByCategoryId(4L);
+			model.addAttribute("memberships", memberships);
+			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
 			return "MembershipDetail";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,6 +69,64 @@ public class ProductController2 {
 		}
 	}
 
-	
+	// 굿즈리스트
+		@GetMapping("/GoodsList")
+		public String GoodsList(Model model) {
+			try {
+				List<Product> goods = productServiceImpl.findByCategoryId(2L);
+				model.addAttribute("goods", goods);
+				System.out.println(">>>GOODS LIST : " + goods);
+				return "GoodsList";
+			} catch (Exception e) {
+				e.printStackTrace();
+				model.addAttribute(e.getMessage());
+				return "index";
+			}
+		
+		}
+		
+		// 티켓리스트
+		@GetMapping("/TicketList")
+		public String TicketList(Model model) {
+			try {
+				List<Product> tickets = productServiceImpl.findByCategoryId(3L);
+				model.addAttribute("tickets", tickets);
+				System.out.println(">>>TICKET LIST : " + tickets);
+				return "TicketList";
+			} catch (Exception e) {
+				e.printStackTrace();
+				model.addAttribute(e.getMessage());
+				return "index";
+			}
+			
+		}
+		
+		// 티켓디테일
+		@GetMapping("/TicketDetail")
+		public String TicketDetail(Model model) {
+			try {
+				
+				return "TicketDetail";
+			} catch (Exception e) {
+				e.printStackTrace();
+				model.addAttribute(e.getMessage());
+				return "index";
+			}
+			
+		}
+		
+		// 굿즈디테일
+		@GetMapping("/GoodsDetail")
+		public String GoodsDetail(Model model) {
+			try {
+				
+				return "GoodsDetail";
+			} catch (Exception e) {
+				e.printStackTrace();
+				model.addAttribute(e.getMessage());
+				return "index";
+			}
+			
+		}
 	
 }

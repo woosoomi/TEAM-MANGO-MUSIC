@@ -27,8 +27,10 @@ public interface ProductService{
 	@Transactional
 //Product//	
 	Product getProduct(Long productNo); 
-	
+
 	List<Product> productList(); 
+	
+	List<Product> getProductsByCategory(Long categoryId);
 	
 	
 	// 좋아요 누르기 기능[성공]
@@ -84,7 +86,10 @@ public interface ProductService{
 	
 	/******************** INCREASE READCOUNT ********************/	
 	// product 조회수 올리기[성공]
-	public Product increaseReadCount(Product product);
+	Product increaseReadCount(Product product);
+	
+	/******************** INCREASE READCOUNT[DTO] ********************/
+	ProductDto increaseProductReadCountDto(ProductDto productDto) throws Exception;
 	// goods 조회수 올리기 - DTO
 	GoodsDto increaseGoodsReadCountDto(GoodsDto goodsDto) throws Exception;
 
@@ -125,14 +130,13 @@ public interface ProductService{
 	public List<Product> findByCategoryId(Long categoryId);
 	
 	// product categoryId별로 전체나열 - DTO	
-	List<ProductDto> findProductByCategoryId(Long categoryId);
-	
-	// ticket categoryId별로 전체나열 - DTO	
-	List<GoodsDto> findGoodsByCategoryId(Long categoryId);
-	
+	List<ProductDto> findByProductCategoryId(Long categoryId);
+		
 	// ticket categoryId별로 전체나열 - DTO	
 	List<TicketDto> findTicketByCategoryId(Long categoryId);
 		
+	// goods categoryId별로 전체나열 - DTO	
+	List<GoodsDto> findGoodsByCategoryId(Long categoryId);
 	/*********************************************/	
 	
 	// product category별 분류
@@ -141,11 +145,16 @@ public interface ProductService{
 	// productNo 찾기[성공]
 	public Optional<Product> findByProductNo(Long productNo);
 	
-	// productName 찾기
-	public Product findByProductName(String productName);
-	
-	// productArtist 찾기
-	public Product findByProductAtrist(String productArtist);
+//	// productName 찾기
+//	public Product findByProductName(String productName);
+//	
+//	// productArtist 찾기
+//	public Product findByProductAtrist(String productArtist);
+
+	/******************** INCREASE READCOUNT[DTO] ********************/
+
+
+
 
 	
 }
