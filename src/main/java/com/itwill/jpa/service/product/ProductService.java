@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.product.Product;
@@ -32,7 +33,9 @@ public interface ProductService{
 	
 	List<Product> getProductsByCategory(Long categoryId);
 	
-	
+//ProductCategory//		
+    void saveProductCategory(ProductCategoryDto productCategoryDto);
+
 	// 좋아요 누르기 기능[성공]
 	Long checkLikeService(Long productNo);
 

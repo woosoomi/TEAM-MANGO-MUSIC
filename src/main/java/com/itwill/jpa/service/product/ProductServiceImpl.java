@@ -21,6 +21,7 @@ import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
+import com.itwill.jpa.repository.product.ProductCategoryRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -32,6 +33,8 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ProductRepository productRepository;
 	
+	@Autowired
+	private ProductCategoryRepository productCategoryRepository;
 	@Autowired
 	ProductDao productDao;
 	
@@ -139,7 +142,10 @@ public class ProductServiceImpl implements ProductService{
 		return ticketDtoList;
 	}	
 /*********************************************/	
-	
+    public void saveProductCategory(ProductCategoryDto dto) {
+        ProductCategory productCategory = dto.toEntity();
+        productCategoryRepository.save(productCategory);
+    }
 /******************** insert[ENTITY] ********************/	
 	//product 추가[성공]
 	@Override
@@ -170,7 +176,7 @@ public class ProductServiceImpl implements ProductService{
 	
 /******************** INSERT[DTO] ********************/
 	
-	// goods 등록 - DTO	
+	// goods 등록 - DTO	[성공]
 	@Override
 	public GoodsDto insertGoodsDto(GoodsDto dto) {
 		Goods goods = productRepository.save(Goods.toEntity(dto));
