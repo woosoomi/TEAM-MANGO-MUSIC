@@ -80,7 +80,7 @@ public class Order {
 	
 	// order와 user n대1
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	//order와 orderitem 1대n
