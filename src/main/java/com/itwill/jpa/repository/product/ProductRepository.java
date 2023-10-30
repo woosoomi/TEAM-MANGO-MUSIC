@@ -26,6 +26,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 // productNo로 찾기
 	Optional<Product> findById(Long productNo);
 	
+// productNo로 찾기[DTO]	
+	@Query("SELECT p FROM Product p WHERE p.productNo = :productNo")
+	Optional<ProductDto> findByIdDto(@Param("productNo") Long productNo);
+	
 	ProductDto save(ProductDto productDto);
 	
 	/******************** categoryId별로 전체나열 ********************/	
@@ -57,10 +61,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 * @Query(value = "SELECT * FROM product WHERE vote_id = :voteId", nativeQuery =
 	 * true) List<Product> findProductByVoteId(@Param("voteId") Long voteId);
 	 */
+
 		
 //	@Query(value = "SELECT * FROM product p WHERE p.vote_id = :voteId")
 //	Product findByProductByVoteId(@Param("voteId") Long voteId);
 	
+
 	
     
 }

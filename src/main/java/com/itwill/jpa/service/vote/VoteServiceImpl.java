@@ -21,21 +21,21 @@ public class VoteServiceImpl implements VoteService {
 	@Autowired
 	UserRepository userRepository;	
 
-	// 투표 생성 --> 테스트완료
+	// 투표 생성 -->  테스트 /컨트롤러 완료
 	@Override
 	public Vote createVote(Vote vote) {
 	
 		return voteRepository.save(vote);
 	}
 	
-	// 전체 투표 리스트 검색--> 테스트완료
+	// 전체 투표 리스트 검색-->  테스트 /컨트롤러 완료
 	@Override
 	public List<Vote> findVoteListAll() throws Exception {
 		List<Vote> findVoteList = voteRepository.findAll();
 		return findVoteList;
 	}
 	
-	//투표번호로 투표 1개 선택--> 테스트완료
+	//투표번호로 투표 1개 선택-->  테스트 /컨트롤러 완료
 	@Override
 	public Vote selectByVoteNo(Long no) throws Exception {
 		Optional<Vote> selectByVoteNo = voteRepository.findById(no);
@@ -46,13 +46,13 @@ public class VoteServiceImpl implements VoteService {
 		return selectedByVoteNo;
 	}
 	
-	// 투표번호로 투표 삭제 --> 테스트완료
+	// 투표번호로 투표 삭제 -->  테스트 /컨트롤러 완료
 	public void deleteByVoteNo(Long no) throws Exception {
 	    voteRepository.deleteById(no);
 	}
 	
 	
-	//투표 업데이트
+	//투표 업데이트--> 테스트 / 컨트롤러 완료 
 		@Override
 		public Vote updateVote(Vote vote) throws Exception {
 			

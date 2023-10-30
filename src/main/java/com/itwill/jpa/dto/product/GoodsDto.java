@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
@@ -91,5 +92,6 @@ public class GoodsDto {
 		 }
 		 return goodsDtoList;
 	}
+
 
 	}

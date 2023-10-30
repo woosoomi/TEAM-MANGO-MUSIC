@@ -19,5 +19,8 @@ public interface UserRepository extends JpaRepository<User, String> {
 	  String findUserPwByUserIdUserPhone(@Param("user_id") String userId , @Param("user_phone") String userPhone);
 	 
 	  //public  User findByUsername(String username);
-
+	  
+	  // 유저의 투표번호로 유저정보 조회
+	  List<User> findByVote_VoteId(Long voteId);
+	  
 }

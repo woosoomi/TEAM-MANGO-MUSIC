@@ -74,7 +74,7 @@
 		<div class="container">
 			<nav class="navbar navbar-default navbar-custom">
 				<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header logo">
+				<div class="navbar-header logo">
 					<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span
 							class="sr-only">Toggle navigation</span>
 						<div id="nav-icon1"><span></span><span></span><span></span></div>
@@ -153,7 +153,8 @@
 						<h1>주문하기</h1>
 						<ul class="breadcumb">
 							<li class="active"><a href="index">Home</a></li>
-							<li><span class="ion-ios-arrow-right"></span><a href="order_ticket">Order Ticket Page</a></li>
+							<li><span class="ion-ios-arrow-right"></span><a href="order_ticket">Order Ticket Page</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -165,90 +166,44 @@
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p th:text="${context.user_id} + ' 님의 ' + ${#lists.size(context.orderItemDtoList)} + '개의 주문입니다.'"></p>
-						</div>
+						<p
+							th:text="${context.user_id} + ' 님의 ' + ${#lists.size(context.orderItemDtoList)} + '개의 티켓 주문입니다.'">
+						</p>
+					</div>
 					<div class="movie-item-style-2"><img src="images/iugoldenconcert.webp" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="moviesingle.html">아이유 콘서트 : 더 골든 아워 <span>(2023)</span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>9.75</span>/10</p>
-							
-							<p class="describe">
-							데뷔 15주년 기념, <아이유 콘서트 : 더 골든 아워> CGV 개봉!
+							<p class="rate"><i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
+											<i class="ion-android-star"></i>
+							</p>
 
-							한국 여자 가수 최초로 올림픽주경기장에 입성한
-							아이유의 단독 콘서트 'The Golden Hour'를 극장에서 만난다!
-							
-							전율을 선사한 무반주 오프닝을 시작으로 우리가 사랑한 노래들로 꽉 채워진 셋 리스트,
-							올림픽주경기장에 뜬 스트로베리 문 열기구부터 불꽃놀이,
-							드론 쇼까지 눈과 귀를 황홀하게 만드는 마법 같은 무대연출!
-							
-							레전드 무대와 꽉 찬 라이브로 행복했던 우리들의 ‘골든 아워’
-							2023년 9월, 잊지 못할 감동이 스크린에서 펼쳐진다!
+							<p class="describe">
+								데뷔 15주년 기념, <아이유 콘서트 : 더 골든 아워> CGV 개봉!
+
+									한국 여자 가수 최초로 올림픽주경기장에 입성한
+									아이유의 단독 콘서트 'The Golden Hour'를 극장에서 만난다!
+
+									전율을 선사한 무반주 오프닝을 시작으로 우리가 사랑한 노래들로 꽉 채워진 셋 리스트,
+									올림픽주경기장에 뜬 스트로베리 문 열기구부터 불꽃놀이,
+									드론 쇼까지 눈과 귀를 황홀하게 만드는 마법 같은 무대연출!
+
+									레전드 무대와 꽉 찬 라이브로 행복했던 우리들의 ‘골든 아워’
+									2023년 9월, 잊지 못할 감동이 스크린에서 펼쳐진다!
 							</p>
-							
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 13 Sep
-									2023</span></p>
-							<p>Director: <a href="#">Joss Whedon</a></p>
-							<p>Stars: <a href="#">Robert Downey Jr.,</a><a href="#">Chris Evans,</a><a href="#">Chris
-									Hemsworth</a></p>
+
+							<p class="run-time">러닝타임: 2h21’ <span>공연일자: 13 Sep 2023</span></p>
+							<p>Director: <a href="#">IU</a></p>
+							<p>Stars: <a href="#">Jordan Ayew,</a><a href="#">Andre Ayew,</a><a href="#">Ya Neun Nugu
+									Ayew</a></p>
 						</div>
 					</div>
-					<div class="movie-item-style-2"><img src="images/uploads/mv2.jpg" alt="">
-						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">into the wild <span>(2014)</span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>7.8</span>/10</p>
-							<p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he
-								teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new
-								threat...</p>
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
-									2015</span></p>
-							<p>Director: <a href="#">Anthony Russo,</a><a href="#">Joe Russo</a></p>
-							<p>Stars: <a href="#">Chris Evans,</a><a href="#">Samuel L. Jackson,</a><a href="#">Scarlett
-									Johansson</a></p>
-						</div>
-					</div>
-					<div class="movie-item-style-2"><img src="images/uploads/mv3.jpg" alt="">
-						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">blade runner <span>(2015)</span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>7.3</span>/10</p>
-							<p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale
-								but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...
-							</p>
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
-									2015</span></p>
-							<p>Director: <a href="#">Peyton Reed</a></p>
-							<p>Stars: <a href="#">Paul Rudd,</a><a href="#">Michael Douglas</a></p>
-						</div>
-					</div>
-					<div class="movie-item-style-2"><img src="images/uploads/mv4.jpg" alt="">
-						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">Mulholland pride<span>(2013) </span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>7.2</span>/10</p>
-							<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called
-								the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
-									2015</span></p>
-							<p>Director: <a href="#">Shane Black</a></p>
-							<p>Stars: <a href="#">Robert Downey Jr.,</a><a href="#">Guy Pearce,</a><a href="#">Don
-									Cheadle</a></p>
-						</div>
-					</div>
-					<div class="movie-item-style-2"><img src="images/uploads/mv5.jpg" alt="">
-						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">skyfall: evil of boss<span>(2013) </span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>7.0</span>/10</p>
-							<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called
-								the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
-									2015</span></p>
-							<p>Director: <a href="#">Alan Taylor</a></p>
-							<p>Stars: <a href="#">Chris Hemsworth,</a><a href="#">Natalie Portman,</a><a href="#">Tom
-									Hiddleston</a></p>
-						</div>
-					</div>
-					<div class="topbar-filter"><label>Movies per page:</label><select>
-							<option value="range">5 Movies</option>
-							<option value="saab">10 Movies</option>
+
+					<div class="topbar-filter"><label>Tickets per page:</label><select>
+							<option value="range">5 Tickets</option>
+							<option value="saab">10 Tickets</option>
 						</select>
 						<div class="pagination2"><span>Page 1 of 2:</span><a class="active" href="#">1</a><a
 								href="#">2</a><a href="#"><i class="ion-arrow-right-b"></i></a></div>
@@ -260,26 +215,18 @@
 							<h4 class="sb-title">결제상세</h4>
 							<form class="form-style-1" action="#">
 								<div class="row">
-									<div class="col-md-12 form-it"><label>주문금액</label><input type="text"
-											placeholder="Enter keywords"></div>
-									<div class="col-md-12 form-it"><label>상품금액</label>
+									<div class="col-md-12 form-it"><label>티켓명</label><input type="text"
+											placeholder="아이유 콘서트 : 더 골든 아워 (2023)"></div>
+									<div class="col-md-12 form-it"><label>쿠폰선택</label>
 										<div class="group-ip"><select name="skills" multiple=""
 												class="ui fluid dropdown">
-												<option value="">Enter to filter genres</option>
-												<option value="Action1">Action 1</option>
-												<option value="Action2">Action 2</option>
-												<option value="Action3">Action 3</option>
-												<option value="Action4">Action 4</option>
-												<option value="Action5">Action 5</option>
+												<option value="">쿠폰을 선택하세요</option>
+												<option value="Action1">쿠폰1</option>
+												<option value="Action2">쿠폰2</option>
+												<option value="Action3">쿠폰3</option>
 											</select></div>
 									</div>
-									<div class="col-md-12 form-it"><label>배송비</label><select>
-											<option value="range">-- Select the rating range below --</option>
-											<option value="saab">-- Select the rating range below --</option>
-											<option value="saab">-- Select the rating range below --</option>
-											<option value="saab">-- Select the rating range below --</option>
-										</select></div>
-									<div class="col-md-12 form-it"><label>쿠폰할인</label>
+									<div class="col-md-12 form-it"><label>할인적용</label>
 										<div class="row">
 											<div class="col-md-6"><select>
 													<option value="range">From</option>
@@ -295,11 +242,14 @@
 												</select></div>
 										</div>
 									</div>
+									<div class="col-md-12 form-it"><label>결제금액</label><input type="text"
+											placeholder="최종금액"></div>
+
 									<div class="col-md-12 "><input class="submit" type="submit" value="결제하기"></div>
 								</div>
 							</form>
 						</div>
-						<div class="ads"><img src="images/giveonconcert.jpeg" alt=""></div>
+						<div class="ads"><img src="" alt=""></div>
 					</div>
 				</div>
 			</div>
