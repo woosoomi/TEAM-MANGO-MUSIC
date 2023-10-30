@@ -2,8 +2,8 @@ package com.itwill.jpa.dao.cart;
 
 import java.util.List;
 
-import com.itwill.jpa.entity.cart.CartItem;
 
+import com.itwill.jpa.entity.cart.CartItem;
 public interface CartItemDao {
 	
 	//cartItem 추가
@@ -16,4 +16,5 @@ public interface CartItemDao {
 	//cartitem 업데이트
 	CartItem updateByUserId(CartItem cartItem) throws Exception;
 	
+	CartItem findByCartItemId(Long cartItemId) throws Exception;
 }

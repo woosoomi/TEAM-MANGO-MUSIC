@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.jpa.dao.cart.CartDao;
+import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.cart.Cart;
@@ -28,9 +30,22 @@ public class CartItemServiceImpl implements CartItemService {
 	ProductRepository productRepository;
 	@Autowired
 	CartRepository cartRepository;
+	@Autowired
+	ProductDao productDao;
+	@Autowired
+	CartDao cartDao;
 	
 	@Override
 	public CartItemDto insert(CartItemDto dto) throws Exception {
+	    Product product = productDao.selectProduct(dto.getProduct().getProductNo());
+	    Cart cart = cartDao.findByCartId(dto.getCartId());
+	    CartItem cartItem = new CartItem();
+	    cartItem.setCartItemQty(dto.getCartItemQty());
+	    cartItem.setProduct(product); 
+	    cartItem.setCart(cart);
+	    cartItem = cartItemRepository.save(cartItem);
+	    return CartItemDto.toDto(cartItem);
+		/*
 		Product product = productRepository.findById(dto.getProduct().getProductNo()).orElse(null);
 		Cart cart = cartRepository.findById(dto.getCartId()).orElse(null);
 		CartItem cartItem = CartItem.toEntity(dto);
@@ -38,6 +53,7 @@ public class CartItemServiceImpl implements CartItemService {
 		cartItem.setProduct(product);
 		cartItem=cartItemRepository.save(cartItem);
 		return CartItemDto.toDto(cartItem);
+		*/
 	}
 
 	@Override
