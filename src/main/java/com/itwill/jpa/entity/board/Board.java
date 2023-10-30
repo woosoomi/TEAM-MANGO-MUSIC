@@ -64,6 +64,7 @@ public class Board {
     				.updateTime(dto.getUpdateTime())
     				.boardCategory(BoardCategory.builder().id(dto.getBoardCategoryId()).build())
     				.boardType(BoardType.builder().typeId(dto.getBoardTypeId()).build())
+    				.user(User.builder().userId(dto.getUserId()).build())
     				.build();
 		return board;
     }

@@ -22,9 +22,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.servlet.http.HttpSession;
 
-@RestController
 
-@RequestMapping("/users")
+@RestController
+@RequestMapping("/user")
 public class UserRestController {
 
 	@Autowired
@@ -33,37 +33,50 @@ public class UserRestController {
 	@Operation(summary = "회원가입")
 	@PostMapping("/join")
 	public ResponseEntity<?> userCreate(@RequestBody UserDto userDto) {
-		try {
-			UserDto createdUser = userService.createUser(userDto);
-			return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		   try {
+		        if (userService.existsById(userDto.getUserId())) {
+		            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 존재하는 아이디입니다.");
+		        }
+
+		        UserDto createdUser = new UserDto();
+		        createdUser.setUserId(userDto.getUserId());
+		        createdUser.setUserPw(userDto.getUserPw());
+
+		        userService.createUser(createdUser);
+
+		        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공");
+		    } catch (Exception e) {
+		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입 실패: " + e.getMessage());
+		    }
 		}
-	}
 
 	@Operation(summary = "로그인")
 	@PostMapping("/login")
 	public ResponseEntity<?> userLogin(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
-		try {
-			userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-			session.setAttribute("sUserId", userLoginDto.getUserId());
-			return ResponseEntity.status(HttpStatus.OK).build();
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+		 try {
+		        User user = userService.findUser(userLoginDto.getUserId());
+		        if (user != null && user.getUserPw().equals(userLoginDto.getUserPw())) {
+		            session.setAttribute("sUserId", userLoginDto.getUserId());
+		            return ResponseEntity.status(HttpStatus.OK).build();
+		        } else {
+		            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
+		        }
+		    } catch (Exception e) {
+		        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+		    }
 		}
-	}
 
 	@Operation(summary = "회원상세보기")
 	@GetMapping("/{userId}")
 	public ResponseEntity<?> userView(@PathVariable(name = "userId") String userId, HttpSession session) throws Exception {
 		String sUserId = (String) session.getAttribute("sUserId");
 		if (sUserId == null || !sUserId.equals(userId)) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(" 권한이 없습니다.");
 		}
 
 		User user = userService.findUser(userId);
 		if (user == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다.");
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
