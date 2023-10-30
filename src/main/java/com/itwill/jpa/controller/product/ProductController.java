@@ -20,7 +20,7 @@ public class ProductController {
 
 	@Autowired
 	private final ProductServiceImpl productServiceImpl;
-
+/*
 	// 굿즈리스트
 	@GetMapping("/GoodsList")
 	public String GoodsList(Model model) {
@@ -49,7 +49,7 @@ public class ProductController {
 		return "GoodsDetail";
 	}
 	
-
+*/
 	
 	
 }

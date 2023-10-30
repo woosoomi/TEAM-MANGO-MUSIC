@@ -35,12 +35,13 @@ public class ProductRestController2 {
 		}
 	}
 	
+	//detail 별로 rest파일 분리 필요? -> 각 카테고리 별로 dto 묶어서 작업...maybe
+	
 	@PostMapping("/music/create")
 	public ResponseEntity<Product> createMusic(@RequestBody Product product){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(productService.insertProduct(product));
 	}
-	//나중에 뮤직dto쪽에 연결해서 쓸 생각 - 서비스에도 dto 연결 필요
 	
 
 	@PutMapping("/update")

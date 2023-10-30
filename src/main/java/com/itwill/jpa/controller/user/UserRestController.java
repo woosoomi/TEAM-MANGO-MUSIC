@@ -1,6 +1,7 @@
 /*
- * package com.itwill.jpa.controller.user; import
- * org.springframework.beans.factory.annotation.Autowired; import
+ * package com.itwill.jpa.controller.user;
+ * 
+ * import org.springframework.beans.factory.annotation.Autowired; import
  * org.springframework.http.HttpStatus; import
  * org.springframework.http.ResponseEntity; import
  * org.springframework.web.bind.annotation.DeleteMapping; import
@@ -23,8 +24,8 @@
  * 
  * @Autowired private UserService userService;
  * 
- * @PostMapping public ResponseEntity<?> createUser(@RequestBody User user) {
- * try { User createdUser = userService.createUser(user); return
+ * @PostMapping public ResponseEntity<?> user_write_action(@RequestBody User
+ * user) { try { User createdUser = userService.createUser(user); return
  * ResponseEntity.status(HttpStatus.CREATED).body(createdUser); } catch
  * (Exception e) { return
  * ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage()); } }
@@ -69,7 +70,6 @@
  * 
  * @GetMapping("/logout") public ResponseEntity<?> logout(HttpSession session) {
  * session.invalidate(); return ResponseEntity.status(HttpStatus.OK).build(); }
- * 
  * 
  * }
  */
