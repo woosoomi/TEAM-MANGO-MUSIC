@@ -43,7 +43,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
 	void createCart() throws Exception {
 		
@@ -52,10 +52,13 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		if (findUser.isPresent()) {
 			User user = findUser.get();
 			System.out.println("user>>>>>>>>>>>>>>>>>>"+user);
-			CartDto cart1 = CartDto.builder().cartId(0L).cartTotPrice(1000).userId(user.getUserId()).build();
-			System.out.println("cart1>>>>>>>>>>>>>>>>"+cart1);
-			CartDto insertedCart=cartServiceImpl.createCart(cart1);
-			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+insertedCart);
+			CartDto cartDto = new CartDto();
+			cartDto.setCartId(0L);
+			cartDto.setUserId(user.getUserId());
+			cartDto.setCartTotPrice(10);
+			System.out.println("cart1>>>>>>>>>>>>>>>>"+cartDto);
+			CartDto createCart = cartServiceImpl.createCart(cartDto);
+			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+createCart);
 		}
 
 	}
@@ -77,7 +80,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void calTotPrice() throws Exception {
