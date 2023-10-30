@@ -51,5 +51,22 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	Product findByProductArtist(String productArtist);
 
 	
+/************************ Vote관련  ***************************/	
+	// 상품에서 음악 조회수(readCount), 음악 별점(productStar)의 합산해서 Top 20명 추출
+	@Query(value = "SELECT p FROM Product p ORDER BY (COALESCE(p.readCount, 0) + COALESCE(p.productStar, 0)) DESC")
+	List<Product> findTop20ByTotalScore();
+		
+	// Product의 voteId로 Vote 조회
+	/*
+	 * @Query(value = "SELECT * FROM product WHERE vote_id = :voteId", nativeQuery =
+	 * true) List<Product> findProductByVoteId(@Param("voteId") Long voteId);
+	 */
+
+		
+//	@Query(value = "SELECT * FROM product p WHERE p.vote_id = :voteId")
+//	Product findByProductByVoteId(@Param("voteId") Long voteId);
+	
+
+	
     
 }
