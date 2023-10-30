@@ -29,7 +29,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
-@RequestMapping("/vote")
+//@RequestMapping("/vote")
 //@RequiredArgsConstructor
 public class VoteRestController {
 	
@@ -69,15 +69,15 @@ public class VoteRestController {
 	// User의 Json에서 vote가 String으로 받고 있어서 해결 필요
 	@Operation(summary = "투표 1개 총합 업데이트")
 	@PutMapping("/update")
-	public ResponseEntity<Map<String, Object>> updateVote(@RequestBody Vote vote) throws Exception {
-		Vote vote1 = new Vote(null, null, 0, null, null);
-		vote1 = vote;
+	public ResponseEntity<Map<String, Object>> updateVote(@RequestBody VoteDto vote) throws Exception {
+		
+	
 		Map<String, Object> responseMap = new HashMap<>();
-		if (voteServiceImpl.selectByVoteNo(vote1.getVoteId()) == null) {
+		if (voteServiceImpl.selectByVoteNo(vote.getVoteId()) == null) {
 	        responseMap.put("message", "없는 투표 번호입니다.");
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseMap);
 	    }
-			vote = voteServiceImpl.selectByVoteNo(vote1.getVoteId());
+			Vote vote1= voteServiceImpl.selectByVoteNo(vote.getVoteId());
 			voteServiceImpl.updateVote(vote1);
 		    responseMap.put("message", "투표가 수정되었습니다.");
 		    return ResponseEntity.status(HttpStatus.OK).body(responseMap);
