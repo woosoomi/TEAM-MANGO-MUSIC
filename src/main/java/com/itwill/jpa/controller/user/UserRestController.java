@@ -44,26 +44,33 @@ public class UserRestController {
 	@Operation(summary = "로그인")
 	@PostMapping("/login")
 	public ResponseEntity<?> userLogin(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
-		try {
-			userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-			session.setAttribute("sUserId", userLoginDto.getUserId());
-			return ResponseEntity.status(HttpStatus.OK).build();
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+		 try {
+		        User user = userService.findUser(userLoginDto.getUserId());
+
+		        if (user != null && user.getUserPw().equals(userLoginDto.getUserPw())) {
+		            // 로그인 성공
+		            session.setAttribute("sUserId", userLoginDto.getUserId());
+		            return ResponseEntity.status(HttpStatus.OK).build();
+		        } else {
+		            // 로그인 실패
+		            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
+		        }
+		    } catch (Exception e) {
+		        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+		    }
 		}
-	}
 
 	@Operation(summary = "회원상세보기")
 	@GetMapping("/{userId}")
 	public ResponseEntity<?> userView(@PathVariable(name = "userId") String userId, HttpSession session) throws Exception {
 		String sUserId = (String) session.getAttribute("sUserId");
 		if (sUserId == null || !sUserId.equals(userId)) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(" 권한이 없습니다.");
 		}
 
 		User user = userService.findUser(userId);
 		if (user == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다.");
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
