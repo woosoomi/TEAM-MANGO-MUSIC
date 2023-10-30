@@ -21,7 +21,10 @@ public interface OrderService {
 	List<OrderDto> orderListByNewer(String userId);
 	//주문 오래된순으로 나열하기
 	List<OrderDto> orderListByOlder(String userId);
-	
-	
-
+	//유저의 아이템 정보를 가져와서 주문 총금액 계산
+	double calculateTotalOrderPrice(String userId);
+	//유저의 멤버쉽 구매 정보 저장 서비스
+	boolean isMembershipPurchasedAndSaveMembership(String userId);
+	//유저의 멤버쉽 구매 로직 (멤버쉽 결제가 성공하면 반환값 true)
+	boolean performMembershipPurchaseLogic(String userId);
 }
