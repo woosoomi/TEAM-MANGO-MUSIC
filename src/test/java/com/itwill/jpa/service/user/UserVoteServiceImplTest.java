@@ -33,6 +33,9 @@ import com.itwill.jpa.service.vote.VoteServiceImpl;
 
 class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Autowired
+	UserVotesericeImpl userVotesericeImpl;
+	
+	@Autowired
 	UserVoteRepository userVoteRepository;
 	
 	@Autowired
@@ -90,40 +93,11 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
     @Transactional
     @Rollback(false)
-	@DisplayName("유저,투표,상품전체조회")
+	@DisplayName("vote번호로 유저 검색")
 	//@Disabled
     public void testfindUserVoteIdWithProduct() {
-    	
-    	Vote vote1 = Vote.builder()
-				 .voteId(1L)
-				 .voteTot(320)
-				 .build();
-    	voteServiceImpl.createVote(vote1);
-    	
-    	// User 생성
-    	User user = new User();
-        user.setUserId("vote");
-        user.setUserPw("vote");
-        user.setUserName("vote테스트님");
-        user.setUserPhone("010-1234-5678");
-        user.setVote(vote1);
-        userDao.createUser(user);
-    	System.out.println("@@@"+user);  
-    	
-    	// product VoteId 수정
-      	Long productNo = 1L;
-        Product product = productServiceImpl.getProduct(productNo);
-        product.setProductName("수정 테스트완료");
-        product.setVote(vote1);
-
-        // updateProduct 메서드 호출
-        Product updatedProduct = productServiceImpl.updateProduct(product);
-          
-        userVoteRepository.findUserVoteIdWithProduct(1L);
-          
-        // findProductVoteIdWithUser 호출 --> product의 voteId로 User와 Vote 전체 호출
-        userVoteRepository.findUserVoteIdWithProduct(1L);
-        System.out.println(">>>>> "+userVoteRepository.findUserVoteIdWithProduct(1L));
+    	System.out.println(">>>>>>"+userRepository.findByVote_VoteId(1L));
+		//System.out.println(">>>>>>"+userVotesericeImpl.findByVote_VoteId(1L));
     
     }
 	
