@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.repository.cart.CartItemRepository;
 import com.itwill.jpa.repository.cart.CartRepository;
-
+@Repository
 public class CartDaoImpl implements CartDao {
 	
 	@Autowired
@@ -64,6 +65,12 @@ public class CartDaoImpl implements CartDao {
 			throw new Exception("장바구니 상품 수 조회 중 오류 발생",e);
 		}	
 */
+
+	@Override
+	public Cart findByCartId(Long cartId) throws Exception {
+		Cart findCart = cartRepository.findById(cartId).get();
+		return findCart;
+	}
 	
 	
 	

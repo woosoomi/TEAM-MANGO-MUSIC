@@ -43,7 +43,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
 	void createCart() throws Exception {
 		
@@ -77,7 +77,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void calTotPrice() throws Exception {

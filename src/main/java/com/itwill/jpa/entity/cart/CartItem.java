@@ -27,43 +27,38 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartItem {
-	
 
 	@Id
-	@SequenceGenerator(name = "CART_ITEM_NO_SEQ",sequenceName = "CART_ITEM_NO_SEQ",initialValue = 1 , allocationSize =1)
+	@SequenceGenerator(name = "CART_ITEM_NO_SEQ", sequenceName = "CART_ITEM_NO_SEQ", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_ITEM_NO_SEQ")
 	private Long cartItemId;
 	private int cartItemQty;
-	
+
 	/*
-	@CreationTimestamp
-	private LocalDateTime createAt;
-	@UpdateTimestamp
-	private LocalDateTime updateAt;
-	*/
-	
+	 * @CreationTimestamp private LocalDateTime createAt;
+	 * 
+	 * @UpdateTimestamp private LocalDateTime updateAt;
+	 */
+
 	public static CartItem toEntity(CartItemDto dto) {
-    	return CartItem.builder()
-    					.cartItemId(dto.getCartItemId())
-    			       .cartItemQty(dto.getCartItemQty())
-    				   .build();
-    }
-	
-	//cartitem -cart설정
+		return CartItem.builder().cartItemId(dto.getCartItemId()).cartItemQty(dto.getCartItemQty()).build();
+	}
+
+	public static CartItem toEntity(CartItemDto dto, Product product) {
+		CartItem cartItem = new CartItem();
+		cartItem.setProduct(product);
+		// Set other properties from dto
+		return cartItem;
+	}
+
+	// cartitem -cart설정
 	@ManyToOne
 	@JoinColumn(name = "cart_no")
 	private Cart cart;
-	
 
-	//cartitem -product설정
+	// cartitem -product설정
 	@ManyToOne
 	@JoinColumn(name = "product_no")
 	private Product product;
-	
-	public void addToCart(Cart cart) {
-	   if(cart.getCartitems()==null) {
-		   cart.setCartitems(new ArrayList<>());
-	   }
-	   cart.getCartitems().add(this);
-	}
+
 }
