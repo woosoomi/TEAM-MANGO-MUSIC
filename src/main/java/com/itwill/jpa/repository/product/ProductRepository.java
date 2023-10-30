@@ -58,8 +58,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 * true) List<Product> findProductByVoteId(@Param("voteId") Long voteId);
 	 */
 		
-	@Query(value = "SELECT * FROM product p WHERE p.vote_id = :voteId")
-	Product findByProductByVoteId(@Param("voteId") Long voteId);
+//	@Query(value = "SELECT * FROM product p WHERE p.vote_id = :voteId")
+//	Product findByProductByVoteId(@Param("voteId") Long voteId);
 	
 	
     
