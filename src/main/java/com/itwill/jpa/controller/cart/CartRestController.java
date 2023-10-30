@@ -17,6 +17,7 @@ import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
+import com.itwill.jpa.repository.cart.CartRepository;
 import com.itwill.jpa.service.cart.CartItemServiceImpl;
 import com.itwill.jpa.service.cart.CartService;
 import com.itwill.jpa.service.cart.CartServiceImpl;
@@ -26,34 +27,27 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 public class CartRestController {
+	
 	@Autowired
 	CartService cartService;
 	@Autowired
 	CartServiceImpl cartServiceImpl;
 	@Autowired
 	CartItemServiceImpl cartItemServiceImpl;
+	@Autowired
+	CartRepository cartRepository;
 	@Operation(summary = "장바구니생성")
     @PostMapping("/create")
-	public ResponseEntity<CartDto> createCart(@RequestParam CartDto dto) {
-	    try {
-	        CartDto createdCartDto = cartServiceImpl.createCart(dto);
-	        return new ResponseEntity<>(createdCartDto, HttpStatus.OK);
-	    } catch (Exception e) {
-	        e.printStackTrace(); 
-	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-		/*
+	public String createCart(CartDto dto,Model model) {
+    	CartDto createCart;
 		try {
-			Cart cart = Cart.toEntity(dto);
-			CartDto cartDto = CartDto.toDto(cart);
-			CartDto createCart = cartServiceImpl.createCart(cartDto);
+			createCart = cartServiceImpl.createCart(dto);
 		  	model.addAttribute("createCart",createCart);  
-	    	return "cart";
+	    	return "성공";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return "실패";
 		}
-		*/
 	}
     @Operation(summary = "장바구니 상품전체삭제")
     @DeleteMapping("/cart/{cartId}")
@@ -66,8 +60,8 @@ public class CartRestController {
             return "삭제실패";
         }
     }
-    @Operation(summary = "총액 업데이트")
-    @PostMapping("/calculateTotalPrice")
+    @Operation(summary = "총액 계산")
+    @PostMapping("/calculateTotalPrice/{cartId}")
     public ResponseEntity<CartDto> calculateTotalPrice(@RequestBody List<CartItemDto> cartItemDtos) {
         try {
             CartDto cartDto = cartService.calculateTotalPrice(cartItemDtos);
@@ -76,6 +70,6 @@ public class CartRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-		
+	
   
 }

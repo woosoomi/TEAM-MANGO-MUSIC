@@ -11,6 +11,7 @@ import com.itwill.jpa.dao.cart.CartDao;
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
@@ -37,7 +38,7 @@ public class CartItemServiceImpl implements CartItemService {
 	
 	@Override
 	public CartItemDto insert(CartItemDto dto) throws Exception {
-	    Product product = productDao.selectProduct(dto.getProduct().getProductNo());
+	    Product product = productDao.selectProduct(dto.getProductId());
 	    Cart cart = cartDao.findByCartId(dto.getCartId());
 	    CartItem cartItem = new CartItem();
 	    cartItem.setCartItemQty(dto.getCartItemQty());
@@ -74,7 +75,23 @@ public class CartItemServiceImpl implements CartItemService {
 	public void deleteByCartItemId(Long cartItemId) throws Exception {
 		cartItemRepository.deleteById(cartItemId);
 	}
-	
+
+	@Override
+	public List<CartItemDto> findAll() {
+	    List<CartItem> cartItems = cartItemRepository.findAll();
+	    List<CartItemDto> cartItemDtos = new ArrayList<>();
+
+	    for (CartItem cartItem : cartItems) {
+		    CartItemDto cartItemDto = new CartItemDto();
+	    	cartItemDto.setCartItemId(cartItem.getCartItemId());
+	    	cartItemDto.setCartItemQty(cartItemDto.getCartItemQty());
+	    	cartItemDto.setCartId(cartItemDto.getCartId());
+	    	//cartItemDto.setProductId(ProductDto.toDto(cartItem.getProduct()).getProductNo());
+	    
+	    }
+
+	    return cartItemDtos;
+	}
 	
 	
 	/*

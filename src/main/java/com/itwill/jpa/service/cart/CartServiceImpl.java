@@ -33,6 +33,9 @@ public class CartServiceImpl implements CartService {
 	UserRepository userRepository;
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	CartItemRepository cartItemRepository;
+	
 	@Override
 	public CartDto createCart(CartDto dto) throws Exception {
 		User user = userRepository.findById(dto.getUserId()).orElseThrow();
@@ -55,7 +58,8 @@ public class CartServiceImpl implements CartService {
 	public CartDto calculateTotalPrice(List<CartItemDto> cartItemDtos) throws Exception {
 	       int totPrice = 0;
 	        for (CartItemDto cartItemDto : cartItemDtos) {
-	            Product product = cartItemDto.getProduct();
+	            Long productId = cartItemDto.getProductId();
+	            Product product = productRepository.findById(productId).orElse(null);
 	            ProductDto productDto = ProductDto.toDto(product);
 	            int qty = cartItemDto.getCartItemQty();
 	            if (productDto != null) {
@@ -70,16 +74,32 @@ public class CartServiceImpl implements CartService {
 	    }
 	/*
 	@Override
-	public List<CartDto> getCartItems(CartDto dto) throws Exception {
-		List<Cart> carts = cartRepository.findAll();
-	    List<CartDto> cartDtos = new ArrayList<>();
-	    for (Cart cart : carts) {
-	        CartDto cartDto = CartDto.toDto(cart);
-	        cartDtos.add(cartDto);
-	    }
-	    return cartDtos;
+	public CartDto getCartItems(List<CartItemDto> cartItemDtos) throws Exception {
+		Cart cart = new Cart();
+		cart=cartRepository.save(cart);
+		CartDto cartDto = new CartDto();
+		List<CartItemDto> cartItems = new ArrayList<>();
+		for (CartItemDto cartItemDto : cartItemDtos) {
+			Long productId = cartItemDto.getProductId();
+			int qty = cartItemDto.getCartItemQty();
+			Long cartId = cartItemDto.getCartId();
+			
+			Product product = productRepository.findById(productId).orElse(null);
+			
+			if (product != null) {
+				CartItem cartItem = new CartItem();
+				cartItem.setProduct(product);
+				cartItem.setCartItemQty(qty);
+				cartItem.setCart(cart);;
+				CartItem savedCartItem = cartItemRepository.save(cartItem);
+				CartItemDto savedCartItemDto = CartItemDto.toDto(savedCartItem);
+				cartItems.add(savedCartItemDto);
+			}
+		}
+		return null;
 	}
 	*/
+	
 	/*
 	// 장바구니 생성
 	@Override

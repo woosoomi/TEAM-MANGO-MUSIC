@@ -16,6 +16,9 @@ public interface CartItemService {
 	
 	//상품 삭제
 	public void deleteByCartItemId(Long cartItemId) throws Exception;
+	
+	//장바구니에 담긴 모든 상품
+	public List<CartItemDto> findAll();
 		
 	
 }
