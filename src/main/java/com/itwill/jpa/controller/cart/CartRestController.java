@@ -24,7 +24,6 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 public class CartRestController {
-	
 	@Autowired
 	CartService cartService;
 	@Autowired
@@ -32,7 +31,7 @@ public class CartRestController {
 	@Autowired
 	CartItemServiceImpl cartItemServiceImpl;
 	@Operation(summary = "장바구니생성")
-    @PostMapping("/create")
+    @PostMapping("/cart")
     public String createCart(CartDto dto, Model model) {
     	CartDto createCart;
 		try {
@@ -67,6 +66,6 @@ public class CartRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-	
+		
   
 }
