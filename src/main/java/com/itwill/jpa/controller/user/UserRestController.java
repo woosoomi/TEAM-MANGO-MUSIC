@@ -60,7 +60,7 @@ public class UserRestController {
 	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> userLogin(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
 		 try {
-		        User user = userService.findUser(userLoginDto.getUserId());
+		        UserDto user = userService.findUser(userLoginDto.getUserId());
 		        if (user != null && user.getUserPw().equals(userLoginDto.getUserPw())) {
 		            session.setAttribute("sUserId", userLoginDto.getUserId());
 		            return ResponseEntity.status(HttpStatus.OK).build();
@@ -80,7 +80,7 @@ public class UserRestController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(" 권한이 없습니다.");
 		}
 
-		User user = userService.findUser(userId);
+		UserDto user = userService.findUser(userId);
 		if (user == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다.");
 		}
@@ -95,18 +95,18 @@ public class UserRestController {
 
 	@Operation(summary = "회원업데이트")
 	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<UserUpdateDto> updateUser(@PathVariable String userId, @RequestBody UserUpdateDto userUpdateDto) {
+	public ResponseEntity<UserDto> updateUser(@PathVariable(name = "userId") String userId, @RequestBody UserUpdateDto userUpdateDto) {
 	    try {
-	        UserUpdateDto updatedUser = userService.updateUser(userUpdateDto);
+	        UserDto updatedUser = userService.updateUser(userUpdateDto);
 	        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 	    } catch (Exception e) {
 	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	    }
 	}
-
+	@LoginCheck
 	@Operation(summary = "회원탈퇴")
 	@DeleteMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
+	public ResponseEntity<Void> deleteUser(@PathVariable(name = "userId") String userId) {
         try {
             userService.deleteUser(userId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

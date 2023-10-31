@@ -24,6 +24,7 @@ public class UserDto {
 	private String userPhone;		// 회원 전화번호
 	private String userGender;		// 회원 성별
 	private Boolean memberShip;		// 추가!!
+	private Long voteId;
 	
 	public static UserDto toDto(User entity) {
 		return UserDto.builder()

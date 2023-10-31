@@ -15,6 +15,7 @@ import com.itwill.jpa.entity.vote.Vote;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -67,34 +68,44 @@ public class User {
 	
 	
 	//1대N 관계설정
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "vote_id")
 	@ToString.Exclude
 	private Vote vote;
 
-
-
 	// user와 order 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+	@Builder.Default
+	@ToString.Exclude
 	private List<Order> orders = new ArrayList<>();
 
 	// user와 coupon 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+	@Builder.Default
+	@ToString.Exclude
 	private List<Coupon> coupons = new ArrayList<>();
 	
 	// user와 delivery 1대N 관계설정 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+	@Builder.Default
+	@ToString.Exclude
 	private List<Delivery> deliverys = new ArrayList<>();
 
 	// user와 board_Reply 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+	@Builder.Default
+	@ToString.Exclude
 	private List<BoardReply> boardReply = new ArrayList<>();
 	
 	// user와 product_Reply 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+	@Builder.Default
+	@ToString.Exclude
 	private List<ProductReply> productReply = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+	@Builder.Default
+	@ToString.Exclude
 	private List<Board> Board = new ArrayList<>();
 	
 

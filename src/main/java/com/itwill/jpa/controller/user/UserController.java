@@ -50,19 +50,15 @@ public class UserController {
 		return forward_path;
 	}
 
-	@PostMapping("/user_write_action")
-	public String user_write_action(@ModelAttribute("fuser") UserDto userDto, Model model) throws Exception {
-		String forward_path = "";
-		try {
-			UserDto createUser = userService.createUser(userDto);
-			forward_path = "redirect:user_login_form";
-		} catch (Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			model.addAttribute("fuser", userDto);
-			forward_path = "user_write_form";
-		}
-		return forward_path;
-	}
+	/*
+	 * @PostMapping("/user_write_action") public String
+	 * user_write_action(@ModelAttribute("fuser") UserDto userDto, Model model)
+	 * throws Exception { String forward_path = ""; try { UserDto createUser =
+	 * userService.createUser(userDto); forward_path = "redirect:user_login_form"; }
+	 * catch (Exception e) { model.addAttribute("msg", e.getMessage());
+	 * model.addAttribute("fuser", userDto); forward_path = "user_write_form"; }
+	 * return forward_path; }
+	 */
 
 	@GetMapping("/user_login_form")
 	public String user_login_form() {
