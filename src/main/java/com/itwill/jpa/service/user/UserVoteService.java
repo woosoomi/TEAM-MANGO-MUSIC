@@ -2,10 +2,13 @@ package com.itwill.jpa.service.user;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.dto.user.UserUpdateDto;
 import com.itwill.jpa.dto.user.UserVoteDto;
 import com.itwill.jpa.entity.user.User;
+
 
 public interface UserVoteService {
 

@@ -46,6 +46,31 @@
   text-align: center;
 }
 
+#loginPart{
+	 float: right;
+}
+
+.login, .logout{
+  font-family: 'Noto Sans KR', sans-serif;
+  text-decoration: none;
+  color: white;
+  font-style: bold;
+  font-size: 20px;
+  text-align: center;
+  display: grid;
+  justify-content: end;
+  grid-template-columns: 100px;
+ 
+  /*
+  list-style-type: none;
+  float: left;
+  margin-right: 30px;
+  margin-top: 0px;
+  text-align: center;
+  */
+}
+
+
 .select_Month{
   font-family: 'Noto Sans KR', sans-serif;
   width: auto;
@@ -133,7 +158,9 @@
     position: relative;
     max-width: 90vw;
     width: 800px;
-}
+    margin-bottom: 200px;
+    margin-top: 100px;
+  }
 
 .battle img{
     width: 300px;
@@ -162,6 +189,12 @@ text-align: center;
     border-radius: 20px;
     margin-left: 15px;
     margin-top: 10px;
+}
+
+.vs{
+	font-size: 100px;
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 /* 1위 2위 배틀 종료*/
