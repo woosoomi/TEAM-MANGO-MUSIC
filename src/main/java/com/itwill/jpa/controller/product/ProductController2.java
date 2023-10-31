@@ -2,6 +2,7 @@ package com.itwill.jpa.controller.product;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductController2 {
-	@Autowired
-	private final ProductServiceImpl productServiceImpl;
 	
 	@Autowired
 	private final ProductService productService;
@@ -38,9 +37,9 @@ public class ProductController2 {
 	@GetMapping("/music_list")
 	public String musicList(Model model) {
 		try {
-			List<Product> musics = productServiceImpl.findByCategoryId(1L);
+			List<Product> musics = productService.findByCategoryId(1L);
 			model.addAttribute("musics", musics);
-			System.out.println(">>>MUSIC LIST : " + musics);
+			log.info(">>>MUSIC LIST : " + musics);
 			return "music_list";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,7 +67,7 @@ public class ProductController2 {
 	@GetMapping("/membership_detail")
 	public String MembershipDetail(HttpSession session,Model model) {
 		try {
-			List<Product> memberships = productServiceImpl.findByCategoryId(4L);
+			List<Product> memberships = productService.findByCategoryId(4L);
 			if(session.getAttribute("")!=null) {
 				//user로 멤버십 구매 찾기?
 				
@@ -89,7 +88,7 @@ public class ProductController2 {
 		@GetMapping("/goods_list")
 		public String GoodsList(Model model) {
 			try {
-				List<Product> goods = productServiceImpl.findByCategoryId(2L);
+				List<Product> goods = productService.findByCategoryId(2L);
 				model.addAttribute("goods", goods);
 				System.out.println(">>>GOODS LIST : " + goods);
 				return "goods_list";
@@ -105,7 +104,7 @@ public class ProductController2 {
 		@GetMapping("/ticket_list")
 		public String TicketList(Model model) {
 			try {
-				List<Product> tickets = productServiceImpl.findByCategoryId(3L);
+				List<Product> tickets = productService.findByCategoryId(3L);
 				model.addAttribute("tickets", tickets);
 				System.out.println(">>>TICKET LIST : " + tickets);
 				return "ticket_list";
