@@ -27,6 +27,14 @@ public class ProductVoteServiceImple implements ProductVoteService{
 	}
 
 
+	// voteID로 상품검색 후 상품 리스트 가져오기
+	@Override
+	public Product findByVoteVoteId(Long voteId) {
+		Product findByVoteVoteId = productRepository.findByVoteVoteId(voteId);
+		return findByVoteVoteId;
+	}
+
+
 //	@Override
 //	public Product findByProductByVoteId(Long voteNo) {
 //		Product findByProductByVoteId = productRepository.findByProductByVoteId(voteNo);
