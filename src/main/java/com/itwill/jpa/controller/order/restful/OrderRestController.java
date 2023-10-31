@@ -166,6 +166,34 @@ public class OrderRestController {
 		}
 	}
 	
-	
+	// 로그인한 유저 주문 총금액 계산하기
+	@Operation(summary = "로그인한 유저 주문 총금액 계산하기([성공]")
+	@PutMapping("/calculateTotal/{userId}")
+	public ResponseEntity<?> calculateTotalOrderPrice(@PathVariable(value = "userId") String userId) {
+		try {
+			double totalOrderPrice = orderService.calculateTotalOrderPrice(userId);
+			return ResponseEntity.status(HttpStatus.OK).body(totalOrderPrice);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+	}
+		
+	// 결제된 멤버쉽 정보 저장하기
+	@Operation(summary = "결제된 멤버쉽 정보 저장하기[성공]")
+	@PostMapping("/saveMembership/{userId}")
+	public ResponseEntity<?> isMembershipPurchasedAndSaveMembership(@PathVariable(value = "userId") String userId) {
+		try {
+			boolean isMembershipPurchaseSuccess = orderService.isMembershipPurchasedAndSaveMembership(userId);
+			return ResponseEntity.status(HttpStatus.OK).body(isMembershipPurchaseSuccess);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+	}
 }
 	
