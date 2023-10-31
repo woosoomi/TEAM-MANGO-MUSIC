@@ -46,15 +46,7 @@ public class CartItemServiceImpl implements CartItemService {
 	    cartItem.setCart(cart);
 	    cartItem = cartItemRepository.save(cartItem);
 	    return CartItemDto.toDto(cartItem);
-		/*
-		Product product = productRepository.findById(dto.getProduct().getProductNo()).orElse(null);
-		Cart cart = cartRepository.findById(dto.getCartId()).orElse(null);
-		CartItem cartItem = CartItem.toEntity(dto);
-		cartItem.setCart(cart);
-		cartItem.setProduct(product);
-		cartItem=cartItemRepository.save(cartItem);
-		return CartItemDto.toDto(cartItem);
-		*/
+	
 	}
 
 	@Override
@@ -77,7 +69,7 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 
 	@Override
-	public List<CartItemDto> findAll() {
+	public List<CartItemDto> findAllByCartId(Long CartId) {
 	    List<CartItem> cartItems = cartItemRepository.findAll();
 	    List<CartItemDto> cartItemDtos = new ArrayList<>();
 
@@ -86,11 +78,26 @@ public class CartItemServiceImpl implements CartItemService {
 	    	cartItemDto.setCartItemId(cartItem.getCartItemId());
 	    	cartItemDto.setCartItemQty(cartItemDto.getCartItemQty());
 	    	cartItemDto.setCartId(cartItemDto.getCartId());
-	    	//cartItemDto.setProductId(ProductDto.toDto(cartItem.getProduct()).getProductNo());
+	    	cartItemDto.setProductId(ProductDto.toDto(cartItem.getProduct()).getProductNo());
+	    	
+	    	cartItemDtos.add(cartItemDto);
 	    
 	    }
 
 	    return cartItemDtos;
+	}
+
+	@Override
+	public CartItemDto getProductDataByCartItemId(Long CartItemId) throws Exception {
+		Optional<CartItem> findCartItem = cartItemRepository.findById(CartItemId);
+		if (findCartItem.isPresent()) {
+	        CartItem cartItem = findCartItem.get();
+	        ProductDto productDto = ProductDto.toDto(cartItem.getProduct());
+	        CartItemDto cartItemDto = CartItemDto.toDto(cartItem);
+	        return cartItemDto;
+	    } else {
+	        throw new Exception("해당 카트아이템을 찾을 수 없습니다.");
+	    }
 	}
 	
 	
