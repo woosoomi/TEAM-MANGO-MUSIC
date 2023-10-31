@@ -35,18 +35,18 @@ public class CartItemServiceImpl implements CartItemService {
 	ProductDao productDao;
 	@Autowired
 	CartDao cartDao;
-	
+
 	@Override
 	public CartItemDto insert(CartItemDto dto) throws Exception {
-	    Product product = productDao.selectProduct(dto.getProductId());
-	    Cart cart = cartDao.findByCartId(dto.getCartId());
-	    CartItem cartItem = new CartItem();
-	    cartItem.setCartItemQty(dto.getCartItemQty());
-	    cartItem.setProduct(product); 
-	    cartItem.setCart(cart);
-	    cartItem = cartItemRepository.save(cartItem);
-	    return CartItemDto.toDto(cartItem);
-	
+		Product product = productDao.selectProduct(dto.getProductId());
+		Cart cart = cartDao.findByCartId(dto.getCartId());
+		CartItem cartItem = new CartItem();
+		cartItem.setCartItemQty(dto.getCartItemQty());
+		cartItem.setProduct(product);
+		cartItem.setCart(cart);
+		cartItem = cartItemRepository.save(cartItem);
+		return CartItemDto.toDto(cartItem);
+
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class CartItemServiceImpl implements CartItemService {
 			cartItem.setCartItemQty(qty);
 			updatedCart = cartItemRepository.save(cartItem);
 			return CartItemDto.toDto(updatedCart);
-		}else {
+		} else {
 			throw new Exception("존재하지 않는 장바구니입니다.");
 		}
 	}
@@ -87,20 +87,6 @@ public class CartItemServiceImpl implements CartItemService {
 	    return cartItemDtos;
 	}
 
-	@Override
-	public CartItemDto getProductDataByCartItemId(Long CartItemId) throws Exception {
-		Optional<CartItem> findCartItem = cartItemRepository.findById(CartItemId);
-		if (findCartItem.isPresent()) {
-	        CartItem cartItem = findCartItem.get();
-	        ProductDto productDto = ProductDto.toDto(cartItem.getProduct());
-	        CartItemDto cartItemDto = CartItemDto.toDto(cartItem);
-	        return cartItemDto;
-	    } else {
-	        throw new Exception("해당 카트아이템을 찾을 수 없습니다.");
-	    }
-	}
-	
-	
 	/*
 	@Override
 	public List<CartItem> insertAll(List<CartItem> cartItems) throws Exception {

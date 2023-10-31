@@ -85,7 +85,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		
 	}
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void findAllByCartId() throws Exception {
@@ -97,20 +97,6 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		
 	}
 	
-	@Test
-	//@Disabled
-	@Transactional
-	@Rollback(false)
-	void getProductDataByCartItemId() {
-		try {
-			Long cartItemId=1L;
-			CartItemDto cartItemDto;
-			cartItemDto = cartItemServiceImpl.getProductDataByCartItemId(cartItemId);
-			assertNotNull(cartItemDto);
-			System.out.println("cartItemDto>>>>>>>>>"+cartItemDto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 
 }
