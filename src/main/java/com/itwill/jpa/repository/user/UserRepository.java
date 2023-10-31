@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwill.jpa.entity.user.User;
 
-@Repository
+
 public interface UserRepository extends JpaRepository<User, String> {
 	
 	  @Query(value = "SELECT u.user_id FROM userinfo u WHERE u.user_name = :user_name and u.user_email = :user_email", nativeQuery = true)

@@ -125,7 +125,7 @@
 					<div class="user-information">
 						<div class="user-img">
 							<a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
-							<a href="userCheckIdPw" class="redbtn">로그인</a>
+							<!-- <a href="#" class="redbtn">로그인</a> -->
 							<!--end of preloading-->
 							<!--login form popup-->
 							<div class="login-wrapper" id="login-content">
@@ -136,14 +136,12 @@
 										<div class="row">
 											<label for="username">Username:<input type="text"
 												name="username" id="username" placeholder="아이디"
-												pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
 												required="required" /></label>
 										</div>
 										<div class="row">
 											<label for="password"> Password:<input
 												type="password" name="password" id="password"
 												placeholder="비밀번호"
-												pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
 												required="required" /></label>
 										</div>
 										<div class="row">
@@ -253,14 +251,11 @@
 		});
 
 		// 팝업 닫기
-		document
-				.getElementById("close-login-popup")
-				.addEventListener(
-						"click",
-						function() {
-							document.getElementById("login-content").style.display = "none";
-						});
+		document.getElementById("close-login-popup").addEventListener("click",function() {
+			document.getElementById("login-content").style.display = "none";
+		});
 	</script>
+	
 </body>
 
 </html>

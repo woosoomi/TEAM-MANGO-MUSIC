@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		User createdUser = userDao.createUser(User.toEntity(userDto));
-		UserDto insertUser = UserDto.toDto(createdUser);
-		return insertUser;
+		
+		return  UserDto.toDto(createdUser);
 	}
 	
 	@Override
