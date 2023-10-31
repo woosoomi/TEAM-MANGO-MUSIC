@@ -44,7 +44,11 @@ public class ProductServiceImpl implements ProductService{
 	public Product getProduct(Long productNo) {
 		return productRepository.findById(productNo).get();
 	}
-
+	@Override
+	public ProductDto getProductDto(Long productNo) {
+		return productRepository.findByIdDto(productNo).get();
+	}
+	
 	// categoryId값 가져오기	
 	@Override	
 	public List<Product> getProductsByCategory(Long categoryId) {

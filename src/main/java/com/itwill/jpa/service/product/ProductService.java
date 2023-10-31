@@ -29,6 +29,8 @@ public interface ProductService{
 	@Transactional
 //Product//	
 	Product getProduct(Long productNo); 
+	
+	ProductDto getProductDto(Long productNo);
 
 	List<Product> productList(); 
 	
@@ -153,6 +155,8 @@ public interface ProductService{
 	public Optional<Product> findByProductNo(Long productNo);
 	// productNo 찾기 - DTO
 	Optional<ProductDto> findProductDtoByProductNo(Long productNo);
+
+
 
 	/******************** UPDATE[DTO] ********************/
 
