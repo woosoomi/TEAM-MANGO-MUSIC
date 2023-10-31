@@ -1,5 +1,6 @@
 package com.itwill.jpa.controller.vote;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itwill.jpa.dao.user.UserVoteDao;
 import com.itwill.jpa.dao.user.UserVoteDaoImpl;
-import com.itwill.jpa.dto.user.UserUpdateDto;
 import com.itwill.jpa.dto.vote.VoteDto;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.service.vote.VoteService;
@@ -29,7 +28,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
-//@RequestMapping("/vote")
+@RequestMapping("/vote")
 //@RequiredArgsConstructor
 public class VoteRestController {
 	
@@ -43,16 +42,12 @@ public class VoteRestController {
 	//private final VoteService voteService;
 
 
-	@Operation(summary = "투표생성")
+	@Operation(summary = "투표생성") // 수정필요
 	@PutMapping("/create")
 	public ResponseEntity<VoteDto> createVote(@RequestBody VoteDto voteDto) throws Exception {
 	    
 		Vote vote = new Vote(0L, null, 0, null, null);
 		VoteDto.toDto(vote);
-		vote.setVoteId(voteDto.getVoteId());
-		vote.setVoteId(voteDto.getVoteId());
-		vote.setVoteDate(voteDto.getVoteDate());
-		vote.setVoteTot(voteDto.getVoteTot());
 		
 	    // 서비스 메서드를 호출하여 투표 생성
 	    Vote createdVote = voteService.createVote(vote);
@@ -67,11 +62,9 @@ public class VoteRestController {
 	
 	
 	// User의 Json에서 vote가 String으로 받고 있어서 해결 필요
-	@Operation(summary = "투표 1개 총합 업데이트")
+	@Operation(summary = "투표 1개 총합 업데이트") // 완료
 	@PutMapping("/update")
 	public ResponseEntity<Map<String, Object>> updateVote(@RequestBody VoteDto vote) throws Exception {
-		
-	
 		Map<String, Object> responseMap = new HashMap<>();
 		if (voteServiceImpl.selectByVoteNo(vote.getVoteId()) == null) {
 	        responseMap.put("message", "없는 투표 번호입니다.");
@@ -84,40 +77,50 @@ public class VoteRestController {
 	   
 	}
 		
-	@Operation(summary = "투표 전체보기")
-	@PostMapping()
-	public ResponseEntity<?> selectAllVote() throws Exception {
+	@Operation(summary = "투표 전체보기") // 완료
+	@PostMapping("/voteListAll")
+	public ResponseEntity<List<VoteDto>> findVoteListAll() throws Exception {
+	    List<Vote> voteList = voteServiceImpl.findVoteListAll();
+	    List<VoteDto> voteDtos = new ArrayList<>();
 
-			List<Vote> Votes = voteServiceImpl.findVoteListAll();
-			return ResponseEntity.status(HttpStatus.OK).body(Votes);
+	    for (Vote vote : voteList) {
+	        VoteDto voteDto = VoteDto.toDto(vote);
+	        voteDtos.add(voteDto);
+	    }
+
+	    return ResponseEntity.status(HttpStatus.OK).body(voteDtos);
 	}
 	
-	@Operation(summary = "투표 1개보기")
-	@PostMapping("/{voteId}")
-	public ResponseEntity<?> selectVote(@PathVariable(name = "voteId") Long voteId) throws Exception {
-			Vote vote = voteServiceImpl.selectByVoteNo(voteId);
-			if (vote==null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(vote);
-			}
-			return ResponseEntity.status(HttpStatus.OK).body(vote);
+	@Operation(summary = "투표 1개보기") // 완료
+	@PostMapping("/selectVote{voteId}")
+	public ResponseEntity<VoteDto> selectVote(@PathVariable(name = "voteId") Long voteId) throws Exception {
+		 Vote vote = voteServiceImpl.selectByVoteNo(voteId);
+		 VoteDto selectVote = VoteDto.toDto(vote);
+		 if (vote==null) {
+		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(selectVote);
+		} 
+		 return ResponseEntity.status(HttpStatus.OK).body(selectVote);
+
 	}
 	
 	
-	
-	@Operation(summary = "투표삭제")
-	@DeleteMapping("/{voteId}")
+	@Operation(summary = "투표삭제") // 완료
+	@PostMapping("/deleteVote{voteId}")
 	public ResponseEntity<Map<String, Object>> deleteVote(@PathVariable(name = "voteId") Long voteId) throws Exception {
 	    Map<String, Object> responseMap = new HashMap<>();
-	    
-	    if (voteServiceImpl.selectByVoteNo(voteId) == null) {
+	    Vote vote = voteServiceImpl.selectByVoteNo(voteId);
+	    VoteDto selectVote = VoteDto.toDto(vote);
+	    if (vote == null) {
 	        responseMap.put("message", "없는 투표 번호입니다.");
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseMap);
 	    }
 
-	    voteServiceImpl.deleteByVoteNo(voteId);
+	    voteServiceImpl.deleteByVoteNo(selectVote.getVoteId());
 	    responseMap.put("message", "투표가 삭제되었습니다.");
 	    return ResponseEntity.status(HttpStatus.OK).body(responseMap);
 	}
+	
+	
 	
 	@Operation(summary = "유저의 투표번호로 투표,상품전체조회")
 	@PutMapping("/User_voteing")
