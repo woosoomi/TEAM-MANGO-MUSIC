@@ -62,7 +62,7 @@ public class OrderItemRestController {
 	}
 	
 	@Operation(summary="오더아이디로 주문아이템 불러오기")
-	@GetMapping("/{orderId}")
+	@GetMapping("order/{orderId}")
 	public ResponseEntity<?> getOrderItemsByOrderId(@PathVariable(value = "orderId") Long orderId){
 		try {
 			List<OrderItemDto> orderItemsOrderId = orderItemService.orderItemsByOrderId(orderId);
@@ -77,10 +77,10 @@ public class OrderItemRestController {
 	}
 	
 	@Operation(summary="유저아이디로 주문아이템 불러오기")
-	@GetMapping("/{orderId}")
-	public ResponseEntity<?> getOrderItemsByUserId(@PathVariable(value = "userId") Long userId){
+	@GetMapping("user/{userId}")
+	public ResponseEntity<?> getOrderItemsByUserId(@PathVariable(value = "userId") String userId){
 		try {
-			List<OrderItemDto> orderItemsUserId = orderItemService.orderItemsByOrderId(userId);
+			List<OrderItemDto> orderItemsUserId = orderItemService.orderItemsByUserId(userId);
 			
 			return ResponseEntity.status(HttpStatus.OK).body(orderItemsUserId);
 		}catch(Exception e) {
