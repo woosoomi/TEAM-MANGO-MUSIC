@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
-import com.itwill.jpa.entity.cart.Cart;
-import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.service.cart.CartItemService;
 import com.itwill.jpa.service.cart.CartService;
 
@@ -22,19 +20,13 @@ public class CartController {
 	CartItemService cartItemService;
 	@Autowired
 	CartService cartService;
-	/*
-	@GetMapping("/cart")
-	public String cart() {
-		
-		return "cart";
-	}
-	*/
+
 	@GetMapping("/cart")
 	public String cart(Model model) {
 		try {
 			CartDto cart = cartService.findCartByCartId(1L);
 			List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
-			model.addAttribute(cartItems);
+			model.addAttribute("cartItems",cartItems);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
