@@ -23,7 +23,7 @@
 }
 
 .awardList ul{
-  margin-top: 23px;
+  margin-top: 30px;
   font-family: 'Noto Sans KR', sans-serif;	
   float: left;
 
@@ -50,7 +50,7 @@
 	 float: right;
 }
 
-.login, .logout{
+.login, .join{
   font-family: 'Noto Sans KR', sans-serif;
   text-decoration: none;
   color: white;
