@@ -7,15 +7,14 @@
 <link rel="stylesheet" href="css/voteMain.css" type="text/css">
 <style>
 @import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
-	;
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 </style>
 </head>
 <body>
 
 	<!-- 상 이름 리스트 -->
 	<div class="awardList" >
-		<a class="logo" href=""> <img src="logo/logo.png" height="40px"></a>
+		<a class="logo" href="index"> <img src="images/mango_logo2.png" height="40px"></a>
 		<ul>
 			<li><a href="">월간 인기상</a></li>
 			<li><a href="">연간 인기상</a></li>
@@ -23,8 +22,8 @@
 		
 		<div id="loginPart">
 		<ul>
-		 <li><a class="login" href="user_write_form"> 로그인 </a> </li>
-		 <li> <a class="logout" > 로그아웃 </a> </li>
+		 <li><a class="login" href="userCheckIdPw"> 로그인 </a> </li>
+		 <li><a class="join" href="user_write_form"> 회원가입 </a> </li>
 		 </ul>
 		</div>
 		
@@ -91,29 +90,34 @@
 
 	<!-- 1위 2위 배틀 -->
 	<div class="battle">
-		<div class="battle_img_left">
-			<img
-				src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+		
+		<!--  -->
+		<div class="battle_img_left" th:each="productVote : ${productVote}">
+			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
 			<h1>
-				1위 <a class="battle_left_name">임영웅</a> <a id="Rank1_Tot_percentage">57%</a>
+				1위 <a class="battle_left_name" th:text="${productVote.productArtist}">임영웅</a> <a id="Rank1_Tot_percentage">57%</a>
 			</h1>
 			<div class="battle_totPercent">
-				<a>노래제목</a> <a id="Rank1_Tot">11,501</a> <a id="Rank1_Tot_text">득표</a>
-			</div>
+				<a th:text="${productVote.productName}">노래제목</a> 
+				<a id="Rank1_Tot" th:text="${productVote.voteTot}">11,501</a> 
+				<a id="Rank1_Tot_text">득표</a>
+		</div>		
+		
+			
 			<button class="choose-btn">투표하기</button>
 		</div>
-
-
 		<h3 class="vs">VS</h3>
 
-		<div class="battle_img_right">
+		<div class="battle_img_right" th:each="productVote : ${productVote}">
 			<img
 				src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/007/25/987/725987_20230927151422_500.jpg">
 			<h1>
-				1위 <a class="battle_right_name">정국</a> <a id="Rank2_Tot_percentage">57%</a>
+				1위 <a class="battle_right_name" th:text="${productVote.productArtist}">정국</a> <a id="Rank2_Tot_percentage">57%</a>
 			</h1>
 			<div class="battle_totPercent">
-				<a>노래제목</a> <a id="Rank2_Tot">10,021</a> <a id="Rank2_Tot_text">득표</a>
+				<a th:text="${productVote.productName}">노래제목</a> 
+				<a id="Rank1_Tot" th:text="${productVote.voteTot}">11,501</a> 
+				<a id="Rank1_Tot_text">득표</a>
 			</div>
 
 			<button class="choose-btn">투표하기</button>

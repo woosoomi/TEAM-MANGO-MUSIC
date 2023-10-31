@@ -19,7 +19,7 @@ import com.itwill.jpa.service.vote.VoteServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
-@RequestMapping("/productVote") // 매핑명은 임의로 한거라 추후 수정예정입니당
+@RequestMapping("/") // 매핑명은 임의로 한거라 추후 수정예정입니당
 public class ProductVoteRestController {
 
 	@Autowired
@@ -27,9 +27,6 @@ public class ProductVoteRestController {
 	
 	@Autowired
 	private ProductVoteServiceImple productVoteServiceImple;
-	
-	
-	
 	
 	@Operation(summary = "투표번호로 상품 보기") 
 	@PostMapping("/selectProduct{voteId}")
