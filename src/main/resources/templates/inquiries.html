@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head><!-- Basic need -->
@@ -15,9 +14,32 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/board.js"></script>
+
+<!--
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			document.getElementById('sortSelect').addEventListener('change', function () {
+				var selectedOption = this.value;
+				if (selectedOption === 'oldest') {
+					console.log('오래된순을 선택했습니다.');
+					$.get("/2023-05-JAVA-DEVELOPER-final-project-team1-mango/inquiries/reverseSort?categoryId=4&userId=why3795", function (data) {
+					});
+				} else {
+					console.log('최신순 옵션을 선택했습니다.');
+					$.get("/2023-05-JAVA-DEVELOPER-final-project-team1-mango/inquiries/Sort?categoryId=4&userId=why3795", function (data) {
+					});
+				}
+			});
+		});
+
+	</script>
+-->
 </head>
 
-<body><!--preloading-->
+<body>
 	<div th:insert="~{header :: headerFragment}">
 	</div>
 
@@ -31,12 +53,11 @@
 							th:text="${inquiries[0].getUser().getUserName + '님의 문의사항은 ' + inquiries.size() + '개입니다'}">
 							userName님의 문의 총 <span>N</span> 개 입니다</p>
 						<label>Sort by:</label>
-						<select>
-							<option value="popularity">최신순</option>
-							<option value="popularity">오래된순</option>
+						<select id="sortSelect">
+							<option value="Latest">최신순</option>
+							<option value="oldest">오래된순</option>
 						</select>
 					</div>
-
 
 					<div class="row">
 						<div class="row">
@@ -69,14 +90,14 @@
 						<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
 					</ul>
 				</div>
-				
+
+
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="sidebar">
 						<div class="sb-search sb-it">
 							<h4 class="sb-title">Search Title</h4><input type="text" placeholder="Enter keywords">
 						</div>
 
-						<!--userId가 admin일때 보이기 -->
 						<div class="searh-form">
 							<form class="form-style-1 celebrity-form" action="#">
 								<div class="row">
@@ -88,17 +109,17 @@
 
 
 						</div>
-				</div>
-				</div>
+					</div>
 				</div>
 			</div>
-		</div><!-- end of celebrity list section--><!-- footer section-->
-		<div th:insert="~{footer :: footerFragment}">
 		</div>
-		<script src="js/jquery.js"></script>
-		<script src="js/plugins.js"></script>
-		<script src="js/plugins2.js"></script>
-		<script src="js/custom.js"></script>
+	</div><!-- end of celebrity list section--><!-- footer section-->
+	<div th:insert="~{footer :: footerFragment}">
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
 </body>
 
 </html>
