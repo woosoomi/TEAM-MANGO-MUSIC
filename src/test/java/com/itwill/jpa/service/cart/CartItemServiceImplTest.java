@@ -37,7 +37,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void cartItemInsert() throws Exception{
 		Optional<Cart> cart = cartRepository.findById(2L);
 		System.out.println("cart>>>>>>>>>>>"+cart);
@@ -49,7 +49,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	    cartItemDto1.setCartItemQty(10);
 	    Product product1 = new Product();
 	    product1.setProductNo(1L);
-	    cartItemDto1.setProductId(product1.getProductNo());
+	    cartItemDto1.setProductId(1L);
 	    cartItemDto1.setCartId(cart.get().getCartId());
 	   /*
 	    CartItemDto cartItemDto2 = new CartItemDto();
@@ -83,6 +83,34 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		int updateQty = 100;
 		cartItemServiceImpl.update(cartItemId, updateQty);
 		
+	}
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
+	void findAllByCartId() throws Exception {
+		Optional<Cart> findCart = cartRepository.findById(1L);
+		if (findCart.isPresent()) {
+			List<CartItem> cartItems = cartItemRepository.findAll();
+			System.out.println(cartItems);
+		}
+		
+	}
+	
+	@Test
+	//@Disabled
+	@Transactional
+	@Rollback(false)
+	void getProductDataByCartItemId() {
+		try {
+			Long cartItemId=1L;
+			CartItemDto cartItemDto;
+			cartItemDto = cartItemServiceImpl.getProductDataByCartItemId(cartItemId);
+			assertNotNull(cartItemDto);
+			System.out.println("cartItemDto>>>>>>>>>"+cartItemDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

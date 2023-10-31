@@ -72,6 +72,19 @@ public class CartServiceImpl implements CartService {
 
 	        return cartDto;
 	    }
+	
+	@Override
+	public CartDto findCartByCartId(Long cartId) throws Exception {
+		Optional<Cart> findCart = cartRepository.findById(cartId);
+		if (findCart.isPresent()) {
+			Cart cart = findCart.get();
+			return CartDto.toDto(cart);
+			
+		} else { 
+			throw new Exception("해당 카트를 찾을 수 없습니다.");
+		}
+	}
+	
 	/*
 	@Override
 	public CartDto getCartItems(List<CartItemDto> cartItemDtos) throws Exception {
@@ -99,7 +112,7 @@ public class CartServiceImpl implements CartService {
 		return null;
 	}
 	*/
-	
+
 	/*
 	// 장바구니 생성
 	@Override
