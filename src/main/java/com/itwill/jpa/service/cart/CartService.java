@@ -20,6 +20,9 @@ public interface CartService {
 	public CartDto calculateTotalPrice(List<CartItemDto> cartItemDtos) throws Exception;
 	
 	//장바구니 조회
+	public CartDto findCartByCartId(Long cartId) throws Exception;
+	
+	//장바구니 조회
 	//public CartDto getCartItems(List<CartItemDto> cartItemDtos) throws Exception;
 	
 	//장바구니 추가

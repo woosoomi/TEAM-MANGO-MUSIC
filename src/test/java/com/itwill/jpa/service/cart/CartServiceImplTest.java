@@ -96,6 +96,17 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 		        System.out.println("cart>>>>>>>>>>>>"+cart);
 		 }
 	}
+	
+	@Test
+	//@Disabled
+	@Transactional
+	@Rollback
+	void findCartByCartId() throws Exception {
+		Optional<Cart> findCart = cartRepository.findById(1L);
+		Cart cart = findCart.get();
+		System.out.println("cart>>>>>>>>>>>>>>>>>>>>>>>>>"+CartDto.toDto(cart));
+	}
+	
 	/*
 	@Test
 	//@Disabled

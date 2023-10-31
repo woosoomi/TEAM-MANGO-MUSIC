@@ -2,6 +2,7 @@ package com.itwill.jpa.controller.product;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductController2 {
-	@Autowired
-	private final ProductServiceImpl productServiceImpl;
 	
 	@Autowired
 	private final ProductService productService;
@@ -36,11 +35,11 @@ public class ProductController2 {
 	
 	// 뮤직리스트 
 	@GetMapping("/music_list")
-	public String musicList(Model model,HttpSession session) {
+	public String musicList(Model model) {
 		try {
-			List<Product> musics = productServiceImpl.findByCategoryId(1L);
+			List<Product> musics = productService.findByCategoryId(1L);
 			model.addAttribute("musics", musics);
-			System.out.println(">>>MUSIC LIST : " + musics);
+			log.info(">>>MUSIC LIST : " + musics);
 			return "music_list";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,12 +49,19 @@ public class ProductController2 {
 	}
 
 	// 뮤직디테일
-	@GetMapping("/music_detail{productNo}")
+	@GetMapping("/music_detail/{productNo}")
 	public String MusicDetail(@PathVariable Long productNo, Model model) {
 		try {
-			Product products = (Product) productService.findByProductNo(productNo).get();
-			productService.increaseReadCount(products);
+			Product musicDetail = (Product) productService.findByProductNo(productNo).get();
+			System.out.println(productNo);
+			System.out.println(musicDetail);
 			
+			productService.increaseReadCount(musicDetail);
+					//readCount increase 작업 성공
+			model.addAttribute("musicDetail", musicDetail);
+			log.info(">>>MUSIC DETAIL :"+  musicDetail);
+					
+					//https://m.blog.naver.com/yh_park02/221726954404
 			return "music_detail";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,7 +74,7 @@ public class ProductController2 {
 	@GetMapping("/membership_detail")
 	public String MembershipDetail(HttpSession session,Model model) {
 		try {
-			List<Product> memberships = productServiceImpl.findByCategoryId(4L);
+			List<Product> memberships = productService.findByCategoryId(4L);
 			if(session.getAttribute("")!=null) {
 				//user로 멤버십 구매 찾기?
 				
@@ -89,7 +95,7 @@ public class ProductController2 {
 		@GetMapping("/goods_list")
 		public String GoodsList(Model model) {
 			try {
-				List<Product> goods = productServiceImpl.findByCategoryId(2L);
+				List<Product> goods = productService.findByCategoryId(2L);
 				model.addAttribute("goods", goods);
 				System.out.println(">>>GOODS LIST : " + goods);
 				return "goods_list";
@@ -105,7 +111,7 @@ public class ProductController2 {
 		@GetMapping("/ticket_list")
 		public String TicketList(Model model) {
 			try {
-				List<Product> tickets = productServiceImpl.findByCategoryId(3L);
+				List<Product> tickets = productService.findByCategoryId(3L);
 				model.addAttribute("tickets", tickets);
 				System.out.println(">>>TICKET LIST : " + tickets);
 				return "ticket_list";
@@ -118,7 +124,7 @@ public class ProductController2 {
 		}
 		
 		// 티켓디테일
-		@GetMapping("/ticket_detail")
+		@GetMapping("/ticket_detail/{productNo}")
 		public String TicketDetail(Model model) {
 			try {
 				
@@ -132,7 +138,7 @@ public class ProductController2 {
 		}
 		
 		// 굿즈디테일
-		@GetMapping("/goods_detail")
+		@GetMapping("/goods_detail/{productNo}")
 		public String GoodsDetail(Model model) {
 			try {
 				

@@ -68,7 +68,9 @@ public class BoardRestController {
 	
 	@Operation(summary = "1대1문의 오래된 순서로 정렬[성공]")
 	@GetMapping("/inquiries/reverseSort")
-	public ResponseEntity<List<BoardDto>> reverseSortInquiries(@RequestParam(name="no") Long categoryId, @RequestParam(name="id") String userId) {
+	public ResponseEntity<List<BoardDto>> reverseSortInquiries() {
+	    Long categoryId = 4L;
+	    String userId = "why3795";
 		List<Board> boardList = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(categoryId, userId);
 		List<BoardDto> boardDtoList = new ArrayList<BoardDto>();
 		
@@ -84,8 +86,10 @@ public class BoardRestController {
 	
 	@Operation(summary = "1대1문의 최신로 정렬[성공]")
 	@GetMapping("/inquiries/sort")
-	public ResponseEntity<List<BoardDto>> sortInquiries(@RequestParam(name="no") Long categoryId, @RequestParam(name="id") String userId) {
-	    List<Board> boardList = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(categoryId, userId);
+	public ResponseEntity<List<BoardDto>> sortInquiries() {
+	    Long categoryId = 4L;
+	    String userId = "why3795";
+		List<Board> boardList = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(categoryId, userId);
 	    //최신순서로 정렬하는 코딩
 	    List<BoardDto> boardDtoList = boardList.stream()
 	        .map(BoardDto::toDto) 

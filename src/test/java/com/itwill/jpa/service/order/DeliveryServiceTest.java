@@ -82,7 +82,7 @@ class DeliveryServiceTest {
 	@Rollback(false)
 	@Disabled
 	void delete() throws Exception{
-		deliveryService.deleteDelivery(3L);
+		deliveryService.deleteDelivery(8274L);
 		
 	}
 	
