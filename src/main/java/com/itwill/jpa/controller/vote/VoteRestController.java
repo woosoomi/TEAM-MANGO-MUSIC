@@ -42,7 +42,7 @@ public class VoteRestController {
 	//private final VoteService voteService;
 
 
-	@Operation(summary = "투표생성") // 수정필요
+	@Operation(summary = "투표생성") // 완료
 	@PutMapping("/create")
 	public ResponseEntity<VoteDto> createVote(@RequestBody VoteDto voteDto) throws Exception {
 	    

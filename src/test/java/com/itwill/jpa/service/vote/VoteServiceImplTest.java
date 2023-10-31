@@ -65,7 +65,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	void creatVoteTest() throws Exception {
 		Date localDate = new Date(2023);
 		
-	    Vote vote1 = new Vote(22L, localDate, 99, null, null);
+	    Vote vote1 = new Vote(null, localDate, 99, null, null);
 	    vote1.setVoteDate(localDate);
 	    voteServiceImpl.createVote(vote1);
 		/*
