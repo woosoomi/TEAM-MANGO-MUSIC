@@ -19,7 +19,7 @@ public class ProductVoteServiceImple implements ProductVoteService{
 	ProductDao productDao;
 	
 	
-	// 완료
+	// 20명 선택
 	@Override
 	public List<Product> findbyTop20ByTotalScore() {
 		List<Product> findTop20ByTotalScore = productRepository.findTop20ByTotalScore(); 	
