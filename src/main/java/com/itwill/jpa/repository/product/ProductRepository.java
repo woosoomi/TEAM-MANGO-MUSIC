@@ -7,14 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.itwill.jpa.dto.product.GoodsDto;
-import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
-import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.entity.vote.Vote;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
@@ -58,8 +56,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	// 상품에서 음악 조회수(readCount), 음악 별점(productStar)의 합산해서 Top 20명 추출
 	@Query(value = "SELECT p FROM Product p ORDER BY (COALESCE(p.readCount, 0) + COALESCE(p.productStar, 0)) DESC")
 	List<Product> findTop20ByTotalScore();
+	/*
+	@Query("SELECT p FROM Product p WHERE p.vote.id = :voteId")
+	List<Product> findProductsByVoteId(@Param("voteId") Long voteId);
+	*/
+
+	// voteID로 상품검색 후 상품 리스트 가져오기
+	 Product findByVoteVoteId(Long voteId);
 	
-//	@Query(value = "SELECT * FROM product p WHERE p.vote_id = :voteId")
-//	Product findByProductByVoteId(@Param("voteId") Long voteId);
 
 }

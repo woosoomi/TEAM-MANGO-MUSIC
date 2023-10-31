@@ -36,7 +36,7 @@ public class ProductController2 {
 	
 	// 뮤직리스트 
 	@GetMapping("/music_list")
-	public String musicList(Model model,HttpSession session) {
+	public String musicList(Model model) {
 		try {
 			List<Product> musics = productServiceImpl.findByCategoryId(1L);
 			model.addAttribute("musics", musics);
@@ -50,7 +50,7 @@ public class ProductController2 {
 	}
 
 	// 뮤직디테일
-	@GetMapping("/music_detail{productNo}")
+	@GetMapping("/music_detail/{productNo}")
 	public String MusicDetail(@PathVariable Long productNo, Model model) {
 		try {
 			Product products = (Product) productService.findByProductNo(productNo).get();

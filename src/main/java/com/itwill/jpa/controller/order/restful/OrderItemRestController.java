@@ -31,21 +31,6 @@ public class OrderItemRestController {
 	private final OrderItemService orderItemService;
 	
 	/* Restful OrderItem */
-	//만들긴 했는데 주문아이템 생성이 따로 필요한지는 모르겠음
-//	@Operation(summary = "주문아이템 생성")
-//	@PostMapping("/create")
-//	public ResponseEntity<?> createOrder(@RequestBody OrderItemDto orderItemDto) {
-//		try {
-//			return ResponseEntity.status(HttpStatus.CREATED).body(orderItemService.saveOrderItem(orderItemDto));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			Map<String, String> errorResponse = new HashMap<>();
-//			errorResponse.put("error", e.getMessage());
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-//			
-//			
-//		}
-//	}
 	
 	@Operation(summary="주문내역한개 삭제")
 	@DeleteMapping("/delete/{oiId}")
