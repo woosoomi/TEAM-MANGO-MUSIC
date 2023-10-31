@@ -2,6 +2,7 @@ package com.itwill.jpa.service.order;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,12 +46,13 @@ public class DeliveryServiceImpl implements DeliveryService{
 	}
 
 	//배송지 정보 삭제 Dto에 삭제 배송지 정보 저장
-	@Override
-	public DeliveryDto deleteDelivery(Long deliveryId) throws Exception {
-		Delivery delivery = deliveryRepository.findById(deliveryId).orElseThrow(() -> new IllegalArgumentException("배송지가 존재하지 않습니다."));
-		deliveryRepository.deleteById(deliveryId);
-		DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
-		return deliveryDto;
+		@Override
+		public DeliveryDto deleteDelivery(Long deliveryId) throws Exception {
+			Delivery delivery = deliveryRepository.findById(deliveryId).orElseThrow(() -> new IllegalArgumentException("배송지가 존재하지 않습니다."));
+			deliveryRepository.deleteById(deliveryId);
+			DeliveryDto deliveryDto = DeliveryDto.toDto(delivery);
+			return deliveryDto;
+			
 		
 	}
 

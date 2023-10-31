@@ -42,7 +42,7 @@ public class Delivery {
 	private String deliveryCompany;
 	
 	// delivery와 user n대1
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "userId", referencedColumnName = "userId")
 	@ToString.Exclude
 	private User user;
