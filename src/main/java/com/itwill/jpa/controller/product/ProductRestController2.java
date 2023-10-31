@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itwill.jpa.dto.product.ProductMusicDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.service.product.ProductService;
+
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/product")
@@ -26,23 +29,29 @@ public class ProductRestController2 {
 	@Autowired
 	private ProductService productService;
 
-	@GetMapping("/MusicDetail/{productNo}")
-	public ResponseEntity<Product> getProduct(@PathVariable(name="productNo") Long productNo) {
-		if(productService.getProduct(productNo).getProductCategory().getCategoryId()==1L) {
-			return ResponseEntity.status(HttpStatus.OK).body(productService.getProduct(productNo));
-		}else {
-			return null;
-		}
-	}
+	//오름차순, 내림차순 변경 같은 액션?
 	
-	//detail 별로 rest파일 분리 필요? -> 각 카테고리 별로 dto 묶어서 작업...maybe
+	//@GetMapping(value = "/music_list/desc",produces = "application/json;charset=UTF-8")
+	//public ResponseEntity<List<?>> musicListDesc(@PathVariable)
 	
-	@PostMapping("/music/create")
-	public ResponseEntity<Product> createMusic(@RequestBody Product product){
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(productService.insertProduct(product));
-	}
 	
+	/*
+	 * @Operation(summary = "음악 세부정보")
+	 * 
+	 * @GetMapping(value = "/MusicDetail/{productNo}", produces =
+	 * "application/json;charset=UTF-8") public ResponseEntity<ProductMusicDto>
+	 * getProduct(@PathVariable(name="productNo") Long productNo) {
+	 * 
+	 * return null; }
+	 */
+	
+	
+	/*
+	 * @PostMapping("/music/create") public ResponseEntity<Product>
+	 * createMusic(@RequestBody Product product){ return
+	 * ResponseEntity.status(HttpStatus.CREATED)
+	 * .body(productService.insertProduct(product)); }
+	 */
 
 	@PutMapping("/update")
 	public ResponseEntity<Product> updateProduct(@RequestBody Product updateProduct)throws Exception{

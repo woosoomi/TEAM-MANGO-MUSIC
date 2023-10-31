@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
@@ -54,7 +55,6 @@ public class ProductDto {
 	private int periodOfUse; // 멤버십 사용기간
 	
 	private String productImage; // 프로덕트(음악,굿즈,티켓,멤버십) 이미지
-	
 	private List<Product> products;
 	private List<Music> musics;
 	private List<Goods> goodss;

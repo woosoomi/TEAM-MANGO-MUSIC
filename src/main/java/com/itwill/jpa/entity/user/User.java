@@ -83,8 +83,8 @@ public class User {
 	private List<Coupon> coupons = new ArrayList<>();
 	
 	// user와 delivery 1대N 관계설정 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	private List<Delivery> deliverys = new ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Delivery> deliverys = new ArrayList<>();
 
 	// user와 board_Reply 1대N 관계설정
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
