@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.order.CouponDto;
@@ -76,7 +77,7 @@ public class CouponRestController {
 	}
 
 	// 쿠폰 전체 삭제
-	@Operation(summary = "쿠폰전체삭제[실패]")
+	@Operation(summary = "쿠폰전체삭제[성공]")
 	@DeleteMapping("/delete/all")
 	public ResponseEntity<?> deleteAllCoupons() {
 		try {
@@ -107,8 +108,8 @@ public class CouponRestController {
 	}
 	
 	// 주문내역에서 해당 주문에 사용된 쿠폰 불러오기
-	@Operation(summary = "주문내역에서 해당 주문에 사용된 쿠폰 불러오기([실패]")
-	@GetMapping("/all") 
+	@Operation(summary = "주문내역에서 해당 주문에 사용된 쿠폰 불러오기([성공]")
+	@GetMapping("/all/{orderId}") 
 	public ResponseEntity<?> getCouponByOrderId(@PathVariable(value = "orderId") Long orderId) {
 		try {
 			CouponDto coupon = couponService.findCouponByOrderId(orderId);
@@ -122,9 +123,9 @@ public class CouponRestController {
 	}
 	
 	// 쿠폰 할인 적용시키기
-	@Operation(summary = "쿠폰 할인 적용시키기([실패]")
-	@PutMapping("/discount") 
-	public ResponseEntity<?> applyCouponDiscount(@PathVariable(value = "couponId") Long couponId, double orderPrice) {
+	@Operation(summary = "쿠폰 할인 적용시키기([성공]")
+	@PutMapping("/discount/{couponId}") 
+	public ResponseEntity<?> applyCouponDiscount(@PathVariable(value = "couponId") Long couponId,@RequestParam(value = "orderPrice") double orderPrice) {
 		try {
 			double discountPrice = couponService.applyCouponDiscount(couponId, orderPrice);
 			return ResponseEntity.status(HttpStatus.OK).body(discountPrice);
