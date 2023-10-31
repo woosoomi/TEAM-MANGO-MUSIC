@@ -122,6 +122,7 @@ public class UserRestController {
 	}
 
 	// 아이디, 이메일로 아이디 찾기 API
+	@Operation(summary = "아이디찾기[성공]")
 	@GetMapping("/find-id")
 	public ResponseEntity<String> findUserIdByUserNameUserEmail(@RequestParam(name = "user_name") String userName,
 			@RequestParam(name = "user_email") String userEmail) {
@@ -134,6 +135,7 @@ public class UserRestController {
 	}
 
 	// 아이디, 전화번호로 비밀번호 찾기 API
+	@Operation(summary = "비밀번호찾기[성공]")
 	@GetMapping("/find-pw")
 	public ResponseEntity<String> findUserPwByUserIdUserPhone(@RequestParam(name = "userId") String userId,
 			@RequestParam(name = "user_phone") String userPhone) {
