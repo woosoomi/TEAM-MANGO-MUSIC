@@ -80,7 +80,7 @@ class DeliveryServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void delete() throws Exception{
 		deliveryService.deleteDelivery(8274L);
 		
