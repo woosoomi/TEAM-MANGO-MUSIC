@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -43,10 +44,13 @@ public class Delivery {
 	
 	// delivery와 user n대1
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "userId", referencedColumnName = "userId")
+	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
-
+	
+	//이친구가 없었던게 문제
+	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private Order order;
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Delivery toEntity(DeliveryDto dto) {

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.dto.user.UserVoteDto;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.user.UserRepository;
 
+@Service
 public class UserVotesericeImpl implements UserVoteService{
 	
 	@Autowired

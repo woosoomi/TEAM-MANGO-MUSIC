@@ -12,6 +12,7 @@ public interface ProductVoteService {
 	List<Product> findbyTop20ByTotalScore();
 
 	
-//	Product findByProductByVoteId(Long voteNo);
+	// voteID로 상품검색 후 상품 리스트 가져오기
+	Product findByVoteVoteId(Long voteId);
 
 }

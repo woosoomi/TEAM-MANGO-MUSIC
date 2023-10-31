@@ -63,6 +63,8 @@ public class ProductVoteDto {
 			.productImage(entity.getProductImage())
 			.productArtist(entity.getProductArtist())
 			.voteId(entity.getVote().getVoteId())
+			.voteTot(entity.getVote().getVoteTot())
+			.voteDate(entity.getVote().getVoteDate())
 			.build();
 		
 	}
