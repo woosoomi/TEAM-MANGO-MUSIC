@@ -89,6 +89,7 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Disabled
 	void selecteVoteTest() throws Exception {
 		System.out.println("@@@@@"+voteServiceImpl.selectByVoteNo(1L));
+		System.out.println("@@@@@"+voteServiceImpl.findVoteListAll());
 	
 	}
 	
@@ -97,8 +98,8 @@ class VoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	void deleteVoteTest() throws Exception {
 	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().size());		
 	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll());		
-	voteRepository.deleteById(272L);
-	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll().size());
+	voteRepository.deleteById(23L);
+	System.out.println("#################-->>"+voteServiceImpl.findVoteListAll());		
 	//System.out.println("@@@@@-->>"+voteServiceImpl.selectByVoteNo(1L));
 	
 	}	
