@@ -28,8 +28,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("user_info_form")
-	public String user_view() {
+	@GetMapping("/user_info_form")
+	public String user_info_form() {
 		String forward_path = "user_info_form";
 		return forward_path;
 	}
