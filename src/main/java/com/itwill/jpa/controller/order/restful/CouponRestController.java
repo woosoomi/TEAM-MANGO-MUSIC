@@ -47,7 +47,7 @@ public class CouponRestController {
 	}
 	
 	// 쿠폰 정보 수정(관리자권한)
-	@Operation(summary = "쿠폰수정[]")
+	@Operation(summary = "쿠폰수정[성공]")
 	@PutMapping("/update")
 	public ResponseEntity<?> updateCoupon(@RequestBody CouponDto couponDto) throws Exception {
 		try {
@@ -61,7 +61,7 @@ public class CouponRestController {
 	}
 	
 	// 쿠폰 1개 삭제
-	@Operation(summary = "쿠폰한개삭제[]")
+	@Operation(summary = "쿠폰한개삭제[성공]")
 	@DeleteMapping("/delete/{couponId}")
 	public ResponseEntity<?> deleteCoupon(@PathVariable(value = "couponId") Long couponId) {
 		try {
@@ -76,7 +76,7 @@ public class CouponRestController {
 	}
 
 	// 쿠폰 전체 삭제
-	@Operation(summary = "쿠폰전체삭제[]")
+	@Operation(summary = "쿠폰전체삭제[실패]")
 	@DeleteMapping("/delete/all")
 	public ResponseEntity<?> deleteAllCoupons() {
 		try {
@@ -91,7 +91,7 @@ public class CouponRestController {
 	}
 	
 	// 유저의 쿠폰 전체 불러오기
-	@Operation(summary = "로그인한 유저 쿠폰 불러오기[]")
+	@Operation(summary = "로그인한 유저 쿠폰 불러오기[성공]")
 	@GetMapping("/{userId}")
 	public ResponseEntity<?> getCouponsByUserId(@PathVariable(value = "userId") String userId) {
 		try {
@@ -107,7 +107,7 @@ public class CouponRestController {
 	}
 	
 	// 주문내역에서 해당 주문에 사용된 쿠폰 불러오기
-	@Operation(summary = "주문내역에서 해당 주문에 사용된 쿠폰 불러오기([]")
+	@Operation(summary = "주문내역에서 해당 주문에 사용된 쿠폰 불러오기([실패]")
 	@GetMapping("/all") 
 	public ResponseEntity<?> getCouponByOrderId(@PathVariable(value = "orderId") Long orderId) {
 		try {
@@ -122,7 +122,7 @@ public class CouponRestController {
 	}
 	
 	// 쿠폰 할인 적용시키기
-	@Operation(summary = "쿠폰 할인 적용시키기([]")
+	@Operation(summary = "쿠폰 할인 적용시키기([실패]")
 	@PutMapping("/discount") 
 	public ResponseEntity<?> applyCouponDiscount(@PathVariable(value = "couponId") Long couponId, double orderPrice) {
 		try {

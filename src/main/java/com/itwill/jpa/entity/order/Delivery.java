@@ -48,6 +48,7 @@ public class Delivery {
 	@ToString.Exclude
 	private User user;
 	
+	//이친구가 없었던게 문제
 	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private Order order;
 	

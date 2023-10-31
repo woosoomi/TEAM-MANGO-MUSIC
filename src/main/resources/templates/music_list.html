@@ -33,17 +33,20 @@
 						</select><a href="/music_list" class="list"><i class="ion-ios-list-outline "></i></a><a
 							href="celebritygrid02.html" class="grid"><i class="ion-grid active"></i></a>
 					</div>
-				<div >
-					<!-- 아래 row div 세칸 날아감...why-->
-					<div class="row">
+				<div th:each="musics : ${musics}">
+					<div class="row" >
 						<div class="col-md-4">
-							<div class="ceb-item-style-2"><img src="images/uploads/ceb21.jpg" alt="">
+							<div class="ceb-item-style-2"><img th:text="${musics.productImage}" alt="">
 								<div class="ceb-infor">
-									<h2><a href="music_detail.html">Leonardo DiCaprio</a></h2><span>actor, uk</span>
+									<h2><a href="music_detail", th:text="${musics.productName}">Leonardo DiCaprio</a></h2>
+									<span th:text="${musics.productArtist}">actor, uk</span>
+									<span th:text="${musics.readCount}">10</span>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- 
+					 
 						<div class="col-md-4">
 							<div class="ceb-item-style-2"><img src="images/uploads/ceb22.jpg" alt="">
 								<div class="ceb-infor">
@@ -58,7 +61,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
 					
 					<div class="row">
 						<div class="col-md-4">
@@ -321,6 +323,10 @@
 							</div>
 						</div>
 					</div>
+					
+						
+					-->
+				</div>	
 					<div class="topbar-filter"><label>페이지 개수 보기 : </label><select>
 							<option value="range">36개씩 보기</option>
 							<option value="saab">18개씩 보기</option>
