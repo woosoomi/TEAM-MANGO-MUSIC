@@ -52,9 +52,16 @@ public class ProductController2 {
 	@GetMapping("/music_detail/{productNo}")
 	public String MusicDetail(@PathVariable Long productNo, Model model) {
 		try {
-			Product products = (Product) productService.findByProductNo(productNo).get();
-			productService.increaseReadCount(products);
+			Product musicDetail = (Product) productService.findByProductNo(productNo).get();
+			System.out.println(productNo);
+			System.out.println(musicDetail);
 			
+			productService.increaseReadCount(musicDetail);
+					//readCount increase 작업 성공
+			model.addAttribute("musicDetail", musicDetail);
+			log.info(">>>MUSIC DETAIL :"+  musicDetail);
+					
+					//https://m.blog.naver.com/yh_park02/221726954404
 			return "music_detail";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,7 +124,7 @@ public class ProductController2 {
 		}
 		
 		// 티켓디테일
-		@GetMapping("/ticket_detail")
+		@GetMapping("/ticket_detail/{productNo}")
 		public String TicketDetail(Model model) {
 			try {
 				
@@ -131,7 +138,7 @@ public class ProductController2 {
 		}
 		
 		// 굿즈디테일
-		@GetMapping("/goods_detail")
+		@GetMapping("/goods_detail/{productNo}")
 		public String GoodsDetail(Model model) {
 			try {
 				
