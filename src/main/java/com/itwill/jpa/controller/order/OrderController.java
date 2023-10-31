@@ -1,5 +1,6 @@
 package com.itwill.jpa.controller.order;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,10 @@ import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
-
+import com.itwill.jpa.service.product.ProductService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +27,9 @@ public class OrderController {
 	
 	@Autowired
 	private OrderItemService orderItemService;
+	
+	@Autowired
+	private ProductService productService;
 
 	//오더페이지를 일단 두개로 나눔 멤버쉽결제페이지 와 티켓결제페이지
 	@GetMapping("/order_membership")
@@ -33,7 +38,7 @@ public class OrderController {
 		try {
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "wsm55");
+			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			
 			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
@@ -47,15 +52,31 @@ public class OrderController {
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
-				
-				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가(유저님의 100개의 주문입니다.)
-	            Context context = new Context();
-	            context.setVariable("user_id", userId);
-	            context.setVariable("orderItemDtoList", orderItemDtoList);
+				 // Product 엔티티의 정보를 저장할 변수
+	            Date membershipStartPeriod = null;
+	            String membershipName = null;
+	            String membershipImage = null;
+	            String membershipContent = null;
+	            // 주문 아이템별로 Product 정보 가져오기
+	            for (OrderItemDto orderItemDto : orderItemDtoList) {
+	                Long productNo = orderItemDto.getProductNo();
+	                Product product = productService.getProduct(productNo);
 
-	            // Thymeleaf 템플릿에 컨텍스트를 전달
-	            model.addAttribute("context", context);
-	            
+	                if (product != null) {
+	                    // Product 엔티티의 멤버십 시작일 정보 가져오기
+	                    membershipStartPeriod = product.getStartPeriod();
+	                    membershipName = product.getProductName();
+	                    membershipImage = product.getProductImage();
+	                    membershipContent = product.getProductContent();
+	                }
+	            }
+	            model.addAttribute("user_id", userId);
+				model.addAttribute("orderItemDtoList", orderItemDtoList);
+				model.addAttribute("membershipStartPeriod", membershipStartPeriod);
+				model.addAttribute("membershipName", membershipName);
+				model.addAttribute("membershipImage", membershipImage);
+				model.addAttribute("membershipContent", membershipContent);
+				
 				return "order_membership";
 			} else {
 				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
