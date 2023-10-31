@@ -14,29 +14,23 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
-
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+	<!--
+		
 	<script src="js/board.js"></script>
+	
+	
+	-->
 
-<!--
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-			document.getElementById('sortSelect').addEventListener('change', function () {
-				var selectedOption = this.value;
-				if (selectedOption === 'oldest') {
-					console.log('오래된순을 선택했습니다.');
-					$.get("/2023-05-JAVA-DEVELOPER-final-project-team1-mango/inquiries/reverseSort?categoryId=4&userId=why3795", function (data) {
-					});
-				} else {
-					console.log('최신순 옵션을 선택했습니다.');
-					$.get("/2023-05-JAVA-DEVELOPER-final-project-team1-mango/inquiries/Sort?categoryId=4&userId=why3795", function (data) {
-					});
-				}
-			});
-		});
 
-	</script>
--->
+
+
+
+
 </head>
 
 <body>
@@ -46,7 +40,7 @@
 
 	<div class="page-single">
 		<div class="container">
-			<div class="row">
+			<div class="row">c
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
 						<p class="pad-change"
@@ -54,27 +48,31 @@
 							userName님의 문의 총 <span>N</span> 개 입니다</p>
 						<label>Sort by:</label>
 						<select id="sortSelect">
-							<option value="Latest">최신순</option>
+							<option value="latest">최신순</option>
 							<option value="oldest">오래된순</option>
 						</select>
 					</div>
 
 					<div class="row">
-						<div class="row">
-							<div th:each="inquiries, iterStat : *{inquiries}" th:if="${iterStat.index lt 6}">
+						<div class="row" id="inquiriesContainer">
 
-								<div class="col-md-12">
-									<div class="ceb-item-style-2" >
+
+								<div th:each="inquiries : ${inquiries}">
+
+									<div class="ceb-item-style-2">
 										<div class="ceb-infor">
 											<h2>
+
 												<a href="celebritysingle.html" th:text="${inquiries.boardTitle}">로그인</a>
 											</h2>
-											<p th:text="${inquiries.createdTime}">회원가입했는데 로그인이안되요...</p>
+											<p
+												th:text="${#temporals.format(inquiries.createdTime, 'yyyy-MM-dd HH:mm:ss')}">
+												시간</p>
+
 											<p th:text="${inquiries.boardType.boardTypeTitle}">회원가입했는데 로그인이안되요...</p>
 											<span th:text="${inquiries.boardContent}"> 답변완료 </span>
 										</div>
 									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -116,10 +114,58 @@
 	</div><!-- end of celebrity list section--><!-- footer section-->
 	<div th:insert="~{footer :: footerFragment}">
 	</div>
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // 페이지 로드 시 초기 데이터를 저장합니다.
+        var initialData = $('#inquiriesContainer').html();
+
+        var sortSelect = $('#sortSelect');
+        var inquiriesContainer = $('#inquiriesContainer');
+
+        // 정렬 함수
+        function sortItems(ascending) {
+            var itemList = inquiriesContainer.find('.ceb-item-style-2').toArray();
+            itemList.sort(function (a, b) {
+                var dateA = new Date($(a).find('p').eq(0).text());
+                var dateB = new Date($(b).find('p').eq(0).text());
+                return ascending ? dateA - dateB : dateB - dateA;
+            });
+
+            // 이전 리스트 삭제
+            inquiriesContainer.empty(); // 여기서 .ceb-item-style-2 요소를 모두 삭제합니다.
+
+            // 정렬된 리스트를 부모 요소에 추가
+            $.each(itemList, function (index, item) {
+                inquiriesContainer.append(item);
+            });
+        }
+
+        sortSelect.on('change', function () {
+            var selectedOption = sortSelect.val();
+            if (selectedOption === 'latest') {
+                sortItems(false); // 최신순으로 정렬
+            } else if (selectedOption === 'oldest') {
+                sortItems(true); // 오래된순으로 정렬
+            }
+        });
+
+        // 예시로 초기 데이터 복원 버튼을 만들어 초기 데이터로 돌아갈 수 있습니다.
+        $('#restoreDataButton').on('click', function () {
+            inquiriesContainer.html(initialData);
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

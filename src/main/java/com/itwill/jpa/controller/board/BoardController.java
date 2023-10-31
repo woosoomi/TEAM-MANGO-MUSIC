@@ -1,5 +1,6 @@
 package com.itwill.jpa.controller.board;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardType;
-import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.board.BoardServiceImpl;
 import com.itwill.jpa.service.user.UserServiceImpl;
 
@@ -80,6 +80,8 @@ public class BoardController {
 		try {
 			List<Board> inquiries 
 				= boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,"why3795");
+			Collections.reverse(inquiries);
+
 			model.addAttribute("inquiries", inquiries);
 			System.out.println("inquiries 리스트 : " + inquiries);
 			
