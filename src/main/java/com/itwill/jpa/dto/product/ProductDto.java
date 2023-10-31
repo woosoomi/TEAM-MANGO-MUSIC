@@ -37,8 +37,6 @@ public class ProductDto {
 	
 	private String productContent; // 프로덕트(음악,굿즈,티켓) 설명
 	
-//	private String productReply; // 프로덕트(음악,굿즈,티켓) 댓글
-	
 	private int productStar; // 프로덕트(음악,굿즈,티켓) 별점
 	
 	private Date productDate; // 프로덕트(음악,굿즈,티켓) 등록날짜

@@ -209,20 +209,22 @@ class ProductServiceImplTest {
 		// updateProduct 메서드 호출
 		Product updatedProduct = productServiceImpl.updateProduct(product);
 	}
-	// product 수정[성공] - DTO로 받기[성공]
+	// product 수정 - DTO로 받기
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	public void testUpdateProductDto() throws Exception {
-		ProductDto productDto = productServiceImpl.findProductDtoByProductNo(2L).get();
-//		orElseThrow(null);
-		//수정
-		productDto.setProductName("수정DTO 테스트완료");
-		productDto.setProductArtist("가수 수정");
-		// updateProductDto 메서드 호출
-		ProductDto updateProductDto = productServiceImpl.updateProductDto(productDto);
-	}
+        Long productNo = 2L;
+        // 테스트 실행
+        ProductDto productDto = productServiceImpl.getProductDto(productNo);
+        //수정
+        productDto.setProductName("수정DTO 테스트완료");
+        productDto.setProductArtist("가수 수정");
+        // updateProductDto 메서드 호출        	
+        ProductDto updateProductDto = productServiceImpl.updateProductDto(productDto);
+        }
+	
 	// 제목키워드로 검색[성공]
 	@Test
 	@Transactional
