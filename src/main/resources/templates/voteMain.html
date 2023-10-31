@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Manggo MusicAward</title>
@@ -9,7 +10,10 @@
 </style>
 </head>
 <body>
-    <!-- Header 삽입 필요 !!-->
+    <!-- Header 시작 !!-->
+	<div th:insert="~{header :: headerFragment}">
+	</div>
+    <!-- Header 종료 !!-->
 
 
      <!-- 상 이름 리스트 -->

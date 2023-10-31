@@ -62,7 +62,7 @@ public class VoteRestController {
 	
 	
 	// User의 Json에서 vote가 String으로 받고 있어서 해결 필요
-	@Operation(summary = "투표 1개 총합 업데이트") // 완료
+	@Operation(summary = "회원 투표 합으로 tot 업데이트") // 완료
 	@PutMapping("/update")
 	public ResponseEntity<Map<String, Object>> updateVote(@RequestBody VoteDto vote) throws Exception {
 		Map<String, Object> responseMap = new HashMap<>();
