@@ -40,6 +40,10 @@ public class CartItemServiceImpl implements CartItemService {
 	public CartItemDto insert(CartItemDto dto) throws Exception {
 		Product product = productDao.selectProduct(dto.getProductId());
 		Cart cart = cartDao.findByCartId(dto.getCartId());
+		List<CartItem> existingItems = cartItemRepository.findByProduct(product);
+		if (!existingItems.isEmpty()) {
+			throw new Exception("이미 해당 상품이 장바구니에 있습니다.");
+		}
 		CartItem cartItem = new CartItem();
 		cartItem.setCartItemQty(dto.getCartItemQty());
 		cartItem.setProduct(product);
@@ -69,52 +73,57 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 
 	@Override
-	public List<CartItemDto> findAllByCartId(Long CartId) {
-	    List<CartItem> cartItems = cartItemRepository.findAll();
-	    List<CartItemDto> cartItemDtos = new ArrayList<>();
+	public List<CartItemDto> findAllByCartId(Long cartId) {
+		List<CartItem> cartItems = cartItemRepository.findAllByCart_CartId(cartId);
+		List<CartItemDto> cartItemDtos = new ArrayList<>();
 
-	    for (CartItem cartItem : cartItems) {
-		    CartItemDto cartItemDto = new CartItemDto();
-	    	cartItemDto.setCartItemId(cartItem.getCartItemId());
-	    	cartItemDto.setCartItemQty(cartItemDto.getCartItemQty());
-	    	cartItemDto.setCartId(cartItemDto.getCartId());
-	    	cartItemDto.setProductId(ProductDto.toDto(cartItem.getProduct()).getProductNo());
-	    	
-	    	cartItemDtos.add(cartItemDto);
-	    
-	    }
+		for (CartItem cartItem : cartItems) {
+			CartItemDto cartItemDto = new CartItemDto();
+			cartItemDto.setCartItemId(cartItem.getCartItemId());
+			cartItemDto.setCartItemQty(cartItem.getCartItemQty());
+			cartItemDto.setCartId(cartItem.getCart().getCartId());
+			cartItemDto.setProductId(ProductDto.toDto(cartItem.getProduct()).getProductNo());
+			cartItemDtos.add(cartItemDto);
+		}
 
-	    return cartItemDtos;
+		return cartItemDtos;
+	}
+
+	@Override
+	public int calculateTotalByCartItemId(Long cartItemId) throws Exception {
+		Optional<CartItem> findCartItem = cartItemRepository.findById(cartItemId);
+		int totalPrice = 0;
+		if (findCartItem.isPresent()) {
+			CartItem cartItem = findCartItem.get();
+			totalPrice = cartItem.getCartItemQty() * cartItem.getProduct().getProductPrice();
+			cartItemRepository.save(cartItem);
+			return totalPrice;
+		} else {
+			throw new Exception("해당 아이템을 찾을 수 없습니다.");
+		}
+	}
+
+	@Override
+	public Optional<ProductDto> getProductByProductId(Long productId) throws Exception {
+		Optional<Product> productOptional = productRepository.findById(productId);
+        return productOptional.map(ProductDto::toDto);
 	}
 
 	/*
-	@Override
-	public List<CartItem> insertAll(List<CartItem> cartItems) throws Exception {
-		List<CartItem> insertedItems = new ArrayList<>();
-		for (CartItem cartItem : cartItems) {
-			CartItem insertedCartItem = cartItemRepository.save(cartItem);
-			insertedItems.add(insertedCartItem);
-		}
-		return insertedItems;
-	}
-
-	@Override
-	public CartItem update(Long cartItemId, int qty) throws Exception {
-		Optional<CartItem> findCartItem = cartItemRepository.findById(cartItemId);
-		CartItem updatedCart = null;
-		if (findCartItem.isPresent()) {
-			CartItem cartItem = findCartItem.get();
-			cartItem.setCartItemQty(qty);
-			updatedCart = cartItemRepository.save(cartItem);
-		}else {
-			throw new Exception("존재하지 않는 장바구니입니다.");
-		}
-		return updatedCart;
-	}
-
-	@Override
-	public void deleteByCartItemId(Long cartItemId) {
-		cartItemRepository.deleteById(cartItemId);;
-	}
-*/
+	 * @Override public List<CartItem> insertAll(List<CartItem> cartItems) throws
+	 * Exception { List<CartItem> insertedItems = new ArrayList<>(); for (CartItem
+	 * cartItem : cartItems) { CartItem insertedCartItem =
+	 * cartItemRepository.save(cartItem); insertedItems.add(insertedCartItem); }
+	 * return insertedItems; }
+	 * 
+	 * @Override public CartItem update(Long cartItemId, int qty) throws Exception {
+	 * Optional<CartItem> findCartItem = cartItemRepository.findById(cartItemId);
+	 * CartItem updatedCart = null; if (findCartItem.isPresent()) { CartItem
+	 * cartItem = findCartItem.get(); cartItem.setCartItemQty(qty); updatedCart =
+	 * cartItemRepository.save(cartItem); }else { throw new
+	 * Exception("존재하지 않는 장바구니입니다."); } return updatedCart; }
+	 * 
+	 * @Override public void deleteByCartItemId(Long cartItemId) {
+	 * cartItemRepository.deleteById(cartItemId);; }
+	 */
 }
