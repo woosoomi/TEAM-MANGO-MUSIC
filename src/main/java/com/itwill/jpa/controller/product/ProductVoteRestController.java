@@ -36,4 +36,13 @@ public class ProductVoteRestController {
 		 ProductVoteDto selectVote = ProductVoteDto.toDto(product);
 		 return ResponseEntity.status(HttpStatus.OK).body(selectVote);
 	}
+	
+	
+	@Operation(summary = "투표 번호가 있는 상품리스트 보기") 
+	@PostMapping("/productVoteList")
+	public ResponseEntity<ProductVoteDto> productVoteList() throws Exception {
+		
+		
+		return null;
+	}
 }
