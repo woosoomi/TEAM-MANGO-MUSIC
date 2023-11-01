@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.order.DeliveryDto;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.service.order.DeliveryService;
 
 import io.swagger.v3.oas.annotations.Operation;

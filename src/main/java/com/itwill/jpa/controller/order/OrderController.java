@@ -11,6 +11,7 @@ import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
@@ -146,17 +147,43 @@ public class OrderController {
 			//일단 임의로 세션 로그인 유저 설정함
 			session.setAttribute("user_id", "wsm55");
 			String userId = (String) session.getAttribute("user_id");
-			
 //			//테스트용 코드
-//			List<OrderDto> testOrderDtoList = orderService.orders();
-//			model.addAttribute("orderDtoNewerList", testOrderDtoList);
-//			System.out.println("주문 내역 최신순:" + testOrderDtoList);
+			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
+			model.addAttribute("orderDtoList", orderDtoList);
+			System.out.println("주문 내역 최신순:" + orderDtoList);
+			List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
+			model.addAttribute("orderItemDtoList", orderItemDtoList);
+			String productName = null;
+			String productImage = null;
+			String productContent = null;
+			int productPrice = 0;
 			
+			for (OrderItemDto orderItemDto : orderItemDtoList) {
+                Long productNo = orderItemDto.getProductNo();
+                Product product = productService.getProduct(productNo);
+                if (product != null) {
+                    // Product 엔티티 정보 가져오기
+                    productName = product.getProductName();
+                    productImage = product.getProductImage();
+                    productContent = product.getProductContent();
+                    productPrice = product.getProductPrice();
+                    
+                    model.addAttribute("productName",productName);
+                    model.addAttribute("productImage",productImage);
+                    model.addAttribute("productContent",productContent);
+                    model.addAttribute("productPrice",productPrice);
+                }
+			}
 			//원래 코드
 			//orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
+			 Context context = new Context();
+	            context.setVariable("user_id", userId);
+
+	            // Thymeleaf 템플릿에 컨텍스트를 전달
+	            model.addAttribute("context", context);
 			return "order_history";
 			
 		} catch (Exception e) {

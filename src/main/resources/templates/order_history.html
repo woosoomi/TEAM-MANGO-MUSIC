@@ -161,33 +161,71 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="page-single movie_list">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p>Found
+						<p><a th:text="${context.user_id}+'님의'"></a>
 							<span th:text="${#lists.size(orderDtoNewerList)}"></span>
 							<span>개의 주문내역 
-							</p><label>Sort by:</label><select>
-							<option value="popularity">최신순</option>
-							<option value="popularity">오래된순</option>
-						</select>
+					 <script>
+	       			 // JavaScript 함수 정의
+			        function sortOrders() {
+			                     var selectedOption = document.getElementById("sortSelect").value;
+
+					            // AJAX 요청을 만듭니다.
+					            var xhr = new XMLHttpRequest();
+					            var url = "/orderDtoNewerList?sortBy=" + selectedOption; // 실제 서버 엔드포인트로 대체해야 합니다.
+					
+					            xhr.open("GET", url, true);
+					
+					            xhr.onload = function () {
+					                if (xhr.status === 200) {
+					                    var responseData = JSON.parse(xhr.responseText);
+					
+					                    // 서버에서 반환된 데이터를 사용하여 페이지를 업데이트합니다.
+					                    updateOrderList(responseData);
+					                }
+					            };
+					
+					            xhr.send();
+					        }
+
+       
+			   		 </script>
+							</p><label>Sort by:</label>
+						<select id="sortSelect" onchange="sortOrders()">
+				        <option value="newest">최신순</option>
+				        <option value="oldest">오래된순</option>
+					    </select>
 					</div>
+					<!--<div th:each=" productImage: ${productImage}">-->
 					<div class="movie-item-style-2"><img src="images/uploads/mv1.jpg" alt="">
 						<div class="mv-item-infor">
-							<h6><a th:text="${orderDtoNewerList[0].orderId}"></a> [총 <a th:text="${#lists.size(orderDtoNewerList)}"></a>개]<span></span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>8.1</span>/10</p>
-							<p class="describe">Earth's mightiest heroes must come together and learn to fight as a team
-								if they are to stop the mischievous Loki and his alien army from enslaving humanity...
+							
+							<div th:each=" orderitem: ${orderItemDtoList}">
+							<h6><a th:text="${orderitem.orderId}"></a>  <a th:text="'[총'+${orderitem.oiQty}+'개]'"></a><span></span></a></h6>
+							<ul>
+								<li th:each="product: ${productName}">
+							
+							<p class="rate"><span th:text="${productPrice}+'원'"></span></p>
+							<p class="describe"><a th:text="${productName}"></a>
 							</p>
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
-									2015</span></p>
-							<p>Director: <a href="#">Joss Whedon</a></p>
-							<p>Stars: <a href="#">Robert Downey Jr.,</a><a href="#">Chris Evans,</a><a href="#">Chris
-									Hemsworth</a></p>
+							<ul>
+							<li th:each="order: ${orderDtoList}">
+							<p class="run-time">
+								<a th:text="${order.createdAt}"></a>
+								</p>
+								
+									</li>
+								</ul>
+							</li>
+							</ul>	
 						</div>
 					</div>
+						</div>
 					<div class="movie-item-style-2"><img src="images/uploads/mv2.jpg" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="moviesingle.html">into the wild <span>(2014)</span></a></h6>
