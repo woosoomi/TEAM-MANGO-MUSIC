@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
-@RequestMapping("/vote")
+@RequestMapping("/voteProduct")
 //@RequiredArgsConstructor
 public class VoteRestController {
 	
@@ -60,6 +61,19 @@ public class VoteRestController {
 	}
     
 	
+	@Operation(summary = "투표 1개의 tot")
+	@GetMapping("/getVoteTot/{voteId}")
+    public ResponseEntity<Integer> getVoteTot(@PathVariable(name = "voteId") Long voteId) throws Exception {
+		 Vote vote = voteServiceImpl.selectByVoteNo(voteId);
+		 VoteDto selectVote = VoteDto.toDto(vote);
+		 if (vote==null) {
+			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(selectVote.getVoteTot());
+			} 
+			 return ResponseEntity.status(HttpStatus.OK).body(selectVote.getVoteTot());
+
+    }
+	
+	
 	
 	// User의 Json에서 vote가 String으로 받고 있어서 해결 필요
 	@Operation(summary = "회원 투표 합으로 tot 업데이트") // 완료
@@ -77,8 +91,8 @@ public class VoteRestController {
 	   
 	}
 		
-	@Operation(summary = "투표 전체보기") // 완료
-	@PostMapping("/voteListAll")
+	@Operation(summary = "투표 전체보기") // 완료 --> url로도 열림
+	@GetMapping("/voteListAll")
 	public ResponseEntity<List<VoteDto>> findVoteListAll() throws Exception {
 	    List<Vote> voteList = voteServiceImpl.findVoteListAll();
 	    List<VoteDto> voteDtos = new ArrayList<>();

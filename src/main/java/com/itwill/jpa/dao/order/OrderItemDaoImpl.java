@@ -107,41 +107,10 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	                    userOrderedItems.add(orderItem);
 	                }
 	            }
-
 	            return userOrderedItems;
 	        } else {
 	            return Collections.emptyList(); // 사용자를 찾을 수 없는 경우 빈 리스트 반환
 	        }
-	    }
-	
-		@Override
-		public List<OrderItem> findOrderItemsByUserIdAndProductCategoryId(String userId, Long categoryId) {
-			Optional<User> userOptional = userRepository.findById(userId);
-
-			if (userOptional.isPresent()) {
-				User user = userOptional.get();
-				List<OrderItem> userOrderedItems = new ArrayList<>();
-
-				List<Order> orders = user.getOrders();
-
-				for (Order order : orders) {
-					List<OrderItem> orderItems = order.getOrderItems();
-					for (OrderItem orderItem : orderItems) {
-						Product product = orderItem.getProduct();
-						if (product.getProductCategory().getCategoryId().equals(categoryId)) {
-							userOrderedItems.add(orderItem);
-						}
-					}
-				}
-
-				return userOrderedItems;
-			} else {
-				return Collections.emptyList();
-			}
 		}
-	
-	
 
-	
-
-}
+	}

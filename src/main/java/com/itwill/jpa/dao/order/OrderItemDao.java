@@ -21,6 +21,5 @@ public interface OrderItemDao {
 	
 	void deleteAll();
 
-	List<OrderItem> findOrderItemsByUserIdAndProductCategoryId(String userId, Long categoryId);
 	
 }

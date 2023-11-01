@@ -9,6 +9,10 @@
 <style>
 @import	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/vote.js"></script>
+
 </head>
 <body>
 
@@ -35,6 +39,13 @@
 						<li><a href="#">9월</a></li>
 						<li><a href="#">10월</a></li>
 						<li><a href="#">11월</a></li>
+					</ul>
+				</li>
+				
+				<li><a href="#">히스토리</a>
+					<ul>
+						<li><a href="#">주간인기상</a></li>
+						<li><a href="#">월간인기상</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -110,8 +121,8 @@
 	<!-- 1위 2위 배틀 -->
 	<div class="battle">
 		
-		<!--  -->
-		<div class="battle_img_left" th:each="productVote : ${productVote}">
+		
+		<div class="battle_img_left" th:each="productVote : ${productVote}" th:if="${productVote.voteId == 1}">
 			<img th:src="${productVote.productImage}">
 			<h1>
 				1위 <a class="battle_left_name" th:text="${productVote.productArtist}">임영웅</a> <a id="Rank1_Tot_percentage">57%</a>
@@ -123,11 +134,12 @@
 		</div>		
 		
 			
-			<button class="choose-btn">투표하기</button>
+			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
 		</div>
 		<h3 class="vs">VS</h3>
 
-		<div class="battle_img_right" th:each="productVote : ${productVote}">
+
+		<div class="battle_img_right" th:each="productVote : ${productVote}" th:if="${productVote.voteId == 2}">
 			<img th:src="${productVote.productImage}">
 			<h1>
 				1위 <a class="battle_right_name" th:text="${productVote.productArtist}">정국</a> 
@@ -139,7 +151,7 @@
 				<a id="Rank1_Tot_text">득표</a>
 			</div>
 
-			<button class="choose-btn">투표하기</button>
+			<button class="choose-btn"  onclick="voteButtonClicked()">투표하기</button>
 		</div>
 	</div>
 
@@ -150,204 +162,31 @@
 	<!-- 1위~20위 시작-->
 	<div class="battle_list">
 
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/94/944/994944_20231006163709_500.jpg">
+
+		<div class="battle_rank" th:each="productVote : ${productVote}">
+			<img th:src="${productVote.productImage}">
 			<h1>
-				1위 <a class="battle_1st_name">임영웅</a>
+				1위 <a class="battle_1st_name" th:text="${productVote.productArtist}">임영웅</a>
 			</h1>
 			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1110 득표</a>
+				<img src="https://cdn.icon-icons.com/icons2/1302/PNG/512/multimediamusicplayerplaybutton_85798.png" style="size: 10px;width: 30px;height: 30px;">
+				<a style="text-align:left; width: 200px;" th:text="${productVote.productName}">노래제목</a>
+				<div id="tot">
+				<a style="text-align:center;" th:text="${productVote.voteTot}">11,501</a> 
+				<a style="font-size: 20px;">득표</a>
+				<a>70%</a>
+				</div>
 			</div>
 				<div class="vote_percentage-bar">
-				<a>70%</a>
+				
 				<div class="percentage-bar">
 					<div class="percentage1"></div>
 				</div>
 			</div>
 			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/026/32/253/2632253_20231013103136_500.jpg">
-			<h1>
-				2위 <a class="battle_1st_name">투모로우바이투게더</a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/030/55/146/3055146_20231013113531_500.jpg">
-			<h1>
-				3위 <a class="battle_1st_name">아이브</a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-
-		
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/95/173/995173_20231005174025_500.jpg">
-			<h1>
-				4위 <a class="battle_1st_name">제니</a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/031/14/174/3114174_20230707095732_500.jpg">
-			<h1>
-				5위 <a class="battle_1st_name">NewJeans</a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-		
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/67/229/967229_20210805170241_500.jpg">
-			<h1>
-				6위 <a class="battle_1st_name">릴러말즈 (Leellamarz)</a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
+			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
 		</div>
 		
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/000/03/305/3305_20210521133532_500.jpg">
-			<h1>
-				7위 <a class="battle_1st_name">	성시경, 나얼 </a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/030/92/950/3092950_20231027105934_500.jpg">
-			<h1>
-				8위 <a class="battle_1st_name">LE SSERAFIM(르세라핌) </a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-		
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/009/91/413/991413_20230927113555_500.jpg">
-			<h1>
-				9위 <a class="battle_1st_name">	NCT 127</a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-
-		<div class="battle_rank">
-			<img src="https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/478/3478478_20231026104537_500.jpg">
-			<h1>
-				10위 <a class="battle_1st_name">RIIZE</a>
-			</h1>
-			<div class="battle_list_nameTot">
-				<a>노래제목</a>
-				<a>1234득표</a>
-			</div>
-				<div class="vote_percentage-bar">
-				<a>70%</a>
-				<div class="percentage-bar">
-					<div class="percentage1"></div>
-				</div>
-			</div>
-			
-			<button class="choose-btn">투표하기</button>
-		</div>
-
-
 	</div>
 	<!-- 1위~20위 종료-->
 

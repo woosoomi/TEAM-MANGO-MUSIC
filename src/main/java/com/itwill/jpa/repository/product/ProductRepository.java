@@ -76,11 +76,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	List<Product> findProductsByVoteId(@Param("voteId") Long voteId);
 	*/
 
-	// voteID로 상품검색 후 상품 리스트 가져오기
+	// voteID로 상품검색 후 상품 1개 가져오기
 	 Product findByVoteVoteId(Long voteId);
 
+	 
+	 // voteId가 null아닌 리스트 가져오기
+	 @Query("SELECT p FROM Product p JOIN p.vote v WHERE v IS NOT NULL")
+	 List<Product> findProductsByVoteIsNotNull();
 
-
-	
 
 }

@@ -3,6 +3,8 @@ package com.itwill.jpa.service.order;
 import java.util.List;
 
 import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.exception.user.UserNotFoundException;
 
 public interface OrderService {
 	//주문 생성
@@ -27,4 +29,6 @@ public interface OrderService {
 	boolean isMembershipPurchasedAndSaveMembership(String userId);
 	//유저의 멤버쉽 구매 로직 (멤버쉽 결제가 성공하면 반환값 true)
 	boolean performMembershipPurchaseLogic(String userId);
+	// 유저 아이디와 카테고리 번호로 주문 항목 찾기
+    List<OrderItemDto> findOrderItemsByUserIdAndProductCategoryId(String userId, Long categoryId) throws UserNotFoundException;
 }
