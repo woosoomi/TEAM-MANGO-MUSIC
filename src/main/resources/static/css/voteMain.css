@@ -203,7 +203,8 @@ ul li{
 }
 .battle_totPercent a{
   color: black;
-  font-size: 16px;
+  font-size: 20px;
+  
   font-family: 'Noto Sans KR', sans-serif;
 }
 .battle_left_name{
