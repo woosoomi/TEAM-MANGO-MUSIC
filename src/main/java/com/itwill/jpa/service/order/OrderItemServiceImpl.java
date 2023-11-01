@@ -34,7 +34,8 @@ public class OrderItemServiceImpl implements OrderItemService{
 	@Autowired
 	UserRepository userRepository;
 	
-
+	@Autowired
+	ProductService productService;
 
 	//아이템 추가
 	@Override
@@ -114,15 +115,27 @@ public class OrderItemServiceImpl implements OrderItemService{
 
 	            // 사용자 엔티티에서 주문 목록을 가져옴
 	            List<Order> orders = user.getOrders();
-
+	            
+	            
+	            
 	            // 각 주문에 속한 주문 항목 및 연결된 제품을 가져옴
 	            for (Order order : orders) {
 	                List<OrderItem> orderItems = order.getOrderItems();
 	                for (OrderItem orderItem : orderItems) {
-	                    userOrderedItems.add(OrderItemDto.toDto(orderItem));
+	                    OrderItemDto orderItemDto = OrderItemDto.toDto(orderItem);
+
+	                    // 주문 항목에 연결된 제품 정보 가져와서 설정
+	                    Long productNo = orderItemDto.getProductNo();
+	                    Product product = productService.getProduct(productNo);
+	                    orderItemDto.setProductName(product.getProductName());
+	                    orderItemDto.setProductImage(product.getProductImage());
+	                    orderItemDto.setProductContent(product.getProductContent());
+	                    orderItemDto.setProductPrice(product.getProductPrice());
+	                    	
+	                    userOrderedItems.add(orderItemDto);
 	                }
 	            }
-
+	            
 	            return userOrderedItems;
 	        } else {
 	            return Collections.emptyList(); // 사용자를 찾을 수 없는 경우 빈 리스트 반환

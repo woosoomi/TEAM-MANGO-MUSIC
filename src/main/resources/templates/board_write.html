@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head><!-- Basic need -->
+	<title>Open Pediatrics</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<link rel="profile" href="#"><!--Google Font-->
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+	<!-- Mobile specific meta -->
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
+	<link rel="stylesheet" href="css/plugins.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+
+	<style>
+		.dropdown-container {
+			display: flex;
+		}
+
+		.dropdown-form {
+			margin-right: 30px;
+			/* 오른쪽 마진을 추가하여 간격 조절 가능 */
+		}
+	</style>
+
+</head>
+
+<body>
+	<!--insert header-->
+	<div th:insert="~{header :: headerFragment}">
+	</div>
+
+
+	<div class="page-single">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9 col-sm-12 col-xs-12">
+					<div class="blog-detail-ct">
+
+
+						
+
+						<input type="text" id="postTitle" name="postTitle" value="제목을 입력해주세요" size="40"
+							style="height: 70px; font-size: 40px; margin-bottom: 20px;"
+							onfocus="if (this.value == '제목을 입력해주세요') this.value = '';">
+
+
+						<div class="dropdown-container">
+							<span class="currenttime" style="color: yellow; font-weight: bold; ">27 Mar 2017</span>
+
+							<form action="#" class="dropdown-form" style="width: 200px; margin-left: 50px;">
+								<select name="languages" id="lang1" onchange="updateLang2Options()">
+									<option value="카테고리설정">카테고리설정</option>
+									<option value="공지사항">공지사항</option>
+									<option value="FAQ">FAQ</option>
+									<option value="매거진">매거진</option>
+									<option value="1대1문의">1대1문의</option>
+									<option value="이벤트">이벤트</option>
+								</select>
+							</form>
+
+							<form action="#" class="dropdown-form" style="width: 200px; ">
+								<select name="languages" id="lang2">
+									<option value="타입설정">타입설정</option>
+								</select>
+							</form>
+						</div>
+						<input type="text" id="postContent" name="postContent" value="내용을 입력해주세요" size="40"
+							style="height: 500px; font-size: 20px; margin-bottom: 20px; margin-top: 20px;"
+							onfocus="if (this.value == '내용을 입력해주세요') this.value = '';">
+
+					
+						<div class="comments"></div>
+						<div class="comment-form">
+
+							<div class="dropdown-container">
+								<form action="">
+									<input class="submit" type="submit" placeholder="submit" value="제출하기" style="margin-left:250px;">
+								</form>
+								<form action="">
+									<input class="submit" type="submit" placeholder="submit" value="돌아가기" style="margin-left:50px;">
+									</for>
+							</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="sidebar">
+							<div class="sb-search sb-it">
+							</div>
+							<div class="sb-cate sb-it">
+							</div>
+							<div class="sb-recentpost sb-it">
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+
+<script>
+	// 현재 로컬 날짜와 시간을 한국 시간대로 가져오기
+	var currentDate = new Date();
+	var options = {timeZone: 'Asia/Seoul'};
+	var koreanDate = currentDate.toLocaleString('en-US', options);
+
+	// koreanDate를 사용하여 HTML 요소의 텍스트를 업데이트
+	document.querySelector(".currenttime").textContent = koreanDate;
+
+
+
+	function updateLang2Options() {
+		var lang1 = document.getElementById("lang1");
+		var lang2 = document.getElementById("lang2");
+
+		// 선택된 값을 가져옵니다.
+		var selectedLang1 = lang1.options[lang1.selectedIndex].value;
+		console.log(selectedLang1)
+		// lang2 드롭다운을 초기화합니다.
+		lang2.innerHTML = "";
+
+		// 선택된 lang1에 따라 lang2 드롭다운을 업데이트합니다.
+		if (selectedLang1 === "공지사항") {
+			// "공지사항"이 선택된 경우, lang2에 해당 옵션을 추가합니다.
+			var option = document.createElement("option");
+			option.value = "notice1";
+			option.text = "일반공지";
+			lang2.appendChild(option);
+			var option = document.createElement("option");
+			option.value = "notice2";
+			option.text = "서비스공지";
+			lang2.appendChild(option);
+			var option = document.createElement("option");
+			option.value = "notice3";
+			option.text = "시스템공지";
+			lang2.appendChild(option);
+			var option = document.createElement("option");
+			option.value = "notice4";
+			option.text = "기타";
+			lang2.appendChild(option);
+		} else if (selectedLang1 === "FAQ") {
+			var option = document.createElement("option");
+			option.value = "faq1";
+			option.text = "회원정보";
+			lang2.appendChild(option);
+			var option = document.createElement("option");
+			option.value = "faq2";
+			option.text = "결제/환불";
+			lang2.appendChild(option);
+			var option = document.createElement("option");
+			option.value = "faq3";
+			option.text = "이벤트";
+			lang2.appendChild(option);
+			var option = document.createElement("option");
+			option.value = "faq4";
+			option.text = "기타";
+			lang2.appendChild(option);
+		} else if (selectedLang1 === "매거진") {
+			var option = document.createElement("option");
+			option.value = "magazine1";
+			option.text = "매거진";
+			lang2.appendChild(option);
+		} else if (selectedLang1 === "이벤트") {
+			var option = document.createElement("option");
+			option.value = "event1";
+			option.text = "이벤트";
+			lang2.appendChild(option);
+		} else if (selectedLang1 === "1대1문의") {
+			var option = document.createElement("option");
+			option.value = "inquiries1";
+			option.text = "1대1문의";
+			lang2.appendChild(option);
+		} else {
+			// 기타 경우에는 다른 옵션을 추가할 수 있습니다.
+			var option = document.createElement("option");
+			option.value = "default";
+			option.text = "타입설정";
+			option.text = "타입설정";
+			lang2.appendChild(option);
+		}
+	}
+</script>
+
+
+
+
+
+
+
+</html>
