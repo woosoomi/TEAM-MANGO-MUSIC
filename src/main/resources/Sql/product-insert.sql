@@ -47,7 +47,7 @@ INSERT INTO product (product_No, product_category_id, product_Name, product_Pric
 VALUES (product_product_no_seq.nextval, 3, '티켓 제품 3', 300, 'ticket', '티켓 제품 설명 3', 0, TO_DATE('2023-10-31', 'YYYY-MM-DD'), 130, 10, '콘서트 장소 3', 30);
 
 -- "멤버십" 카테고리 제품 1
-INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Address, period_of_use)
-VALUES (product_product_no_seq.nextval, 4, '멤버십 제품1', 300, 'membership', '멤버십 제품 설명 1', 0, TO_DATE('2023-10-31', 'YYYY-MM-DD'), 130, 10, '콘서트 장소 3', 30);
+INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Address, period_of_use, product_image)
+VALUES (product_product_no_seq.nextval, 4, '멤버십 제품1', 300, 'membership', '멤버십 제품 설명 1', 0, TO_DATE('2023-10-31', 'YYYY-MM-DD'), 130, 10, '콘서트 장소 3', 30, 'tmembership.png');
 
 commit;

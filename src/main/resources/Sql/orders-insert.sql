@@ -22,7 +22,7 @@ values (delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id) 
 values (20000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '배송준비중', 'cgj22');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (5, order_item_no_seq.nextval, order_no_seq.currval, 18);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (5, order_item_no_seq.nextval, order_no_seq.currval, 45);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
 values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000002', '10월 감사제 쿠폰', '3개월쿠폰', 'cgj22');
