@@ -20,6 +20,7 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/board.js"></script>
 
 </head>
 
@@ -113,53 +114,6 @@
 	</div>
 
 </body>
-<script>
-	$(document).ready(function () {
-		var initialData = $('#notificationContainer').html();
-		var notilistContainer = $('#notificationContainer');
-
-		function filterItems(filter) {
-			notilistContainer.empty();
-			var itemList = $(initialData).find('.blog-item-style-1, .blog-item-style-3').toArray();
-			$.each(itemList, function (index, item) {
-				var notiType = $(item).find('.time').eq(0).text();
-
-				if (filter === 'all' ||
-					(filter === 'service' && notiType === '서비스공지') ||
-					(filter === 'etc' && notiType === '기타') ||
-					(filter === 'system' && notiType === '시스템공지') ||
-					(filter === 'normal' && notiType === '일반공지')) {
-					notilistContainer.append(item);
-				}
-			});
-		}
-
-
-
-		$('#normalCategory').on('click', function () {
-			filterItems('normal');
-		});
-		$('#otherCategory').on('click', function () {
-			filterItems('etc');
-		});
-		$('#serviceCategory').on('click', function () {
-			filterItems('service');
-		});
-		$('#systemCategory').on('click', function () {
-			filterItems('system');
-		});
-		$('#all').on('click', function () {
-			filterItems('all');
-		});
-
-		filterItems('all');
-	});
-
-
-
-</script>
-
-
 
 
 </html>
