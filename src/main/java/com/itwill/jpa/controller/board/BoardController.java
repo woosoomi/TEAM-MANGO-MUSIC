@@ -124,4 +124,17 @@ public class BoardController {
 			return null;
 		}
 	}
+	
+	@GetMapping("/board_write")
+	public String board_write(Model model) {
+		try {
+			
+			return "board_write"; 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMSG : " + e.getMessage());
+			return null;
+		}
+	}
 }
