@@ -15,6 +15,11 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
 </head>
 
 <body><!--preloading-->
@@ -32,16 +37,18 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter ">
 						<p>총 <span th:text="${#lists.size(events)}"></span> 개의 이벤트 </p>
-						<select>
-							<option value="range">전체 이벤트</option>
-							<option value="range">진행중인 이벤트</option>
-							<option value="saab">종료된 이벤트</option>
+						<select id="choiceSelect">
+							<option value="all">전체 이벤트</option>
+							<option value="ing">진행중 이벤트</option>
+							<option value="end">종료된 이벤트</option>
 						</select>
 					</div>
 
-					<div class="row">
-							<div class="flex-wrap-movielist user-fav-list">
-								<div class="movie-item-style-2" th:each="event, stat : ${events}">
+					<div class="row" id="eventContainer">
+						<div class="flex-wrap-movielist user-fav-list">
+							<div th:each="event, stat : ${events}">
+
+								<div class="movie-item-style-2">
 									<img th:src="${'images/uploads/mv1.jpg'}" alt="">
 									<div class="mv-item-infor">
 										<h6>
@@ -56,6 +63,7 @@
 									</div>
 								</div>
 							</div>
+						</div>
 					</div>
 
 					<ul class="pagination">
@@ -88,15 +96,51 @@
 					</div>
 				</div>
 			</div>
-			</div>
-
-		</div><!-- footer section-->
-		<div th:insert="~{footer :: footerFragment}">
 		</div>
-		<script src="js/jquery.js"></script>
-		<script src="js/plugins.js"></script>
-		<script src="js/plugins2.js"></script>
-		<script src="js/custom.js"></script>
+
+	</div><!-- footer section-->
+	<div th:insert="~{footer :: footerFragment}">
+	</div>
+
 </body>
+
+
+<script>
+
+	$(document).ready(function () {
+    var initialData = $('#eventContainer').html();
+    var movielistContainer = $('#eventContainer');
+
+    function filterItems(filter) {
+        movielistContainer.empty(); // 컨테이너 비우기
+        var itemList = $(initialData).find('.movie-item-style-2').toArray();
+
+        $.each(itemList, function (index, item) {
+            var eventType = $(item).find('.run-time').text();
+            console.log(eventType); // 이벤트 타입을 콘솔에 출력
+
+            // 필터링 로직 추가
+            if (filter === 'all' || (filter === 'end' && eventType === '종료된이벤트') || (filter === 'ing' && eventType === '진행중이벤트')) {
+                movielistContainer.append(item);
+            }
+        });
+    }
+
+    // 선택 상자 변경 이벤트
+    $('#choiceSelect').on('change', function () {
+        var selectedOption = $(this).val();
+        filterItems(selectedOption); // 선택한 옵션에 따라 필터링
+    });
+
+    // 페이지 로드 시 초기 필터링
+    filterItems('all');
+});
+
+
+
+
+
+
+</script>
 
 </html>
