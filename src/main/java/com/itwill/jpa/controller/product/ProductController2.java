@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.jpa.controller.user.LoginCheck;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.ProductMusicDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.product.ProductRepository;
@@ -37,7 +38,7 @@ public class ProductController2 {
 	@GetMapping("/music_list")
 	public String musicList(Model model) {
 		try {
-			List<Product> musics = productService.findByCategoryId(1L);
+			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 			model.addAttribute("musics", musics);
 			log.info(">>>MUSIC LIST : " + musics);
 			return "music_list";
@@ -97,7 +98,7 @@ public class ProductController2 {
 		@GetMapping("/goods_list")
 		public String GoodsList(Model model) {
 			try {
-				List<Product> goods = productService.findByCategoryId(2L);
+				List<ProductDto> goods = productService.findByProductCategoryId(2L);
 				model.addAttribute("goods", goods);
 				System.out.println(">>>GOODS LIST : " + goods);
 				return "goods_list";
@@ -135,7 +136,7 @@ public class ProductController2 {
 		@GetMapping("/ticket_list")
 		public String TicketList(Model model) {
 			try {
-				List<Product> tickets = productService.findByCategoryId(3L);
+				List<ProductDto> tickets = productService.findByProductCategoryId(3L);
 				model.addAttribute("tickets", tickets);
 				System.out.println(">>>TICKET LIST : " + tickets);
 				return "ticket_list";
