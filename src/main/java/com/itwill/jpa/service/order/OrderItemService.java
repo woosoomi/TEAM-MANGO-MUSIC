@@ -21,5 +21,5 @@ public interface OrderItemService {
 	
 	OrderItemDto findOrderItem(Long id);
 
-	List<OrderItemDto> getOrderItemsByCategory(String userId, Long categoryId) throws Exception;
+
 }
