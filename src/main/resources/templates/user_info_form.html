@@ -141,26 +141,26 @@
 							<h4>01. 회원정보</h4>
 							<div class="row">
                         <div class="col-md-6 form-it"><label>UserId</label><input type="text"
-                              placeholder="아이디"></div>
+                              placeholder="아이디" id="userId"></div>
                         <div class="col-md-6 form-it"><label>UserPassword</label><input type="text"
-                              placeholder="비밀번호"></div>
+                              placeholder="비밀번호" id="userPw"></div>
                      </div>
                      <div class="row">
                         <div class="col-md-6 form-it"><label>UserName</label><input type="text"
-                              placeholder="이름"></div>
+                              placeholder="이름" id="userName"></div>
                         <div class="col-md-6 form-it"><label>UserPhone</label><input type="text"
-                              placeholder="전화번호"></div>
+                              placeholder="전화번호" id="userPhone"></div>
                      </div>
                      <div class="row">
                         <div class="col-md-6 form-it"><label>UserEmail</label><input type="text"
-                              placeholder="이메일"></div>
+                              placeholder="이메일" id="userEmail"></div>
                         <div class="col-md-6 form-it"><label>UserJumin</label><input type="text"
-                              placeholder="주민번호"></div>
+                              placeholder="주민번호" id="userJumin"></div>
                      </div>
                      <div class="row">
                         <div class="col-md-6 form-it"><label>UserAddress</label><input type="text"
-                              placeholder="주소"></div>
-                        <div class="col-md-6 form-it"><label>UserGender</label><select>
+                              placeholder="주소" id="userAddress"></div>
+                        <div class="col-md-6 form-it"><label>UserGender</label><select id="userGender">
                               <option value="united">남</option>
                               <option value="saab">여</option>
                            </select></div>
@@ -180,6 +180,42 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+	
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// 사용자 정보를 가져오는 요청을 보냅니다.
+			fetch("/user/" + userId, {
+				method: "GET",
+				headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json"
+				}
+			})
+				.then(response => {
+					if (response.status === 200) {
+						return response.json();
+					} else {
+						throw new Error("User not found");
+					}
+				})
+				.then(user => {
+					// 사용자 정보를 화면에 표시합니다.
+					document.querySelector("#userId").textContent = user.userId;
+					document.querySelector("#userPw").textContent = user.userPw;
+					document.querySelector("#userName").textContent = user.userName;
+					document.querySelector("#userPhone").textContent = user.userPhone;
+					document.querySelector("#userEmail").textContent = user.userEmail;
+					document.querySelector("#userJumin").textContent = user.userJumin;
+					document.querySelector("#userAddress").textContent = user.userAddress;
+					document.querySelector("#userGender").textContent = user.userGender;
+
+				})
+				.catch(error => {
+					console.error("Error:", error);
+					// 사용자 정보를 가져오지 못한 경우 에러 메시지를 표시하거나 리디렉션을 수행할 수 있습니다.
+				});
+		});
+	</script>
 </body>
 
 </html>

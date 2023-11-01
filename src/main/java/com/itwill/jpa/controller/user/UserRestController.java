@@ -75,7 +75,8 @@ public class UserRestController {
 	@RequestMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_View(@PathVariable(name = "userId") String userId, HttpSession session) {
 		try {
-	        UserDto user = userService.findUser(userId);
+			String userId1 = "kbs88";
+	        UserDto user = userService.findUser(userId1);
 	        if (user == null) {
 	            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
 	        }
