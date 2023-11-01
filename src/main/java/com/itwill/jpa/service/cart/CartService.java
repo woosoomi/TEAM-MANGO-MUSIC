@@ -35,7 +35,7 @@ public interface CartService {
 	//public int calculateTotalPrice(List<CartItem> cartItems) throws Exception;
 	
 	//장바구니 조회
-	//List<Cart> getCartItems(Cart cart) throws Exception;
+	//List<Cart> getCartItems(Cart cart) throws Exception; 
 	
 
 
