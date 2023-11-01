@@ -9,14 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.OrderItemDao;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
-import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.exception.order.OrderItemNotFoundException;
 import com.itwill.jpa.exception.user.UserNotFoundException;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
@@ -146,7 +143,7 @@ public class OrderItemServiceImpl implements OrderItemService{
 				List<OrderItemDto> orderItemsInCategoryDto = new ArrayList<>();
 
 				for (Product product : productsInCategory) {
-					List<OrderItem> orderItems = orderItemRepository.findByUserIdAndProductCategoryId(userId,
+					List<OrderItem> orderItems = orderItemDao.findOrderItemsByUserIdAndProductCategoryId(userId,
 							product.getProductCategory().getCategoryId());
 
 					// 각 OrderItem을 OrderItemDto로 변환하여 리스트에 추가

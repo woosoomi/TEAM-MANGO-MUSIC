@@ -18,8 +18,8 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 	
 //	List<OrderItemDto> findByOrder(OrderDto order);
 	
-	//유저아이디와 카테고리번호로 주문아이템 찾기
-	@Query("SELECT oi FROM OrderItem oi WHERE oi.order.user.userId = :userId AND oi.product.productCategory.categoryId = :categoryId")
-	List<OrderItem> findByUserIdAndProductCategoryId(@Param("userId") String userId, @Param("categoryId") Long categoryId);
+//	//유저아이디와 카테고리번호로 주문아이템 찾기
+//	@Query("SELECT oi FROM OrderItem oi WHERE oi.order.user.userId = :user_id AND oi.product.productCategory.categoryId = :category_id")
+//	List<OrderItem> findByUserIdAndProductCategoryId(@Param("user_id") String userId, @Param("category_id") Long categoryId);
 
 }
