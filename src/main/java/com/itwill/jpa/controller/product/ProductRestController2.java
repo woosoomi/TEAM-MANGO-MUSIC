@@ -29,23 +29,13 @@ public class ProductRestController2 {
 	@Autowired
 	private ProductService productService;
 
-	//오름차순, 내림차순 변경 같은 액션?
+	//https://velog.io/@ansalstmd/SPRING-REST-Controller%EB%A5%BC-%ED%86%B5%ED%95%9C-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84
 	
-	//@GetMapping(value = "/music_list/desc",produces = "application/json;charset=UTF-8")
+	
+	//음악 오름차순, 내림차순 변경 같은 액션
 	//public ResponseEntity<List<?>> musicListDesc(@PathVariable)
 	
-	
-	/*
-	 * @Operation(summary = "음악 세부정보")
-	 * 
-	 * @GetMapping(value = "/MusicDetail/{productNo}", produces =
-	 * "application/json;charset=UTF-8") public ResponseEntity<ProductMusicDto>
-	 * getProduct(@PathVariable(name="productNo") Long productNo) {
-	 * 
-	 * return null; }
-	 */
-	
-	
+	//음악 추가 -> admin용 페이지에 들어갈 거 같은데 시간 없을거 같아 보임
 	/*
 	 * @PostMapping("/music/create") public ResponseEntity<Product>
 	 * createMusic(@RequestBody Product product){ return
