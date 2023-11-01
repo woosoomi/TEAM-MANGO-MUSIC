@@ -58,25 +58,25 @@ public class UserRestController {
 	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_Login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
 		try {
-			UserDto user = userService.findUser(userLoginDto.getUserId());
-			if (user != null && user.getUserPw().equals(userLoginDto.getUserPw())) {
-				session.setAttribute("sUserId", userLoginDto.getUserId());
-				return ResponseEntity.status(HttpStatus.OK).build();
-			} else {
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
-			}
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
-		}
-	}
+            User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
+
+            if (loginUser != null) {
+                session.setAttribute("sUserId", loginUser.getUserId());
+                return ResponseEntity.status(HttpStatus.OK).body("Login successful");
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 	
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")
 	@RequestMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_View(@PathVariable(name = "userId") String userId, HttpSession session) {
 		try {
-			String userId1 = "kbs88";
-	        UserDto user = userService.findUser(userId1);
+	        UserDto user = userService.findUser(userId);
 	        if (user == null) {
 	            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
 	        }
