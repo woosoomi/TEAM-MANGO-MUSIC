@@ -167,7 +167,7 @@
 					<div class="topbar-filter">
 						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
 						</div>
-					<div class="movie-item-style-2"><img th:src="@{images/{membershipImage}}" alt="">
+					<div class="movie-item-style-2"><img th:src="@{'images/' + ${membershipImage}}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="membership_detail" th:text="${membershipName}"><span>(2023)</span></a></h6>
 							

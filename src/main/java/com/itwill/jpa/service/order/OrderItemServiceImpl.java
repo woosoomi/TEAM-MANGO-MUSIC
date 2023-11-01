@@ -9,15 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.OrderItemDao;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.exception.order.OrderItemNotFoundException;
+import com.itwill.jpa.exception.user.UserNotFoundException;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 import com.itwill.jpa.repository.user.UserRepository;
+import com.itwill.jpa.service.product.ProductService;
 @Service
 public class OrderItemServiceImpl implements OrderItemService{
 
@@ -32,6 +33,8 @@ public class OrderItemServiceImpl implements OrderItemService{
 	
 	@Autowired
 	UserRepository userRepository;
+	
+
 
 	//아이템 추가
 	@Override
@@ -124,10 +127,6 @@ public class OrderItemServiceImpl implements OrderItemService{
 	        } else {
 	            return Collections.emptyList(); // 사용자를 찾을 수 없는 경우 빈 리스트 반환
 	        }
-	    }
+		}
 
 	}
-
-	
-
-	

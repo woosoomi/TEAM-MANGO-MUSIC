@@ -69,7 +69,7 @@ ul li{
   padding-top: 15px;
   background-color: #262626;
   display: grid;
-  grid-template-columns: 100px 1500px 500px;
+  grid-template-columns: 100px 1200px 250px;
 }
 
 .logo{
@@ -111,6 +111,7 @@ ul li{
 
 .login{
   margin-top: 10px;
+  justify-content:start ;
 }
 
 /* 상단 메뉴 종료*/
@@ -158,13 +159,14 @@ ul li{
 
 /* 1위 2위 배틀 시작 */
 .battle {
-    display: flex;
+   display: grid;
+   grid-template-columns: 300px 100px 300px;
     align-items: center;
     justify-content: center;
     margin: 10px auto;
     position: relative;
     max-width: 90vw;
-    width: 800px;
+	grid-column-gap: 100px;
     margin-bottom: 200px;
     margin-top: 100px;
     font-family: 'Noto Sans KR', sans-serif;
@@ -189,6 +191,7 @@ ul li{
   display: grid;
   grid-template-columns: 145px 50px 40px;
   font-family: 'Noto Sans KR', sans-serif;
+  text-align: right;
 }
 
 .battle_img_right h1{
@@ -203,7 +206,8 @@ ul li{
 }
 .battle_totPercent a{
   color: black;
-  font-size: 16px;
+  font-size: 20px;
+  
   font-family: 'Noto Sans KR', sans-serif;
 }
 .battle_left_name{
@@ -240,9 +244,8 @@ font-family: 'Noto Sans KR', sans-serif;
 
 
 .vs{
-	font-size: 100px;
-	margin-left: 50px;
-	margin-right: 50px;
+  font-size: 100px;
+  margin-right: 50px;
   font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -275,13 +278,19 @@ font-family: 'Noto Sans KR', sans-serif;
 .battle_list_nameTot{
   font-family: 'Noto Sans KR', sans-serif;
   display: grid;
-  grid-template-columns: 200px 100px;
+  grid-template-columns: 40px 100px;
   font-size: 20px;
 }
 
 .battle_list_nameTot a{
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 20px;
+}
+#tot{
+	right: 0px;
+    grid-column-start: 6;
+    grid-column-end: 5;
+    grid-row-start: 2;
 }
 
 .battle_rank img{
