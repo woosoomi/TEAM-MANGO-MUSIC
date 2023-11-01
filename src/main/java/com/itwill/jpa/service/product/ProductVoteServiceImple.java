@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 @Service
@@ -35,11 +36,22 @@ public class ProductVoteServiceImple implements ProductVoteService{
 	}
 
 
+	@Override
+	public List<Product> findByProductVoteIdNotnull() {
+		Vote vote = null;
+		Product findByVoteVoteId = productRepository.findByVoteVoteId(vote.getVoteId());
+		
+		return null;
+	}
+
+
 //	@Override
 //	public Product findByProductByVoteId(Long voteNo) {
 //		Product findByProductByVoteId = productRepository.findByProductByVoteId(voteNo);
 //		return findByProductByVoteId;
 //	}
 
+	
+	
 
 }

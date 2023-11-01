@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.jpa.controller.user.LoginCheck;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.ProductMusicDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.product.ProductRepository;
@@ -37,9 +38,9 @@ public class ProductController2 {
 	@GetMapping("/music_list")
 	public String musicList(Model model) {
 		try {
-			List<Product> musics = productService.findByCategoryId(1L);
+			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 			model.addAttribute("musics", musics);
-			log.info(">>>MUSIC LIST : " + musics);
+			//log.info(">>>MUSIC LIST : " + musics);
 			return "music_list";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,8 +77,10 @@ public class ProductController2 {
 		try {
 			List<Product> memberships = productService.findByCategoryId(4L);
 			if(session.getAttribute("")!=null) {
-				//user로 멤버십 구매 찾기?
+				//유저의 멤버십 구매 확인 - 오더, 유저 기능 구현된 거 확인하고 활용
+				//구매가 되어있을 경우 메세지와 함께 뮤직 리스트로 넘겨버리는 간단한 액션
 				
+				//	or 레스트 활용 - (유저) 님은 멤버십 가입이 되어있습니다. 로 h2 체인지 -> 추후...시간 남으면 구현.
 				
 			}else {
 				model.addAttribute("memberships", memberships);
@@ -95,9 +98,9 @@ public class ProductController2 {
 		@GetMapping("/goods_list")
 		public String GoodsList(Model model) {
 			try {
-				List<Product> goods = productService.findByCategoryId(2L);
+				List<ProductDto> goods = productService.findByProductCategoryId(2L);
 				model.addAttribute("goods", goods);
-				System.out.println(">>>GOODS LIST : " + goods);
+				//System.out.println(">>>GOODS LIST : " + goods);
 				return "goods_list";
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -107,13 +110,35 @@ public class ProductController2 {
 		
 		}
 		
+		// 굿즈디테일
+		@GetMapping("/goods_detail/{productNo}")
+		public String GoodsDetail(@PathVariable Long productNo ,Model model) {
+			try {
+				Product goodsDetail=(Product)productService.findByProductNo(productNo).get();
+				System.out.println(productNo);
+				System.out.println(goodsDetail);
+				
+				productService.increaseReadCount(goodsDetail);
+				model.addAttribute("goodsDetail", goodsDetail);
+				log.info(">>>GOODS DETAIL : "+ goodsDetail);
+				
+				return "goods_detail";
+			} catch (Exception e) {
+				e.printStackTrace();
+				model.addAttribute(e.getMessage());
+				return null;
+			}
+			
+		}
+	
+		
 		// 티켓리스트
 		@GetMapping("/ticket_list")
 		public String TicketList(Model model) {
 			try {
-				List<Product> tickets = productService.findByCategoryId(3L);
+				List<ProductDto> tickets = productService.findByProductCategoryId(3L);
 				model.addAttribute("tickets", tickets);
-				System.out.println(">>>TICKET LIST : " + tickets);
+				//System.out.println(">>>TICKET LIST : " + tickets);
 				return "ticket_list";
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -125,9 +150,14 @@ public class ProductController2 {
 		
 		// 티켓디테일
 		@GetMapping("/ticket_detail/{productNo}")
-		public String TicketDetail(Model model) {
+		public String TicketDetail(@PathVariable Long producNo , Model model) {
 			try {
+				Product ticketDetail = (Product) productService.findByProductNo(producNo).get();
+				System.out.println(ticketDetail);
 				
+				productService.increaseReadCount(ticketDetail);
+				model.addAttribute("ticketDetail", ticketDetail);
+				log.info(">>>TICKET DETAIL : " + ticketDetail);
 				return "ticket_detail";
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -137,18 +167,7 @@ public class ProductController2 {
 			
 		}
 		
-		// 굿즈디테일
-		@GetMapping("/goods_detail/{productNo}")
-		public String GoodsDetail(Model model) {
-			try {
-				
-				return "goods_detail";
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute(e.getMessage());
-				return null;
-			}
-			
-		}
-	
+
+		
+		
 }

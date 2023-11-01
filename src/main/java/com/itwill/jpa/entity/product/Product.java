@@ -169,21 +169,24 @@ public class Product {
 	
 	/*============Dto -> entity 변환해주는 매서드============*/
 
-	public static Product toEntity(ProductDto productDto) {
+	public static Product toEntity(ProductDto dto) {
+	    ProductCategory productCategory = ProductCategory.builder()
+	            .categoryId(dto.getProductCategoryId()) // Long 값을 그대로 사용
+	            .build();
 		return Product.builder()
-				.productCategory(productDto.getProductCategory())
-				.productName(productDto.getProductName())
-				.productPrice(productDto.getProductPrice())
-				.productStar(productDto.getProductStar())
-				.productDate(productDto.getProductDate())
-				.readCount(productDto.getReadCount())
-				.productStock(productDto.getProductStock())
-				.productImage(productDto.getProductImage())
-				.productMovie(productDto.getProductMovie())
-				.productArtist(productDto.getProductArtist())
-				.productAddress(productDto.getProductAddress())
-				.startPeriod(productDto.getStartPeriod())
-				.periodOfUse(productDto.getPeriodOfUse())
+				.productCategory(productCategory)
+				.productName(dto.getProductName())
+				.productPrice(dto.getProductPrice())
+				.productStar(dto.getProductStar())
+				.productDate(dto.getProductDate())
+				.readCount(dto.getReadCount())
+				.productStock(dto.getProductStock())
+				.productImage(dto.getProductImage())
+				.productMovie(dto.getProductMovie())
+				.productArtist(dto.getProductArtist())
+				.productAddress(dto.getProductAddress())
+				.startPeriod(dto.getStartPeriod())
+				.periodOfUse(dto.getPeriodOfUse())
 				.build();
 	}
 	/*=======================================================*/
