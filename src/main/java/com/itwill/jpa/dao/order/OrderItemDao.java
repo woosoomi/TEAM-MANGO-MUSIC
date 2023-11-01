@@ -20,5 +20,7 @@ public interface OrderItemDao {
 	void deleteOrderItem(Long orderItemId);
 	
 	void deleteAll();
+
+	List<OrderItem> findOrderItemsByUserIdAndProductCategoryId(String userId, Long categoryId);
 	
 }

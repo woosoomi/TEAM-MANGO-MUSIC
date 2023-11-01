@@ -38,16 +38,17 @@ public class OrderController {
 		try {
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "lsg33");
+			session.setAttribute("user_id", "why3795");
 			String userId = (String) session.getAttribute("user_id");
-			
+			//멤버쉽 카테고리번호 4
+			Long categoryId = 4L;
 			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
 			//로그인 체크가 생기면 아래 조건문 지울것
 			if(userId != null) {
 				//orderdetail.html에 리스트명 orderItemDtoList로 바꿈
-				List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
+				List<OrderItemDto> orderItemDtoList = orderItemService.getOrderItemsByCategory(userId, categoryId);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
-				System.out.println("주문 아이템: " + orderItemDtoList);
+				System.out.println("멤버쉽 리스트: " + orderItemDtoList);
 				//이부분 위아래중 어떤 불러오기 서비스를 선택할지 논의가 필요
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
