@@ -94,9 +94,22 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
     @Transactional
     @Rollback(false)
 	@DisplayName("vote번호로 유저 검색")
-	@Disabled
+	//@Disabled
     public void testfindUserVoteIdWithProduct() {
-    	System.out.println(">>>>>>"+userRepository.findByVote_VoteId(1L));
+    	//System.out.println(">>>>>>"+userRepository.findByVote_VoteId(2L).size());
+		//System.out.println(">>>>>>"+userVotesericeImpl.findByVote_VoteId(1L));
+    
+    }
+	
+	
+
+	@Test
+    @Transactional
+    @Rollback(false)
+	@DisplayName("vote번호로 유저 검색")
+	@Disabled
+    public void testCountByVote_VoteId() {
+    	//System.out.println(">>>>>>"+userRepository.CountByVote_VoteId(2L));
 		//System.out.println(">>>>>>"+userVotesericeImpl.findByVote_VoteId(1L));
     
     }
