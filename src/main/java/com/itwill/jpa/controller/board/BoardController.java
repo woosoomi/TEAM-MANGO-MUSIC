@@ -1,6 +1,8 @@
 package com.itwill.jpa.controller.board;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -67,6 +69,16 @@ public class BoardController {
 			List<Board> magazines = boardServiceImpl.findBycategory(3L);
 			model.addAttribute("magazines", magazines);
 			System.out.println("magazine 리스트 : " + magazines);
+			
+			
+			List<Board> sortedMagazines = new ArrayList<>(magazines); // magazines를 복사하여 새로운 리스트 생성
+
+			sortedMagazines.sort(Comparator.comparing(Board::getBoardReadCount).reversed());
+			List<Board> top3Magazines = sortedMagazines.subList(0, Math.min(sortedMagazines.size(), 3));
+			model.addAttribute("top3Magazines", sortedMagazines);
+			System.out.println("탑3매거진리스트 : " +sortedMagazines);
+
+			
 			return "magazine";
 		} catch (Exception e) {
 			e.printStackTrace();
