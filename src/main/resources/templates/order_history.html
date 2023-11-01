@@ -209,13 +209,11 @@
             <h6>
                 <a th:text="${orderitem.orderId} + ' [총 ' + ${orderitem.oiQty} + '개]'"></a>
             </h6>
-            <ul th:each="product: ${productName}">
                 <p class="rate">
-                    <span th:text="${product}"></span>
+                    <span th:text="${orderitem.productName}"></span>
                 </p>
-            </ul>
             <!--주문한가격, 주문날짜 넣기-->
-           	<!--<ul th:each="order: ${orderDtoList}">
+         <!--  	<ul th:each="order: ${orderDtoList}">
                 <p class="rate">
                     <span th:text="${0} + '원'"></span>
                 </p>
