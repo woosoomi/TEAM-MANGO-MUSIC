@@ -36,12 +36,13 @@
 				<div th:each="musics : ${musics}">
 					<div class="row" >
 						<div class="col-md-4">
-							<div class="ceb-item-style-2"><img th:text="${musics.productImage}" alt="">
-								<div class="ceb-infor">
+							<div class="ceb-item-style-2"><img th:src="${musics.productImage}" alt="">
+								<div class="ceb-infor"  >
 									<h2><a th:href="@{/music_detail/(productNo=${musics.productNo})}" 
 										th:text="${musics.productName}">Leonardo DiCaprio</a></h2>
 									<span th:text="${musics.productArtist}">actor, uk</span>
-									<span th:text="${musics.readCount}">10</span>
+									<p/>
+									<span style="font-size: small;" th:text="|조회수 : ${musics.readCount}|">10</span>
 								</div>
 							</div>
 						</div>
