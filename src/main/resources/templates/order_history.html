@@ -202,40 +202,41 @@
 					    </select>
 					</div>
 					<!--<div th:each=" productImage: ${productImage}">-->
-					<div class="movie-item-style-2"><img src="images/uploads/mv1.jpg" alt="">
-						<div class="mv-item-infor">
-							
-							<div th:each=" orderitem: ${orderItemDtoList}">
-								
-							<h6><a th:text="${orderitem.orderId}"></a>  <a th:text="'[총'+${orderitem.oiQty}+'개]'"></a><span></span></a></h6>
-							<ul>
-							<block th:each="product: ${productName}">
-							<p class="describe"><a th:text="${productName}"></a>
-							<!--오더리스트를 받아와서 오더가격을 넣고자함
-								근데 반복문을 두개 한꺼번에 넣으면 procut랑 order랑 곱해져서 반복이됨-->
-							<!--<block th:each="order: ${orderDtoList}">-->
-							<p class="rate"><span th:text="${0}+'원'"></span>
-							</block>
-							</li> </p>
-							</p>
-							<!--얘도 오더리스트 받아와서 주문날짜 받아오려고하는데
-								반복문이 너무 많아서 그런지 이걸 삽입하는 순간 안됨-->
-							<!--<tr th:each="order: ${orderDtoList}">
-							<p class="run-time">
-							<td th:text="${order.createdAt}"></td>--> . <span>Release: 1 May
-									2015</span></p>
-							<p>Director: <a href="#">Alan Taylor</a></p>
-							<p>Stars: <a href="#">Chris Hemsworth,</a><a href="#">Natalie Portman,</a><a href="#">Tom
-									Hiddleston</a></p>
-								<!--	</td>-->
-								</li>
-								</li>
-							</ul>
-							
-							
-						</div>
-					</div>
-						</div>
+					<div class="movie-item-style-2">
+    <img src="images/uploads/mv1.jpg" alt="">
+    <div class="mv-item-infor">
+        <div th:each="orderitem: ${orderItemDtoList}">
+            <h6>
+                <a th:text="${orderitem.orderId} + ' [총 ' + ${orderitem.oiQty} + '개]'"></a>
+            </h6>
+            <!--주문한가격, 주문날짜 넣기-->
+           	<!--<ul th:each="order: ${orderDtoList}">
+                <p class="rate">
+                    <span th:text="${0} + '원'"></span>
+                </p>
+               <p class="describe">
+                    <span th:text="${order.createdAt}"></span>
+                </p>
+            </ul>-->
+            <ul th:each="product: ${productName}">
+                <p class="rate">
+                    <span th:text="${product}"></span>
+                </p>
+            </ul>
+            <p class="run-time">
+                <span>Release: 1 May 2015</span>
+            </p>
+            <p>Director: <a href="#">Alan Taylor</a></p>
+            <p>Stars: <a href="#">Chris Hemsworth,</a><a href="#">Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 					<div class="movie-item-style-2"><img src="images/uploads/mv2.jpg" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="moviesingle.html">into the wild <span>(2014)</span></a></h6>
