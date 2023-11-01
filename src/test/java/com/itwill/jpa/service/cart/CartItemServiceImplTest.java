@@ -13,6 +13,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dto.cart.CartItemDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
@@ -39,31 +40,15 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Rollback(false)
 	@Disabled
 	void cartItemInsert() throws Exception{
-		Optional<Cart> cart = cartRepository.findById(2L);
+		Optional<Cart> cart = cartRepository.findById(1L);
 		System.out.println("cart>>>>>>>>>>>"+cart);
-		//CartItemDto cartItem1 = CartItem.builder().cartItemId(0L).cartItemQty(10).cart(cart.get()).productId(1L).build();
-		//CartItem cartItem2 = CartItem.builder().cartItemId(0L).cartItemQty(15).cart(cart.get()).productId(2L).build();
-		//CartItem cartItem3 = CartItem.builder().cartItemId(0L).cartItemQty(16).cart(cart.get()).productId(3L).build();
-		//cartItemServiceImpl.insert(cartItem1);
 	    CartItemDto cartItemDto1 = new CartItemDto();
 	    cartItemDto1.setCartItemQty(10);
 	    Product product1 = new Product();
-	    product1.setProductNo(1L);
-	    cartItemDto1.setProductId(1L);
+	    product1.setProductNo(5L);
+	    cartItemDto1.setProductId(5L);
 	    cartItemDto1.setCartId(cart.get().getCartId());
-	   /*
-	    CartItemDto cartItemDto2 = new CartItemDto();
-	    cartItemDto2.setCartItemQty(15);
-	    cartItemDto2.getProduct().setProductNo(2L);
-	    cartItemDto2.setCartId(cart.get().getCartId());
-	    CartItemDto cartItemDto3 = new CartItemDto();
-	    cartItemDto3.setCartItemQty(16);
-	    cartItemDto3.getProduct().setProductNo(3L);
-	    cartItemDto3.setCartId(cart.get().getCartId());
-	    */
 	    cartItemServiceImpl.insert(cartItemDto1);
-	    //cartItemServiceImpl.insert(cartItemDto2);
-	    //cartItemServiceImpl.insert(cartItemDto3);
 	    System.out.println("cartItemDto1>>>>>>>>>>>>>>>>"+cartItemDto1);
 	}
 	@Test
@@ -75,12 +60,12 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	void updateCartItemsQty() throws Exception {
-		Long cartItemId = 4L;
-		int updateQty = 100;
+		Long cartItemId = 22L;
+		int updateQty = 26;
 		cartItemServiceImpl.update(cartItemId, updateQty);
 		
 	}
@@ -95,6 +80,27 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 			System.out.println(cartItems);
 		}
 		
+	}
+	
+	@Test
+	@Disabled
+	@Transactional
+	@Rollback(false)
+	void totalPrice() throws Exception {
+		int total =cartItemServiceImpl.calculateTotalByCartItemId(20L);
+		System.out.println(">>>>>>>>>>>>>>>>>>"+total);
+	}
+	
+	@Test
+	//@Disabled
+	@Transactional
+	@Rollback(false)
+	void getProductByProductId() throws Exception {
+		CartItemDto cartItemDto = new CartItemDto();
+		cartItemDto.setProductId(1L);
+		Optional<ProductDto> productDto = cartItemServiceImpl.getProductByProductId(cartItemDto.getProductId());
+		System.out.println(">>>>>>>>>>>>>>>>>>>"+productDto);
+			
 	}
 	
 

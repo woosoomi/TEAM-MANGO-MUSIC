@@ -76,8 +76,9 @@ public class CartRestController {
     @GetMapping("/calculateTotalPrice/{cartId}")
     public ResponseEntity<CartDto> calculateTotalPrice(@PathVariable(value = "cartId") Long cartId) {
         try {
-            CartDto result = cartService.calculateTotalPrice(cartId);
-            return ResponseEntity.ok(result);
+        		CartDto result = cartService.calculateTotalPrice(cartId);
+        		return ResponseEntity.ok(result);
+				
         } catch (Exception e) {
             return ResponseEntity.status(500).body(null);
         }
