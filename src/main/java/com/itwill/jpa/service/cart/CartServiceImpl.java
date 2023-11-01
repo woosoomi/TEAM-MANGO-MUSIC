@@ -35,6 +35,8 @@ public class CartServiceImpl implements CartService {
 	ProductRepository productRepository;
 	@Autowired
 	CartItemRepository cartItemRepository;
+	@Autowired
+	CartItemService cartItemService;
 	
 	@Override
 	public CartDto createCart(CartDto dto) throws Exception {
@@ -63,12 +65,14 @@ public class CartServiceImpl implements CartService {
         // 2. 장바구니 내의 상품들의 총 가격을 계산한다.
         int totalPrice = 0;
         for (CartItem cartItem : cart.getCartitems()) {
+        	
             totalPrice += cartItem.getProduct().getProductPrice() * cartItem.getCartItemQty();
         }
 
         // 3. CartDto 객체에 결과를 담아서 반환한다.
         CartDto cartDto = new CartDto();
         cartDto.setCartId(cart.getCartId());
+        cartDto.setUserId(cart.getUser().getUserId());
         cartDto.setCartTotPrice(totalPrice);
         cart.setCartTotPrice(totalPrice);
         cartRepository.save(cart);
