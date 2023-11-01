@@ -201,14 +201,19 @@
 				        <option value="oldest">오래된순</option>
 					    </select>
 					</div>
-					<!--<div th:each=" productImage: ${productImage}">-->
-					<div class="movie-item-style-2">
-    <img src="images/uploads/mv1.jpg" alt="">
-    <div class="mv-item-infor">
+	<!--<div th:each=" productImage: ${productImage}">-->
         <div th:each="orderitem: ${orderItemDtoList}">
+		<div class="movie-item-style-2">
+   			 <img src="images/uploads/mv1.jpg" alt="">
+   		 <div class="mv-item-infor">
             <h6>
                 <a th:text="${orderitem.orderId} + ' [총 ' + ${orderitem.oiQty} + '개]'"></a>
             </h6>
+            <ul th:each="product: ${productName}">
+                <p class="rate">
+                    <span th:text="${product}"></span>
+                </p>
+            </ul>
             <!--주문한가격, 주문날짜 넣기-->
            	<!--<ul th:each="order: ${orderDtoList}">
                 <p class="rate">
@@ -218,10 +223,6 @@
                     <span th:text="${order.createdAt}"></span>
                 </p>
             </ul>-->
-            <ul th:each="product: ${productName}">
-                <p class="rate">
-                    <span th:text="${product}"></span>
-                </p>
             </ul>
             <p class="run-time">
                 <span>Release: 1 May 2015</span>
@@ -251,6 +252,9 @@
 									Johansson</a></p>
 						</div>
 					</div>
+					
+					
+					
 					<div class="topbar-filter"><label>Movies per page:</label><select>
 							<option value="range">5 Movies</option>
 							<option value="saab">10 Movies</option>
