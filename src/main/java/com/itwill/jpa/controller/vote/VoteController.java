@@ -57,7 +57,7 @@ public class VoteController {
         return "voteMain"; // 템플릿 이름 반환
     }
 	*/
-	
+	/*
 	@GetMapping("/productVote")
 	public String selectProduct(Long voteId, Model model) {
 	    try {
@@ -87,5 +87,35 @@ public class VoteController {
 	    // 오류가 발생했을 때 오류 페이지로 리다이렉션
 	    return "errorPage";
 	}
-	
+	*/
+	@GetMapping("/productVote")
+	public String ProductVoteList(Long voteId, Model model) {
+	    try {
+	        Long a = 1L;  // 임의로 voteID 부여
+	        Vote vote = voteServiceImpl.selectByVoteNo(a);
+	        
+	        if (vote != null) {
+	            Product product = productVoteServiceImple.findByVoteVoteId(vote.getVoteId());
+	            
+	            if (product != null) {
+	                ProductVoteDto productVote = ProductVoteDto.toDto(product);
+	                model.addAttribute("productVote", productVote);  
+	                // 모델에 이름을 "productVote"로 변경
+	                System.out.println("productVote: " + productVote);
+	                return "voteMain";  // 템플릿 이름 반환
+	            } else {
+	                model.addAttribute("errorMSG", "Product not found.");
+	            }
+	        } else {
+	            model.addAttribute("errorMSG", "Vote not found.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        model.addAttribute("errorMSG", e.getMessage());
+	    }
+	    
+	    // 오류가 발생했을 때 오류 페이지로 리다이렉션
+	    return "errorPage";
+	}
+
 }
