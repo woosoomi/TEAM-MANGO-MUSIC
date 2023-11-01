@@ -28,7 +28,7 @@ public class ProductDto {
 	
 	private Long productNo;
 	
-	private ProductCategory productCategory; // 프로덕트 카테고리
+	private Long productCategoryId; // 프로덕트 카테고리
 	 	
 	private String productName;  // 프로덕트 이름
 	
@@ -63,6 +63,7 @@ public class ProductDto {
 	
 	
 public ProductDto(Product product) {
+	this.productCategoryId = product.getProductCategory().getCategoryId();
 	this.productNo = product.getProductNo();
 	this.productName = product.getProductName();
 	this.productPrice = product.getProductPrice();
@@ -80,21 +81,22 @@ public ProductDto(Product product) {
 	}
 //Entity to Dto 변환
 public static ProductDto toDto(Product entity) {
-	return ProductDto.builder()
-			.productNo(entity.getProductNo())
-			.productName(entity.getProductName())
-			.productPrice(entity.getProductPrice())
-			.productContent(entity.getProductContent())
-			.productStar(entity.getProductStar())
-			.productDate(entity.getProductDate())
-			.readCount(entity.getReadCount())
-			.productStock(entity.getProductStock())
-			.productImage(entity.getProductImage())
-			.productArtist(entity.getProductArtist())
-			.productAddress(entity.getProductAddress())
-			.startPeriod(entity.getStartPeriod())
-			.periodOfUse(entity.getPeriodOfUse())
-			.build();
+	ProductDto productDto = ProductDto.builder()
+										.productNo(entity.getProductNo())
+										.productName(entity.getProductName())
+										.productPrice(entity.getProductPrice())
+										.productContent(entity.getProductContent())
+										.productStar(entity.getProductStar())
+										.productDate(entity.getProductDate())
+										.readCount(entity.getReadCount())
+										.productStock(entity.getProductStock())
+										.productImage(entity.getProductImage())
+										.productArtist(entity.getProductArtist())
+										.productAddress(entity.getProductAddress())
+										.startPeriod(entity.getStartPeriod())
+										.periodOfUse(entity.getPeriodOfUse())
+										.build();
+	return productDto;
 }
 //List<Entity> to List<Dto> 변환
 	public static List<ProductDto> toDto(List<Product> entities) {
@@ -120,4 +122,3 @@ public static ProductDto toDto(Product entity) {
 		 return productDtoList;
 }
 	}
-
