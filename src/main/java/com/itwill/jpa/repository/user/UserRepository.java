@@ -22,5 +22,5 @@ public interface UserRepository extends JpaRepository<User, String> {
 	  
 	  // 유저의 투표번호로 유저정보 조회
 	  List<User> findByVote_VoteId(Long voteId);
-	  
+
 }
