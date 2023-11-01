@@ -11,13 +11,17 @@ import org.springframework.stereotype.Service;
 import com.itwill.jpa.dao.order.OrderItemDao;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
+import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.order.OrderItemNotFoundException;
+import com.itwill.jpa.exception.user.UserNotFoundException;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 import com.itwill.jpa.repository.user.UserRepository;
+import com.itwill.jpa.service.product.ProductService;
 @Service
 public class OrderItemServiceImpl implements OrderItemService{
 
@@ -32,6 +36,9 @@ public class OrderItemServiceImpl implements OrderItemService{
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	ProductService productService;
 
 	//아이템 추가
 	@Override
@@ -126,8 +133,32 @@ public class OrderItemServiceImpl implements OrderItemService{
 	        }
 	    }
 
+		@Override
+		public List<OrderItemDto> getOrderItemsByCategory(String userId, Long categoryId) throws Exception {
+			// 1. 사용자 찾기
+			Optional<User> userOptional = userRepository.findById(userId);
+
+			if (userOptional.isPresent()) {
+				// 2. 카테고리에 해당하는 제품 조회
+				List<Product> productsInCategory = productService.getProductsByCategory(categoryId);
+
+				// 3. 해당 카테고리의 제품에 해당하는 오더 아이템 조회
+				List<OrderItemDto> orderItemsInCategoryDto = new ArrayList<>();
+
+				for (Product product : productsInCategory) {
+					List<OrderItem> orderItems = orderItemRepository.findByUserIdAndProductCategoryId(userId,
+							product.getProductCategory().getCategoryId());
+
+					// 각 OrderItem을 OrderItemDto로 변환하여 리스트에 추가
+					for (OrderItem orderItem : orderItems) {
+						orderItemsInCategoryDto.add(OrderItemDto.toDto(orderItem));
+					}
+				}
+
+				return orderItemsInCategoryDto;
+			} else {
+				throw new UserNotFoundException("회원을 찾을 수 없습니다."); // 로그인 유저를 찾을 수 없는 경우 예외 throw
+			}
+		}
+
 	}
-
-	
-
-	

@@ -27,8 +27,8 @@
 	<!--preloading-->
 	<div 
 		th:insert="~{header :: headerFragment}">
-		<a href="#" id="loginLinkHeader">LOG In</a>
 	</div>
+	
 	<!-- BEGIN | Header -->
 	<header class="ht-header">
 		<div class="container">
@@ -41,7 +41,7 @@
 					<div class="user-information">
 						<div class="user-img">
 							<a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
-							<li class="loginLink"><a href="#" class="redbtn" id="loginLink">로그인</a></li>
+							<!-- <li class="loginLink"><a href="#" class="redbtn" id="loginㅁㄴㅇLink">로그인</a></li> -->
 							<!--end of preloading-->
 							<!--login form popup-->
 							<div class="login-wrapper" id="login-content">
@@ -91,7 +91,6 @@
 								<li><a href="userCheckIdPw">02. 아이디, 비번찾기</a></li>
 							</ul>
 						</div>
-
 					</div>
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
@@ -157,22 +156,6 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-	<script>
-		// 팝업 열기
-		document.getElementById("loginLinkHeader").addEventListener("click", function() {
-			document.getElementById("login-content").style.display = "block";
-		});
-
-		// 팝업 닫기
-		document.getElementById("close-login-popup").addEventListener("click",function() {
-			document.getElementById("login-content").style.display = "none";
-		});
-	</script>
-	
-	
-
-
-	
 </body>
 
 </html>

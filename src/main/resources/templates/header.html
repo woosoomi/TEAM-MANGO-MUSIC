@@ -4,35 +4,48 @@
 
 <body th:fragment="headerFragment">
 
-	<div id="preloader" ><img class="logo" src="images/logo1.png" alt="" width="119" height="58">
+	<div id="preloader"><img class="logo" src="images/logo1.png" alt="" width="119" height="58">
 		<div id="status"><span></span><span></span></div>
 	</div><!--end of preloading--><!--login form popup-->
-	<div class="login-wrapper" id="login-content">
-		<div class="login-content"><a href="#" class="close">x</a>
+	<div class="login-wrapper" id="signup-content">
+		<div class="login-content">
+			<a href="#" class="close">x</a>
 			<h3>Login</h3>
 			<form method="post" action="login.php">
-				<div class="row"><label for="username">Username:<input type="text" name="username" id="username"
-							placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
-							required="required" /></label></div>
-				<div class="row"><label for="password"> Password:<input type="password" name="password" id="password"
-							placeholder="******"
+				<div class="row">
+					<label for="username">Username:<input type="text" name="username" id="username" placeholder="아이디"
+							pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" /></label>
+				</div>
+				<div class="row">
+					<label for="password"> Password:<input type="password" name="password" id="password"
+							placeholder="비밀번호"
 							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
+							required="required" /></label>
+				</div>
 				<div class="row">
 					<div class="remember">
-						<div><input type="checkbox" name="remember" value="Remember me"><span>Remember me</span></div><a
-							href="#">Forget password ?</a>
+						<a href="user_write_form">회원가입하기</a>
+					</div>
+					<div class="remember">
+
+						<a href="userCheckIdPw">아이디찾기 / 비밀번호찾기</a>
 					</div>
 				</div>
-				<div class="row"><button type="submit">Login</button></div>
+				<div class="row">
+					<button type="submit">Login</button>
+				</div>
 			</form>
 			<div class="row">
 				<p>Or via social</p>
-				<div class="social-btn-2"><a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a><a
-						class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a></div>
+				<div class="social-btn-2">
+					<a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a><a class="tw" href="#"><i
+							class="ion-social-twitter"></i>twitter</a>
+				</div>
 			</div>
 		</div>
-	</div><!--end of login form popup--><!--signup form popup-->
+	</div>
+	</div>
+	<!--end of login form popup--><!--signup form popup-->
 	<div class="login-wrapper" id="signup-content">
 		<div class="login-content"><a href="#" class="close">x</a>
 			<h3>sign up</h3>
@@ -111,8 +124,7 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
-
-						<li class="btn signupLink"><a href="#">로그인</a></li>
+						<li class="btn loginLink"><a href="#" id="loginLink">로그인</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</nav><!-- top search form -->
@@ -129,7 +141,13 @@
 			</div>
 		</div>
 	</div>
-				
+	<script>
+		// 팝업 열기 - 로그인 폼
+		document.querySelector("#loginLink").addEventListener("click", function (event) {
+			event.preventDefault(); // 링크의 기본 동작(페이지 이동)을 막습니다.
+			document.getElementById("login-content").style.display = "block"; // login 폼 팝업을 보이게 합니다.
+		});
+	</script>
 </body>
 
 
