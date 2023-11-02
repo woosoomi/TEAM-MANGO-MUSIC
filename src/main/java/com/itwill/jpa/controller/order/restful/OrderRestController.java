@@ -20,6 +20,8 @@ import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.service.order.OrderService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -124,9 +126,11 @@ public class OrderRestController {
 	
 	//주문 최신순으로 나열하기
 	@Operation(summary = "주문 최신순으로 나열하기[성공]")
-	@GetMapping("/SortByLatestOrder/{userId}")
-	public ResponseEntity<?> getNewerOrdersByUserId(@PathVariable(value = "userId") String userId) {
+	@GetMapping("/SortByLatestOrder/{userId}?sortBy={selectedOption}")
+	public ResponseEntity<?> getNewerOrdersByUserId(@PathVariable(value = "userId") String userId, HttpServletRequest request) {
 		try {
+			 HttpSession session = request.getSession();
+		        session.setAttribute("userId", userId);
 			List<OrderDto> orders = orderService.orderListByNewer(userId);
 			
 			if (orders.isEmpty()) {
