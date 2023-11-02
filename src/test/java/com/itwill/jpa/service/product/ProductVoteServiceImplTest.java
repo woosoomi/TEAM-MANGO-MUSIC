@@ -7,6 +7,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
+import com.itwill.jpa.dao.product.ProductVoteDaoImpl;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.repository.product.ProductRepository;
@@ -19,6 +20,9 @@ class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	
 	@Autowired
 	ProductVoteServiceImple productVoteServiceImple;
+
+	@Autowired
+	ProductVoteDaoImpl productVoteDaoImpl;
 	
 	
 	/******************* Vote ***********************/
@@ -59,6 +63,19 @@ class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		//Product product = productRepository.findByVoteVoteId(1L);
 		//System.out.println(">>>>>>>>>>"+product);
 		System.out.println(">>>>>>>>>>"+productRepository.findProductsByVoteIsNotNull().size());
+		
+
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	// voteId가 null이 아닌 상품 리스트를 가져와서 voteTot 내림차순으로 정렬
+	void testFindProductsByVoteIsNotNullOrderByVoteTotDesc() throws Exception {
+		//Product product = productRepository.findByVoteVoteId(1L);
+		//System.out.println(">>>>>>>>>>"+product);
+		System.out.println(">>>>>>>>>>"+productVoteDaoImpl.findProductsByVoteIsNotNullOrderByVoteTotDesc());
 		
 
 	}

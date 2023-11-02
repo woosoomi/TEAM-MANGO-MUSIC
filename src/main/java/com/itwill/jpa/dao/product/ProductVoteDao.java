@@ -8,4 +8,6 @@ public interface ProductVoteDao {
 
 	List<Product> findTop20ByTotalScore();
 
+	List<Product> findProductsByVoteIsNotNullOrderByVoteTotDesc();
+	
 }
