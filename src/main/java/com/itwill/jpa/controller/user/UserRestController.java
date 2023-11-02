@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +39,7 @@ public class UserRestController {
 	private UserService userService;
 	
 	@Operation(summary = "회원가입[성공]")
-	@PostMapping(value = "/join", produces = "application/json;charset=UTF-8")
+	@PostMapping(value = "/join")
 	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
 		try {
 			if (userService.existsById(userDto.getUserId())) {
