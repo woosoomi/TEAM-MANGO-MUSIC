@@ -212,12 +212,11 @@
                                 <div class="col-md-12 form-it">
                                     <label>쿠폰선택</label>
                                     <div class="group-ip">
-                                        <select name="skills" multiple="" class="ui fluid dropdown">
-                                            <option value="">쿠폰을 선택하세요</option>
-                                            <option value="Action1">쿠폰1</option>
-                                            <option value="Action2">쿠폰2</option>
-                                            <option value="Action3">쿠폰3</option>
-                                        </select>
+									<select name="skills" class="ui fluid dropdown">
+										<option value="">쿠폰을 선택하세요</option>
+										<option value="Action1" th:each="couponDtoList : ${couponDtoList}" th:text="${couponDtoList.couponName}">쿠폰1
+										</option>
+									</select>
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-it">
@@ -225,18 +224,12 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <select>
-                                                <option value="range">From</option>
-                                                <option value="number">10</option>
-                                                <option value="number">20</option>
-                                                <option value="number">30</option>
+                                                <option value="number" th:text="${formattedOrderPrice}">30000원</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6">
                                             <select>
-                                                <option value="range">To</option>
-                                                <option value="number">20</option>
-                                                <option value="number">30</option>
-                                                <option value="number">40</option>
+                                                <option value="number" th:each="couponDtoList : ${couponDtoList}" th:text="${couponDtoList.couponDiscount}+'%'">할인율</option>
                                             </select>
                                         </div>
                                     </div>
@@ -329,5 +322,55 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 </body>
+
+<!--결제하기 버튼 누를시 이용약관, 유의사항 체크박스에 체크가 되어있는지 모니터링 하는 함수 -->
+
+<script>
+    const checkbox1 = document.getElementById("termsAgree1");
+    const checkbox2 = document.getElementById("termsAgree2");
+    const submitButton = document.querySelector(".submit");
+
+    checkbox1.addEventListener("change", checkAndWarn);
+    checkbox2.addEventListener("change", checkAndWarn);
+    submitButton.addEventListener("click", checkAndWarn);
+
+    function checkAndWarn() {
+        if (submitButton === document.activeElement) {
+            if (!checkbox1.checked && !checkbox2.checked) {
+                alert("유의사항과 이용약관을 확인해주세요.");
+            } else if (!checkbox1.checked) {
+                alert("유의사항을 확인해주세요.");
+            } else if (!checkbox2.checked) {
+                alert("이용약관을 확인해주세요.");
+            }
+        }
+    }
+</script>
+
+<script>
+    const couponSelect = document.querySelector("select[name='skills']");
+    couponSelect.addEventListener("change", updateDiscountInfo);
+
+    function updateDiscountInfo() {
+        const selectedCoupon = couponSelect.value;
+        const discountSelect = document.querySelector("select[name='discount']");
+        discountSelect.innerHTML = "";
+
+        // 서버로부터 할인 정보를 가져오는 요청
+        fetch(`/getDiscountInfo?coupon=${selectedCoupon}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(info => {
+                    const option = document.createElement("option");
+                    option.value = info.value;
+                    option.textContent = info.label;
+                    discountSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error("할인 정보 가져오기 실패: " + error);
+            });
+    }
+</script>
 
 </html>

@@ -41,6 +41,41 @@ $(document).ready(function() {
 	filterItems('all');
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const notilistContainer = document.getElementById('notificationContainer');
+	var initialData = $('#notificationContainer').html();
+
+	searchInput.addEventListener('keydown', function(event) {
+		if (event.key === 'Enter') {
+			const searchValue = searchInput.value;
+
+			// 여기에서 검색어를 사용하여 필터링된 항목을 표시하거나 처리할 수 있습니다
+			filterItems(searchValue);
+			searchInput.value = ''; // 검색어 필드 비우기
+
+		}
+	});
+
+	var itemList = $(initialData).find('.blog-item-style-1, .blog-item-style-3').toArray();
+
+	function filterItems(searchQuery) {
+		notilistContainer.innerHTML = ''; // 리스트 비우기
+
+
+		itemList.forEach(function(item) {
+			var titleElement = item.getElementsByTagName('a')[0]; // a 요소 선택
+			var title = titleElement.textContent;
+
+			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+				notilistContainer.appendChild(item);
+			}
+		});
+
+
+	}
+});
 ///////////////////////faq///////////////////////////////
 $(document).ready(function() {
 	var initialData = $('#faqContainer').html();
