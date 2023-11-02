@@ -47,7 +47,7 @@ public class OrderController {
 			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "why3795");
+			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 			
@@ -111,19 +111,7 @@ public class OrderController {
 	            	            
 	            // 유저의 쿠폰정보 불러오기
 	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
-	            model.addAttribute("couponDtoList", couponDtoList);
-	            
-	            // 개별 쿠폰의 couponDiscount 값을 가져오고 정수로 변환
-	            for (CouponDto couponDto : couponDtoList) {
-	                Double couponDiscount = couponDto.getCouponDiscount();
-	                if (couponDiscount != null) {
-	                    int discount = couponDiscount.intValue(); // Double 값을 int로 변환
-	                    model.addAttribute("discount", discount);
-	                } else {
-	                    model.addAttribute("discount", 0);
-	                }
-	            }
-	            
+	            model.addAttribute("couponDtoList", couponDtoList);	            
 	            //쿠폰 할인 적용 메서드
 	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
 	            //총 결제금액 소수점 아래 절사
@@ -159,7 +147,7 @@ public class OrderController {
 			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "why3795");
+			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 			
@@ -184,7 +172,12 @@ public class OrderController {
 				// Product 엔티티의 정보를 저장할 변수 초기화
 	            String ticketName = null;
 	            String ticketImage = null;
+	            int ticketStar = 0;
 	            String ticketContent = null;
+	            String ticketAddress = null;
+	            Date ticketDate = null;
+	            String ticketArtist = null;
+	            int ticketStock = 0;
 	            
 	            // 주문 아이템별로 Product 정보 가져오기
 	            for (OrderItemDto orderItemDto : orderItemDtoList) {
@@ -194,13 +187,46 @@ public class OrderController {
 	                    // Product 엔티티의 멤버십 시작일 정보 가져오기
 	                    ticketName = product.getProductName();
 	                    ticketImage = product.getProductImage();
+	                    ticketStar = product.getProductStar();
 	                    ticketContent = product.getProductContent();
+	                    ticketAddress = product.getProductAddress();
+	                    ticketDate = product.getProductDate();
+	                    ticketArtist = product.getProductArtist();
+	                    ticketStock = product.getProductStock();
 	                }
 	            }
 	            model.addAttribute("ticketName", ticketName);
 	            model.addAttribute("ticketImage", ticketImage);
+	            model.addAttribute("ticketStar", ticketStar);
 	            model.addAttribute("ticketContent", ticketContent);
+	            model.addAttribute("ticketAddress", ticketAddress);
+	            model.addAttribute("ticketDate", ticketDate);
+	            model.addAttribute("ticketArtist", ticketArtist);
+	            model.addAttribute("ticketStock", ticketStock);
 	            
+	            
+	            /*************** 가격 ***************/
+	            
+	            
+	            double orderPrice = orderService.calculateTotalOrderPrice(userId);
+	            //상품 가격 소수점 아래 절사
+	            int formattedOrderPrice = (int) orderPrice;
+	            model.addAttribute("orderPrice", orderPrice);
+	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
+	            
+	            
+	            /*************** 쿠폰 ***************/
+	            
+	            	            
+	            // 유저의 쿠폰정보 불러오기
+	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
+	            model.addAttribute("couponDtoList", couponDtoList);	            
+	            //쿠폰 할인 적용 메서드
+	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
+	            //총 결제금액 소수점 아래 절사
+	            int endPrice = (int) salePrice;
+	            model.addAttribute("salePrice", salePrice);
+	            model.addAttribute("endPrice", endPrice);
 				return "order_ticket";
 				
 			} else {
