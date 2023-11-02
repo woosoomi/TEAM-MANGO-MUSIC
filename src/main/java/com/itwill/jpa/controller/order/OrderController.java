@@ -183,7 +183,7 @@ public class OrderController {
 			
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "wsm55");
+			session.setAttribute("user_id", "rgh66");
 			String userId = (String) session.getAttribute("user_id");
 //			//테스트용 코드
 			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
