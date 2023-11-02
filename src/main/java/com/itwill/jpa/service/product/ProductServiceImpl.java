@@ -106,6 +106,24 @@ public class ProductServiceImpl implements ProductService{
 	      System.out.println(msg);
 	      return null;
 	   }
+	
+	@Override
+    public ProductDto outOfStockMsgDto(Long productNo) {
+        Product findProduct = productRepository.findById(productNo).orElse(null);
+        if (findProduct != null) {
+            int stockCount = findProduct.getProductStock();
+            if (stockCount == 0) {
+                throw new NotEnoughProductStockException("품절된 상품입니다.");
+            }
+            ProductDto productDto = new ProductDto();
+            productDto.setProductNo(productNo);
+            productDto.setProductStock(stockCount);
+            return productDto;
+        }
+		return null;
+        }
+
+	
 /******************** productNo 찾기[ENTITY] ********************/
 	// productNo 찾기[성공]	
 	@Override
@@ -122,8 +140,8 @@ public class ProductServiceImpl implements ProductService{
 	        ProductDto productDto = ProductDto.toDto(product);
 	        return Optional.of(productDto);
 	    } else {
-	        return Optional.empty();
 	    }
+	    return Optional.empty();
 	}	
 /*************************************************************************/	
 	
@@ -302,28 +320,6 @@ public class ProductServiceImpl implements ProductService{
 	    Product product = productDao.updateProduct(Product.toEntity(dto));
 	    ProductDto productDto = ProductDto.toDto(product);
 	    return productDto;
-//        Long productNo = dto.getProductNo();
-//        
-//        // 유효성 검사: productNo가 null 또는 0보다 작으면 예외 처리
-//        if (productNo == null || productNo <= 0) {
-//        	System.out.println("실패란다.");
-//    //        throw new IllegalArgumentException("productNo must not be null or less than or equal to 0");
-//        }
-//        // productNo를 사용하여 Product 엔티티를 찾음
-//        Optional<Product> productOptional = productRepository.findById(productNo);
-//        if (productOptional.isPresent()) {
-//            // Product 엔티티를 찾은 경우, 업데이트 작업 수행
-//            Product product = productOptional.get();
-//            // productDto의 정보를 사용하여 product 엔티티 업데이트
-//            Product updatedProduct = productRepository.save(product);         
-//            // Product를 ProductDto로 변환하여 반환
-//            ProductDto updatedProductDto = convertProductToProductDto(updatedProduct);
-//            return updatedProductDto;
-//        } else {
-//            // Product 엔티티를 찾지 못한 경우 처리
-//        	System.out.println("실패란다.");
-//            throw new EntityNotFoundException("Product with productNo " + productNo + " not found");
-//        }
 	}
 	// goods 수정 - DTO
 	@Transactional
@@ -454,11 +450,6 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findByProductNameContaining(keyword);
 	}
 	/*==============================================================*/
-
-
-
-
-
 		
 	/*============================================================*/
 	

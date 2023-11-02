@@ -22,6 +22,7 @@ import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.repository.product.ProductRepository;
 
@@ -99,7 +100,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	void testFindGoodsByCategoryId() {
 		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(1L);
 		System.out.println("굿즈리스트" + ticketDtoList);
@@ -192,7 +193,7 @@ class ProductServiceImplTest {
 		@Test
 		@Transactional
 		@Rollback(false)
-		@Disabled	 
+//		@Disabled	 
 	    void testDeledtProductDto() throws Exception {
 	        // productNo 값을 지정
 	        Long productNo = 1L;
@@ -353,7 +354,52 @@ class ProductServiceImplTest {
 //        ProductDto updatedProductDto = productServiceImpl.increaseProductReadCountDto(productDto);
 //
 //    }
-
+//    @Test
+//	@Transactional
+//	@Rollback(false)
+////	@Disabled
+//    public void testOutOfStockMsgDto_StockAvailable() {
+//        Long productNo = 1L;
+//        Product product = new Product();
+//        product.setProductNo(productNo);
+//        product.setProductStock(10);
+//
+//        when(productRepository.findById(productNo)).thenReturn(Optional.of(product));
+//
+//        ProductDto productDto = productServiceImpl.outOfStockMsgDto(productNo);
+//
+//        assertEquals(productNo, productDto.getProductNo());
+//        assertEquals(10, productDto.getProductStock());
+//    }
+//
+//    @Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//    public void testOutOfStockMsgDto_StockEmpty() {
+//        Long productNo = 2L;
+//        Product product = new Product();
+//        product.setProductNo(productNo);
+//        product.setProductStock(0);
+//
+//        when(productRepository.findById(productNo)).thenReturn(Optional.of(product));
+//
+//        productServiceImpl.outOfStockMsgDto(productNo);
+//    }
+//
+//    @Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//    public void testOutOfStockMsgDto_ProductNotFound() {
+//        Long productNo = 3L;
+//
+//        when(productRepository.findById(productNo)).thenReturn(Optional.empty());
+//
+//        ProductDto productDto = productServiceImpl.outOfStockMsgDto(productNo);
+//
+//        assertEquals(null, productDto);
+//    }
 	
 	/******************* 진행중 *******************/
 //	// productName 찾기
@@ -399,5 +445,5 @@ class ProductServiceImplTest {
 	
 	
 	
-	
+
 }

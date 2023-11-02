@@ -50,9 +50,12 @@ public interface ProductService{
 
 	// 좋아요 누르기 기능[성공]
 	Long checkLikeService(Long productNo);
-
+	/******************** 품절 안내 기능[ENTITY] ********************/
 	// 품절 안내 기능[성공]
 	Product outOfStockMsg(Long productNo);
+	
+	/******************** 품절 안내 기능[DTO] ********************/
+	ProductDto outOfStockMsgDto(Long productNo);
 	
 	/******************** productNo 찾기[ENTITY] ********************/	
 	// productNo 찾기[성공]
