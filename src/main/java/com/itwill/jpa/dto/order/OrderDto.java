@@ -1,7 +1,11 @@
 package com.itwill.jpa.dto.order;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
@@ -35,6 +39,11 @@ public class OrderDto {
 	@Builder.Default
 	private List<OrderItemDto> orderItemDtos = new ArrayList<>();
 	
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+	
 	
 	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정하는 생성자(초기화)
 	public OrderDto(Order order) {
@@ -44,7 +53,8 @@ public class OrderDto {
 		this.orderStatus = order.getOrderStatus();
 		this.userId = order.getUser().getUserId();
 		this.deliveryId = order.getDelivery().getDeliveryId();
-		
+		this.createdAt = order.getCreatedAt();
+		this.updatedAt = order.getUpdatedAt();
 	}
 	
 	//Entity to Dto 변환
@@ -55,6 +65,8 @@ public class OrderDto {
 									.orderStatus(entity.getOrderStatus())
 									.userId(entity.getUser().getUserId())
 									.deliveryId(entity.getDelivery().getDeliveryId())
+									.createdAt(entity.getCreatedAt())
+									.updatedAt(entity.getUpdatedAt())
 									.build();
 		
 		// OrderItem 엔티티 목록을 OrderItemDto 목록으로 변환하여 설정
