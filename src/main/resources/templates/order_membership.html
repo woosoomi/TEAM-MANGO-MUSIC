@@ -104,7 +104,7 @@
 
 								<li><a href="moviesingle.html">망고티켓</a></li>
 								<li><a href="movielist.html">망고굿즈</a></li>
-								<li><a href="moviesingle.html">멤버쉽</a></li>
+								<li><a href="moviesingle.html">멤버십</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
@@ -126,7 +126,7 @@
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
 								data-hover="dropdown"> 결제 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li><a href="order_membership">멤버쉽결제</a></li>
+								<li><a href="order_membership">멤버십결제</a></li>
 								<li><a href="order_ticket">티켓결제</a></li>
 								<li><a href="order_history">주문내역</a></li>
 							</ul>
@@ -150,7 +150,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="hero-ct">
-						<h1>멤버쉽 결제</h1>
+						<h1>멤버십 결제</h1>
 						<ul class="breadcumb">
 							<li class="active"><a href="index">Home</a></li>
 							<li><span class="ion-ios-arrow-right"></span><a href="order_membership">Order Membership
@@ -185,16 +185,16 @@
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div>
 							<p style="margin-bottom: 10px; font-weight: bold; font-size: 22px;">유의사항</p>
-							<p style="margin-top: 10px; margin-bottom: 10px; font-weight: bold;">멤버쉽</p>
+							<p style="margin-top: 10px; margin-bottom: 10px; font-weight: bold;">멤버십</p>
 							<span class="text-blue">사용 기간이 만료된 쿠폰은 할인에 적용되지 않습니다.<br></span>
-							<span class="text-blue">하나의 멤버쉽 결제당 하나의 쿠폰만 사용하실 수 있습니다.<br></span>
+							<span class="text-blue">하나의 멤버십 결제당 하나의 쿠폰만 사용하실 수 있습니다.<br></span>
 							<span class="text-blue">권리자의 판단에 따라 일부 음원은 재생이 제한될 수 있습니다.<br></span>
 						</div>
 						<div>
 							<p style="margin-top: 10px; margin-bottom: 10px; font-weight: bold;">결제 및 해지</p>
 							<span class="text-blue">구매와 동시에 선불로 과금되며, 부가세 10%는 별도입니다.<br></span>
 							<span class="text-blue">결제 시 SMS 등을 통한 별도의 거래 내역 통지는 생략됩니다.<br></span>
-							<span class="text-blue">구매하신 멤버쉽의 결제 내역 조회, 해지는 [망고 웹사이트 &gt; 결제 &gt; 주문 내역]에서 할 수 있습니다.<br></span>
+							<span class="text-blue">구매하신 멤버십의 결제 내역 조회, 해지는 [망고 웹사이트 &gt; 결제 &gt; 주문 내역]에서 할 수 있습니다.<br></span>
 							<span class="text-blue">이용권 환불 신청은 망고 고객센터(1577-1234)로 전화하거나,<br> [망고 웹사이트 &gt; 게시판 &gt; 1:1 문의]에서 할 수 있습니다.</span>
 						</div>
 					</div>
@@ -206,7 +206,7 @@
                         <form class="form-style-1" action="#">
                             <div class="row">
                                 <div class="col-md-12 form-it">
-                                    <label>멤버쉽명</label>
+                                    <label>멤버십명</label>
                                     <input type="text" th:placeholder="${membershipName}">
                                 </div>
                                 <div class="col-md-12 form-it">
@@ -214,8 +214,7 @@
                                     <div class="group-ip">
 									<select name="skills" class="ui fluid dropdown">
 										<option value="">쿠폰을 선택하세요</option>
-										<option value="Action1" th:each="couponDtoList : ${couponDtoList}" th:text="${couponDtoList.couponName}">쿠폰1
-										</option>
+										<option value="Action1" th:each="couponDtoList : ${couponDtoList}" th:text="${couponDtoList.couponName}">쿠폰1</option>
 									</select>
                                     </div>
                                 </div>
@@ -243,21 +242,18 @@
                                 <div class="col-md-12 form-it" style="display: flex; align-items: center; margin-bottom: 5px;">
                                     <input type="checkbox" id="termsAgree1" name="termsAgree1"
                                         style="width: 16px; height: 16px; margin-right: 10px; margin-bottom: 0;">
-                                    <label for="termsAgree1" style="margin-bottom: 0;">유의사항을 확인하였습니다</label>
+                                    <label for="termsAgree1" style="margin-bottom: 0;">유의사항을 확인하였습니다.</label>
                                 </div>
                                 <div class="col-md-12 form-it" style="display: flex; align-items: center; margin-bottom: 5px;">
                                     <input type="checkbox" id="termsAgree2" name="termsAgree2"
                                         style="width: 16px; height: 16px; margin-right: 10px; margin-bottom: 0;">
-                                    <label for="termsAgree2" style="margin-bottom: 0;">이용약관을 확인하였습니다</label>
+                                    <label for="termsAgree2" style="margin-bottom: 0;">이용약관을 확인하였습니다.</label>
                                 </div>
                                 <div class="col-md-12 ">
                                     <input class="submit" type="submit" value="결제하기">
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="ads">
-                        <img src="" alt="">
                     </div>
                 </div>
             </div>
