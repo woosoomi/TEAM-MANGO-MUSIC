@@ -2,6 +2,7 @@ package com.itwill.jpa.dto.user;
 
 import com.itwill.jpa.entity.user.User;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,7 +38,6 @@ public class UserDto {
 					  .userPhone(entity.getUserPhone())
 					  .userGender(entity.getUserGender())
 					  .memberShip(entity.isMembership())
-					  .voteId(entity.getVote().getVoteId())
 					  .build();
 	}
 	

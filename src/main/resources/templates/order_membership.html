@@ -166,12 +166,12 @@
         <div class="row ipad-width2">
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="topbar-filter">
-                    <p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
+                    <p th:text="${user_id} + ' 님이 선택하신 '+${membershipPeriodOfUse}+'일 '+${membershipName}+' 입니다.'"></p>
                 </div>
                 <div class="movie-item-style-2">
                     <img th:src="@{'images/' + ${membershipImage}}" alt="">
                     <div class="mv-item-infor">
-                        <h6><a href="membership_detail" th:text="${membershipName}"><span>(2023)</span></a></h6>
+                        <h6><a href="membership_detail" th:text="${membershipName}">멤버십명<span>(2023)</span></a></h6>
                         <p class="describe" th:text="${membershipContent}">
                             망고 뮤직의 세계로 당신을 초대합니다.
                             망고 뮤직이 제공하는 멤버십으로 현실에서의 모든 스트레스를 뒤로한 채 음악의 세계로 빠져보세요. 음악은 우리의 더 나은 동반자입니다. 멤버십으로 무제한 음악을
@@ -229,8 +229,7 @@
 										<div class="col-md-6">
 											<label>할인</label>
 											<select>
-												<option value="number" th:each="couponDtoList : ${couponDtoList}"
-													th:text="${couponDtoList.couponDiscount}+'%'">할인율</option>
+												<option value="number" th:each="couponDto : ${couponDtoList}" th:text="${discount} + '%'">할인율</option>
 											</select>
 										</div>
 									</div>

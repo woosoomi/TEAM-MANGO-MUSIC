@@ -167,12 +167,13 @@
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
 						<p
-							th:text="${userId} + ' 님의 ' + ${#lists.size(orderItemDtoList)} + '개의 티켓 주문입니다.'">
+							th:text="${user_id} + ' 님의 ' + ${#lists.size(orderItemDtoList)} + '개의 티켓 주문입니다.'">
 						</p>
 					</div>
-					<div class="movie-item-style-2"><img src="images/iugoldenconcert.webp" alt="">
+					<div class="movie-item-style-2">
+						<img src="@{'images/' + ${ticketImage}}" alt="">
 						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">아이유 콘서트 : 더 골든 아워 <span>(2023)</span></a></h6>
+							<h6><a href="ticket_list" th:text="${ticketName}">티켓명<span>(2023)</span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i>
 											<i class="ion-android-star"></i>
 											<i class="ion-android-star"></i>
