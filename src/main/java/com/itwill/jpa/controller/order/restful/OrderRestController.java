@@ -124,7 +124,7 @@ public class OrderRestController {
 	
 	//주문 최신순으로 나열하기
 	@Operation(summary = "주문 최신순으로 나열하기[성공]")
-	@GetMapping("/SortByLatestOrder/{userId}")
+	@GetMapping("/SortByLatestOrder/{userId}?sortBy={selectedOption}")
 	public ResponseEntity<?> getNewerOrdersByUserId(@PathVariable(value = "userId") String userId) {
 		try {
 			List<OrderDto> orders = orderService.orderListByNewer(userId);

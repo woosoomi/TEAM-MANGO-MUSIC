@@ -174,19 +174,19 @@
 	       			 // JavaScript 함수 정의
 			        function sortOrders() {
 			                     var selectedOption = document.getElementById("sortSelect").value;
-
+								 var userId = document.getElementById("userId").value;
 					            // AJAX 요청을 만듭니다.
 					            var xhr = new XMLHttpRequest();
-					            var url = "/orderDtoNewerList?sortBy=" + selectedOption; // 실제 서버 엔드포인트로 대체해야 합니다.
+					            var url = "/SortByLatestOrder/"+ userId + "?sortBy=" + selectedOption; ;
 					
 					            xhr.open("GET", url, true);
 					
-					            xhr.onload = function () {
+					              xhr.onload = function () {
 					                if (xhr.status === 200) {
 					                    var responseData = JSON.parse(xhr.responseText);
-					
-					                    // 서버에서 반환된 데이터를 사용하여 페이지를 업데이트합니다.
-					                    updateOrderList(responseData);
+					                    displayOrderList(responseData);
+					                } else if (xhr.status === 404) {
+					                    document.getElementById("orderList").innerHTML = "주문 내역이 없습니다.";
 					                }
 					            };
 					
