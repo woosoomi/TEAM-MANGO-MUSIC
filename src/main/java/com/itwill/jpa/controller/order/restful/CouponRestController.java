@@ -122,19 +122,19 @@ public class CouponRestController {
 		}
 	}
 	
-//	// 쿠폰 할인 적용시키기
-//	@Operation(summary = "쿠폰 할인 적용시키기([성공]")
-//	@PutMapping("/discount/{couponId}") 
-//	public ResponseEntity<?> applyCouponDiscount(@PathVariable(value = "couponId") Long couponId,@RequestParam(value = "orderPrice") double orderPrice) {
-//		try {
-//			double discountPrice = couponService.applyCouponDiscount(couponId, orderPrice);
-//			return ResponseEntity.status(HttpStatus.OK).body(discountPrice);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			Map<String, String> errorResponse = new HashMap<>();
-//			errorResponse.put("error", e.getMessage());
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-//		}
-//	}
+	// 쿠폰 할인 적용시키기
+	@Operation(summary = "쿠폰 할인 적용시키기([성공]")
+	@PutMapping("/discount/{couponId}") 
+	public ResponseEntity<?> applyCouponDiscount(@PathVariable(value = "couponId") Long couponId,@RequestParam(value = "orderPrice") double orderPrice) {
+		try {
+			double discountPrice = couponService.applyCouponDiscount(couponId, orderPrice);
+			return ResponseEntity.status(HttpStatus.OK).body(discountPrice);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+	}
 }
 		

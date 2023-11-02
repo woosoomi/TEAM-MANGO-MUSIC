@@ -209,38 +209,35 @@
                                     <label>멤버쉽명</label>
                                     <input type="text" th:placeholder="${membershipName}">
                                 </div>
-                          <div class="col-md-12 form-it">
-							<label>쿠폰선택</label>
-							
-							<div class="group-ip">
-								<select name="selectedCouponId" class="ui fluid dropdown">
-									<option value="">쿠폰을 선택하세요</option>
-									<option th:each="couponDtoList : ${couponDtoList}" th:value="${couponDtoList.couponId}"
-										th:text="${couponDtoList.couponName}">쿠폰1</option>
-								</select>
-							</div>
-							</div>
-									<div class="col-md-12 form-it">
-										<label>할인적용</label>
-										<div class="row">
-											<div class="col-md-6">
-												<select>
-													<option value="number" th:text="${formattedOrderPrice}">30000원</option>
-												</select>
-											</div>
-											<div class="col-md-6">
-												<select>
-													<option value="number" th:each="couponDtoList : ${couponDtoList}"
-														th:text="${couponDtoList.couponDiscount}+'%'">할인율</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-12 form-it">
-										<label>결제금액</label>
-										<input type="text" th:placeholder="${endPrice}">
-									</div>
-
+                                <div class="col-md-12 form-it">
+                                    <label>쿠폰선택</label>
+                                    <div class="group-ip">
+									<select name="skills" class="ui fluid dropdown">
+										<option value="">쿠폰을 선택하세요</option>
+										<option value="Action1" th:each="couponDtoList : ${couponDtoList}" th:text="${couponDtoList.couponName}">쿠폰1
+										</option>
+									</select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-it">
+                                    <label>할인적용</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select>
+                                                <option value="number" th:text="${formattedOrderPrice}">30000원</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select>
+                                                <option value="number" th:each="couponDtoList : ${couponDtoList}" th:text="${couponDtoList.couponDiscount}+'%'">할인율</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-it">
+                                    <label>결제금액</label>
+                                    <input type="text" placeholder="최종금액">
+                                </div>
                                 <div class="col-md-12 form-it" style="display: flex; align-items: center; margin-bottom: 5px;">
                                     <input type="checkbox" id="termsAgree1" name="termsAgree1"
                                         style="width: 16px; height: 16px; margin-right: 10px; margin-bottom: 0;">
