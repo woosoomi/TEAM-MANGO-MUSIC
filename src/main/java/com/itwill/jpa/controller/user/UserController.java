@@ -36,8 +36,6 @@ public class UserController {
 		return forward_path;
 	}
 	 
-	 
-	
 	@GetMapping("/user_modify_form")
 	public String user_modify_form() {
 		String forward_path = "user_modify_form";
@@ -55,7 +53,7 @@ public class UserController {
 		String forward_path = "";
 		try {
 			UserDto createUser = userService.createUser(userDto);
-			forward_path = "redirect:user_login_form";
+			forward_path = "redirect:index";
 		} catch (Exception e) {
 			model.addAttribute("msg", e.getMessage());
 			model.addAttribute("fuser", userDto);
@@ -72,7 +70,7 @@ public class UserController {
 		try {
 			userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
 			session.setAttribute("sUserId", userLoginDto.getUserId());
-			forwardPath = "redirect:index";
+			forwardPath = "redirect:user_info_form";
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			model.addAttribute("msg1", e.getMessage());

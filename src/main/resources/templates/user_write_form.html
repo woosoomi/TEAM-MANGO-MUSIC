@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]-->
 <!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]-->
-<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<!--[if !(IE 7) | !(IE 8)  ]>
 <html lang="en" class="no-js">
 
 <head>
@@ -46,7 +46,7 @@
 								<div class="login-content">
 									<a href="#" class="close">x</a>
 									<h3>Login</h3>
-									<form method="post" action="index">
+									<form method="post" action="user_login_action">
 										<div class="row">
 											<label for="username">Username:<input type="text"
 												name="username" id="username" placeholder="아이디"
@@ -91,48 +91,48 @@
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
-						<form action="" class="user">
+						<form action="" class="user" name="f" method="post">
 							<h4>01. UserInfo</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserId</label><input type="text"
-										placeholder="아이디를 입력하세요." name="userId" id="userId">
+									<label>UserId</label>
+									<input type="text" placeholder="아이디를 입력하세요." name="userId" id="userId" value="userId">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserPassword</label><input type="text"
-										placeholder="비밀번호를 입력하세요." name="userPw" id="userPw">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 form-it">
-									<label>UserName</label><input type="text"
-										placeholder="이름을 입력하세요." name="userName" id="userName">
-								</div>
-								<div class="col-md-6 form-it">
-									<label>UserPhone</label><input type="text"
-										placeholder="전화번호를 입력하세요." name="userPhone" id="userPhone">
+									<label>UserPassword</label>
+									<input type="text" placeholder="비밀번호를 입력하세요." name="userPw" id="userPw" value="userPw">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserEmail</label><input type="text"
-										placeholder="이메일을 입력하세요." name="userEmail" id="userEmail">
+									<label>UserName</label>
+									<input type="text" placeholder="이름을 입력하세요." name="userName" id="userName" value="userName">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserJumin</label><input type="text"
-										placeholder="주민번호를 입력하세요." name="userJumin" id="userJumin">
+									<label>UserPhone</label>
+									<input type="text" placeholder="전화번호를 입력하세요." name="userPhone" id="userPhone" value="userPhone">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserAddress</label><input type="text"
-										placeholder="주소를 입력하세요." name="userAddress" id="userAddress">
+									<label>UserEmail</label>
+									<input type="text" placeholder="이메일을 입력하세요." name="userEmail" id="userEmail" value="userEmail">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserGender</label>
+									<label>UserJumin</label>
+									<input type="text" placeholder="주민번호를 입력하세요." name="userJumin" id="userJumin" value="userJumin">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>UserAddress</label>
+									<input type="text" placeholder="주소를 입력하세요." name="userAddress" id="userAddress" value="userAddress">
+								</div>
+								<div class="col-md-6 form-it">
+									<label>UserGender</label> 
 									<select id="userGender" name="userGender">
-										<option value="united">남</option>
-										<option value="saab">여</option>
+										<option value="man">남</option>
+										<option value="woman">여</option>
 									</select>
 								</div>
 							</div>
@@ -155,49 +155,48 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 
-	<!-- <script type="text/javascript">
-    function userCreate() {
-        var userId = document.getElementById('userId').value;
-        var userPw = document.getElementById('userPw').value;
-        var userName = document.getElementById('userName').value;
-        var userPhone = document.getElementById('userPhone').value;
-        var userEmail = document.getElementById('userEmail').value;
-        var userJumin = document.getElementById('userJumin').value;
-        var userAddress = document.getElementById('userAddress').value;
-        var userGender = document.getElementById('userGender').value;
-
-        if (userId === "" || userPw === "" || userName === "" || userPhone === "" || userEmail === "" || userJumin === "" || userAddress === "") {
-            alert("모든 필드를 작성해 주세요.");
-            return;
-        }
-
-        var userData = {
-            userId: userId,
-            userPw: userPw,
-            userName: userName,
-            userPhone: userPhone,
-            userEmail: userEmail,
-            userJumin: userJumin,
-            userAddress: userAddress,
-            userGender: userGender
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "/user/join",
-            data: JSON.stringify(userData),
-            contentType: "application/json; charset=UTF-8",
-            success: function(response) {
-                alert("회원가입이 완료되었습니다.");
-                window.location.href = "index"; // 회원가입 성공 시 이동할 페이지 URL로 변경해야 합니다.
-            },
-            error: function(error) {
-                alert("회원가입에 실패했습니다.");
-            }
-        });
-    }
-</script> -->
-	
+	<script type="text/javascript">
+		function userCreate() {
+			if (document.f.userId.value == "") {
+				alert("사용자 아이디를 입력하십시요.");
+				document.f.userId.focus();
+				return false;
+			}
+			if (document.f.userPw.value == "") {
+				alert("비밀번호를 입력하십시요.");
+				document.f.userPw.focus();
+				return false;
+			}
+			if (document.f.userName.value == "") {
+				alert("이름을 입력하십시요.");
+				document.f.userName.focus();
+				return false;
+			}
+			if (document.f.userPhone.value == "") {
+				alert("번호를 입력하십시요.");
+				document.f.userPhone.focus();
+				return false;
+			}
+			if (document.f.userEmail.value == "") {
+				alert("이메일 주소를 입력하십시요.");
+				document.f.email.focus();
+				return false;
+			}
+			if (document.f.userJumin.value == "") {
+				alert("주민번호를 입력하십시요.");
+				document.f.userJumin.focus();
+				return false;
+			}
+			if (document.f.userAddress.value == "") {
+				alert("이메일 주소를 입력하십시요.");
+				document.f.userAddress.focus();
+				return false;
+			}
+			document.f.action = "user_write_action";
+			document.f.method = 'POST';
+			document.f.submit();
+		}
+	</script>
 </body>
 
 </html>
