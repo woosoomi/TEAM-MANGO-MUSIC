@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <title>Manggo MusicAward</title>
 <link rel="stylesheet" href="css/voteMain.css" type="text/css">
-<link rel="stylesheet" href="C:\Users\ITWILL\Desktop\voteMain.css" type="text/css">
 <style>
 @import	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 </style>
@@ -120,14 +119,14 @@
 	<div class="battle">
 		
 		
-		<div class="battle_img_left" th:each="productVote : ${productVote}" th:if="${productVote.voteId == 1}">
-			<img th:src="${productVote.productImage}">
+		<div class="battle_img_left" th:each="top1Product : ${top1Product}">
+			<img th:src="${top1Product.productImage}">
 			<h1>
-				1위 <a class="battle_left_name" th:text="${productVote.productArtist}">임영웅</a> <a id="Rank1_Tot_percentage">57%</a>
+				1위 <a class="battle_left_name" th:text="${top1Product.productArtist}">임영웅</a> <a id="Rank1_Tot_percentage">57%</a>
 			</h1>
 			<div class="battle_totPercent">
-				<a th:text="${productVote.productName}">노래제목</a> 
-				<a id="Rank1_Tot" th:text="${productVote.voteTot}">11,501</a> 
+				<a th:text="${top1Product.productName}">노래제목</a> 
+				<a id="Rank1_Tot" th:text="${top1Product.voteTot}">11,501</a> 
 				<a id="Rank1_Tot_text">득표</a>
 		</div>		
 		
@@ -137,15 +136,15 @@
 		<h3 class="vs">VS</h3>
 
 
-		<div class="battle_img_right" th:each="productVote : ${productVote}" th:if="${productVote.voteId == 2}">
-			<img th:src="${productVote.productImage}">
+		<div class="battle_img_right" th:each="top2Product : ${top2Product}">
+			<img th:src="${top2Product.productImage}">
 			<h1>
-				1위 <a class="battle_right_name" th:text="${productVote.productArtist}">정국</a> 
+				2위 <a class="battle_right_name" th:text="${top2Product.productArtist}">정국</a> 
 					<a id="Rank2_Tot_percentage">57%</a>
 			</h1>
 			<div class="battle_totPercent">
-				<a th:text="${productVote.productName}">노래제목</a> 
-				<a id="Rank1_Tot" th:text="${productVote.voteTot}">11,501</a> 
+				<a th:text="${top2Product.productName}">노래제목</a> 
+				<a id="Rank1_Tot" th:text="${top2Product.voteTot}">11,501</a> 
 				<a id="Rank1_Tot_text">득표</a>
 			</div>
 

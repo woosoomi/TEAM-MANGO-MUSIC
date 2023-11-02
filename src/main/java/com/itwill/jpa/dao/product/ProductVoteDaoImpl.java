@@ -52,13 +52,12 @@ public class ProductVoteDaoImpl implements ProductVoteDao{
 	
 		// voteId가 null이 아닌 상품 리스트를 가져와서 voteTot 내림차순으로 정렬
 		@Override
-		public List<Product> findProductsByVoteIsNotNullOrderByVoteTotDesc() {
+		public List<ProductVoteDto> findProductsByVoteIsNotNullOrderByVoteTotDesc() {
 		    List<Product> products = productRepository.findProductsByVoteIsNotNull();
 		    List<ProductVoteDto> productVote = ProductVoteDto.toDto(products);
 		    // voteTot를 기준으로 내림차순으로 정렬
-		    // voteTot를 기준으로 내림차순으로 정렬
 		    productVote.sort((p1, p2) -> Integer.compare(p2.getVoteTot(), p1.getVoteTot()));
-		    return products;
+		    return productVote;
 		}
 	
 }
