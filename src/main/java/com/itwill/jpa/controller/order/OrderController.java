@@ -69,7 +69,7 @@ public class OrderController {
 				//System.out.println("주문 아이템: " + orderDtoList);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
 				
-				 // Product 엔티티의 정보를 저장할 변수
+				// Product 엔티티의 정보를 저장할 변수
 	            Date membershipStartPeriod = null;
 	            int membershipPeriodOfUse = 0;
 	            String membershipName = null;
@@ -113,7 +113,7 @@ public class OrderController {
 	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
 	            model.addAttribute("couponDtoList", couponDtoList);
 	            
-	         // 개별 쿠폰의 couponDiscount 값을 가져오고 정수로 변환
+	            // 개별 쿠폰의 couponDiscount 값을 가져오고 정수로 변환
 	            for (CouponDto couponDto : couponDtoList) {
 	                Double couponDiscount = couponDto.getCouponDiscount();
 	                if (couponDiscount != null) {
@@ -181,7 +181,7 @@ public class OrderController {
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
 				
-				 // Product 엔티티의 정보를 저장할 변수
+				// Product 엔티티의 정보를 저장할 변수 초기화
 	            String ticketName = null;
 	            String ticketImage = null;
 	            String ticketContent = null;
