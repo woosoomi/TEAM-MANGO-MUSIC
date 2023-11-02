@@ -1,8 +1,10 @@
 package com.itwill.jpa.service.cart;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.itwill.jpa.dto.cart.CartItemDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.CartItem;
 
 public interface CartItemService {
@@ -18,8 +20,13 @@ public interface CartItemService {
 	public void deleteByCartItemId(Long cartItemId) throws Exception;
 	
 	//장바구니에 담긴 모든 상품
-	public List<CartItemDto> findAllByCartId(Long CartId) throws Exception;
-
+	public List<CartItemDto> findAllByCartId(Long cartId) throws Exception;
+	
+	//카트아이이템의 수량별 가격 업데이트
+	public int calculateTotalByCartItemId(Long cartItemId) throws Exception;
+	
+	
+	public Optional<ProductDto> getProductByProductId(Long productId) throws Exception;
 		
 	
 }

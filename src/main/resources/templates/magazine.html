@@ -15,6 +15,10 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
 </head>
 
 <body><!--preloading-->
@@ -51,7 +55,7 @@
 
 
 					</div>
-					
+
 					<div class="row">
 					</div>
 					<ul class="pagination">
@@ -73,13 +77,19 @@
 						<div class="sb-recentpost sb-it">
 							<h4 class="sb-title">most popular in month</h4>
 							<div class="recent-item"><span>01</span>
-								<h6><a href="#">REST CONTROLLER처리</a></h6>
+								<h6><a href="#"
+										th:text="${top3Magazines[0].boardTitle + ' (' + top3Magazines[0].boardReadCount + ')'}">REST
+										CONTROLLER처리</a></h6>
 							</div>
 							<div class="recent-item"><span>02</span>
-								<h6><a href="#">REST CONTROLLER처리 </a></h6>
+								<h6><a href="#"
+										th:text="${top3Magazines[1].boardTitle + ' (' + top3Magazines[1].boardReadCount + ')'}">REST
+										CONTROLLER처리 </a></h6>
 							</div>
 							<div class="recent-item"><span>03</span>
-								<h6><a href="#">REST CONTROLLER처리</a></h6>
+								<h6><a href="#"
+										th:text="${top3Magazines[2].boardTitle + ' (' + top3Magazines[2].boardReadCount + ')'}">REST
+										CONTROLLER처리</a></h6>
 							</div>
 						</div>
 
@@ -105,10 +115,6 @@
 	<div th:insert="~{footer :: footerFragment}">
 	</div>
 
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
 </body>
 
 </html>

@@ -97,10 +97,7 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	            
 
 	            // 사용자 엔티티에서 주문 목록을 가져옴
-	            List<Order
-	            
-	            
-	            > orders = user.getOrders();
+	            List<Order> orders = user.getOrders();
 
 	            // 각 주문에 속한 주문 항목 및 연결된 제품을 가져옴
 	            for (Order order : orders) {
@@ -110,16 +107,10 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	                    userOrderedItems.add(orderItem);
 	                }
 	            }
-
 	            return userOrderedItems;
 	        } else {
 	            return Collections.emptyList(); // 사용자를 찾을 수 없는 경우 빈 리스트 반환
 	        }
-	    }
+		}
 
-	
-	
-
-	
-
-}
+	}

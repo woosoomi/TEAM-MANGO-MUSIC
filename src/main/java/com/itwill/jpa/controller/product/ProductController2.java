@@ -40,7 +40,7 @@ public class ProductController2 {
 		try {
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 			model.addAttribute("musics", musics);
-			log.info(">>>MUSIC LIST : " + musics);
+			//log.info(">>>MUSIC LIST : " + musics);
 			return "music_list";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,7 +100,7 @@ public class ProductController2 {
 			try {
 				List<ProductDto> goods = productService.findByProductCategoryId(2L);
 				model.addAttribute("goods", goods);
-				System.out.println(">>>GOODS LIST : " + goods);
+				//System.out.println(">>>GOODS LIST : " + goods);
 				return "goods_list";
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -138,7 +138,7 @@ public class ProductController2 {
 			try {
 				List<ProductDto> tickets = productService.findByProductCategoryId(3L);
 				model.addAttribute("tickets", tickets);
-				System.out.println(">>>TICKET LIST : " + tickets);
+				//System.out.println(">>>TICKET LIST : " + tickets);
 				return "ticket_list";
 			} catch (Exception e) {
 				e.printStackTrace();

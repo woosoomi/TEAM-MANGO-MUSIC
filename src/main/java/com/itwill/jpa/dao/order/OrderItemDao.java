@@ -20,5 +20,6 @@ public interface OrderItemDao {
 	void deleteOrderItem(Long orderItemId);
 	
 	void deleteAll();
+
 	
 }

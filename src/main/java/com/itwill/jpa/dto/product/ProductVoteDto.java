@@ -1,6 +1,7 @@
 package com.itwill.jpa.dto.product;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.jpa.dto.vote.VoteDto;
@@ -82,6 +83,27 @@ public class ProductVoteDto {
 	            .voteDate(vote.getVoteDate())
 	            .voteTot(vote.getVoteTot())
 	            .build();
+	}
+	
+		//List<Entity> to List<Dto> 변환
+		public static List<ProductVoteDto> toDto(List<Product> entities) {
+			List<ProductVoteDto> productVoteDtoList = new ArrayList<>();
+			 for(Product entity : entities) {
+			 ProductVoteDto productDto = ProductVoteDto.builder()
+						 	.productName(entity.getProductName())
+							.productContent(entity.getProductContent())
+							.productStar(entity.getProductStar())
+							.productDate(entity.getProductDate())
+							.readCount(entity.getReadCount())
+							.productImage(entity.getProductImage())
+							.productArtist(entity.getProductArtist())
+							.voteId(entity.getVote().getVoteId())
+							.voteTot(entity.getVote().getVoteTot())
+							.voteDate(entity.getVote().getVoteDate())
+							.build();
+				 			productVoteDtoList.add(productDto);
+		 }
+			 return productVoteDtoList;
 	}
 	
 }

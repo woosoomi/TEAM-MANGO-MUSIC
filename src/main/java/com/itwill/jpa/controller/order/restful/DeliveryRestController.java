@@ -2,11 +2,13 @@
 package com.itwill.jpa.controller.order.restful;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.order.DeliveryDto;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.service.order.DeliveryService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -68,6 +69,55 @@ public class DeliveryRestController {
 		try {
 			deliveryService.deleteDelivery(deliveryId);
 			return ResponseEntity.status(HttpStatus.CREATED).body("배달번호"+ deliveryId+"번이 삭제되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+			
+			
+		}
+	}
+	
+	@Operation(summary = "유저 아이디로 배송지 정보 불러오기")
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<?> getDeliveriesByUserId(@PathVariable(value = "userId") String userId) {
+		try {
+			List<DeliveryDto> deliveriesUserId = deliveryService.findDelivery(userId);
+			return ResponseEntity.status(HttpStatus.CREATED).body(deliveriesUserId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+			
+			
+		}
+	}
+	
+	@Operation(summary = "배송지아이디로 배송지 정보 찾기")
+	@GetMapping("/{deliveryId}")
+	public ResponseEntity<?> getDeliveriesByDeliveryId(@PathVariable(value = "deliveryId") Long deliveryId) {
+		try {
+			DeliveryDto deliveriesDeliveryId = deliveryService.findByDeliveryId(deliveryId);
+			return ResponseEntity.status(HttpStatus.CREATED).body(deliveriesDeliveryId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+			
+			
+		}
+	}
+	
+	//관리자 권한
+	@Operation(summary = "배송지 정보들 불러오기")
+	@GetMapping("/all")
+	public ResponseEntity<?> getDeliveries() {
+		try {
+			List<DeliveryDto> deliveries = deliveryService.deliverys();
+			return ResponseEntity.status(HttpStatus.CREATED).body(deliveries);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Map<String, String> errorResponse = new HashMap<>();

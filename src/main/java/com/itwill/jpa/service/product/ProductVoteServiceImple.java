@@ -35,13 +35,11 @@ public class ProductVoteServiceImple implements ProductVoteService{
 		return findByVoteVoteId;
 	}
 
-
+	// voteId가 null아닌 리스트 가져오기
 	@Override
-	public List<Product> findByProductVoteIdNotnull() {
-		Vote vote = null;
-		Product findByVoteVoteId = productRepository.findByVoteVoteId(vote.getVoteId());
-		
-		return null;
+	public List<Product> findProductsByVoteIsNotNull() {
+		List<Product> findProductsByVoteIsNotNull = productRepository.findProductsByVoteIsNotNull(); 
+		return findProductsByVoteIsNotNull;
 	}
 
 

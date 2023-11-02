@@ -21,14 +21,12 @@
 <!-- CSS files -->
 <link rel="stylesheet" href="css/plugins.css">
 <link rel="stylesheet" href="css/style.css">
-</head>
 
+</head>
 <body>
 	<!--preloading-->
-	<div 
-		th:insert="~{header :: headerFragment}">
-	</div>
-	
+	<div th:insert="~{header :: headerFragment}"></div>
+
 	<!-- BEGIN | Header -->
 	<header class="ht-header">
 		<div class="container">
@@ -48,7 +46,7 @@
 								<div class="login-content">
 									<a href="#" class="close">x</a>
 									<h3>Login</h3>
-									<form method="post" action="login.php">
+									<form method="post" action="index">
 										<div class="row">
 											<label for="username">Username:<input type="text"
 												name="username" id="username" placeholder="아이디"
@@ -57,8 +55,7 @@
 										<div class="row">
 											<label for="password"> Password:<input
 												type="password" name="password" id="password"
-												placeholder="비밀번호"
-												required="required" /></label>
+												placeholder="비밀번호" required="required" /></label>
 										</div>
 										<div class="row">
 											<div class="remember">
@@ -84,7 +81,6 @@
 							</div>
 						</div>
 						<!--end of login form popup-->
-						<!--signup form popup-->
 						<div class="user-fav">
 							<ul>
 								<li class="active"><a href="user_write_form">01. 회원가입</a></li>
@@ -100,40 +96,41 @@
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserId</label><input type="text"
-										placeholder="아이디를 입력하세요.">
+										placeholder="아이디를 입력하세요." name="userId" id="userId">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPassword</label><input type="text"
-										placeholder="비밀번호를 입력하세요.">
+										placeholder="비밀번호를 입력하세요." name="userPw" id="userPw">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserName</label><input type="text"
-										placeholder="이름을 입력하세요. ">
+										placeholder="이름을 입력하세요." name="userName" id="userName">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPhone</label><input type="text"
-										placeholder="전화번호를 입력하세요.">
+										placeholder="전화번호를 입력하세요." name="userPhone" id="userPhone">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserEmail</label><input type="text"
-										placeholder="이메일을 입력하세요. ">
+										placeholder="이메일을 입력하세요." name="userEmail" id="userEmail">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserJumin</label><input type="text"
-										placeholder="주민번호를 입력하세요.">
+										placeholder="주민번호를 입력하세요." name="userJumin" id="userJumin">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserAddress</label><input type="text"
-										placeholder="주소를 입력하세요.">
+										placeholder="주소를 입력하세요." name="userAddress" id="userAddress">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserGender</label><select>
+									<label>UserGender</label>
+									<select id="userGender" name="userGender">
 										<option value="united">남</option>
 										<option value="saab">여</option>
 									</select>
@@ -141,7 +138,8 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2">
-									<input class="submit" type="submit" value="save">
+									<input class="submit" type="submit" value="save"
+										onclick="userCreate();">
 								</div>
 							</div>
 						</form>
@@ -156,6 +154,50 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+
+	<!-- <script type="text/javascript">
+    function userCreate() {
+        var userId = document.getElementById('userId').value;
+        var userPw = document.getElementById('userPw').value;
+        var userName = document.getElementById('userName').value;
+        var userPhone = document.getElementById('userPhone').value;
+        var userEmail = document.getElementById('userEmail').value;
+        var userJumin = document.getElementById('userJumin').value;
+        var userAddress = document.getElementById('userAddress').value;
+        var userGender = document.getElementById('userGender').value;
+
+        if (userId === "" || userPw === "" || userName === "" || userPhone === "" || userEmail === "" || userJumin === "" || userAddress === "") {
+            alert("모든 필드를 작성해 주세요.");
+            return;
+        }
+
+        var userData = {
+            userId: userId,
+            userPw: userPw,
+            userName: userName,
+            userPhone: userPhone,
+            userEmail: userEmail,
+            userJumin: userJumin,
+            userAddress: userAddress,
+            userGender: userGender
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/user/join",
+            data: JSON.stringify(userData),
+            contentType: "application/json; charset=UTF-8",
+            success: function(response) {
+                alert("회원가입이 완료되었습니다.");
+                window.location.href = "index"; // 회원가입 성공 시 이동할 페이지 URL로 변경해야 합니다.
+            },
+            error: function(error) {
+                alert("회원가입에 실패했습니다.");
+            }
+        });
+    }
+</script> -->
+	
 </body>
 
 </html>

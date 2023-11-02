@@ -9,14 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.OrderItemDao;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
-import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
-import com.itwill.jpa.exception.order.OrderItemNotFoundException;
 import com.itwill.jpa.exception.user.UserNotFoundException;
 import com.itwill.jpa.repository.order.OrderItemRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
@@ -118,47 +115,31 @@ public class OrderItemServiceImpl implements OrderItemService{
 
 	            // 사용자 엔티티에서 주문 목록을 가져옴
 	            List<Order> orders = user.getOrders();
-
+	            
+	            
+	            
 	            // 각 주문에 속한 주문 항목 및 연결된 제품을 가져옴
 	            for (Order order : orders) {
 	                List<OrderItem> orderItems = order.getOrderItems();
 	                for (OrderItem orderItem : orderItems) {
-	                    userOrderedItems.add(OrderItemDto.toDto(orderItem));
+	                    OrderItemDto orderItemDto = OrderItemDto.toDto(orderItem);
+
+	                    // 주문 항목에 연결된 제품 정보 가져와서 설정
+	                    Long productNo = orderItemDto.getProductNo();
+	                    Product product = productService.getProduct(productNo);
+	                    orderItemDto.setProductName(product.getProductName());
+	                    orderItemDto.setProductImage(product.getProductImage());
+	                    orderItemDto.setProductContent(product.getProductContent());
+	                    orderItemDto.setProductPrice(product.getProductPrice());
+	                    	
+	                    userOrderedItems.add(orderItemDto);
 	                }
 	            }
-
+	            
 	            return userOrderedItems;
 	        } else {
 	            return Collections.emptyList(); // 사용자를 찾을 수 없는 경우 빈 리스트 반환
 	        }
-	    }
-
-		@Override
-		public List<OrderItemDto> getOrderItemsByCategory(String userId, Long categoryId) throws Exception {
-			// 1. 사용자 찾기
-			Optional<User> userOptional = userRepository.findById(userId);
-
-			if (userOptional.isPresent()) {
-				// 2. 카테고리에 해당하는 제품 조회
-				List<Product> productsInCategory = productService.getProductsByCategory(categoryId);
-
-				// 3. 해당 카테고리의 제품에 해당하는 오더 아이템 조회
-				List<OrderItemDto> orderItemsInCategoryDto = new ArrayList<>();
-
-				for (Product product : productsInCategory) {
-					List<OrderItem> orderItems = orderItemRepository.findByUserIdAndProductCategoryId(userId,
-							product.getProductCategory().getCategoryId());
-
-					// 각 OrderItem을 OrderItemDto로 변환하여 리스트에 추가
-					for (OrderItem orderItem : orderItems) {
-						orderItemsInCategoryDto.add(OrderItemDto.toDto(orderItem));
-					}
-				}
-
-				return orderItemsInCategoryDto;
-			} else {
-				throw new UserNotFoundException("회원을 찾을 수 없습니다."); // 로그인 유저를 찾을 수 없는 경우 예외 throw
-			}
 		}
 
 	}

@@ -18,11 +18,13 @@ public class OrderItemDto {
 	
 	private int oiQty;
 	
-//	private String productName;
-//	
-//	private String productImage;
-//	
+	private String productName;
+	
+	private String productImage;
+	
 	private int productPrice;
+	
+	private String productContent;
 	
 	private Long productNo;
 	

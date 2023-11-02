@@ -28,11 +28,15 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	
+	
 	@GetMapping("/user_info_form")
 	public String user_info_form() {
 		String forward_path = "user_info_form";
 		return forward_path;
 	}
+	 
+	 
 	
 	@GetMapping("/user_modify_form")
 	public String user_modify_form() {
@@ -46,15 +50,19 @@ public class UserController {
 		return forward_path;
 	}
 	
-	/*
-	 * @PostMapping("/user_write_action") public String
-	 * user_write_action(@ModelAttribute("fuser") UserDto userDto, Model model)
-	 * throws Exception { String forward_path = ""; try { UserDto createUser =
-	 * userService.createUser(userDto); forward_path = "redirect:user_login_form"; }
-	 * catch (Exception e) { model.addAttribute("msg", e.getMessage());
-	 * model.addAttribute("fuser", userDto); forward_path =
-	 * "redirect:user_write_form"; } return forward_path; }
-	 */
+	@PostMapping("/user_write_action")
+	public String user_write_action(@ModelAttribute("fuser") UserDto userDto, Model model) throws Exception {
+		String forward_path = "";
+		try {
+			UserDto createUser = userService.createUser(userDto);
+			forward_path = "redirect:user_login_form";
+		} catch (Exception e) {
+			model.addAttribute("msg", e.getMessage());
+			model.addAttribute("fuser", userDto);
+			forward_path = "user_write_form";
+		}
+		return forward_path;
+	}
 	 
 	@LoginCheck
 	@PostMapping("/user_login_action")

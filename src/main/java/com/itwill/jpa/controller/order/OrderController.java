@@ -11,6 +11,7 @@ import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
@@ -38,16 +39,17 @@ public class OrderController {
 		try {
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "lsg33");
+			session.setAttribute("user_id", "cgj22");
 			String userId = (String) session.getAttribute("user_id");
-			
+			//멤버쉽 카테고리번호 4
+			Long categoryId = 4L;
 			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
 			//로그인 체크가 생기면 아래 조건문 지울것
 			if(userId != null) {
 				//orderdetail.html에 리스트명 orderItemDtoList로 바꿈
-				List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
+				List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
-				System.out.println("주문 아이템: " + orderItemDtoList);
+				System.out.println("멤버쉽 리스트: " + orderItemDtoList);
 				//이부분 위아래중 어떤 불러오기 서비스를 선택할지 논의가 필요
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
@@ -146,17 +148,44 @@ public class OrderController {
 			//일단 임의로 세션 로그인 유저 설정함
 			session.setAttribute("user_id", "wsm55");
 			String userId = (String) session.getAttribute("user_id");
-			
 //			//테스트용 코드
-//			List<OrderDto> testOrderDtoList = orderService.orders();
-//			model.addAttribute("orderDtoNewerList", testOrderDtoList);
-//			System.out.println("주문 내역 최신순:" + testOrderDtoList);
+			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
+			model.addAttribute("orderDtoList", orderDtoList);
+			System.out.println("주문 내역:" + orderDtoList);
+			List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
+			model.addAttribute("orderItemDtoList", orderItemDtoList);
+//			String productName = null;
+//			String productImage = null;
+//			String productContent = null;
+//			int productPrice = 0;
 			
+//			for (OrderItemDto orderItemDto : orderItemDtoList) {
+				
+//                Long productNo = orderItemDto.getProductNo();
+//                Product product = productService.getProduct(productNo);
+//                if (product != null) {
+//                    // Product 엔티티 정보 가져오기
+//                    productName = product.getProductName();
+//                    productImage = product.getProductImage();
+//                    productContent = product.getProductContent();
+//                    productPrice = product.getProductPrice();
+//                    
+//                    model.addAttribute("productName",productName);
+//                    model.addAttribute("productImage",productImage);
+//                    model.addAttribute("productContent",productContent);
+//                    model.addAttribute("productPrice",productPrice);
+//                }
+//			}
 			//원래 코드
 			//orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
+			 Context context = new Context();
+	            context.setVariable("user_id", userId);
+
+	            // Thymeleaf 템플릿에 컨텍스트를 전달
+	            model.addAttribute("context", context);
 			return "order_history";
 			
 		} catch (Exception e) {
