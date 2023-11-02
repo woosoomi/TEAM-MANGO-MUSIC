@@ -94,12 +94,23 @@ public class VoteController {
 		List<Product> product = productVoteServiceImple.findProductsByVoteIsNotNull();
 		List<ProductVoteDto> productVote = ProductVoteDto.toDto(product);
 		
+		
+		int totalVotes = 0; // 전체 투표 합
+
+		for (ProductVoteDto dto : productVote) {
+		    totalVotes += dto.getVoteTot();
+		}
+		
 		model.addAttribute("productVote", productVote);  
+		model.addAttribute("totalVotes", totalVotes);// 투표 합계
+		
 		System.out.println("productVote: " + productVote);
 	        
 
 	    return "voteMain";  // 템플릿 이름 반환
 	}
+	
+
 
 	
 	
