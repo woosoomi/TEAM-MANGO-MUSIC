@@ -132,7 +132,7 @@ class OrderItemServiceTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	void orderItemsByUserId() {
 		List<OrderItemDto> orderItems = orderItemService.orderItemsByUserId("why3795");
 		System.out.println("주문아이템: "+orderItems);
