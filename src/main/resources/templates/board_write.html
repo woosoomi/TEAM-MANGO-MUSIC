@@ -48,7 +48,7 @@
 						
 
 						<input type="text" id="postTitle" name="postTitle" value="제목을 입력해주세요" size="40"
-							style="height: 70px; font-size: 40px; margin-bottom: 20px;"
+							style="height: 70px; font-size: 30px; margin-bottom: 40px;"
 							onfocus="if (this.value == '제목을 입력해주세요') this.value = '';">
 
 
@@ -73,7 +73,7 @@
 							</form>
 						</div>
 						<input type="text" id="postContent" name="postContent" value="내용을 입력해주세요" size="40"
-							style="height: 500px; font-size: 20px; margin-bottom: 20px; margin-top: 20px;"
+							style="height: 500px; font-size: 20px; margin-bottom: 20px; margin-top: 40px;"
 							onfocus="if (this.value == '내용을 입력해주세요') this.value = '';">
 
 					
@@ -110,7 +110,8 @@
 		</div>
 	</div>
 	</div>
-
+	<div th:insert="~{footer :: footerFragment}">
+	</div>
 </body>
 
 <script>

@@ -19,6 +19,8 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/board.js"></script>
+
 </head>
 
 <body><!--preloading-->
@@ -110,50 +112,7 @@
 	</div>
 
 </body>
-<script>
-	$(document).ready(function () {
-		var initialData = $('#faqContainer').html();
-		var faqlistContainer = $('#faqContainer');
 
-		function filterItems(filter) {
-			faqlistContainer.empty();
-			var itemList = $(initialData).find('.blog-item-style-1, .blog-item-style-3').toArray();
-			$.each(itemList, function (index, item) {
-				var notiType = $(item).find('.time').eq(0).text();
-
-				if (filter === 'all' ||
-					(filter === 'user' && notiType === '회원정보') ||
-					(filter === 'order' && notiType === '결제/환불') ||
-					(filter === 'event' && notiType === '이벤트') ||
-					(filter === 'etc' && notiType === '기타')) {
-					faqlistContainer.append(item);
-				}
-			});
-		}
-
-
-		$('#userCategory').on('click', function () {
-			filterItems('user');
-		});
-		$('#orderCategory').on('click', function () {
-			filterItems('order');
-		});
-		$('#eventCategory').on('click', function () {
-			filterItems('event');
-		});
-		$('#otherCategory').on('click', function () {
-			filterItems('etc');
-		});
-		$('#all').on('click', function () {
-			filterItems('all');
-		});
-
-		filterItems('all');
-	});
-
-
-
-</script>
 
 
 
