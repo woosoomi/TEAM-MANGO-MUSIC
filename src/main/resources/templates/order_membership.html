@@ -226,9 +226,7 @@
 										</div>
 										<div class="col-md-6">
 											<label>할인</label>
-											<select>
-												<option value="number" th:each="couponDtoList : ${couponDtoList}" th:text="${couponDtoList.couponDiscount} + '%'">할인율</option>
-											</select>
+											<input type="text" th:placeholder="${discount} + ' %'">
 										</div>
 									</div>
 								</div>
