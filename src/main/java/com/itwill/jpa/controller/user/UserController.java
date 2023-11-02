@@ -56,26 +56,20 @@ public class UserController {
 	 * return forward_path; }
 	 */
 	 
-	@LoginCheck
-	@PostMapping("/user_login_action")
-	public String user_login_action(@ModelAttribute("fuser") UserLoginDto userLoginDto, Model model,
-			HttpSession session) throws Exception {
-		String forwardPath = "";
-		try {
-			userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-			session.setAttribute("sUserId", userLoginDto.getUserId());
-			forwardPath = "redirect:user_info_form";
-		} catch (UserNotFoundException e) {
-			e.printStackTrace();
-			model.addAttribute("msg1", e.getMessage());
-			forwardPath = "redirect:index";
-		} catch (PasswordMismatchException e) {
-			e.printStackTrace();
-			model.addAttribute("msg2", e.getMessage());
-			forwardPath = "redirect:index";
-		}
-		return forwardPath;
-	}
+	/*
+	 * @LoginCheck
+	 * 
+	 * @PostMapping("/user_login_action") public String
+	 * user_login_action(@ModelAttribute("fuser") UserLoginDto userLoginDto, Model
+	 * model, HttpSession session) throws Exception { String forwardPath = ""; try {
+	 * userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
+	 * session.setAttribute("sUserId", userLoginDto.getUserId()); forwardPath =
+	 * "redirect:user_info_form"; } catch (UserNotFoundException e) {
+	 * e.printStackTrace(); model.addAttribute("msg1", e.getMessage()); forwardPath
+	 * = "redirect:index"; } catch (PasswordMismatchException e) {
+	 * e.printStackTrace(); model.addAttribute("msg2", e.getMessage()); forwardPath
+	 * = "redirect:index"; } return forwardPath; }
+	 */
 	 
 	@LoginCheck
 	@RequestMapping("user_logout_action")
