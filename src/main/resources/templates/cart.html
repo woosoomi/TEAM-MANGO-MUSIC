@@ -15,12 +15,18 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/cart.js"></script>
 </head>
 
 <body><!--preloading-->
 	<div th:insert="~{header :: headerFragment}">
 	</div>
-	<div class="page-single userfav_list" style="color: aliceblue;" >
+	<div class="page-single userfav_list" style="color: aliceblue;">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
@@ -42,56 +48,71 @@
 					</div>
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
+					<p style="font-size: 17px; text-align: right;">01.옵션선택 > <span
+							style="font-size: 23px; color: aqua;">02.장바구니 > </span> 03.주문하기 > 04.주문완료 </p>
 					<div class="topbar-filter user" style="display: flex; justify-content: flex-end;">
-						<p style="font-size: 17px;">01.옵션선택 > <span style="font-size: 23px;">02.장바구니 > </span> 03.주문하기 >
-							04.주문완료 </p>
+						<div class="checkbox-container"
+							style="order: -1; margin-right: auto; display: flex; align-items: center;">
+							<input type="checkbox" class="checkbox" style="width: 20px; height: 20px;" id="selectAll">
+							<label for="selectAll" style="font-size: 20px; margin-left: 5px; font-weight: bold;">전체
+								선택</label>
+						</div>
 					</div>
 					<div class="flex-wrap-movielist user-fav-list">
 
-
-
-
 						<div class="flex-wrap-movielist user-fav-list">
+
 							<div th:each="cartItem : ${cartItems}" class="movie-item-style-2">
+								<div style="margin-right: 5%;" class="checkbox-container">
+									<input type="checkbox" class="checkbox" style="width: 20px; height: 20px;">
+								</div>
 								<img src="images/uploads/cart_1.jpg" alt="" style="width: 181px; height: 278px;">
-								<div th:each="product : ${products}" th:if="${product.productNo == cartItem.productId}" class="mv-item-infor">
+								<div th:each="product : ${products}" th:if="${product.productNo == cartItem.productId}"
+									class="mv-item-infor">
 									<ul>
 										<br>
-											</h6><span th:text="${product.productName}"></span></h6>
-												<br/>
-												<br/>
-											<h6><a href="#">수량: <span th:text="${cartItem.cartItemQty}"></span></a></h6>
-										
+										</h6><span th:text="${product.productName}"></span></h6>
+										<br />
+										<br />
+										<h6 style="font-size: 15px;">수량: <span
+												th:text="${cartItem.cartItemQty}"></span></a></h6>
+
 										</li>
 										<li class="rate">
 										</li>
 										<li class="describe">상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트</li>
-											
+
 										</li>
 										<li class="run-time">
-											상품가격 : <span th:text = "${product.productPrice} + 원"></span>배송비 : 0원<span>총 금액 :</span> <span th:text = "${product.productPrice * cartItem.cartItemQty} +'원'"</span>
+											상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비 : 0원<span>총 금액
+												:</span> <span
+												th:text="${product.productPrice * cartItem.cartItemQty +'원'}" </span>
 										</li>
 										<li>
 											<a href="#">주문하기</a>
-											<a href="#">삭제하기</a>
+											 <a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}">삭제하기</a>
 										</li>
+										<div
+											style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
+											<span id="totalPrice" style="margin-right: 10px; font-size: 18px;">\
+												<span th:text="${totPrice + '원'}"></span>
+											</span>
+											<button
+												style="background-color: #fff; color:black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;">주문하기</button>
+										</div>
 									</ul>
 								</div>
 							</div>
 						</div>
 
-	<div style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
-    <span id="totalPrice" style="margin-right: 10px; font-size: 18px;"><span th:text="${totPrice}"></span></span>
-    <button style="background-color: #fff; color:black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;">주문하기</button>
-</div>
 
 						<!-- 스크롤 이벤트를 감지하여 버튼을 항상 보이게 하는 JavaScript 코드 -->
-						<script>
+						<!--					<script>
 							window.addEventListener('scroll', function () {
 								var button = document.querySelector('.fixed-button');
 								button.style.display = 'block';
 							});
-						</script>
+						</script>-->
 
 
 
