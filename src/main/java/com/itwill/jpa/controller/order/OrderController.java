@@ -96,7 +96,7 @@ public class OrderController {
 	            
 	            
 	            double orderPrice = orderService.calculateTotalOrderPrice(userId);
-	            //가격 소수점 아래 절사
+	            //상품 가격 소수점 아래 절사
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
 	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
@@ -111,6 +111,7 @@ public class OrderController {
 	                         
 	            //쿠폰 할인 적용 메서드
 	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
+	            //총 결제금액 소수점 아래 절사
 	            int endPrice = (int) salePrice;
 	            model.addAttribute("salePrice", salePrice);
 	            model.addAttribute("endPrice", endPrice);
@@ -144,26 +145,19 @@ public class OrderController {
 			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
 			//로그인 체크가 생기면 아래 조건문 지울것
 			if(userId != null) {
-				//orderdetail.html에 리스트명 orderItemDtoList로 바꿈
 				List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
 				System.out.println("주문 아이템: " + orderItemDtoList);
-				//이부분 위아래중 어떤 불러오기 서비스를 선택할지 논의가 필요
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
-				
-				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가(유저님의 100개의 주문입니다.)
-				Context context = new Context();
-				context.setVariable("user_id", userId);
-				context.setVariable("orderItemDtoList", orderItemDtoList);
-				
-				// Thymeleaf 템플릿에 컨텍스트를 전달
-				model.addAttribute("context", context);
+
+				model.addAttribute("user_id", userId);
+				model.addAttribute("orderItemDtoList", orderItemDtoList);
 				
 				return "order_ticket";
 			} else {
-				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
+				// 추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
 				return "index";
 			}
 			
@@ -173,10 +167,11 @@ public class OrderController {
 			return "index";
 		}
 	}
+				
+	
+				
 	
 	
-	
-	//오더디테일에서 오더히스토리로 명명만 바꿈
 	@GetMapping("/order_history")
 	public String orderHistoryPage(Model model, HttpServletRequest request) {
 		try {
