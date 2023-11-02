@@ -99,7 +99,7 @@ public class OrderController {
 	            /*************** 가격 ***************/
 	            
 	            
-	            double orderPrice = orderService.calculateTotalOrderPrice(userId);
+	            double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
 	            //상품 가격 소수점 아래 절사
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
@@ -208,7 +208,7 @@ public class OrderController {
 	            /*************** 가격 ***************/
 	            
 	            
-	            double orderPrice = orderService.calculateTotalOrderPrice(userId);
+	            double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
 	            //상품 가격 소수점 아래 절사
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);

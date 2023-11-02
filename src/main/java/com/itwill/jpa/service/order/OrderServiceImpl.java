@@ -14,6 +14,7 @@ import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.UserNotFoundException;
 import com.itwill.jpa.repository.order.OrderRepository;
@@ -216,5 +217,45 @@ public class OrderServiceImpl implements OrderService{
 		}
 
 	}
+	
+	//유저의 아이템 카테고리 정보를 가져와서 주문 총금액 계산
+	@Override
+	public double calculateTotalOrderPriceByCatagoryId(String userId, Long categoryId) {
+
+	    double orderPrice = 0;
+
+	    // 유저 아이디로 주문 목록을 가져오는 메서드
+	    List<Order> userOrders = orderDao.getOrdersByUserId(userId);
+
+	    // 사용자의 주문 목록을 반복하면서 카테고리 아이디에 해당하는 주문만 처리
+	    for (Order order : userOrders) {
+	        List<OrderItem> orderItemList = order.getOrderItems();
+
+	        // 주문 항목 목록을 반복
+	        for (OrderItem orderItem : orderItemList) {
+	            // 주문 항목에서 제품(프로덕트)을 가져온 후, 해당 제품의 카테고리를 확인
+	            Product product = orderItem.getProduct();
+	            
+	            // Product와 카테고리 간의 관계를 통해 카테고리를 확인
+	            if (product != null) {
+	                ProductCategory productCategory = product.getProductCategory();
+	                // Product의 카테고리 아이디와 categoryId를 비교하여 일치하면 계산
+	                if (productCategory != null && productCategory.getCategoryId() == categoryId) {
+	                    OrderItemDto dto = OrderItemDto.toDto(orderItem);
+	                    double itemPrice = dto.getProductPrice();
+	                    int itemQty = dto.getOiQty();
+	                    orderPrice += itemPrice * itemQty;
+	                }
+	            }
+	        }
+	    }
+	    return orderPrice;
+	}
+
+
+
+
+
+
 
 }

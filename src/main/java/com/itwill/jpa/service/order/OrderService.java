@@ -31,4 +31,6 @@ public interface OrderService {
 	boolean performMembershipPurchaseLogic(String userId);
 	// 유저 아이디와 카테고리 번호로 주문 항목 찾기
     List<OrderItemDto> findOrderItemsByUserIdAndProductCategoryId(String userId, Long categoryId) throws UserNotFoundException;
+    //유저의 아이템 카테고리 정보를 가져와서 주문 총금액 계산
+    public double calculateTotalOrderPriceByCatagoryId(String userId, Long categoryId);
 }
