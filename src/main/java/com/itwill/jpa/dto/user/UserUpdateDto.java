@@ -1,6 +1,7 @@
 package com.itwill.jpa.dto.user;
 
 import com.itwill.jpa.entity.user.User;
+import com.itwill.jpa.entity.vote.Vote;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

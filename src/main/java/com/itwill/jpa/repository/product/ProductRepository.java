@@ -84,5 +84,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 @Query("SELECT p FROM Product p JOIN p.vote v WHERE v IS NOT NULL")
 	 List<Product> findProductsByVoteIsNotNull();
 
-
 }

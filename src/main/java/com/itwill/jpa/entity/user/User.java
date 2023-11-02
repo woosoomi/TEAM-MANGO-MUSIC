@@ -39,7 +39,7 @@ public class User {
 
 	@Column(length = 10, nullable = false)
 	private String userPw; // 회원 비밀번호
-
+	
 	private String userName; // 회원 이름
 
 	@Column(length = 15, nullable = false)

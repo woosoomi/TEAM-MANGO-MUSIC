@@ -47,7 +47,7 @@ public class OrderController {
 			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "cgj22");
+			session.setAttribute("user_id", "why3795");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 			
@@ -68,8 +68,10 @@ public class OrderController {
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
-				 // Product 엔티티의 정보를 저장할 변수
+				
+				// Product 엔티티의 정보를 저장할 변수
 	            Date membershipStartPeriod = null;
+	            int membershipPeriodOfUse = 0;
 	            String membershipName = null;
 	            String membershipImage = null;
 	            String membershipContent = null;
@@ -81,12 +83,14 @@ public class OrderController {
 	                if (product != null) {
 	                    // Product 엔티티의 멤버십 시작일 정보 가져오기
 	                    membershipStartPeriod = product.getStartPeriod();
+	                    membershipPeriodOfUse = product.getPeriodOfUse();
 	                    membershipName = product.getProductName();
 	                    membershipImage = product.getProductImage();
 	                    membershipContent = product.getProductContent();
 	                }
 	            }
 	            model.addAttribute("membershipStartPeriod", membershipStartPeriod);
+	            model.addAttribute("membershipPeriodOfUse", membershipPeriodOfUse);
 	            model.addAttribute("membershipName", membershipName);
 	            model.addAttribute("membershipImage", membershipImage);
 	            model.addAttribute("membershipContent", membershipContent);
@@ -96,7 +100,7 @@ public class OrderController {
 	            
 	            
 	            double orderPrice = orderService.calculateTotalOrderPrice(userId);
-	            //가격 소수점 아래 절사
+	            //상품 가격 소수점 아래 절사
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
 	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
@@ -104,27 +108,29 @@ public class OrderController {
 	            
 	            /*************** 쿠폰 ***************/
 	            
-	            
-	            
+	            	            
 	            // 유저의 쿠폰정보 불러오기
 	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
 	            model.addAttribute("couponDtoList", couponDtoList);
 	            
-	            //쿠폰 파라메타 받기
-	            String selectedCouponId = request.getParameter("selectedCouponId");
-	            
-	            //쿠폰이 있을경우에만
-	            if (selectedCouponId != null) {
-	            	
-	            //쿠폰 할인 적용 메서드
-	            double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice, selectedCouponId);
-	            int endPrice = (int) salePrice;
-	            model.addAttribute("salePrice", salePrice);
-	            model.addAttribute("selectedCouponId", selectedCouponId);
-	            model.addAttribute("endPrice", endPrice);
-	           
+	            // 개별 쿠폰의 couponDiscount 값을 가져오고 정수로 변환
+	            for (CouponDto couponDto : couponDtoList) {
+	                Double couponDiscount = couponDto.getCouponDiscount();
+	                if (couponDiscount != null) {
+	                    int discount = couponDiscount.intValue(); // Double 값을 int로 변환
+	                    model.addAttribute("discount", discount);
+	                } else {
+	                    model.addAttribute("discount", 0);
+	                }
 	            }
 	            
+	            //쿠폰 할인 적용 메서드
+	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
+	            //총 결제금액 소수점 아래 절사
+	            int endPrice = (int) salePrice;
+	            model.addAttribute("salePrice", salePrice);
+	            model.addAttribute("endPrice", endPrice);
+	           
 	            return "order_membership";
 	            
 			} else {
@@ -146,34 +152,59 @@ public class OrderController {
 	public String orderTicketPage(Model model, HttpServletRequest request) {
 		
 		try {
+			
+			
+			/*************** 유저정보 ***************/
+			
+			
+			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
-			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "wsm55");
+			session.setAttribute("user_id", "why3795");
 			String userId = (String) session.getAttribute("user_id");
+			model.addAttribute("user_id", userId);
+			
+			
+			/*************** 주문아이템 ***************/
+			
+			
+			//티켓 카테고리번호 3 픽스
+			Long categoryId = 3L;
 			
 			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
 			//로그인 체크가 생기면 아래 조건문 지울것
 			if(userId != null) {
-				//orderdetail.html에 리스트명 orderItemDtoList로 바꿈
-				List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
+				
+				//유저의 카테고리별 주문아이템 조회하기
+				List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
-				System.out.println("주문 아이템: " + orderItemDtoList);
-				//이부분 위아래중 어떤 불러오기 서비스를 선택할지 논의가 필요
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
 				
-				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가(유저님의 100개의 주문입니다.)
-				Context context = new Context();
-				context.setVariable("user_id", userId);
-				context.setVariable("orderItemDtoList", orderItemDtoList);
-				
-				// Thymeleaf 템플릿에 컨텍스트를 전달
-				model.addAttribute("context", context);
-				
+				// Product 엔티티의 정보를 저장할 변수 초기화
+	            String ticketName = null;
+	            String ticketImage = null;
+	            String ticketContent = null;
+	            
+	            // 주문 아이템별로 Product 정보 가져오기
+	            for (OrderItemDto orderItemDto : orderItemDtoList) {
+	                Long productNo = orderItemDto.getProductNo();
+	                Product product = productService.getProduct(productNo);
+	                if (product != null) {
+	                    // Product 엔티티의 멤버십 시작일 정보 가져오기
+	                    ticketName = product.getProductName();
+	                    ticketImage = product.getProductImage();
+	                    ticketContent = product.getProductContent();
+	                }
+	            }
+	            model.addAttribute("ticketName", ticketName);
+	            model.addAttribute("ticketImage", ticketImage);
+	            model.addAttribute("ticketContent", ticketContent);
+	            
 				return "order_ticket";
+				
 			} else {
-				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
+				// 추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
 				return "index";
 			}
 			
@@ -183,10 +214,11 @@ public class OrderController {
 			return "index";
 		}
 	}
+				
+	
+				
 	
 	
-	
-	//오더디테일에서 오더히스토리로 명명만 바꿈
 	@GetMapping("/order_history")
 	public String orderHistoryPage(Model model, HttpServletRequest request) {
 		try {

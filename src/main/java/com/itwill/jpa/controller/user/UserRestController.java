@@ -36,56 +36,70 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
-
 	
-	/*
-	 * @Operation(summary = "회원가입[성공]")
-	 * 
-	 * @PostMapping(value = "/join", produces = "application/json;charset=UTF-8")
-	 * public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto)
-	 * throws Exception { try { if (userService.existsById(userDto.getUserId())) {
-	 * throw new ExistedUserException("이미 존재하는 아이디입니다."); } UserDto createdUser =
-	 * userService.createUser(userDto); return new ResponseEntity<>(createdUser,
-	 * HttpStatus.CREATED); } catch (ExistedUserException e) { // 이미 존재하는 사용자 예외 처리
-	 * return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST); } catch
-	 * (Exception e) { // 기타 예외 처리 return new
-	 * ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
-	 * } }
-	 */
-	 
+	@Operation(summary = "회원가입[성공]")
+	@PostMapping(value = "/join", produces = "application/json;charset=UTF-8")
+	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
+		try {
+			if (userService.existsById(userDto.getUserId())) {
+				throw new ExistedUserException("이미 존재하는 아이디입니다.");
+			}
+			UserDto createdUser = userService.createUser(userDto);
+			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+		} catch (ExistedUserException e) {
+			// 이미 존재하는 사용자 예외 처리
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			// 기타 예외 처리
+			return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@Operation(summary = "로그인[성공]")
+	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
+	public ResponseEntity<?> user_Login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
+		try {
+			User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
 
-	/*
-	 * @Operation(summary = "로그인[성공]")
-	 * 
-	 * @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-	 * public ResponseEntity<?> user_Login_action(@RequestBody UserLoginDto
-	 * userLoginDto, HttpSession session) { try { User loginUser =
-	 * userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-	 * 
-	 * if (loginUser != null) { session.setAttribute("sUserId",
-	 * loginUser.getUserId()); return
-	 * ResponseEntity.status(HttpStatus.OK).body("Login successful"); } else {
-	 * return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed"); }
-	 * } catch (Exception e) { return
-	 * ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-	 * } }
-	 */
+			if (loginUser != null) {
+				session.setAttribute("sUserId", loginUser.getUserId());
+				return ResponseEntity.status(HttpStatus.OK).body("Login successful");
+			} else {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
 	
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")
-	@RequestMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> user_View(@PathVariable(name = "userId") String userId, HttpSession session) {
-		try {
-	        UserDto user = userService.findUser(userId);
-	        if (user == null) {
-	            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-	        }
-	        return new ResponseEntity<>(user, HttpStatus.OK);
-	    } catch (Exception e) {
-	        // 기타 예외 처리
-	        return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-	}
+	@GetMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
+	public ResponseEntity<UserDto> user_View(@PathVariable(name = "userId") String userId, HttpSession session) throws Exception {
+		 UserDto userDto = UserDto.builder().build();
+		    try {
+		        if (session.getAttribute(userId) != null) {
+		            UserDto user = userDto.toDto(User.toEntity(userService.findUser(userId)));
+		            if (user != null) {
+		                userDto.setUserId(user.getUserId());
+		                userDto.setUserPw(user.getUserPw());
+		                userDto.setUserName(user.getUserName());
+		                userDto.setUserAddress(user.getUserAddress());
+		                userDto.setUserEmail(user.getUserEmail());
+		                userDto.setUserJumin(user.getUserJumin());
+		                userDto.setUserPhone(user.getUserPhone());
+		                userDto.setUserGender(user.getUserGender());
+		                return new ResponseEntity<>(userDto, HttpStatus.OK);
+		            } else {
+		                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		            }
+		        } else {
+		            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		        }
+		    } catch (Exception e) {
+		        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		    }
+		}
 	
 	@Operation(summary = "회원리스트[성공]")
 	@GetMapping("/list")
@@ -116,7 +130,7 @@ public class UserRestController {
 	// 아이디 중복 체크 API
 	@Operation(summary = "아이디중복체크")
 	@GetMapping("/{userId}")
-	public ResponseEntity<Boolean> checkUserIdExists(@PathVariable String userId) throws Exception {
+	public ResponseEntity<Boolean> checkUserIdExists(@PathVariable(name = "userId") String userId) throws Exception {
 		boolean exists = userService.existsById(userId);
 		return new ResponseEntity<>(exists, HttpStatus.OK);
 	}
