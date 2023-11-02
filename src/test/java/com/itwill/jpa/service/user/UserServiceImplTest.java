@@ -44,7 +44,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	@DisplayName("회원가입")
 	void testCreateUser() {
 		UserDto userDto = new UserDto();
-		userDto.setUserId("testUser");
+		userDto.setUserId("testUser137");
 		userDto.setUserPw("password");
 		userDto.setUserName("Test User");
 		userDto.setUserEmail("test@example.com");
@@ -112,7 +112,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
     @Rollback(false)
     @DisplayName("회원탈퇴")
     public void testDeleteUser() {
-        String userId = "testUser";
+        String userId = "itwill";
 
         try {
             userDao.deleteUser(userId);
@@ -123,7 +123,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
     }
 	
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Rollback(false)
 	@DisplayName("회원상세보기")
@@ -131,7 +131,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 		String userId = "kbs88";
 
 		try {
-			User user = userDao.findUser(userId);
+			UserDto user = UserDto.toDto(userDao.findUser(userId));
 			assertNotNull(user);
 			assertEquals(userId, user.getUserId());
 			System.out.println(">>> 회원 조회 성공 " + user);

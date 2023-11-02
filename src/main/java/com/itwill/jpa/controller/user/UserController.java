@@ -46,19 +46,15 @@ public class UserController {
 		return forward_path;
 	}
 	
-	@PostMapping("/user_write_action")
-	public String user_write_action(@ModelAttribute(name = "fuser") UserDto userDto, Model model) throws Exception {
-		String forward_path = "";
-		try {
-			UserDto createUser = userService.createUser(userDto);
-			forward_path = "redirect:index";
-		} catch (Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			model.addAttribute("fuser", userDto);
-			forward_path = "user_write_form";
-		}
-		return forward_path;
-	}
+	/*
+	 * @PostMapping("/user_write_action") public String
+	 * user_write_action(@ModelAttribute(name = "fuser") UserDto userDto, Model
+	 * model) throws Exception { String forward_path = ""; try { UserDto createUser
+	 * = userService.createUser(userDto); forward_path = "redirect:index"; } catch
+	 * (Exception e) { model.addAttribute("msg", e.getMessage());
+	 * model.addAttribute("fuser", userDto); forward_path = "user_write_form"; }
+	 * return forward_path; }
+	 */
 	 
 	@LoginCheck
 	@PostMapping("/user_login_action")
@@ -94,14 +90,15 @@ public class UserController {
 		return forward_path;
 	}
 	
-	@LoginCheck
-	@RequestMapping("/user_info_form")
-	public String user_info_form(HttpServletRequest request, Model model) throws Exception {
-		String loginUser = (String) request.getSession().getAttribute("sUserId");
-		UserDto user = userService.findUser(loginUser);
-		model.addAttribute("loginUser", user);
-		return "redirect:user_info_form";
-	}
+	/*
+	 * @LoginCheck
+	 * 
+	 * @GetMapping("/user_info_form") public String
+	 * user_info_form(HttpServletRequest request, Model model) throws Exception {
+	 * String loginUser = (String) request.getSession().getAttribute("sUserId");
+	 * UserDto user = userService.findUser(loginUser);
+	 * model.addAttribute("loginUser", user); return "redirect:user_info_form"; }
+	 */
 	
 	/*
 	 * @LoginCheck
