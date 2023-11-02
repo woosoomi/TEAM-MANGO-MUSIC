@@ -59,7 +59,6 @@ class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		//Product product = productRepository.findByVoteVoteId(1L);
 		//System.out.println(">>>>>>>>>>"+product);
 		System.out.println(">>>>>>>>>>"+productRepository.findProductsByVoteIsNotNull().size());
-		//System.out.println(">>>>>>>>>>"+productRepository.findProductsByVoteIsNotNull());
 		
 
 	}
