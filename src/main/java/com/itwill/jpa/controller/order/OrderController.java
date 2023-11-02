@@ -59,8 +59,9 @@ public class OrderController {
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
-				double orderPrice = orderService.calculateTotalOrderPrice(userId); 
-				
+				double orderPrice = orderService.calculateTotalOrderPrice(userId);
+				//가격 소수점 아래 절사
+				int formattedOrderPrice = (int) orderPrice;
 				 // Product 엔티티의 정보를 저장할 변수
 	            Date membershipStartPeriod = null;
 	            String membershipName = null;
@@ -84,7 +85,8 @@ public class OrderController {
 	            // 유저의 쿠폰정보 불러오기
 	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
 	            
-	            // 유저의
+	            //쿠폰 할인 적용 메서드
+	            
 	            
 	            model.addAttribute("user_id", userId);
 	            model.addAttribute("orderItemDtoList", orderItemDtoList);
@@ -94,6 +96,7 @@ public class OrderController {
 	            model.addAttribute("membershipContent", membershipContent);
 	            model.addAttribute("couponDtoList", couponDtoList);
 	            model.addAttribute("orderPrice", orderPrice);
+	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
 	            return "order_membership";
 			} else {
 				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
