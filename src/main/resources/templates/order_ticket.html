@@ -104,7 +104,7 @@
 
 								<li><a href="moviesingle.html">망고티켓</a></li>
 								<li><a href="movielist.html">망고굿즈</a></li>
-								<li><a href="moviesingle.html">멤버쉽</a></li>
+								<li><a href="moviesingle.html">멤버십</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
@@ -126,7 +126,7 @@
 						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
 								data-hover="dropdown"> 결제 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu level1">
-								<li><a href="order_membership">멤버쉽결제</a></li>
+								<li><a href="order_membership">멤버십결제</a></li>
 								<li><a href="order_ticket">티켓결제</a></li>
 								<li><a href="order_history">주문내역</a></li>
 							</ul>
@@ -150,7 +150,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="hero-ct">
-						<h1>주문하기</h1>
+						<h1>티켓 결제</h1>
 						<ul class="breadcumb">
 							<li class="active"><a href="index">Home</a></li>
 							<li><span class="ion-ios-arrow-right"></span><a href="order_ticket">Order Ticket Page</a>
@@ -167,7 +167,7 @@
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
 						<p
-							th:text="${context.user_id} + ' 님의 ' + ${#lists.size(context.orderItemDtoList)} + '개의 티켓 주문입니다.'">
+							th:text="${userId} + ' 님의 ' + ${#lists.size(orderItemDtoList)} + '개의 티켓 주문입니다.'">
 						</p>
 					</div>
 					<div class="movie-item-style-2"><img src="images/iugoldenconcert.webp" alt="">
