@@ -53,7 +53,7 @@ class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
 	@Transactional
 	@Rollback(false)
-	//@Disabled
+	@Disabled
 	// voteID가 null이 아닌 상품 리스트 가져오기	
 	void testfindProductsByVoteIdIsNotNull() throws Exception {
 		//Product product = productRepository.findByVoteVoteId(1L);

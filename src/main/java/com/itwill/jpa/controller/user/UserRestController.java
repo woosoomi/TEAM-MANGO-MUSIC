@@ -54,22 +54,22 @@ public class UserRestController {
 	 */
 	 
 
-	@Operation(summary = "로그인[성공]")
-	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> user_Login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
-		try {
-            User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-
-            if (loginUser != null) {
-                session.setAttribute("sUserId", loginUser.getUserId());
-                return ResponseEntity.status(HttpStatus.OK).body("Login successful");
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
-    }
+	/*
+	 * @Operation(summary = "로그인[성공]")
+	 * 
+	 * @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
+	 * public ResponseEntity<?> user_Login_action(@RequestBody UserLoginDto
+	 * userLoginDto, HttpSession session) { try { User loginUser =
+	 * userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
+	 * 
+	 * if (loginUser != null) { session.setAttribute("sUserId",
+	 * loginUser.getUserId()); return
+	 * ResponseEntity.status(HttpStatus.OK).body("Login successful"); } else {
+	 * return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed"); }
+	 * } catch (Exception e) { return
+	 * ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+	 * } }
+	 */
 	
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")

@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.CouponDao;
 import com.itwill.jpa.dto.order.CouponDto;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Coupon;
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.repository.order.CouponRepository;
 
 import jakarta.transaction.Transactional;
@@ -90,21 +88,35 @@ public class CouponSeviceImpl implements CouponService{
 		return couponDto;
 	}
 	
-	//쿠폰 할인 적용 시키기
 	@Override
-	public double applyCouponDiscount(Long couponId, double orderPrice) {
-		Coupon coupon = couponRepository.findById(couponId).get();
-		if (coupon != null) {
-			double discountRate = coupon.getCouponDiscount();
-			if (discountRate > 0) {
-				// 할인율을 적용하여 할인액 계산
-				double discountAmount = orderPrice * (discountRate / 100.0);
-				double discountedTotal = orderPrice - discountAmount;
-				return discountedTotal;
-			}
-		}
-		// 할인 적용되지 않는 경우 원래 총액 반환
-		return orderPrice;
+	public double applyCouponDiscount(String userId, double orderPrice, String selectedCouponId) {
+	    List<CouponDto> userCoupons = couponsByUserId(userId);
+
+	    double discountedTotal = orderPrice; // 초기에는 총 가격으로 설정
+
+	 // selectedCouponId를 Long으로 변환
+	    Long selectedCouponIdLong = Long.valueOf(selectedCouponId);
+	    
+	    // 사용자가 선택한 쿠폰을 찾음
+	    CouponDto selectedCoupon = null;
+	    for (CouponDto coupon : userCoupons) {
+	        if (coupon.getCouponId().equals(selectedCouponIdLong)) {
+	            selectedCoupon = coupon;
+	            break;
+	        }
+	    }
+
+	    if (selectedCoupon != null) {
+	        double discountRate = selectedCoupon.getCouponDiscount();
+	        if (discountRate > 0) {
+	            // 할인율을 적용하여 할인액 계산
+	            double discountAmount = orderPrice * (discountRate / 100.0);
+	            // 현재 총 가격에서 할인액을 차감
+	            discountedTotal -= discountAmount;
+	        }
+	    }
+
+	    return discountedTotal;
 	}
 	
 }
