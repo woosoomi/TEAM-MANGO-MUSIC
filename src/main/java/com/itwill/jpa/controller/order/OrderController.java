@@ -154,28 +154,7 @@ public class OrderController {
 			System.out.println("주문 내역:" + orderDtoList);
 			List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
 			model.addAttribute("orderItemDtoList", orderItemDtoList);
-//			String productName = null;
-//			String productImage = null;
-//			String productContent = null;
-//			int productPrice = 0;
 			
-//			for (OrderItemDto orderItemDto : orderItemDtoList) {
-				
-//                Long productNo = orderItemDto.getProductNo();
-//                Product product = productService.getProduct(productNo);
-//                if (product != null) {
-//                    // Product 엔티티 정보 가져오기
-//                    productName = product.getProductName();
-//                    productImage = product.getProductImage();
-//                    productContent = product.getProductContent();
-//                    productPrice = product.getProductPrice();
-//                    
-//                    model.addAttribute("productName",productName);
-//                    model.addAttribute("productImage",productImage);
-//                    model.addAttribute("productContent",productContent);
-//                    model.addAttribute("productPrice",productPrice);
-//                }
-//			}
 			//원래 코드
 			//orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
