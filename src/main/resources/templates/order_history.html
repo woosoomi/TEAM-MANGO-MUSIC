@@ -170,31 +170,26 @@
 						<p><a th:text="${context.user_id}+'님의'"></a>
 							<span th:text="${#lists.size(orderItemDtoList)}"></span>
 							<span>개의 주문내역 
+					 
 					 <script>
 	       			 // JavaScript 함수 정의
 			        function sortOrders() {
-			                     var selectedOption = document.getElementById("sortSelect").value;
-
+			                    var selectedOption = document.getElementById("sortSelect").value;
+								var userId = "<%= session.getAttribute('userId') %>";
 					            // AJAX 요청을 만듭니다.
-					            var xhr = new XMLHttpRequest();
-					            var url = "/orderDtoNewerList?sortBy=" + selectedOption; // 실제 서버 엔드포인트로 대체해야 합니다.
-					
-					            xhr.open("GET", url, true);
-					
-					            xhr.onload = function () {
-					                if (xhr.status === 200) {
-					                    var responseData = JSON.parse(xhr.responseText);
-					
-					                    // 서버에서 반환된 데이터를 사용하여 페이지를 업데이트합니다.
-					                    updateOrderList(responseData);
-					                }
-					            };
-					
-					            xhr.send();
-					        }
-
+					             var url = "/SortByLatestOrder/" + userId + "?sortBy=" + selectedOption;
+					             fetch(url)
+					            .then(response => response.json())
+					            .then(data => {
+					                // 서버에서 반환된 데이터를 사용하여 페이지를 업데이트
+					                updateOrderList(data);
+					            })
+					            .catch(error => {
+					                console.error("에러 발생: " + error);
+					            });
+			}
        
-			   		 </script>
+			   		 </script>  n  
 							</p><label>Sort by:</label>
 						<select id="sortSelect" onchange="sortOrders()">
 				        <option value="newest">최신순</option>
