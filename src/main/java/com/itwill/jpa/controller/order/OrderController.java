@@ -12,7 +12,6 @@ import org.thymeleaf.context.Context;
 import com.itwill.jpa.dto.order.CouponDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.order.CouponService;
 import com.itwill.jpa.service.order.OrderItemService;
@@ -42,10 +41,19 @@ public class OrderController {
 		
 		try {
 			
+			
+			/*************** 유저정보 ***************/
+			
+			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", "cgj22");
 			String userId = (String) session.getAttribute("user_id");
+			model.addAttribute("user_id", userId);
+			
+			
+			/*************** 주문아이템 ***************/
+			
 			
 			//멤버쉽 카테고리번호 4 픽스
 			Long categoryId = 4L;
@@ -59,9 +67,7 @@ public class OrderController {
 				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 				//model.addAttribute("orderDtoList", orderDtoList);
 				//System.out.println("주문 아이템: " + orderDtoList);
-				double orderPrice = orderService.calculateTotalOrderPrice(userId);
-				//가격 소수점 아래 절사
-				int formattedOrderPrice = (int) orderPrice;
+				model.addAttribute("orderItemDtoList", orderItemDtoList);
 				 // Product 엔티티의 정보를 저장할 변수
 	            Date membershipStartPeriod = null;
 	            String membershipName = null;
@@ -80,24 +86,37 @@ public class OrderController {
 	                    membershipContent = product.getProductContent();
 	                }
 	            }
-	            
-	            
-	            // 유저의 쿠폰정보 불러오기
-	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
-	            
-	            //쿠폰 할인 적용 메서드
-	            
-	            
-	            model.addAttribute("user_id", userId);
-	            model.addAttribute("orderItemDtoList", orderItemDtoList);
 	            model.addAttribute("membershipStartPeriod", membershipStartPeriod);
 	            model.addAttribute("membershipName", membershipName);
 	            model.addAttribute("membershipImage", membershipImage);
 	            model.addAttribute("membershipContent", membershipContent);
-	            model.addAttribute("couponDtoList", couponDtoList);
+	            
+	            
+	            /*************** 가격 ***************/
+	            
+	            
+	            double orderPrice = orderService.calculateTotalOrderPrice(userId);
+	            //가격 소수점 아래 절사
+	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
 	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
+	            
+	            
+	            /*************** 쿠폰 ***************/
+	            
+	            	            
+	            // 유저의 쿠폰정보 불러오기
+	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
+	            model.addAttribute("couponDtoList", couponDtoList);
+	                         
+	            //쿠폰 할인 적용 메서드
+	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
+	            int endPrice = (int) salePrice;
+	            model.addAttribute("salePrice", salePrice);
+	            model.addAttribute("endPrice", endPrice);
+	           
 	            return "order_membership";
+	            
 			} else {
 				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
 				return "index";
@@ -110,9 +129,7 @@ public class OrderController {
 		}
 	}
 	            
-	            
-	            
-			
+	
 	
 	
 	@GetMapping("/order_ticket")
@@ -137,13 +154,13 @@ public class OrderController {
 				//System.out.println("주문 아이템: " + orderDtoList);
 				
 				// Thymeleaf 컨텍스트에 user_id와 orderItemDtoList를 추가(유저님의 100개의 주문입니다.)
-	            Context context = new Context();
-	            context.setVariable("user_id", userId);
-	            context.setVariable("orderItemDtoList", orderItemDtoList);
-
-	            // Thymeleaf 템플릿에 컨텍스트를 전달
-	            model.addAttribute("context", context);
-	            
+				Context context = new Context();
+				context.setVariable("user_id", userId);
+				context.setVariable("orderItemDtoList", orderItemDtoList);
+				
+				// Thymeleaf 템플릿에 컨텍스트를 전달
+				model.addAttribute("context", context);
+				
 				return "order_ticket";
 			} else {
 				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
@@ -156,7 +173,7 @@ public class OrderController {
 			return "index";
 		}
 	}
-
+	
 	
 	
 	//오더디테일에서 오더히스토리로 명명만 바꿈
@@ -166,7 +183,7 @@ public class OrderController {
 			
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "wsm55");
+			session.setAttribute("user_id", "rgh66");
 			String userId = (String) session.getAttribute("user_id");
 //			//테스트용 코드
 			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
@@ -180,11 +197,11 @@ public class OrderController {
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
-			 Context context = new Context();
-	            context.setVariable("user_id", userId);
-
-	            // Thymeleaf 템플릿에 컨텍스트를 전달
-	            model.addAttribute("context", context);
+			Context context = new Context();
+			context.setVariable("user_id", userId);
+			
+			// Thymeleaf 템플릿에 컨텍스트를 전달
+			model.addAttribute("context", context);
 			return "order_history";
 			
 		} catch (Exception e) {
@@ -205,6 +222,10 @@ public class OrderController {
 	
 	
 }
+	            
+			
+	
+	
 			
 			
 			

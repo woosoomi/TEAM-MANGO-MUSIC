@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.jpa.dao.product.ProductVoteDaoImpl;
 import com.itwill.jpa.dto.product.ProductVoteDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.product.ProductVoteServiceImple;
@@ -24,6 +25,9 @@ public class VoteController {
 	@Autowired
 	private ProductVoteServiceImple productVoteServiceImple;
 	
+	
+	@Autowired
+	private ProductVoteDaoImpl productVoteDaoImpl;
 	/*
 	@GetMapping(value = "/voteMain")
 	public String vote_html() {
@@ -38,57 +42,6 @@ public class VoteController {
 	}
 		
 	/*
-	@GetMapping("/productVote")
-    public String selectProduct(Long voteId, Model model) {
-		try {
-			Long a = 1L;  // 임의로 voteID 부여
-			Vote vote = voteServiceImpl.selectByVoteNo(a);
-			Product product = productVoteServiceImple.findByVoteVoteId(vote.getVoteId());
-			ProductVoteDto productVote = ProductVoteDto.toDto(product);
-			model.addAttribute("productWithVote", productVote);
-			System.out.println("productWithVote"+productVote);
-		
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("errorMSG : " + e.getMessage());			
-			return null;
-		}
-        return "voteMain"; // 템플릿 이름 반환
-    }
-	*/
-	
-	/*
-	@GetMapping("/productVote")
-	public String ProductVoteList(Long voteId, Model model) {
-	    try {
-	        Long a = 1L;  // 임의로 voteID 부여
-	        Vote vote = voteServiceImpl.selectByVoteNo(a);
-	        
-	        if (vote != null) {
-	            Product product = productVoteServiceImple.findByVoteVoteId(vote.getVoteId());
-	            
-	            if (product != null) {
-	                ProductVoteDto productVote = ProductVoteDto.toDto(product);
-	                model.addAttribute("productVote", productVote);  
-	                // 모델에 이름을 "productVote"로 변경
-	                System.out.println("productVote: " + productVote);
-	                return "voteMain";  // 템플릿 이름 반환
-	            } else {
-	                model.addAttribute("errorMSG", "Product not found.");
-	            }
-	        } else {
-	            model.addAttribute("errorMSG", "Vote not found.");
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        model.addAttribute("errorMSG", e.getMessage());
-	    }
-	    
-	    // 오류가 발생했을 때 오류 페이지로 리다이렉션
-	    return "errorPage";
-	}
-	 */
 	@GetMapping("/productVote")
 	public String ProductVoteList(Model model) {
 		List<Product> product = productVoteServiceImple.findProductsByVoteIsNotNull();
@@ -109,7 +62,30 @@ public class VoteController {
 
 	    return "voteMain";  // 템플릿 이름 반환
 	}
+	*/
 	
+	@GetMapping("/productVote")
+	public String ProductVoteList(Model model) {
+		List<ProductVoteDto> productVote = productVoteDaoImpl.findProductsByVoteIsNotNullOrderByVoteTotDesc();
+		
+		ProductVoteDto top1Product = productVote.get(0);
+		ProductVoteDto top2Product = productVote.get(1);
+		int totalVotes = 0; // 전체 투표 합
+
+		for (ProductVoteDto dto : productVote) {
+		    totalVotes += dto.getVoteTot();
+		}
+		
+		model.addAttribute("top1Product", top1Product); // 1위
+		model.addAttribute("top2Product", top2Product); // 2위
+		model.addAttribute("productVote", productVote);  
+		model.addAttribute("totalVotes", totalVotes);	// 투표 합계
+		
+		System.out.println("productVote: " + productVote);
+	        
+
+	    return "voteMain";  // 템플릿 이름 반환
+	}
 
 
 	

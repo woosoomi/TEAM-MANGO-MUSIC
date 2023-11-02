@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.order.CouponDao;
 import com.itwill.jpa.dto.order.CouponDto;
-import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.entity.order.Coupon;
-import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.repository.order.CouponRepository;
 
 import jakarta.transaction.Transactional;
