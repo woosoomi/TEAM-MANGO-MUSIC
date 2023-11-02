@@ -28,8 +28,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
-	
 	@GetMapping("/user_info_form")
 	public String user_info_form() {
 		String forward_path = "user_info_form";
@@ -49,7 +47,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/user_write_action")
-	public String user_write_action(@ModelAttribute("fuser") UserDto userDto, Model model) throws Exception {
+	public String user_write_action(@ModelAttribute(name = "fuser") UserDto userDto, Model model) throws Exception {
 		String forward_path = "";
 		try {
 			UserDto createUser = userService.createUser(userDto);

@@ -37,6 +37,7 @@ public class UserDto {
 					  .userPhone(entity.getUserPhone())
 					  .userGender(entity.getUserGender())
 					  .memberShip(entity.isMembership())
+					  .voteId(entity.getVote().getVoteId())
 					  .build();
 	}
 	
