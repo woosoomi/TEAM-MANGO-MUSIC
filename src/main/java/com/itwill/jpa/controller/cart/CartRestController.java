@@ -1,6 +1,7 @@
 package com.itwill.jpa.controller.cart;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 public class CartRestController {
-	
+
 	@Autowired
 	CartService cartService;
 	@Autowired
@@ -36,53 +37,52 @@ public class CartRestController {
 	CartItemServiceImpl cartItemServiceImpl;
 	@Autowired
 	CartRepository cartRepository;
+
 	@Operation(summary = "장바구니생성[성공]")
-    @PostMapping("/create")
-	public String createCart(CartDto dto,Model model) {
-    	CartDto createCart;
+	@PostMapping("/create")
+	public String createCart(CartDto dto, Model model) {
+		CartDto createCart;
 		try {
 			createCart = cartServiceImpl.createCart(dto);
-		  	model.addAttribute("createCart",createCart);  
-	    	return "성공";
+			model.addAttribute("createCart", createCart);
+			return "성공";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "실패";
 		}
 	}
-    @Operation(summary = "장바구니 상품전체삭제[성공]")
-    @DeleteMapping("/cart/{cartId}")
-    public String deleteAllItemsInCart(@PathVariable(value = "cartId") Long cartId) {
-        try {
-            cartServiceImpl.deleteAllByCartId(cartId);
-            return "삭제완료";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "삭제실패";
-        }
-    }
-    /*
-    @Operation(summary = "총액 계산")
-    @PostMapping("/calculateTotalPrice/{cartId}")
-    public ResponseEntity<CartDto> calculateTotalPrice(@RequestBody List<CartItemDto> cartItemDtos) {
-        try {
-            CartDto cartDto = cartService.calculateTotalPrice(cartItemDtos);
-            cartDto.getCartId();
-            return ResponseEntity.ok(cartDto);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-    */
-    @GetMapping("/calculateTotalPrice/{cartId}")
-    public ResponseEntity<CartDto> calculateTotalPrice(@PathVariable(value = "cartId") Long cartId) {
-        try {
-        		CartDto result = cartService.calculateTotalPrice(cartId);
-        		return ResponseEntity.ok(result);
-				
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
-        }
-    }
+
+	@Operation(summary = "장바구니 상품전체삭제[성공]")
+	@DeleteMapping("/cart/{cartId}")
+	public String deleteAllItemsInCart(@PathVariable(value = "cartId") Long cartId) {
+		try {
+			cartServiceImpl.deleteAllByCartId(cartId);
+			return "삭제완료";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "삭제실패";
+		}
+	}
+
+	/*
+	 * @Operation(summary = "총액 계산")
+	 * 
+	 * @PostMapping("/calculateTotalPrice/{cartId}") public ResponseEntity<CartDto>
+	 * calculateTotalPrice(@RequestBody List<CartItemDto> cartItemDtos) { try {
+	 * CartDto cartDto = cartService.calculateTotalPrice(cartItemDtos);
+	 * cartDto.getCartId(); return ResponseEntity.ok(cartDto); } catch (Exception e)
+	 * { return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); } }
+	 */
 	
-  
+	@GetMapping("/calculateTotalPrice/{cartId}")
+	public ResponseEntity<CartDto> calculateTotalPrice(@PathVariable(value = "cartId") Long cartId) {
+		try {
+			CartDto totPrice = cartService.calculateTotalPrice(cartId);
+			return ResponseEntity.ok(totPrice);
+		} catch (Exception e) {
+			return ResponseEntity.status(500).body(null);
+		}
+	}
+
+
 }
