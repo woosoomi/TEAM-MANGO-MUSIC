@@ -25,7 +25,7 @@ values (20000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (5, order_item_no_seq.nextval, order_no_seq.currval, 2);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000002', '친구 초대 이벤트 쿠폰', '3개월쿠폰', 'cgj22');
+values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000002', '생일 축하 쿠폰', '3개월쿠폰', 'cgj22');
 
 
 --test data 3(ALL DATA)
