@@ -104,27 +104,17 @@ public class OrderController {
 	            
 	            /*************** 쿠폰 ***************/
 	            
-	            
-	            
+	            	            
 	            // 유저의 쿠폰정보 불러오기
 	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
 	            model.addAttribute("couponDtoList", couponDtoList);
-	            
-	            //쿠폰 파라메타 받기
-	            String selectedCouponId = request.getParameter("selectedCouponId");
-	            
-	            //쿠폰이 있을경우에만
-	            if (selectedCouponId != null) {
-	            	
+	                         
 	            //쿠폰 할인 적용 메서드
-	            double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice, selectedCouponId);
+	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
 	            int endPrice = (int) salePrice;
 	            model.addAttribute("salePrice", salePrice);
-	            model.addAttribute("selectedCouponId", selectedCouponId);
 	            model.addAttribute("endPrice", endPrice);
 	           
-	            }
-	            
 	            return "order_membership";
 	            
 			} else {
@@ -193,7 +183,7 @@ public class OrderController {
 			
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "wsm55");
+			session.setAttribute("user_id", "rgh66");
 			String userId = (String) session.getAttribute("user_id");
 //			//테스트용 코드
 			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
