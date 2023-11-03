@@ -36,15 +36,17 @@
 							<div th:each="musics : ${musics}">
 
 								<div class="movie-item-style-2">
-									<img th:src="${musics.productImage}" href="#" alt="">
+									<a th:href="@{/music_detail/(no=${musics.productNo})}" > 
+									<img th:src="${musics.productImage}" alt="">
+									</a>
 									<div class="mv-item-infor">
 										<h6>
-										<a href="#" th:text="${musics.productName}">Leonardo DiCaprio</a>
+										<a th:href="@{/music_detail/(productNo=${musics.productNo})}" th:text="${musics.productName}">Leonardo DiCaprio</a>
 										</h6>
 										<p class="describe"></p>
 										<p class="run-time" th:text="${musics.productArtist}">Run Time: 2h21’
 										</p>
-										<p>조회수: <a href="#" th:text="${musics.readCount}">2</a></p>
+										<p>조회수: <a th:text="${musics.readCount}">2</a></p>
 									</div>
 								</div>
 							</div>
