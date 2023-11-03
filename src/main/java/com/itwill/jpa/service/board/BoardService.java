@@ -2,6 +2,7 @@ package com.itwill.jpa.service.board;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardType;
@@ -44,5 +45,6 @@ public interface BoardService {
 
     public List<Board> findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(Long boardCategoryId, String userId);
     
+    public Optional<Board> findById(Long BoardId);
     
 }

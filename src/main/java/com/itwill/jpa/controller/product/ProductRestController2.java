@@ -42,18 +42,18 @@ public class ProductRestController2 {
 	 * ResponseEntity.status(HttpStatus.CREATED)
 	 * .body(productService.insertProduct(product)); }
 	 */
-
-	@PutMapping("/update")
-	public ResponseEntity<Product> updateProduct(@RequestBody Product updateProduct)throws Exception{
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(productService.updateProduct(updateProduct));
-	}
-
-	@DeleteMapping("/{productNo}")
-	public ResponseEntity<Map> deleteProduct(@PathVariable(name="productNo") Long productNo) throws Exception{
-		productService.deleteProduct(productNo);
-		return ResponseEntity.status(HttpStatus.OK).body(new HashMap<>());
-	}
+	
+	/*
+	 * @PutMapping("/update") public ResponseEntity<Product>
+	 * updateProduct(@RequestBody Product updateProduct)throws Exception{ return
+	 * ResponseEntity.status(HttpStatus.OK)
+	 * .body(productService.updateProduct(updateProduct)); }
+	 * 
+	 * @DeleteMapping("/{productNo}") public ResponseEntity<Map>
+	 * deleteProduct(@PathVariable(name="productNo") Long productNo) throws
+	 * Exception{ productService.deleteProduct(productNo); return
+	 * ResponseEntity.status(HttpStatus.OK).body(new HashMap<>()); }
+	 */
 	
 	//product 단일 기능 셋
 	
