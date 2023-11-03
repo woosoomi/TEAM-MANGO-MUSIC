@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -43,20 +44,15 @@ public class ProductServiceImpl implements ProductService{
 	public Product getProduct(Long productNo) {
 		return productRepository.findById(productNo).get();
 	}
-//	@Override
-//	public ProductDto getProductDto(Long productNo) {
-//		return productRepository.findByIdDto(productNo).get();
-//	}
-	
+	@Override
+	public Product getProductCategory(Long categoryId) {
+		return (Product) productRepository.findByProductCategoryCategoryId(categoryId);
+	}	
 	// categoryId값 가져오기	
 	@Override	
 	public List<Product> getProductsByCategory(Long categoryId) {
 		return productRepository.findByProductCategoryCategoryId(categoryId);
 	}
-//	@Override
-//	public List<ProductDto> getProductsByCategorysDtos(Long categoryId) {
-//		return productRepository.findBy;
-//	}
 	@Override
 	public List<Product> productList() {
 		return productRepository.findAll();
@@ -105,6 +101,25 @@ public class ProductServiceImpl implements ProductService{
 	      System.out.println(msg);
 	      return null;
 	   }
+	
+	// 품절 안내 기능-DTO [성공]	
+	@Override
+    public ProductDto outOfStockMsgDto(Long productNo) {
+        Product findProduct = productRepository.findById(productNo).orElse(null);
+        if (findProduct != null) {
+            int stockCount = findProduct.getProductStock();
+            if (stockCount == 0) {
+                throw new NotEnoughProductStockException("품절된 상품입니다.");
+            }
+            ProductDto productDto = new ProductDto();
+            productDto.setProductNo(productNo);
+            productDto.setProductStock(stockCount);
+            return productDto;
+        }
+		return null;
+        }
+
+	
 /******************** productNo 찾기[ENTITY] ********************/
 	// productNo 찾기[성공]	
 	@Override
@@ -121,8 +136,8 @@ public class ProductServiceImpl implements ProductService{
 	        ProductDto productDto = ProductDto.toDto(product);
 	        return Optional.of(productDto);
 	    } else {
-	        return Optional.empty();
 	    }
+	    return Optional.empty();
 	}	
 /*************************************************************************/	
 	
@@ -246,14 +261,25 @@ public class ProductServiceImpl implements ProductService{
 /******************** DELETE[DTO] ********************/	
 	  
 		// product 삭제 - DTO[성공햇다가 실패됨]
-		@Override
-		public void deledtProductDto(ProductDto productDto) throws Exception {
-		    // ProductDto에서 productNo를 가져옴
-		    Long productNo = productDto.getProductNo();
-
-		    // productNo를 사용하여 해당 제품을 데이터베이스에서 삭제
-		    productRepository.deleteById(productNo);
-		}
+//		@Override
+//		public void deledtProductDto(ProductDto productDto) throws Exception {
+//		    // ProductDto에서 productNo를 가져옴
+//		    Long productNo = productDto.getProductNo();
+//		    // productNo를 사용하여 해당 제품을 데이터베이스에서 삭제
+//		    productRepository.deleteById(productNo);
+//		}
+	@Override
+	public ProductDto deleteProductDto(Long productNo, Long categoryId) throws Exception {
+//		Product product = productRepository.findById(productNo).orElseThrow();
+//		Optional<ProductCategory> productCategory = productRepository.findBycategoryId(categoryId);
+//		if (product != null) {
+//			ProductCategory categoryId = product.getProductCategory();
+//			productRepository.deleteById(productNo);
+//		}
+//		ProductDto productDto = ProductDto.toDto(product);
+//		return productDto;
+		return null;
+	}
 		/*********************************************/
 		
 /******************** UPDATE[ENTITY] ********************/
@@ -301,28 +327,6 @@ public class ProductServiceImpl implements ProductService{
 	    Product product = productDao.updateProduct(Product.toEntity(dto));
 	    ProductDto productDto = ProductDto.toDto(product);
 	    return productDto;
-//        Long productNo = dto.getProductNo();
-//        
-//        // 유효성 검사: productNo가 null 또는 0보다 작으면 예외 처리
-//        if (productNo == null || productNo <= 0) {
-//        	System.out.println("실패란다.");
-//    //        throw new IllegalArgumentException("productNo must not be null or less than or equal to 0");
-//        }
-//        // productNo를 사용하여 Product 엔티티를 찾음
-//        Optional<Product> productOptional = productRepository.findById(productNo);
-//        if (productOptional.isPresent()) {
-//            // Product 엔티티를 찾은 경우, 업데이트 작업 수행
-//            Product product = productOptional.get();
-//            // productDto의 정보를 사용하여 product 엔티티 업데이트
-//            Product updatedProduct = productRepository.save(product);         
-//            // Product를 ProductDto로 변환하여 반환
-//            ProductDto updatedProductDto = convertProductToProductDto(updatedProduct);
-//            return updatedProductDto;
-//        } else {
-//            // Product 엔티티를 찾지 못한 경우 처리
-//        	System.out.println("실패란다.");
-//            throw new EntityNotFoundException("Product with productNo " + productNo + " not found");
-//        }
 	}
 	// goods 수정 - DTO
 	@Transactional
@@ -397,7 +401,7 @@ public class ProductServiceImpl implements ProductService{
     // 카테고리 ID를 사용하여 상품 조회 - DTO
     @Override
     public List<ProductDto> getProductsByCategoryDto(Long categoryId) {
-        List<Product> productList = productRepository.findByProductCategoryCategoryId(categoryId);
+        List<Product> productList = productRepository.findByProductCategoryCategoryIdOrderByReadCount(categoryId);
         List<ProductDto> productDtoList = ProductDto.toDto(productList);
         return productDtoList;
     }	
@@ -409,7 +413,8 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findAll(sort);
 	}
 	
-/******************** 내림차순[DTO][성공] ********************/		
+/******************** 내림차순[DTO][성공] ********************/
+	// product 조회수별 내림차순 정렬[성공]
 	@Override
 	public List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception {
         // 정렬 기준
@@ -420,11 +425,18 @@ public class ProductServiceImpl implements ProductService{
         List<ProductDto> productDtoList = ProductDto.toDto(productList);
         return productDtoList;
 	}
+	// product 최신 등록된 순으로 정렬[성공]
+	@Override
+	public List<ProductDto> productListByNewer(@Param("categoryId") Long categoryId) {
+		Sort sort = Sort.by(Sort.Direction.DESC, "productDate");
+		List<Product> productList = productRepository.findByProductCategoryCategoryIdOrderByProductDate(categoryId);
+		List<ProductDto> productDtoList = ProductDto.toDto(productList);
+		return productDtoList;
+	}
 
 /*********************************************/
 	
 /******************** 오름차순[ENTITY]  ********************/
-	
 	// product 조회수별 오름차순 정렬[성공]
 	public List<Product> getProductOrderByReadCountAsc() {
 		Sort sort = Sort.by(Sort.Direction.ASC, "readCount");
@@ -432,6 +444,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 /******************** 오름차순[DTO] ********************/
+	// product 조회수별 오름차순 정렬[성공]
 	@Override
 	public List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception {
         // 정렬 기준을 설정
@@ -445,7 +458,16 @@ public class ProductServiceImpl implements ProductService{
 
         return productDtoList;
 	}
-	
+	// product 오래 등록된 순으로 정렬[성공]
+	@Override
+	public List<ProductDto> productListByOlder(Long categoryId) {
+		List<Product> productList = productRepository.findByProductCategoryCategoryIdOrderByProductDate(categoryId);
+		List<ProductDto> productDtoList = new ArrayList<>();
+		for (Product product : productList) {
+			productDtoList.add(ProductDto.toDto(product));
+		}
+		return productDtoList;
+	}	
 /*********************************************/	
 	//제목키워드로 검색[성공]
 	@Override
@@ -453,7 +475,6 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findByProductNameContaining(keyword);
 	}
 	/*==============================================================*/
-
 
 
 

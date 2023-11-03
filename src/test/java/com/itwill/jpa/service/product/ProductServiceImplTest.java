@@ -22,6 +22,7 @@ import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.repository.product.ProductRepository;
 
@@ -189,23 +190,14 @@ class ProductServiceImplTest {
 //		  productServiceImpl.deleteProduct2(productNo);	  
 //	  }
 	// product 삭제 - DTO로 받기[성공햇다 실패]
-		@Test
-		@Transactional
-		@Rollback(false)
-		@Disabled	 
-	    void testDeledtProductDto() throws Exception {
-	        // productNo 값을 지정
-	        Long productNo = 1L;
-
-	        // 메서드를 호출하여 제품 삭제
-	        	Optional<ProductDto> productOptional = productServiceImpl.findProductDtoByProductNo(productNo);
-	        	if(productOptional.isPresent()) {
-	        		ProductDto product = productOptional.get();
-	        		productServiceImpl.deledtProductDto(product);	        		
-	        	}else {
-	        		fail("해당 제품이 존재하지 않습니다.");     		
-	        	}
-	    }
+//		@Test
+//		@Transactional
+//		@Rollback(false)
+////		@Disabled	 
+//	    void testDeledtProductDto() throws Exception {
+//	        // productNo 값을 지정
+//	        productServiceImpl.deleteProductDto(3L);
+//	    }
 
 	  
 	// product 수정[성공]
@@ -318,7 +310,22 @@ class ProductServiceImplTest {
 			System.out.println(
 					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
 			}
-    }   
+    }
+	// product 최신 등록된 순으로 정렬
+    @Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+    public void testProductListByNewer () throws Exception {
+        Long categoryId = 2L; // 테스트하려는 categoryId
+        // 테스트할 내용
+        List<ProductDto> productDtos = productServiceImpl.productListByNewer(categoryId);
+        for (ProductDto product : productDtos) {
+			System.out.println(
+					"Product Name : " + product.getProductName() + "///ProductDate : " + product.getProductDate());
+			}
+    }    	
+    
 	// product 조회수 올리기[성공]
 	@Test
 	@Transactional
@@ -353,7 +360,52 @@ class ProductServiceImplTest {
 //        ProductDto updatedProductDto = productServiceImpl.increaseProductReadCountDto(productDto);
 //
 //    }
-
+//    @Test
+//	@Transactional
+//	@Rollback(false)
+////	@Disabled
+//    public void testOutOfStockMsgDto_StockAvailable() {
+//        Long productNo = 1L;
+//        Product product = new Product();
+//        product.setProductNo(productNo);
+//        product.setProductStock(10);
+//
+//        when(productRepository.findById(productNo)).thenReturn(Optional.of(product));
+//
+//        ProductDto productDto = productServiceImpl.outOfStockMsgDto(productNo);
+//
+//        assertEquals(productNo, productDto.getProductNo());
+//        assertEquals(10, productDto.getProductStock());
+//    }
+//
+//    @Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//    public void testOutOfStockMsgDto_StockEmpty() {
+//        Long productNo = 2L;
+//        Product product = new Product();
+//        product.setProductNo(productNo);
+//        product.setProductStock(0);
+//
+//        when(productRepository.findById(productNo)).thenReturn(Optional.of(product));
+//
+//        productServiceImpl.outOfStockMsgDto(productNo);
+//    }
+//
+//    @Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//    public void testOutOfStockMsgDto_ProductNotFound() {
+//        Long productNo = 3L;
+//
+//        when(productRepository.findById(productNo)).thenReturn(Optional.empty());
+//
+//        ProductDto productDto = productServiceImpl.outOfStockMsgDto(productNo);
+//
+//        assertEquals(null, productDto);
+//    }
 	
 	/******************* 진행중 *******************/
 //	// productName 찾기
@@ -399,5 +451,5 @@ class ProductServiceImplTest {
 	
 	
 	
-	
+
 }
