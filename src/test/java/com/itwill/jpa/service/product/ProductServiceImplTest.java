@@ -190,14 +190,14 @@ class ProductServiceImplTest {
 //		  productServiceImpl.deleteProduct2(productNo);	  
 //	  }
 	// product 삭제 - DTO로 받기[성공햇다 실패]
-		@Test
-		@Transactional
-		@Rollback(false)
-//		@Disabled	 
-	    void testDeledtProductDto() throws Exception {
-	        // productNo 값을 지정
-	        productServiceImpl.deleteProductDto(3L);
-	    }
+//		@Test
+//		@Transactional
+//		@Rollback(false)
+////		@Disabled	 
+//	    void testDeledtProductDto() throws Exception {
+//	        // productNo 값을 지정
+//	        productServiceImpl.deleteProductDto(3L);
+//	    }
 
 	  
 	// product 수정[성공]

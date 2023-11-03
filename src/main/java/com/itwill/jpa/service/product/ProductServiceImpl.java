@@ -270,14 +270,15 @@ public class ProductServiceImpl implements ProductService{
 //		}
 	@Override
 	public ProductDto deleteProductDto(Long productNo, Long categoryId) throws Exception {
-		Product product = productRepository.findById(productNo).orElseThrow();
-//		ProductCategory productCategory = productRepository.findBycategoryId(categoryId);
+//		Product product = productRepository.findById(productNo).orElseThrow();
+//		Optional<ProductCategory> productCategory = productRepository.findBycategoryId(categoryId);
 //		if (product != null) {
-//			Long categoryId = product.getProductCategory();
+//			ProductCategory categoryId = product.getProductCategory();
 //			productRepository.deleteById(productNo);
 //		}
-		ProductDto productDto = ProductDto.toDto(product);
-		return productDto;
+//		ProductDto productDto = ProductDto.toDto(product);
+//		return productDto;
+		return null;
 	}
 		/*********************************************/
 		

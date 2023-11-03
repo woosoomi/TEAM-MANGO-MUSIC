@@ -25,7 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	List<Goods> findAllGoods(Sort sort);
 // productNo로 찾기
 //Optional<Product> findById(Long productNo);
-	Optional<ProductCategory> findBycategoryId(Long categoryNo);
+//	Optional<ProductCategory> findBycategoryId(Long categoryNo);
 
 // productNo로 찾기[DTO]	
 //	@Query("SELECT p FROM Product p WHERE p.productNo = :productNo")
