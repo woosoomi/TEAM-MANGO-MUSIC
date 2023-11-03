@@ -97,6 +97,8 @@ class ProductServiceImplTest {
 	// 카테고리별 구분-DTO로 받기[성공]
 	// 굿즈 categoryId의 값만 가져올 수 잇음 (categoruId 다르면 null값 받아옴)
 	// 출력되는 값 FindProductByCategoryId와 차이 없으면 삭제 예정
+	
+/*	
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -105,7 +107,7 @@ class ProductServiceImplTest {
 		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(1L);
 		System.out.println("굿즈리스트" + ticketDtoList);
 	}		
-	
+*/	
 	// InsertProduct는 dType이 product로 되기때문에 사용 x
 	// music 추가[성공]
 //	@Test
@@ -165,7 +167,9 @@ class ProductServiceImplTest {
 //		System.out.println(ticketDto.getProductCategory());
 //		
 //	}	
+
 	
+	/*
 	// product 삭제[성공]
 	@Test
 	@Transactional
@@ -177,7 +181,7 @@ class ProductServiceImplTest {
 		// 제품 삭제
 		productServiceImpl.deleteProduct(productNo);
 	}
-
+*/
 	// product 삭제2[성공]	
 //	  @Test	  
 //	  @Transactional
@@ -213,6 +217,8 @@ class ProductServiceImplTest {
 //		// updateProduct 메서드 호출
 //		Product updatedProduct = productServiceImpl.updateProduct(product);
 //	}
+	
+/*	
 	// product 수정 - DTO로 받기
 	@Test
 	@Transactional

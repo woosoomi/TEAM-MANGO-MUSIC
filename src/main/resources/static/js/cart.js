@@ -23,3 +23,34 @@ $(document).ready(function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var cartId = 1; // 적절한 값을 넣어주세요.
+
+    // 페이지가 로드될 때 실행되는 부분
+    updateTotalPrice(cartId);
+
+    // 주문하기 버튼 클릭 시 이벤트
+    document.querySelector('button').addEventListener('click', function() {
+        updateTotalPrice(cartId);
+    });
+
+    // 총 가격을 업데이트하는 함수
+    function updateTotalPrice(cartId) {
+        fetch('/calculateTotalPrice/' + cartId)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // response를 문자열로 변환
+            })
+            .then(data => {
+                // 서버에서 받은 데이터(data)를 처리하여 업데이트
+                document.getElementById('totPrice').innerHTML = data;
+            })
+            .catch(error => {
+                // 에러 처리 코드 작성
+                console.error('Error:', error);
+            });
+    }
+});

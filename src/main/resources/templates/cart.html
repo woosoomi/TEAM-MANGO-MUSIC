@@ -90,11 +90,12 @@
 										</li>
 										<li>
 											<a href="#">주문하기</a>
-											 <a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}">삭제하기</a>
+											<a href="#" class="delete-btn"
+												data-cart-item-id="${cartItem.cartItemId}">삭제하기</a>
 										</li>
 										<div
 											style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
-											<span id="totalPrice" style="margin-right: 10px; font-size: 18px;">\
+											<span id="totPrice" style="margin-right: 10px; font-size: 18px;">
 												<span th:text="${totPrice + '원'}"></span>
 											</span>
 											<button
