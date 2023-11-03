@@ -46,14 +46,14 @@ public class UserServiceImpl implements UserService{
 		
 		if(userinfo == null) {
 			UserNotFoundException exception = 
-					new UserNotFoundException(userId+" 는 존재하지않는 아이디입니다.");
+					new UserNotFoundException(userId + " 는 존재하지않는 아이디입니다.");
 			exception.setData(fUser);
 			throw exception;
 		}
 		String userPassword = userinfo.getUserPw();
 		if(!userPassword.equals(userPw)) {
 			PasswordMismatchException exception=
-				new PasswordMismatchException("패쓰워드가 일치하지않습니다.");
+				new PasswordMismatchException("패쓰워드가 일치하지 않습니다.");
 			exception.setData(fUser);
 			throw exception;
 		}

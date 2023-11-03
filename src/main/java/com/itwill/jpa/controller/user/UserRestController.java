@@ -38,7 +38,7 @@ public class UserRestController {
 	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
 		try {
 			if (userService.existsById(userDto.getUserId())) {
-				throw new ExistedUserException("이미 존재하는 아이디입니다. >>> user_write 레스트 컨트롤러 작동");
+				throw new ExistedUserException("이미 존재하는 아이디입니다. >>> user_write_action 레스트 컨트롤러 작동");
 			}
 			UserDto createdUser = userService.createUser(userDto);
 			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
@@ -52,8 +52,8 @@ public class UserRestController {
 	}
 	
 	@Operation(summary = "로그인[성공]")
-	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> user_Login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
+	@PostMapping(value = "/login")
+	public ResponseEntity<?> user_login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
 		try {
 			User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
 
