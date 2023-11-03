@@ -19,148 +19,8 @@
 </head>
 
 <body><!--preloading-->
-	<div id="preloader"><img class="logo" src="images/mango_logo2.png" alt="" width="119" height="58">
-		<div id="status"><span></span><span></span></div>
-	</div><!--end of preloading--><!--login form popup-->
-	<div class="login-wrapper" id="login-content">
-		<div class="login-content"><a href="#" class="close">x</a>
-			<h3>Login</h3>
-			<form method="post" action="login.php">
-				<div class="row"><label for="username">Username:<input type="text" name="username" id="username"
-							placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
-							required="required" /></label></div>
-				<div class="row"><label for="password"> Password:<input type="password" name="password" id="password"
-							placeholder="******"
-							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row">
-					<div class="remember">
-						<div><input type="checkbox" name="remember" value="Remember me"><span>Remember me</span></div><a
-							href="#">Forget password ?</a>
-					</div>
-				</div>
-				<div class="row"><button type="submit">Login</button></div>
-			</form>
-			<div class="row">
-				<p>Or via social</p>
-				<div class="social-btn-2"><a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a><a
-						class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a></div>
-			</div>
-		</div>
-	</div><!--end of login form popup--><!--signup form popup-->
-	<div class="login-wrapper" id="signup-content">
-		<div class="login-content"><a href="#" class="close">x</a>
-			<h3>sign up</h3>
-			<form method="post" action="signup.php">
-				<div class="row"><label for="username-2">Username:<input type="text" name="username" id="username-2"
-							placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
-							required="required" /></label></div>
-				<div class="row"><label for="email-2"> your email:<input type="password" name="email" id="email-2"
-							placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row"><label for="password-2"> Password:<input type="password" name="password"
-							id="password-2" placeholder=""
-							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row"><label for="repassword-2"> re-type Password:<input type="password" name="password"
-							id="repassword-2" placeholder=""
-							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row"><button type="submit">sign up</button></div>
-			</form>
-		</div>
-	</div><!--end of signup form popup--><!-- BEGIN | Header -->
-	<header class="ht-header">
-		<div class="container">
-			<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
-					<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span
-							class="sr-only">Toggle navigation</span>
-						<div id="nav-icon1"><span></span><span></span><span></span></div>
-					</div><a href="index"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
-				</div><!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden"><a href="#page-top"></a></li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1"
-								data-toggle="dropdown">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="index">mango music</a></li>
+<div th:insert="~{header :: headerFragment}"></div>
 
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 멜론차트<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="moviesingle.html">TOP100</a></li>
-								<li><a href="movielist.html">최신음악</a></li>
-								<li><a href="moviesingle.html">장르음악</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> shop<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-
-								<li><a href="moviesingle.html">망고티켓</a></li>
-								<li><a href="movielist.html">망고굿즈</a></li>
-								<li><a href="moviesingle.html">멤버십</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 뮤직어워드 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">뮤직어워드</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 게시판 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="notification">공지사항</a></li>
-								<li><a href="#">FAQ</a></li>
-								<li><a href="magazine">magazine</a></li>
-								<li><a href="#">1대1문의</a></li>
-								<li><a href="event">이벤트</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 결제 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="order_membership">멤버십결제</a></li>
-								<li><a href="order_ticket">티켓결제</a></li>
-								<li><a href="order_history">주문내역</a></li>
-							</ul>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-
-						<li class="btn signupLink"><a href="#">sign up</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</nav><!-- top search form -->
-			<div class="top-search"><select>
-					<option value="united">music</option>
-					<option value="saab">Others</option>
-				</select><input type="text"
-					placeholder="Search for a music, concert or celebrity that you are looking for"></div>
-		</div>
-	</header><!-- END | Header -->
-	<div class="hero common-hero">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="hero-ct">
-						<h1>티켓 결제</h1>
-						<ul class="breadcumb">
-							<li class="active"><a href="index">Home</a></li>
-							<li><span class="ion-ios-arrow-right"></span><a href="order_ticket">Order Ticket Page</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="page-single movie_list">
 		<div class="container">
 			<div class="row ipad-width2">
@@ -191,19 +51,20 @@
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div>
 							<p style="margin-bottom: 10px; font-weight: bold; font-size: 22px;">유의사항</p>
-							<p style="margin-top: 10px; margin-bottom: 10px; font-weight: bold;">티켓</p>
-							<span class="text-blue">사용 기간이 만료된 쿠폰은 할인에 적용되지 않습니다.<br></span>
-							<span class="text-blue">하나의 티켓 결제당 하나의 쿠폰만 사용하실 수 있습니다.<br></span>
-							<span class="text-blue">본 공연은 예매자 본인이 직접 예매하셔야 하며, 양도를 금합니다.<br></span>
+							<p style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; font-size: 15px;">티켓</p>
+							<p>사용 기간이 만료된 쿠폰은 할인에 적용되지 않습니다.<br>
+							   하나의 티켓 결제당 하나의 쿠폰만 사용하실 수 있습니다.<br>
+							   본 공연은 예매자 본인이 직접 예매하셔야 하며, 양도를 금합니다.<br>
+							</p>
 						</div>
 						<div>
-							<p style="margin-top: 10px; margin-bottom: 10px; font-weight: bold;">결제 및 해지</p>
-							<span class="text-blue">구매와 동시에 선불로 과금되며, 부가세 10%는 별도입니다.<br></span>
-							<span class="text-blue">결제 시 SMS 등을 통한 별도의 거래 내역 통지는 생략됩니다.<br></span>
-							<span class="text-blue">구매하신 티켓의 결제 내역 조회, 해지는 [망고 웹사이트 &gt; 결제 &gt; 주문 내역]에서 할 수
-								있습니다.<br></span>
-							<span class="text-blue">티켓 환불 신청은 망고 고객센터(1577-1234)로 전화하거나,<br> [망고 웹사이트 &gt; 게시판 &gt; 1:1
-								문의]에서 할 수 있습니다.</span>
+							<p style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; font-size: 15px;">결제 및 해지</p>
+							<p>구매와 동시에 선불로 과금되며, 부가세 10%는 별도입니다.<br>
+							   결제 시 SMS 등을 통한 별도의 거래 내역 통지는 생략됩니다.<br>
+							   구매하신 티켓의 결제 내역 조회, 해지는 [망고 웹사이트 &gt; 결제 &gt; 주문 내역]에서 할 수 있습니다.<br>
+							   티켓 환불 신청은 망고 고객센터(1577-1234)로 전화하거나,<br>
+							   [망고 웹사이트 &gt; 게시판 &gt; 1:1 문의]에서 할 수 있습니다.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -236,13 +97,13 @@
 										</div>
 										<div class="col-md-6">
 											<label>할인</label>
-											<input type="text" id="discountInput" th:placeholder="${discount} + ' %'">
+											<input type="text" id="discountInput" placeholder="">
 										</div>
 									</div>
 									</div>
 									<div class="col-md-12 form-it">
 									<label>총 결제금액(VAT 별도)</label>
-									<input type="text" id="endPrice" th:placeholder="${endPrice}+'원'">
+									<input type="text" id="endPrice" th:placeholder="${formattedOrderPrice}+'원'">
 									</div>
 									<div class="col-md-12 form-it"
 										style="display: flex; align-items: center; margin-bottom: 5px;">
@@ -355,7 +216,7 @@
 	
 	/*
 	
-	//쿠폰 선택시 쿠폰 id값을 받아와서 쿠폰 해당 할인율 반환 (ajax) 아직
+	//쿠폰 선택시 쿠폰 id값을 받아와서 쿠폰 해당 할인율 반환 (ajax) 불필요
     document.getElementById('couponSelect').addEventListener('change', function() {
         var selectedCouponValue = this.value;
 

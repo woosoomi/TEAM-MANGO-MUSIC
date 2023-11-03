@@ -122,7 +122,7 @@ public class OrderController {
 	                }
 	            }
 	            //쿠폰 할인 적용 메서드
-	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
+	            double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
 	            //총 결제금액 소수점 아래 절사
 	            int endPrice = (int) salePrice;
 	            model.addAttribute("salePrice", salePrice);
@@ -240,7 +240,7 @@ public class OrderController {
 	                }
 	            }
 	            //쿠폰 할인 적용 메서드
-	            double salePrice = couponService.applyCouponDiscount(categoryId, formattedOrderPrice);
+	            double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
 	            //총 결제금액 소수점 아래 절사
 	            int endPrice = (int) salePrice;
 	            model.addAttribute("salePrice", salePrice);
