@@ -40,16 +40,14 @@ public class CartRestController {
 
 	@Operation(summary = "장바구니생성[성공]")
 	@PostMapping("/create")
-	public String createCart(CartDto dto, Model model) {
-		CartDto createCart;
-		try {
-			createCart = cartServiceImpl.createCart(dto);
-			model.addAttribute("createCart", createCart);
-			return "성공";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "실패";
-		}
+	public ResponseEntity<CartDto> createCart(@RequestBody CartDto dto) {
+	    try {
+	        CartDto createCart = cartServiceImpl.createCart(dto);
+	        return ResponseEntity.ok(createCart);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
 	}
 
 	@Operation(summary = "장바구니 상품전체삭제[성공]")
@@ -78,8 +76,8 @@ public class CartRestController {
 	@GetMapping("/cart/{cartId}")
 	public ResponseEntity<CartDto> calculateTotalPrice(@PathVariable(value = "cartId") Long cartId) {
 		try {
-			CartDto totPrice = cartService.calculateTotalPrice(cartId);
-			return ResponseEntity.ok(totPrice);
+			CartDto cartTotPrice = cartService.calculateTotalPrice(cartId);
+			return ResponseEntity.ok(cartTotPrice);
 		} catch (Exception e) {
 			return ResponseEntity.status(500).body(null);
 		}

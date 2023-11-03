@@ -138,10 +138,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board_detail")
-	public String boardDetail(@RequestParam Long id, Model model) {
+	public String boardDetail(@RequestParam(name = "boardId") Long boardId, Model model) {
 	    try {
 	        // 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
-	        Optional<Board> boardOptional = boardServiceImpl.findById(id);
+	        Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
 
 	        if (boardOptional.isPresent()) {
 	            // 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
@@ -159,5 +159,6 @@ public class BoardController {
 	        return "error";
 	    }
 	}
+
 
 }

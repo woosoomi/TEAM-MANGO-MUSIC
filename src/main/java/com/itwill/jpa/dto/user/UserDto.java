@@ -5,6 +5,7 @@ import com.itwill.jpa.entity.user.User;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,7 +25,10 @@ public class UserDto {
 	private String userJumin;		// 회원 주민번호
 	private String userPhone;		// 회원 전화번호
 	private String userGender;		// 회원 성별
-	private Boolean memberShip;		// 추가!!
+	
+	@Default
+	private Boolean memberShip = false;		// 추가!!
+	
 	private Long voteId;
 	
 	public static UserDto toDto(User entity) {
