@@ -1,6 +1,7 @@
 package com.itwill.jpa.controller.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.product.ProductDto;
@@ -50,19 +52,20 @@ public class ProductController2 {
 	}
 
 	// 뮤직디테일
-	@GetMapping("/music_detail/{productNo}")
-	public String MusicDetail(@PathVariable Long productNo, Model model) {
+	@GetMapping("/music_detail")
+	public String MusicDetail(@RequestParam Long productNo, Model model) {
 		try {
-			Product musicDetail = (Product) productService.findByProductNo(productNo).get();
-			System.out.println(productNo);
-			System.out.println(musicDetail);
+			Optional<Product> musicOptional = productService.findByProductNo(productNo);
 			
-			productService.increaseReadCount(musicDetail);
-					//readCount increase 작업 성공
-			model.addAttribute("musicDetail", musicDetail);
-			log.info(">>>MUSIC DETAIL :"+  musicDetail);
-					
-					//https://m.blog.naver.com/yh_park02/221726954404
+			if(musicOptional.isPresent()) {
+				Product musicDetail=musicOptional.get();
+				productService.increaseReadCount(musicDetail);
+				model.addAttribute("musicDetail", musicDetail);
+				log.info(">>>MUSIC DETAIL :"+  musicDetail);
+			}else {
+				throw new Exception("NOT FOUND MUSIC");
+			}
+			
 			return "music_detail";
 		} catch (Exception e) {
 			e.printStackTrace();

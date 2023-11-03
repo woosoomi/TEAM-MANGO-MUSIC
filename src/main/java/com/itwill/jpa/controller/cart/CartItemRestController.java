@@ -21,7 +21,7 @@ public class CartItemRestController {
     @Autowired
     private CartItemService cartItemService;
     @Operation(summary = "장바구니에 상품추가[성공]")
-    @PostMapping("/insert")
+    @PostMapping("/cart")
     public String insertCartItem(CartItemDto dto, Model model) {
     	CartItemDto insertCartItem;
         try {
@@ -34,7 +34,7 @@ public class CartItemRestController {
         }
     }
     @Operation(summary = "수량 업데이트[성공]")
-    @PostMapping("/update")
+    @PostMapping("/cart/{cartItemId}")
     public String updateCartItem(CartItemDto dto,Model model) {
     	CartItemDto updateCartItem;
     	try {
@@ -48,7 +48,7 @@ public class CartItemRestController {
     }
     
     @Operation(summary = "상품 한개 삭제[성공]")
-    @DeleteMapping("/cartItem/{cartItemId}")
+    @DeleteMapping("/cart/{cartItemId}")
     public void deleteCartItem(@PathVariable(value = "cartItemId") Long CartItemId) {
         try {
             cartItemService.deleteByCartItemId(CartItemId);

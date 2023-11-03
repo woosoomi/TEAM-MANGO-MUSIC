@@ -9412,6 +9412,7 @@ var xhrSuccessStatus = {
 support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
 support.ajax = xhrSupported = !!xhrSupported;
 
+/* 임시로 막음 
 jQuery.ajaxTransport( function( options ) {
 	var callback, errorCallback;
 
@@ -9552,7 +9553,7 @@ jQuery.ajaxTransport( function( options ) {
 	}
 } );
 
-
+임시로 막음 ***************/
 
 
 // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
