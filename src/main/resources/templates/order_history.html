@@ -169,7 +169,7 @@
 					<div class="topbar-filter">
 						<p><a th:text="${context.user_id}+'님의'"></a>
 							<span th:text="${#lists.size(orderItemDtoList)}"></span>
-							<span>개의 주문내역 
+							<span>개의 주문내역</span>
 					 
 					 <script>
 	       			 // JavaScript 함수 정의
@@ -189,21 +189,20 @@
 					            });
 			}
        
-			   		 </script>  n  
+			   		 </script>    
 							</p><label>Sort by:</label>
 						<select id="sortSelect" onchange="sortOrders()">
 				        <option value="newest">최신순</option>
 				        <option value="oldest">오래된순</option>
 					    </select>
 					</div>
-	<!--<div th:each=" productImage: ${productImage}">-->
         <div th:each="orderitem, iterStat: ${orderItemDtoList}">
 			
 		<div class="movie-item-style-2">
-   			 <img src="images/uploads/mv1.jpg" alt="">
+   			 <img th:src="@{'images/' + ${orderitem.productImage}}" alt="">
    		 <div class="mv-item-infor">
             <h6>
-                <a th:text="${orderitem.orderId}"></a>
+                <a th:text="'주문번호:  '+${orderitem.orderId}"></a>
             </h6>
                 <p class="rate">
                     <span th:text="${orderitem.productName}+ ' [총 ' + ${orderitem.oiQty} + '개]'"></span>
@@ -218,8 +217,8 @@
             <p class="describe">
                 <span th:text = "'주문상태: '+${orderDtoNewerList[iterStat.index].orderStatus}"></span>
             </p>
-            <p>Director: <a href="#">Alan Taylor</a></p>
-            <p>Stars: <a href="#">Chris Hemsworth,</a><a href="#">Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
+            <p>⚠️ 환불불가 상품입니다.</p>
+            <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="inquiries">고객센터</a>로 문의해주세요.</p>
         </div>
     </div>
 </div>
@@ -227,23 +226,6 @@
 
 
 
-
-					<div class="movie-item-style-2"><img src="images/uploads/mv2.jpg" alt="">
-						<div class="mv-item-infor">
-							<h6><a href="moviesingle.html">into the wild <span>(2014)</span></a></h6>
-							<p class="rate"><i class="ion-android-star"></i><span>7.8</span>/10</p>
-							<p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he
-								teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new
-								threat...</p>
-							<p class="run-time">Run Time: 2h21’ . <span>MMPA: PG-13 </span> . <span>Release: 1 May
-									2015</span></p>
-							<p>Director: <a href="#">Anthony Russo,</a><a href="#">Joe Russo</a></p>
-							<p>Stars: <a href="#">Chris Evans,</a><a href="#">Samuel L. Jackson,</a><a href="#">Scarlett
-									Johansson</a></p>
-						</div>
-					</div>
-					
-					
 					
 					<div class="topbar-filter"><label>Movies per page:</label><select>
 							<option value="range">5 Movies</option>
