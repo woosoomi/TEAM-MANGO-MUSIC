@@ -25,7 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	List<Goods> findAllGoods(Sort sort);
 // productNo로 찾기
 //Optional<Product> findById(Long productNo);
-//	Optional<Product> findByIdc
+	Optional<ProductCategory> findBycategoryId(Long categoryNo);
 
 // productNo로 찾기[DTO]	
 //	@Query("SELECT p FROM Product p WHERE p.productNo = :productNo")
@@ -37,15 +37,16 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	/******************** categoryId별로 전체나열 ********************/
 //	category로 찾기
 	List<Product> findByProductCategory(ProductCategory category);
-
-//	@Query("SELECT p FROM Product p WHERE p.productCategory.id = :categoryId")
-//	List<Product> findByProductCategoryId(@Param("categoryId") Long categoryId);
-	List<Product> findByProductCategoryCategoryId(Long categoryId);
-	List<Product> findByProductCategoryCategoryIdOrderByReadCount(Long categoryId);
-
 	List<Goods> findGoodsByProductCategory(ProductCategory category);
-
+	
 	List<Ticket> findTicketByProductCategory(ProductCategory category);
+	List<Product> findByProductCategoryCategoryId(Long categoryId);
+	/********************* 조회수, 등록순으로 전체나열 ********************/
+	// 조회수별 정렬
+	List<Product> findByProductCategoryCategoryIdOrderByReadCount(Long categoryId);
+	// 등록날자별 정렬
+	List<Product> findByProductCategoryCategoryIdOrderByProductDate(Long categoryId);
+	
 
 	/*****************************************************************/
 //	keyword가 포함된 product 찾기
@@ -56,7 +57,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     void increaseReadCount(@Param("productNo") Long productNo);
 // product 삭제
     void deleteByProductNo(Long productNo);
-	
 	
 /************************ Vote관련  ***************************/	
 

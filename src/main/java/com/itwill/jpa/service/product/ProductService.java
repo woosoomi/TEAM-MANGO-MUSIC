@@ -30,6 +30,8 @@ public interface ProductService{
 //Product//	
 	Product getProduct(Long productNo); 
 	
+	Product getProductCategory(Long categoryId);
+	
 //	ProductDto getProductDto(Long productNo);
 
 	List<Product> productList(); 
@@ -98,8 +100,8 @@ public interface ProductService{
 	
 	/******************** DELETE[DTO] ********************/
 	// product 삭제 - DTO[성공햇다 실패됨]
-    void deledtProductDto(ProductDto productDto) throws Exception;
-	
+ //   void deledtProductDto(ProductDto productDto) throws Exception;
+	ProductDto deleteProductDto(Long productNo, Long categoryId) throws Exception;
 	/*********************************************/
 	
 	/******************** UPDATE[ENTITY] ********************/	
@@ -138,6 +140,9 @@ public interface ProductService{
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
 	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
 	
+	//주문 최신순으로 나열하기
+	List<ProductDto> productListByNewer(Long categoryId);
+	
 	/*********************************************/	
 	
 	/******************** 오름차순[ENTITY] ********************/		
@@ -148,6 +153,8 @@ public interface ProductService{
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
 	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
 	
+	//주문 오래된순으로 나열하기
+	List<ProductDto> productListByOlder(Long categoryId);
 	/*********************************************/	
 	
 	/******************** 키워드로 검색[ENTITY] ********************/	

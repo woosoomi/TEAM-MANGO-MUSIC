@@ -100,7 +100,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	void testFindGoodsByCategoryId() {
 		List<TicketDto> ticketDtoList = productServiceImpl.findTicketByCategoryId(1L);
 		System.out.println("굿즈리스트" + ticketDtoList);
@@ -196,16 +196,7 @@ class ProductServiceImplTest {
 //		@Disabled	 
 	    void testDeledtProductDto() throws Exception {
 	        // productNo 값을 지정
-	        Long productNo = 1L;
-
-	        // 메서드를 호출하여 제품 삭제
-	        	Optional<ProductDto> productOptional = productServiceImpl.findProductDtoByProductNo(productNo);
-	        	if(productOptional.isPresent()) {
-	        		ProductDto product = productOptional.get();
-	        		productServiceImpl.deledtProductDto(product);	        		
-	        	}else {
-	        		fail("해당 제품이 존재하지 않습니다.");     		
-	        	}
+	        productServiceImpl.deleteProductDto(3L);
 	    }
 
 	  
@@ -319,7 +310,22 @@ class ProductServiceImplTest {
 			System.out.println(
 					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
 			}
-    }   
+    }
+	// product 최신 등록된 순으로 정렬
+    @Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+    public void testProductListByNewer () throws Exception {
+        Long categoryId = 2L; // 테스트하려는 categoryId
+        // 테스트할 내용
+        List<ProductDto> productDtos = productServiceImpl.productListByNewer(categoryId);
+        for (ProductDto product : productDtos) {
+			System.out.println(
+					"Product Name : " + product.getProductName() + "///ProductDate : " + product.getProductDate());
+			}
+    }    	
+    
 	// product 조회수 올리기[성공]
 	@Test
 	@Transactional
