@@ -69,7 +69,7 @@
                     <span th:text="${orderDtoNewerList[iterStat.index].orderPrice + '원'}"></span>
                 </p>
                 <p class="rate">
-                    <span th:text="${'구매날짜: '+ #temporals.format(orderDtoNewerList[iterStat.index].createdAt, 'yyyy-MM-dd')}"></span>
+                    <span th:text="${'구매날짜: '+ #temporals.format(orderDtoNewerList[iterStat.index].createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
                 </p>
          		
             <p class="describe">
