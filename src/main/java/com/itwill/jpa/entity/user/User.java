@@ -35,11 +35,13 @@ import lombok.ToString;
 public class User {
 
 	@Id
+	@Column(length = 10, nullable = false)
 	private String userId; // 회원 아이디
 
 	@Column(length = 10, nullable = false)
 	private String userPw; // 회원 비밀번호
 	
+	@Column(length = 7, nullable = false)
 	private String userName; // 회원 이름
 
 	@Column(length = 15, nullable = false)
