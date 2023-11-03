@@ -16,6 +16,12 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/order.js"></script>
 </head>
 
 <body><!--preloading-->
@@ -161,41 +167,33 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	<!--최신순, 오래된순-->
+	 
 
 	<div class="page-single movie_list">
 		<div class="container">
-			<div class="row ipad-width2">
+			<div class="row">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
 						<p><a th:text="${context.user_id}+'님의'"></a>
 							<span th:text="${#lists.size(orderItemDtoList)}"></span>
 							<span>개의 주문내역</span>
 					 
-					 <script>
-	       			 // JavaScript 함수 정의
-			        function sortOrders() {
-			                    var selectedOption = document.getElementById("sortSelect").value;
-								var userId = "<%= session.getAttribute('userId') %>";
-					            // AJAX 요청을 만듭니다.
-					             var url = "/SortByLatestOrder/" + userId + "?sortBy=" + selectedOption;
-					             fetch(url)
-					            .then(response => response.json())
-					            .then(data => {
-					                // 서버에서 반환된 데이터를 사용하여 페이지를 업데이트
-					                updateOrderList(data);
-					            })
-					            .catch(error => {
-					                console.error("에러 발생: " + error);
-					            });
-			}
-       
-			   		 </script>    
+				
 							</p><label>Sort by:</label>
-						<select id="sortSelect" onchange="sortOrders()">
+						<select id="sortSelect">
 				        <option value="newest">최신순</option>
 				        <option value="oldest">오래된순</option>
 					    </select>
 					</div>
+					
+		<!--주문내역-->	
+		
+			<div class="row" id="orderHistory">
+		
         <div th:each="orderitem, iterStat: ${orderItemDtoList}">
 			
 		<div class="movie-item-style-2">
@@ -220,12 +218,12 @@
             <p>⚠️ 환불불가 상품입니다.</p>
             <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="inquiries">고객센터</a>로 문의해주세요.</p>
 		   
-        </div>
+        				</div>
         
-    </div>
-     <hr style="height: 1px; background-color: gray;">
-</div>
-
+    				</div>
+   				  <hr style="height: 1px; background-color: gray;">
+				</div>
+			</div>
 
 
 
@@ -235,7 +233,6 @@
 					<div class="ads2">
 						<p>🎦광고</p>
 						<img src="images/aespa.png" alt=""></div>
-	<!--	<div class="ads2"><img src="images/bpk.png" alt=""></div>-->
 						</div>
 					</div>
 				</div>
