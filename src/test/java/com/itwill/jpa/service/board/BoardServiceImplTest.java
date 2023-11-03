@@ -4,6 +4,7 @@ package com.itwill.jpa.service.board;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -136,5 +137,14 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 		List<Board> boards 
 			=boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,"why3795");
 		System.out.println("4L이고 why3795아이디를 사용하는 리스트 : " + boards);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void findById() {
+		Optional<Board> board = boardServiceImpl.findById(1L);
+		System.out.println("게시판한개찾기 : " + board);
 	}
 }

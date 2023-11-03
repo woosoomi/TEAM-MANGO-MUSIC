@@ -106,7 +106,9 @@ public class BoardServiceImpl implements BoardService{
         return boardRepository.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(boardCategoryId, userId);
     }
 
-
+    public Optional<Board> findById(Long BoardId) {
+    	return boardRepository.findById(BoardId);
+    }
 
 
 
