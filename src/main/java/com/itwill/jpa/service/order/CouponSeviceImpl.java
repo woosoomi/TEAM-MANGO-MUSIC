@@ -105,6 +105,14 @@ public class CouponSeviceImpl implements CouponService{
 		return orderPrice;
 	}
 	
+	//쿠폰 id로 쿠폰 가져오기
+	@Override
+	public CouponDto findCouponByCouponId(Long couponId) {
+		Coupon coupon = couponRepository.findById(couponId).get();
+		CouponDto couponDto = CouponDto.toDto(coupon);
+		return couponDto;
+	}
+	
 }
 		
 	
