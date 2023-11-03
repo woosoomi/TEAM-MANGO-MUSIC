@@ -52,8 +52,8 @@ public class ProductController2 {
 	}
 
 	// 뮤직디테일
-	@GetMapping("/music_detail")
-	public String MusicDetail(@RequestParam Long productNo, Model model) {
+	@GetMapping("/music_detail/{productNo}")
+	public String MusicDetail(@RequestParam(value="productNo",required=false) Long productNo, Model model) {
 		try {
 			Optional<Product> musicOptional = productService.findByProductNo(productNo);
 			

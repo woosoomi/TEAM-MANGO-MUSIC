@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html lang="en" class="no-js">
+<!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]-->
+<!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <!-- Basic need -->
@@ -92,43 +93,46 @@
 							<h4>01. UserInfo</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserId</label>
-									<input type="text" id="userId2" name="userId1" placeholder="아이디를 입력하세요." required="required">
+									<label>UserId</label> <input type="text" id="userId"
+										name="userId" placeholder="아이디를 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserPassword</label>
-									<input type="text" id="userPw2" name="userPw1" placeholder="비밀번호를 입력하세요." required="required">
+									<label>UserPassword</label> <input type="text" id="userPw"
+										name="userPw" placeholder="비밀번호를 입력하세요." required="required">
 
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserName</label>
-									<input type="text" id="userName" name="userName1" placeholder="이름을 입력하세요." required="required">
+									<label>UserName</label> <input type="text" id="userName"
+										name="userName" placeholder="이름을 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserPhone</label>
-									<input type="text" id="userPhone" name="userPhone1" placeholder="전화번호를 입력하세요." required="required">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 form-it">
-									<label>UserEmail</label>
-									<input type="text" id="userEmail" name="userEmail1" placeholder="이메일을 입력하세요." required="required">
-								</div>
-								<div class="col-md-6 form-it">
-									<label>UserJumin</label>
-									<input type="text" id="userJumin" name="userJumin1" placeholder="주민번호를 입력하세요." required="required">
+									<label>UserPhone</label> <input type="text" id="userPhone"
+										name="userPhone" placeholder="전화번호를 입력하세요."
+										required="required">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserAddress</label>
-									<input type="text" id="userAddress" name="userAddress1" placeholder="주소를 입력하세요." required="required">
+									<label>UserEmail</label> <input type="text" id="userEmail"
+										name="userEmail" placeholder="이메일을 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserGender</label> 
-									<select id="userGender" name="userGender1">
+									<label>UserJumin</label> <input type="text" id="userJumin"
+										name="userJumin" placeholder="주민번호를 입력하세요."
+										required="required">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 form-it">
+									<label>UserAddress</label> <input type="text" id="userAddress"
+										name="userAddress" placeholder="주소를 입력하세요."
+										required="required">
+								</div>
+								<div class="col-md-6 form-it">
+									<label>UserGender</label> <select id="userGender"
+										name="userGender">
 										<option value="man">남</option>
 										<option value="woman">여</option>
 									</select>
@@ -137,7 +141,8 @@
 							<div class="row">
 								<div class="col-md-2">
 									<!-- Submit button -->
-								    <input class="submit" id="savebutton" type="button" value="회원가입" onclick="submitForm()">
+									<input class="submit" id="savebutton" type="button"
+										value="회원가입" onclick="writeForm()">
 								</div>
 							</div>
 						</form>
@@ -152,14 +157,14 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-	
 
-<!-- JavaScript to handle form submission -->
-<script th:inline="javascript">
-    function submitForm() {
+
+
+	<script th:inline="javascript">
+    function writeForm() {
         var formData = {
-            userId: document.getElementById("userId2").value,
-            userPw: document.getElementById("userPw2").value,
+            userId: document.getElementById("userId").value,
+            userPw: document.getElementById("userPw").value,
             userName: document.getElementById("userName").value,
             userPhone: document.getElementById("userPhone").value,
             userEmail: document.getElementById("userEmail").value,
@@ -180,12 +185,14 @@
             if (response.status === 201) {
                 // Registration successful
                 alert('회원가입이 성공적으로 완료되었습니다.');
+                window.location.href = "index";
                 // You can add further actions here upon successful registration
             } else if (response.status === 400) {
                 // Existing user exception
                 response.text().then(message => {
-                    alert('에러: ' + message);
+                    alert('에러 서비스에서 설정해놓은 오류: ' + message);
                 });
+                window.location.href = "user_write_form";
             } else {
                 // Other exceptions
                 alert('내부 서버 오류');

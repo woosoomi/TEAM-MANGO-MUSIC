@@ -40,6 +40,7 @@ public class CartController {
 	                productOptional.ifPresent(products::add);
 	            }
 	            
+	            model.addAttribute("cart",cart);
 	            model.addAttribute("cartItems", cartItems);
 	            model.addAttribute("products", products);
 	            return "cart"; 
