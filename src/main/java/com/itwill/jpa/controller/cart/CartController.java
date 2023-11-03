@@ -30,20 +30,30 @@ public class CartController {
 	        CartDto cart = cartService.findCartByCartId(1L);
 	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
 	        
-	        // 각각의 카트 아이템에서 productId를 가져와 ProductDto를 가져오기
-	        List<ProductDto> products = new ArrayList<>();
-	        for (CartItemDto cartItem : cartItems) {
-	            Optional<ProductDto> productOptional = cartItemService.getProductByProductId(cartItem.getProductId());
-	            productOptional.ifPresent(products::add);
+	        if (cartItems.isEmpty()) {
+	            return "empty_cart";
+	        } else {
+	    
+	            List<ProductDto> products = new ArrayList<>();
+	            for (CartItemDto cartItem : cartItems) {
+	                Optional<ProductDto> productOptional = cartItemService.getProductByProductId(cartItem.getProductId());
+	                productOptional.ifPresent(products::add);
+	            }
+	            
+	            model.addAttribute("cartItems", cartItems);
+	            model.addAttribute("products", products);
+	            return "cart"; 
 	        }
-	        
-	        model.addAttribute("cartItems", cartItems);
-	        model.addAttribute("products", products);
 	    } catch (Exception e) {
 	        e.printStackTrace();
+	        return "index";
 	    }
-	    return "cart";
 	}
+
+
+
+
+
 	
 	
 	

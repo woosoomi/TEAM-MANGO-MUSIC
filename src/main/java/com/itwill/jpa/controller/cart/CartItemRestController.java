@@ -2,6 +2,8 @@
 package com.itwill.jpa.controller.cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,16 +49,12 @@ public class CartItemRestController {
     
     @Operation(summary = "상품 한개 삭제[성공]")
     @DeleteMapping("/cartItem/{cartItemId}")
-    public String deleteCartItem(@PathVariable(value = "cartItemId") Long CartItemId) {
-    	try {
-			cartItemService.deleteByCartItemId(CartItemId);
-			return "삭제성공";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "삭제실패";
-		}
-    	
+    public void deleteCartItem(@PathVariable(value = "cartItemId") Long CartItemId) {
+        try {
+            cartItemService.deleteByCartItemId(CartItemId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
     
 }

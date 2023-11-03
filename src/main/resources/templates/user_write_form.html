@@ -46,8 +46,8 @@
 									<h3>Login</h3>
 									<form method="post" action="user_login_action">
 										<div class="row">
-											<label for="userId">UserId:<input type="text"
-												name="userId" id="userId" placeholder="아이디"
+											<label for="loginId">UserId:<input type="text"
+												name="loginId" id="loginId" placeholder="아이디"
 												required="required" /></label>
 										</div>
 										<div class="row">
@@ -93,11 +93,11 @@
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserId</label>
-									<input type="text" id="userId" placeholder="아이디를 입력하세요." required="required">
+									<input type="text" id="userId2" placeholder="아이디를 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPassword</label>
-									<input type="text" id="userPw" placeholder="비밀번호를 입력하세요." required="required">
+									<input type="text" id="userPw2" placeholder="비밀번호를 입력하세요." required="required">
 								</div>
 							</div>
 							<div class="row">
@@ -187,12 +187,13 @@
 </script>
 -->
 
-	<!-- <script th:inline="javascript">
+	<script th:inline="javascript">
 		function submitForm() {
 			var formData = {
+					
 				/* Extract form values for registration */
-				userId : document.getElementById("userId").value,
-				userPw : document.getElementById("userPw").value,
+				userId : document.getElementById("userId2").value,
+				userPw : document.getElementById("userPw2").value,
 				userName : document.getElementById("userName").value,
 				userPhone : document.getElementById("userPhone").value,
 				userEmail : document.getElementById("userEmail").value,
@@ -200,26 +201,28 @@
 				userAddress : document.getElementById("userAddress").value,
 				userGender : document.getElementById("userGender").value
 			};
+			console.log(userId2);
 
 			/* Send a POST request to user_write_action using AJAX */
 			$.ajax({
 				type : "POST",
-				url : "user_write_action",
+				url : "/user/join",
 				data : JSON.stringify(formData),
 				contentType : "application/json",
 				success : function(response) {
 					/* Handle the response from the server, e.g., display a success message */
-					alert("User registration successful!");
+					alert("회원가입 성공하셨습니다!");
 					/* Optionally, you can redirect to another page */
 					window.location.href = "index";
 				},
 				error : function(error) {
 					/* Handle errors, e.g., display an error message */
-					alert("User registration failed: " + error.responseText);
+					alert("회원가입이 실패하였습니다: " + error.responseText);
+					window.location.href = "user_write_form";
 				}
 			});
 		}
-	</script> -->
+	</script>
 
 </body>
 
