@@ -22,27 +22,26 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    var cartId = 1; // 적절한 값을 넣어주세요.
-
+document.addEventListener('DOMContentLoaded', function(e) {
+    var cartId = 1;
     // 페이지가 로드될 때 실행되는 부분
-    updateTotalPrice(cartId);
-    console.log(cartId);
-
+    calculateTotalPrice(cartId);
     // 총 가격을 업데이트하는 함수
-    function updateTotalPrice(cartId) {
+    function calculateTotalPrice(cartId) {
+    console.log(cartId);
         $.ajax({
             url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart/' + cartId,
             type: 'GET',
             success: function(data) {
-                document.getElementById('totPrice').innerHTML = data.cartTotPrice + '원';
-                console.log(document.getElementById('totPrice'));
+                document.getElementById('cartTotPrice').innerHTML = data.cartTotPrice + '원';
+                console.log(document.getElementById('cartTotPrice'));
             },
             error: function(error) {
                 console.error('Error:', error);
             }
         });
+        e.preventDefault();
     }
 });

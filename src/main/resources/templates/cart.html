@@ -15,12 +15,7 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/cart.js"></script>
+
 </head>
 
 <body><!--preloading-->
@@ -85,8 +80,8 @@
 										</li>
 										<li class="run-time">
 											상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비 : 0원<span>총 금액
-												:</span> <span
-												th:text="${product.productPrice * cartItem.cartItemQty +'원'}" </span>
+												:</span> 
+												<span th:text="${product.productPrice * cartItem.cartItemQty +'원'}"></span>
 										</li>
 										<li>
 											<a href="#">주문하기</a>
@@ -95,8 +90,8 @@
 										</li>
 										<div
 											style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
-											<span id="totPrice" style="margin-right: 10px; font-size: 18px;">
-												<span th:text="${totPrice + '원'}"></span>
+											<span id="cartTotPrice" style="margin-right: 10px; font-size: 18px;">
+												<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원'"></span>
 											</span>
 											<button
 												style="background-color: #fff; color:black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;">주문하기</button>
@@ -144,9 +139,11 @@
 	<div th:insert="~{footer :: footerFragment}">
 	</div>
 	<script src="js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/cart.js"></script>
 </body>
 
 </html>
