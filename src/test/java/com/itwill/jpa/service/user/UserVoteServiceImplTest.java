@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.user.UserDao;
+import com.itwill.jpa.dao.user.UserVoteDaoImpl;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.vote.Vote;
@@ -46,6 +47,10 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	UserVoteDaoImpl userDaoImpl;
+	
 	
 	@Autowired 
 	VoteServiceImpl voteServiceImpl;
@@ -94,7 +99,7 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
     @Transactional
     @Rollback(false)
 	@DisplayName("vote번호로 유저 검색")
-	//@Disabled
+	@Disabled
     public void testfindUserVoteIdWithProduct() {
     	//System.out.println(">>>>>>"+userRepository.findByVote_VoteId(2L).size());
 		//System.out.println(">>>>>>"+userVotesericeImpl.findByVote_VoteId(1L));
@@ -106,12 +111,13 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	@Test
     @Transactional
     @Rollback(false)
-	@DisplayName("vote번호로 유저 검색")
+	@DisplayName("유저 VoteId 업데이트")
 	@Disabled
-    public void testCountByVote_VoteId() {
+    public void testUdateUserVoteId() throws Exception {
     	//System.out.println(">>>>>>"+userRepository.CountByVote_VoteId(2L));
 		//System.out.println(">>>>>>"+userVotesericeImpl.findByVote_VoteId(1L));
-    
+		System.out.println(">>>>>>"+userVotesericeImpl.updateUserVoteId("ycl77",5L));
+	    
     }
 	
 }

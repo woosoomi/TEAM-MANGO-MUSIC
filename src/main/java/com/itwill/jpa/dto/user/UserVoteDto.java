@@ -25,16 +25,14 @@ public class UserVoteDto {
 	private String userName;		// 회원 이름
 	
 	private Long voteId;	
-	private Date voteDate; 			
-	private int voteTot;
+	
 	
 	public UserVoteDto(User user, Vote vote) {
 		this.userId = user.getUserId();
 		this.userPw = user.getUserPw();
 		this.userName = user.getUserName();
 		this.voteId = vote.getVoteId();
-		this.voteDate = vote.getVoteDate();
-		this.voteTot = vote.getVoteTot();
+		
 	}
 	
 	
@@ -44,8 +42,6 @@ public class UserVoteDto {
 				  .userPw(entity.getUserPw())
 				  .userName(entity.getUserName())
 				  .voteId(entity.getVote().getVoteId())
-				  .voteTot(entity.getVote().getVoteTot())
-				  .voteDate(entity.getVote().getVoteDate())
 				  .build();
 	}
 
@@ -55,8 +51,6 @@ public class UserVoteDto {
 						   .userPw(user.getUserPw())
 						   .userName(user.getUserName())
 						   .voteId(user.getVote().getVoteId())
-						   .voteDate(vote.getVoteDate())
-						   .voteTot(vote.getVoteTot())
 						   .build();
 	}
 	
@@ -69,9 +63,7 @@ public class UserVoteDto {
 							  .userId(entity.getUserId())
 							  .userPw(entity.getUserPw())
 							  .userName(entity.getUserName())
-							  .voteId(entity.getVote().getVoteId())
-							  .voteTot(entity.getVote().getVoteTot())
-							  .voteDate(entity.getVote().getVoteDate())
+							  .voteId(entity.getVote().getVoteId())							  
 							  .build();
 		 					  userVoteDtoList.add(userDto);
 		 }
