@@ -22,10 +22,9 @@
 
 </head>
 <body>
-	<!--preloading-->
-	<div th:insert="~{header :: headerFragment}"></div>
-
 	<!-- BEGIN | Header -->
+	<div th:insert="~{header :: headerFragment}"></div>
+	<!-- END | Header -->
 	<header class="ht-header">
 		<div class="container">
 			<nav class="navbar navbar-default navbar-custom"></nav>
@@ -93,11 +92,11 @@
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserId</label>
-									<input type="text" id="userId2" placeholder="아이디를 입력하세요." required="required">
+									<input type="text" id="userId" placeholder="아이디를 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPassword</label>
-									<input type="text" id="userPw2" placeholder="비밀번호를 입력하세요." required="required">
+									<input type="text" id="userPw" placeholder="비밀번호를 입력하세요." required="required">
 								</div>
 							</div>
 							<div class="row">
@@ -136,7 +135,7 @@
 							<div class="row">
 								<div class="col-md-2">
 									<input class="submit" id="savebutton" type="submit" value="save"
-										onclick="submitForm()">
+										onclick="writeForm()">
 								</div>
 							</div>
 						</form>
@@ -152,48 +151,13 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 	
-	
-<!--  <script>
-	document.getElementById("savebutton").addEventListener("click",
-			function() {
-				// Form 데이터 수집
-				var formData = {
-					userId : document.getElementById("userId").value,
-					userPw : document.getElementById("userPw").value,
-					userName : document.getElementById("userName").value,
-					userPhone : document.getElementById("userPhone").value,
-					userEmail : document.getElementById("userEmail").value,
-					userJumin : document.getElementById("userJumin").value,
-					userAddress : document.getElementById("userAddress").value,
-					userGender : document.getElementById("userGender").value
-				};
-
-				// 서버로 데이터 전송 (AJAX)
-				var xhr = new XMLHttpRequest();
-				xhr.open("POST", "user_write_action", true);
-				xhr.setRequestHeader("Content-Type", "application/json");
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState === 4) {
-						if (xhr.status === 201) {
-							alert("회원 가입 성공!");
-							window.location.href = "index"; // 성공 시 리다이렉트
-						} else {
-							alert("회원 가입 실패: " + xhr.responseText);
-						}
-					}
-				};
-				xhr.send(JSON.stringify(formData));
-			});
-</script>
--->
-
 	<script th:inline="javascript">
-		function submitForm() {
+		function writeForm() {
 			var formData = {
 					
 				/* Extract form values for registration */
-				userId : document.getElementById("userId2").value,
-				userPw : document.getElementById("userPw2").value,
+				userId : document.getElementById("userId").value,
+				userPw : document.getElementById("userPw").value,
 				userName : document.getElementById("userName").value,
 				userPhone : document.getElementById("userPhone").value,
 				userEmail : document.getElementById("userEmail").value,
@@ -201,7 +165,7 @@
 				userAddress : document.getElementById("userAddress").value,
 				userGender : document.getElementById("userGender").value
 			};
-			console.log(userId2);
+			console.log(userId);
 
 			/* Send a POST request to user_write_action using AJAX */
 			$.ajax({
@@ -210,13 +174,10 @@
 				data : JSON.stringify(formData),
 				contentType : "application/json",
 				success : function(response) {
-					/* Handle the response from the server, e.g., display a success message */
 					alert("회원가입 성공하셨습니다!");
-					/* Optionally, you can redirect to another page */
 					window.location.href = "index";
 				},
 				error : function(error) {
-					/* Handle errors, e.g., display an error message */
 					alert("회원가입이 실패하였습니다: " + error.responseText);
 					window.location.href = "user_write_form";
 				}
