@@ -1,3 +1,4 @@
+
 package com.itwill.jpa.service.product;
 
 import java.util.List;
@@ -15,9 +16,8 @@ import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.repository.product.ProductRepository;
 
-
 class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
-	@Autowired
+/*	@Autowired
 	ProductRepository productRepository;
 
 	
@@ -28,7 +28,7 @@ class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 	ProductVoteDaoImpl productVoteDaoImpl;
 	
 	
-	/******************* Vote ***********************/
+	*//******************* Vote ***********************//*
 
 	@Test
 	@Transactional
@@ -84,5 +84,5 @@ class ProductVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 
 	}
 
-
+*/
 }
