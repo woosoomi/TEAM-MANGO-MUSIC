@@ -1,33 +1,32 @@
 
-//order_history 최신순, 오래된순
+/*$(document).ready(function() {
+  // 정렬 함수
+  function sortItems(order) {
+    var orderHistory = $('#orderHistory');
+    var items = orderHistory.find('.movie-item-style-2').get();
+    items.sort(function(a, b) {
+      var dateA = new Date($(a).find('.rate span').text().split(': ')[1]);
+      var dateB = new Date($(b).find('.rate span').text().split(': ')[1]);
+      
+      // 날짜를 타임스탬프로 변환하여 비교
+      var timestampA = dateA.getTime();
+      var timestampB = dateB.getTime();
+      
 
+      return order === 'newest' ? timestampB - timestampA : timestampA - timestampB;
+    });
+    orderHistory.empty();
+    $.each(items, function(i, item) {
+      orderHistory.append(item);
+    });
+  }
 
-$(document).ready(function() {
-	var initialData = $('#orderHistory').html(); //페이지 시작할때 타임리프로 구현한 데이터 저장
-	var sortSelect = $('#sortSelect');
-	var orderHistory = $('#orderHistory');
+  // 선택 요소의 변경 이벤트를 감지
+  $('#sortSelect').change(function() {
+    var selectedOption = $(this).val();
+    sortItems(selectedOption);
+  });
 
-	function sortOrder(ascending) { //정렬
-		var itemList = orderHistory.find('.movie-item-style-2').toArray();
-		itemList.sort(function(a, b) {
-			var dateA = new Date($(a).find('p').eq(0).text());
-			var dateB = new Date($(b).find('p').eq(0).text());
-			return ascending ? dateA - dateB : dateB - dateA;
-		});
-		orderHistory.empty();
-		$.each(itemList, function(index, item) {
-			orderHistory.append(item);
-		});
-	}
-
-	sortSelect.on('change', function() {
-	var selectedOption = sortSelect.val();
-		if (selectedOption === 'newest') {
-			sortOrder(false); // 최신순으로 정렬
-		} else if (selectedOption === 'oldest') {
-			sortOrder(true); // 오래된순으로 정렬
-		}
-	});
-
-});
-			   	 
+  // 페이지 로드 시 최신순으로 정렬
+  sortItems('newest');
+});*/
