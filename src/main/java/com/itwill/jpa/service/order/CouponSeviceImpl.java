@@ -90,19 +90,21 @@ public class CouponSeviceImpl implements CouponService{
 	
 	//쿠폰 할인 적용 시키기
 	@Override
-	public double applyCouponDiscount(Long couponId, double orderPrice) {
-		Coupon coupon = couponRepository.findById(couponId).get();
-		if (coupon != null) {
-			double discountRate = coupon.getCouponDiscount();
-			if (discountRate > 0) {
-				// 할인율을 적용하여 할인액 계산
-				double discountAmount = orderPrice * (discountRate / 100.0);
-				double discountedTotal = orderPrice - discountAmount;
-				return discountedTotal;
-			}
-		}
-		// 할인 적용되지 않는 경우 원래 총액 반환
-		return orderPrice;
+	public double applyCouponDiscount(String userId, double orderPrice) {
+	    List<CouponDto> userCoupons = couponsByUserId(userId);
+	    double totalDiscount = 0.0;
+
+	    for (CouponDto coupon : userCoupons) {
+	        double discountRate = coupon.getCouponDiscount();
+	        if (discountRate > 0) {
+	            // 할인율을 적용하여 할인액 계산
+	            double discountAmount = orderPrice * (discountRate / 100.0);
+	            totalDiscount += discountAmount;
+	        }
+	    }
+
+	    double discountedTotal = orderPrice - totalDiscount;
+	    return discountedTotal;
 	}
 	
 	//쿠폰 id로 쿠폰 가져오기
