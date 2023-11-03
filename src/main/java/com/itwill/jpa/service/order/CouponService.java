@@ -19,7 +19,7 @@ public interface CouponService {
 	//주문내역에서 해당 주문에 사용된 쿠폰 불러오기
 	CouponDto findCouponByOrderId(Long orderId);
 	//쿠폰 할인 적용 시키기
-	public double applyCouponDiscount(Long couponId, double orderPrice);
+	public double applyCouponDiscount(String userId, double orderPrice);
 	//쿠폰 id로 쿠폰 가져오기
 	public CouponDto findCouponByCouponId(Long couponId);
 }

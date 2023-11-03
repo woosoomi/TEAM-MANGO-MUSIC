@@ -228,13 +228,13 @@
 										</div>
 										<div class="col-md-6">
 											<label>할인</label>
-											<input type="text" id="discountInput" th:placeholder="${discount} + ' %'">
+											<input type="text" id="discountInput" placeholder="">
 										</div>
 									</div>
 								</div>
 								<div class="col-md-12 form-it">
 									<label>총 결제금액(VAT 별도)</label>
-									<input type="text" id="endPrice" th:placeholder="${endPrice}+'원'">
+									<input type="text" id="endPrice" th:placeholder="${formattedOrderPrice}+'원'">
 								</div>
                                 <div class="col-md-12 form-it" style="display: flex; align-items: center; margin-bottom: 5px;">
                                     <input type="checkbox" id="termsAgree1" name="termsAgree1"
@@ -346,7 +346,7 @@
 	
 	/*
 	
-	//쿠폰 선택시 쿠폰 id값을 받아와서 쿠폰 해당 할인율 반환 (ajax) 아직
+	//쿠폰 선택시 쿠폰 id값을 받아와서 쿠폰 해당 할인율 반환 (ajax) 불필요
     document.getElementById('couponSelect').addEventListener('change', function() {
         var selectedCouponValue = this.value;
 

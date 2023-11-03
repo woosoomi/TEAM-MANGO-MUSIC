@@ -125,9 +125,9 @@ public class CouponRestController {
 	// 쿠폰 할인 적용시키기
 	@Operation(summary = "쿠폰 할인 적용시키기([성공]")
 	@PutMapping("/discount/{couponId}") 
-	public ResponseEntity<?> applyCouponDiscount(@PathVariable(value = "couponId") Long couponId,@RequestParam(value = "orderPrice") double orderPrice) {
+	public ResponseEntity<?> applyCouponDiscount(@PathVariable(value = "userId") String userId,@RequestParam(value = "orderPrice") double orderPrice) {
 		try {
-			double discountPrice = couponService.applyCouponDiscount(couponId, orderPrice);
+			double discountPrice = couponService.applyCouponDiscount(userId, orderPrice);
 			return ResponseEntity.status(HttpStatus.OK).body(discountPrice);
 		} catch (Exception e) {
 			e.printStackTrace();
