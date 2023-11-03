@@ -46,6 +46,7 @@ public class UserController {
 		return forward_path;
 	}
 	
+	
 	/*
 	 * @PostMapping("/user_write_action") public String
 	 * user_write_action(@ModelAttribute(name = "fuser") UserDto userDto, Model
@@ -55,6 +56,7 @@ public class UserController {
 	 * model.addAttribute("fuser", userDto); forward_path = "user_write_form"; }
 	 * return forward_path; }
 	 */
+	 
 	 
 	/*
 	 * @LoginCheck
