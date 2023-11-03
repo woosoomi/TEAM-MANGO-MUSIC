@@ -1,21 +1,18 @@
 
 package com.itwill.jpa.controller.user;
 
-import java.net.http.HttpHeaders;
-import java.nio.charset.Charset;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,8 +24,6 @@ import com.itwill.jpa.exception.user.ExistedUserException;
 import com.itwill.jpa.service.user.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
-
-import io.swagger.v3.oas.models.media.MediaType;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -43,16 +38,16 @@ public class UserRestController {
 	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
 		try {
 			if (userService.existsById(userDto.getUserId())) {
-				throw new ExistedUserException("이미 존재하는 아이디입니다.");
+				throw new ExistedUserException("이미 존재하는 아이디입니다. >>> user_write 레스트 컨트롤러 작동");
 			}
 			UserDto createdUser = userService.createUser(userDto);
 			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 		} catch (ExistedUserException e) {
 			// 이미 존재하는 사용자 예외 처리
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		} catch (Exception e) {
+		/*} catch (Exception e) {
 			// 기타 예외 처리
-			return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("Internal Server Error>> user_write 레스트 컨트롤러 작동하지만 기타예외로 납치됨", HttpStatus.INTERNAL_SERVER_ERROR); */
 		}
 	}
 	
@@ -161,4 +156,11 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> handleException(Exception e) {
+	    return new ResponseEntity<>("서버 오류: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+
 }

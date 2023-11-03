@@ -266,6 +266,7 @@ font-family: 'Noto Sans KR', sans-serif;
 .battle_rank h1{
   color: #FFBB00;
   font-family: 'Noto Sans KR', sans-serif;
+  display: inline;
 }
 
 .battle_rank a{
