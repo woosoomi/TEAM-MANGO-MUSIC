@@ -45,11 +45,11 @@ export function ajaxRequestPromise(method, url, sendJsonObject) {
 			}
 		});
 	});
-	/*let xhr = new XMLHttpRequest();
+	let xhr = new XMLHttpRequest();
 	xhr.open(method, url, true);
 	xhr.setRequestHeader('Content-Type', 'application/json;chraset=UTF-8');
 	xhr.onload = function() {
 		callbackFunction(JSON.parse(xhr.responseText));
 	}
-	xhr.send(JSON.stringify(sendJsonObject));*/
+	xhr.send(JSON.stringify(sendJsonObject));
 }

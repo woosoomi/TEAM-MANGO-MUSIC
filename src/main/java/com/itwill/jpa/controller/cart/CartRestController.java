@@ -74,7 +74,8 @@ public class CartRestController {
 	 * { return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); } }
 	 */
 	
-	@GetMapping("/calculateTotalPrice/{cartId}")
+	@Operation(summary = "총합계산[성공]")
+	@GetMapping("/cart/{cartId}")
 	public ResponseEntity<CartDto> calculateTotalPrice(@PathVariable(value = "cartId") Long cartId) {
 		try {
 			CartDto totPrice = cartService.calculateTotalPrice(cartId);
