@@ -43,7 +43,7 @@
 							<div class="dropdown-container">
 								<form action="">
 									<input class="submit" type="submit" placeholder="submit" value="수정하기"
-										style="margin-left:250px;">
+										style="margin-left:250px;" >
 
 									<input class="submit" type="submit" value="삭제하기" style="margin-left: 50px;"
 										id="deleteButton">
@@ -67,7 +67,7 @@
 	<div th:insert="~{footer :: footerFragment}">
 	</div>
 
-	<script src="js/jquery.js"></script>
+	<!--<script src="js/jquery.js"></script>-->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 	<script src="js/plugins.js"></script>
@@ -94,7 +94,7 @@
 				url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_detail/" + boardId,
 				success: function () {
 					alert("게시글이 삭제되었습니다.");
-					window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/index"; 
+					window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/notification"; 
 				},
 				error: function () {
 					alert("게시글 삭제에 실패했습니다.");
