@@ -25,7 +25,7 @@ $(document).ready(function() {
 	
 });
 document.addEventListener('DOMContentLoaded', function(e) {
-    var cartId = 1;
+    var cartId = 8;
     // 페이지가 로드될 때 실행되는 부분
     calculateTotalPrice(cartId);
     // 총 가격을 업데이트하는 함수

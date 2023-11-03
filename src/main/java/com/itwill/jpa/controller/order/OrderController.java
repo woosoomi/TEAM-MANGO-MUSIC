@@ -17,6 +17,7 @@ import com.itwill.jpa.service.order.CouponService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
+import com.itwill.jpa.service.user.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -35,6 +36,9 @@ public class OrderController {
 	
 	@Autowired
 	private CouponService couponService;
+	
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/order_membership")
 	public String orderMembershipPage(Model model, HttpServletRequest request) {

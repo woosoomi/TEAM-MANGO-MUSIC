@@ -33,6 +33,7 @@ public class BoardRestController {
 	@Autowired
 	private BoardServiceImpl boardServiceImpl;
 
+
 	@Operation(summary = "게시판등록[성공]")
 	@PostMapping("board//{boardId}")
 	public ResponseEntity<BoardDto> createBoard(@RequestBody BoardDto boardDto) {

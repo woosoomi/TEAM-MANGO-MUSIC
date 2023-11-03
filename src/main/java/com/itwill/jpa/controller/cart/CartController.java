@@ -27,7 +27,7 @@ public class CartController {
 	@GetMapping("/cart")
 	public String cart(Model model) {
 	    try {
-	        CartDto cart = cartService.findCartByCartId(1L);
+	        CartDto cart = cartService.findCartByCartId(8L);
 	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
 	        
 	        if (cartItems.isEmpty()) {
