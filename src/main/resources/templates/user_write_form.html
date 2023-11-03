@@ -19,12 +19,13 @@
 <!-- CSS files -->
 <link rel="stylesheet" href="css/plugins.css">
 <link rel="stylesheet" href="css/style.css">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<!-- BEGIN | Header -->
+	<!--preloading-->
 	<div th:insert="~{header :: headerFragment}"></div>
-	<!-- END | Header -->
+
+	<!-- BEGIN | Header -->
 	<header class="ht-header">
 		<div class="container">
 			<nav class="navbar navbar-default navbar-custom"></nav>
@@ -87,46 +88,47 @@
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
-						<form action="#" class="user" name="f" method="post" th:object="${userDto}">
+						<form name="f" method="post" th:object="${userDto}">
 							<h4>01. UserInfo</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserId</label>
-									<input type="text" id="userId" placeholder="아이디를 입력하세요." required="required">
+									<input type="text" id="userId2" name="userId1" placeholder="아이디를 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPassword</label>
-									<input type="text" id="userPw" placeholder="비밀번호를 입력하세요." required="required">
+									<input type="text" id="userPw2" name="userPw1" placeholder="비밀번호를 입력하세요." required="required">
+
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserName</label>
-									<input type="text" id="userName" placeholder="이름을 입력하세요." required="required">
+									<input type="text" id="userName" name="userName1" placeholder="이름을 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPhone</label>
-									<input type="text" id="userPhone" placeholder="전화번호를 입력하세요." required="required">
+									<input type="text" id="userPhone" name="userPhone1" placeholder="전화번호를 입력하세요." required="required">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserEmail</label>
-									<input type="text" id="userEmail" placeholder="이메일을 입력하세요." required="required">
+									<input type="text" id="userEmail" name="userEmail1" placeholder="이메일을 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserJumin</label>
-									<input type="text" id="userJumin" placeholder="주민번호를 입력하세요." required="required">
+									<input type="text" id="userJumin" name="userJumin1" placeholder="주민번호를 입력하세요." required="required">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserAddress</label>
-									<input type="text" id="userAddress" placeholder="주소를 입력하세요." required="required">
+									<input type="text" id="userAddress" name="userAddress1" placeholder="주소를 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserGender</label> 
-									<select id="userGender" name="userGender">
+									<select id="userGender" name="userGender1">
 										<option value="man">남</option>
 										<option value="woman">여</option>
 									</select>
@@ -134,8 +136,8 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2">
-									<input class="submit" id="savebutton" type="submit" value="save"
-										onclick="writeForm()">
+									<!-- Submit button -->
+								    <input class="submit" id="savebutton" type="button" value="회원가입" onclick="submitForm()">
 								</div>
 							</div>
 						</form>
@@ -151,39 +153,49 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 	
-	<script th:inline="javascript">
-		function writeForm() {
-			var formData = {
-					
-				/* Extract form values for registration */
-				userId : document.getElementById("userId").value,
-				userPw : document.getElementById("userPw").value,
-				userName : document.getElementById("userName").value,
-				userPhone : document.getElementById("userPhone").value,
-				userEmail : document.getElementById("userEmail").value,
-				userJumin : document.getElementById("userJumin").value,
-				userAddress : document.getElementById("userAddress").value,
-				userGender : document.getElementById("userGender").value
-			};
-			console.log(userId);
 
-			/* Send a POST request to user_write_action using AJAX */
-			$.ajax({
-				type : "POST",
-				url : "/user/join",
-				data : JSON.stringify(formData),
-				contentType : "application/json",
-				success : function(response) {
-					alert("회원가입 성공하셨습니다!");
-					window.location.href = "index";
-				},
-				error : function(error) {
-					alert("회원가입이 실패하였습니다: " + error.responseText);
-					window.location.href = "user_write_form";
-				}
-			});
-		}
-	</script>
+<!-- JavaScript to handle form submission -->
+<script th:inline="javascript">
+    function submitForm() {
+        var formData = {
+            userId: document.getElementById("userId2").value,
+            userPw: document.getElementById("userPw2").value,
+            userName: document.getElementById("userName").value,
+            userPhone: document.getElementById("userPhone").value,
+            userEmail: document.getElementById("userEmail").value,
+            userJumin: document.getElementById("userJumin").value,
+            userAddress: document.getElementById("userAddress").value,
+            userGender: document.getElementById("userGender").value
+        };
+
+        // Send form data to the server
+        fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/join', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (response.status === 201) {
+                // Registration successful
+                alert('회원가입이 성공적으로 완료되었습니다.');
+                // You can add further actions here upon successful registration
+            } else if (response.status === 400) {
+                // Existing user exception
+                response.text().then(message => {
+                    alert('에러: ' + message);
+                });
+            } else {
+                // Other exceptions
+                alert('내부 서버 오류');
+            }
+        })
+        .catch(error => {
+            console.error('에러:', error);
+        });
+    }
+</script>
 
 </body>
 
