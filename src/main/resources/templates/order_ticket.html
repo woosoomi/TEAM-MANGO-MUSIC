@@ -236,7 +236,7 @@
 											</div>
 											<div class="col-md-6">
 												<label>할인</label>
-													<input type="text" id="discountSelect" th:placeholder="${discount} + ' %'">
+												<input type="text" id="discountInput" th:placeholder="${discount} + ' %'">
 											</div>
 										</div>
 									</div>
@@ -351,35 +351,40 @@
 		}
 	}
 
-
 	
-	document.getElementById('couponSelect').addEventListener('change', function() {
-    var selectedCouponValue = this.value;
-    
-    // Ajax 요청을 보내서 선택한 쿠폰의 할인율을 가져옴
-    $.ajax({
-        type: 'GET',
-        url: '/coupon', // 실제 API 엔드포인트로 변경해야 함
-        data: { couponValue: selectedCouponValue },
-        success: function(data) {
-            // Ajax 요청 성공 시 할인율 업데이트
-            var discountSelect = document.getElementById('discountSelect');
-            discountSelect.options.length = 0; // 기존 옵션 제거
-            var option = document.createElement('option');
-            option.value = data.discount; // 서버에서 받은 할인율 데이터
-            option.text = data.discount + '%';
-            discountSelect.appendChild(option);
-        },
-        error: function() {
-            // Ajax 요청 실패 처리
-            console.log('Ajax 요청 실패');
-        }
+	/*
+	//쿠폰 선택시 쿠폰 id값을 받아와서 쿠폰 해당 할인율 반환 (ajax)
+    document.getElementById('couponSelect').addEventListener('change', function() {
+        var selectedCouponValue = this.value;
+
+        // Ajax 요청을 보내서 선택한 쿠폰의 할인율을 가져옴
+        $.ajax({
+            type: 'GET',
+            url: '/coupon/coupon/?couponId=' + selectedCouponValue,
+            success: function(data) {
+                // Ajax 요청 성공 시 할인율 업데이트
+                var discountInput = document.getElementById('discountInput');
+                discountInput.placeholder = data.discount + ' %';
+            },
+            error: function() {
+                // Ajax 요청 실패 처리
+                console.log('Ajax 요청 실패');
+            }
+        });
     });
-});
+	*/
+	
+	
+	
+	//쿠폰 선택시 쿠폰 value 값을 받아와서 아래 바에서 쿠폰 해당 value 반환 (Javascript) 성공
+	document.getElementById('couponSelect').addEventListener('change', function() {
+    var selectedCouponDiscount = this.value; // 선택한 쿠폰의 할인율을 가져옴
 
-
-
-
+    // 할인율을 플레이스홀더로 업데이트
+    var discountInput = document.getElementById('discountInput');
+    discountInput.placeholder = selectedCouponDiscount + ' %';
+	});
+		
 
 
 

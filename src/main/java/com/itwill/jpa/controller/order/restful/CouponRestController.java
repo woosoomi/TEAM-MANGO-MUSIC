@@ -136,5 +136,24 @@ public class CouponRestController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
 	}
+	
+	//	쿠폰 id로 쿠폰 가져오기
+	@Operation(summary = "쿠폰 id로 쿠폰 가져오기([성공]")
+	@GetMapping("/coupon/{couponId}")
+	public ResponseEntity<?> getCouponByCouponId(@PathVariable(value = "couponId") Long couponId) {
+		try {
+			CouponDto foundCoupon = couponService.findCouponByCouponId(couponId); 
+			return ResponseEntity.status(HttpStatus.OK).body(foundCoupon);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+	}
+	
+	
+	
+	
 }
 		

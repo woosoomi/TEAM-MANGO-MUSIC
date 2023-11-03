@@ -21,4 +21,5 @@ public interface CouponService {
 	//쿠폰 할인 적용 시키기
 	public double applyCouponDiscount(Long couponId, double orderPrice);
 	//쿠폰 id로 쿠폰 가져오기
+	public CouponDto findCouponByCouponId(Long couponId);
 }
