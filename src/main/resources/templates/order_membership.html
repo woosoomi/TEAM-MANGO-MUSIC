@@ -19,107 +19,121 @@
 </head>
 
 <body><!--preloading-->
-<div th:insert="~{header :: headerFragment}"></div>
-	
-<div class="page-single movie_list">
-    <div class="container">
-        <div class="row ipad-width2">
-            <div class="col-md-8 col-sm-12 col-xs-12">
-                <div class="topbar-filter">
-                    <p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
-                </div>
-                <div class="movie-item-style-2">
-                    <img th:src="@{'images/' + ${membershipImage}}" alt="">
-                    <div class="mv-item-infor">
-                        <h6><a href="membership_detail" th:text="${membershipName}">멤버십명<span>(2023)</span></a></h6>
-                        <p class="describe" th:text="${membershipContent}">
-                            망고 뮤직의 세계로 당신을 초대합니다.
-                            망고 뮤직이 제공하는 멤버십으로 현실에서의 모든 스트레스를 뒤로한 채 음악의 세계로 빠져보세요. 음악은 우리의 더 나은 동반자입니다. 멤버십으로 무제한 음악을
-                            즐기며, 소리 없이도 마음을 전달하는 그 감동을 느껴보세요. 더 많은 음악과 더 많은 경험을 위해 멤버십을 시작해보세요!
-                        </p>
-                        <p class="run-time" th:text="'시작일: '+${membershipStartPeriod}+' 유효기간: '+${membershipPeriodOfUse}+'일'"><span></span></p>
-                    </div>
-				</div>
-				<div class="topbar-filter">
-				</div>
+	<div th:insert="~{header :: headerFragment}"></div>
+
+	<div class="page-single movie_list">
+		<div class="container">
+			<div class="row ipad-width2">
+				<div class="col-md-8 col-sm-12 col-xs-12">
+					<div class="topbar-filter" id="userId">
+						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
+					</div>
+					<div class="movie-item-style-2">
+						<img th:src="@{'images/' + ${membershipImage}}" alt="">
+						<div class="mv-item-infor">
+							<h6><a href="membership_detail" th:text="${membershipName}">멤버십명<span>(2023)</span></a></h6>
+							<p class="describe" th:text="${membershipContent}">
+								망고 뮤직의 세계로 당신을 초대합니다.
+								망고 뮤직이 제공하는 멤버십으로 현실에서의 모든 스트레스를 뒤로한 채 음악의 세계로 빠져보세요. 음악은 우리의 더 나은 동반자입니다. 멤버십으로 무제한 음악을
+								즐기며, 소리 없이도 마음을 전달하는 그 감동을 느껴보세요. 더 많은 음악과 더 많은 경험을 위해 멤버십을 시작해보세요!
+							</p>
+							<p class="run-time"
+								th:text="'시작일: '+${membershipStartPeriod}+' 유효기간: '+${membershipPeriodOfUse}+'일'">
+								<span></span></p>
+						</div>
+					</div>
+					<div class="topbar-filter">
+					</div>
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div>
 							<p style="margin-bottom: 10px; font-weight: bold; font-size: 22px;">유의사항</p>
 							<p style="margin-top: 20px; margin-bottom: 20; font-weight: bold; font-size: 15px;">멤버십</p>
 							<p>사용 기간이 만료된 쿠폰은 할인에 적용되지 않습니다.<br>
-							   하나의 멤버십 결제당 하나의 쿠폰만 사용하실 수 있습니다.<br>
-							   권리자의 판단에 따라 일부 음원은 재생이 제한될 수 있습니다.<br>	
+								하나의 멤버십 결제당 하나의 쿠폰만 사용하실 수 있습니다.<br>
+								권리자의 판단에 따라 일부 음원은 재생이 제한될 수 있습니다.<br>
 							</p>
 						</div>
 						<div>
-							<p style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; font-size: 15px;">결제 및 해지</p>
+							<p style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; font-size: 15px;">결제 및
+								해지</p>
 							<p>구매와 동시에 선불로 과금되며, 부가세 10%는 별도입니다.<br>
-							   결제 시 SMS 등을 통한 별도의 거래 내역 통지는 생략됩니다.<br>
-							   구매하신 멤버십의 결제 내역 조회, 해지는 [망고 웹사이트 &gt; 결제 &gt; 주문 내역]에서 할 수 있습니다.<br>
-							   멤버십 환불 신청은 망고 고객센터(1577-1234)로 전화하거나,<br>
-							   [망고 웹사이트 &gt; 게시판 &gt; 1:1 문의]에서 할 수 있습니다.
+								결제 시 SMS 등을 통한 별도의 거래 내역 통지는 생략됩니다.<br>
+								구매하신 멤버십의 결제 내역 조회, 해지는 [망고 웹사이트 &gt; 결제 &gt; 주문 내역]에서 할 수 있습니다.<br>
+								멤버십 환불 신청은 망고 고객센터(1577-1234)로 전화하거나,<br>
+								[망고 웹사이트 &gt; 게시판 &gt; 1:1 문의]에서 할 수 있습니다.
 							</p>
 						</div>
 					</div>
-			</div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="sidebar">
-                    <div class="searh-form">
-                        <h4 class="sb-title">결제상세</h4>
-                        <form class="form-style-1" action="#">
-                            <div class="row">
-                                <div class="col-md-12 form-it">
-                                    <label>멤버십명</label>
-                                    <input type="text" th:placeholder="${membershipName}">
-                                </div>
-                                <div class="col-md-12 form-it">
-                                    <label>쿠폰선택</label>
-                                    <div class="group-ip">
-									<select name="skills"  input type="text" class="ui fluid dropdown" id="couponSelect">
-										<option value="">쿠폰을 선택하세요</option>
-										<option value="Action1" th:each="couponDto : ${couponDtoList}" th:text="${couponDto.couponName}"
-											th:value="${couponDto.couponDiscount}">
-										</option>
-									</select>
-                                    </div>
-                                </div>
-								<div class="col-md-12 form-it">
-									<div class="row">
-										<div class="col-md-6">
-											<label>상품금액</label>
-											<input type="text" id="formattedOrderPrice" th:placeholder="${formattedOrderPrice}+'원'">
-										</div>
-										<div class="col-md-6">
-											<label>할인</label>
-											<input type="text" id="discountInput" placeholder="">
+				</div>
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="sidebar">
+						<div class="searh-form">
+							<h4 class="sb-title">결제상세</h4>
+							<form class="form-style-1" action="#">
+								<div class="row">
+									<div class="col-md-12 form-it">
+										<label>멤버십명</label>
+										<input type="text" th:placeholder="${membershipName}">
+									</div>
+									<div class="col-md-12 form-it">
+										<label>쿠폰선택</label>
+										<div class="group-ip">
+											<select name="skills" input type="text" class="ui fluid dropdown"
+												id="couponSelect">
+												<option value="">쿠폰을 선택하세요</option>
+												<option value="Action1" th:each="couponDto : ${couponDtoList}"
+													th:text="${couponDto.couponName}"
+													th:value="${couponDto.couponDiscount}">
+												</option>
+											</select>
 										</div>
 									</div>
+									<div class="col-md-12 form-it">
+										<div class="row">
+											<div class="col-md-6">
+												<label>상품금액</label>
+												<input type="text" id="formattedOrderPrice"
+													th:placeholder="${formattedOrderPrice}+'원'">
+											</div>
+											<div class="col-md-6">
+												<label>할인</label>
+												<input type="text" id="discountInput" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 form-it">
+										<label>총 결제금액(VAT 별도)</label>
+										<input type="text" id="endPrice" th:placeholder="${formattedOrderPrice}+'원'">
+									</div>
+									<div class="col-md-12 form-it"
+										style="display: flex; align-items: center; margin-bottom: 5px;">
+										<input type="checkbox" id="termsAgree1" name="termsAgree1"
+											style="width: 16px; height: 16px; margin-right: 10px; margin-bottom: 0;">
+										<label for="termsAgree1" style="margin-bottom: 0;">유의사항을 확인하였습니다.</label>
+									</div>
+									<div class="col-md-12 form-it"
+										style="display: flex; align-items: center; margin-bottom: 5px;">
+										<input type="checkbox" id="termsAgree2" name="termsAgree2"
+											style="width: 16px; height: 16px; margin-right: 10px; margin-bottom: 0;">
+										<label for="termsAgree2" style="margin-bottom: 0;">이용약관을 확인하였습니다.</label>
+									</div>
+									
+									<!--유저정보를 담을 숨은태그-->
+									<p id="userId" th:text="${user.userId}" style="display: none;"></p>
+									<p id="userPhone" th:text="${user.userPhone}" style="display: none;"></p>
+									<p id="userPw" th:text="${user.userPw}" style="display: none;"></p>
+									
+									<div class="col-md-12 ">
+										<input id="paymentButton" class="submit" type="submit" value="결제하기">
+									</div>
 								</div>
-								<div class="col-md-12 form-it">
-									<label>총 결제금액(VAT 별도)</label>
-									<input type="text" id="endPrice" th:placeholder="${formattedOrderPrice}+'원'">
-								</div>
-                                <div class="col-md-12 form-it" style="display: flex; align-items: center; margin-bottom: 5px;">
-                                    <input type="checkbox" id="termsAgree1" name="termsAgree1"
-                                        style="width: 16px; height: 16px; margin-right: 10px; margin-bottom: 0;">
-                                    <label for="termsAgree1" style="margin-bottom: 0;">유의사항을 확인하였습니다.</label>
-                                </div>
-                                <div class="col-md-12 form-it" style="display: flex; align-items: center; margin-bottom: 5px;">
-                                    <input type="checkbox" id="termsAgree2" name="termsAgree2"
-                                        style="width: 16px; height: 16px; margin-right: 10px; margin-bottom: 0;">
-                                    <label for="termsAgree2" style="margin-bottom: 0;">이용약관을 확인하였습니다.</label>
-                                </div>
-                                <div class="col-md-12 ">
-                                    <input class="submit" type="submit" value="결제하기">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- footer section-->
 	<footer class="ht-footer">
 		<div class="container">
@@ -185,7 +199,7 @@
 <script>
 
 	/*결제하기 버튼 누를시 이용약관, 유의사항 체크박스에 체크가 되어있는지 모니터링 하는 함수*/
-	
+
 	const checkbox1 = document.getElementById("termsAgree1");
 	const checkbox2 = document.getElementById("termsAgree2");
 	const submitButton = document.querySelector(".submit");
@@ -206,50 +220,50 @@
 		}
 	}
 
-	
+
 	/*
 	
 	//쿠폰 선택시 쿠폰 id값을 받아와서 쿠폰 해당 할인율 반환 (ajax) 불필요
-    document.getElementById('couponSelect').addEventListener('change', function() {
-        var selectedCouponValue = this.value;
+	document.getElementById('couponSelect').addEventListener('change', function() {
+		var selectedCouponValue = this.value;
 
-        // Ajax 요청을 보내서 선택한 쿠폰의 할인율을 가져옴
-        $.ajax({
-            type: 'GET',
-            url: '/coupon/coupon/?couponId=' + selectedCouponValue,
-            success: function(data) {
-                // Ajax 요청 성공 시 할인율 업데이트
-                var discountInput = document.getElementById('discountInput');
-                discountInput.placeholder = data.discount + ' %';
-            },
-            error: function() {
-                // Ajax 요청 실패 처리
-                console.log('Ajax 요청 실패');
-            }
-        });
-    });
+		// Ajax 요청을 보내서 선택한 쿠폰의 할인율을 가져옴
+		$.ajax({
+			type: 'GET',
+			url: '/coupon/coupon/?couponId=' + selectedCouponValue,
+			success: function(data) {
+				// Ajax 요청 성공 시 할인율 업데이트
+				var discountInput = document.getElementById('discountInput');
+				discountInput.placeholder = data.discount + ' %';
+			},
+			error: function() {
+				// Ajax 요청 실패 처리
+				console.log('Ajax 요청 실패');
+			}
+		});
+	});
     
 	*/
-	
-	
-	
+
+
+
 	/*쿠폰 선택시 쿠폰 value 값을 받아와서 아래 바에서 쿠폰 해당 value 반환 (Javascript) 성공*/
-	
-	document.getElementById('couponSelect').addEventListener('change', function() {
-     
-    var selectedCouponDiscount = parseFloat(this.value); // 선택한 쿠폰의 할인율을 가져옴
 
-    // 소수점 아래 자릿수를 절사
-    selectedCouponDiscount = selectedCouponDiscount.toFixed(0);
+	document.getElementById('couponSelect').addEventListener('change', function () {
 
-    // 할인율을 플레이스홀더로 업데이트
-    var discountInput = document.getElementById('discountInput');
-    discountInput.placeholder = selectedCouponDiscount + ' %';
+		var selectedCouponDiscount = parseFloat(this.value); // 선택한 쿠폰의 할인율을 가져옴
+
+		// 소수점 아래 자릿수를 절사
+		selectedCouponDiscount = selectedCouponDiscount.toFixed(0);
+
+		// 할인율을 플레이스홀더로 업데이트
+		var discountInput = document.getElementById('discountInput');
+		discountInput.placeholder = selectedCouponDiscount + ' %';
 	});
-	
-	
+
+
 	/*선택된 쿠폰 할인율을 받아서 총금액에 할인 반영해서 최종금액 돌려주기 (Javascript) 성공*/
-	
+
 	var originalPrice = parseFloat(document.getElementById('formattedOrderPrice').placeholder); // 오리지널 가격 가져오기
 	var currentDiscountedPrice = originalPrice; // 현재 쿠폰 할인된 가격
 
@@ -273,7 +287,55 @@
 
 
 
+	/* 결제하기 버튼을 클릭했을 때 실행되는 함수 */
+	
+	
+	
+	var endPriceElement = document.getElementById("endPrice");
+	var userIdElement = document.getElementById("userId");
+	var userPhoneElement = document.getElementById("userPhone");
+	var userPwElement = document.getElementById("userPw");
+	
+	var endPriceValue = endPriceElement.value;
+	var userId = userIdElement.textContent;
+	var userPhone = userPhoneElement.textContent;
+	var userPw = userPwElement.textContent;
+	
+	document.getElementById('paymentButton').addEventListener('click', function () {
+		// AJAX 요청을 보낼 URL 및 데이터 설정
+		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order_membership'; // 결제 처리를 수행하는 서버 엔드포인트 URL로 변경해야 함
+		var requestData = {
+			// 결제에 필요한 데이터를 여기에 추가 (예: 주문 정보, 사용자 정보, 결제 수단 정보 등)
+			userId: userId,
+			endPrice: endPriceValue,
+			userPhone: userPhone,
+			userPw: userPw
+		};
+
+		// AJAX 요청 보내기
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', url, true);
+		xhr.setRequestHeader('Content-Type', 'application/json');
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					// 결제가 성공적으로 완료될 경우 실행할 코드
+					var response = JSON.parse(xhr.responseText);
+					alert('결제가 성공적으로 완료되었습니다.');
+				} else {
+					// 결제가 실패한 경우 실행할 코드
+					alert('결제 처리 중 오류가 발생했습니다.');
+				}
+			}
+		};
+
+		xhr.send(JSON.stringify(requestData)); // 요청 데이터를 JSON 문자열로 변환하여 보냅니다.
+	});
+
+
 </script>
+
 
 
 

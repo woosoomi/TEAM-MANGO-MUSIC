@@ -50,6 +50,7 @@ public class Delivery {
 	
 	//이친구가 없었던게 문제
 	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ToString.Exclude
 	private Order order;
 	
 	//Dto -> entity 변환해주는 매서드

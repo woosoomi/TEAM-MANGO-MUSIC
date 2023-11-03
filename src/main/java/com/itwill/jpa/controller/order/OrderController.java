@@ -12,11 +12,14 @@ import org.thymeleaf.context.Context;
 import com.itwill.jpa.dto.order.CouponDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.order.CouponService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
+import com.itwill.jpa.service.user.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -35,6 +38,9 @@ public class OrderController {
 	
 	@Autowired
 	private CouponService couponService;
+	
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/order_membership")
 	public String orderMembershipPage(Model model, HttpServletRequest request) {
@@ -50,8 +56,8 @@ public class OrderController {
 			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
-			
-			
+			UserDto user = userService.findUser(userId);
+			model.addAttribute("user", user);
 			/*************** 주문아이템 ***************/
 			
 			
