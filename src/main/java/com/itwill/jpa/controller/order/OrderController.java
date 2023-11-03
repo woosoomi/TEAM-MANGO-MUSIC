@@ -56,8 +56,8 @@ public class OrderController {
 			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
-			UserDto user = userService.findUser(userId);
-			model.addAttribute("user", user);
+			
+			
 			/*************** 주문아이템 ***************/
 			
 			

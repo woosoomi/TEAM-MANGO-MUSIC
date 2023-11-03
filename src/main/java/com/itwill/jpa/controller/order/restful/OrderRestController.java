@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/order")
 @RequiredArgsConstructor//생성자를 자동으로 생성하여 멤버필드(DI)주입 해주는 어노테이션
 public class OrderRestController {
 
@@ -34,7 +35,7 @@ public class OrderRestController {
 
 	// 주문생성
 	@Operation(summary = "주문생성[성공]")
-	@PostMapping("/order_membership")
+	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(orderDto));
