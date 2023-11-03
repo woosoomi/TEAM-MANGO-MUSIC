@@ -16,186 +16,44 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/order.js"></script>
 </head>
 
 <body><!--preloading-->
-	<div id="preloader"><img class="logo" src="images/mango_logo2.png" alt="" width="119" height="58">
-		<div id="status"><span></span><span></span></div>
-	</div><!--end of preloading--><!--login form popup-->
-	<div class="login-wrapper" id="login-content">
-		<div class="login-content"><a href="#" class="close">x</a>
-			<h3>Login</h3>
-			<form method="post" action="login.php">
-				<div class="row"><label for="username">Username:<input type="text" name="username" id="username"
-							placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
-							required="required" /></label></div>
-				<div class="row"><label for="password"> Password:<input type="password" name="password" id="password"
-							placeholder="******"
-							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row">
-					<div class="remember">
-						<div><input type="checkbox" name="remember" value="Remember me"><span>Remember me</span></div><a
-							href="#">Forget password ?</a>
-					</div>
-				</div>
-				<div class="row"><button type="submit">Login</button></div>
-			</form>
-			<div class="row">
-				<p>Or via social</p>
-				<div class="social-btn-2"><a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a><a
-						class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a></div>
-			</div>
-		</div>
-	</div><!--end of login form popup--><!--signup form popup-->
-	<div class="login-wrapper" id="signup-content">
-		<div class="login-content"><a href="#" class="close">x</a>
-			<h3>sign up</h3>
-			<form method="post" action="signup.php">
-				<div class="row"><label for="username-2">Username:<input type="text" name="username" id="username-2"
-							placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
-							required="required" /></label></div>
-				<div class="row"><label for="email-2"> your email:<input type="password" name="email" id="email-2"
-							placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row"><label for="password-2"> Password:<input type="password" name="password"
-							id="password-2" placeholder=""
-							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row"><label for="repassword-2"> re-type Password:<input type="password" name="password"
-							id="repassword-2" placeholder=""
-							pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-							required="required" /></label></div>
-				<div class="row"><button type="submit">sign up</button></div>
-			</form>
-		</div>
-	</div><!--end of signup form popup--><!-- BEGIN | Header -->
-	<header class="ht-header">
-		<div class="container">
-			<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header logo">
-					<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span
-							class="sr-only">Toggle navigation</span>
-						<div id="nav-icon1"><span></span><span></span><span></span></div>
-					</div><a href="index"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
-				</div><!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden"><a href="#page-top"></a></li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1"
-								data-toggle="dropdown">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="index">mango music</a></li>
-
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 멜론차트<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="moviesingle.html">TOP100</a></li>
-								<li><a href="movielist.html">최신음악</a></li>
-								<li><a href="moviesingle.html">장르음악</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> shop<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-
-								<li><a href="moviesingle.html">망고티켓</a></li>
-								<li><a href="movielist.html">망고굿즈</a></li>
-								<li><a href="moviesingle.html">멤버십</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 뮤직어워드 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">뮤직어워드</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 게시판 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="notification">공지사항</a></li>
-								<li><a href="#">FAQ</a></li>
-								<li><a href="magazine">magazine</a></li>
-								<li><a href="#">1대1문의</a></li>
-								<li><a href="event">이벤트</a></li>
-							</ul>
-						</li>
-					
-					<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 결제 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="order_membership">멤버십결제</a></li>
-								<li><a href="order_ticket">티켓결제</a></li>
-								<li><a href="order_history">주문내역</a></li>
-							</ul>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-
-						<li class="btn signupLink"><a href="#">sign up</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</nav><!-- top search form -->
-			<div class="top-search"><select>
-					<option value="united">TV show</option>
-					<option value="saab">Others</option>
-				</select><input type="text"
-					placeholder="Search for a movie, TV Show or celebrity that you are looking for"></div>
-		</div>
-	</header><!-- END | Header -->
-	<div class="hero common-hero">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="hero-ct">
-						<h1>주문내역</h1>
-						<ul class="breadcumb">
-							<li class="active"><a href="index">Home</a></li>
-							<li><span class="ion-ios-arrow-right"></span><a href="order_history">Order History Page</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div th:insert="~{header :: headerFragment}"></div>
+	
+	
+	
+	
+	<!--최신순, 오래된순-->
+	 
 
 	<div class="page-single movie_list">
 		<div class="container">
-			<div class="row ipad-width2">
+			<div class="row">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
 						<p><a th:text="${context.user_id}+'님의'"></a>
 							<span th:text="${#lists.size(orderItemDtoList)}"></span>
 							<span>개의 주문내역</span>
 					 
-					 <script>
-	       			 // JavaScript 함수 정의
-			        function sortOrders() {
-			                    var selectedOption = document.getElementById("sortSelect").value;
-								var userId = "<%= session.getAttribute('userId') %>";
-					            // AJAX 요청을 만듭니다.
-					             var url = "/SortByLatestOrder/" + userId + "?sortBy=" + selectedOption;
-					             fetch(url)
-					            .then(response => response.json())
-					            .then(data => {
-					                // 서버에서 반환된 데이터를 사용하여 페이지를 업데이트
-					                updateOrderList(data);
-					            })
-					            .catch(error => {
-					                console.error("에러 발생: " + error);
-					            });
-			}
-       
-			   		 </script>    
+				
 							</p><label>Sort by:</label>
-						<select id="sortSelect" onchange="sortOrders()">
+						<select id="sortSelect">
 				        <option value="newest">최신순</option>
 				        <option value="oldest">오래된순</option>
 					    </select>
 					</div>
+					
+		<!--주문내역-->	
+		
+			<div class="row" id="orderHistory">
+		
         <div th:each="orderitem, iterStat: ${orderItemDtoList}">
 			
 		<div class="movie-item-style-2">
@@ -220,12 +78,12 @@
             <p>⚠️ 환불불가 상품입니다.</p>
             <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="inquiries">고객센터</a>로 문의해주세요.</p>
 		   
-        </div>
+        				</div>
         
-    </div>
-     <hr style="height: 1px; background-color: gray;">
-</div>
-
+    				</div>
+   				  <hr style="height: 1px; background-color: gray;">
+				</div>
+			</div>
 
 
 
@@ -235,7 +93,6 @@
 					<div class="ads2">
 						<p>🎦광고</p>
 						<img src="images/aespa.png" alt=""></div>
-	<!--	<div class="ads2"><img src="images/bpk.png" alt=""></div>-->
 						</div>
 					</div>
 				</div>
