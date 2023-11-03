@@ -27,8 +27,12 @@
 <body><!--preloading-->
 <div th:insert="~{header :: headerFragment}"></div>
 	
-	<!--최신순, 오래된순-->
 	
+	
+	
+	<!--최신순, 오래된순-->
+	 
+
 	<div class="page-single movie_list">
 		<div class="container">
 			<div class="row">
@@ -65,7 +69,7 @@
                     <span th:text="${orderDtoNewerList[iterStat.index].orderPrice + '원'}"></span>
                 </p>
                 <p class="rate">
-                    <span th:text="${'구매날짜: '+ #temporals.format(orderDtoNewerList[iterStat.index].createdAt, 'yyyy-MM-dd')}"></span>
+                    <span th:text="${'구매날짜: '+ #temporals.format(orderDtoNewerList[iterStat.index].createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
                 </p>
          		
             <p class="describe">
@@ -77,8 +81,8 @@
         				</div>
         
     				</div>
-				</div>
    				  <hr style="height: 1px; background-color: gray;">
+				</div>
 			</div>
 
 
