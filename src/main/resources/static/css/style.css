@@ -9916,3 +9916,20 @@ footer.full-width-ft .ft-copyright {
 select::-ms-expand {
     appearance: none;
 }
+
+/* 네이비 버튼 스타일 (검은색에 가까운 네이비) */
+.navy-button {
+    background-color:#233a50; /* 검은색에 가까운 네이비 */
+    color: #fff; /* 텍스트 색상 설정 */
+    border: 1px solid #ddd; /* 테두리 제거 */
+    padding: 0px; /* 패딩 설정 */
+    cursor: pointer; /* 커서 스타일 설정 */
+    font-family: 'Dosis', sans-serif;
+    font-size: 10px;
+}
+
+.navy-button:hover {
+    background-color: #192334; /* 호버 시 배경 색상 변경 (더 어두운 네이비) */
+}
+
+
