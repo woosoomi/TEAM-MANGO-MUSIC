@@ -17,7 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.dto.user.UserDto;
+import com.itwill.jpa.entity.order.Order.OrderStatus;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.order.OrderService;
+import com.itwill.jpa.service.user.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,23 +36,61 @@ public class OrderRestController {
 
 	private final OrderService orderService;
 	
+	private final UserService userService;
+
+	
 	/* Restful Order */
 
 	// 주문생성
 	@Operation(summary = "주문생성[성공]")
 	@PostMapping("/create")
-	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
-		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(orderDto));
-		} catch (Exception e) {
-			e.printStackTrace();
-			Map<String, String> errorResponse = new HashMap<>();
-			errorResponse.put("error", e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-			
-			
-		}
+	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto, HttpSession session) {
+	    try {
+	    	
+	    	
+	    	/*************** 유저정보 ***************/
+	    		    	
+
+	    	// 세션에 유저 정보 저장
+	    	session.setAttribute("user_id", "lsg33");
+	    	String userId = (String) session.getAttribute("user_id");
+	    	UserDto foundUser = userService.findUser(userId);
+	    	session.setAttribute("user", foundUser);
+	    	User user = (User) session.getAttribute("user");
+
+
+	    	// 세션에서 유저 정보 가져오기
+	  
+
+	        if (user == null) {
+	            // 세션에서 유저 정보가 없는 경우 에러 처리
+	            Map<String, String> errorResponse = new HashMap<>();
+	            errorResponse.put("error", "세션에 유저 정보가 없습니다.");
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+	        }
+	        
+	        //멤버쉽 카테고리 번호
+	        Long categoryId = 4L;
+	        //UserId와 카테고리 번호로 주문 아이템 리스트 뽑기
+	        List<OrderItemDto> orderItemDtoList = 
+	        		orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
+
+	        // 주문을 생성할 때 유저 정보를 사용
+	        orderDto.setUserId(user.getUserId());
+	        orderDto.setOrderStatus(OrderStatus.결제완료);
+	        orderDto.setOrderItemDtos(orderItemDtoList);
+
+	        
+	        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveOrder(orderDto));
+	    
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        Map<String, String> errorResponse = new HashMap<>();
+	        errorResponse.put("error", e.getMessage());
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+	    }
 	}
+	
 	
 	// 주문수정(관리자권한 orderPrice, orderStatus 수정가능)
 	@Operation(summary = "주문수정[성공]")

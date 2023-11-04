@@ -288,23 +288,22 @@
 	});
 
 
-	/* 결제하기 버튼을 클릭했을 때 실행되는 함수 */
+	/* 결제하기 버튼을 클릭했을 때 실행되는 함수(현대적인 방법의 ajax = 순수 자바스크립트로만 쓰임, 제이쿼리 X) */
 	
 	
 	//Id로 데이터 받기
 	var endPriceElement = document.getElementById("endPrice");
-	var endPriceValue = endPriceElement.value;
-	
-	var userIdElement = document.getElementById("userId");
-	var userId = userIdElement.textContent;
+	var endPrice = endPriceElement.value;
 	
 	document.getElementById('paymentButton').addEventListener('click', function () {
 		// AJAX 요청을 보낼 URL 및 데이터 설정
-		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL로 변경해야 함
+		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL
 		var requestData = {
 			// 결제에 필요한 데이터를 여기에 추가 (예: 주문 정보, 사용자 정보, 결제 수단 정보 등)
-			userId: userId,
-			endPrice: endPriceValue
+			endPrice: endPrice,
+			userId: "lsg33",
+			orderStatus: "결제완료", // 주문 상태 문자열 또는 해당 형식에 맞게 설정
+			orderItemDtos: orderItemDtoList
 
 		};
 
