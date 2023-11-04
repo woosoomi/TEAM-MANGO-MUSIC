@@ -32,6 +32,8 @@ INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER
 VALUES('lhb777', 'gksquf777', '임한별', '부산광역시 부산진구 범천동', 'lhb@naver.com', '890208-1678245', '010-9891-1832', '남',0);
 INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER, MEMBERSHIP) 
 VALUES('shy888', 'gkdP888', '송하예', '서울시 강북구 미아동', 'shy@naver.com', '940220-2315789', '010-9876-5432', '여',1);
+INSERT INTO userinfo(USER_ID, USER_PW, USER_NAME, USER_ADDRESS, USER_EMAIL, USER_JUMIN, USER_PHONE, USER_GENDER, MEMBERSHIP) 
+VALUES('admin', 'admin123', '관리자', '경기로 수원시 매탄동', 'admin@google.com', '920505-1460512', '010-5429-7741', '남',1);
 
 
 

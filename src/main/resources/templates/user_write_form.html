@@ -172,6 +172,33 @@
             userAddress: document.getElementById("userAddress").value,
             userGender: document.getElementById("userGender").value
         };
+        
+     // 각 필드의 유효성 검사
+        if (!formData.userId) {
+            alert('아이디를 입력하세요.');
+            return;
+        }
+        if (!formData.userPw) {
+            alert('비밀번호를 입력하세요.');
+            return;
+        }
+        if (!formData.userName) {
+            alert('이름을 입력하세요.');
+            return;
+        }
+        if (!formData.userPhone) {
+            alert('전화번호를 입력하세요.');
+            return;
+        }
+        if (!formData.userEmail) {
+            alert('이메일을 입력하세요.');
+            return;
+        }
+        // userPhone의 최대 길이 검사
+        if (formData.userPhone.length > 15) {
+            alert('전화번호의 형식이 틀렸습니다.');
+            return;
+        }
 
         // Send form data to the server
         fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/join', {
