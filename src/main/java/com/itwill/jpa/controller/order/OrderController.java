@@ -37,9 +37,6 @@ public class OrderController {
 	@Autowired
 	private CouponService couponService;
 	
-	@Autowired
-	private UserService userService;
-
 	@GetMapping("/order_membership")
 	public String orderMembershipPage(Model model, HttpServletRequest request) {
 		
