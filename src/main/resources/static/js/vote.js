@@ -6,7 +6,7 @@ function voteButtonClicked(voteId) {
     // AJAX 요청을 보냅니다.
     $.ajax({
         type: "PUT", // HTTP PUT 요청
-        url: "/voteProduct/update", // 업데이트 엔드포인트 URL
+        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/voteProduct/update", // 업데이트 엔드포인트 URL
         contentType: "application/json",
         data: JSON.stringify({ voteId: voteId }), // 업데이트할 데이터
         success: function (data) {
