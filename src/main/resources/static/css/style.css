@@ -4713,7 +4713,7 @@ img {
 	-ms-interpolation-mode: bicubic;
 	border: 0;
 	height: auto;
-	max-width: 100%;
+	max-width: 80%;
 	vertical-align: middle;
 }
 
