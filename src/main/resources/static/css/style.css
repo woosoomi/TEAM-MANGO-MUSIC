@@ -9932,4 +9932,7 @@ select::-ms-expand {
     background-color: #192334; /* 호버 시 배경 색상 변경 (더 어두운 네이비) */
 }
 
-
+#text-input, #couponSelect {
+    font-family: inherit;
+    /* 또는 원하는 글꼴 이름을 지정할 수 있습니다, 예: font-family: "Arial", sans-serif; */
+}
