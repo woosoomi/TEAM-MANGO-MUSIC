@@ -221,27 +221,28 @@
 	/* 이용약관 팝업 */
 	
 	
-	document.getElementById('showPopupButton').addEventListener('click', function() {
-    var width = 400; // 팝업 창 너비
-    var height = 300; // 팝업 창 높이
-    var left = (window.innerWidth - width) / 2; // 팝업 창을 가로로 중앙에 위치
-    var top = (window.innerHeight - height) / 2; // 팝업 창을 세로로 중앙에 위치
+	document.getElementById('showPopupButton').addEventListener('click', function () {
+		
+	var width = 700; // 팝업 창 너비
+	var height = 700; // 팝업 창 높이
+	var left = (window.innerWidth - width) / 2; // 팝업 창을 가로로 중앙에 위치
+	var top = (window.innerHeight - height) / 2; // 팝업 창을 세로로 중앙에 위치
 
-    var popupWindow = window.open('', '이용약관', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
-    var popupDocument = popupWindow.document;
+	var popupWindow = window.open('', '이용약관', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
+	var popupDocument = popupWindow.document;
 
-    popupDocument.write('<html><head><title>망고뮤직</title></head><body>');
-    popupDocument.write('<style>body { overflow: hidden; }</style>'); // 바깥 HTML 스크롤 고정
-    popupDocument.write('<div class="popup-content" style="height: 300px; overflow: scroll;">');
-	
+	popupDocument.write('<html><head><title>망고뮤직</title></head><body>');
+	popupDocument.write('<div class="popup-content" style="height: 100%; overflow: scroll;">');
 
- // iframe를 사용하여 PDF 파일을 엽니다.
-    popupDocument.write('<iframe src="terms-of-use.pdf" style="width: 100%; height: 100%; border: none;"></iframe');
-    popupDocument.write('</div>');
-    popupDocument.write('</body></html>');
+	// iframe를 사용하여 PDF 파일을 엽니다.
+	popupDocument.write('<iframe src="terms-of-use.pdf" style="width: 100%; height: 100%; border: none;"></iframe>');
 
-    popupDocument.close();
+	popupDocument.write('</div>');
+	popupDocument.write('</body></html>');
+
+	popupDocument.close();
 	});
+
 
 
 	/*쿠폰 선택시 쿠폰 value 값을 받아와서 아래 바에서 쿠폰 해당 value 반환 (Javascript) 성공*/
