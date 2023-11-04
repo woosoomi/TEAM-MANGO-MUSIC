@@ -56,7 +56,7 @@
 									<img th:src="${'images/uploads/mv1.jpg'}" alt="">
 									<div class="mv-item-infor">
 										<h6>
-											<a href="#"
+											<a th:href="@{/board_detail(boardId=${event.boardId})}"
 												th:text="${event.boardTitle + ' (' + event.createdTime + ')'}"></a>
 										</h6>
 										<p class="describe"></p>
