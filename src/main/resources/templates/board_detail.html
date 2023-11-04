@@ -33,7 +33,10 @@
 					<div class="blog-detail-ct">
 						<div class="flex-it share-tag"></div>
 						<h1 th:text="${board.boardTitle}">title</h1>
-						<span class="time" th:text="${board.createdTime}">27
+						<h4
+							th:text="${board.boardCategory.boardCategoryName + ' - ' + board.boardType.boardTypeTitle}"></h4>
+
+						</br> <span class="time" th:text="${board.createdTime}">27
 							Mar2017</span>
 
 						<div id="boardId" th:text="${board.boardId}"
@@ -80,21 +83,21 @@
 
 
 	<div th:insert="~{footer :: footerFragment}"></div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
 
-
-	<script>
+<script>
 
  		function deleteForms(){
 			const urlParams = new URLSearchParams(window.location.search);
 			  const boardId = urlParams.get("boardId");
 			  const boardIdInt = parseInt(boardId, 10);
 			  
-			  fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_detail/${boardIdInt}`, {
+			  fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_delete/${boardIdInt}`, {
 			      method: "DELETE",
 			    })
 			      .then((response) => {
@@ -118,6 +121,6 @@
 		}
 
 </script>
-</body>
+
 
 </html>

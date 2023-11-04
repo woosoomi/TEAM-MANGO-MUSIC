@@ -55,15 +55,15 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+	//@Disabled
 	void testUpdateBoardTest() {
 		// 가상의 Board 객체 생성
 		Board board = new Board();
-		board.setBoardId(1L);
-		board.setBoardTitle("새로운 제목");
-		board.setBoardContent("새로운 내용");
-		board.setBoardImage("새로운 이미지");
-		board.setBoardPrize("새로운상품");
+		board.setBoardId(3L);
+		board.setBoardTitle("새로운 새로운레스트");
+		board.setBoardContent("새로운 새로운레스트");
+		board.setBoardImage("새로운 새로운레스트");
+		board.setBoardPrize("새로운레스트");
 		board.setBoardReadCount(1999);
 		
 
