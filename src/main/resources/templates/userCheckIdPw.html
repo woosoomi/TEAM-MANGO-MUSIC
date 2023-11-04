@@ -45,9 +45,13 @@
 							<h4>02. UserCheckId, Pw</h4>
 							<div class="row">
 								<div class="col-md-6 form-it"><label>아이디찾기 [UserEmail]</label><input type="text"
-										placeholder="이메일을 입력하세요."></div>
+										placeholder="이메일을 입력하세요." id="userEmail"></div>
 								<div class="col-md-6 form-it"><label>[UserName]</label><input type="text"
-										placeholder="이름을 입력하세요."></div>
+										placeholder="이름을 입력하세요." id="userName"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-2"><input class="submit" type="submit" id="checkIdbutton"
+										value="찾기(Find)" onclick="checkId()"></div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it"><label>비밀번호찾기 [UserId]</label><input type="text"
@@ -56,7 +60,8 @@
 										placeholder="전화번호를 입력하세요."></div>
 							</div>
 							<div class="row">
-								<div class="col-md-2"><input class="submit" type="submit" value="찾기(Find)"></div>
+								<div class="col-md-2"><input class="submit" type="submit" id="checkPwbutton"
+										value="찾기(Find)"></div>
 							</div>
 						</form>
 					</div>
@@ -74,7 +79,7 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 
-	<script>
+	<!--<script>
 		document.addEventListener("DOMContentLoaded", function () {
 			var signupButton = document.querySelector(".signupLink a");
 
@@ -85,7 +90,46 @@
 				});
 			}
 		});
+	</script>-->
+
+
+
+	<script>
+		function checkId() {
+			let userEmail = $('#userEmail').val();
+			let userName = $('#userName').val();
+
+			let userData = {
+				"userEmail": userEmail,
+				"userName": userName
+			};
+
+			$.ajax({
+				url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-id',
+				method: 'get',
+				data: userData, // 객체 그대로 전달
+				dataType: "json",
+				contentType: 'application/json;charset=UTF-8',
+				success: function (response) {
+					// 성공적으로 아이디를 찾은 경우
+					alert('찾은 아이디: ' + response);
+				},
+				error: function (error) {
+					// 아이디를 찾지 못한 경우 또는 다른 오류 발생 시
+					alert('아이디를 찾을 수 없습니다.');
+				}
+			});
+		}
+
+		// checkIdbutton를 클릭했을 때 checkId 함수를 호출
+		$(document).ready(function () {
+			$('#checkIdbutton').click(function () {
+				//checkId();
+			});
+		});
 	</script>
+
+
 </body>
 
 </html>
