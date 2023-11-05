@@ -20,6 +20,8 @@ INSERT INTO board_type(board_type_id,board_type_title)
 VALUES(10,'진행중이벤트');
 INSERT INTO board_type(board_type_id,board_type_title)
 VALUES(11,'종료된이벤트');
+INSERT INTO board_type(board_type_id,board_type_title)
+VALUES(12,'MAGAZINE');
 
 INSERT INTO board_category (board_category_id,board_category_name)
 VALUES (1, '공지사항');
@@ -37,26 +39,26 @@ INSERT INTO BOARD (board_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 1,   
                 3,    
                 216, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '망고뮤직서비스안정화공지입니다', 'images/board/notifition/image_notifition_1.jpg', '서비스이용안내해드립니다...',null);
+                '망고뮤직서비스안정화공지입니다', 'images/board/notifition/image_notifition_1.jpg', '서비스이용안내해드립니다...',null,'admin');
                 
 INSERT INTO BOARD (board_id,
                                     board_category_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 1,   
                 2,    
                 781, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '안녕하세요 망고뮤직입니다 대한민국 대표음악시상식 MMA가 개최됩니다!', 'images/board/notifition/image_notifition_2.jpg', 'MMA2023 개최 안내',null);
+                '안녕하세요 망고뮤직입니다 대한민국 대표음악시상식 MMA가 개최됩니다!', 'images/board/notifition/image_notifition_2.jpg', 'MMA2023 개최 안내',null,'admin');
 
 
 INSERT INTO BOARD (board_id,
@@ -64,26 +66,26 @@ INSERT INTO BOARD (board_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 2,   
                 10,    
                 9871, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '11월에 20% 할인쿠폰을 드립니다', 'images/board/event/event1.jpg', '모든유저 할인쿠폰 발급안내','할인쿠폰');
+                '11월에 20% 할인쿠폰을 드립니다', 'images/board/event/event1.jpg', '모든유저 할인쿠폰 발급안내','할인쿠폰','admin');
                 
 INSERT INTO BOARD (board_id,
                                     board_category_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 2,   
                 11,    
                 10946, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '2023새해를 기념해서 멤버쉽을 30%할인된 가격에 만나실 수 있습니다.', 'images/board/event/event2.jpg', '2023 새해기념 이벤트','멤버쉽할인');
+                '2023새해를 기념해서 멤버쉽을 30%할인된 가격에 만나실 수 있습니다.', 'images/board/event/event2.jpg', '2023 새해기념 이벤트','멤버쉽할인','admin');
 
 
 
@@ -93,26 +95,46 @@ INSERT INTO BOARD (board_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 3,   
-                null,
+                12,
                 4101, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '자바마스터의 길은 어떤길일까... 과연 ', 'images/board/notifition/image_notifition_2.jpg', 'ITWILL MAGAZNIE',null);
+                '자바마스터의 길은 어떤길일까... 과연 ', 'images/board/notifition/image_notifition_2.jpg', 'ITWILL MAGAZNIE',null,'admin');
 
 INSERT INTO BOARD (board_id,
                                     board_category_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 3,   
-                null,
+                12,
+                9999, 
+                SYSTIMESTAMP, SYSTIMESTAMP, 
+                '파이썬마스터의 길은 어떤길일까... 과연 ', 'images/board/notifition/image_notifition_2.jpg', 'ITWILL MAGAZNIE',null,'admin');
+
+VALUES (board_board_no_seq.nextval, 
+                3,   
+                12,
+                13504, 
+                SYSTIMESTAMP, SYSTIMESTAMP, 
+                '프로젝트마스터의 길은 어떤길일까... 과연 ', 'images/board/notifition/image_notifition_2.jpg', 'ITWILL MAGAZNIE',null,'admin');
+
+INSERT INTO BOARD (board_id,
+                                    board_category_id,
+                                    board_type_id,
+                                    BOARD_READ_COUNT,
+                                    created_time, update_time, 
+                                    board_content, board_image, board_title,board_prize,user_id)
+VALUES (board_board_no_seq.nextval, 
+                3,   
+                12,
                 196, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '통계마스터의 길은 어떤길일까... 과연 ', 'images/board/notifition/image_notifition_2.jpg', '데이터과학이란',null);
+                '통계마스터의 길은 어떤길일까... 과연 ', 'images/board/notifition/image_notifition_2.jpg', '데이터과학이란',null,'admin');
 
 INSERT INTO BOARD (board_id,
                                     board_category_id,
@@ -167,26 +189,26 @@ INSERT INTO BOARD (board_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 5,   
                 5,    
                 0, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '비밀번호는 아이디와 이름으로 찾을수있습니다', 'images/board/faq/faq1.jpg', '아이디와비밀번호찾기...',null);
+                '비밀번호는 아이디와 이름으로 찾을수있습니다', 'images/board/faq/faq1.jpg', '아이디와비밀번호찾기...',null,'admin');
                 
 INSERT INTO BOARD (board_id,
                                     board_category_id,
                                     board_type_id,
                                     BOARD_READ_COUNT,
                                     created_time, update_time, 
-                                    board_content, board_image, board_title,board_prize)
+                                    board_content, board_image, board_title,board_prize,user_id)
 VALUES (board_board_no_seq.nextval, 
                 5,   
                 6,    
                 0, 
                 SYSTIMESTAMP, SYSTIMESTAMP, 
-                '환불은 해드리지않습니다.', 'images/board/faq/faq2.jpg', '환불관련FAQ...',null);
+                '환불은 해드리지않습니다.', 'images/board/faq/faq2.jpg', '환불관련FAQ...',null,'admin');
               
       
               
