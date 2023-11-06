@@ -15,7 +15,7 @@
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style1.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
@@ -52,16 +52,27 @@
 					
 		<!--주문내역-->	
 		
+    
+    
 			<div class="row" id="orderHistory">
 		
         <div th:each="orderitem, iterStat: ${orderItemDtoList}">
 			
 		<div class="movie-item-style-2">
+				
    			 <img th:src="@{'images/' + ${orderitem.productImage}}" alt="">
    		 <div class="mv-item-infor">
             <h6>
                 <a th:text="'주문번호:  '+${orderitem.orderId}"></a>
+             
+                <button class="deleteButton" data-order-id="${orderitem.orderId}">x</button>
+          
             </h6>
+            	<!--삭제버튼-->
+					
+			        <!-- Add more items here -->
+			<!--    <div id="message"></div>-->
+			    <!-- -->
                 <p class="rate">
                     <span th:text="${orderitem.productName}+ ' [총 ' + ${orderitem.oiQty} + '개]'"></span>
                 </p>
