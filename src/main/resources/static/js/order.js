@@ -40,26 +40,27 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".deleteButton").forEach(function(button) {
         button.addEventListener("click", function() {
             var oiId = button.getAttribute("data-order-id");
+            
             console.log(oiId)
             // AJAX 요청을 보냅니다.
             var xhr = new XMLHttpRequest();
             // 주문 ID를 동적으로 대체
-            xhr.open("POST", "http://localhost/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order_history/delete/" + oiId, true);
+       		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/orderItem/delete/'+ oiId; // 결제 처리를 수행하는 서버 엔드포인트 URL
+            xhr.open("DELETE", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.status === "success") {
-                        // 삭제 성공 시 실행할 코드
-                        alert("주문내역이 삭제되었습니다.");
-                        // 페이지 새로고침 또는 다른 업데이트 작업 수행
-                    } else {
-                        // 삭제 실패 시 실행할 코드
-                        alert("주문내역 삭제 중 오류가 발생했습니다.");
-                    }
-                }
-            };
+			    if (xhr.readyState === 4) {
+			        if (xhr.status === 200) {
+			            alert("주문내역이 삭제되었습니다.");
+			            // 페이지 새로고침 또는 다른 업데이트 작업 수행
+			               window.location.reload();
+			        } else {
+			            alert("주문내역 삭제 중 오류가 발생했습니다.");
+			        }
+			    }
+			};
             // 요청 데이터를 동적으로 설정
-            xhr.send("orderitemId=" + oiId);
+			xhr.send(JSON.stringify({ oiId: oiId }));
         });
     });
 });
