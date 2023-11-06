@@ -45,7 +45,7 @@
 
 
 						<div class="flex-wrap-movielist user-fav-list">
-							<div th:each="event, stat : ${events}">
+							<div th:each="event, stat : ${events}" >
 
 								<div class="movie-item-style-2">
 									<img th:src="${'images/uploads/mv1.jpg'}" alt="">
@@ -105,35 +105,39 @@
 
 <script>
 	
-	$document.addEventListener('DOMContentLoaded', function() {
-	const searchInput = document.getElementById('searchInput');
-	var titleElements = document.querySelectorAll('.movie-item-style-2 h6 a');
-	var eventContainer = document.getElementById('eventContainer');
-	console.log(titleElements);
-	searchInput.addEventListener('keydown', function(event) {
-		if (event.key === 'Enter') {
-			const searchValue = searchInput.value;
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    var titleElements = document.querySelectorAll('.movie-item-style-2 h6 a');
+    var eventContainer = document.getElementById('eventContainer');
 
-			filterItems(searchValue);
-			searchInput.value = ''; // 검색어 필드 비우기
-		}
-	});
+    searchInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            const searchValue = searchInput.value;
 
-	function filterItems(searchQuery) {
-		eventContainer.innerHTML = ''; // 리스트 비우기
+            filterItems(searchValue);
+            searchInput.value = ''; // 검색어 필드 비우기
+        }
+    });
 
-		titleElements.forEach(function(titleElement, index) {
-			var title = titleElement.textContent;
-			alert("title")
-			console.log("titleElement->" + titleElement);
-			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
-				var item = titleElement.closest('.ceb-item-style-2'); // 부모 .ceb-item-style-2 요소 선택
-				eventContainer.appendChild(item);
-			}
-		});
-	}
+    function filterItems(searchQuery) {
+        eventContainer.innerHTML = ''; // 리스트 비우기
+
+        titleElements.forEach(function (titleElement, index) {
+            var title = titleElement.textContent;
+            console.log("title: " + title);
+
+            if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+                var item = titleElement.closest('.movie-item-style-2'); // 부모 .movie-item-style-2 요소 선택
+                eventContainer.appendChild(item);
+            }
+        });
+    }
 });
+
+
+
 </script>
+
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
