@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itwill.jpa.dto.product.ProductMusicDto;
+import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.service.product.ProductService;

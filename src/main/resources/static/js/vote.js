@@ -1,29 +1,80 @@
 
+function voteButtonClicked(button) {
+    // 클릭된 버튼의 data-voteid 속성을 가져옵니다.
+    var voteId = button.getAttribute("data-voteid");
 
-// AJAX 요청 미구현 추후 구현 예정
-
-function voteButtonClicked(voteId) {
-    // AJAX 요청을 보냅니다.
+    // Ajax 요청을 통해 서버로 데이터 전송
     $.ajax({
-        type: "PUT", // HTTP PUT 요청
-        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/voteProduct/update", // 업데이트 엔드포인트 URL
+        type: "PUT",
+        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/userVoteUpdate/a/" + voteId, 
+        // userVoteUpdate/a/ 부분에서 "/a/" 가 유저 아이디가 들어가게 추후 수정 필요 --> userId session 받아오게 수정 
         contentType: "application/json",
-        data: JSON.stringify({ voteId: voteId }), // 업데이트할 데이터
         success: function (data) {
-            // 성공적으로 업데이트가 완료되면 이 부분이 실행됩니다.
+        $.ajax({
+        type: "PUT",
+        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/voteProduct/update",
+        contentType: "application/json",
+        data: JSON.stringify({ voteId: voteId }),
+        success: function (data) {
             alert("투표가 완료되었습니다.");
+   			window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/productVote"; 
         },
         error: function (xhr, textStatus, errorThrown) {
-            // 오류가 발생하면 이 부분이 실행됩니다.
             alert("투표 업데이트 중 오류가 발생했습니다.");
+        }
+    });
+            
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("로그인이 필요한 메뉴입니다");
+            window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form";
         }
     });
 }
 
 
+/*
+function voteButtonClicked(button) {
+    // 클릭된 버튼에서 data-voteid 값을 얻어옵니다.
+     const voteId = button.getAttribute("data-voteid");
+     console.log(voteId);
+	
+	// 회원에게 voteId업데이트
+	$.ajax({
+		type: "PUT",
+        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/userVoteUpdate/{userId}/{voteId}",
+        contentType: "application/json",
+        data: JSON.stringify({ voteId: voteId }),
+        success: function (data) {
+            alert("투표가 완료되었습니다.");
+   		
+        
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("로그인이 필요한 메뉴입니다");
+            window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form"; 
+     
+        }
+    });
+	
+   // 회원 투표 합으로 tot 업데이트.
+    $.ajax({
+        type: "PUT",
+        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/voteProduct/update",
+        contentType: "application/json",
+        data: JSON.stringify({ voteId: voteId }),
+        success: function (data) {
+            alert("투표가 완료되었습니다.");
+   			window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/productVote"; 
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("투표 업데이트 중 오류가 발생했습니다.");
+        }
+    });
+    
+}
 
-
-
+*/
 
 // endDate는 추후 VoteDate의 데이터로 변경예정
 var endDate = new Date('2023-11-15T23:59:59').getTime();

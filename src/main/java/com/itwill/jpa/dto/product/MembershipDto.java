@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ProductMembershipDto {
+public class MembershipDto {
 	
 	private String productCategory; // 프로덕트 카테고리
 	 	
@@ -37,31 +37,37 @@ public class ProductMembershipDto {
 	
 	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 이미지
 	
-	private List<Product> products;
-	private List<Music> musics;
-	private List<Goods> goodss;
-	private List<Ticket> tickets;
-	private List<Membership> memberships;
+	private Long productCategoryId; // 프로덕트 카테고리
 	
+    private String userId;	
 	
-public ProductMembershipDto(Product product) {
-	this.productName = product.getProductName();
-	this.productPrice = product.getProductPrice();
-	this.productContent = product.getProductContent();
-	this.productImage = product.getProductImage();
-	this.startPeriod = product.getStartPeriod();
-	this.periodOfUse = product.getPeriodOfUse();
+//	private List<Product> products;
+//	private List<Music> musics;
+//	private List<Goods> goodss;
+//	private List<Ticket> tickets;
+//	private List<Membership> memberships;
+//	
+//	
+//public ProductMembershipDto(Product product) {
+//	this.productName = product.getProductName();
+//	this.productPrice = product.getProductPrice();
+//	this.productContent = product.getProductContent();
+//	this.productImage = product.getProductImage();
+//	this.startPeriod = product.getStartPeriod();
+//	this.periodOfUse = product.getPeriodOfUse();
+//
+//	}
 
-	}
-
-public static ProductMembershipDto toDto(Product entity) {
-	return ProductMembershipDto.builder()
+public static MembershipDto toDto(Product entity) {
+	return MembershipDto.builder()
 			.productName(entity.getProductName())
 			.productPrice(entity.getProductPrice())
 			.productContent(entity.getProductContent())
 			.productImage(entity.getProductImage())
 			.startPeriod(entity.getStartPeriod())
 			.periodOfUse(entity.getPeriodOfUse())
+			.productCategoryId(entity.getProductCategory().getCategoryId())
+//          .userId(entity.getUser().getUserId())
 			.build();
 }
 

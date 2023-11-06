@@ -25,7 +25,7 @@
 </head>
 
 <body><!--preloading-->
-<div th:insert="~{header :: headerFragment}"></div>
+<div th:insert="~{common_header :: headerFragment}"></div>
 	
 	
 	
@@ -51,21 +51,18 @@
 					</div>
 					
 		<!--주문내역-->	
-		
-    
     
 			<div class="row" id="orderHistory">
 		
         <div th:each="orderitem, iterStat: ${orderItemDtoList}">
 			
 		<div class="movie-item-style-2">
-				
    			 <img th:src="@{'images/' + ${orderitem.productImage}}" alt="">
    		 <div class="mv-item-infor">
             <h6>
                 <a th:text="'주문번호:  '+${orderitem.orderId}"></a>
         	     <!--삭제버튼-->
-                <button class="deleteButton" data-order-id="[[${orderitem.oiId}]]">x</button>
+                <button th:class="deleteButton" th:data-order-id="${orderitem.oiId}">x</button>
           
             </h6>
                 <p class="rate">
@@ -75,6 +72,10 @@
                     <span th:text="${orderDtoNewerList[iterStat.index].orderPrice + '원'}"></span>
                 </p>
                 <p class="rate">
+					
+                	<span th:text="'배송지: '+${deliveryList[iterStat.index].deliveryAddress != null ? deliveryList[iterStat.index].deliveryAddress : '배송지 없음'}"></span>
+                </p>
+                <p class="rate">
                     <span th:text="${'구매날짜: '+ #temporals.format(orderDtoNewerList[iterStat.index].createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
                 </p>
          		
@@ -82,12 +83,11 @@
                 <span th:text = "'주문상태: '+${orderDtoNewerList[iterStat.index].orderStatus}"></span>
             </p>
             <p>⚠️ 환불불가 상품입니다.</p>
-            <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="inquiries">고객센터</a>로 문의해주세요.</p>
+            <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="board_inquiries">고객센터</a>로 문의해주세요.</p>
 		   
         				</div>
         
     				</div>
-   				  <hr style="height: 1px; background-color: gray;">
 				</div>
 			</div>
 

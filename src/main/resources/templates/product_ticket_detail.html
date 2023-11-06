@@ -20,11 +20,10 @@
 <body><!--preloading-->
 	<div th:insert="~{common_header::headerFragment}"></div>
 	<!-- END | Header -->
-	<div class="hero mv-single-hero">
+	<div class="ticketBackground">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<!-- <h1>movie listing - list</h1><ul class="breadcumb"><li class="active"><a href="#">Home</a></li><li><span class="ion-ios-arrow-right"></span>movie listing</li></ul>-->
+				<div class="col-md-12">					
 				</div>
 			</div>
 		</div>
@@ -33,15 +32,16 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div class="movie-img sticky-sb"><img src="images/uploads/movie-single.jpg" alt="">
+					<div class="movie-img sticky-sb"><img th:src="${findTicket.productImage}" src="images/uploads/movie-single.jpg" alt="">
 						<div class="movie-btn">
 							<div class="btn-transform transform-vertical red">
-								<div><a href="#" class="item item-1 redbtn"><i class="ion-play"></i>Watch Trailer</a>
+								<div><a th:href="${findTicket.productMovie}" href="#" class="item item-1 redbtn"><i class="ion-play"></i>뮤비 보기</a>
 								</div>
-								<div><a href="https://www.youtube.com/embed/o-0hcF97wy0"
+								<div><a th:href="${findTicket.productMovie}" href="https://www.youtube.com/embed/o-0hcF97wy0"
 										class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a>
 								</div>
 							</div>
+							
 							<div class="btn-transform transform-vertical">
 								<div><a href="#" class="item item-1 yellowbtn"><i class="ion-card"></i>Buy ticket</a>
 								</div>
@@ -52,7 +52,7 @@
 				</div>
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="movie-single-ct main-content">
-						<h1 class="bd-hd">Skyfall: Quantum of Spectre <span>2015</span></h1>
+						<h1 class="bd-hd" th:text="${findTicket.productName}">Skyfall: Quantum of Spectre <span>2015</span></h1>
 						<div class="social-btn"><a href="#" class="parent-btn"><i class="ion-heart"></i>Add to
 								Favorite</a>
 							<div class="hover-bnt"><a href="#" class="parent-btn"><i
@@ -883,12 +883,13 @@
 			</div>
 		</div>
 	</div><!-- footer section-->
+	
 	<footer class="ht-footer" th:insert="~{common_footer::footerFragment}">
 	</footer><!-- end of footer section-->
+</body>
+	
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-</body>
-
 </html>
