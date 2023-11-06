@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		itemList.forEach(function(item) {
 			var titleElement = item.getElementsByTagName('a')[0]; // a 요소 선택
 			var title = titleElement.textContent;
+				console.log(titleElement);
 
 			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
 				faqContainer.appendChild(item);
@@ -151,6 +152,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 ///////////////////////magazine///////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    var titleElements = document.querySelectorAll('.blog-item-style-2 h3 a');
+    var magazineContainer = document.getElementById('magazineContainer');
+
+    searchInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            const searchValue = searchInput.value;
+
+            filterItems(searchValue);
+            searchInput.value = ''; // 검색어 필드 비우기
+        }
+    });
+
+    function filterItems(searchQuery) {
+        magazineContainer.innerHTML = ''; // 리스트 비우기
+
+        titleElements.forEach(function (titleElement, index) {
+            var title = titleElement.textContent;
+            console.log("titleElement->" + titleElement);
+            if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+                var item = titleElement.closest('.col-md-4'); // 부모 .col-md-4 요소 선택
+                magazineContainer.appendChild(item);
+            }
+        });
+    }
+});
+
 
 
 
