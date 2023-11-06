@@ -37,7 +37,7 @@ public class BoardRestController {
 
 
 	@Operation(summary = "게시판등록[성공]")
-	@PostMapping("/board_create/{boardId}")
+	@PostMapping("/board_create")
 	public ResponseEntity<BoardDto> createBoard(@RequestBody BoardDto boardDto) {
 		try {
 			// BoardDto를 엔티티로 변환하여 서비스에서 사용

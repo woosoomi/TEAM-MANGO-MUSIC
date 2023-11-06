@@ -47,18 +47,19 @@
 							style="font-size: 23px; color: aqua;">02.장바구니 > </span> 03.주문하기 > 04.주문완료 </p>
 <div class="topbar-filter user" style="display: flex; justify-content: space-between; align-items: center;">
     <div class="checkbox-container" style="display: flex; align-items: center;">
-        <input type="checkbox" class="checkbox" style="width: 20px; height: 20px; vertical-align: middle;" id="selectAll">
+        <input type="checkbox" class="checkbox1" style="width: 20px; height: 20px; vertical-align: middle;" id="selectAll">
         <label for="selectAll" style="font-size: 20px; margin-left: 5px; font-weight: bold; vertical-align: middle;">전체 선택</label>
     </div>
-    <a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}" style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;">선택 삭제</a>
+    <a href="#" class="delete-all-btn" style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;">선택 삭제</a>
 </div>
 					<div class="flex-wrap-movielist user-fav-list">
 
 						<div class="flex-wrap-movielist user-fav-list">
 
-							<div th:each="cartItem : ${cartItems}" class="movie-item-style-2">
-								<div style="margin-right: 5%;" class="checkbox-container">
-									<input type="checkbox" class="checkbox" style="width: 20px; height: 20px;" data-cart-item-id="${cartItem.cartItemId}">
+							<div th:each="cartItem : ${cartItems}" class="movie-item-style-2" >
+								<div style="margin-right: 5%;" class="checkbox-container" >
+									<input type="checkbox" class="checkbox2" style="width: 20px; height: 20px;" th:data-cart-Item-id="${cartItem.cartItemId}">
+									<span th:id="cartItem"  th:text="${cartItem.cartItemId}"></span>
 								</div>
 								<img src="images/uploads/cart_1.jpg" alt="" style="width: 181px; height: 278px;">
 								<div th:each="product : ${products}" th:if="${product.productNo == cartItem.productId}"
