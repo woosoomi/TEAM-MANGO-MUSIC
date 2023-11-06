@@ -14,31 +14,31 @@ import lombok.ToString;
 @ToString
 @Builder
 public class ProductCategoryDto {
+	private Long categoryId;
 	 private String productCategoryName;
-	 private Long categoryId;
 	 
 		// ProductDto에서 ProductCategoryDto를 쓰기위한 메서드
 		// (ProductCategory entity를 건들지 않기위해 ProductDtoDto를 대신해서 사용 = 데이터 무결성 유지 목적)
-	 public static ProductCategoryDto fromProductCategory(ProductCategory productCategory) {
-	        return ProductCategoryDto.builder()
-	                .productCategoryName(productCategory.getProductCategoryName())
-	                .categoryId(productCategory.getCategoryId())
-	                .build();
-	 }
+//	 public static ProductCategoryDto fromProductCategory(ProductCategory productCategory) {
+//	        return ProductCategoryDto.builder()
+//	                .productCategoryName(productCategory.getProductCategoryName())
+//	                .categoryId(productCategory.getCategoryId())
+//	                .build();
+//	 }
 	 
-	 public static ProductCategoryDto toDto(ProductCategory productCategory) {
+	 public static ProductCategoryDto toDto(ProductCategory entity) {
 		 return ProductCategoryDto.builder()				 
-				 .productCategoryName(productCategory.getProductCategoryName())
-				 .categoryId(productCategory.getCategoryId())
+				 .categoryId(entity.getCategoryId())
+				 .productCategoryName(entity.getProductCategoryName())
 				 .build();
 	 }
 
-	    public ProductCategory toEntity() {
-	        ProductCategory productCategory = new ProductCategory();
-	        productCategory.setCategoryId(this.getCategoryId());
-	        productCategory.setProductCategoryName(this.getProductCategoryName());
-	        return productCategory;
-	    }
+//	    public ProductCategory toEntity() {
+//	        ProductCategory productCategory = new ProductCategory();
+//	        productCategory.setCategoryId(this.getCategoryId());
+//	        productCategory.setProductCategoryName(this.getProductCategoryName());
+//	        return productCategory;
+//	    }
 	    
 	    public String getProductCategoryName() {
 	        return productCategoryName;
