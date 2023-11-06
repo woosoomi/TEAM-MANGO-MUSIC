@@ -42,11 +42,10 @@
 									<img th:src="${music.productImage}" alt="" style="width: 100px">
 									</a>
 									<div class="mv-item-infor">
-										<h6>										
+										<h6>
 										<a th:href="@{/product_music_detail(productNo=${music.productNo})}" th:text="${music.productName}">Leonardo DiCaprio</a>
 										</h6>
 										<p class="describe"></p>
-										
 										<p class="run-time" th:text="${music.productArtist}">Run Time: 2h21’
 										</p>
 										<p>조회수: <a th:text="${music.readCount}">2</a></p>
@@ -54,9 +53,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					
-						
+					</div>	
 				
 				</div>
 					<div class="col-md-3 col-sm-12 col-xs-12">
