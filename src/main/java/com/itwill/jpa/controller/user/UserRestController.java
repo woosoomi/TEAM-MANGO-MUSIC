@@ -118,7 +118,7 @@ public class UserRestController {
 	@LoginCheck
 	@Operation(summary = "회원업데이트[성공]")
 	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> updateUser(@PathVariable(name = "userId") String userId, @RequestBody UserUpdateDto userUpdateDto) {
+	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId, @RequestBody UserUpdateDto userUpdateDto) {
 		try {
 			UserDto updatedUser = userService.updateUser(userUpdateDto);
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
