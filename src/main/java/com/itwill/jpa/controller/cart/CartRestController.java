@@ -52,15 +52,13 @@ public class CartRestController {
 	
 
 	@Operation(summary = "장바구니 상품전체삭제[성공]")
-	@DeleteMapping("/cart_main/{cartId}")
-	public String deleteAllItemsInCart(@PathVariable(value = "cartId") Long cartId) {
-		try {
-			cartServiceImpl.deleteAllByCartId(cartId);
-			return "삭제완료";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "삭제실패";
-		}
+	@DeleteMapping("/cart_main/delete/{cartId}")
+	public void deleteAllItemsInCart(@PathVariable(value = "cartId") Long cartId) {
+			try {
+				cartServiceImpl.deleteAllByCartId(cartId);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 	/*
