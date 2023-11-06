@@ -1,0 +1,6 @@
+.music_List {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 두 개의 열, 각 열은 같은 너비 */
+    grid-template-rows: auto; /* 행 높이 자동 조절 */
+    gap: 10px; /* 열과 행 사이의 간격 조절 */
+}

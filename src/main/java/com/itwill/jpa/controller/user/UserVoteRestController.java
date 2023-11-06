@@ -27,7 +27,9 @@ public class UserVoteRestController {
 	@PutMapping(value = "/userVoteUpdate/{userId}/{voteId}")
 	public ResponseEntity<?> updateUserVoteId(@PathVariable(name = "userId") String userId,
 	                                          @PathVariable(name = "voteId") Long voteId) {
-	    try {
+	    userId ="a";
+		
+		try {
 	        UserVoteDto updatedUserVoteId = userVotesericeImpl.updateUserVoteId(userId, voteId);
 	        return new ResponseEntity<>(updatedUserVoteId, HttpStatus.OK);
 	    } catch (RuntimeException e) {

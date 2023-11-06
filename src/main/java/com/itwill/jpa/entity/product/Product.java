@@ -10,6 +10,7 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.order.OrderItem;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.vote.Vote;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductCategoryRepository;
@@ -85,43 +86,42 @@ public class Product {
 	@DiscriminatorValue("goods")
 	public static class Goods extends Product {
 		/*============Dto -> entity 변환해주는 매서드============*/		
-		public static Goods toEntity(GoodsDto goodsDto) {
-			ProductCategoryDto productCategoryDto = goodsDto.getProductCategory();
-			ProductCategory productCategory = productCategoryDto.toEntity(); // ProductCategoryDto를 ProductCategory 엔티티로 변환
-		    Goods goods = new Goods();
+		public static Goods toEntity(GoodsDto dto) {
+			return (Goods) Goods.builder()
+					.productCategory(ProductCategory.builder().categoryId(dto.getProductCategoryId()).build())
+//					.user(User.builder().userId(dto.getUserId()).build())
+					.productName(dto.getProductName())
+					.productPrice(dto.getProductPrice())
+					.productStar(dto.getProductStar())
+					.productDate(dto.getProductDate())
+					.readCount(dto.getReadCount())
+					.productStock(dto.getProductStock())
+					.productImage(dto.getProductImage())
+					.build();	
 		    // GoodsDto에서 Goods 엔티티로 필드 값을 복사 또는 초기화
-		    goods.setProductCategory(productCategory);
-		    goods.setProductName(goodsDto.getProductName());
-		    goods.setProductPrice(goodsDto.getProductPrice());
-		    goods.setProductStar(goodsDto.getProductStar());
-		    goods.setProductDate(goodsDto.getProductDate());
-		    goods.setReadCount(goodsDto.getReadCount());
-		    goods.setProductStock(goodsDto.getProductStock());
-		    goods.setProductImage(goodsDto.getProductImage());
-		    return goods;
 	}
 	}
-	
 	/** ticket **/
 	@Entity
 	@DiscriminatorValue("ticket")
 	public static class Ticket extends Product {
 		/*============Dto -> entity 변환해주는 매서드============*/		
-		public static Ticket toEntity(TicketDto ticketDto) {
-			ProductCategoryDto productCategoryDto = ticketDto.getProductCategory();
-			ProductCategory productCategory = productCategoryDto.toEntity(); // ProductCategoryDto를 ProductCategory 엔티티로 변환
-		    Ticket ticket = new Ticket();
+		public static Ticket toEntity(TicketDto dto) {
 		    // GoodsDto에서 Goods 엔티티로 필드 값을 복사 또는 초기화
-		    ticket.setProductCategory(productCategory);
-		    ticket.setProductName(ticketDto.getProductName());
-		    ticket.setProductPrice(ticketDto.getProductPrice());
-		    ticket.setProductStar(ticketDto.getProductStar());
-		    ticket.setProductDate(ticketDto.getProductDate());
-		    ticket.setReadCount(ticketDto.getReadCount());
-		    ticket.setProductStock(ticketDto.getProductStock());
-		    ticket.setProductImage(ticketDto.getProductImage());
-		    return ticket;
+			return (Ticket) Ticket.builder()
+					.productCategory(ProductCategory.builder().categoryId(dto.getProductCategoryId()).build())
+//					.user(User.builder().userId(dto.getUserId()).build())
+					.productName(dto.getProductName())
+					.productPrice(dto.getProductPrice())
+					.productStar(dto.getProductStar())
+					.productDate(dto.getProductDate())
+					.readCount(dto.getReadCount())
+					.productStock(dto.getProductStock())
+					.productImage(dto.getProductImage())
+					.build();
 	}
+
+	
 	}
 
 	/** membership **/
@@ -141,7 +141,7 @@ public class Product {
 	private Vote vote;
 	
 	// product와 orderitem 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
 	@Builder.Default
 	@ToString.Exclude
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
@@ -154,13 +154,13 @@ public class Product {
 	private ProductCategory productCategory;
 
 	// product와 cartitem 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
 	@Builder.Default
 	@ToString.Exclude
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
 	
 	// product와 productreply 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
 	@Builder.Default
 	@ToString.Exclude
 	private List<ProductReply> productReply = new ArrayList<>();
@@ -170,11 +170,9 @@ public class Product {
 	/*============Dto -> entity 변환해주는 매서드============*/
 
 	public static Product toEntity(ProductDto dto) {
-	    ProductCategory productCategory = ProductCategory.builder()
-	            .categoryId(dto.getProductCategoryId()) // Long 값을 그대로 사용
-	            .build();
 		return Product.builder()
-				.productCategory(productCategory)
+				.productCategory(ProductCategory.builder().categoryId(dto.getProductCategoryId()).build())
+//				.user(User.builder().userId(dto.getUserId()).build())
 				.productName(dto.getProductName())
 				.productPrice(dto.getProductPrice())
 				.productStar(dto.getProductStar())

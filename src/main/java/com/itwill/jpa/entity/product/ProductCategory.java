@@ -63,14 +63,14 @@ public class ProductCategory {
 //	            .build();
 //	}
 	/*========================================================*/	
-	 private ProductCategory convertDtoToEntity(ProductCategoryDto productCategoryDto) {
-		    ProductCategory productCategory = ProductCategory.builder()
-		            .categoryId(productCategoryDto.getCategoryId())
-		            .productCategoryName(productCategoryDto.getProductCategoryName())
-		            .build();
-
-		    // 이 부분에서 연관 엔티티나 추가 작업이 필요하다면 이어서 작성합니다.
-
-		    return productCategory;
-		}
+//	 private ProductCategory convertDtoToEntity(ProductCategoryDto productCategoryDto) {
+//		    ProductCategory productCategory = ProductCategory.builder()
+//		            .categoryId(productCategoryDto.getCategoryId())
+//		            .productCategoryName(productCategoryDto.getProductCategoryName())
+//		            .build();
+//
+//		    // 이 부분에서 연관 엔티티나 추가 작업이 필요하다면 이어서 작성합니다.
+//
+//		    return productCategory;
+//		}
 }

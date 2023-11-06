@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ProductMusicDto {
+public class MusicDto {
 	
 	private String productCategory; // 프로덕트 카테고리
 	 	
@@ -44,28 +44,31 @@ public class ProductMusicDto {
 	private String productArtist; // 음악 아티스트
 	
 	private String productImage; // 프로덕트(음악,굿즈,콘서트,멤버십) 등록날짜
+	private Long productCategoryId; // 프로덕트 카테고리
 	
-	private List<Product> products;
-	private List<Music> musics;
-	private List<Goods> goodss;
-	private List<Ticket> tickets;
-	private List<Membership> memberships;
+    private String userId;	
+	
+//	private List<Product> products;
+//	private List<Music> musics;
+//	private List<Goods> goodss;
+//	private List<Ticket> tickets;
+//	private List<Membership> memberships;
 	
 	
-public ProductMusicDto(Product product) {
-	this.productName = product.getProductName();
-	this.productPrice = product.getProductPrice();
-	this.productContent = product.getProductContent();
-	this.productStar = product.getProductStar();
-	this.productDate = product.getProductDate();
-	this.readCount = product.getReadCount();
-	this.productImage = product.getProductImage();
-	this.productArtist = product.getProductArtist();
+//public ProductMusicDto(Product product) {
+//	this.productName = product.getProductName();
+//	this.productPrice = product.getProductPrice();
+//	this.productContent = product.getProductContent();
+//	this.productStar = product.getProductStar();
+//	this.productDate = product.getProductDate();
+//	this.readCount = product.getReadCount();
+//	this.productImage = product.getProductImage();
+//	this.productArtist = product.getProductArtist();
+//
+//	}
 
-	}
-
-public static ProductMusicDto toDto(Product entity) {
-	return ProductMusicDto.builder()
+public static MusicDto toDto(Product entity) {
+	return MusicDto.builder()
 			.productName(entity.getProductName())
 			.productPrice(entity.getProductPrice())
 			.productContent(entity.getProductContent())
@@ -74,6 +77,8 @@ public static ProductMusicDto toDto(Product entity) {
 			.readCount(entity.getReadCount())
 			.productImage(entity.getProductImage())
 			.productArtist(entity.getProductArtist())
+			.productCategoryId(entity.getProductCategory().getCategoryId())
+//          .userId(entity.getUser().getUserId())
 			.build();
 }
 

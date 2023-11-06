@@ -13,17 +13,17 @@ import com.itwill.jpa.entity.order.OrderItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Builder
-
+@ToString
 //웹에서 고객에게 목적에 따라 데이터를 선택적으로 보여주기 위해서 엔티티 속에서 골라낸 정보를 담은 객체(Dto)
 public class OrderDto {
 
