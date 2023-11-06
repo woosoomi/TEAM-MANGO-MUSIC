@@ -1,6 +1,8 @@
 
 package com.itwill.jpa.controller.cart;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.cart.CartItemDto;
@@ -56,5 +59,17 @@ public class CartItemRestController {
             e.printStackTrace();
         }
     }
+    
+    @Operation(summary = "상품 여러개 삭제[성공]")
+    @DeleteMapping("/cart_main/deleteByCartItems")
+    public void deleteCartItems(@RequestBody List<Long> cartItemIds) {
+        try {
+            cartItemService.deleteByCartItemIds(cartItemIds);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
     
 }
