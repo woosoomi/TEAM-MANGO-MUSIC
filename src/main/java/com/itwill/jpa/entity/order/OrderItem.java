@@ -40,11 +40,11 @@ public class OrderItem {
 	/*
 	 * 다대일 관계
 	 */
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "product_no")
 	private Product product;
 	

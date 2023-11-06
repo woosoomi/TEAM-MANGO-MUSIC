@@ -52,7 +52,7 @@ public class OrderController {
 			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "rgh66");
+			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 			
@@ -80,6 +80,7 @@ public class OrderController {
 	            String membershipName = null;
 	            String membershipImage = null;
 	            String membershipContent = null;
+	            Long membershipNo = 0L;
 	            
 	            // 주문 아이템별로 Product 정보 가져오기
 	            for (OrderItemDto orderItemDto : orderItemDtoList) {
@@ -92,6 +93,7 @@ public class OrderController {
 	                    membershipName = product.getProductName();
 	                    membershipImage = product.getProductImage();
 	                    membershipContent = product.getProductContent();
+	                    membershipNo = product.getProductNo();
 	                }
 	            }
 	            model.addAttribute("membershipStartPeriod", membershipStartPeriod);
@@ -99,6 +101,7 @@ public class OrderController {
 	            model.addAttribute("membershipName", membershipName);
 	            model.addAttribute("membershipImage", membershipImage);
 	            model.addAttribute("membershipContent", membershipContent);
+	            model.addAttribute("membershipNo", membershipNo);
 	            
 	            
 	            /*************** 가격 ***************/
