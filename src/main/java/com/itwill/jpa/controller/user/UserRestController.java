@@ -37,7 +37,7 @@ public class UserRestController {
 
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-//
+
 	@Operation(summary = "회원가입[성공]")
 	@PostMapping(value = "/join")
 	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
@@ -82,7 +82,7 @@ public class UserRestController {
 	public ResponseEntity<UserDto> user_View(@PathVariable(name = "userId") String userId, HttpSession session)
 			throws Exception {
 		try {
-			UserDto user = userServiceImpl.findUser(userId);
+			UserDto user = userService.findUser(userId);
 			System.out.println(">>> 회원 조회 성공 " + user);
 			if (user != null) {
 				System.out.println(">> 회원 조회");

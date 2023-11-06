@@ -22,7 +22,7 @@ public class UserUpdateDto {
 	private String userPhone;
 	private String userAddress;
 	private String userEmail;
-	private Long voteId;
+	//private Long voteId; // 문제 생기면 주석 풀기
 	
 	public static UserUpdateDto toDto(User entity) {
 		return UserUpdateDto.builder()
