@@ -23,6 +23,7 @@ import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.ExistedUserException;
 import com.itwill.jpa.exception.user.PasswordMismatchException;
 import com.itwill.jpa.service.user.UserService;
+import com.itwill.jpa.service.user.UserServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +34,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 
 	@Operation(summary = "회원가입[성공]")
 	@PostMapping(value = "/join")
@@ -74,22 +78,26 @@ public class UserRestController {
 
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")
-	@GetMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<UserDto> getUserInfo(@PathVariable(name = "userId") String userId) {
-        try {
-            UserDto user = userService.findUser(userId);
+	@PostMapping(value = "/{userId}")
+	public ResponseEntity<UserDto> user_View(@PathVariable(name = "userId") String userId, HttpSession session)
+			throws Exception {
+		try {
+			UserDto user = userServiceImpl.findUser(userId);
+			System.out.println(">>> 회원 조회 성공 " + user);
+			if (user != null) {
+				System.out.println(">> 회원 조회");
+				return ResponseEntity.status(HttpStatus.OK).body(user);
+			}
 
-            if (user != null) {
-                return new ResponseEntity<>(user, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		System.out.println(">> 회원 조회 실패");
+		return new ResponseEntity<UserDto>(HttpStatus.NOT_FOUND);
+	}
 
-
+	
+	
 	@Operation(summary = "회원리스트[성공]")
 	@GetMapping("/list")
 	public ResponseEntity<?> userList() throws Exception {
@@ -107,7 +115,7 @@ public class UserRestController {
 	@LoginCheck
 	@Operation(summary = "회원업데이트[성공]")
 	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
+	public ResponseEntity<?> updateUser(@PathVariable(name = "userId") String userId,
 			@RequestBody UserUpdateDto userUpdateDto) {
 		try {
 			UserDto updatedUser = userService.updateUser(userUpdateDto);

@@ -1,5 +1,10 @@
-@charset "UTF-8";
 
-.flex-container {
-	display: flex;
+.musicBackground {
+	
+    height: 398px;
+	background-color:#020d18;
+}
+
+.movie {
+	
 }

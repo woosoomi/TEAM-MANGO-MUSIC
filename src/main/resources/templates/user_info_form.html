@@ -123,6 +123,50 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+
+	<!-- ... 이전 HTML 코드 ... -->
+
+	<!-- 스크립트 코드 추가 -->
+	<script>
+		// 페이지가 로드되면 실행될 함수
+		window.onload = function () {
+			// 여기에서 서버로부터 사용자 정보를 가져와서 필드에 설정하는 코드를 추가합니다.
+			// 예를 들어, 사용자 정보를 JSON 형식으로 가져오는 AJAX 요청을 수행할 수 있습니다.
+
+			// 사용자 정보 가져오기 예시 (AJAX 사용)
+			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user', {
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json',
+				}
+			})
+				.then(response => response.json())
+				.then(data => {
+					// 가져온 사용자 정보를 필드에 설정
+					document.getElementById('userId').value = data.userId;
+					document.getElementById('userPw').value = data.userPw;
+					document.getElementById('userName').value = data.userName;
+					document.getElementById('userPhone').value = data.userPhone;
+					document.getElementById('userEmail').value = data.userEmail;
+					document.getElementById('userJumin').value = data.userJumin;
+					document.getElementById('userAddress').value = data.userAddress;
+
+					// 사용자 성별을 설정
+					if (data.userGender === '남') {
+						document.getElementById('userGender').value = 'man';
+					} else if (data.userGender === '여') {
+						document.getElementById('userGender').value = 'woman';
+					}
+				})
+				.catch(error => {
+					console.error('에러:', error);
+				});
+		};
+	</script>
+
+	<!-- ... 나머지 HTML 코드 ... -->
+
+
 </body>
 
 </html>

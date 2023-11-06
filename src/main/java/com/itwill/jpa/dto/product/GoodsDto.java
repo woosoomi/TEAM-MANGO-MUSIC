@@ -37,6 +37,8 @@ public class GoodsDto {
 	private int productStock; // 프로덕트(굿즈, 티켓) 재고
 	
 	private String productImage; // 프로덕트(음악,굿즈,티켓,멤버십) 이미지
+	private Long productCategoryId; // 프로덕트 카테고리
+    private String userId;
 
 	/*=============== ProductCategoryId 주입을 위한 Dto와 매서드 ===============*/
     private ProductCategoryDto productCategory;
@@ -72,26 +74,28 @@ public class GoodsDto {
 				.productDate(entity.getProductDate())
 				.productStock(entity.getProductStock())
 				.productImage(entity.getProductImage())
+				.productCategoryId(entity.getProductCategory().getCategoryId())
+//              .userId(entity.getUser().getUserId())
 				.build();
 }
 	//List<Entity> to List<Dto> 변환
-	public static List<GoodsDto> toDto(List<Goods> entities) {
-		List<GoodsDto> goodsDtoList = new ArrayList<>();
-		 for(Goods entity : entities) {
-			 GoodsDto goodsDto = GoodsDto.builder()
-						.productName(entity.getProductName())
-						.productPrice(entity.getProductPrice())
-						.readCount(entity.getReadCount())
-						.productContent(entity.getProductContent())
-						.productStar(entity.getProductStar())
-						.productDate(entity.getProductDate())
-						.productStock(entity.getProductStock())
-						.productImage(entity.getProductImage())
-						.build();
-			 goodsDtoList.add(goodsDto);
-		 }
-		 return goodsDtoList;
-	}
+//	public static List<GoodsDto> toDto(List<Goods> entities) {
+//		List<GoodsDto> goodsDtoList = new ArrayList<>();
+//		 for(Goods entity : entities) {
+//			 GoodsDto goodsDto = GoodsDto.builder()
+//						.productName(entity.getProductName())
+//						.productPrice(entity.getProductPrice())
+//						.readCount(entity.getReadCount())
+//						.productContent(entity.getProductContent())
+//						.productStar(entity.getProductStar())
+//						.productDate(entity.getProductDate())
+//						.productStock(entity.getProductStock())
+//						.productImage(entity.getProductImage())
+//						.build();
+//			 goodsDtoList.add(goodsDto);
+//		 }
+//		 return goodsDtoList;
+//	}
 
 
 	}
