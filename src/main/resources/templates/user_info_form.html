@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
 
 <head><!-- Basic need -->
 	<title>Open Pediatrics</title>
@@ -32,7 +32,7 @@
 							<ul>
 								<li class="active"><a href="user_info_form">내정보</a></li>
 								<li><a href="user_modify_form">회원정보수정</a></li>
-								<li><a href="cart">나의 장바구니</a></li>
+								<li><a href="cart_main">나의 장바구니</a></li>
 								<li><a href="order_history">나의 주문내역</a></li>
 								<li><a href="#">logout</a></li>
 							</ul>
@@ -41,33 +41,35 @@
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
-						<form action="" class="user">
+						<form action="" class="user" th:object="${loginUser}" method="post">
 							<h4>01. 회원정보</h4>
 							<div class="row">
 								<div class="col-md-6 form-it"><label>UserId</label><input type="text" placeholder="아이디"
-										id="userId"></div>
+										id="userId" th:value="*{userId}"></div>
 								<div class="col-md-6 form-it"><label>UserPassword</label><input type="text"
-										placeholder="비밀번호" id="userPw"></div>
+										placeholder="비밀번호" id="userPw" th:value="*{userPw}"></div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it"><label>UserName</label><input type="text" placeholder="이름"
-										id="userName"></div>
+										id="userName" th:value="*{userName}"></div>
 								<div class="col-md-6 form-it"><label>UserPhone</label><input type="text"
-										placeholder="전화번호" id="userPhone"></div>
+										placeholder="전화번호" id="userPhone" th:value="*{userPhone}"></div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it"><label>UserEmail</label><input type="text"
-										placeholder="이메일" id="userEmail"></div>
+										placeholder="이메일" id="userEmail" th:value="*{userEmail}"></div>
 								<div class="col-md-6 form-it"><label>UserJumin</label><input type="text"
-										placeholder="주민번호" id="userJumin"></div>
+										placeholder="주민번호" id="userJumin" th:value="*{userJumin}"></div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it"><label>UserAddress</label><input type="text"
-										placeholder="주소" id="userAddress"></div>
-								<div class="col-md-6 form-it"><label>UserGender</label><select id="userGender">
+										placeholder="주소" id="userAddress" th:value="*{userAddress}"></div>
+								<div class="col-md-6 form-it"><label>UserGender</label><input type="text"
+										placeholder="주소" id="userGender" th:value="*{userGender}"></div>
+								<!--<div class="col-md-6 form-it"><label>UserGender</label><select id="userGender" th:value="*{userGender}">
 										<option value="man">남</option>
 										<option value="woman">여</option>
-									</select></div>
+									</select></div>-->
 							</div>
 							<div class="row">
 								<div class="col-md-2"><input class="submit" type="submit" value="save"></div>
@@ -80,54 +82,36 @@
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
+
+	
+
+	<!--<script>
+    window.addEventListener('load', function () {
+        // 세션에서 사용자 정보 가져오기
+        var userId = "${session.getAttribute('userId')}";
+        var userPw = "${session.getAttribute('userPw')}";
+        var userName = "${session.getAttribute('userName')}";
+        var userPhone = "${session.getAttribute('userPhone')}";
+        var userEmail = "${session.getAttribute('userEmail')}";
+        var userJumin = "${session.getAttribute('userJumin')}";
+        var userAddress = "${session.getAttribute('userAddress')}";
+
+        // 필드에 정보 할당
+        document.getElementById("userId").value = userId;
+        document.getElementById("userPw").value = userPw;
+        document.getElementById("userName").value = userName;
+        document.getElementById("userPhone").value = userPhone;
+        document.getElementById("userEmail").value = userEmail;
+        document.getElementById("userJumin").value = userJumin;
+        document.getElementById("userAddress").value = userAddress;
+    });
+</script>-->
+
+
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-
-	<!-- ... 이전 HTML 코드 ... -->
-
-	<!-- 스크립트 코드 추가 -->
-	<script>
-		// 페이지가 로드되면 실행될 함수
-		window.onload = function () {
-			// 여기에서 서버로부터 사용자 정보를 가져와서 필드에 설정하는 코드를 추가합니다.
-			// 예를 들어, 사용자 정보를 JSON 형식으로 가져오는 AJAX 요청을 수행할 수 있습니다.
-
-			// 사용자 정보 가져오기 예시 (AJAX 사용)
-			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user', {
-				method: 'GET',
-				headers: {
-					'Accept': 'application/json',
-				}
-			})
-				.then(response => response.json())
-				.then(data => {
-					// 가져온 사용자 정보를 필드에 설정
-					document.getElementById('userId').value = data.userId;
-					document.getElementById('userPw').value = data.userPw;
-					document.getElementById('userName').value = data.userName;
-					document.getElementById('userPhone').value = data.userPhone;
-					document.getElementById('userEmail').value = data.userEmail;
-					document.getElementById('userJumin').value = data.userJumin;
-					document.getElementById('userAddress').value = data.userAddress;
-
-					// 사용자 성별을 설정
-					if (data.userGender === '남') {
-						document.getElementById('userGender').value = 'man';
-					} else if (data.userGender === '여') {
-						document.getElementById('userGender').value = 'woman';
-					}
-				})
-				.catch(error => {
-					console.error('에러:', error);
-				});
-		};
-	</script>
-
-	<!-- ... 나머지 HTML 코드 ... -->
-
-
 </body>
 
 </html>

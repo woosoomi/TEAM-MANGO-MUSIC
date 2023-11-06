@@ -45,6 +45,21 @@ public class UserController {
 		return forward_path;
 	}
 
+	/*
+	 * @LoginCheck
+	 * 
+	 * @PostMapping("/user_login_action") public String
+	 * user_login_action(@ModelAttribute("fuser") UserLoginDto userLoginDto, Model
+	 * model, HttpSession session) throws Exception { String forwardPath = ""; try {
+	 * userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
+	 * session.setAttribute("sUserId", userLoginDto.getUserId()); forwardPath =
+	 * "redirect:user_info_form"; } catch (UserNotFoundException e) {
+	 * e.printStackTrace(); model.addAttribute("msg1", e.getMessage()); forwardPath
+	 * = "user_login_form"; } catch (PasswordMismatchException e) {
+	 * e.printStackTrace(); model.addAttribute("msg2", e.getMessage()); forwardPath
+	 * = "user_login_form"; } return forwardPath; }
+	 */
+
 	@GetMapping("/user_write_form")
 	public String user_write_form() {
 		String forward_path = "user_write_form";
@@ -57,28 +72,6 @@ public class UserController {
 		return forward_path;
 	}
 
-	/*
-	 * @LoginCheck
-	 * 
-	 * @PostMapping("/user_login_action") public String
-	 * user_login_action(@ModelAttribute("fuser") UserLoginDto userLoginDto, Model
-	 * model, HttpSession session) throws Exception { String forwardPath = ""; try {
-	 * userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-	 * session.setAttribute("sUserId", userLoginDto.getUserId()); forwardPath =
-	 * "redirect:user_info_form"; } catch (UserNotFoundException e) {
-	 * e.printStackTrace(); model.addAttribute("msg1", e.getMessage()); forwardPath
-	 * = "redirect:index"; } catch (PasswordMismatchException e) {
-	 * e.printStackTrace(); model.addAttribute("msg2", e.getMessage()); forwardPath
-	 * = "redirect:index"; } return forwardPath; }
-	 */
-
-	@LoginCheck
-	@RequestMapping("user_logout_action")
-	public String user_logout_action(HttpSession session) {
-		session.invalidate();
-		return "redirect:index";
-	}
-
 	@LoginCheck
 	@GetMapping("/user_info_form")
 	public String user_info_form(HttpSession session, Model model) throws Exception {
@@ -86,6 +79,13 @@ public class UserController {
 		UserDto user = userService.findUser(loginUser);
 		model.addAttribute("loginUser", user);
 		return "user_info_form";
+	}
+
+	@LoginCheck
+	@RequestMapping("user_logout_action")
+	public String user_logout_action(HttpSession session) {
+		session.invalidate();
+		return "redirect:user_login_form";
 	}
 
 	/*
