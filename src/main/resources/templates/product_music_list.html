@@ -15,6 +15,7 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/product.css">
 </head>
 <body><!--preloading-->
 <div th:insert="~{common_header::headerFragment}"></div>
@@ -32,12 +33,12 @@
 				<div class="row" id="musicList">
 
 
-						<div th:each="music : ${musics}">
+						<div class="music_List" th:each="music : ${musics}">
 							<div class="flex-wrap-movielist user-fav-list">
 
 								<div class="movie-item-style-2">
 									<a th:href="@{/product_music_detail(productNo=${music.productNo})}" > 
-									<img th:src="${music.productImage}" alt="">
+									<img th:src="${music.productImage}" alt="" style="width: 100px">
 									</a>
 									<div class="mv-item-infor">
 										<h6>
