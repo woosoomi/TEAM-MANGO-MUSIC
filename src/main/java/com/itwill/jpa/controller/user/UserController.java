@@ -27,37 +27,36 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
-	@GetMapping("/user_info_form")
-	public String user_info_form() {
-		String forward_path = "user_info_form";
-		return forward_path;
-	}
-	 
+
+	/*
+	 * @GetMapping("/user_info_form") public String user_info_form() { String
+	 * forward_path = "user_info_form"; return forward_path; }
+	 */
+
 	@GetMapping("/user_modify_form")
 	public String user_modify_form() {
 		String forward_path = "user_modify_form";
 		return forward_path;
 	}
-	
+
 	@GetMapping("/user_login_form")
 	public String user_login_form() {
 		String forward_path = "user_login_form";
 		return forward_path;
 	}
-	
+
 	@GetMapping("/user_write_form")
 	public String user_write_form() {
 		String forward_path = "user_write_form";
 		return forward_path;
 	}
-	
-	@GetMapping("/userCheckIdPw")
-	public String userCheckIdPw() {
-		String forward_path = "userCheckIdPw";
+
+	@GetMapping("/user_CheckIdPw")
+	public String user_CheckIdPw() {
+		String forward_path = "user_CheckIdPw";
 		return forward_path;
 	}
-	
+
 	/*
 	 * @LoginCheck
 	 * 
@@ -72,7 +71,7 @@ public class UserController {
 	 * e.printStackTrace(); model.addAttribute("msg2", e.getMessage()); forwardPath
 	 * = "redirect:index"; } return forwardPath; }
 	 */
-	 
+
 	@LoginCheck
 	@RequestMapping("user_logout_action")
 	public String user_logout_action(HttpSession session) {
@@ -80,18 +79,15 @@ public class UserController {
 		return "redirect:index";
 	}
 
-	
-	
-	/*
-	 * @LoginCheck
-	 * 
-	 * @GetMapping("/user_info_form") public String
-	 * user_info_form(HttpServletRequest request, Model model) throws Exception {
-	 * String loginUser = (String) request.getSession().getAttribute("sUserId");
-	 * UserDto user = userService.findUser(loginUser);
-	 * model.addAttribute("loginUser", user); return "redirect:user_info_form"; }
-	 */
-	
+	@LoginCheck
+	@GetMapping("/user_info_form")
+	public String user_info_form(HttpSession session, Model model) throws Exception {
+		String loginUser = (String) session.getAttribute("sUserId");
+		UserDto user = userService.findUser(loginUser);
+		model.addAttribute("loginUser", user);
+		return "user_info_form";
+	}
+
 	/*
 	 * @LoginCheck
 	 * 
@@ -101,7 +97,7 @@ public class UserController {
 	 * UserDto loginUser = userService.findUser(sUserId);
 	 * model.addAttribute("loginUser", loginUser); return "user_modify_form"; }
 	 */
-	
+
 	@LoginCheck
 	@PostMapping("user_modify_action")
 	public String user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto, HttpServletRequest request)
@@ -121,8 +117,7 @@ public class UserController {
 	}
 
 	/*********** GET방식요청시 guest_main redirection *********/
-	@GetMapping({ "user_write_action", "user_login_action", "user_modify_action",
-			"user_remove_action" })
+	@GetMapping({ "user_write_action", "user_login_action", "user_modify_action", "user_remove_action" })
 	public String user_get() {
 		String forwardPath = "redirect:index";
 		return forwardPath;
