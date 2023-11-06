@@ -82,6 +82,8 @@
 						<div class="user-fav">
 							<ul>
 								<li class="active"><a href="user_login_form">01. 로그인</a></li>
+								<li><a href="user_write_form">02. 회원가입</a></li>
+								<li><a href="userCheckIdPw">03. 아이디, 비번찾기</a></li>
 							</ul>
 						</div>
 					</div>
@@ -89,7 +91,7 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
 						<form name="f" method="post" th:object="${userDto}">
-							<h4>01. UserInfo</h4>
+							<h4>01. LoginInfo</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserId</label> <input type="text" id="userId"
