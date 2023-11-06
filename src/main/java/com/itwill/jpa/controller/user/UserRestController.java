@@ -52,7 +52,7 @@ public class UserRestController {
 	}
 	
 	@Operation(summary = "로그인[성공]")
-	@PostMapping(value = "/login")
+	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
 		try {
 			User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());

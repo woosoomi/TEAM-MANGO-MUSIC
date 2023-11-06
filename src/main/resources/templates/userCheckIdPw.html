@@ -74,7 +74,8 @@
 	</div><!-- footer section-->
 	<div th:insert="~{footer :: footerFragment}">
 	</div><!-- end of footer section-->
-	<script src="js/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!--<script src="js/jquery.js"></script>-->
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
@@ -105,7 +106,7 @@
 			};
 
 			$.ajax({
-				url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-id',
+				url: '/user/find-id',
 				method: 'get',
 				data: userData, // 객체 그대로 전달
 				dataType: "json",
@@ -120,13 +121,6 @@
 				}
 			});
 		}
-
-		// checkIdbutton를 클릭했을 때 checkId 함수를 호출
-		$(document).ready(function () {
-			$('#checkIdbutton').click(function () {
-				//checkId();
-			});
-		});
 	</script>
 
 
