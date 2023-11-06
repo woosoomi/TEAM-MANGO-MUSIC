@@ -38,16 +38,17 @@ public class TicketDto {
 
 	private Long productCategoryId; // 프로덕트 카테고리
 	
-    private String userId;	
+    private String userId;
+	private ProductCategoryDto productCategory;	
 	/*=============== ProductCategoryId 주입을 위한 Dto와 매서드 ===============*/
 //    private ProductCategoryDto productCategory;
 //    
 //	public ProductCategoryDto getProductCategory() {
 //		return productCategory;
 //	}
-//    public void setProductCategory(ProductCategoryDto productCategory) {
-//        this.productCategory = productCategory;
-//    }
+    public void setProductCategory(ProductCategoryDto productCategory) {
+        this.productCategory = productCategory;
+    }
     /*=================================================================*/
     
 	//Dto에서 보여주는 ticket 정보가 무엇인지 설정하는 생성자(초기화)

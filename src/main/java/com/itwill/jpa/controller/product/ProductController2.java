@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.entity.board.Board;
 //import com.itwill.jpa.dto.product.ProductMusicDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.product.ProductRepository;
@@ -35,6 +36,10 @@ public class ProductController2 {
 	
 	@Autowired
 	private final ProductService productService;
+	
+	@Autowired
+	private final ProductServiceImpl productServiceImpl;
+	
 	@Autowired
 	private final UserService userService;
 	
@@ -140,13 +145,13 @@ public class ProductController2 {
 	
 		
 		// 티켓리스트
-		@GetMapping("/ticket_list")
+		@GetMapping("/product_ticket_list")
 		public String TicketList(Model model) {
 			try {
 				List<ProductDto> tickets = productService.findByProductCategoryId(3L);
 				model.addAttribute("tickets", tickets);
 				//System.out.println(">>>TICKET LIST : " + tickets);
-				return "ticket_list";
+				return "product_ticket_list";
 			} catch (Exception e) {
 				e.printStackTrace();
 				model.addAttribute(e.getMessage());
@@ -156,22 +161,43 @@ public class ProductController2 {
 		}
 		
 		// 티켓디테일
-		@GetMapping("/ticket_detail/{productNo}")
-		public String TicketDetail(@PathVariable Long producNo , Model model) {
-			try {
-				Product ticketDetail = (Product) productService.findByProductNo(producNo).get();
-				System.out.println(ticketDetail);
-				
-				productService.increaseReadCount(ticketDetail);
-				model.addAttribute("ticketDetail", ticketDetail);
-				log.info(">>>TICKET DETAIL : " + ticketDetail);
-				return "ticket_detail";
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute(e.getMessage());
-				return null;
-			}
-			
+		@GetMapping("/product_ticket_detail/{productNo}")
+		public String TicketDetail(@RequestParam(name = "productNo") Long producNo , Model model) {
+//			try {
+//				Product ticketDetail = (Product) productService.findByProductNo(producNo).get();
+//				System.out.println(ticketDetail);
+//				
+//				productService.increaseReadCount(ticketDetail);
+//				model.addAttribute("ticketDetail", ticketDetail);
+//				log.info(">>>TICKET DETAIL : " + ticketDetail);
+//				return "ticket_detail";
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				model.addAttribute(e.getMessage());
+//				return null;
+//			}
+//			
+//		}
+		    try {
+		        // 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
+		        Optional<Product> productOptional = productServiceImpl.findByProductNo(producNo);
+
+		        if (productOptional.isPresent()) {
+		            // 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
+		            Product product = productOptional.get();
+		            model.addAttribute("product", product);
+		            System.out.println("product :"+product);
+		        } else {
+		            // 게시물이 존재하지 않을 경우 에러 처리
+		            model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+		        }
+
+		        return "product_ticket_detail";
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
+		        return "error";
+		    }
 		}
 		
 
