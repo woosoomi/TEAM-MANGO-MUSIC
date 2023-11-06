@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		itemList.forEach(function(item) {
 			var titleElement = item.getElementsByTagName('a')[0]; // a 요소 선택
 			var title = titleElement.textContent;
+				console.log(titleElement);
 
 			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
 				faqContainer.appendChild(item);
