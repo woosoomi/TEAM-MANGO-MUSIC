@@ -21,9 +21,6 @@ import com.itwill.jpa.repository.user.UserRepository;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
-
-	@Autowired
-	UserRepository userRepository;
 	
 	@Autowired
 	UserDao userDao;
@@ -132,7 +129,7 @@ public class UserServiceImpl implements UserService{
 			throw new Exception("사용자 번호가 잘못되었습니다.");
 		}
 
-		String userPw = userRepository.findUserPwByUserIdUserPhone(userId, userPhone);
+		String userPw = userDao.findUserPwByUserIdUserPhone(userId, userPhone);
 		if (userPw == null) {
 			throw new Exception("해당 정보로 등록된 사용자가 없습니다.");
 		}

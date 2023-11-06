@@ -32,9 +32,7 @@
 				</div>
 				<div class="row">
 					<label for="password"> Password:<input type="password" name="password" id="password"
-							placeholder="비밀번호"
-							pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
-							required="required" /></label>
+							placeholder="비밀번호" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" /></label>
 				</div>
 				<div class="row">
 					<div class="remember">
@@ -63,75 +61,10 @@
 	<!-- BEGIN | Header -->
 	<header class="ht-header">
 		<div class="container">
-			<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
-					<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span
-							class="sr-only">Toggle navigation</span>
-						<div id="nav-icon1"><span></span><span></span><span></span></div>
-					</div><a href="index"><img class="logo" src="images/mango_logo2.png" alt="" width="119"
-							height="58"></a>
-				</div><!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden"><a href="#page-top"></a></li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1"
-								data-toggle="dropdown">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="index">mango music</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 멜론차트<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
 
-								<li><a href="music_list">TOP100</a></li>
-								<li><a href="music_list">최신음악</a></li>
-								<li><a href="music_list">장르음악</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> shop<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
 
-								<li><a href="ticket_list">망고티켓</a></li>
-								<li><a href="goods_list">망고굿즈</a></li>
-								<li><a href="membership_detail">멤버쉽</a></li>
-							</ul>
-						</li>
+			<div th:insert="~{common_menu :: menuFragment}"></div>
 
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 뮤직어워드 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="productVote">뮤직어워드</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 게시판 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="notification">공지사항</a></li>
-								<li><a href="#">FAQ</a></li>
-								<li><a href="magazine">magazine</a></li>
-								<li><a href="#">1대1문의</a></li>
-								<li><a href="event">이벤트</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
-								data-hover="dropdown"> 결제 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-							<ul class="dropdown-menu level1">
-								<li><a href="order_membership">멤버쉽결제</a></li>
-								<li><a href="order_ticket">티켓결제</a></li>
-								<li><a href="order_history">주문내역</a></li>
-							</ul>
-						</li>
-					</ul>
-					
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-
-						<li class="btn signupLink"><a href="userprofile">로그인</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</nav><!-- top search form -->
 			<div class="top-search"><select>
 					<option value="united">노래검색</option>
 					<option value="saab">가수검색</option>
@@ -188,7 +121,8 @@
 			<div class="row ipad-width">
 				<div class="col-md-8">
 					<div class="title-hd">
-						<h2>MANGO TICKET</h2><a href="#" class="viewall">View More <i class="ion-ios-arrow-right"></i></a>
+						<h2>MANGO TICKET</h2><a href="#" class="viewall">View More <i
+								class="ion-ios-arrow-right"></i></a>
 					</div>
 					<div class="tabs">
 						<ul class="tab-links">
@@ -204,10 +138,13 @@
 											<div class="movie-item">
 												<div class="mv-img"><img src="images/uploads/아이유_티켓.jpg" alt=""
 														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="https://ticket.melon.com/performance/index.htm?prodId=208654">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in" >
-													<h6><a href="https://ticket.melon.com/performance/index.htm?prodId=208654">아이유 콘서트  </a></h6>
+												<div class="hvr-inner"><a
+														href="https://ticket.melon.com/performance/index.htm?prodId=208654">Read
+														more <i class="ion-android-arrow-dropright"></i></a></div>
+												<div class="title-in">
+													<h6><a
+															href="https://ticket.melon.com/performance/index.htm?prodId=208654">아이유
+															콘서트 </a></h6>
 												</div>
 											</div>
 										</div>
@@ -503,7 +440,8 @@
 						</div>
 					</div>
 					<div class="title-hd">
-						<h2>MANGO MAGAZINE </h2><a href="#" class="viewall">View More <i class="ion-ios-arrow-right"></i></a>
+						<h2>MANGO MAGAZINE </h2><a href="#" class="viewall">View More <i
+								class="ion-ios-arrow-right"></i></a>
 					</div>
 					<div class="tabs">
 						<ul class="tab-links-2">
@@ -520,10 +458,13 @@
 											<div class="movie-item">
 												<div class="mv-img"><img src="images/uploads/매거진1.jpg" alt=""
 														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="https://www.melon.com/musicstory/inform.htm?mstorySeq=14238&startIndex=0&musicToday=Y">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+												<div class="hvr-inner"><a
+														href="https://www.melon.com/musicstory/inform.htm?mstorySeq=14238&startIndex=0&musicToday=Y">Read
+														more <i class="ion-android-arrow-dropright"></i></a></div>
 												<div class="title-in">
-													<h6><a href="https://www.melon.com/musicstory/inform.htm?mstorySeq=14238&startIndex=0&musicToday=Y">매거진1</a></h6>
+													<h6><a
+															href="https://www.melon.com/musicstory/inform.htm?mstorySeq=14238&startIndex=0&musicToday=Y">매거진1</a>
+													</h6>
 													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
 												</div>
 											</div>
@@ -933,38 +874,38 @@
 					<div class="videos">
 						<div class="slider-for-2 video-ft">
 							<div><iframe class="item-video" src=""
-									data-src="https://www.youtube.com/embed/EIz09kLzN9k"></iframe></div> 
+									data-src="https://www.youtube.com/embed/EIz09kLzN9k"></iframe></div>
 							<div><iframe class="item-video" src=""
 									data-src="https://www.youtube.com/embed/1QYBiNRu1ok"></iframe></div>
 							<div><iframe class="item-video" src=""
 									data-src="https://www.youtube.com/embed/_Hu4GYtye5U"></iframe></div>
 							<div><iframe class="item-video" src=""
-									data-src="https://www.youtube.com/embed/ArmDp-zijuc"></iframe></div> 
+									data-src="https://www.youtube.com/embed/ArmDp-zijuc"></iframe></div>
 							<div><iframe class="item-video" src=""
 									data-src="https://www.youtube.com/embed/eQNHDV7lKgE"></iframe></div>
 							<div><iframe class="item-video" src=""
-									data-src="https://www.youtube.com/embed/0-q1KafFCLU"></iframe></div> 
+									data-src="https://www.youtube.com/embed/0-q1KafFCLU"></iframe></div>
 						</div>
 						<div class="slider-nav-2 thumb-ft">
 							<div class="item">
-								<div class="trailer-img"><img src="images/uploads/악뮤.jpg"
-										alt="photo by Barn Images" width="4096" height="2737"></div>
+								<div class="trailer-img"><img src="images/uploads/악뮤.jpg" alt="photo by Barn Images"
+										width="4096" height="2737"></div>
 								<div class="trailer-infor">
 									<h4 class="desc">Love Lee</h4>
 									<p>AKMU</p>
 								</div>
 							</div>
 							<div class="item">
-								<div class="trailer-img"><img src="images/uploads/정국.png"
-										alt="photo by Barn Images" width="350" height="200"></div>
+								<div class="trailer-img"><img src="images/uploads/정국.png" alt="photo by Barn Images"
+										width="350" height="200"></div>
 								<div class="trailer-infor">
 									<h4 class="desc">Seven</h4>
 									<p>정국(Jung Kook) feat. Latto</p>
 								</div>
 							</div>
 							<div class="item">
-								<div class="trailer-img"><img src="images/uploads/아이브.jpg"
-										alt="photo by Joshua Earle"></div>
+								<div class="trailer-img"><img src="images/uploads/아이브.jpg" alt="photo by Joshua Earle">
+								</div>
 								<div class="trailer-infor">
 									<h4 class="desc">Either Way</h4>
 									<p>IVE 아이브</p>
@@ -1006,8 +947,7 @@
 		<div class="container">
 			<div class="flex-parent-ft">
 				<div class="flex-child-ft item1"><a href="index.html"><img class="logo" src="images/mango_logo2.png"
-							alt="" width="119"
-							height="58"></a>
+							alt="" width="119" height="58"></a>
 					<p>5th Avenue st, manhattan<br> New York, NY 10001</p>
 					<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
 				</div>
@@ -1061,34 +1001,34 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-	
+
 	<script>
-    $(document).ready(function () {
-        $("#login-form").submit(function (event) {
-            event.preventDefault(); // 폼 제출 동작을 중단
+		$(document).ready(function () {
+			$("#login-form").submit(function (event) {
+				event.preventDefault(); // 폼 제출 동작을 중단
 
-            // 사용자가 입력한 아이디와 비밀번호 가져오기
-            var username = $("#username").val();
-            var password = $("#password").val();
+				// 사용자가 입력한 아이디와 비밀번호 가져오기
+				var username = $("#username").val();
+				var password = $("#password").val();
 
-            // Ajax 요청을 이용하여 로그인 시도
-            $.ajax({
-                type: "POST",
-                url: "/login", // 로그인을 처리하는 서버 엔드포인트
-                data: JSON.stringify({ userId: username, userPw: password }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    alert("로그인 성공!"); // 로그인 성공 시 알림
-                    window.location.replace("/user_info_form"); // 페이지 새로 고침 또는 리디렉션
-                },
-                error: function (xhr, status, error) {
-                    alert("로그인 실패. 다시 시도하세요.");
-                }
-            });
-        });
-    });
-</script>
+				// Ajax 요청을 이용하여 로그인 시도
+				$.ajax({
+					type: "POST",
+					url: "/login", // 로그인을 처리하는 서버 엔드포인트
+					data: JSON.stringify({userId: username, userPw: password}),
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					success: function (data) {
+						alert("로그인 성공!"); // 로그인 성공 시 알림
+						window.location.replace("/user_info_form"); // 페이지 새로 고침 또는 리디렉션
+					},
+					error: function (xhr, status, error) {
+						alert("로그인 실패. 다시 시도하세요.");
+					}
+				});
+			});
+		});
+	</script>
 
 </body>
 

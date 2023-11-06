@@ -81,8 +81,7 @@
 						<!--end of login form popup-->
 						<div class="user-fav">
 							<ul>
-								<li class="active"><a href="user_write_form">01. 회원가입</a></li>
-								<li><a href="userCheckIdPw">02. 아이디, 비번찾기</a></li>
+								<li class="active"><a href="user_login_form">01. 로그인</a></li>
 							</ul>
 						</div>
 					</div>
@@ -102,47 +101,12 @@
 
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6 form-it">
-									<label>UserName</label> <input type="text" id="userName"
-										name="userName" placeholder="이름을 입력하세요." required="required">
-								</div>
-								<div class="col-md-6 form-it">
-									<label>UserPhone</label> <input type="text" id="userPhone"
-										name="userPhone" placeholder="전화번호를 입력하세요."
-										required="required">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 form-it">
-									<label>UserEmail</label> <input type="text" id="userEmail"
-										name="userEmail" placeholder="이메일을 입력하세요." required="required">
-								</div>
-								<div class="col-md-6 form-it">
-									<label>UserJumin</label> <input type="text" id="userJumin"
-										name="userJumin" placeholder="주민번호를 입력하세요."
-										required="required">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 form-it">
-									<label>UserAddress</label> <input type="text" id="userAddress"
-										name="userAddress" placeholder="주소를 입력하세요."
-										required="required">
-								</div>
-								<div class="col-md-6 form-it">
-									<label>UserGender</label> <select id="userGender"
-										name="userGender">
-										<option value="man">남</option>
-										<option value="woman">여</option>
-									</select>
-								</div>
-							</div>
+
 							<div class="row">
 								<div class="col-md-2">
 									<!-- Submit button -->
-									<input class="submit" id="savebutton" type="button"
-										value="회원가입" onclick="writeForm()">
+									<input class="submit" id="loginbutton" type="button"
+										value="로그인" onclick="loginForm()">
 								</div>
 							</div>
 						</form>
@@ -161,71 +125,49 @@
 
 
 	<script th:inline="javascript">
-    function writeForm() {
-        var formData = {
-            userId: document.getElementById("userId").value,
-            userPw: document.getElementById("userPw").value,
-            userName: document.getElementById("userName").value,
-            userPhone: document.getElementById("userPhone").value,
-            userEmail: document.getElementById("userEmail").value,
-            userJumin: document.getElementById("userJumin").value,
-            userAddress: document.getElementById("userAddress").value,
-            userGender: document.getElementById("userGender").value
-        };
-        
-     // 각 필드의 유효성 검사
-        if (!formData.userId) {
-            alert('아이디를 입력하세요.');
-            return;
-        }
-        if (!formData.userPw) {
-            alert('비밀번호를 입력하세요.');
-            return;
-        }
-        if (!formData.userName) {
-            alert('이름을 입력하세요.');
-            return;
-        }
-        if (!formData.userPhone) {
-            alert('전화번호를 입력하세요.');
-            return;
-        }
-        if (!formData.userEmail) {
-            alert('이메일을 입력하세요.');
-            return;
-        }
-        if (formData.userPhone.length > 15) {
-            alert('전화번호의 형식이 틀렸습니다.');
-            return;
-        }
+        function loginForm() {
+            var formData = {
+                userId: document.getElementById("userId").value,
+                userPw: document.getElementById("userPw").value
+            };
 
-        // Send form data to the server
-        fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/join', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
-            if (response.status === 201) {
-                alert('회원가입이 성공적으로 완료되었습니다.');
-                window.location.href = "index";
-            } else if (response.status === 400) {
-                response.text().then(message => {
-                    alert('에러 서비스에서 설정해놓은 오류: ' + message);
-                });
-                window.location.href = "user_write_form";
-            } else {
-                // Other exceptions
-                alert('내부 서버 오류');
+            // 각 필드의 유효성 검사
+            if (!formData.userId) {
+                alert('아이디를 입력하세요.');
+                return;
             }
-        })
-        .catch(error => {
-            console.error('에러:', error);
-        });
-    }
-</script>
+            if (!formData.userPw) {
+                alert('비밀번호를 입력하세요.');
+                return;
+            }
+
+            // Send form data to the server
+            fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    alert('로그인이 성공적으로 완료되었습니다.');
+                    window.location.href = "user_info_form"; // 로그인 성공 시 리디렉션할 페이지
+                } else if (response.status === 401) {
+                    alert('비밀번호가 틀렸습니다.');
+                } else if (response.status === 500) {
+                    alert('내부 서버 오류');
+                } else {
+                    alert('알 수 없는 오류가 발생했습니다.');
+                }
+            })
+            .catch(error => {
+                console.error('에러:', error);
+            });
+        }
+    </script>
+
+
 
 </body>
 
