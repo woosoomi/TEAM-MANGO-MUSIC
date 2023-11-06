@@ -37,27 +37,29 @@ $(document).ready(function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     // 삭제 버튼을 클릭할 때
-    var deleteButton = document.getElementById("deleteItem");
-    deleteButton.addEventListener("click", function() {
-        var oiId = deleteButton.getAttribute("data-order-id");
-        
-        // AJAX 요청을 보냅니다.
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order_history/delete/" + oiId, true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                if (response.status === "success") {
-                    // 삭제 성공 시 실행할 코드
-                    alert("주문내역이 삭제되었습니다.");
-                    // 페이지 새로고침 또는 다른 업데이트 작업 수행
-                } else {
-                    // 삭제 실패 시 실행할 코드
-                    alert("주문내역 삭제 중 오류가 발생했습니다.");
+    document.querySelectorAll(".deleteButton").forEach(function(button) {
+        button.addEventListener("click", function() {
+            var oiId = button.getAttribute("data-order-id");
+            console.log(oiId)
+            // AJAX 요청을 보냅니다.
+            var xhr = new XMLHttpRequest();
+            // 주문 ID를 동적으로 대체
+            xhr.open("POST", "http://localhost/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order_history/delete/" + oiId, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === "success") {
+                        // 삭제 성공 시 실행할 코드
+                        alert("주문내역이 삭제되었습니다.");
+                        // 페이지 새로고침 또는 다른 업데이트 작업 수행
+                    } else {
+                        // 삭제 실패 시 실행할 코드
+                        alert("주문내역 삭제 중 오류가 발생했습니다.");
+                    }
                 }
-            }
-        };
-        xhr.send("orderitemId=" + oiId);
+            };
+            // 요청 데이터를 동적으로 설정
+            xhr.send("orderitemId=" + oiId);
+        });
     });
 });
