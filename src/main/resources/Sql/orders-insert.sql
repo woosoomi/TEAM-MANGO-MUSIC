@@ -7,7 +7,7 @@ values (delivery_no_seq.nextval, '서울시 관악구', 'CJ대한통운', '우�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id) 
 values (10000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '결제완료', 'why3795');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 10);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 1);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
 values (10.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000001', '회원가입 감사쿠폰', '1개월쿠폰', 'why3795');
