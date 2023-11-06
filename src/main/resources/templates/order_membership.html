@@ -26,10 +26,13 @@
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<!-- 주문 상품리스트를 히든 필드로 저장 -->
-					<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}">
-					<div class="topbar-filter" id="userId">
+					<!--<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}">-->
+					
+					<div class="topbar-filter" id="user_id" th:value="${user_id}">
 						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
 					</div>
+					
+					
 					<div class="movie-item-style-2">
 						<img th:src="@{'images/' + ${membershipImage}}" alt="">
 						<div class="mv-item-infor">
@@ -288,42 +291,34 @@
 		// endPrice 업데이트
 		endPriceElement.placeholder = currentDiscountedPrice.toFixed(0) + ' 원'; // 총 결제금액 업데이트
 	});
-
-
+	
+	
 	/* 결제하기 버튼을 클릭했을 때 실행되는 함수(현대적인 방법의 ajax = 순수 자바스크립트로만 쓰임, 제이쿼리 X) */
 	
 	
 	//Id로 데이터 받기
 	var endPriceElement = document.getElementById("endPrice");
 	var endPrice = endPriceElement.value;
-
+	
 	// userId 가져오기
-    var userId = document.getElementById('userId').textContent;
-
-	// 주문 상품 목록을 히든 필드에서 읽어옵니다.
-    //var orderItemDtoList = JSON.parse(document.getElementById('orderItemDtoList').value);
-	
-	//test code
-	var newItem = {
-    "itemName": "New Product",
-    "quantity": 3,
-    "price": 15.99
-	};
-	
+    var userIdElement = document.getElementById("user_id");
+	var userId = userIdElement.innerText;
 	
 	document.getElementById('paymentButton').addEventListener('click', function () {
+		console.log(userId)
 		// AJAX 요청을 보낼 URL 및 데이터 설정
 		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL
 		var requestData = {
-			 "orderId": 0,
+			  orderId: 0,
+			  //checkPlease
 			  orderPrice: endPrice,
-			  "orderStatus": "결제완료",
-			  "userId": "lsg33",
-
-			"orderItemDtos": [
+			  orderStatus: "결제완료",
+			  //checkPlease
+			  userId:"lsg33",
+			  orderItemDtos: [
 			    {
-			      "oiId": 2,
-			      "oiQty": 0,
+			      "oiId": 3,
+			      "oiQty": 5,
 			      "productName": "string",
 			      "productImage": "string",
 			      "productPrice": 0,
@@ -331,11 +326,14 @@
 			      "productNo": 0,
 			      "orderId": 0
 			    }
-			  ],  
-			  //"createdAt": "2023-11-06T01:55:04.781Z",
-			  //"updatedAt": "2023-11-06T01:55:04.781Z"
-			 
+			  ],
+			  //checkPlease
+			  createdAt: "2023-11-06T01:55:04.781Z"
+		};
+		console.log(requestData)
+
 			/*
+			실 데이터 양식
 			{
 			  "orderId": 0,
 			  "orderPrice": 10000,
@@ -358,8 +356,7 @@
 			  "updatedAt": "2023-11-06T01:55:04.781Z"
 			}
 			*/
-		};
-
+				
 		// AJAX 요청 보내기
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST', url, true);
@@ -416,3 +413,4 @@
 
 
 </html>
+			

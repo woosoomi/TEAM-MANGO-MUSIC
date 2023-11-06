@@ -41,7 +41,8 @@ public class OrderRestController {
 	@Operation(summary = "주문생성[성공]")
 	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
-	    try {
+	    System.out.println("@@@@@@@"+orderDto);
+		try {
 			return ResponseEntity.status(HttpStatus.OK).body(orderService.saveOrder(orderDto));
 		} catch (Exception e) {
 			e.printStackTrace();
