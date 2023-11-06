@@ -25,8 +25,8 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
-					<!-- 주문 상품 목록을 히든 필드로 저장 -->
-					<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}" />
+					<!-- 주문 상품리스트를 히든 필드로 저장 -->
+					<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}">
 					<div class="topbar-filter" id="userId">
 						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
 					</div>
@@ -301,19 +301,63 @@
     var userId = document.getElementById('userId').textContent;
 
 	// 주문 상품 목록을 히든 필드에서 읽어옵니다.
-    var orderItemDtoList = JSON.parse(document.getElementById('orderItemDtoList').value);
-
-
+    //var orderItemDtoList = JSON.parse(document.getElementById('orderItemDtoList').value);
+	
+	//test code
+	var newItem = {
+    "itemName": "New Product",
+    "quantity": 3,
+    "price": 15.99
+	};
+	
+	
 	document.getElementById('paymentButton').addEventListener('click', function () {
 		// AJAX 요청을 보낼 URL 및 데이터 설정
 		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL
 		var requestData = {
-			// 결제에 필요한 데이터를 여기에 추가 (예: 주문 정보, 사용자 정보, 결제 수단 정보 등)
-			orderPrice: endPrice,
-			userId: userId,
-			orderStatus: "결제완료", // 주문 상태 문자열 또는 해당 형식에 맞게 설정
-			orderItemDtoList: orderItemDtoList
+			 "orderId": 0,
+			  orderPrice: endPrice,
+			  "orderStatus": "결제완료",
+			  "userId": "lsg33",
 
+			"orderItemDtos": [
+			    {
+			      "oiId": 2,
+			      "oiQty": 0,
+			      "productName": "string",
+			      "productImage": "string",
+			      "productPrice": 0,
+			      "productContent": "string",
+			      "productNo": 0,
+			      "orderId": 0
+			    }
+			  ],  
+			  //"createdAt": "2023-11-06T01:55:04.781Z",
+			  //"updatedAt": "2023-11-06T01:55:04.781Z"
+			 
+			/*
+			{
+			  "orderId": 0,
+			  "orderPrice": 10000,
+			  "orderStatus": "결제완료",
+			  "userId": "lsg33",
+			  "deliveryId": null,
+			  "orderItemDtos": [
+			    {
+			      "oiId": 2,
+			      "oiQty": 0,
+			      "productName": "string",
+			      "productImage": "string",
+			      "productPrice": 0,
+			      "productContent": "string",
+			      "productNo": 0,
+			      "orderId": 0
+			    }
+			  ],
+			  "createdAt": "2023-11-06T01:55:04.781Z",
+			  "updatedAt": "2023-11-06T01:55:04.781Z"
+			}
+			*/
 		};
 
 		// AJAX 요청 보내기
