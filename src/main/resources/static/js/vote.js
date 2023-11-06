@@ -6,7 +6,8 @@ function voteButtonClicked(button) {
     // Ajax 요청을 통해 서버로 데이터 전송
     $.ajax({
         type: "PUT",
-        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/userVoteUpdate/a/" + voteId, // userVoteUpdate/a/ 부분에서 "/a/" 가 유저 아이디가 들어가게 추후 수정 필요
+        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/userVoteUpdate/a/" + voteId, 
+        // userVoteUpdate/a/ 부분에서 "/a/" 가 유저 아이디가 들어가게 추후 수정 필요 --> userId session 받아오게 수정 
         contentType: "application/json",
         success: function (data) {
         $.ajax({
