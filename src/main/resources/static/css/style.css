@@ -4713,7 +4713,7 @@ img {
 	-ms-interpolation-mode: bicubic;
 	border: 0;
 	height: auto;
-	max-width: 100%;
+	max-width: 80%;
 	vertical-align: middle;
 }
 
@@ -9915,4 +9915,24 @@ footer.full-width-ft .ft-copyright {
 /* "고르는 표시"를 숨김 */
 select::-ms-expand {
     appearance: none;
+}
+
+/* 네이비 버튼 스타일 (검은색에 가까운 네이비) */
+.navy-button {
+    background-color:#233a50; /* 검은색에 가까운 네이비 */
+    color: #fff; /* 텍스트 색상 설정 */
+    border: 1px solid #ddd; /* 테두리 제거 */
+    padding: 0px; /* 패딩 설정 */
+    cursor: pointer; /* 커서 스타일 설정 */
+    font-family: 'Dosis', sans-serif;
+    font-size: 10px;
+}
+
+.navy-button:hover {
+    background-color: #192334; /* 호버 시 배경 색상 변경 (더 어두운 네이비) */
+}
+
+#text-input, #couponSelect {
+    font-family: inherit;
+    /* 또는 원하는 글꼴 이름을 지정할 수 있습니다, 예: font-family: "Arial", sans-serif; */
 }

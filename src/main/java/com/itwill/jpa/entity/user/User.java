@@ -48,7 +48,10 @@ public class User {
 	private String userPhone; // 회원 전화번호
 
 	private String userAddress; // 회원 주소
+	
+	@Column(nullable = false)
 	private String userEmail; // 회원 이메일
+	
 	private String userJumin; // 회원 주민번호
 	private String userGender; // 회원 성별
 	

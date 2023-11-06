@@ -70,16 +70,52 @@ public class VoteController {
 		
 		ProductVoteDto top1Product = productVote.get(0);
 		ProductVoteDto top2Product = productVote.get(1);
+		ProductVoteDto top3Product = productVote.get(2);
+		ProductVoteDto top4Product = productVote.get(3);
+		ProductVoteDto top5Product = productVote.get(4);
+		ProductVoteDto top6Product = productVote.get(5);
+		ProductVoteDto top7Product = productVote.get(6);
+		ProductVoteDto top8Product = productVote.get(7);
+		ProductVoteDto top9Product = productVote.get(8);
+		ProductVoteDto top10Product = productVote.get(9);
+		
+		
 		int totalVotes = 0; // 전체 투표 합
 
 		for (ProductVoteDto dto : productVote) {
-		    totalVotes += dto.getVoteTot();
-		}
+		    totalVotes += dto.getVoteTot();}
 		
-		model.addAttribute("top1Product", top1Product); // 1위
-		model.addAttribute("top2Product", top2Product); // 2위
-		model.addAttribute("productVote", productVote);  
+		
 		model.addAttribute("totalVotes", totalVotes);	// 투표 합계
+		model.addAttribute("top1Product", top1Product); 	// 1위
+		model.addAttribute("top1Productpercentage", Math.round(((double) top1Product.getVoteTot() / totalVotes) * 1000.0) / 10.0); // 1위의 득표율
+		
+		model.addAttribute("top2Product", top2Product); // 2위
+		model.addAttribute("top2Productpercentage", Math.round(((double) top2Product.getVoteTot() / totalVotes) * 1000.0) / 10.0); // 2위의 득표율
+		
+		model.addAttribute("top3Product", top3Product); // 3위
+		model.addAttribute("top3Productpercentage", Math.round(((double) top3Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
+
+		model.addAttribute("top4Product", top4Product); // 4위
+		model.addAttribute("top4Productpercentage", Math.round(((double) top4Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
+
+		model.addAttribute("top5Product", top5Product); // 5위
+		model.addAttribute("top5Productpercentage", Math.round(((double) top5Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
+
+		model.addAttribute("top6Product", top6Product); // 6위
+		model.addAttribute("top6Productpercentage", Math.round(((double) top6Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
+
+		model.addAttribute("top7Product", top7Product); // 7위
+		model.addAttribute("top7Productpercentage", Math.round(((double) top7Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
+
+		model.addAttribute("top8Product", top8Product); // 8위
+		model.addAttribute("top8Productpercentage", Math.round(((double) top8Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
+
+		model.addAttribute("top9Product", top9Product); // 9위
+		model.addAttribute("top9Productpercentage", Math.round(((double) top9Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
+
+		model.addAttribute("top10Product", top10Product); // 10위
+		model.addAttribute("top10Productpercentage", Math.round(((double) top10Product.getVoteTot() / totalVotes) * 1000.0) / 10.0);
 		
 		System.out.println("productVote: " + productVote);
 	        

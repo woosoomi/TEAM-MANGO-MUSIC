@@ -14,5 +14,7 @@ public interface UserVoteDao {
 	// 유저의 투표번호로 투표와 유저정보 조회
 	User findUserVoteId(Long voteId);
 	
-
+	// 유저 투표번호 업데이트
+	public User userUpdatVoteId(String userId, Long voteId) throws Exception;
+	
 }

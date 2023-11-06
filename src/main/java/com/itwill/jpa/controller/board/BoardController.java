@@ -147,6 +147,7 @@ public class BoardController {
 	            // 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
 	            Board board = boardOptional.get();
 	            model.addAttribute("board", board);
+	            System.out.println("board :"+board);
 	        } else {
 	            // 게시물이 존재하지 않을 경우 에러 처리
 	            model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
@@ -160,5 +161,28 @@ public class BoardController {
 	    }
 	}
 
+	
+	@GetMapping("/board_detail_edit")
+	public String boardDetailEdit(@RequestParam(name = "boardId") Long boardId, Model model) {
+	    try {
+	        // 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
+	        Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
+
+	        if (boardOptional.isPresent()) {
+	            // 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
+	            Board board = boardOptional.get();
+	            model.addAttribute("board", board);
+	        } else {
+	            // 게시물이 존재하지 않을 경우 에러 처리
+	            model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+	        }
+
+	        return "board_detail_edit";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
+	        return "error";
+	    }
+	}
 
 }

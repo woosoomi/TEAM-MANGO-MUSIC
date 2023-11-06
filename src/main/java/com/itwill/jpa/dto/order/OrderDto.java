@@ -36,6 +36,9 @@ public class OrderDto {
 	private String userId;
 	
 	private Long deliveryId;
+	
+//	private Long couponId;
+	
 	@Builder.Default
 	private List<OrderItemDto> orderItemDtos = new ArrayList<>();
 	

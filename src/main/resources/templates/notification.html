@@ -15,12 +15,6 @@
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/board.js"></script>
-
 </head>
 
 <body><!--preloading-->
@@ -41,8 +35,9 @@
 								<img src="images/uploads/board2.png" alt="">
 								<div class="blog-it-infor">
 									<h3>
-    <a th:href="@{/board_detail(boardId=${notification.boardId})}" th:text="${notification.boardTitle}">MMA2023 개최 안내</a>
-</h3>
+										<a th:href="@{/board_detail(boardId=${notification.boardId})}"
+											th:text="${notification.boardTitle}">MMA2023 개최 안내</a>
+									</h3>
 
 									<span class="time"
 										th:text="${notification.boardType.boardTypeTitle}">2023.10.19</span></br>
@@ -120,5 +115,11 @@
 
 </body>
 
+
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/board.js"></script>
 
 </html>
