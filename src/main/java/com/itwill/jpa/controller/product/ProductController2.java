@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.product.ProductDto;
@@ -52,6 +53,7 @@ public class ProductController2 {
 	}
 
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
+	
 	@GetMapping(value = "/music_detail/{productNo}")
 	public String MusicDetail(@RequestParam(name = "productNo") Long productNo, Model model) {
 		try {

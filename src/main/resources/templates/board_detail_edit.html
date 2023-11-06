@@ -21,7 +21,7 @@
 </head>
 
 <body>
-	<div th:insert="~{header :: headerFragment}"></div>
+	<div th:insert="~{common_header :: headerFragment}"></div>
 
 
 	<div class="page-single">
@@ -95,7 +95,7 @@
 	</div>
 
 
-	<div th:insert="~{footer :: footerFragment}"></div>
+	<div th:insert="~{common_footer :: footerFragment}"></div>
 </body>
 
 <script>
@@ -147,7 +147,7 @@
 					if (response.status === 200) {
 						alert("게시글이 수정되었습니다.");
 						alert("메인으로 이동합니다.");
-						window.location.href = `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/${categoryValue}`;
+						window.location.href = `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_${categoryValue}`;
 					} else {
 						alert("게시글 수정에 실패했습니다.");
 					}

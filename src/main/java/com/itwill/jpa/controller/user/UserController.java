@@ -39,25 +39,25 @@ public class UserController {
 		String forward_path = "user_modify_form";
 		return forward_path;
 	}
-	 
+	
+	@GetMapping("/user_login_form")
+	public String user_login_form() {
+		String forward_path = "user_login_form";
+		return forward_path;
+	}
+	
 	@GetMapping("/user_write_form")
 	public String user_write_form() {
 		String forward_path = "user_write_form";
 		return forward_path;
 	}
 	
+	@GetMapping("/userCheckIdPw")
+	public String userCheckIdPw() {
+		String forward_path = "userCheckIdPw";
+		return forward_path;
+	}
 	
-	/*
-	 * @PostMapping("/user_write_action") public String
-	 * user_write_action(@ModelAttribute(name = "fuser") UserDto userDto, Model
-	 * model) throws Exception { String forward_path = ""; try { UserDto createUser
-	 * = userService.createUser(userDto); forward_path = "redirect:index"; } catch
-	 * (Exception e) { model.addAttribute("msg", e.getMessage());
-	 * model.addAttribute("fuser", userDto); forward_path = "user_write_form"; }
-	 * return forward_path; }
-	 */
-	 
-	 
 	/*
 	 * @LoginCheck
 	 * 
@@ -80,11 +80,7 @@ public class UserController {
 		return "redirect:index";
 	}
 
-	@GetMapping("/userCheckIdPw")
-	public String userCheckIdPw() {
-		String forward_path = "userCheckIdPw";
-		return forward_path;
-	}
+	
 	
 	/*
 	 * @LoginCheck
