@@ -49,9 +49,10 @@ public class CartRestController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	    }
 	}
+	
 
 	@Operation(summary = "장바구니 상품전체삭제[성공]")
-	@DeleteMapping("/cart/{cartId}")
+	@DeleteMapping("/cart_main/{cartId}")
 	public String deleteAllItemsInCart(@PathVariable(value = "cartId") Long cartId) {
 		try {
 			cartServiceImpl.deleteAllByCartId(cartId);
@@ -73,7 +74,7 @@ public class CartRestController {
 	 */
 	
 	@Operation(summary = "총합계산[성공]")
-	@GetMapping("/cart/{cartId}")
+	@GetMapping("/cart_main/{cartId}")
 	public ResponseEntity<CartDto> calculateTotalPrice(@PathVariable(value = "cartId") Long cartId) {
 		try {
 			CartDto cartTotPrice = cartService.calculateTotalPrice(cartId);

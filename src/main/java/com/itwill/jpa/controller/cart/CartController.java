@@ -24,14 +24,14 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 
-	@GetMapping("/cart")
+	@GetMapping("/cart_main")
 	public String cart(Model model) {
 	    try {
 	        CartDto cart = cartService.findCartByCartId(1L);
 	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
 	        
 	        if (cartItems.isEmpty()) {
-	            return "empty_cart";
+	            return "cart_empty";
 	        } else {
 	    
 	            List<ProductDto> products = new ArrayList<>();
@@ -43,7 +43,7 @@ public class CartController {
 	            model.addAttribute("cart",cart);
 	            model.addAttribute("cartItems", cartItems);
 	            model.addAttribute("products", products);
-	            return "cart"; 
+	            return "cart_main"; 
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();

@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Ticket;
@@ -20,32 +21,38 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 //    Product insertProduct(Product product);
 
-
 	List<Product> findAll();
 //	List<Goods> findAllGoods(Sort sort);
 // productNo로 찾기
 //Optional<Product> findById(Long productNo);
-//	Optional<ProductCategory> findBycategoryId(Long categoryNo);
+//	Optional<ProductCategory> findByCategoryId(Long categoryNo);
 
 // productNo로 찾기[DTO]	
 //	@Query("SELECT p FROM Product p WHERE p.productNo = :productNo")
 //	Optional<ProductDto> findByIdDto(@Param("productNo") Long productNo);
 //	ProductDto findByIdDto( Long productNo);
 
-	ProductDto save(ProductDto productDto);
+//	ProductDto save(ProductDto productDto);
 
 	/******************** categoryId별로 전체나열 ********************/
 //	category로 찾기
-	List<Product> findByProductCategory(ProductCategory category);
-	List<Goods> findGoodsByProductCategory(ProductCategory category);
-	
-	List<Ticket> findTicketByProductCategory(ProductCategory category);
 	List<Product> findByProductCategoryCategoryId(Long categoryId);
+	List<Product> findByProductCategory(ProductCategory category);
+	List<Goods> findGoodsByProductCategory(ProductCategory category);	
+	List<Ticket> findTicketByProductCategory(ProductCategory category);
+	
 	/********************* 조회수, 등록순으로 전체나열 ********************/
-	// 조회수별 정렬
-	List<Product> findByProductCategoryCategoryIdOrderByReadCount(Long categoryId);
-	// 등록날자별 정렬
-	List<Product> findByProductCategoryCategoryIdOrderByProductDate(Long categoryId);
+	// 조회수별 오름차순 정렬
+//	@Query(value = "SELECT * FROM product WHERE category_id = :category_id ORDER BY READ_COUNT ASC", nativeQuery = true)
+//	List<Product> productListByReadCountAsc(@Param("category_id") Long categoryId);
+//	// 조회수별 내림차순 정렬
+//	@Query(value = "SELECT * FROM product WHERE category_id = :category_id ORDER BY READ_COUNT DESC", nativeQuery = true)
+//	List<Product> productListByReadCountDesc(@Param("category_id") Long categoryId);	
+	List<Product> findByProductCategoryCategoryIdOrderByReadCount(Long categoryId, Sort sort);
+	// 조회수별 오름차순 정렬
+	
+	// 등록날자별 최신순 정렬
+	List<Product> findByProductCategoryCategoryIdOrderByProductDate(Long categoryId, Sort sort);
 	
 
 	/*****************************************************************/
@@ -56,7 +63,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("UPDATE Product p SET p.readCount = p.readCount + 1 WHERE p.productNo = :productNo")
     void increaseReadCount(@Param("productNo") Long productNo);
 // product 삭제
-    void deleteByProductNo(Long productNo);
+ //   void deleteByProductNo(Long productNo);
 	
 /************************ Vote관련  ***************************/	
 

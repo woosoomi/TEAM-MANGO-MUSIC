@@ -120,7 +120,7 @@ public class VoteController {
 		System.out.println("productVote: " + productVote);
 	        
 
-	    return "voteMain";  // 템플릿 이름 반환
+	    return "vote_main";  // 템플릿 이름 반환
 	}
 
 

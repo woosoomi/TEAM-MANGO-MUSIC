@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.product.ProductDto;
-import com.itwill.jpa.dto.product.ProductMusicDto;
+//import com.itwill.jpa.dto.product.ProductMusicDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.service.product.ProductService;
@@ -55,8 +55,8 @@ public class ProductController2 {
 
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
 	
-	@GetMapping(value = "/music_detail/{productNo}")
-	public String MusicDetail(@PathVariable(name = "productNo") Long productNo, Model model) {
+	@GetMapping(value ={"/music_detail/{productNo}","/music_detail"})
+	public String MusicDetail(@PathVariable(name = "productNo" , required = false) Long productNo, Model model) {
 		try {
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			System.out.println(findMusicOptional.get());
