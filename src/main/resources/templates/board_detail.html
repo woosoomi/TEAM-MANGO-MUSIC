@@ -46,7 +46,7 @@
 
 						<div id="boardId" th:text="${board.boardId}" style="display: none;">게시글 ID</div>
 
-						<pre><p th:text="${board.boardContent}" style="margin-top: 50px;"></pre>
+						<pre><p th:text="${board.boardContent}" style="margin-top: 50px;"></p></pre>
 
 						<div class="flex-it share-tag"></div>
 						<div class="comments"></div>
@@ -104,7 +104,7 @@
 				if (response.status === 200) {
 					alert("게시글이 삭제되었습니다.");
 					alert("메인으로 이동합니다.");
-					window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/notification";
+					window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_notification";
 				} else {
 					alert("게시글 삭제에 실패했습니다.");
 				}
