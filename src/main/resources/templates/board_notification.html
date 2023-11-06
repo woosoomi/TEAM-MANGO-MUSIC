@@ -42,7 +42,8 @@
 									<span class="time"
 										th:text="${notification.boardType.boardTypeTitle}">2023.10.19</span></br>
 									<span class="time" th:text="${notification.createdTime}">2023.10.19</span>
-									<pre th:utext="${notification.boardContent}" style="color: white;" ></pre>
+									<pre th:utext="${notification.boardContent}" style="color: white;"></pre>
+
 								</div>
 							</div>
 						</div>
@@ -88,7 +89,8 @@
 
 						<!--userId가 admin일때 보이기 -->
 						<div class="searh-form">
-							<form class="form-style-1 celebrity-form" action="/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_write">
+							<form class="form-style-1 celebrity-form"
+								action="/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_write">
 								<div class="row">
 									<div class="col-md-12 "><input class="submit" type="submit" value="작성하기">
 									</div>
@@ -96,20 +98,26 @@
 							</form>
 
 
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div th:insert="~{common_footer :: footerFragment}">
-		</div>
+			<div th:insert="~{common_footer :: footerFragment}">
+			</div>
 
 </body>
 
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/board.js"></script>
+<script>
+	
+
+</script>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/board.js"></script>
 
 </html>
