@@ -65,8 +65,8 @@ public class BoardRestController {
 	        Board findboard = optionalBoard.get();
 	        findboard.setBoardContent(dto.getBoardContent());
 	        findboard.setBoardTitle(dto.getBoardTitle());
-	        findboard.setBoardPrize(dto.getBoardPrize());
-	        findboard.setBoardImage(dto.getBoardImage());
+//	        findboard.setBoardPrize(dto.getBoardPrize());
+//	        findboard.setBoardImage(dto.getBoardImage());
 	        
 	        // Board 객체를 업데이트하고 업데이트된 결과를 얻습니다.
 	        Board updateboard = boardServiceImpl.update(findboard);
