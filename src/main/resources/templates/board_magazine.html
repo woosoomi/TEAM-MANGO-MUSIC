@@ -20,12 +20,10 @@
 
 <body><!--preloading-->
 
-	<head>
 
 		<div th:insert="~{common_header :: headerFragment}">
 		</div>
 
-	</head>
 
 	<div class="page-single">
 		<div class="container">
@@ -50,8 +48,6 @@
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 
 					<div class="row">
@@ -69,7 +65,8 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="sidebar">
 						<div class="sb-search sb-it">
-							<h4 class="sb-title">Search Title</h4><input type="text" id="searchInput" placeholder="Enter keywords">
+							<h4 class="sb-title">Search Title</h4><input type="text" id="searchInput"
+								placeholder="Enter keywords">
 						</div>
 
 						<div class="sb-recentpost sb-it">
@@ -118,44 +115,10 @@
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/board.js"></script>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-		const searchInput = document.getElementById('searchInput');
-		const magazineContainer = document.getElementById('magazineContainer');
-		var initialData = $('#magazineContainer').html();
-		console.log(initialData);
-		searchInput.addEventListener('keydown', function (event) {
-			if (event.key === 'Enter') {
-				const searchValue = searchInput.value;
-
-				filterItems(searchValue);
-				searchInput.value = ''; // 검색어 필드 비우기
-
-			}
-		});
-
-		var itemList = $(initialData).find('.blog-item-style-1, .blog-item-style-3').toArray();
-		console.log(itemList);
-
-		function filterItems(searchQuery) {
-			magazineContainer.innerHTML = ''; // 리스트 비우기
-
-
-			itemList.forEach(function (item) {
-				var titleElement = item.getElementsByTagName('a')[0]; // a 요소 선택
-				var title = titleElement.textContent;
-
-				if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
-					magazineContainer.appendChild(item);
-				}
-			});
-
-
-		}
-	});
-
-
+	
 </script>
 
 </html>

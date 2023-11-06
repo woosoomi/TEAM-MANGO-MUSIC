@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body><!--preloading-->
-<div th:insert="~{header::headerFragment}"></div>
+<div th:insert="~{common_header::headerFragment}"></div>
 	
 	<!-- celebrity grid v2 section-->
 	<div class="page-single">
@@ -36,7 +36,7 @@
 							<div th:each="musics : ${musics}">
 
 								<div class="movie-item-style-2">
-									<a th:href="@{/music_detail/(no=${musics.productNo})}" > 
+									<a th:href="@{/music_detail/(productNo=${musics.productNo})}" > 
 									<img th:src="${musics.productImage}" alt="">
 									</a>
 									<div class="mv-item-infor">
@@ -74,7 +74,7 @@
 			</div>
 		</div>
 	</div><!-- end of celebrity grid v2 section--><!-- footer section-->
-	<footer class="ht-footer" th:insert="~{footer::footerFragment}">
+	<footer class="ht-footer" th:insert="~{common_footer::footerFragment}">
 		
 	</footer><!-- end of footer section-->
 	<script src="js/jquery.js"></script>

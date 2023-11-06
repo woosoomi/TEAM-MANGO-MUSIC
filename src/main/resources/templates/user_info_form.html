@@ -19,7 +19,7 @@
 
 <body>
 	<!-- BEGIN | Header -->
-	<div th:insert="~{header :: headerFragment}"></div>
+	<div th:insert="~{common_header :: headerFragment}"></div>
 	<!-- END | Header -->
 	<div class="page-single">
 		<div class="container">
@@ -65,8 +65,8 @@
 								<div class="col-md-6 form-it"><label>UserAddress</label><input type="text"
 										placeholder="주소" id="userAddress"></div>
 								<div class="col-md-6 form-it"><label>UserGender</label><select id="userGender">
-										<option value="united">남</option>
-										<option value="saab">여</option>
+										<option value="man">남</option>
+										<option value="woman">여</option>
 									</select></div>
 							</div>
 							<div class="row">
@@ -78,48 +78,56 @@
 			</div>
 		</div>
 	</div><!-- footer section-->
-	<div th:insert="~{footer :: footerFragment}">
+	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 
+	<!-- ... 이전 HTML 코드 ... -->
+
+	<!-- 스크립트 코드 추가 -->
 	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			// 사용자 정보를 가져오는 요청을 보냅니다.
-			fetch("/user/" + userId, {
-				method: "GET",
+		// 페이지가 로드되면 실행될 함수
+		window.onload = function () {
+			// 여기에서 서버로부터 사용자 정보를 가져와서 필드에 설정하는 코드를 추가합니다.
+			// 예를 들어, 사용자 정보를 JSON 형식으로 가져오는 AJAX 요청을 수행할 수 있습니다.
+
+			// 사용자 정보 가져오기 예시 (AJAX 사용)
+			fetch('/get_user_info', {
+				method: 'GET',
 				headers: {
-					"Accept": "application/json",
-					"Content-Type": "application/json"
+					'Accept': 'application/json',
 				}
 			})
-				.then(response => {
-					if (response.status === 200) {
-						return response.json();
-					} else {
-						throw new Error("User not found");
+				.then(response => response.json())
+				.then(data => {
+					// 가져온 사용자 정보를 필드에 설정
+					document.getElementById('userId').value = data.userId;
+					document.getElementById('userPw').value = data.userPw;
+					document.getElementById('userName').value = data.userName;
+					document.getElementById('userPhone').value = data.userPhone;
+					document.getElementById('userEmail').value = data.userEmail;
+					document.getElementById('userJumin').value = data.userJumin;
+					document.getElementById('userAddress').value = data.userAddress;
+
+					// 사용자 성별을 설정
+					if (data.userGender === '남') {
+						document.getElementById('userGender').value = 'man';
+					} else if (data.userGender === '여') {
+						document.getElementById('userGender').value = 'woman';
 					}
 				})
-				.then(user => {
-					// 사용자 정보를 화면에 표시합니다.
-					document.querySelector("#userId").textContent = user.userId;
-					document.querySelector("#userPw").textContent = user.userPw;
-					document.querySelector("#userName").textContent = user.userName;
-					document.querySelector("#userPhone").textContent = user.userPhone;
-					document.querySelector("#userEmail").textContent = user.userEmail;
-					document.querySelector("#userJumin").textContent = user.userJumin;
-					document.querySelector("#userAddress").textContent = user.userAddress;
-					document.querySelector("#userGender").textContent = user.userGender;
-
-				})
 				.catch(error => {
-					console.error("Error:", error);
-					// 사용자 정보를 가져오지 못한 경우 에러 메시지를 표시하거나 리디렉션을 수행할 수 있습니다.
+					console.error('에러:', error);
 				});
-		});
+		};
 	</script>
+
+	<!-- ... 나머지 HTML 코드 ... -->
+
+
 </body>
 
 </html>

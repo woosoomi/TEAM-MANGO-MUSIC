@@ -24,6 +24,7 @@ import com.itwill.jpa.service.product.ProductServiceImpl;
 import com.itwill.jpa.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,10 +55,11 @@ public class ProductController2 {
 
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
 	
-	@GetMapping(value = "/music_detail/{productNo}")
-	public String MusicDetail(@RequestParam(name = "productNo") Long productNo, Model model) {
+	@GetMapping(value ={"/music_detail/{productNo}","/music_detail"})
+	public String MusicDetail(@PathVariable(name = "productNo" , required = false) Long productNo, Model model) {
 		try {
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
+			System.out.println(findMusicOptional.get());
 			if(findMusicOptional.isPresent()) {
 				Product findMusic=findMusicOptional.get();
 				model.addAttribute("findMusic", findMusic);
