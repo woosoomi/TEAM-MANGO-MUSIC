@@ -4,7 +4,7 @@
 
 
 <head><!-- Basic need -->
-	<title>Open Pediatrics</title>
+	<title>MUSIC DETAIL</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -16,16 +16,15 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/productTest.css">
 	
 </head>
 
 <body><!--preloading-->
-	<div th:insert="~{common_header::headerFragment}">
-		</div>
+	<div th:insert="~{common_header::headerFragment}"></div>
 	<!-- END | Header -->
 	
-	<div class="hero mv-single-hero" >
-	<input type="hidden" id="productNo" th:value="${musicDetail.productNo}"/>
+	<div class="musicBackground">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -38,27 +37,32 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div class="movie-img sticky-sb"><img src="images/uploads/movie-single.jpg" alt="">
+					<div class="movie-img sticky-sb"><img th:src="${findMusic.productImage}" src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
 						<div class="movie-btn">
 							<div class="btn-transform transform-vertical red">
-								<div><a href="#" class="item item-1 redbtn"><i class="ion-play"></i>Watch Trailer</a>
+								<div><a th:href="${findMusic.productMovie}" href="#" class="item item-1 redbtn"><i class="ion-play"></i>뮤비 보기</a>
 								</div>
-								<div><a href="https://www.youtube.com/embed/o-0hcF97wy0"
+								<div><a th:href="${findMusic.productMovie}" href="https://www.youtube.com/embed/o-0hcF97wy0"
 										class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a>
 								</div>
 							</div>
+						
 							<div class="btn-transform transform-vertical">
-								<div><a href="#" class="item item-1 yellowbtn"><i class="ion-card"></i>Buy ticket</a>
+								<div><a href="membership_detail" class="item item-1 yellowbtn"><i class="ion-card"></i>멤버십 구매하기</a>
 								</div>
-								<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+								<div><a href="membership_detail" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
 							</div>
+							<!-- function 유저 멤버십 유무처리 -->
+							
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="movie-single-ct main-content">
-						<h1 class="bd-hd" th:text="${musicDetail.productName}">Skyfall: Quantum of Spectre <span>2015</span></h1>
+						<h1 class="bd-hd" th:text="${findMusic.productName}">Skyfall: Quantum of Spectre 
+						</h1><p th:text="${findMusic.productArtist}" style="margin-bottom: 15px;">2015</p>
+							<p th:text="${findMusic.productDate}" style="margin-bottom: 15px;"></p>
 						<div class="social-btn"><a href="#" class="parent-btn"><i class="ion-heart"></i>Add to
 								Favorite</a>
 							<div class="hover-bnt"><a href="#" class="parent-btn"><i
@@ -70,18 +74,25 @@
 											class="ion-social-youtube"></i></a></div>
 							</div>
 						</div>
-						<!-- <div class="movie-rate">
-							<div class="rate"><i class="ion-android-star"></i>
-								<p><span>8.1</span>/10<br><span class="rv">56 Reviews</span></p>
-							</div>
-							<div class="rate-star">
-								<p>Rate This Movie:</p><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i
+						</div>
+						<div class="title-hd-sm">
+								<h4 th:text="|노래 소개|">User reviews</h4><a th:text="| |" 
+								href="#" class="time">See All 56 Reviews <i class="ion-ios-arrow-right"></i></a>
+								</div>
+						 <div class="movie-rate">
+							<div class="rate"><i></i> <!-- <i class="ion-android-star"></i> -->
+								<p style="margin-bottom: 50px;">
+								<span style="font-size: 15px; color: white;" th:text="${findMusic.productContent}"> 노래 설명</span>
+								<br><!-- <span th:text=" " class="rv">56 Reviews</span> -->
+								</p>
+							<div class="rate-star"> 
+								<!-- <p>Rate This Movie:</p><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i
 									class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i
 									class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i
-									class="ion-ios-star-outline"></i>
+									class="ion-ios-star-outline"></i> -->
 							</div>
-						</div> -->
-						<div class="movie-tabs">
+						</div> 
+						<div class="movie-tabs" style="border-top: 20px;">
 							<div class="tabs">
 								<ul class="tab-links tabs-mv">
 									<li class="active"><a href="#overview">Overview</a></li>
@@ -820,10 +831,12 @@
 		</div>
 	</div><!-- footer section-->
 	
-	<footer class="ht-footer" th:insert="~{common_footer::footerFragment}">
-		
-	</footer><!-- end of footer section-->
-	
+	<div th:insert="~{common_footer :: footerFragment}"></div>
+	<!-- end of footer section-->
 </body>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
 
 </html>
