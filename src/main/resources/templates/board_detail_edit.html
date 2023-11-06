@@ -123,11 +123,16 @@
 			console.log(categoryValue);
 			console.log(textData);
 			console.log(contentData);
-
+			
+			const writeData = {
+			"boardTitle": "as",
+			"boardContent": "ds",
+			
+		};
+			
 			const updateData = {
 				boardTitle: textData,
 				boardContent: contentData
-
 			}
 
 			const urlParams = new URLSearchParams(window.location.search);
@@ -141,7 +146,7 @@
 				headers: {
 					"Content-Type": "application/json", // JSON 데이터를 보낸다고 명시
 				},
-				body: JSON.stringify(updateData)
+				body: JSON.stringify(writeData)
 			})
 				.then((response) => {
 					if (response.status === 200) {
