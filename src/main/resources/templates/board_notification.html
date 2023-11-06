@@ -42,7 +42,7 @@
 									<span class="time"
 										th:text="${notification.boardType.boardTypeTitle}">2023.10.19</span></br>
 									<span class="time" th:text="${notification.createdTime}">2023.10.19</span>
-									<p th:text="${notification.boardContent}"></p>
+									<p th:utext="${notification.boardContent}" ></p>
 								</div>
 							</div>
 						</div>
