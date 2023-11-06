@@ -25,6 +25,8 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
+					<!-- 주문 상품 목록을 히든 필드로 저장 -->
+					<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}" />
 					<div class="topbar-filter" id="userId">
 						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
 					</div>
@@ -294,16 +296,23 @@
 	//Id로 데이터 받기
 	var endPriceElement = document.getElementById("endPrice");
 	var endPrice = endPriceElement.value;
-	
+
+	// userId 가져오기
+    var userId = document.getElementById('userId').textContent;
+
+	// 주문 상품 목록을 히든 필드에서 읽어옵니다.
+    var orderItemDtoList = JSON.parse(document.getElementById('orderItemDtoList').value);
+
+
 	document.getElementById('paymentButton').addEventListener('click', function () {
 		// AJAX 요청을 보낼 URL 및 데이터 설정
 		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL
 		var requestData = {
 			// 결제에 필요한 데이터를 여기에 추가 (예: 주문 정보, 사용자 정보, 결제 수단 정보 등)
-			endPrice: endPrice,
-			userId: "lsg33",
+			orderPrice: endPrice,
+			userId: userId,
 			orderStatus: "결제완료", // 주문 상태 문자열 또는 해당 형식에 맞게 설정
-			orderItemDtos: orderItemDtoList
+			orderItemDtoList: orderItemDtoList
 
 		};
 
@@ -318,6 +327,7 @@
 					// 결제가 성공적으로 완료될 경우 실행할 코드
 					var response = JSON.parse(xhr.responseText);
 					alert('결제가 성공적으로 완료되었습니다.');
+					requestDeleteCoupon(couponId);
 				} else {
 					// 결제가 실패한 경우 실행할 코드
 					alert('결제 처리 중 오류가 발생했습니다.');
@@ -327,6 +337,35 @@
 
 		xhr.send(JSON.stringify(requestData)); // 요청 데이터를 JSON 문자열로 변환하여 보냅니다.
 	});
+
+
+	/*결제에 사용된 쿠폰 삭제*/
+
+
+	var couponSelect = document.getElementById("couponSelect");
+	var couponId = couponSelect.value; // 선택된 쿠폰의 value
+
+
+	function requestDeleteCoupon(couponId) {
+    var deleteCouponUrl = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/coupon/delete/' + couponId;
+
+    var deleteXhr = new XMLHttpRequest();
+    deleteXhr.open('POST', deleteCouponUrl, true);
+
+    deleteXhr.onreadystatechange = function () {
+        if (deleteXhr.readyState === 4) {
+            if (deleteXhr.status === 200) {
+                // 쿠폰 삭제가 성공적으로 완료될 경우 실행할 코드
+                alert('쿠폰이 사용되었습니다.');
+            } else {
+                // 쿠폰 삭제가 실패한 경우 실행할 코드
+                alert('쿠폰이 사용되지 않습니다.');
+            }
+        }
+    };
+
+    deleteXhr.send();
+}
 
 
 </script>
