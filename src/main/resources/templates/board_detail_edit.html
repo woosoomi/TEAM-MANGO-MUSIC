@@ -55,11 +55,11 @@
 
 						<div id="boardId" th:text="${board.boardId}" style="display: none;">게시글 ID</div>
 
-						<pre>
-						  <p th:utext="${board.boardContent}" contenteditable="true" id="contenttext"
-						     style="border: 2px solid rgb(255, 255, 255); line-height: 20px;">
-						  </p>
-						</pre>
+						
+						  <pre th:utext="${board.boardContent}" contenteditable="true" id="contenttext"
+						     style="border: 2px solid rgb(255, 255, 255); line-height: 20px; height: 400px ; width: 1000px; color: white;">
+						  </pre>
+						
 
 						<div class="flex-it share-tag"></div>
 						<div class="comments"></div>
