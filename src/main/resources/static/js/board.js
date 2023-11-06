@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		itemList.forEach(function(item) {
 			var titleElement = item.getElementsByTagName('a')[0]; // a 요소 선택
 			var title = titleElement.textContent;
-				console.log(titleElement);
+			console.log(titleElement);
 
 			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
 				faqContainer.appendChild(item);
@@ -153,32 +153,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ///////////////////////magazine///////////////////////////////
 
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	var titleElements = document.querySelectorAll('.blog-item-style-2 h3 a');
+	var magazineContainer = document.getElementById('magazineContainer');
 
+	searchInput.addEventListener('keydown', function(event) {
+		if (event.key === 'Enter') {
+			const searchValue = searchInput.value;
 
-///////////////////////event///////////////////////////////
+			filterItems(searchValue);
+			searchInput.value = ''; // 검색어 필드 비우기
+		}
+	});
 
-$(document).ready(function() {
-	var initialData = $('#eventContainer').html();
-	var movielistContainer = $('#eventContainer');
+	function filterItems(searchQuery) {
+		magazineContainer.innerHTML = ''; // 리스트 비우기
 
-	function filterItems(filter) {
-		movielistContainer.empty();
-		var itemList = $(initialData).find('.movie-item-style-2').toArray();
-		$.each(itemList, function(index, item) {
-			var eventType = $(item).find('.run-time').text();
-			console.log(eventType);
-
-			if (filter === 'all' || (filter === 'end' && eventType === '종료된이벤트') || (filter === 'ing' && eventType === '진행중이벤트')) {
-				movielistContainer.append(item);
+		titleElements.forEach(function(titleElement, index) {
+			var title = titleElement.textContent;
+			console.log("titleElement->" + titleElement);
+			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+				var item = titleElement.closest('.col-md-4'); // 부모 .col-md-4 요소 선택
+				magazineContainer.appendChild(item);
 			}
 		});
 	}
-	$('#choiceSelect').on('change', function() {
-		var selectedOption = $(this).val();
-		filterItems(selectedOption);
-	});
-	filterItems('all');
 });
+
 
 
 ///////////////////////inquiries///////////////////////////////
@@ -212,3 +214,63 @@ $(document).ready(function() {
 	});
 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	var titleElements = document.querySelectorAll('.ceb-item-style-2 h2 a');
+	var inquiriesContainer = document.getElementById('inquiriesContainer');
+
+	searchInput.addEventListener('keydown', function(event) {
+		if (event.key === 'Enter') {
+			const searchValue = searchInput.value;
+
+			filterItems(searchValue);
+			searchInput.value = ''; // 검색어 필드 비우기
+		}
+	});
+
+	function filterItems(searchQuery) {
+		inquiriesContainer.innerHTML = ''; // 리스트 비우기
+
+		titleElements.forEach(function(titleElement, index) {
+			var title = titleElement.textContent;
+			console.log("titleElement->" + titleElement);
+			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+				var item = titleElement.closest('.ceb-item-style-2'); // 부모 .ceb-item-style-2 요소 선택
+				inquiriesContainer.appendChild(item);
+			}
+		});
+	}
+});
+
+
+
+
+
+///////////////////////event///////////////////////////////
+
+$(document).ready(function() {
+	var initialData = $('#eventContainer').html();
+	var movielistContainer = $('#eventContainer');
+
+	function filterItems(filter) {
+		movielistContainer.empty();
+		var itemList = $(initialData).find('.movie-item-style-2').toArray();
+		$.each(itemList, function(index, item) {
+			var eventType = $(item).find('.run-time').text();
+
+			if (filter === 'all' || (filter === 'end' && eventType === '종료된이벤트') || (filter === 'ing' && eventType === '진행중이벤트')) {
+				movielistContainer.append(item);
+			}
+		});
+	}
+	$('#choiceSelect').on('change', function() {
+		var selectedOption = $(this).val();
+		filterItems(selectedOption);
+	});
+	filterItems('all');
+});
+
+
+
+

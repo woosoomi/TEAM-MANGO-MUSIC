@@ -64,15 +64,10 @@
    		 <div class="mv-item-infor">
             <h6>
                 <a th:text="'주문번호:  '+${orderitem.orderId}"></a>
-             
-                <button class="deleteButton" data-order-id="${orderitem.orderId}">x</button>
+        	     <!--삭제버튼-->
+                <button class="deleteButton" data-order-id="[[${orderitem.oiId}]]">x</button>
           
             </h6>
-            	<!--삭제버튼-->
-					
-			        <!-- Add more items here -->
-			<!--    <div id="message"></div>-->
-			    <!-- -->
                 <p class="rate">
                     <span th:text="${orderitem.productName}+ ' [총 ' + ${orderitem.oiQty} + '개]'"></span>
                 </p>

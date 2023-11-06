@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,14 +27,85 @@ import com.itwill.jpa.entity.product.Product.Ticket;
 //@RequiredArgsConstructor
 public interface ProductService{
 	
-	@Transactional
 //Product//	
 	Product getProduct(Long productNo); 
 	
 	Product getProductCategory(Long categoryId);
 	
 //	ProductDto getProductDto(Long productNo);
+	
+	/******************** INSERT[ENTITY] ********************/
+	// product 등록[성공]
+//	public Product insertProduct(Product product);	
+	
+	// music 등록[성공]
+	public Music insertMusic(Music music);
+	
+	// goods 등록[성공]
+	public Goods insertGoods(Goods goods);
+	
+	// ticket 등록[성공]
+	public Ticket insertTicket(Ticket ticket);
+	
+	// membership 등록[성공]
+	public Membership insertMembership(Membership membership);
+	
+	/******************** INSERT[DTO] ********************/
+	// product 등록 - DTO
+	ProductDto insertProductDto(ProductDto productDto);
+	
+	// goods 등록 - DTO[성공]
+	GoodsDto insertGoodsDto(GoodsDto goodsDto);
+		
+	// ticket 등록 - DTO[성공]	
+	TicketDto insertTicketDto(TicketDto ticketDto);
+	
+	/*********************************************/
+	
+	/******************** DELETE[ENTITY] ********************/
+	// product 삭제[성공]		
+	void deleteProduct(Long productNo) throws Exception;
+		
+	// product 삭제[성공]
+//	public void deleteProduct2(Long productNo);
+	
+	/******************** DELETE[DTO] ********************/
+	// product 삭제 - DTO[성공]
+	ProductDto deleteProductDto(Long productNo) throws Exception;
+	/*********************************************/
+	
+	/******************** UPDATE[ENTITY] ********************/	
+	// product 업데이트[성공]
+	public Product updateProduct(Product product);
+	
+	/******************** UPDATE[DTO] ********************/	
+	// product 업데이트 - DTO	
+	ProductDto updateProductDto(ProductDto productDto) throws Exception;
+	
+	// goods 업데이트 - DTO
+	GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception;
+	
+	// ticket 업데이트 - DTO
+	TicketDto updateTicketDto(TicketDto ticketDto) throws Exception;
+	/*********************************************/
 
+	/******************** categoryId별로 전체나열[ENTITY] ********************/		
+	// product categoryId별 분류
+	public List<Product> findByCategoryId(Long categoryId);
+	
+	/******************** categoryId별로 전체나열[DTO] ********************/		
+	// product categoryId별로 전체나열 - DTO	
+	List<ProductDto> findByProductCategoryId(Long categoryId);
+		
+	// ticket categoryId별로 전체나열 - DTO	
+	List<TicketDto> findTicketByCategoryId(Long categoryId);
+		
+	// goods categoryId별로 전체나열 - DTO	
+	List<GoodsDto> findGoodsByCategoryId(Long categoryId);
+	/*********************************************/	
+	
+	// product category별 분류
+//	List<Product> findByProductCategory(ProductCategory categoryId);
 	List<Product> productList(); 
 	
 	List<Product> getProductsByCategory(Long categoryId);
@@ -44,7 +116,7 @@ public interface ProductService{
 	List<ProductDto> productDtoList();
 	
     // 카테고리 ID를 사용하여 상품 조회 메서드
-	List<ProductDto> getProductsByCategoryDto(Long categoryId);
+//	List<ProductDto> getProductsByCategoryDto(Long categoryId);
 	
 //ProductCategory//		
     void saveProductCategory(ProductCategoryDto productCategoryDto);
@@ -66,58 +138,7 @@ public interface ProductService{
 	// productNo 찾기 - DTO
 	Optional<ProductDto> findProductDtoByProductNo(Long productNo);
 
-	/******************** INSERT[ENTITY] ********************/
-	// product 등록[성공]
-//	public Product insertProduct(Product product);	
-	
-	// music 등록[성공]
-	public Music insertMusic(Music music);
-	
-	// goods 등록[성공]
-	public Goods insertGoods(Goods goods);
-	
-	// ticket 등록[성공]
-	public Ticket insertTicket(Ticket ticket);
-	
-	// membership 등록[성공]
-	public Membership insertMembership(Membership membership);
-	
-	/******************** INSERT[DTO] ********************/
-	// goods 등록 - DTO[성공]
-	GoodsDto insertGoodsDto(GoodsDto goodsDto);
-		
-	// ticket 등록 - DTO[성공]	
-	TicketDto insertTicketDto(TicketDto ticketDto);
-	
-	/*********************************************/
 
-	/******************** DELETE[ENTITY] ********************/
-	// product 삭제[성공]		
-	void deleteProduct(Long productNo) throws Exception;
-		
-	// product 삭제[성공]
-//	public void deleteProduct2(Long productNo);
-	
-	/******************** DELETE[DTO] ********************/
-	// product 삭제 - DTO[성공햇다 실패됨]
- //   void deledtProductDto(ProductDto productDto) throws Exception;
-	ProductDto deleteProductDto(Long productNo, Long categoryId) throws Exception;
-	/*********************************************/
-	
-	/******************** UPDATE[ENTITY] ********************/	
-	// product 업데이트[성공]
-	public Product updateProduct(Product product);
-	
-	// product 업데이트 - DTO	
-	ProductDto updateProductDto(ProductDto dto) throws Exception;
-	
-	// goods 업데이트 - DTO
-	GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception;
-	
-	// ticket 업데이트 - DTO
-	TicketDto updateTicketDto(TicketDto ticketDto) throws Exception;
-	/*********************************************/
-	
 	/******************** INCREASE READCOUNT[ENTITY] ********************/	
 	// product 조회수 올리기[성공]
 	Product increaseReadCount(Product product);
@@ -131,19 +152,6 @@ public interface ProductService{
 	// ticket 조회수 올리기 - DTO
 	TicketDto increaseTicketReadCountDto(TicketDto ticketDto) throws Exception;
 	/*************************************************************/
-
-	/******************** 내림차순[ENTITY] ********************/		
-	// product 조회수별 내림차순 정렬 [성공]
-	public List<Product> getProductOrderByReadCountDesc();
-	
-	/******************** 내림차순[DTO] ********************/		
-	// product 조회수별 내림차순 정렬 - DTO	[성공]
-	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
-	
-	//주문 최신순으로 나열하기
-	List<ProductDto> productListByNewer(Long categoryId);
-	
-	/*********************************************/	
 	
 	/******************** 오름차순[ENTITY] ********************/		
 	// product 조회수별 오름차순 정렬 [성공]
@@ -151,10 +159,21 @@ public interface ProductService{
 	
 	/******************** 오름차순[DTO] ********************/		
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
-	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
+//	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
 	
 	//주문 오래된순으로 나열하기
 	List<ProductDto> productListByOlder(Long categoryId);
+	/*********************************************/	
+	/******************** 내림차순[ENTITY] ********************/		
+	// product 조회수별 내림차순 정렬 [성공]
+	public List<Product> getProductOrderByReadCountDesc();
+	
+	/******************** 내림차순[DTO] ********************/		
+	// product 조회수별 내림차순 정렬 - DTO	[성공]
+//	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
+	
+	//주문 최신순으로 나열하기
+//	List<ProductDto> productListByNewer(Long categoryId);	
 	/*********************************************/	
 	
 	/******************** 키워드로 검색[ENTITY] ********************/	
@@ -163,23 +182,7 @@ public interface ProductService{
 	/******************** 키워드로 검색[DTO] ********************/	
 	/*********************************************/	
 
-	/******************** categoryId별로 전체나열[ENTITY] ********************/		
-	// product categoryId별 분류
-	public List<Product> findByCategoryId(Long categoryId);
-	
-	/******************** categoryId별로 전체나열[DTO] ********************/		
-	// product categoryId별로 전체나열 - DTO	
-	List<ProductDto> findByProductCategoryId(Long categoryId);
-		
-	// ticket categoryId별로 전체나열 - DTO	
-	List<TicketDto> findTicketByCategoryId(Long categoryId);
-		
-	// goods categoryId별로 전체나열 - DTO	
-	List<GoodsDto> findGoodsByCategoryId(Long categoryId);
-	/*********************************************/	
-	
-	// product category별 분류
-//	List<Product> findByProductCategory(ProductCategory categoryId);
+
 	
 
 

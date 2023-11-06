@@ -36,7 +36,7 @@
 							<div th:each="musics : ${musics}">
 
 								<div class="movie-item-style-2">
-									<a th:href="@{/music_detail/(no=${musics.productNo})}" > 
+									<a th:href="@{/music_detail/(productNo=${musics.productNo})}" > 
 									<img th:src="${musics.productImage}" alt="">
 									</a>
 									<div class="mv-item-infor">

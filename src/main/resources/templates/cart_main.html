@@ -19,7 +19,7 @@
 </head>
 
 <body><!--preloading-->
-	<div th:insert="~{header :: headerFragment}">
+	<div th:insert="~{common_header :: headerFragment}">
 	</div>
 	<div class="page-single userfav_list" style="color: aliceblue;">
 		<div class="container">
@@ -50,7 +50,7 @@
         <input type="checkbox" class="checkbox" style="width: 20px; height: 20px; vertical-align: middle;" id="selectAll">
         <label for="selectAll" style="font-size: 20px; margin-left: 5px; font-weight: bold; vertical-align: middle;">전체 선택</label>
     </div>
-    <a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}" style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px;">선택 삭제</a>
+    <a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}" style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;">선택 삭제</a>
 </div>
 					<div class="flex-wrap-movielist user-fav-list">
 
@@ -77,14 +77,11 @@
 										<li class="describe">상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트</li>
 
 										</li>
-										<li class="run-time">
-											상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비 : 0원<span>총 금액
+										<li class="run-time" style="font-size: 20px">
+											상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비 : 0원 <span style="color: orange;">주문금액
 												:</span> 
-												<span th:text="${product.productPrice * cartItem.cartItemQty +'원'}"></span>
-												<a href="#">주문하기</a>
-										</li>
-										<li>
-											<a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}">삭제하기</a>
+												<span th:text="${product.productPrice * cartItem.cartItemQty +'원'}" style="color: orange;"></span>
+												<a href="#" style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;" >주문하기</a>
 										</li>
 										<div
 											style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
@@ -98,7 +95,6 @@
 								</div>
 							</div>
 						</div>
-
 
 						<!-- 스크롤 이벤트를 감지하여 버튼을 항상 보이게 하는 JavaScript 코드 -->
 						<!--					<script>
@@ -122,19 +118,19 @@
 						</div>-->
 
 					</div>
-					<div class="topbar-filter"><label>Movies per page:</label><select>
+	<!-- 				<div class="topbar-filter"><label>Movies per page:</label><select>
 							<option value="range">5 Movies</option>
 							<option value="saab">10 Movies</option>
 						</select>
 						<div class="pagination2"><span>Page 1 of 2:</span><a class="active" href="#">1</a><a
 								href="#">2</a><a href="#">3</a><a href="#">...</a><a href="#">78</a><a href="#">79</a><a
 								href="#"><i class="ion-arrow-right-b"></i></a></div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
 	</div><!-- footer section-->
-	<div th:insert="~{footer :: footerFragment}">
+	<div th:insert="~{common_footer :: footerFragment}">
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
