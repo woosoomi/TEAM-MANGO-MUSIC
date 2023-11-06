@@ -107,7 +107,9 @@ public class OrderController {
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
 	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
-	            
+	          
+
+
 	            
 	            /*************** 쿠폰 ***************/
 	            
