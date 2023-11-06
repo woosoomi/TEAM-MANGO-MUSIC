@@ -33,27 +33,30 @@
 				<div class="row" id="musicList">
 
 
-						<div class="music_List">
-							<div th:each="musics : ${musics}">
+						<div class="music_List" th:each="music : ${musics}">
+							<div class="flex-wrap-movielist user-fav-list">
 
 								<div class="movie-item-style-2">
-									<a th:href="@{/music_detail/(productNo=${musics.productNo})}" > 
-									<img th:src="${musics.productImage}" alt="" style="width: 100px; height: 100px;
-">
+									<a style="padding-right: 20px; color: #ffffff;" th:text="${music.productNo}">번호</a>
+									<a th:href="@{/product_music_detail(productNo=${music.productNo})}" > 
+									<img th:src="${music.productImage}" alt="" style="width: 100px">
 									</a>
 									<div class="mv-item-infor">
-										<h6>
-										<a th:href="@{/music_detail/(productNo=${musics.productNo})}" th:text="${musics.productName}">Leonardo DiCaprio</a>
+										<h6>										
+										<a th:href="@{/product_music_detail(productNo=${music.productNo})}" th:text="${music.productName}">Leonardo DiCaprio</a>
 										</h6>
 										<p class="describe"></p>
-										<p class="run-time" th:text="${musics.productArtist}">Run Time: 2h21’
+										
+										<p class="run-time" th:text="${music.productArtist}">Run Time: 2h21’
 										</p>
-										<p>조회수: <a th:text="${musics.readCount}">2</a></p>
+										<p>조회수: <a th:text="${music.readCount}">2</a></p>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>	
+					</div>
+					
+						
 				
 				</div>
 					<div class="col-md-3 col-sm-12 col-xs-12">
