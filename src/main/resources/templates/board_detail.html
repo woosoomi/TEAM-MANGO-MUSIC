@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
 
+
 </head>
 
 <body>
@@ -40,12 +41,13 @@
 
 						</br>
 
-						<p>작성일 : <span th:text="${#temporals.format(board.createdTime, 'yyyy-MM-dd HH:mm')}"> </span></p>
+						<p>작성일 : <span th:text="${#temporals.format(board.createdTime, 'yyyy-MM-dd HH:mm')}"> </span>
+						</p>
 
 						<div id="boardId" th:text="${board.boardId}" style="display: none;">게시글 ID</div>
 
 						<pre><p th:text="${board.boardContent}" style="margin-top: 50px;"></pre>
-							
+
 						<div class="flex-it share-tag"></div>
 						<div class="comments"></div>
 
@@ -87,11 +89,6 @@
 
 	<div th:insert="~{footer :: footerFragment}"></div>
 </body>
-<script src="js/jquery.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/plugins2.js"></script>
-<script src="js/custom.js"></script>
-
 
 <script>
 
@@ -133,6 +130,9 @@
 
 
 </script>
-
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 
 </html>

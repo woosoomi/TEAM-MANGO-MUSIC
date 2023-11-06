@@ -51,6 +51,7 @@
 							<input type="checkbox" class="checkbox" style="width: 20px; height: 20px;" id="selectAll">
 							<label for="selectAll" style="font-size: 20px; margin-left: 5px; font-weight: bold;">전체
 								선택</label>
+								<a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}">선택삭제</a>
 						</div>
 					</div>
 					<div class="flex-wrap-movielist user-fav-list">
@@ -82,16 +83,15 @@
 											상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비 : 0원<span>총 금액
 												:</span> 
 												<span th:text="${product.productPrice * cartItem.cartItemQty +'원'}"></span>
+												<a href="#">주문하기</a>
 										</li>
 										<li>
-											<a href="#">주문하기</a>
-											<a href="#" class="delete-btn"
-												data-cart-item-id="${cartItem.cartItemId}">삭제하기</a>
+											<a href="#" class="delete-btn" data-cart-item-id="${cartItem.cartItemId}">삭제하기</a>
 										</li>
 										<div
 											style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
 											<span id="cartTotPrice" style="margin-right: 10px; font-size: 18px;">
-												<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원'"></span>
+												<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' "></span>
 											</span>
 											<button
 												style="background-color: #fff; color:black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;">주문하기</button>
