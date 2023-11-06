@@ -25,10 +25,11 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
-					<!-- 주문 상품리스트를 히든 필드로 저장 -->
-					<!--<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}">-->
+					<!-- 주문 상품 정보를 히든 필드로 저장 -->
+					<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}">
+					<input type="hidden" id="user_id" th:value="${user_id}">
 					
-					<div class="topbar-filter" id="user_id" th:value="${user_id}">
+					<div class="topbar-filter" id="userId" th:value="${user_id}">
 						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
 					</div>
 					
@@ -289,7 +290,7 @@
 		currentDiscountedPrice = currentDiscountedPrice * (1 - discountPercentage);
 
 		// endPrice 업데이트
-		endPriceElement.placeholder = currentDiscountedPrice.toFixed(0) + ' 원'; // 총 결제금액 업데이트
+		endPriceElement.value = currentDiscountedPrice.toFixed(0) + ' 원'; // 총 결제금액 업데이트
 	});
 	
 	
@@ -297,15 +298,16 @@
 	
 	
 	//Id로 데이터 받기
-	var endPriceElement = document.getElementById("endPrice");
-	var endPrice = endPriceElement.value;
+	var formattedOrderPriceElement = document.getElementById('formattedOrderPrice');
+	var endPriceElement = document.getElementById('endPrice');
+	var endPrice = parseFloat(formattedOrderPriceElement.placeholder); // formattedOrderPrice에서 값을 가져와서 숫자로 변환
 	
 	// userId 가져오기
     var userIdElement = document.getElementById("user_id");
-	var userId = userIdElement.innerText;
+	var userId = userIdElement.value;
 	
 	document.getElementById('paymentButton').addEventListener('click', function () {
-		console.log(userId)
+
 		// AJAX 요청을 보낼 URL 및 데이터 설정
 		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL
 		var requestData = {
@@ -313,8 +315,7 @@
 			  //checkPlease
 			  orderPrice: endPrice,
 			  orderStatus: "결제완료",
-			  //checkPlease
-			  userId:"lsg33",
+			  userId: userId,
 			  orderItemDtos: [
 			    {
 			      "oiId": 3,
@@ -325,6 +326,7 @@
 			      "productContent": "string",
 			      "productNo": 0,
 			      "orderId": 0
+
 			    }
 			  ],
 			  //checkPlease

@@ -97,7 +97,7 @@ public class Order {
 	public static Order toEntity(OrderDto dto) {
 		
 		Order order = Order.builder()
-							.orderId(dto.getOrderId())
+//							.orderId(dto.getOrderId())
 							.orderPrice(dto.getOrderPrice())
 							.orderStatus(dto.getOrderStatus())
 							.user(User.builder().userId(dto.getUserId()).build()) // userId 설정

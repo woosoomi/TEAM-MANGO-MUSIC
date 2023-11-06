@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.thymeleaf.context.Context;
 
+import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.order.CouponDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
@@ -36,8 +37,9 @@ public class OrderController {
 	@Autowired
 	private CouponService couponService;
 	
+	@LoginCheck
 	@GetMapping("/order_membership")
-	public String orderMembershipPage(Model model, HttpServletRequest request) {
+	public String orderMembershipPage(Model model, HttpSession session) {
 		
 		try {
 			
@@ -46,9 +48,8 @@ public class OrderController {
 			
 			
 			//임의로 세션 로그인 유저 설정함
-			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "rgh66");
-			String userId = (String) session.getAttribute("user_id");
+			//session.setAttribute("user_id", "lsg33");
+			String userId = (String) session.getAttribute("sUserId");
 			model.addAttribute("user_id", userId);
 			
 			

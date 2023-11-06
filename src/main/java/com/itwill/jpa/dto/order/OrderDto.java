@@ -51,7 +51,7 @@ public class OrderDto {
 	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정하는 생성자(초기화)
 	public OrderDto(Order order) {
 		
-		this.orderId = order.getOrderId();
+//		this.orderId = order.getOrderId();
 		this.orderPrice = order.getOrderPrice();
 		this.orderStatus = order.getOrderStatus();
 		this.userId = order.getUser().getUserId();
@@ -63,7 +63,7 @@ public class OrderDto {
 	//Entity to Dto 변환
 	public static OrderDto toDto(Order entity) {
 		OrderDto orderDto = OrderDto.builder()
-									.orderId(entity.getOrderId())
+//									.orderId(entity.getOrderId())
 									.orderPrice(entity.getOrderPrice())
 									.orderStatus(entity.getOrderStatus())
 									.userId(entity.getUser().getUserId())
