@@ -18,9 +18,10 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<body><!--preloading-->
-	<div th:insert="~{header :: headerFragment}"></div>
-
+<body>
+	
+	<div th:insert="~{common_header :: headerFragment}"></div>
+	
 	<div class="page-single movie_list">
 		<div class="container">
 			<div class="row ipad-width2">
@@ -145,71 +146,17 @@
 			</div>
 		</div>
 	</div>
-	<!-- footer section-->
-	<footer class="ht-footer">
-		<div class="container">
-			<div class="flex-parent-ft">
-				<div class="flex-child-ft item1"><a href="index.html"><img class="logo" src="images/logo1.png"
-							alt=""></a>
-					<p>5th Avenue st, manhattan<br> New York, NY 10001</p>
-					<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
-				</div>
-				<div class="flex-child-ft item2">
-					<h4>Resources</h4>
-					<ul>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Blockbuster</a></li>
-						<li><a href="#">Contact Us</a></li>
-						<li><a href="#">Forums</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Help Center</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item3">
-					<h4>Legal</h4>
-					<ul>
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Security</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item4">
-					<h4>Account</h4>
-					<ul>
-						<li><a href="#">My Account</a></li>
-						<li><a href="#">Watchlist</a></li>
-						<li><a href="#">Collections</a></li>
-						<li><a href="#">User Guide</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item5">
-					<h4>Newsletter</h4>
-					<p>Subscribe to our newsletter system now <br>to get latest news from us.</p>
-					<form action="#"><input type="text" placeholder="Enter your email..."></form><a href="#"
-						class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="ft-copyright">
-			<div class="ft-left">
-				<p>© 2017 Blockbuster. All Rights <a href="http://www.bootstrapmb.com/"
-						title="bootstrapmb">Reserved</a>. Designed by leehari.</p>
-			</div>
-			<div class="backtotop">
-				<p><a href="#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
-			</div>
-		</div>
-	</footer><!-- end of footer section-->
+
+	<div th:insert="~{common_footer :: footerFragment}"></div>
+	
+</body>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-</body>
-
 
 <script>
-
-
 
 
 	/*결제하기 버튼 누를시 이용약관, 유의사항 체크박스에 체크가 되어있는지 모니터링 하는 함수*/
@@ -308,13 +255,13 @@
 	
 	
 	
-		//Id로 데이터 받기
-		var formattedOrderPriceElement = document.getElementById('formattedOrderPrice');
-		var endPriceElement = document.getElementById('endPrice');
-		var endPrice = parseFloat(formattedOrderPriceElement.placeholder); // formattedOrderPrice에서 값을 가져와서 숫자로 변환
 	
 	document.getElementById('paymentButton').addEventListener('click', function () {
 	
+		// endPrice 가져오기
+		var formattedOrderPriceElement = document.getElementById('formattedOrderPrice');
+		var endPriceElement = document.getElementById('endPrice');
+		var endPrice = parseFloat(formattedOrderPriceElement.placeholder); // formattedOrderPrice에서 값을 가져와서 숫자로 변환
 		// userId 가져오기
 	    var userIdElement = document.getElementById("user_id");
 		var userId = userIdElement.value;
