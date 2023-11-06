@@ -75,7 +75,17 @@
 					<div class="sidebar">
 						<div class="searh-form">
 							<h4 class="sb-title">결제상세</h4>
-							<form class="form-style-1" action="#">
+					
+							<form class="form-style-1" name="payment_form" action="#">
+								<input type="hidden"  th:value="${orderItemDtoList}">
+								<input type="hidden"  name="userId" th:value="${user_id}">
+								<input type="hidden" name="membershipImage" th:value="${membershipImage}" >								
+								<input type="hidden" name="membershipName" th:value="${membershipName}">								
+								<input type="hidden" name="membershipContent" th:value="${membershipContent}">								
+								<input type="hidden" name="membershipStartPeriod" th:value="${membershipStartPeriod}">								
+								<input type="hidden" name="membershipPeriodOfUse" th:value="${membershipPeriodOfUse}">								
+								<input type="hidden" name="membershipNo" th:value="${membershipNo}">						
+								
 								<div class="row">
 									<div class="col-md-12 form-it">
 										<label>멤버십명</label>
@@ -297,19 +307,26 @@
 	/* 결제하기 버튼을 클릭했을 때 실행되는 함수(현대적인 방법의 ajax = 순수 자바스크립트로만 쓰임, 제이쿼리 X) */
 	
 	
-	//Id로 데이터 받기
-	var formattedOrderPriceElement = document.getElementById('formattedOrderPrice');
-	var endPriceElement = document.getElementById('endPrice');
-	var endPrice = parseFloat(formattedOrderPriceElement.placeholder); // formattedOrderPrice에서 값을 가져와서 숫자로 변환
 	
-	// userId 가져오기
-    var userIdElement = document.getElementById("user_id");
-	var userId = userIdElement.value;
+		//Id로 데이터 받기
+		var formattedOrderPriceElement = document.getElementById('formattedOrderPrice');
+		var endPriceElement = document.getElementById('endPrice');
+		var endPrice = parseFloat(formattedOrderPriceElement.placeholder); // formattedOrderPrice에서 값을 가져와서 숫자로 변환
 	
 	document.getElementById('paymentButton').addEventListener('click', function () {
-
+	
+		// userId 가져오기
+	    var userIdElement = document.getElementById("user_id");
+		var userId = userIdElement.value;
+		
+		
+		
+		
 		// AJAX 요청을 보낼 URL 및 데이터 설정
 		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL
+		
+		var payment_form=document.payment_form;
+		
 		var requestData = {
 			  orderId: 0,
 			  //checkPlease
@@ -318,19 +335,18 @@
 			  userId: userId,
 			  orderItemDtos: [
 			    {
-			      "oiId": 3,
-			      "oiQty": 5,
-			      "productName": "string",
-			      "productImage": "string",
-			      "productPrice": 0,
-			      "productContent": "string",
-			      "productNo": 0,
+			      "oiId": 0,
+			      "oiQty": 1,
+			      "productName":payment_form.membershipName.value,
+			      "productImage":payment_form.membershipImage.value,
+			      "productPrice":0,
+			      "productContent":payment_form.membershipContent.value,
+			      "productNo": payment_form.membershipNo.value,
 			      "orderId": 0
 
 			    }
 			  ],
-			  //checkPlease
-			  createdAt: "2023-11-06T01:55:04.781Z"
+			 
 		};
 		console.log(requestData)
 
@@ -369,11 +385,13 @@
 				if (xhr.status === 200) {
 					// 결제가 성공적으로 완료될 경우 실행할 코드
 					var response = JSON.parse(xhr.responseText);
+					console.log(response);
 					alert('결제가 성공적으로 완료되었습니다.');
-					requestDeleteCoupon(couponId);
+					//requestDeleteCoupon(couponId);
 				} else {
 					// 결제가 실패한 경우 실행할 코드
-					alert('결제 처리 중 오류가 발생했습니다.');
+					//alert('결제 처리 중 오류가 발생했습니다.');
+					console.log(response);
 				}
 			}
 		};

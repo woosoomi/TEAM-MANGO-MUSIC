@@ -11,6 +11,7 @@ import com.itwill.jpa.dao.order.OrderDao;
 import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.product.Product;
@@ -18,6 +19,7 @@ import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.UserNotFoundException;
 import com.itwill.jpa.repository.order.OrderRepository;
+import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 import com.itwill.jpa.service.product.ProductService;
 
@@ -40,13 +42,30 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	ProductService productService;
+	@Autowired
+	ProductRepository productRepository;
 
 	//주문 생성
 	@Override
 	public OrderDto saveOrder(OrderDto dto) {
+		System.out.println("111111111111>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dto.getOrderItemDtos().get(0).getProductNo());
+		Order order=new Order( null, dto.getOrderPrice(),null,null,dto.getOrderStatus(),new Delivery(null, null, null, null, null, null, null),null,null,null);
+		User user=userRepository.findById(dto.getUserId()).get();
+		List<OrderItemDto> orderItemDtos=dto.getOrderItemDtos();
+		List<OrderItem> orderItems=new ArrayList<>();
+		for(OrderItemDto orderItemDto:orderItemDtos) {
+			Product product =productRepository.findById(7L).get();
+			orderItems.add(new OrderItem(null, orderItemDto.getOiQty(), order, product));
+		}
 		
-		Order order = orderRepository.save(Order.toEntity(dto));
-		OrderDto orderDto = OrderDto.toDto(order);
+		order.setUser(user);
+		order.setOrderItems(orderItems);
+		
+		Order saveOrder = orderRepository.save(order);
+		System.out.println(">>>>>>>>>>>>>>"+saveOrder);
+		
+		
+		OrderDto orderDto = OrderDto.toDto(saveOrder);
 		return orderDto;
 	}
 	

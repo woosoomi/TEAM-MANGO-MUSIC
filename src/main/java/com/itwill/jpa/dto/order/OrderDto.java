@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
 import com.itwill.jpa.entity.order.OrderItem;
@@ -37,13 +38,14 @@ public class OrderDto {
 	
 	private Long deliveryId;
 	
-//	private Long couponId;
+	//	private Long couponId;
 	
 	@Builder.Default
 	private List<OrderItemDto> orderItemDtos = new ArrayList<>();
-	
+	@JsonIgnore
 	@CreationTimestamp
 	private LocalDateTime createdAt;
+	@JsonIgnore
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	

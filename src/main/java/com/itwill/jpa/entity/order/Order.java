@@ -85,16 +85,19 @@ public class Order {
 	
 	//order와 orderitem 1대n
 	@Builder.Default
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//order와 coupon 1대n
 	@Builder.Default
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Coupon> coupons = new ArrayList<>();
 	
 	//Dto -> entity 변환해주는 매서드
 	public static Order toEntity(OrderDto dto) {
+		
+		
+		
 		
 		Order order = Order.builder()
 //							.orderId(dto.getOrderId())
@@ -106,8 +109,9 @@ public class Order {
 		
 		// OrderItemDto 엔티티 목록을 OrderItem 목록으로 변환하여 설정
 	    List<OrderItem> orderItemList = new ArrayList<>();
-	    for (OrderItemDto orderItemDtos : dto.getOrderItemDtos()) {
-	        orderItemList.add(OrderItem.toEntity(orderItemDtos));
+	    for (OrderItemDto orderItemDto : dto.getOrderItemDtos()) {
+	        orderItemList.add(OrderItem.toEntity(orderItemDto));
+	        
 	    }
 	    order.setOrderItems(orderItemList);
 		

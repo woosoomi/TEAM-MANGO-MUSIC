@@ -141,7 +141,7 @@ public class Product {
 	private Vote vote;
 	
 	// product와 orderitem 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
@@ -154,7 +154,7 @@ public class Product {
 	private ProductCategory productCategory;
 
 	// product와 cartitem 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
