@@ -78,7 +78,8 @@ public class UserRestController {
 		 UserDto userDto = UserDto.builder().build();
 		    try {
 		        if (session.getAttribute(userId) != null) {
-		            UserDto user = userDto.toDto(User.toEntity(userService.findUser(userId)));
+					/* UserDto user = userDto.toDto(User.toEntity(userService.findUser(userId))); */
+		        	UserDto user = userService.findUser(userId);
 		            if (user != null) {
 		                userDto.setUserId(user.getUserId());
 		                userDto.setUserPw(user.getUserPw());
