@@ -32,13 +32,13 @@ public class BoardController {
 
 	private UserServiceImpl userServiceImpl;
 
-	@GetMapping("/event")
+	@GetMapping("/board_event")
 	public String eventPage(Model model) {
 		try {
 			List<Board> events = boardServiceImpl.findBycategory(2L);
 			model.addAttribute("events", events);
 			System.out.println("이벤트 리스트 :" + events);
-			return "event"; // 뷰 템플릿의 경로를 "event"로 설정
+			return "board_event"; // 뷰 템플릿의 경로를 "event"로 설정
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMSG : " + e.getMessage());
@@ -46,7 +46,7 @@ public class BoardController {
 		}
 	}
 
-	@GetMapping("/notification")
+	@GetMapping("/board_notification")
 	public String notificationPage(Model model) {
 		try {
 			List<Board> notifications = boardServiceImpl.findBycategory(1L);
@@ -57,7 +57,7 @@ public class BoardController {
 			System.out.println("boardTypeList" + boardTypes);
 			model.addAttribute("boardTypes", boardTypes);
 
-			return "notification";
+			return "board_notification";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMSG : " + e.getMessage());
@@ -65,7 +65,7 @@ public class BoardController {
 		}
 	}
 
-	@GetMapping("/magazine")
+	@GetMapping("/board_magazine")
 	public String magazine(Model model) {
 		try {
 			List<Board> magazines = boardServiceImpl.findBycategory(3L);
@@ -80,7 +80,7 @@ public class BoardController {
 			model.addAttribute("top3Magazines", sortedMagazines);
 			System.out.println("탑3매거진리스트 : " + sortedMagazines);
 
-			return "magazine";
+			return "board_magazine";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMSG : " + e.getMessage());
@@ -88,7 +88,7 @@ public class BoardController {
 		}
 	}
 
-	@GetMapping("/inquiries")
+	@GetMapping("/board_inquiries")
 	public String inquiries(Model model) {
 		try {
 			List<Board> inquiries = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,
@@ -98,7 +98,7 @@ public class BoardController {
 			model.addAttribute("inquiries", inquiries);
 			System.out.println("inquiries 리스트 : " + inquiries);
 
-			return "inquiries";
+			return "board_inquiries";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMSG : " + e.getMessage());
@@ -106,7 +106,7 @@ public class BoardController {
 		}
 	}
 
-	@GetMapping("/faq")
+	@GetMapping("/board_faq")
 	public String faq(Model model) {
 		try {
 			List<Board> faqs = boardServiceImpl.findBycategory(5L);
@@ -115,7 +115,7 @@ public class BoardController {
 			List<BoardType> boardTypes = boardServiceImpl.findAllByOrderByTypeIdAsc();
 			System.out.println("boardTypeList" + boardTypes);
 			model.addAttribute("boardTypes", boardTypes);
-			return "faq"; // 뷰 템플릿의 경로를 "faq"로 설정
+			return "board_faq"; // 뷰 템플릿의 경로를 "faq"로 설정
 
 		} catch (Exception e) {
 			e.printStackTrace();
