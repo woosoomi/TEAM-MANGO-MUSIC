@@ -40,16 +40,16 @@ class ProductServiceImplTest {
 	
 	
 	// productNo 찾기[성공]
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	public void testFindByProductNo() {
-//		Long productNo = 1L; // 제품 번호 지정
-//		Optional<Product> productOptional = productServiceImpl.findByProductNo(productNo); // 제품 조회
-//		System.out.println("찾은 번호" + productOptional);
-//
-//	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testFindByProductNo() {
+		Long productNo = 1L; // 제품 번호 지정
+		Optional<Product> productOptional = productServiceImpl.findByProductNo(productNo); // 제품 조회
+		System.out.println("찾은 번호" + productOptional);
+
+	}
 	// productNo 찾기-DTO로 받기[성공]	
 //	@Test
 //	@Transactional
