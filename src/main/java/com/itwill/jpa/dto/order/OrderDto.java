@@ -60,6 +60,7 @@ public class OrderDto {
 		this.deliveryId = order.getDelivery().getDeliveryId();
 		this.createdAt = order.getCreatedAt();
 		this.updatedAt = order.getUpdatedAt();
+		
 	}
 	
 	//Entity to Dto 변환

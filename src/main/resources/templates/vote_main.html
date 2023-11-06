@@ -134,7 +134,8 @@
 		</div>		
 		
 			
-			<button class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			<button class="choose-btn" 
+					onclick="voteButtonClicked(this)" th:attr="data-voteid=${top1Product.voteId}">투표하기</button>
 		</div>
 		<h3 class="vs">VS</h3>
 
@@ -295,7 +296,7 @@
 		<div class="battle_rank" th:each="top6Product : ${top6Product}">
 			<img th:src="${top6Product.productImage}">
 			<h1>
-				6위 <a class="battle_1st_name" th:text="${top5Product.productArtist}">임영웅</a>
+				6위 <a class="battle_1st_name" th:text="${top6Product.productArtist}">임영웅</a>
 			</h1>
 			<div class="battle_list_nameTot">
 				<img src="https://cdn.icon-icons.com/icons2/1302/PNG/512/multimediamusicplayerplaybutton_85798.png" style="size: 10px;width: 30px;height: 30px;margin-top: 20px;">

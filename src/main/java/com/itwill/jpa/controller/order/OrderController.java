@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.dto.order.CouponDto;
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.order.CouponService;
+import com.itwill.jpa.service.order.DeliveryService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
@@ -35,6 +37,9 @@ public class OrderController {
 	
 	@Autowired
 	private CouponService couponService;
+	
+	@Autowired
+	private DeliveryService deliveryService;
 	
 	@GetMapping("/order_membership")
 	public String orderMembershipPage(Model model, HttpServletRequest request) {
@@ -286,6 +291,12 @@ public class OrderController {
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
+			
+			
+			List<DeliveryDto> deliveryList = deliveryService.findDelivery(userId);
+			model.addAttribute("deliveryList", deliveryList);
+			System.out.println(deliveryList);
+			
 			Context context = new Context();
 			context.setVariable("user_id", userId);
 			
