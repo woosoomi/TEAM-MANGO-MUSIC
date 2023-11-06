@@ -33,7 +33,7 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Operation(summary = "회원가입[성공]")
 	@PostMapping(value = "/join")
 	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
@@ -48,77 +48,67 @@ public class UserRestController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			// 기타 예외 처리
-			return new ResponseEntity<>("Internal Server Error>> user_write 레스트 컨트롤러 작동하지만 기타예외로 납치됨", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("Internal Server Error>> user_write 레스트 컨트롤러 작동하지만 기타예외로 납치됨",
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@Operation(summary = "로그인[성공]")
 	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
-	    try {
-	        User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
+		try {
+			User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
 
-	        if (loginUser != null) {
-	            session.setAttribute("sUserId", loginUser.getUserId());
-	            return ResponseEntity.status(HttpStatus.OK).body("Login successful");
-	        } else {
-	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
-	        }
-	    } catch (PasswordMismatchException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password mismatch");
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-	    }
+			if (loginUser != null) {
+				session.setAttribute("sUserId", loginUser.getUserId());
+				return ResponseEntity.status(HttpStatus.OK).body("Login successful");
+			} else {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+			}
+		} catch (PasswordMismatchException e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password mismatch");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
 	}
 
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")
 	@GetMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<UserDto> user_View(@PathVariable(name = "userId") String userId, HttpSession session) throws Exception {
-		 UserDto userDto = UserDto.builder().build();
-		    try {
-		        if (session.getAttribute(userId) != null) {
-					/* UserDto user = userDto.toDto(User.toEntity(userService.findUser(userId))); */
-		        	UserDto user = userService.findUser(userId);
-		            if (user != null) {
-		                userDto.setUserId(user.getUserId());
-		                userDto.setUserPw(user.getUserPw());
-		                userDto.setUserName(user.getUserName());
-		                userDto.setUserAddress(user.getUserAddress());
-		                userDto.setUserEmail(user.getUserEmail());
-		                userDto.setUserJumin(user.getUserJumin());
-		                userDto.setUserPhone(user.getUserPhone());
-		                userDto.setUserGender(user.getUserGender());
-		                return new ResponseEntity<>(userDto, HttpStatus.OK);
-		            } else {
-		                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		            }
-		        } else {
-		            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		        }
-		    } catch (Exception e) {
-		        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		    }
-		}
-	
+	public ResponseEntity<UserDto> getUserInfo(@PathVariable(name = "userId") String userId) {
+        try {
+            UserDto user = userService.findUser(userId);
+
+            if (user != null) {
+                return new ResponseEntity<>(user, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 	@Operation(summary = "회원리스트[성공]")
 	@GetMapping("/list")
 	public ResponseEntity<?> userList() throws Exception {
 		try {
-	        List<UserDto> users = userService.findUserList();
-	        if (users.isEmpty()) {
-	            return new ResponseEntity<>("No users found", HttpStatus.NOT_FOUND);
-	        }
-	        return new ResponseEntity<>(users, HttpStatus.OK);
-	    } catch (Exception e) {
-	        return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
+			List<UserDto> users = userService.findUserList();
+			if (users.isEmpty()) {
+				return new ResponseEntity<>("No users found", HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<>(users, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
-	
+
 	@LoginCheck
 	@Operation(summary = "회원업데이트[성공]")
 	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId, @RequestBody UserUpdateDto userUpdateDto) {
+	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
+			@RequestBody UserUpdateDto userUpdateDto) {
 		try {
 			UserDto updatedUser = userService.updateUser(userUpdateDto);
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
@@ -163,8 +153,7 @@ public class UserRestController {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleException(Exception e) {
-	    return new ResponseEntity<>("서버 오류: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>("서버 오류: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
 
 }

@@ -107,7 +107,7 @@
 							<div class="row">
 								<div class="col-md-2">
 									<!-- Submit button -->
-									<input class="submit" id="loginbutton" type="button"
+									<input class="submit" id="loginbtn" type="button"
 										value="로그인" onclick="loginForm()">
 								</div>
 							</div>
@@ -119,10 +119,7 @@
 	</div>
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
+
 
 
 
@@ -154,6 +151,7 @@
             .then(response => {
                 if (response.status === 200) {
                     alert('로그인이 성공적으로 완료되었습니다.');
+                    document.getElementById("loginbutton").value = "로그아웃"; // 버튼 텍스트 변경
                     window.location.href = "user_info_form"; // 로그인 성공 시 리디렉션할 페이지
                 } else if (response.status === 401) {
                     alert('비밀번호가 틀렸습니다.');
@@ -170,7 +168,10 @@
     </script>
 
 
-
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
 </body>
 
 </html>
