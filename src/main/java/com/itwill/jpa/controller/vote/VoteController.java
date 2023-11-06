@@ -14,6 +14,8 @@ import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.product.ProductVoteServiceImple;
 import com.itwill.jpa.service.vote.VoteServiceImpl;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/")
@@ -65,7 +67,18 @@ public class VoteController {
 	*/
 	
 	@GetMapping("/productVote")
-	public String ProductVoteList(Model model) {
+	public String ProductVoteList(Model model,HttpServletRequest request) {
+		/*************** 유저정보 ***************/
+		
+		
+		//임의로 세션 로그인 유저 설정함
+		HttpSession session = request.getSession();
+		session.setAttribute("user_id", "a");
+		String userId = (String) session.getAttribute("user_id");
+		model.addAttribute("user_id", userId);
+		
+		/*************** 유저정보 ***************/
+		
 		List<ProductVoteDto> productVote = productVoteDaoImpl.findProductsByVoteIsNotNullOrderByVoteTotDesc();
 		
 		ProductVoteDto top1Product = productVote.get(0);

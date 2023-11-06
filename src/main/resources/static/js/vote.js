@@ -1,12 +1,30 @@
 
 
-// AJAX 요청 미구현 추후 구현 예정
 
 function voteButtonClicked(button) {
     // 클릭된 버튼에서 data-voteid 값을 얻어옵니다.
-    const voteId = button.getAttribute("data-voteid");
-
-    // AJAX 요청을 보냅니다.
+     const voteId = button.getAttribute("data-voteid");
+     console.log(voteId);
+	
+	// 회원에게 voteId업데이트
+	$.ajax({
+		type: "PUT",
+        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/userVoteUpdate/{userId}/{voteId}",
+        contentType: "application/json",
+        data: JSON.stringify({ voteId: voteId }),
+        success: function (data) {
+            alert("투표가 완료되었습니다.");
+   		
+        
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("로그인이 필요한 메뉴입니다");
+            window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form"; 
+     
+        }
+    });
+	
+   // 회원 투표 합으로 tot 업데이트.
     $.ajax({
         type: "PUT",
         url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/voteProduct/update",
@@ -14,15 +32,14 @@ function voteButtonClicked(button) {
         data: JSON.stringify({ voteId: voteId }),
         success: function (data) {
             alert("투표가 완료되었습니다.");
+   			window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/productVote"; 
         },
         error: function (xhr, textStatus, errorThrown) {
             alert("투표 업데이트 중 오류가 발생했습니다.");
         }
     });
+    
 }
-
-
-
 
 
 
