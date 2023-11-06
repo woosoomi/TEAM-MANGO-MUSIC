@@ -3,9 +3,13 @@ package com.itwill.jpa.repository.board;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.itwill.jpa.entity.board.Board;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 public interface BoardRepository extends JpaRepository<Board,Long >{
 
@@ -35,4 +39,5 @@ public interface BoardRepository extends JpaRepository<Board,Long >{
 //    List<Board> findBoardsByUsername(String username);
 
 
+    Page<Board> findByBoardCategoryId(Long categoryId, Pageable pageable);
 }
