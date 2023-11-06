@@ -14,10 +14,6 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
 
 	<style>
 		.dropdown-container {
@@ -45,7 +41,7 @@
 					<div class="blog-detail-ct">
 
 
-						
+
 
 						<input type="text" id="postTitle" name="postTitle" value="제목을 입력해주세요" size="40"
 							style="height: 70px; font-size: 30px; margin-bottom: 40px;"
@@ -76,44 +72,46 @@
 							style="height: 500px; font-size: 20px; margin-bottom: 20px; margin-top: 40px;"
 							onfocus="if (this.value == '내용을 입력해주세요') this.value = '';">
 
-					
+
 						<div class="comments"></div>
 						<div class="comment-form">
 
 							<div class="dropdown-container">
 								<form action="">
-									<input class="submit" type="submit" placeholder="submit" value="제출하기" style="margin-left:250px;">
+									<input class="submit" type="submit" placeholder="submit" value="제출하기"
+										style="margin-left:250px;">
 								</form>
 								<form action="">
-									<input class="submit" type="submit" placeholder="submit" value="돌아가기" style="margin-left:50px;">
+									<input class="submit" type="submit" placeholder="submit" value="돌아가기"
+										style="margin-left:50px;">
 									</for>
 							</div>
-							</div>
-							
-							
 						</div>
-					</div>
 
 
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<div class="sidebar">
-							<div class="sb-search sb-it">
-							</div>
-							<div class="sb-cate sb-it">
-							</div>
-							<div class="sb-recentpost sb-it">
-							</div>
-						</div>
 					</div>
 				</div>
 
 
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="sidebar">
+						<div class="sb-search sb-it">
+						</div>
+						<div class="sb-cate sb-it">
+						</div>
+						<div class="sb-recentpost sb-it">
+						</div>
+					</div>
+				</div>
 			</div>
+
+
 		</div>
 	</div>
 	</div>
-	
-	
+	</div>
+
+
 	<div th:insert="~{footer :: footerFragment}">
 	</div>
 </body>
@@ -201,10 +199,10 @@
 	}
 </script>
 
-
-
-
-
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 
 
 </html>
