@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.Order.OrderStatus;
 import com.itwill.jpa.entity.order.OrderItem;
@@ -37,13 +38,14 @@ public class OrderDto {
 	
 	private Long deliveryId;
 	
-//	private Long couponId;
+	//	private Long couponId;
 	
 	@Builder.Default
 	private List<OrderItemDto> orderItemDtos = new ArrayList<>();
-	
+	@JsonIgnore
 	@CreationTimestamp
 	private LocalDateTime createdAt;
+	@JsonIgnore
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
@@ -51,19 +53,20 @@ public class OrderDto {
 	//Dto에서 고객에게 보여주는 주문 정보들이 어떤값인지를 설정하는 생성자(초기화)
 	public OrderDto(Order order) {
 		
-		this.orderId = order.getOrderId();
+//		this.orderId = order.getOrderId();
 		this.orderPrice = order.getOrderPrice();
 		this.orderStatus = order.getOrderStatus();
 		this.userId = order.getUser().getUserId();
 		this.deliveryId = order.getDelivery().getDeliveryId();
 		this.createdAt = order.getCreatedAt();
 		this.updatedAt = order.getUpdatedAt();
+		
 	}
 	
 	//Entity to Dto 변환
 	public static OrderDto toDto(Order entity) {
 		OrderDto orderDto = OrderDto.builder()
-									.orderId(entity.getOrderId())
+//									.orderId(entity.getOrderId())
 									.orderPrice(entity.getOrderPrice())
 									.orderStatus(entity.getOrderStatus())
 									.userId(entity.getUser().getUserId())

@@ -86,20 +86,20 @@ public class Product {
 	@DiscriminatorValue("goods")
 	public static class Goods extends Product {
 		/*============Dto -> entity 변환해주는 매서드============*/		
-//		public static Goods toEntity(GoodsDto dto) {
-//			return (Goods) Goods.builder()
-//					.productCategory(ProductCategory.builder().categoryId(dto.getProductCategoryId()).build())
-////					.user(User.builder().userId(dto.getUserId()).build())
-//					.productName(dto.getProductName())
-//					.productPrice(dto.getProductPrice())
-//					.productStar(dto.getProductStar())
-//					.productDate(dto.getProductDate())
-//					.readCount(dto.getReadCount())
-//					.productStock(dto.getProductStock())
-//					.productImage(dto.getProductImage())
-//					.build();	
-//		    // GoodsDto에서 Goods 엔티티로 필드 값을 복사 또는 초기화
-//	}
+		public static Goods toEntity(GoodsDto dto) {
+			return (Goods) Goods.builder()
+					.productCategory(ProductCategory.builder().categoryId(dto.getProductCategoryId()).build())
+//					.user(User.builder().userId(dto.getUserId()).build())
+					.productName(dto.getProductName())
+					.productPrice(dto.getProductPrice())
+					.productStar(dto.getProductStar())
+					.productDate(dto.getProductDate())
+					.readCount(dto.getReadCount())
+					.productStock(dto.getProductStock())
+					.productImage(dto.getProductImage())
+					.build();	
+		    // GoodsDto에서 Goods 엔티티로 필드 값을 복사 또는 초기화
+	}
 	}
 	/** ticket **/
 	@Entity
@@ -141,7 +141,7 @@ public class Product {
 	private Vote vote;
 	
 	// product와 orderitem 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
@@ -154,7 +154,7 @@ public class Product {
 	private ProductCategory productCategory;
 
 	// product와 cartitem 1대n
-	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
 	private List<CartItem> cartitems = new ArrayList<CartItem>();
