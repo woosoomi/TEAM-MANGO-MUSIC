@@ -39,13 +39,13 @@ public class ProductController2 {
 	private final UserService userService;
 	
 	// 뮤직리스트 
-	@GetMapping("/music_list")
+	@GetMapping("/product_music_list")
 	public String musicList(Model model) {
 		try {
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 			model.addAttribute("musics", musics);
 			//log.info(">>>MUSIC LIST : " + musics);
-			return "music_list";
+			return "product_music_list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());
@@ -55,11 +55,13 @@ public class ProductController2 {
 
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
 	
-	@GetMapping(value ={"/music_detail/{productNo}","/music_detail"})
-	public String MusicDetail(@PathVariable(name = "productNo" , required = false) Long productNo, Model model) {
+	@GetMapping("/product_music_detail")
+	public String MusicDetail(@RequestParam(name = "productNo" ) Long productNo, Model model) {
 		try {
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
+			
 			System.out.println(findMusicOptional.get());
+			
 			if(findMusicOptional.isPresent()) {
 				Product findMusic=findMusicOptional.get();
 				model.addAttribute("findMusic", findMusic);
@@ -67,7 +69,7 @@ public class ProductController2 {
 			}else {
 				 model.addAttribute("errorMSG", "NOT FOUNT MUSIC");
 			}
-			return "music_detail";
+			return "product_music_detail";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
