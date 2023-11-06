@@ -182,5 +182,16 @@ public class BoardController {
 			return "error";
 		}
 	}
+	
+	@GetMapping("/board_map")
+	public String board_map(Model model) {
+		try {
+			return "board_map";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMSG : " + e.getMessage());
+			return null;
+		}
+	}
 
 }
