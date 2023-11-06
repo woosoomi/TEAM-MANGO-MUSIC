@@ -21,6 +21,7 @@ import com.itwill.jpa.dto.user.UserLoginDto;
 import com.itwill.jpa.dto.user.UserUpdateDto;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.ExistedUserException;
+import com.itwill.jpa.exception.user.PasswordMismatchException;
 import com.itwill.jpa.service.user.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,29 +46,31 @@ public class UserRestController {
 		} catch (ExistedUserException e) {
 			// 이미 존재하는 사용자 예외 처리
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		/*} catch (Exception e) {
+		} catch (Exception e) {
 			// 기타 예외 처리
-			return new ResponseEntity<>("Internal Server Error>> user_write 레스트 컨트롤러 작동하지만 기타예외로 납치됨", HttpStatus.INTERNAL_SERVER_ERROR); */
+			return new ResponseEntity<>("Internal Server Error>> user_write 레스트 컨트롤러 작동하지만 기타예외로 납치됨", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@Operation(summary = "로그인[성공]")
 	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_login_action(@RequestBody UserLoginDto userLoginDto, HttpSession session) {
-		try {
-			User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
+	    try {
+	        User loginUser = userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
 
-			if (loginUser != null) {
-				session.setAttribute("sUserId", loginUser.getUserId());
-				return ResponseEntity.status(HttpStatus.OK).body("Login successful");
-			} else {
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
-			}
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-		}
+	        if (loginUser != null) {
+	            session.setAttribute("sUserId", loginUser.getUserId());
+	            return ResponseEntity.status(HttpStatus.OK).body("Login successful");
+	        } else {
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+	        }
+	    } catch (PasswordMismatchException e) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password mismatch");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+	    }
 	}
-	
+
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")
 	@GetMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
