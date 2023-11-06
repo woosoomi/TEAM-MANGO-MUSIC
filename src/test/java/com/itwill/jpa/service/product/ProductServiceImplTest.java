@@ -89,14 +89,14 @@ class ProductServiceImplTest {
 //
 //	}
 	// 카테고리별 구분-DTO로 받기[성공]
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	void testFindProductByCategoryId() {
-//		List<ProductDto> productDtoList = productServiceImpl.findByProductCategoryId(3L);	
-//		System.out.println("프로덕트리스트" + productDtoList);
-//	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void testFindProductByCategoryId() {
+		List<ProductDto> productDtoList = productServiceImpl.findByProductCategoryId(1L);	
+		System.out.println("프로덕트리스트" + productDtoList);
+	}
 	// 카테고리별 구분-DTO로 받기[성공]
 	// 굿즈 categoryId의 값만 가져올 수 잇음 (categoruId 다르면 null값 받아옴)
 	// 출력되는 값 FindProductByCategoryId와 차이 없으면 삭제 예정
@@ -132,17 +132,16 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testInsertGoodsDto() {
 	    // GoodsDto를 생성하고 categoryId 설정
 	    GoodsDto goodsDto = new GoodsDto();
-//        List<Product> productCategory = productDao.getProductByCategoryId(2L);
-//        goodsDto.setProductCategoryId((ProductCategory) productCategory);
- //       productCategory.setCategoryId(2L);
+	    ProductCategoryDto productCategory = new ProductCategoryDto();
+        productCategory.setCategoryId(2L);
 	    goodsDto.setProductName("테스트 상품");
 	    goodsDto.setProductPrice(7777);
 	    goodsDto.setProductStock(100);
-//	    goodsDto.setProductCategory(productCategory);
+	    goodsDto.setProductCategory(productCategory);
 	    // insertGoodsDto 메서드 호출
 	    GoodsDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
 		System.out.println(goodsDto.getProductName());
@@ -151,26 +150,26 @@ class ProductServiceImplTest {
 		
 	}
 	// ticket 추가 - DTO로 받기[성공]
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	public void testInserTicketDto() {
-//	    // GoodsDto를 생성하고 categoryId 설정
-//	    TicketDto ticketDto = new TicketDto();
-//        ProductCategoryDto productCategory = new ProductCategoryDto();
-//        productCategory.setCategoryId(3L);
-//	    ticketDto.setProductName("테스트 상품");
-//	    ticketDto.setProductPrice(7777);
-//	    ticketDto.setProductStock(100);
-//	    ticketDto.setProductCategory(productCategory);
-//	    // insertGoodsDto 메서드 호출
-//	    TicketDto savedTicketDto = productServiceImpl.insertTicketDto(ticketDto);
-//		System.out.println(ticketDto.getProductName());
-//		System.out.println(ticketDto.getProductPrice());
-//		System.out.println(ticketDto.getProductCategory());
-//		
-//	}	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testInserTicketDto() {
+	    // GoodsDto를 생성하고 categoryId 설정
+	    TicketDto ticketDto = new TicketDto();
+        ProductCategoryDto productCategory = new ProductCategoryDto();
+        productCategory.setCategoryId(3L);
+	    ticketDto.setProductName("테스트 상품");
+	    ticketDto.setProductPrice(7777);
+	    ticketDto.setProductStock(100);
+	    ticketDto.setProductCategory(productCategory);
+	    // insertGoodsDto 메서드 호출
+	    TicketDto savedTicketDto = productServiceImpl.insertTicketDto(ticketDto);
+		System.out.println(ticketDto.getProductName());
+		System.out.println(ticketDto.getProductPrice());
+		System.out.println(ticketDto.getProductCategory());
+		
+	}	
 //	public void testInserTicketDto() {
 //	    // GoodsDto를 생성하고 categoryId 설정
 //	    TicketDto ticketDto = new TicketDto();
@@ -244,7 +243,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testUpdateProductDto() throws Exception {
 		Product product = productRepository.findById(2L).get();
 		ProductDto productDto = ProductDto.toDto(product);
