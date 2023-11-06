@@ -42,7 +42,6 @@ public class OrderRestController {
 	@Operation(summary = "주문생성[성공]")
 	@PostMapping("/create")
 	public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
-		
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(orderService.saveOrder(orderDto));
 		} catch (Exception e) {
@@ -50,11 +49,10 @@ public class OrderRestController {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("error", e.getMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-
-	    }
+			
+		}
 	}
-	
-	
+		
 	// 주문수정(관리자권한 orderPrice, orderStatus 수정가능)
 	@Operation(summary = "주문수정[성공]")
 	@PutMapping("/update")
