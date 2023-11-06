@@ -19,7 +19,7 @@
 
 <body>
 	<!-- BEGIN | Header -->
-	<div th:insert="~{header :: headerFragment}"></div>
+	<div th:insert="~{common_header :: headerFragment}"></div>
 	<!-- END | Header -->
 
 	<div class="page-single userfav_list">
@@ -34,7 +34,7 @@
 							<ul>
 								<li><a href="user_login_form">01. 로그인</a></li>
 								<li><a href="user_write_form">02. 회원가입</a></li>
-								<li class="active"><a href="userCheckIdPw">03. 아이디,비번찾기</a></li>
+								<li class="active"><a href="user_CheckIdPw">03. 아이디,비번찾기</a></li>
 							</ul>
 						</div>
 
@@ -85,7 +85,7 @@
 	</div>
 	</div>
 	</div><!-- footer section-->
-	<div th:insert="~{footer :: footerFragment}">
+	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>

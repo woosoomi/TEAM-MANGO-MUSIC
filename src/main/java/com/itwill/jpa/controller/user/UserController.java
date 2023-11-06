@@ -51,9 +51,9 @@ public class UserController {
 		return forward_path;
 	}
 
-	@GetMapping("/userCheckIdPw")
-	public String userCheckIdPw() {
-		String forward_path = "userCheckIdPw";
+	@GetMapping("/user_CheckIdPw")
+	public String user_CheckIdPw() {
+		String forward_path = "user_CheckIdPw";
 		return forward_path;
 	}
 
