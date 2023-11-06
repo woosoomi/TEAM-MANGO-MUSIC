@@ -113,6 +113,43 @@ $(document).ready(function() {
 	filterItems('all');
 });
 
+//검색기능
+
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const faqContainer = document.getElementById('faqContainer');
+	var initialData = $('#faqContainer').html();
+
+	searchInput.addEventListener('keydown', function(event) {
+		if (event.key === 'Enter') {
+			const searchValue = searchInput.value;
+
+			filterItems(searchValue);
+			searchInput.value = ''; // 검색어 필드 비우기
+
+		}
+	});
+
+	var itemList = $(initialData).find('.blog-item-style-1, .blog-item-style-3').toArray();
+	console.log(itemList);
+
+	function filterItems(searchQuery) {
+		faqContainer.innerHTML = ''; // 리스트 비우기
+
+
+		itemList.forEach(function(item) {
+			var titleElement = item.getElementsByTagName('a')[0]; // a 요소 선택
+			var title = titleElement.textContent;
+
+			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+				faqContainer.appendChild(item);
+			}
+		});
+
+
+	}
+});
+
 ///////////////////////magazine///////////////////////////////
 
 

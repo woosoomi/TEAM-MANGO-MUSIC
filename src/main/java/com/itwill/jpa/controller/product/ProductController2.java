@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.product.ProductDto;
@@ -51,26 +52,25 @@ public class ProductController2 {
 		}
 	}
 
-	// 뮤직디테일
-	@GetMapping("/music_detail/{productNo}")
-	public String MusicDetail(@RequestParam(value="productNo",required=false) Long productNo, Model model) {
+	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
+	
+	@GetMapping(value = "/music_detail/{productNo}")
+	public String MusicDetail(@RequestParam(name = "productNo") Long productNo, Model model) {
 		try {
-			Optional<Product> musicOptional = productService.findByProductNo(productNo);
-			
-			if(musicOptional.isPresent()) {
-				Product musicDetail=musicOptional.get();
-				productService.increaseReadCount(musicDetail);
-				model.addAttribute("musicDetail", musicDetail);
-				log.info(">>>MUSIC DETAIL :"+  musicDetail);
+			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
+			if(findMusicOptional.isPresent()) {
+				Product findMusic=findMusicOptional.get();
+				model.addAttribute("findMusic", findMusic);
+	            System.out.println(">>>MUSIC DETAIL:"+findMusic);
 			}else {
-				throw new Exception("NOT FOUND MUSIC");
+				 model.addAttribute("errorMSG", "NOT FOUNT MUSIC");
 			}
-			
 			return "music_detail";
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute(e.getMessage());
-			return null;
+			model.addAttribute("errorMSG","NOT FOUNT MUSIC"+e.getMessage());
+			return "error";
 		}
 	}
 	
