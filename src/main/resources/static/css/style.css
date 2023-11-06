@@ -3877,7 +3877,7 @@ button.close {
 .navbar-header,
 .navbar-collapse,
 .modal-footer {
-	*zoom: 1;
+	zoom: 1;
 }
 
 .clearfix:before,
@@ -4755,7 +4755,7 @@ textarea {
 
 /* III. COMPONENT***********************/
 .row {
-	*zoom: 1;
+	zoom: 1;
 }
 
 .row:before,
@@ -5121,6 +5121,9 @@ ul {
 	justify-content: flex-start;
 	overflow: hidden;
 	margin-bottom: 30px;
+	border-bottom: 1px solid #abb7c4;
+	 padding-bottom: 20px;
+	  width: 90%;
 }
 
 @media (max-width: 767px) {
@@ -5140,6 +5143,15 @@ ul {
 	-o-transition: all 0.5s ease-out;
 	transition: all 0.5s ease-out;
 }
+
+ .deleteButton {
+         background: none; /* 배경 제거 */
+        border: none; /* 테두리 제거 */
+        color: #9d9d9d; /* 텍스트 색상 설정 */
+        font-size: 25px; /* 텍스트 크기 설정 */
+        cursor: pointer; /* 마우스 포인터를 손가락 모양으로 변경하여 클릭 가능함을 나타냅니다 */
+        margin-left: 350px; /* 주문 번호와의 간격 설정 */
+    }
 
 @media (max-width: 767px) {
 	.movie-item-style-2 img {

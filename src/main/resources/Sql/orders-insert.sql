@@ -10,7 +10,7 @@ values (10000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 10);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (10, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000001', '회원가입 감사쿠폰', '1개월쿠폰', 'why3795');
+values (10.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000001', '회원가입 감사쿠폰', '1개월쿠폰', 'why3795');
 
 
 --test data 2(ALL DATA)
@@ -25,7 +25,7 @@ values (20000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (5, order_item_no_seq.nextval, order_no_seq.currval, 1);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (20, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000002', '생일 축하 쿠폰', '3개월쿠폰', 'cgj22');
+values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000002', '생일 축하 쿠폰', '3개월쿠폰', 'cgj22');
 
 
 --test data 3(ALL DATA)
@@ -40,7 +40,7 @@ values (30000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (2, order_item_no_seq.nextval, order_no_seq.currval, 7);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (30, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000003', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'lsg33');
+values (30.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000003', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'lsg33');
 
 --test data 4(ALL DATA)
 
@@ -53,7 +53,7 @@ values (30000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 3);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (10, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000004', '회원가입 감사쿠폰', '1개월쿠폰', 'myr1109');
+values (10.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000004', '회원가입 감사쿠폰', '1개월쿠폰', 'myr1109');
 
 --test data 5(ALL DATA)
 
@@ -66,7 +66,7 @@ values (40000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (8, order_item_no_seq.nextval, order_no_seq.currval, 4);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (20, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000005', '생일 축하 쿠폰', '3개월쿠폰', 'wsm55');
+values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000005', '생일 축하 쿠폰', '3개월쿠폰', 'wsm55');
 
 --test data 6(ALL DATA)
 
@@ -76,10 +76,10 @@ values (delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id) 
 values (50000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '결제완료', 'rgh66');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (9, order_item_no_seq.nextval, order_no_seq.currval, 9);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (9, order_item_no_seq.nextval, order_no_seq.currval, 7);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (30, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000006', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'rgh66');
+values (30.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000006', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'rgh66');
 
 --test data 7(ALL DATA EXCEPT COUPON)
 
@@ -92,7 +92,7 @@ values (60000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (10, order_item_no_seq.nextval, order_no_seq.currval, 5);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (10, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000007', '회원가입 감사쿠폰', '1개월쿠폰', 'ycl77');
+values (10.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000007', '회원가입 감사쿠폰', '1개월쿠폰', 'ycl77');
 
 --test data 8(ALL DATA)
 
@@ -105,7 +105,7 @@ values (70000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (2, order_item_no_seq.nextval, order_no_seq.currval, 9);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (20, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000008', '생일 축하 쿠폰', '3개월쿠폰', 'kbs88');
+values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000008', '생일 축하 쿠폰', '3개월쿠폰', 'kbs88');
 
 --test data 9(ALL DATA)
 
@@ -118,7 +118,7 @@ values (80000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 6);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (30, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000009', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'why3795');
+values (30.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000009', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'why3795');
 
 --test data 10(ALL DATA)
 
@@ -128,10 +128,10 @@ values (delivery_no_seq.nextval, '서울시 성동구', '우체국택배', '차�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id) 
 values (50000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '배송중', 'cgj22');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 9);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 7);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (10, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000010', '회원가입 감사쿠폰', '1개월쿠폰', 'cgj22');
+values (10.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000010', '회원가입 감사쿠폰', '1개월쿠폰', 'cgj22');
 
 --test data 11(ALL DATA)
 
@@ -144,7 +144,7 @@ values (40000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (2, order_item_no_seq.nextval, order_no_seq.currval, 9);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (20, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000011', '생일 축하 쿠폰', '3개월쿠폰', 'lsg33');
+values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000011', '생일 축하 쿠폰', '3개월쿠폰', 'lsg33');
 
 --test data 12(ALL DATA)
 
@@ -154,10 +154,10 @@ values (delivery_no_seq.nextval, '서울시 송파구', '롯데택배', '문예�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id) 
 values (30000,SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '배송중', 'myr1109');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 10);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 7);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (30, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000012', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'myr1109');
+values (30.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000012', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'myr1109');
 
 --test data 13(ALL DATA EXCEPT ORDER_ITEM,COUPON)
 
@@ -170,7 +170,7 @@ values (10000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (3, order_item_no_seq.nextval, order_no_seq.currval, 10);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (10, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000013', '회원가입 감사쿠폰', '1개월쿠폰', 'wsm55');
+values (10.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000013', '회원가입 감사쿠폰', '1개월쿠폰', 'wsm55');
 
 --test data 14(ALL DATA)
 
@@ -180,10 +180,10 @@ values (delivery_no_seq.nextval, '서울시 양천구', '우체국택배', '마�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id)  
 values (70000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '배송준비중', 'rgh66');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (1, order_item_no_seq.nextval, order_no_seq.currval, 9);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (1, order_item_no_seq.nextval, order_no_seq.currval, 3);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (20, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000014', '생일 축하 쿠폰', '3개월쿠폰', 'rgh66');
+values (20.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000014', '생일 축하 쿠폰', '3개월쿠폰', 'rgh66');
 
 --test data 15(ALL DATA)
 
@@ -193,10 +193,10 @@ values (delivery_no_seq.nextval, '서울시 강동구', 'CJ대한통운', '유�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id)  
 values (60000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '배송중', 'ycl77');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (1, order_item_no_seq.nextval, order_no_seq.currval, 9);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (1, order_item_no_seq.nextval, order_no_seq.currval, 7);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (30, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000015', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'ycl77');
+values (30.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000015', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'ycl77');
 
 --test data 16(ALL DATA EXCEPT ORDER_ITEM,COUPON)
 
@@ -209,6 +209,6 @@ values (80000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYST
 INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (2, order_item_no_seq.nextval, order_no_seq.currval, 5);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
-values (10, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000016', '회원가입 감사쿠폰', '1개월쿠폰', 'kbs88');
+values (10.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 0, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000016', '회원가입 감사쿠폰', '1개월쿠폰', 'kbs88');
 
 commit;
