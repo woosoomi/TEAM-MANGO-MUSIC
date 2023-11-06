@@ -18,21 +18,18 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<body><!--preloading-->
-	<div th:insert="~{header :: headerFragment}"></div>
-
+<body>
+	
+	<div th:insert="~{common_header :: headerFragment}"></div>
+	
 	<div class="page-single movie_list">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
-					<!-- 주문 상품 정보를 히든 필드로 저장 -->
-					<input type="hidden" id="orderItemDtoList" th:value="${orderItemDtoList}">
-					<input type="hidden" id="user_id" th:value="${user_id}">
-					
+
 					<div class="topbar-filter" id="userId" th:value="${user_id}">
 						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
 					</div>
-					
 					
 					<div class="movie-item-style-2">
 						<img th:src="@{'images/' + ${membershipImage}}" alt="">
@@ -75,10 +72,10 @@
 					<div class="sidebar">
 						<div class="searh-form">
 							<h4 class="sb-title">결제상세</h4>
-					
+							<!--결제정보 저장공간 폼-->
 							<form class="form-style-1" name="payment_form" action="#">
 								<input type="hidden"  th:value="${orderItemDtoList}">
-								<input type="hidden"  name="userId" th:value="${user_id}">
+								<input type="hidden" id="user_id" name="userId" th:value="${user_id}">
 								<input type="hidden" name="membershipImage" th:value="${membershipImage}" >								
 								<input type="hidden" name="membershipName" th:value="${membershipName}">								
 								<input type="hidden" name="membershipContent" th:value="${membershipContent}">								
@@ -145,71 +142,17 @@
 			</div>
 		</div>
 	</div>
-	<!-- footer section-->
-	<footer class="ht-footer">
-		<div class="container">
-			<div class="flex-parent-ft">
-				<div class="flex-child-ft item1"><a href="index.html"><img class="logo" src="images/logo1.png"
-							alt=""></a>
-					<p>5th Avenue st, manhattan<br> New York, NY 10001</p>
-					<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
-				</div>
-				<div class="flex-child-ft item2">
-					<h4>Resources</h4>
-					<ul>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Blockbuster</a></li>
-						<li><a href="#">Contact Us</a></li>
-						<li><a href="#">Forums</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Help Center</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item3">
-					<h4>Legal</h4>
-					<ul>
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Security</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item4">
-					<h4>Account</h4>
-					<ul>
-						<li><a href="#">My Account</a></li>
-						<li><a href="#">Watchlist</a></li>
-						<li><a href="#">Collections</a></li>
-						<li><a href="#">User Guide</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item5">
-					<h4>Newsletter</h4>
-					<p>Subscribe to our newsletter system now <br>to get latest news from us.</p>
-					<form action="#"><input type="text" placeholder="Enter your email..."></form><a href="#"
-						class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="ft-copyright">
-			<div class="ft-left">
-				<p>© 2017 Blockbuster. All Rights <a href="http://www.bootstrapmb.com/"
-						title="bootstrapmb">Reserved</a>. Designed by leehari.</p>
-			</div>
-			<div class="backtotop">
-				<p><a href="#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
-			</div>
-		</div>
-	</footer><!-- end of footer section-->
+
+	<div th:insert="~{common_footer :: footerFragment}"></div>
+	
+</body>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-</body>
-
 
 <script>
-
-
 
 
 	/*결제하기 버튼 누를시 이용약관, 유의사항 체크박스에 체크가 되어있는지 모니터링 하는 함수*/
@@ -217,14 +160,14 @@
 
 	const checkbox1 = document.getElementById("termsAgree1");
 	const checkbox2 = document.getElementById("termsAgree2");
-	const submitButton = document.querySelector(".submit");
+	const paymentButton = document.querySelector(".submit");
 
 	checkbox1.addEventListener("change", checkAndWarn);
 	checkbox2.addEventListener("change", checkAndWarn);
-	submitButton.addEventListener("click", checkAndWarn);
+	paymentButton.addEventListener("click", checkAndWarn);
 
 	function checkAndWarn() {
-		if (submitButton === document.activeElement) {
+		if (paymentButton === document.activeElement) {
 			if (!checkbox1.checked && !checkbox2.checked) {
 				alert("유의사항과 이용약관을 확인해주세요.");
 			} else if (!checkbox1.checked) {
@@ -234,6 +177,8 @@
 			}
 		}
 	}
+	
+	
 
 
 	/*이용약관 팝업*/
@@ -304,23 +249,37 @@
 	});
 	
 	
+	
 	/* 결제하기 버튼을 클릭했을 때 실행되는 함수(현대적인 방법의 ajax = 순수 자바스크립트로만 쓰임, 제이쿼리 X) */
 	
 	
 	
-		//Id로 데이터 받기
+	document.getElementById('paymentButton').addEventListener('click', function () {
+		
+		/*
+		// endPrice 가져오기 3차시도
 		var formattedOrderPriceElement = document.getElementById('formattedOrderPrice');
 		var endPriceElement = document.getElementById('endPrice');
-		var endPrice = parseFloat(formattedOrderPriceElement.placeholder); // formattedOrderPrice에서 값을 가져와서 숫자로 변환
-	
-	document.getElementById('paymentButton').addEventListener('click', function () {
-	
+		var formattedOrderPrice = parseFloat(formattedOrderPriceElement.value);
+		var endPrice = parseFloat(endPriceElement.value);
+		*/
+		
+		var formattedOrderPriceElement = document.getElementById('formattedOrderPrice');
+		var endPriceElement = document.getElementById('endPrice');
+		var discountInput = document.getElementById('discountInput'); // 할인 입력 필드
+
+		var formattedOrderPrice = parseFloat(formattedOrderPriceElement.value);
+
+		// 할인 입력 필드가 비어 있거나 0이라면 할인이 선택되지 않은 것으로 간주
+		if (discountInput.value === "" || parseFloat(discountInput.value) === 0) {
+			var endPrice = formattedOrderPrice; // 할인 선택되지 않았을 때 기본 가격 설정
+		} else {
+			var endPrice = parseFloat(endPriceElement.value); // 할인이 선택되었을 때 설정된 가격 유지
+		}
+
 		// userId 가져오기
 	    var userIdElement = document.getElementById("user_id");
 		var userId = userIdElement.value;
-		
-		
-		
 		
 		// AJAX 요청을 보낼 URL 및 데이터 설정
 		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/create'; // 결제 처리를 수행하는 서버 엔드포인트 URL
@@ -386,7 +345,8 @@
 					// 결제가 성공적으로 완료될 경우 실행할 코드
 					var response = JSON.parse(xhr.responseText);
 					console.log(response);
-					alert('결제가 성공적으로 완료되었습니다.');
+					alert('주문이 성공적으로 완료되었습니다.');
+					alert('무통장입금 신한은행 110-354-000000\n1시간 내 미입금시 주문이 취소됩니다.')
 					//requestDeleteCoupon(couponId);
 				} else {
 					// 결제가 실패한 경우 실행할 코드
@@ -398,7 +358,7 @@
 
 		xhr.send(JSON.stringify(requestData)); // 요청 데이터를 JSON 문자열로 변환하여 보냅니다.
 	});
-
+	
 
 	/*결제에 사용된 쿠폰 삭제*/
 
