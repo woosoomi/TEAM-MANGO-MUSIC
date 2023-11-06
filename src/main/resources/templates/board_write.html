@@ -78,16 +78,14 @@
 							<div class="dropdown-container">
 								<form action="">
 									<input class="submit" type="submit" placeholder="submit" value="제출하기"
-										style="margin-left:250px;">
+										style="margin-left:250px;" onclick="write_action()">
 								</form>
 								<form action="">
-									<input class="submit" type="submit" placeholder="submit" value="돌아가기"
-										style="margin-left:50px;">
-									</for>
+									<input class="submit" type="button" value="돌아가기" style="margin-left: 50px;"
+										onclick="goBack()">
+								</form>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 
@@ -113,10 +111,10 @@
 
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div>
+
 </body>
 
 <script>
-	// 현재 로컬 날짜와 시간을 한국 시간대로 가져오기
 	var currentDate = new Date();
 	var options = {timeZone: 'Asia/Seoul'};
 	var koreanDate = currentDate.toLocaleString('en-US', options);
@@ -196,6 +194,26 @@
 			lang2.appendChild(option);
 		}
 	}
+
+	function goBack() {
+		window.history.back();
+	}
+
+	function write_action() {
+		var titleData = $('#postTitle').val();
+		var contentData = $('#postContent').val();
+		var lang1 = $('#lang1').val();
+		var lang2 = $('#lang2').val();
+
+
+		// 선택된 값을 가져옵니다.
+		alert("1")
+		console.log(titleData);
+		console.log(contentData);
+		console.log(lang2);
+		alert("2")
+	}
+
 </script>
 
 <script src="js/jquery.js"></script>
