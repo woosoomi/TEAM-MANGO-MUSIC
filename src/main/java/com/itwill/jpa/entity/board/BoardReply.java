@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.itwill.jpa.dto.board.BoardReplyDto;
 import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -42,11 +43,12 @@ public class BoardReply {
     @CreationTimestamp
     private LocalDateTime createDateTime;
     
-    public static BoardReply toEntity(BoardReply dto) {
+    public static BoardReply toEntity(BoardReplyDto dto) {
     	return BoardReply.builder()
-    					 .boardReplyId(dto.boardReplyId)
-    					 .boardReplyTitle(dto.boardReplyTitle)
-    					 .boardReplyContent(dto.boardReplyContent)
+    					 .boardReplyId(dto.getBoardReplyId())
+    					 .boardReplyTitle(dto.getBoardReplyTitle())
+    					 .boardReplyContent(dto.getBoardReplyContent())
+    					 .user(User.builder().userId(dto.getUserId()).build())
     					 .build();
     }
     
