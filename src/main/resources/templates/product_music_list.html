@@ -41,11 +41,8 @@
 					</div>
 
 					<div class="row" id="musicList">
-
-
 						<div class="music_List" th:each="music : ${musics}">
 							<div class="flex-wrap-movielist user-fav-list">
-
 								<div class="movie-item-style-2">
 									<a style="padding-right: 20px; color: #ffffff;"
 										th:text="${music.productNo}">번호</a> <a
@@ -55,20 +52,18 @@
 									</a>
 									<div class="mv-item-infor">
 										<h6>
-											<a
+											<a	style="color: white;" class ="musicName"
 												th:href="@{/product_music_detail(productNo=${music.productNo})}"
 												th:text="${music.productName}">Leonardo DiCaprio</a>
 										</h6>
 										<p class="describe"></p>
-										<p class="run-time" th:text="${music.productArtist}">Run
-											Time: 2h21’</p>
+										<p class="artist" th:text="${music.productArtist}"> artist name </p>
 										<p>
 											조회수: <a th:text="${music.readCount}">2</a>
 										</p>
 									</div>
 								</div>
 							</div>
-						
 						</div>
 					</div>
 
@@ -78,8 +73,7 @@
 					<div class="sidebar">
 						<div class="sb-search sb-it">
 							<h4 class="sb-title">Search</h4>
-							<input type="text" id="searchInput"
-								placeholder="Enter keywords">
+							<input type="text" id="searchInput" placeholder="제목 / 아티스트 검색">
 						</div>
 
 						<!--userId가 admin일때 보이기 -->
@@ -107,11 +101,11 @@
 	</footer>
 	<!-- end of footer section-->
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
 <script src="js/custom.js"></script>
 <script src="js/product.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 </html>

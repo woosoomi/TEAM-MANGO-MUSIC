@@ -1,37 +1,51 @@
 
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const musicContainer = document.getElementById('musicList');
+	var initialData = $('#musicList').html();
 
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    var titleElements = document.querySelectorAll('.movie-item-style-2 h6 a');
-    var productContainer = document.getElementById('productContainer');
+	searchInput.addEventListener('keyup', function(event) {
+		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
+		if (true) {
+			const searchValue = searchInput.value;
+			console.log(searchValue);
+			filterItems(searchValue);
+		}
+	});
 
-    searchInput.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            const searchValue = searchInput.value;
+	var itemList = $(initialData).find('.movie-item-style-2').toArray();
+	console.log(itemList);
 
-            filterItems(searchValue);
-            searchInput.value = ''; 
-        }
-    });
+	function filterItems(searchQuery) {
+		musicContainer.innerHTML = '';
 
-    function filterItems(searchQuery) {
-        productContainer.innerHTML = ''; 
 
-        titleElements.forEach(function (titleElement, index) {
-            var title = titleElement.textContent;
-            console.log("title: " + title);
+		itemList.forEach(function(item) {
 
-            if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
-                var item = titleElement.closest('.movie-item-style-2'); 
-                productContainer.appendChild(item);
-            }
-        });
-    }
+			var musicName = $(item).find('.musicName').text();
+			console.log(musicName);
+			var artist = $(item).find('.artist').text();
+
+
+
+			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+			if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+		});
+
+	}
 });
+
+
+
+
 
 $(function() { // 보이기 | 숨기기
 	$(window).scroll(function() {
-    if ($(this).scrollTop() > 300) { //300 넘으면 버튼이 보여짐
+    if ($(this).scrollTop() > 500) { //300 넘으면 버튼이 보여짐
       $('#topBtn').fadeIn();
     } else {
       $('#topBtn').fadeOut();

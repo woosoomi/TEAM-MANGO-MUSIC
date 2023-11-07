@@ -65,20 +65,20 @@
 					</ul>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userId}==null">
+			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.sUserId==null}">
 				<li>
-					<a href="user_info_form" th:text='${session.userName+"님"}'></a>
+					<a href="user_info_form" th:text='${session.sUserName + "님"}'></a>
 				<li><span>/</span></li>
 				<li class="btn signupLink">
 					<a href="user_login_form" id="loginbutton">로그인</a>
 				</li>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userId}!=null">
+			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.sUserId!=null}">
+					<a href="user_info_form" th:text='${session.sUserName + "님"}'>//</a>
 				<li class="btn signupLink">
-					<a href="index" th:text='${session.userName+"님"}'>//</a>
-				<li><span>/</span></li>
-				<a href="index" id="loginbutton">로그아웃</a>
+					<a href="user_logout_action" id="loginbutton">로그아웃</a>
+				</li>
 				</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
