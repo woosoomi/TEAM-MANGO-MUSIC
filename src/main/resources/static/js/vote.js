@@ -27,7 +27,8 @@ function voteButtonClicked(button) {
             });
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("사용자 업데이트 중 오류가 발생했습니다.");
+            alert("로그인이 필요한 서비스입니다.");
+             window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form";
         }
     });
 }

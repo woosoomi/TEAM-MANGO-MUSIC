@@ -57,6 +57,9 @@ public class OrderItem {
 				.oiQty(orderItemDto.getOiQty())
 				.product(Product.builder().productNo(orderItemDto.getProductNo()).build())
 				.product(Product.builder().productPrice(orderItemDto.getProductPrice()).build())
+				.product(Product.builder().productName(orderItemDto.getProductName()).build())
+				.product(Product.builder().productImage(orderItemDto.getProductImage()).build())
+				.product(Product.builder().productContent(orderItemDto.getProductContent()).build())
 				.order(Order.builder().orderId(orderItemDto.getOrderId()).build())
 				.build();
 				
