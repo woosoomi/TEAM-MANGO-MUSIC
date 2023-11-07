@@ -15,7 +15,6 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
-	
 
 </head>
 
@@ -62,7 +61,7 @@
 							</div>
 							<div class="mv-item-infor">
 								<h6>
-									<a class="goodsName" th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">Leonardo DiCaprio</a>
+									<a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">Leonardo DiCaprio</a>
 								</h6>
 								<p class="rate">
 									<i class="ion-android-star"></i><span>8.1</span>/10
@@ -92,7 +91,6 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/cart.js"></script>
-	<script src="js/product.js"></script>
 </body>
 
 </html>

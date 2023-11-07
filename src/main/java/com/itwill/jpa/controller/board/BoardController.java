@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.board.BoardType;
 import com.itwill.jpa.service.board.BoardServiceImpl;
 import com.itwill.jpa.service.user.UserServiceImpl;
@@ -165,12 +165,13 @@ public class BoardController {
 		try {
 			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
 			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
-
+			List<BoardReply> ReplyList = boardServiceImpl.findByBoard_boardId(boardId);
 			if (boardOptional.isPresent()) {
 				// 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
 				Board board = boardOptional.get();
 				model.addAttribute("board", board);
-				System.out.println("board :" + board);
+				model.addAttribute("ReplyList", ReplyList);
+				
 			} else {
 				// 게시물이 존재하지 않을 경우 에러 처리
 				model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");

@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dto.board.BoardDto;
 import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.board.BoardType;
+import com.itwill.jpa.repository.board.BoardReplyRepository;
 import com.itwill.jpa.repository.board.BoardRepository;
 import com.itwill.jpa.repository.board.BoardTypeRepository;
 
@@ -26,10 +28,18 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	private BoardTypeRepository boardTypeRepository;
+	
+	@Autowired
+	private BoardReplyRepository boardReplyRepository;
 	//게시글 저장
 	@Override
 	public Board insert(Board board) {
         return boardRepository.save(board);
+	}
+	
+	@Override
+	public BoardReply ReplyInsert(BoardReply boardReply) {
+		return boardReplyRepository.save(boardReply);
 	}
 	
 	//게시글삭제
@@ -66,6 +76,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<Board> findByType(Long id){
 		return boardRepository.findByBoardType_TypeIdOrderByCreatedTime(id);
+	}
+	
+	@Override
+	public List<BoardReply> findByBoard_boardId(Long BoardId){
+		return boardReplyRepository.findByBoard_boardId(BoardId);
 	}
 	
 // 아직 readcount 추가안함
