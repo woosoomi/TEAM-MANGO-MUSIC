@@ -39,13 +39,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // 삭제 버튼을 클릭할 때
     document.querySelectorAll(".deleteButton").forEach(function(button) {
         button.addEventListener("click", function() {
-            var oiId = button.getAttribute("data-order-id");
+            var orderId = button.getAttribute("data-order-id");
             
-            console.log(oiId)
+            console.log(orderId)
             // AJAX 요청을 보냅니다.
             var xhr = new XMLHttpRequest();
             // 주문 ID를 동적으로 대체
-       		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/orderItem/delete/'+ oiId; // 결제 처리를 수행하는 서버 엔드포인트 URL
+       		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/delete/'+ orderId; // 결제 처리를 수행하는 서버 엔드포인트 URL
             xhr.open("DELETE", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.onreadystatechange = function() {
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			    }
 			};
             // 요청 데이터를 동적으로 설정
-			xhr.send(JSON.stringify({ oiId: oiId }));
+			xhr.send(JSON.stringify({ orderId: orderId }));
         });
     });
 });
