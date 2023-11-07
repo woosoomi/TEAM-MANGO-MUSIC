@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dao.product.ProductVoteDaoImpl;
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
@@ -89,14 +90,14 @@ class ProductServiceImplTest {
 //
 //	}
 	// 카테고리별 구분-DTO로 받기[성공]
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	void testFindProductByCategoryId() {
-		List<ProductDto> productDtoList = productServiceImpl.findByProductCategoryId(1L);	
-		System.out.println("프로덕트리스트" + productDtoList);
-	}
+//	@Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//	void testFindProductByCategoryId() {
+//		List<ProductDto> productDtoList = productServiceImpl.findByProductCategoryId(1L);	
+//		System.out.println("프로덕트리스트" + productDtoList);
+//	}
 	// 카테고리별 구분-DTO로 받기[성공]
 	// 굿즈 categoryId의 값만 가져올 수 잇음 (categoruId 다르면 null값 받아옴)
 	// 출력되는 값 FindProductByCategoryId와 차이 없으면 삭제 예정
@@ -149,16 +150,16 @@ class ProductServiceImplTest {
 //		System.out.println(goodsDto.getProductCategory());
 		
 	}
-	// ticket 추가 - DTO로 받기[성공]
+	// ticket 추가 - DTO로 받기
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testInserTicketDto() {
 	    // GoodsDto를 생성하고 categoryId 설정
 	    TicketDto ticketDto = new TicketDto();
-        ProductCategoryDto productCategory = new ProductCategoryDto();
-        productCategory.setCategoryId(3L);
+//        ProductCategoryDto productCategory = new ProductCategoryDto();
+        ticketDto.setProductCategoryId(3L);
 	    ticketDto.setProductName("테스트 상품");
 	    ticketDto.setProductPrice(7777);
 	    ticketDto.setProductStock(100);
@@ -214,14 +215,14 @@ class ProductServiceImplTest {
 //	  }
 	
 	// product 삭제 - DTO로 받기[성공]
-		@Test
-		@Transactional
-		@Rollback(false)
-		@Disabled	 
-		void testDeledtProductDto() throws Exception {
-			// productNo 값을 지정
-			productServiceImpl.deleteProductDto(6L);
-		}
+//		@Test
+//		@Transactional
+//		@Rollback(false)
+//		@Disabled	 
+//		void testDeledtProductDto() throws Exception {
+//			// productNo 값을 지정
+//			productServiceImpl.deleteProductDto(24L);
+//		}
 
 	  
 	// product 수정[성공]
@@ -285,6 +286,36 @@ class ProductServiceImplTest {
 					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
 		}
 	}
+	@Test
+	@Transactional
+	@Rollback(false)	
+//	@Disabled
+	public void testProductByReadCountDescDto() {
+		// Arrange (준비)
+		Long categoryId = 1L; // 적절한 카테고리 ID 설정
+		// Act (실행)
+		List<ProductDto> productList = productServiceImpl.productByReadCountDescDto(categoryId);
+		for (ProductDto productDto : productList) {
+			System.out.println(
+					"Product Name : " + productDto.getProductName() + "///Read Count : " + productDto.getReadCount());
+		}
+		
+	}
+	@Test
+	@Transactional
+	@Rollback(false)	
+	@Disabled
+    public void testMusicByReadCountDescDto() {
+        // Arrange (준비)
+        Long categoryId = 1L; // 적절한 카테고리 ID 설정
+        // Act (실행)
+        List<MusicDto> musicList = productServiceImpl.musicByReadCountDescDto(categoryId);
+        for (MusicDto music : musicList) {
+			System.out.println(
+					"Product Name : " + music.getProductName() + "///Read Count : " + music.getReadCount());
+        }
+        
+    }
 //	@Test
 //	@Transactional
 //	@Rollback(false)
@@ -299,17 +330,17 @@ class ProductServiceImplTest {
 //        }
 //	}
 	// product 조회수별 오름차순 정렬[성공]
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	public void testGetProductOrderByReadCountAsc() {
-//		List<Product> products = productServiceImpl.getProductOrderByReadCountAsc();
-//		for (Product product : products) {
-//			System.out.println(
-//					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
-//		}
-//	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testGetProductOrderByReadCountAsc() {
+		List<Product> products = productServiceImpl.getProductOrderByReadCountAsc();
+		for (Product product : products) {
+			System.out.println(
+					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+		}
+	}
 
 
     // product 오래 등록된 순으로 정렬
