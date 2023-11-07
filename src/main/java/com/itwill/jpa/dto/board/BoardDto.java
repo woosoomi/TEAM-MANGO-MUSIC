@@ -31,6 +31,7 @@ public class BoardDto {
     private Long boardCategoryId;
     
     private String userId;
+    
 
     public static BoardDto toDto(Board entity) {
         return BoardDto.builder()

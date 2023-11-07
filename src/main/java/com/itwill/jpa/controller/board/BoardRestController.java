@@ -25,11 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.board.BoardDto;
+import com.itwill.jpa.dto.board.BoardReplyDto;
 import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.service.board.BoardServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/")
@@ -54,6 +55,22 @@ public class BoardRestController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@Operation(summary = "댓글등록")
+	@PostMapping("board_reply_create/{boardId}")
+	public ResponseEntity<BoardReplyDto> createBoardReply(@PathVariable(name="boardId") Long boardId, @RequestBody BoardReplyDto boardReplyDto) {
+	    try {
+	    	BoardReply boardReply =BoardReply.toEntity(boardReplyDto);
+	    	BoardReply createReply = boardServiceImpl.ReplyInsert(boardReply);
+	    	BoardReplyDto createReplyDto = BoardReplyDto.toDto(createReply);
+	    	return new ResponseEntity<>(createReplyDto, HttpStatus.CREATED);
+	    }catch (Exception e) { 
+	    	e.printStackTrace();
+	    	return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+		
+	}
+
 
 	@Operation(summary = "업데이트")
 	@PutMapping("/board_update/{boardId}")
