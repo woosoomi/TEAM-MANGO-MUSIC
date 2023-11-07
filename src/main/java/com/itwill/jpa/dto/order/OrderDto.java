@@ -38,11 +38,21 @@ public class OrderDto {
 	
 	private Long deliveryId;
 	
+	private String deliveryName;
+	
+	private String deliveryPhone;
+	
+	private String deliveryAddress;
+	
+	private String deliveryCompany;
+	
+	
 	//	private Long couponId;
 	
 
 	//@Builder.Default
 	private List<OrderItemDto> orderItemDtos;
+	
 	
 
 	@JsonIgnore
@@ -61,6 +71,10 @@ public class OrderDto {
 		this.orderStatus = order.getOrderStatus();
 		this.userId = order.getUser().getUserId();
 		this.deliveryId = order.getDelivery().getDeliveryId();
+		this.deliveryAddress = order.getDelivery().getDeliveryAddress();
+		this.deliveryCompany = order.getDelivery().getDeliveryCompany();
+		this.deliveryName = order.getDelivery().getDeliveryName();
+		this.deliveryPhone = order.getDelivery().getDeliveryPhone();
 		this.createdAt = order.getCreatedAt();
 		this.updatedAt = order.getUpdatedAt();
 		
@@ -75,6 +89,10 @@ public class OrderDto {
 									.orderStatus(entity.getOrderStatus())
 									.userId(entity.getUser().getUserId())
 									.deliveryId(entity.getDelivery().getDeliveryId())
+									.deliveryAddress(entity.getDelivery().getDeliveryAddress())
+									.deliveryCompany(entity.getDelivery().getDeliveryCompany())
+									.deliveryName(entity.getDelivery().getDeliveryName())
+									.deliveryPhone(entity.getDelivery().getDeliveryPhone())
 									.createdAt(entity.getCreatedAt())
 									.updatedAt(entity.getUpdatedAt())
 									.build();
