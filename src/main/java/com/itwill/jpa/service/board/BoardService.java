@@ -6,9 +6,10 @@ import java.util.Optional;
 
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardType;
-import com.itwill.jpa.entity.user.User;
+import com.itwill.jpa.repository.board.BoardRepository;
 
 public interface BoardService {
+	
 	
 	//등록
 	public Board insert(Board board);
@@ -23,6 +24,8 @@ public interface BoardService {
 	public List<Board> findBycategory(Long id);
 	
 	public List<Board> findByType(Long id);
+	
+	
 	
 //	// 조회수 올리기
 //	public Board increaseReadCount(Board board);
