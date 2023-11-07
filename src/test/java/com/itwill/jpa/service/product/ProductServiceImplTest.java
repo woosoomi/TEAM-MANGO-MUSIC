@@ -242,14 +242,14 @@ class ProductServiceImplTest {
 //	  }
 	
 	// product 삭제 - DTO로 받기[성공]
-//		@Test
-//		@Transactional
-//		@Rollback(false)
-//		@Disabled	 
-//		void testDeledtProductDto() throws Exception {
-//			// productNo 값을 지정
-//			productServiceImpl.deleteProductDto(24L);
-//		}
+		@Test
+		@Transactional
+		@Rollback(false)
+		@Disabled	 
+		void testDeledtProductDto() throws Exception {
+			// productNo 값을 지정
+			productServiceImpl.deleteProductDto(6L);
+		}
 
 	  
 	// product 수정[성공]
