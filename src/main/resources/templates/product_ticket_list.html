@@ -23,44 +23,65 @@
 	<div th:insert="~{common_header::headerFragment}">
 	</div>
 	<!-- celebrity grid v1 section-->
+	
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-							<p class="pad-change">Total <span th:text="${#lists.size(tickets)}">1,608 </span> ticket</p>
-														
-							</div>
-													
-							<div class="row" id="ticketList">	
-								
-					
-									<div class="ticket_List" th:each="ticket : ${tickets}">									
-						<p>Found <span>1,608 celebrities</span>in total</p><label>Sort by:</label><select>
+							<p class="pad-change">
+								Total <span th:text="${#lists.size(tickets)}">1,608 </span> ticket
+							</p>
+																											
+						<!--<p>Found <span th:text="${#lists.size(tickets)}">건</span>in total</p>-->
+						
+						<!--정렬조건-->
+						<label>Sort by:</label>
+						<select id="sortSelect">					
 							<option value="popularity">인기도 오름차순</option>
 							<option value="popularity">인기도 내림차순</option>
 							<option value="date">출시일 오름차순</option>
 							<option value="date">출시일 내림차순</option>
-						</select>
-						<a href="/product_ticket_list" class="list"><i class="ion-ios-list-outline "></i></a>
-                        <a href="/product_ticket_list" class="list"><i class="ion-ios-list-outline"></i></a>
-                        <a href="celebritygrid01.html" class="grid"><i class="ion-grid active"></i></a>
-                    </div>
-                    <div class="product_ticket_List" th:each="ticket : ${tickets}">
+						</select>			
+						</div>	
+						
+						
+						<div class="row" id="ticketList">	
+																		
+						<div class="ticket_List" th:each="ticket : ${tickets}">
+							<div class="flex-wrap-movielist user-fav-list">
+								
+								<!--<div class="movie-item-style-2">
+									<a style="padding-right: 20px; color: #ffffff;"		
+                        th:text="${ticket.productNo}">번호</a> <a
+										th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}">
+										<img th:src="${ticket.productImage}" alt=""
+										style="width: 100px">
+                    </div>-->
+                    <div class="product_ticket_List" >
                         <div class="ceb-item">
                             <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
                                 <img th:src="${ticket.productImage}" src="images/uploads/ceb1.jpg" alt="">
+                                <span th:text="${ticket.productName}">Tom Hardy</a></span></h3>
+                                <span th:text="|${ticket.productPrice} 원 |">actor</span>
+                                <span th:text="|${ticket.productStock} 좌석 남았습니다|">10</span>
                             </a>
-                            <div class="ceb-infor">
-                                <h2><a th:href="@{/ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html"
-                                        th:text="${ticket.productName}">Tom Hardy</a></h2>
+                            <!--<div class="ceb-infor">
+                                <h3><a th:href="@{/ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
+                                <span th:text="${ticket.productName}">Tom Hardy</a></span></h3>
                                 <span th:text="|${ticket.productPrice} 원 |">actor</span>
                                 <p />
-                                <span th:text="|${ticket.productStock} 개 남았습니다|">10</span>
-                            </div>
+                                <span th:text="|${ticket.productStock} 좌석 남았습니다|">10</span>
+                            </div>-->
                         </div>
-                    </div>
-                </div>
+                    </div>      
+                </div>                
+              </div> 
+              </div>
+              </div> 
+            <!--</div>-->
+            
+            
                 <div class="col-md-3 col-xs-12 col-sm-12">
                     <div class="sidebar">
                         <div class="searh-form">
@@ -108,7 +129,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
+                        <!--<div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
                         <div class="celebrities">
                             <h4 class="sb-title">featured celebrity</h4>
                             <div class="celeb-item"><a href="#"><img src="images/uploads/ava1.jpg" alt=""></a>
@@ -129,7 +150,7 @@
                             <div class="celeb-item"><a href="#"><img src="images/uploads/ava4.jpg" alt=""></a>
                                 <div class="celeb-author">
                                     <h6><a href="#">Justin Weaver</a></h6><span>Actor</span>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -138,9 +159,8 @@
         </div>
     </div>
 	</div><!--end of celebrity grid v1 section--><!-- footer section-->
-	<footer class="ht-footer" th:insert="~{common_footer::footerFragment}">
-	
-	</footer><!-- end of footer section-->
+	<div th:insert="~{common_footer :: footerFragment}">
+	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
