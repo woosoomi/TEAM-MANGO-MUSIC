@@ -49,6 +49,7 @@ public class BoardReply {
     					 .boardReplyTitle(dto.getBoardReplyTitle())
     					 .boardReplyContent(dto.getBoardReplyContent())
     					 .user(User.builder().userId(dto.getUserId()).build())
+    					 .board(Board.builder().boardId(dto.getBoardId()).build())
     					 .build();
     }
     

@@ -21,6 +21,7 @@ public class BoardReplyDto {
     private String boardReplyContent;
     private LocalDateTime createDateTime;
     private String userId;
+    private Long BoardId; 
 
     public static BoardReplyDto toDto(BoardReply entity) {
     	return BoardReplyDto.builder()
