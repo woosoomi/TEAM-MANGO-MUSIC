@@ -85,7 +85,7 @@ public class Order {
 	
 	//order와 orderitem 1대n
 	@Builder.Default
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	//order와 coupon 1대n
