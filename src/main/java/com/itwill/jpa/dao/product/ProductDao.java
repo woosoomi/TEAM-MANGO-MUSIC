@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
 
@@ -35,6 +36,8 @@ public interface ProductDao {
 
 //제품 카테고리별 나열	
 	List<Product> getProductByCategoryId(Long categoryId);
+	
+	List<Music> getMusicByCategoryId(Long categoryId);
 	
 	List<Ticket> getTicketByCategoryId(Long categoryId);
 //	

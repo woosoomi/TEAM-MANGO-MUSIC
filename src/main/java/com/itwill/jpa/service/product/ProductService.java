@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
@@ -98,6 +99,9 @@ public interface ProductService{
 	List<ProductDto> findByProductCategoryId(Long categoryId);
 		
 	// ticket categoryId별로 전체나열 - DTO	
+	List<MusicDto> findMusicByCategoryId(Long categoryId);
+	
+	// ticket categoryId별로 전체나열 - DTO	
 	List<TicketDto> findTicketByCategoryId(Long categoryId);
 		
 	// goods categoryId별로 전체나열 - DTO	
@@ -170,7 +174,9 @@ public interface ProductService{
 	
 	/******************** 내림차순[DTO] ********************/		
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
-//	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
+	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
+	
+	List<MusicDto> musicByReadCountDescDto(Long categoryId) throws Exception;
 	
 	//주문 최신순으로 나열하기
 //	List<ProductDto> productListByNewer(Long categoryId);	
