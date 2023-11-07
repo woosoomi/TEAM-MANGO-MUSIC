@@ -60,7 +60,7 @@
    			 <img th:src="@{'images/' + ${orderItemDtoList[0].productImage}}" alt="">
    		 <div class="mv-item-infor">
             <h6>
-                <a th:text="'주문번호:  '+${orderItemDtoList[0].orderId}"></a>
+                <a th:text="'주문번호:  '+${order.orderId}"></a>
         	     <!--삭제버튼-->
                 <button th:class="deleteButton" th:data-order-id="${orderItemDtoList[0].oiId}">x</button>
           

@@ -48,13 +48,14 @@ public class OrderServiceImpl implements OrderService{
 	//주문 생성
 	@Override
 	public OrderDto saveOrder(OrderDto dto) {
+		Long productNo = dto.getOrderItemDtos().get(0).getProductNo();
 		System.out.println("111111111111>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dto.getOrderItemDtos().get(0).getProductNo());
 		Order order=new Order( null, dto.getOrderPrice(),null,null,dto.getOrderStatus(),new Delivery(null, null, null, null, null, null, null),null,null,null);
 		User user=userRepository.findById(dto.getUserId()).get();
 		List<OrderItemDto> orderItemDtos=dto.getOrderItemDtos();
 		List<OrderItem> orderItems=new ArrayList<>();
 		for(OrderItemDto orderItemDto:orderItemDtos) {
-			Product product =productRepository.findById(7L).get();
+			Product product =productRepository.findById(productNo).get();
 			orderItems.add(new OrderItem(null, orderItemDto.getOiQty(), order, product));
 		}
 		

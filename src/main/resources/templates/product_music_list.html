@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="css/plugins.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/product.css">
+<link rel="stylesheet" href="css/productTest.css">
 </head>
 <body>
 	<!--preloading-->
@@ -67,6 +68,7 @@
 									</div>
 								</div>
 							</div>
+						
 						</div>
 					</div>
 
@@ -76,7 +78,7 @@
 					<div class="sidebar">
 						<div class="sb-search sb-it">
 							<h4 class="sb-title">Search</h4>
-							<input type="text" id="productSearch"
+							<input type="text" id="searchInput"
 								placeholder="Enter keywords">
 						</div>
 
@@ -95,14 +97,17 @@
 				</div>
 			</div>
 		</div>
+		<a id="topBtn" href="#"><img src="images/upward-arrow-60.png" ></a>
 	</div>
 	<!-- end of celebrity grid v2 section-->
+	
 	<!-- footer section-->
 	<footer class="ht-footer" th:insert="~{common_footer::footerFragment}">
 
 	</footer>
 	<!-- end of footer section-->
 </body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
