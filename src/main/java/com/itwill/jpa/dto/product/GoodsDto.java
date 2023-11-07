@@ -41,14 +41,14 @@ public class GoodsDto {
     private String userId;
 
 	/*=============== ProductCategoryId 주입을 위한 Dto와 매서드 ===============*/
-    private ProductCategoryDto productCategory;
+//    private ProductCategoryDto productCategory;
     
-	public ProductCategoryDto getProductCategory() {
-		return productCategory;
-	}
-    public void setProductCategory(ProductCategoryDto productCategory) {
-        this.productCategory = productCategory;
-    }
+//	public ProductCategoryDto getProductCategory() {
+//		return productCategory;
+//	}
+//    public void setProductCategory(ProductCategoryDto productCategory) {
+//        this.productCategory = productCategory;
+//    }
     /*=================================================================*/
     
 	//Dto에서 보여주는 goods 정보가 무엇인지 설정하는 생성자(초기화)

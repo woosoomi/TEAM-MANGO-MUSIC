@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.dto.order.CouponDto;
-import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.order.CouponService;
-import com.itwill.jpa.service.order.DeliveryService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
@@ -38,9 +36,6 @@ public class OrderController {
 	@Autowired
 	private CouponService couponService;
 	
-	@Autowired
-	private DeliveryService deliveryService;
-	
 	@GetMapping("/order_membership")
 	public String orderMembershipPage(Model model, HttpServletRequest request) {
 		
@@ -52,7 +47,7 @@ public class OrderController {
 			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "rgh66");
+			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 			
@@ -80,6 +75,7 @@ public class OrderController {
 	            String membershipName = null;
 	            String membershipImage = null;
 	            String membershipContent = null;
+	            Long membershipNo = 0L;
 	            
 	            // 주문 아이템별로 Product 정보 가져오기
 	            for (OrderItemDto orderItemDto : orderItemDtoList) {
@@ -92,6 +88,7 @@ public class OrderController {
 	                    membershipName = product.getProductName();
 	                    membershipImage = product.getProductImage();
 	                    membershipContent = product.getProductContent();
+	                    membershipNo = product.getProductNo();
 	                }
 	            }
 	            model.addAttribute("membershipStartPeriod", membershipStartPeriod);
@@ -99,6 +96,7 @@ public class OrderController {
 	            model.addAttribute("membershipName", membershipName);
 	            model.addAttribute("membershipImage", membershipImage);
 	            model.addAttribute("membershipContent", membershipContent);
+	            model.addAttribute("membershipNo", membershipNo);
 	            
 	            
 	            /*************** 가격 ***************/
@@ -109,7 +107,9 @@ public class OrderController {
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
 	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
-	            
+	          
+
+
 	            
 	            /*************** 쿠폰 ***************/
 	            
@@ -289,12 +289,6 @@ public class OrderController {
 			
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
-			
-			
-			List<DeliveryDto> deliveryList = deliveryService.findDelivery(userId);
-			model.addAttribute("deliveryList", deliveryList);
-			System.out.println(deliveryList);
-			
 			Context context = new Context();
 			context.setVariable("user_id", userId);
 			

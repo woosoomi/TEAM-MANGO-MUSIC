@@ -29,7 +29,9 @@ public class UserDto {
 	@Default
 	private Boolean memberShip = false;		// 추가!!
 	
-	private Long voteId;
+	/*
+	 * @Default private Long voteId = null; // 문제 생기면 주석 풀기
+	 */
 	
 	public static UserDto toDto(User entity) {
 		return UserDto.builder()
@@ -42,6 +44,7 @@ public class UserDto {
 					  .userPhone(entity.getUserPhone())
 					  .userGender(entity.getUserGender())
 					  .memberShip(entity.isMembership())
+					  //.voteId(entity.getVote().getVoteId())
 					  .build();
 	}
 	

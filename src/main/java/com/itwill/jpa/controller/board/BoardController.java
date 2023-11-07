@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,7 +76,7 @@ public class BoardController {
 			List<Board> sortedMagazines = new ArrayList<>(magazines); // magazines를 복사하여 새로운 리스트 생성
 
 			sortedMagazines.sort(Comparator.comparing(Board::getBoardReadCount).reversed());
-			
+
 			List<Board> top3Magazines = sortedMagazines.subList(0, Math.min(sortedMagazines.size(), 3));
 			model.addAttribute("top3Magazines", sortedMagazines);
 			System.out.println("탑3매거진리스트 : " + sortedMagazines);
@@ -127,9 +128,65 @@ public class BoardController {
 	@GetMapping("/board_write")
 	public String board_write(Model model) {
 		try {
-
 			return "board_write";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMSG : " + e.getMessage());
+			return null;
+		}
+	}
 
+	@GetMapping("/board_detail")
+	public String boardDetail(@RequestParam(name = "boardId") Long boardId, Model model) {
+		try {
+			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
+			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
+
+			if (boardOptional.isPresent()) {
+				// 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
+				Board board = boardOptional.get();
+				model.addAttribute("board", board);
+				System.out.println("board :" + board);
+			} else {
+				// 게시물이 존재하지 않을 경우 에러 처리
+				model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+			}
+
+			return "board_detail";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
+			return "error";
+		}
+	}
+
+	@GetMapping("/board_detail_edit")
+	public String boardDetailEdit(@RequestParam(name = "boardId") Long boardId, Model model) {
+		try {
+			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
+			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
+
+			if (boardOptional.isPresent()) {
+				// 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
+				Board board = boardOptional.get();
+				model.addAttribute("board", board);
+			} else {
+				// 게시물이 존재하지 않을 경우 에러 처리
+				model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+			}
+
+			return "board_detail_edit";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
+			return "error";
+		}
+	}
+	
+	@GetMapping("/board_map")
+	public String board_map(Model model) {
+		try {
+			return "board_map";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMSG : " + e.getMessage());
@@ -137,52 +194,6 @@ public class BoardController {
 		}
 	}
 	
-	@GetMapping("/board_detail")
-	public String boardDetail(@RequestParam(name = "boardId") Long boardId, Model model) {
-	    try {
-	        // 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
-	        Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
 
-	        if (boardOptional.isPresent()) {
-	            // 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
-	            Board board = boardOptional.get();
-	            model.addAttribute("board", board);
-	            System.out.println("board :"+board);
-	        } else {
-	            // 게시물이 존재하지 않을 경우 에러 처리
-	            model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
-	        }
-
-	        return "board_detail";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
-	        return "error";
-	    }
-	}
-
-	
-	@GetMapping("/board_detail_edit")
-	public String boardDetailEdit(@RequestParam(name = "boardId") Long boardId, Model model) {
-	    try {
-	        // 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
-	        Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
-
-	        if (boardOptional.isPresent()) {
-	            // 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
-	            Board board = boardOptional.get();
-	            model.addAttribute("board", board);
-	        } else {
-	            // 게시물이 존재하지 않을 경우 에러 처리
-	            model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
-	        }
-
-	        return "board_detail_edit";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
-	        return "error";
-	    }
-	}
 
 }

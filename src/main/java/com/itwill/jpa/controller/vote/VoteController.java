@@ -73,7 +73,7 @@ public class VoteController {
 		
 		//임의로 세션 로그인 유저 설정함
 		HttpSession session = request.getSession();
-		session.setAttribute("user_id", "a");
+		session.setAttribute("user_id", "why3795");
 		String userId = (String) session.getAttribute("user_id");
 		model.addAttribute("user_id", userId);
 		

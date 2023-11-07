@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.service.product.ProductService;
 import com.itwill.jpa.service.product.ProductServiceImpl;
@@ -20,13 +21,15 @@ public class ProductController {
 
 	@Autowired
 	private final ProductServiceImpl productServiceImpl;
-/*
+
 	// 굿즈리스트
-	@GetMapping("/GoodsList")
-	public String GoodsList(Model model) {
-		log.info("GoodsList");
-		return "GoodsList";
-	}
+	/*
+	 * @GetMapping("/product_goods_list") public String goodsList(Model model) {
+	 * return "product_goods_list"; }
+	 */
+	
+	
+	/*
 	
 	// 티켓리스트
 	@GetMapping("/TicketList")
@@ -49,7 +52,7 @@ public class ProductController {
 		return "GoodsDetail";
 	}
 	
-*/
+	*/
 	
 	
 }

@@ -141,7 +141,7 @@ class ProductServiceImplTest {
 	    goodsDto.setProductName("테스트 상품");
 	    goodsDto.setProductPrice(7777);
 	    goodsDto.setProductStock(100);
-	    goodsDto.setProductCategory(productCategory);
+//	    goodsDto.setProductCategory(productCategory);
 	    // insertGoodsDto 메서드 호출
 	    GoodsDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
 		System.out.println(goodsDto.getProductName());
@@ -162,12 +162,12 @@ class ProductServiceImplTest {
 	    ticketDto.setProductName("테스트 상품");
 	    ticketDto.setProductPrice(7777);
 	    ticketDto.setProductStock(100);
-	    ticketDto.setProductCategory(productCategory);
+//	    ticketDto.setProductCategory(productCategory);
 	    // insertGoodsDto 메서드 호출
 	    TicketDto savedTicketDto = productServiceImpl.insertTicketDto(ticketDto);
 		System.out.println(ticketDto.getProductName());
 		System.out.println(ticketDto.getProductPrice());
-		System.out.println(ticketDto.getProductCategory());
+//		System.out.println(ticketDto.getProductCategory());
 		
 	}	
 //	public void testInserTicketDto() {

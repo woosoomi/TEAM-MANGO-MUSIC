@@ -109,6 +109,14 @@ public class CartItemServiceImpl implements CartItemService {
         return productOptional.map(ProductDto::toDto);
 	}
 
+	@Override
+	public void deleteByCartItemIds(List<Long> cartItemIds) throws Exception {
+		 for (Long cartItemId : cartItemIds) {
+	            cartItemRepository.deleteById(cartItemId);
+	        }
+		
+	}
+
 	/*
 	 * @Override public List<CartItem> insertAll(List<CartItem> cartItems) throws
 	 * Exception { List<CartItem> insertedItems = new ArrayList<>(); for (CartItem

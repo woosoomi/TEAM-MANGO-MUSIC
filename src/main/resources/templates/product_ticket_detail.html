@@ -3,7 +3,7 @@
 <html lang="en" class="no-js">
 
 <head><!-- Basic need -->
-	<title>Open Pediatrics</title>
+	<title>Ticket detail</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -15,58 +15,60 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/productTest.css">
+	
 </head>
 
 <body><!--preloading-->
 	<div th:insert="~{common_header::headerFragment}"></div>
 	<!-- END | Header -->
-	<div class="hero mv-single-hero">
+	
+	<div class="ticketBackground">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12"></div>
-							<h1 th:text="${product.productName}">title</h1>
-						<!--<h4>작성자 : <span th:text="${board.getUser().getUserId()}">id</span></h4>-->
-
-						</br>
-						<h4 th:text="${product.productCategory.productCategoryName}">
-						</h4>
-
-						</br>
-
-						<!--<p>작성일 : <span th:text="${#temporals.format(board.createdTime, 'yyyy-MM-dd HH:mm')}"> </span>
-						</p>-->
-
-						<div id="productNo" th:text="${product.productNo}" style="display: none;">ProductNo</div>
-
-						<pre th:utext="${product.productContent}" style="margin-top: 50px; color: red;"></pre>
-
+				<div class="col-md-12">					
+				</div>
 			</div>
 		</div>
 	</div>
+	
+	<!--티켓 정보시작-->
 	<div class="page-single movie-single movie_single">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div class="movie-img sticky-sb"><img src="images/uploads/movie-single.jpg" alt="">
+					<div class="movie-img sticky-sb"><img th:src="${findTicket.productImage}" src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
+					
+						<!--뮤비 보기 버튼-->
 						<div class="movie-btn">
 							<div class="btn-transform transform-vertical red">
-								<div><a href="#" class="item item-1 redbtn"><i class="ion-play"></i>Watch Trailer</a>
+								<div><a th:href="${findTicket.productMovie}" href="#" class="item item-1 redbtn"><i class="ion-play"></i>트레일러 보기</a>
 								</div>
-								<div><a href="https://www.youtube.com/embed/o-0hcF97wy0"
+								<div><a th:href="${findTicket.productMovie}" href="https://www.youtube.com/embed/o-0hcF97wy0"
 										class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a>
 								</div>
 							</div>
+							
+						<!--티켓 구매하기 버튼-->			
 							<div class="btn-transform transform-vertical">
-								<div><a href="#" class="item item-1 yellowbtn"><i class="ion-card"></i>Buy ticket</a>
+								<div><a href="order_ticket" class="item item-1 yellowbtn"><i class="ion-card"></i>티켓 구매</a>
 								</div>
-								<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+								<div><a href="order_ticket" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
 							</div>
+							
 						</div>
 					</div>
 				</div>
+				
+						<!--티켓 정보표시-->				
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="movie-single-ct main-content">
-						<h1 class="bd-hd">Skyfall: Quantum of Spectre <span>2015</span></h1>
+						<h1 class="bd-hd" th:text="${findTicket.productName}">Skyfall: Quantum of Spectre
+					</h1>   <p>참여가수 : <span th:text="${findTicket.productArtist}" style="margin-bottom: 15px;">2015</span></p>
+							<p>공연일자 : <span th:text="${findTicket.productDate}" style="margin-bottom: 15px;"></span></p><span>
+							<p>티켓가격 : <span th:text="${findTicket.productPrice}" style="margin-bottom: 15px;"></span>원</p>  
+							<p>잔여좌석 : <span th:text="${findTicket.productStock}" style="margin-bottom: 15px;"></span>석</p>  
+							<p>공연장소 : <span th:text="${findTicket.productAddress}" style="margin-bottom: 15px;"></span></p>  
 						<div class="social-btn"><a href="#" class="parent-btn"><i class="ion-heart"></i>Add to
 								Favorite</a>
 							<div class="hover-bnt"><a href="#" class="parent-btn"><i
@@ -76,11 +78,13 @@
 											class="ion-social-twitter"></i></a><a href="#" class="hvr-grow"><i
 											class="ion-social-googleplus"></i></a><a href="#" class="hvr-grow"><i
 											class="ion-social-youtube"></i></a></div>
+								</div>
 							</div>
-						</div>
+						<!--</div>-->
+						<!--티켓 좋아요-->						
 						<div class="movie-rate">
 							<div class="rate"><i class="ion-android-star"></i>
-								<p><span>8.1</span>/10<br><span class="rv">56 Reviews</span></p>
+								<p>추천 개수 : <span th:text="${findTicket.productStar}">8.1</span>명이 추천해주셨습니다.<br><span class="rv">56 Reviews</span></p>
 							</div>
 							<div class="rate-star">
 								<p>Rate This Movie:</p><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i
@@ -89,14 +93,16 @@
 									class="ion-ios-star-outline"></i>
 							</div>
 						</div>
+						
+						<!--티켓 상세설명 및 댓글-->
 						<div class="movie-tabs">
 							<div class="tabs">
 								<ul class="tab-links tabs-mv">
-									<li class="active"><a href="#overview">Overview</a></li>
+		<!--티켓 상세설명-->		<li class="active"><a href="#overview">Overview</a></li>
 									<li><a href="#reviews">Reviews</a></li>
 									<li><a href="#cast"> Cast & Crew </a></li>
 									<li><a href="#media">Media</a></li>
-									<li><a href="#moviesrelated">Related Movies</a></li>
+									<!--<li><a href="#moviesrelated">Related Movies</a></li>-->
 								</ul>
 								<div class="tab-content">
 									<div id="overview" class="tab active">
@@ -897,12 +903,13 @@
 			</div>
 		</div>
 	</div><!-- footer section-->
+	
 	<footer class="ht-footer" th:insert="~{common_footer::footerFragment}">
 	</footer><!-- end of footer section-->
+</body>
 	
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-</body>
 </html>

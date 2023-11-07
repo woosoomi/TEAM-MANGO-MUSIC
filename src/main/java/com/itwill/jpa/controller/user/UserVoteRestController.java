@@ -20,8 +20,24 @@ public class UserVoteRestController {
 
 	@Autowired
 	UserVotesericeImpl userVotesericeImpl;
+	@LoginCheck
+	@Operation(summary = "회원 투표 업데이트[완료]")
+	@PutMapping(value = "/userVoteUpdate/{userId}/{voteId}")
+	public ResponseEntity<?> updateUserVoteId(@PathVariable(name = "userId") String userId,
+	                                           @PathVariable(name = "voteId") Long voteId) {
+	    // userId와 voteId를 사용하여 업데이트 로직을 수행
+	    try {
+	        UserVoteDto updatedUserVoteId = userVotesericeImpl.updateUserVoteId(userId, voteId);
+	        return new ResponseEntity<>(updatedUserVoteId, HttpStatus.OK);
+	    } catch (RuntimeException e) {
+	        return new ResponseEntity<>("없는 회원입니다.", HttpStatus.NOT_FOUND);
+	    } catch (Exception e) {
+	        return new ResponseEntity<>("투표번호가 없습니다.", HttpStatus.BAD_REQUEST);
+	    }
+	}
 	
 	
+	/*
 	@LoginCheck
 	@Operation(summary = "회원 투표 업데이트[완료]")
 	@PutMapping(value = "/userVoteUpdate/{userId}/{voteId}")
@@ -38,4 +54,5 @@ public class UserVoteRestController {
 	        return new ResponseEntity<>("투표번호가 없습니다.", HttpStatus.BAD_REQUEST);
 	    }
 	}
+	*/
 }
