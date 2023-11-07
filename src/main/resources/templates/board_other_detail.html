@@ -62,7 +62,8 @@
 									<div class="author-infor">
 										<div class="flex-it2">
 											<!--Name으로 체인지 가능-userinfo-->
-											<h6 th:text="'작성자 : '+${board.getUser().getUserName()}" style="color: white; font-size: 20px;"><a href="#">Steve Perry</a></h6>
+											<h6 th:text="'작성자 : '+${board.getUser().getUserName()}"
+												style="color: white; font-size: 20px;"><a href="#">Steve Perry</a></h6>
 											<span class="time"
 												th:text="${#temporals.format(ReplyList.createDateTime, 'yyyy-MM-dd HH:mm')}">
 												27 Mar 2017</span>
@@ -77,15 +78,19 @@
 
 						</div>
 						<div class="comment-form">
-							<h4>Leave a comment</h4>
+							<h4>댓글쓰기</h4>
 							<form action="">
 								<div class="row">
-									<div class="col-md-4"><input type="text" placeholder="Your name"></div>
+									<div class="col-md-4">
+										<input type="text" id="comment_id" placeholder="Your name">
+									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12"><textarea name="message" id=""
-											placeholder="Message"></textarea></div>
-								</div><input class="submit" type="submit" placeholder="submit">
+									<div class="col-md-12">
+										<textarea name="message" id="comment_content" placeholder="Message"></textarea>
+									</div>
+								</div>
+								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
 							</form>
 						</div>
 
@@ -130,6 +135,43 @@
 </body>
 
 <script>
+	function create_reply() {
+		const boardId = 8;
+		
+		const commentData = {
+			"boardReplyTitle": "비동기테스트",
+			"boardReplyContent": "비동기테스트",
+			"boardId": boardId,
+			"userId": "myr1109"
+		}
+		console.log(commentData);
+		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_reply_create/${boardId}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(commentData)
+		})
+			.then(response => {
+				if (response.status === 201) {
+					alert('댓글 등록되었습니다.');
+					window.location.href = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/index';
+
+				} else {
+					alert('댓글 등록에 실패했습니다.');
+					alert('에러 발생: ' + error);
+
+				}
+			})
+			.catch(error => {
+				alert('에러 발생: ' + error);
+			});
+
+
+	}
+
+
+
 
 	function deleteForms() {
 		const urlParams = new URLSearchParams(window.location.search);
@@ -167,7 +209,7 @@
 		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_detail_edit?boardId=" + boardIdInt;
 	}
 
-	
+
 
 
 </script>

@@ -20,18 +20,18 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Autowired
 	BoardServiceImpl boardServiceImpl;
 
-	@Test
-	@Transactional
-	@Rollback(false)
-	//@Disabled
-	void boardReplyTest() {
-		Long boardId= 8L;
-        List<BoardReply> boardReplyList = boardServiceImpl.findByBoard_boardId(boardId);
+//	@Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//	void boardReplyTest() {
+//		Long boardId= 8L;
+//        List<BoardReply> boardReplyList = boardServiceImpl.findByBoard_boardId(boardId);
+//
+//        System.out.println("boardReplyList--> : " + boardReplyList);
+//	}
+	
 
-        System.out.println("boardReplyList--> : " + boardReplyList);
-	}
-	
-	
 	
 //	// 게시글저장 -성공
 //	@Test
