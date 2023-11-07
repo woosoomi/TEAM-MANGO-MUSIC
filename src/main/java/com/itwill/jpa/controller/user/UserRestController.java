@@ -60,40 +60,22 @@ public class UserRestController {
 		}
 	}
 
-	/*
-	 * @Operation(summary = "로그인[성공]")
-	 * 
-	 * @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-	 * public ResponseEntity<?> user_login_action(@RequestBody UserLoginDto
-	 * userLoginDto, HttpSession session) { try { User loginUser =
-	 * userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-	 * 
-	 * if (loginUser != null) { session.setAttribute("sUserId",
-	 * loginUser.getUserId()); return
-	 * ResponseEntity.status(HttpStatus.OK).body("Login successful"); } else {
-	 * return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed"); }
-	 * } catch (PasswordMismatchException e) { return
-	 * ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password mismatch"); }
-	 * catch (Exception e) { return
-	 * ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-	 * } }
-	 */
-
 	@Operation(summary = "로그인 성공")
 	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<UserLoginDto> user_login_action(@RequestBody UserLoginDto userLogindto,
-			HttpSession session) throws Exception {
+	public ResponseEntity<UserLoginDto> user_login_action(@RequestBody UserLoginDto userLogindto, HttpSession session)
+			throws Exception {
 		User loginUser = userService.loginUser(userLogindto.getUserId(), userLogindto.getUserPw());
-	    
-	    if (loginUser != null) {
-	        // 로그인 성공 시 사용자 정보를 세션에 저장
-	        session.setAttribute("sUserId", loginUser.getUserId());
-	        
-	        return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
-	    } else {
-	        // 로그인 실패 시 UNAUTHORIZED 상태 반환
-	        return new ResponseEntity<UserLoginDto>(HttpStatus.UNAUTHORIZED);
-	    }
+
+		if (loginUser != null) {
+			// 로그인 성공 시 사용자 정보를 세션에 저장
+			session.setAttribute("sUserId", loginUser.getUserId());
+			session.setAttribute("sUserName", loginUser.getUserName());
+
+			return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
+		} else {
+			// 로그인 실패 시 UNAUTHORIZED 상태 반환
+			return new ResponseEntity<UserLoginDto>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 
 	@LoginCheck
@@ -133,10 +115,14 @@ public class UserRestController {
 	@LoginCheck
 	@Operation(summary = "회원업데이트[성공]")
 	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> updateUser(@PathVariable(name = "userId") String userId,
-			@RequestBody UserUpdateDto userUpdateDto) {
-		try {
+	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
+			@RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
+		try { // 현재 로그인된 사용자의 아이디를 세션에서 가져옵니다. String sUserId = (String)
+			session.getAttribute("sUserId");
+
+			// 사용자 정보를 업데이트하고 업데이트된 정보를 반환합니다. 
 			UserDto updatedUser = userService.updateUser(userUpdateDto);
+
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

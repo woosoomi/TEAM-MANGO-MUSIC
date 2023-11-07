@@ -81,10 +81,10 @@ public class UserController {
 	}
 
 	@LoginCheck
-	@RequestMapping("/user_logout_action")
+	@GetMapping("/user_logout_action")
 	public String user_logout_action(HttpSession session) {
 		session.invalidate();
-		return "redirect:user_login_form";
+		return "redirect:index";
 	}
 
 	@LoginCheck
@@ -101,8 +101,9 @@ public class UserController {
 	public String user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto, HttpServletRequest request)
 			throws Exception {
 		String sUserId = (String) request.getSession().getAttribute("sUserId");
+		userUpdateDto.setUserId(sUserId);
 		userService.updateUser(userUpdateDto);
-		return "redirect:user_view";
+		return "redirect:user_info_form";
 	}
 
 	@LoginCheck

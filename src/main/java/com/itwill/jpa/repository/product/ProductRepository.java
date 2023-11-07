@@ -13,6 +13,7 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.vote.Vote;
@@ -38,6 +39,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	category로 찾기
 	List<Product> findByProductCategoryCategoryId(Long categoryId);
 	List<Product> findByProductCategory(ProductCategory category);
+	List<Music> findMusicByProductCategory(ProductCategory category);	
 	List<Goods> findGoodsByProductCategory(ProductCategory category);	
 	List<Ticket> findTicketByProductCategory(ProductCategory category);
 	
@@ -49,6 +51,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	@Query(value = "SELECT * FROM product WHERE category_id = :category_id ORDER BY READ_COUNT DESC", nativeQuery = true)
 //	List<Product> productListByReadCountDesc(@Param("category_id") Long categoryId);	
 	List<Product> findByProductCategoryCategoryIdOrderByReadCount(Long categoryId, Sort sort);
+	List<Product> findProductByProductCategoryCategoryIdOrderByReadCountDesc(Long categoryId, Sort sort);
+	
+	List<Music> findMusicByProductCategoryCategoryIdOrderByReadCountDesc(Long categoryId, Sort sort);
 	// 조회수별 오름차순 정렬
 	
 	// 등록날자별 최신순 정렬

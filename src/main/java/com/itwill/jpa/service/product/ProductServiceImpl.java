@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.product.GoodsDto;
+import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
@@ -171,6 +172,17 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return productDtoList;
 	}
+	
+	// music categoryId별로 전체나열 - DTO [성공]
+	@Override
+	public List<MusicDto> findMusicByCategoryId(Long categoryId) {
+		List<Music> musicList = productDao.getMusicByCategoryId(categoryId);
+		List<MusicDto> productDtoList = new ArrayList<MusicDto>();
+		for (Music music : musicList) {
+			productDtoList.add(MusicDto.toDto(music));
+		}
+		return productDtoList;
+	}
 	// goods categoryId별로 전체나열 - DTO [성공]
 	@Override
 	public List<GoodsDto> findGoodsByCategoryId(Long categoryId) {
@@ -243,12 +255,12 @@ public class ProductServiceImpl implements ProductService{
 //	}
 	
 	// ticket 등록 - DTO [성공]
-//	@Override
-//	public TicketDto insertTicketDto(TicketDto dto) {
-//		Ticket ticket = productRepository.save(Ticket.toEntity(dto));
-//		TicketDto ticketDto = TicketDto.toDto(ticket);
-//		return ticketDto;
-//	}
+	@Override
+	public TicketDto insertTicketDto(TicketDto dto) {
+		Ticket ticket = productRepository.save(Ticket.toEntity(dto));
+		TicketDto ticketDto = TicketDto.toDto(ticket);
+		return ticketDto;
+	}
 /*********************************************/	
 	
 /******************** DELETE[ENTITY] ********************/	
@@ -430,7 +442,28 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findAll(sort);
 	}
 /******************** 내림차순[DTO][성공] ********************/
-
+	// product 조회수별 내림차순 정렬
+	@Override
+	public List<ProductDto> productByReadCountDescDto(Long categoryId) {
+		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
+		List<Product> productList = productRepository.findProductByProductCategoryCategoryIdOrderByReadCountDesc(categoryId, sort);
+		List<ProductDto> productDtoList = new ArrayList<>();
+		for (Product product : productList) {
+			productDtoList.add(ProductDto.toDto(product));
+		}
+		return productDtoList;
+	}
+	
+	@Override
+	public List<MusicDto> musicByReadCountDescDto(Long categoryId) {
+		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
+		List<Music> musicList = productRepository.findMusicByProductCategoryCategoryIdOrderByReadCountDesc(categoryId, sort);
+		List<MusicDto> musicDtoList = new ArrayList<>();
+		for (Music music : musicList) {
+			musicDtoList.add(MusicDto.toDto(music));
+		}
+		return musicDtoList;
+	}	
 
 /*********************************************/
 
@@ -448,11 +481,7 @@ public GoodsDto insertGoodsDto(GoodsDto goodsDto) {
 	// TODO Auto-generated method stub
 	return null;
 }
-@Override
-public TicketDto insertTicketDto(TicketDto ticketDto) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 @Override
 public GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception {
 	// TODO Auto-generated method stub

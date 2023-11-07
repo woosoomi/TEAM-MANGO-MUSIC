@@ -136,13 +136,14 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List<OrderDto> ordersByUserId(String UserId) {
 		List<Order> orderList = orderDao.getOrdersByUserId(UserId);
+		System.out.println(orderList.get(0).getDelivery());
 		List<OrderDto> orderDtoList = new ArrayList<OrderDto>();
 		for (Order order : orderList) {
 			orderDtoList.add(OrderDto.toDto(order));
 		}
 		return orderDtoList;
 	}
-	
+
 	//전체 주문 불러오기(관리자)
 	@Override
 	public List<OrderDto> orders() {

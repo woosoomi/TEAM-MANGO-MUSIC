@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.dto.order.CouponDto;
+import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.order.CouponService;
+import com.itwill.jpa.service.order.DeliveryService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
@@ -254,12 +256,16 @@ public class OrderController {
 			List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
 			model.addAttribute("orderItemDtoList", orderItemDtoList);
 
-			// 원래 코드
-			// orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
+			System.out.println("orderItemDtoList:"+ orderItemDtoList);
+			//원래 코드
+			//orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
+
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
+
 
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
+			
 			Context context = new Context();
 			context.setVariable("user_id", userId);
 

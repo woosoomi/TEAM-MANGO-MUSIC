@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.board.BoardType;
 import com.itwill.jpa.repository.board.BoardRepository;
 
@@ -48,6 +49,8 @@ public interface BoardService {
 
     public List<Board> findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(Long boardCategoryId, String userId);
     
-    public Optional<Board> findById(Long BoardId);
+    public List<BoardReply> findByBoard_boardId(Long BoardId);
+
+	BoardReply ReplyInsert(BoardReply boardReply);
     
 }

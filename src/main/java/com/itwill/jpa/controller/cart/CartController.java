@@ -60,12 +60,6 @@ public class CartController {
 	        return "index";
 	    }
 	}
-
-
-
-
-
-	
 	
 	
 }

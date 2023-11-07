@@ -1,37 +1,92 @@
 
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const musicContainer = document.getElementById('musicList');
+	var initialData = $('#musicList').html();
 
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    var titleElements = document.querySelectorAll('.movie-item-style-2 h6 a');
-    var productContainer = document.getElementById('productContainer');
+	searchInput.addEventListener('keyup', function(event) {
+		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
+		if (true) {
+			const searchValue = searchInput.value;
+			console.log(searchValue);
+			filterItems(searchValue);
+		}
+	});
 
-    searchInput.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            const searchValue = searchInput.value;
+	var itemList = $(initialData).find('.movie-item-style-2').toArray();
+	console.log(itemList);
 
-            filterItems(searchValue);
-            searchInput.value = ''; 
-        }
-    });
+	function filterItems(searchQuery) {
+		musicContainer.innerHTML = '';
 
-    function filterItems(searchQuery) {
-        productContainer.innerHTML = ''; 
 
-        titleElements.forEach(function (titleElement, index) {
-            var title = titleElement.textContent;
-            console.log("title: " + title);
+		itemList.forEach(function(item) {
 
-            if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
-                var item = titleElement.closest('.movie-item-style-2'); 
-                productContainer.appendChild(item);
-            }
-        });
-    }
+			var musicName = $(item).find('.musicName').text();
+			console.log(musicName);
+			var artist = $(item).find('.artist').text();
+
+
+
+			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+			if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+		});
+
+	}
 });
 
-$(function() { // 보이기 | 숨기기
+
+///////////goods list////////////
+/*document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const goodsContainer = document.getElementById('goodsList');
+	var initialData = $('#goodsList').html();
+
+	searchInput.addEventListener('keyup', function(event) {
+		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
+		if (true) {
+			const searchValue = searchInput.value;
+			console.log(searchValue);
+			filterItems(searchValue);
+		}
+	});
+
+	var itemList = $(initialData).find('.movie-item-style-2').toArray();
+	console.log(itemList);
+
+	function filterItems(searchQuery) {
+		goodsContainer.innerHTML = '';
+
+
+		itemList.forEach(function(item) {
+
+			var goodsName = $(item).find('.goodsName').text();
+			console.log(goodsName);
+			//var artist = $(item).find('.artist').text();
+
+
+
+			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+			if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+		});
+
+	}
+});*/
+
+
+/////////// top button 보이기 | 숨기기////////////////
+
+$(function() { 
 	$(window).scroll(function() {
-    if ($(this).scrollTop() > 300) { //300 넘으면 버튼이 보여짐
+    if ($(this).scrollTop() > 500) { //300 넘으면 버튼이 보여짐
       $('#topBtn').fadeIn();
     } else {
       $('#topBtn').fadeOut();
@@ -43,4 +98,17 @@ $(function() { // 보이기 | 숨기기
   	return false; 
   }); 
 });
+
+
+/////////////// 로그인 유무? //////////////////
+
+function loginChk() {
+	let signIn = '<%=(String)session.getAttribute("userId")%>';
+	if(signIn==null,""){
+		alert("로그인 후 사용하실 수 있습니다.");
+		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form";
+	}
+}
+
+
 
