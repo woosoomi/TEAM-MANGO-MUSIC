@@ -163,7 +163,7 @@ public interface ProductService{
 	
 	/******************** 오름차순[DTO] ********************/		
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
-//	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
+	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
 	
 	//주문 오래된순으로 나열하기
 	List<ProductDto> productListByOlder(Long categoryId);

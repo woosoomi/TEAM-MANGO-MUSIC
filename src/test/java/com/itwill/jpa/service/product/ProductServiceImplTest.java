@@ -277,8 +277,6 @@ class ProductServiceImplTest {
 		ProductDto productDto = ProductDto.toDto(product);
 		productDto.setProductName("수정완료");
 		productDto.setProductArtist("가수수정");
-		productDto.setProductPrice(1000);
-		productDto.setProductCategoryId(3L);
 		ProductDto updatedProductDto = productServiceImpl.updateProductDto(productDto);
 		System.out.println(updatedProductDto);
 		
@@ -319,6 +317,22 @@ class ProductServiceImplTest {
 //					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
 //		}
 //	}
+	// product 조회수별 오름차순 정렬[DTO][성공]
+	@Test
+	@Transactional
+	@Rollback(false)	
+	@Disabled
+	public void testProductByReadCountAscDto() {
+		// Arrange (준비)
+		Long categoryId = 1L; // 적절한 카테고리 ID 설정
+		// Act (실행)
+		List<ProductDto> productList = productServiceImpl.productByReadCountAscDto(categoryId);
+		for (ProductDto productDto : productList) {
+			System.out.println(
+					"Product Name : " + productDto.getProductName() + "///Read Count : " + productDto.getReadCount());
+		}
+		
+	}
 	// product 조회수별 내림차순 정렬[DTO][성공]
 //	@Test
 //	@Transactional
@@ -396,7 +410,7 @@ class ProductServiceImplTest {
 //			// 엔티티 못찾았을 경우의 예외처리
 //		}
 //	}
-	// product 조회수 올리기[실패]	
+	// product 조회수 올리기[DTO][실패]	
 	@Test
 	@Transactional
 	@Rollback(false)

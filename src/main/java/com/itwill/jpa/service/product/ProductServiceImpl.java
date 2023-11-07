@@ -245,6 +245,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 /******************** INSERT[DTO] ********************/
+	// product 등록 - DTO[성공]
 	@Override
 	public ProductDto insertProductDto(ProductDto dto) {
 		Product product = productRepository.save(Product.toEntity(dto));
@@ -450,7 +451,17 @@ public class ProductServiceImpl implements ProductService{
     	return productRepository.findAll(sort);
     }
 	/******************** 오름차순[DTO] ********************/
-
+	// product 조회수별 오름차순 정렬
+	@Override
+	public List<ProductDto> productByReadCountAscDto(Long categoryId) {
+		Sort sort = Sort.by(Sort.Direction.ASC, "readCount");
+		List<Product> productList = productRepository.findProductByProductCategoryCategoryIdOrderByReadCountAsc(categoryId, sort);
+		List<ProductDto> productDtoList = new ArrayList<>();
+		for (Product product : productList) {
+			productDtoList.add(ProductDto.toDto(product));
+		}
+		return productDtoList;
+	}
 	// product 오래 등록된 순으로 정렬[성공]
 	@Override
 	public List<ProductDto> productListByOlder(Long categoryId) {
