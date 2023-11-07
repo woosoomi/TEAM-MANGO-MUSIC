@@ -5,13 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	var initialData = $('#musicList').html();
 
 	searchInput.addEventListener('keyup', function(event) {
-		//타자 넣을때마다 검색
+		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
 		if (true) {
 			const searchValue = searchInput.value;
 			console.log(searchValue);
 			filterItems(searchValue);
-			
-
 		}
 	});
 
@@ -19,16 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	console.log(itemList);
 
 	function filterItems(searchQuery) {
-		musicContainer.innerHTML = ''; 
+		musicContainer.innerHTML = '';
 
 
 		itemList.forEach(function(item) {
-			
-			var musicName= $(item).find('.musicName').text();
+
+			var musicName = $(item).find('.musicName').text();
 			console.log(musicName);
-			var artist= $(item).find('.artist').text();
-			
-			
+			var artist = $(item).find('.artist').text();
+
+
 
 			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
 				musicContainer.appendChild(item);
@@ -45,10 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 $(function() { // 보이기 | 숨기기
 	$(window).scroll(function() {
-    if ($(this).scrollTop() > 300) { //300 넘으면 버튼이 보여짐
+    if ($(this).scrollTop() > 500) { //300 넘으면 버튼이 보여짐
       $('#topBtn').fadeIn();
     } else {
       $('#topBtn').fadeOut();
