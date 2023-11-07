@@ -96,14 +96,15 @@ public class UserController {
 		return "user_modify_form";
 	}
 
-	@LoginCheck
-	@PostMapping("/user_modify_action")
-	public String user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto, HttpServletRequest request)
-			throws Exception {
-		String sUserId = (String) request.getSession().getAttribute("sUserId");
-		userService.updateUser(userUpdateDto);
-		return "redirect:user_view";
-	}
+	/*
+	 * @LoginCheck
+	 * 
+	 * @PostMapping("/user_modify_action") public String
+	 * user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto,
+	 * HttpServletRequest request) throws Exception { String sUserId = (String)
+	 * request.getSession().getAttribute("sUserId");
+	 * userService.updateUser(userUpdateDto); return "redirect:user_view"; }
+	 */
 
 	@LoginCheck
 	@PostMapping("/user_remove_action")
