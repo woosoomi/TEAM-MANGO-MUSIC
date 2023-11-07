@@ -1,0 +1,66 @@
+/* 관리자 페이지 전체 배경 */
+.admin_container {
+  display: grid; /* flex 컨테이너로 변경 */
+  background-color: #020D18;
+}
+
+/* 관리자 페이지 사이드바 시작 */
+#admin_menu {
+  width: 200px; /* 좌측 사이드바 너비 */
+  font: bold 20px 'Noto Sans KR', sans-serif;
+  background-color: #FF8830;
+  height: 800px;
+  padding-top: 20px;
+}
+
+#admin_menu ul {
+	margin-top: 15px;
+}
+
+#admin_menu a {
+  color: white;
+  text-align: center;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  width: 200px; /* 수정된 부분: 너비 200px로 변경 */
+}
+
+#admin_menu {
+  margin: 0;
+}
+
+#admin_menu > ul > li.accordion {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 200px; /* 우측 텍스트 영역 너비만큼 이동 */
+  background-color: #020D18;
+  padding: 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+#admin_menu > ul > li:hover .submenu {
+  display: block;
+  transition: ease 0.5s;
+}
+
+/* 유저 테이블 영역 스타일 */
+.content {
+  flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+  background-color: #020D18; /* 예시 배경색상, 필요에 따라 수정 가능 */
+  padding: 20px; /* 예시 패딩, 필요에 따라 수정 가능 */
+  margin-left: 100px;
+}
+
+
+
+
+

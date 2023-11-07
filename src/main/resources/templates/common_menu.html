@@ -65,9 +65,20 @@
 					</ul>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav flex-child-menu menu-right">
+			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userNo}==null">
+				<li>
+					<a href="user_info_form" th:text='${session.userName+"님"}'></a>
+				<li><span>/</span></li>
 				<li class="btn signupLink">
 					<a href="user_login_form" id="loginbutton">로그인</a>
+				</li>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userNo}!=null">
+				<li class="btn signupLink">
+					<a href="index" th:text='${session.userName+"님"}'>//</a>
+				<li><span>/</span></li>
+				<a href="index" id="loginbutton">로그아웃</a>
 				</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
@@ -81,9 +92,56 @@
 		function redirectToLoginForm() {
 			window.location.href = "user_login_form";
 		}
-		
-		
-		
-		
 	</script>
+
+
+	<!--// 여기부터는 로그인 후 처리
+		// 예: 로그인 버튼을 로그아웃으로 변경
+		function setLogoutButton() {
+			var loginButton = document.getElementById("loginbutton");
+			if (loginButton) {
+				loginButton.innerText = "로그아웃";
+				loginButton.removeEventListener("click", redirectToLoginForm);
+				// 로그아웃 버튼을 클릭했을 때 로그아웃 처리를 수행하도록 이벤트 추가
+				loginButton.addEventListener("click", performLogout);
+			}
+		}
+
+		// 로그아웃 처리를 수행할 함수
+		function performLogout() {
+			// 로그아웃 처리를 수행하고, 세션을 클리어하거나 필요한 작업을 수행하세요
+			// 예: fetch를 사용하여 서버로 로그아웃 요청 등
+			// 여기에서는 간단하게 로그아웃 후 로그인 페이지로 이동하는 것으로 가정
+			// JavaScript를 통해 user_logout_action을 호출하여 로그아웃 처리
+			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_logout_action')
+				.then(function (response) {
+					if (response.redirected) {
+						window.location.href = "index"; // 리디렉션
+					} else {
+						alert('로그아웃에 실패했습니다.');
+					}
+				})
+				.catch(function (error) {
+					console.error('에러:', error);
+				});
+		}
+
+		// 로그아웃 후 로그인 버튼으로 변경
+		function setLoginButton() {
+			var loginButton = document.getElementById("loginbutton");
+			if (loginButton) {
+				loginButton.innerText = "로그인";
+				loginButton.removeEventListener("click", performLogout);
+				loginButton.addEventListener("click", redirectToLoginForm);
+			}
+		}
+
+		// 초기 로그인 상태에 따라 버튼 설정
+		if (document.getElementById("loginbutton").innerText === '로그아웃') {
+			setLoginButton();
+		} else {
+			setLogoutButton();
+		}
+
+	</script>-->
 </body>
