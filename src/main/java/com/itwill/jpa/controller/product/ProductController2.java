@@ -51,6 +51,7 @@ public class ProductController2 {
 	public String musicList(Model model) {
 		try {
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
+			//musics=productService.getProductOrderByReadCountDesc();
 			model.addAttribute("musics", musics);
 			//log.info(">>>MUSIC LIST : " + musics);
 			return "product_music_list";

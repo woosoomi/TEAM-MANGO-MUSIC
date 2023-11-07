@@ -54,26 +54,29 @@
     
 			<div class="row" id="orderHistory">
 		
-        <div th:each="order, iterStat: ${orderDtoNewerList}">
+        <div th:each="order, iterStat: ${orderDtoList}">
+			주문 내역 최신순:[OrderDto(orderId=10, orderPrice=50000, orderStatus=배송중, userId=cgj22, deliveryId=10, orderItemDtos=[OrderItemDto(oiId=10, oiQty=3, productName=멤버십 제품1, productImage=tmembership.png, productPrice=300, productContent=멤버십 제품 설명 1, productNo=7, orderId=10)], createdAt=2023-11-07T10:21:35.444, updatedAt=2023-11-07T10:21:35.444), 
+							  OrderDto(orderId=2, orderPrice=20000, orderStatus=배송준비중, userId=cgj22, deliveryId=2, orderItemDtos=[OrderItemDto(oiId=2, oiQty=5, productName=멤버십 제품1, productImage=tmembership.png, productPrice=300, productContent=멤버십 제품 설명 1, productNo=7, orderId=2)], createdAt=2023-11-07T10:21:35.350, updatedAt=2023-11-07T10:21:35.350)]
+			
 			
 		<div class="movie-item-style-2">
-   			 <img th:src="@{'images/' + ${orderItemDtoList[0].productImage}}" alt="">
+   			 <img th:src="@{'images/' + ${order.orderItemDtos[0].productImage}}" alt="">
    		 <div class="mv-item-infor">
             <h6>
                 <a th:text="'주문번호:  '+${order.orderId}"></a>
         	     <!--삭제버튼-->
-                <button th:class="deleteButton" th:data-order-id="${orderItemDtoList[0].oiId}">x</button>
+                <button th:class="deleteButton" th:data-order-id="${order.orderItemDtos[0].oiId}">x</button>
           
             </h6>
                 <p class="rate">
-                    <span th:text="${orderItemDtoList[0].productName}+ ' [총 ' + ${orderItemDtoList[0].oiQty} + '개]'"></span>
+                    <span th:text="${order.orderItemDtos[0].productName}+ ' [총 ' + ${order.orderItemDtos[0].oiQty} + '개]'"></span>
                 </p>
                 <p class="rate">
                     <span th:text="${order.orderPrice + '원'}"></span>
                 </p>
                 <p class="rate">
 					
-                	<span th:text="'배송지: '+${deliveryList[iterStat.index].deliveryAddress != null ? deliveryList[iterStat.index].deliveryAddress : '배송지 없음'}"></span>
+                	<!--<span th:text="'배송지: '+${deliveryList[iterStat.index].deliveryAddress != null ? deliveryList[iterStat.index].deliveryAddress : '배송지 없음'}"></span>-->
                 </p>
                 <p class="rate">
                     <span th:text="${'구매날짜: '+ #temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>

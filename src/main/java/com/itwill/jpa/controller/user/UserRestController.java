@@ -65,10 +65,12 @@ public class UserRestController {
 	public ResponseEntity<UserLoginDto> user_login_action(@RequestBody UserLoginDto userLogindto,
 			HttpSession session) throws Exception {
 		User loginUser = userService.loginUser(userLogindto.getUserId(), userLogindto.getUserPw());
+	
 	    
 	    if (loginUser != null) {
 	        // 로그인 성공 시 사용자 정보를 세션에 저장
 	        session.setAttribute("sUserId", loginUser.getUserId());
+	        session.setAttribute("sUserName", loginUser.getUserName());
 	        
 	        return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
 	    } else {
