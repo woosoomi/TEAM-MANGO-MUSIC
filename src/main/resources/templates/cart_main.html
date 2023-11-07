@@ -65,12 +65,14 @@
 								<div th:each="product : ${products}" th:if="${product.productNo == cartItem.productId}"
 									class="mv-item-infor">
 									<ul>
-										<br>
-										</h6><span th:text="${product.productName}"></span></h6>
+										<span th:text="${product.productName}"></span>
 										<br />
 										<br />
-										<h6 style="font-size: 15px;">수량: <span
-												th:text="${cartItem.cartItemQty}"></span></a></h6>
+						<h6 style="font-size: 15px;">
+							   수량: 
+							   <input type="number" id="cartItemQty" th:value="${cartItem.cartItemQty}" min="1" max="20"
+							          oninput="updateCartItemQuantity(this)" style="width: 80px;" >
+						</h6>
 
 										</li>
 										<li class="rate">

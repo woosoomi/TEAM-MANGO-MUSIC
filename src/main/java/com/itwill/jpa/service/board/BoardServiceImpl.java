@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dto.board.BoardDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardType;
-import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.repository.board.BoardRepository;
 import com.itwill.jpa.repository.board.BoardTypeRepository;
 
@@ -110,7 +112,10 @@ public class BoardServiceImpl implements BoardService{
     	return boardRepository.findById(BoardId);
     }
 
-
+    public Page<BoardDto> getBoardsByCategory(Long categoryId, Pageable pageable) {
+        Page<Board> boardPage = boardRepository.findByBoardCategoryId(categoryId, pageable);
+        return boardPage.map(board -> new BoardDto(board.getBoardId(), board.getBoardTitle(), board.getBoardContent(), board.getBoardImage(), board.getBoardPrize(), 0, null, null, categoryId, categoryId, null));
+    }
 
 	
 }

@@ -147,4 +147,6 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 		Optional<Board> board = boardServiceImpl.findById(1L);
 		System.out.println("게시판한개찾기 : " + board);
 	}
+	
+	
 }
