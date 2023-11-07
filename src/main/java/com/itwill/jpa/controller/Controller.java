@@ -34,6 +34,29 @@ public class Controller {
 		return forward_path; 
 	}
 	
-
+	@GetMapping("/admin_Board") 
+	public String admin_Board() { 
+		String forward_path = "admin_board_form"; 
+		return forward_path; 
+	}
+	
+	@GetMapping("/admin_music") 
+	public String admin_Product_music() { 
+		String forward_path = "admin_product_music_form"; 
+		return forward_path; 
+	}
+	
+	@GetMapping("/admin_goods") 
+	public String admin_Product_goods() { 
+		String forward_path = "admin_product_goods_form"; 
+		return forward_path; 
+	}
+	
+	@GetMapping("/admin_ticket") 
+	public String admin_Product_ticket() { 
+		String forward_path = "admin_product_ticket_form"; 
+		return forward_path; 
+	}
+	
 	
 }

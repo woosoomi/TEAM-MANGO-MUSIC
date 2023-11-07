@@ -84,7 +84,7 @@ public class UserController {
 	@RequestMapping("/user_logout_action")
 	public String user_logout_action(HttpSession session) {
 		session.invalidate();
-		return "redirect:user_login_form";
+		return "redirect:index";
 	}
 
 	@LoginCheck

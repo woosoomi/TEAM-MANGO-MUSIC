@@ -63,6 +63,9 @@ public class OrderItemDto {
 				.oiQty(orderItem.getOiQty())
 				.productNo(orderItem.getProduct().getProductNo())
 				.productPrice(orderItem.getProduct().getProductPrice())
+				.productName(orderItem.getProduct().getProductName())
+				.productImage(orderItem.getProduct().getProductImage())
+				.productContent(orderItem.getProduct().getProductContent())
 				.orderId(orderItem.getOrder().getOrderId())
 				.build();
 				
