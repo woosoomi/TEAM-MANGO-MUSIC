@@ -58,14 +58,27 @@
 										<img th:src="${ticket.productImage}" alt=""
 										style="width: 100px">
                     </div>-->
-                    <div class="product_ticket_List" >
-                        <div class="ceb-item">
-                            <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
-                                <img th:src="${ticket.productImage}" src="images/uploads/ceb1.jpg" alt="">
-                                <span th:text="${ticket.productName}">Tom Hardy</a></span></h3>
-                                <span th:text="|${ticket.productPrice} 원 |">actor</span>
-                                <span th:text="|${ticket.productStock} 좌석 남았습니다|">10</span>
+                    
+                    <!--티켓리스트-->
+                    <div class="product_ticket_List">
+					<div class="flex-wrap-movielist user-fav-list">	
+						
+                        <div class="movie-item-style-2">
+							<a style="padding-right: 20px; color: #ffffff;"
+								th:text="${ticket.productNo}">번호</a>
+                            	<a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
+                                <img th:src="${ticket.productImage}" alt="" 
+                                style="width: 200px">
+                                </a>
+                                <div class="mv-item-infor">
+                                <h6>
+                                <a th:text="${ticket.productName}">Tom Hardy</a></h3>
+                                </h6>
+                                <p>티켓가격 : <a th:text="|${ticket.productPrice} 원 |">actor</a></p>
+                                <p>잔여좌석 : <a th:text="|${ticket.productStock} 좌석 남았습니다|">10</a></p>
+                                <p>조 회 수 : <a th:text="|${ticket.readCount} 분이 조회했습니다|">10</a></p>
                             </a>
+                            
                             <!--<div class="ceb-infor">
                                 <h3><a th:href="@{/ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
                                 <span th:text="${ticket.productName}">Tom Hardy</a></span></h3>
@@ -74,11 +87,13 @@
                                 <span th:text="|${ticket.productStock} 좌석 남았습니다|">10</span>
                             </div>-->
                         </div>
+                        </div>
                     </div>      
                 </div>                
               </div> 
               </div>
               </div> 
+              </div>
             <!--</div>-->
             
             
