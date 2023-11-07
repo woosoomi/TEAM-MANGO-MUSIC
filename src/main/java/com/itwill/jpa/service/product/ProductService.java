@@ -56,7 +56,7 @@ public interface ProductService{
 	ProductDto insertProductDto(ProductDto productDto);
 	
 	// goods 등록 - DTO[성공]
-	GoodsDto insertGoodsDto(GoodsDto goodsDto);
+	ProductDto insertGoodsDto(ProductDto productDto);
 		
 	// ticket 등록 - DTO[성공]	
 	TicketDto insertTicketDto(TicketDto ticketDto);
@@ -176,7 +176,6 @@ public interface ProductService{
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
 	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
 	
-	List<MusicDto> musicByReadCountDescDto(Long categoryId) throws Exception;
 	
 	//주문 최신순으로 나열하기
 //	List<ProductDto> productListByNewer(Long categoryId);	

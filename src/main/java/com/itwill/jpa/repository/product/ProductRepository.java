@@ -52,8 +52,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	List<Product> productListByReadCountDesc(@Param("category_id") Long categoryId);	
 	List<Product> findByProductCategoryCategoryIdOrderByReadCount(Long categoryId, Sort sort);
 	List<Product> findProductByProductCategoryCategoryIdOrderByReadCountDesc(Long categoryId, Sort sort);
-	
-	List<Music> findMusicByProductCategoryCategoryIdOrderByReadCountDesc(Long categoryId, Sort sort);
 	// 조회수별 오름차순 정렬
 	
 	// 등록날자별 최신순 정렬

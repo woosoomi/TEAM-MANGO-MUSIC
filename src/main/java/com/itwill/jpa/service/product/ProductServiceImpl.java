@@ -11,17 +11,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.dao.product.ProductDao;
+import com.itwill.jpa.dto.order.OrderDto;
+import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.dto.product.GoodsDto;
 import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
+import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
+import com.itwill.jpa.entity.order.OrderItem;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
 import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductCategoryRepository;
@@ -245,14 +250,38 @@ public class ProductServiceImpl implements ProductService{
 		Product product = productRepository.save(Product.toEntity(dto));
 		ProductDto productDto = ProductDto.toDto(product);
 		return productDto;
-	}	
-	// goods 등록 - DTO	[성공]
+	}
 //	@Override
-//	public GoodsDto insertGoodsDto(GoodsDto dto) {
-//		Goods goods = productRepository.save(Goods.toEntity(dto));
-//		GoodsDto goodsDto = GoodsDto.toDto(goods);
-//		return goodsDto;
-//	}
+//	public ProductDto insertProductDto(ProductDto dto) {
+//		Long productCategoryId = dto.getProductCategoryId();
+//		System.out.println("111111111111>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dto.getOrderItemDtos().get(0).getProductNo());
+//		Product Product=new Order( null, dto.getProductCategoryId(),null,null,null);
+//		User user=userRepository.findById(dto.getUserId()).get();
+//		List<OrderItemDto> orderItemDtos=dto.getOrderItemDtos();
+//		List<OrderItem> orderItems=new ArrayList<>();
+//		for(OrderItemDto orderItemDto:orderItemDtos) {
+//			Product product =productRepository.findById(productNo).get();
+//			orderItems.add(new OrderItem(null, orderItemDto.getOiQty(), order, product));
+//		}
+//		
+//		order.setUser(user);
+//		order.setOrderItems(orderItems);
+//		
+//		Order saveOrder = orderRepository.save(order);
+//		System.out.println(">>>>>>>>>>>>>>"+saveOrder);
+//		
+//		
+//		OrderDto orderDto = OrderDto.toDto(saveOrder);
+//		return orderDto;
+//	}	
+	// goods 등록 - DTO	[성공]
+	@Override
+	public ProductDto insertGoodsDto(ProductDto dto) {
+		Product product = productRepository.save(Product.toEntity(dto));
+		//product.setCategoryId(2L);
+		ProductDto productDto = ProductDto.toDto(product);
+		return productDto;
+	}
 	
 	// ticket 등록 - DTO [성공]
 	@Override
@@ -454,16 +483,6 @@ public class ProductServiceImpl implements ProductService{
 		return productDtoList;
 	}
 	
-	@Override
-	public List<MusicDto> musicByReadCountDescDto(Long categoryId) {
-		Sort sort = Sort.by(Sort.Direction.DESC, "readCount");
-		List<Music> musicList = productRepository.findMusicByProductCategoryCategoryIdOrderByReadCountDesc(categoryId, sort);
-		List<MusicDto> musicDtoList = new ArrayList<>();
-		for (Music music : musicList) {
-			musicDtoList.add(MusicDto.toDto(music));
-		}
-		return musicDtoList;
-	}	
 
 /*********************************************/
 
@@ -476,11 +495,6 @@ public class ProductServiceImpl implements ProductService{
 	
 	
 	
-@Override
-public GoodsDto insertGoodsDto(GoodsDto goodsDto) {
-	// TODO Auto-generated method stub
-	return null;
-}
 
 @Override
 public GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception {
