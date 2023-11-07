@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.jpa.dao.product.ProductVoteDaoImpl;
 import com.itwill.jpa.dto.product.ProductVoteDto;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.service.product.ProductVoteServiceImple;
+import com.itwill.jpa.service.user.UserService;
 import com.itwill.jpa.service.vote.VoteServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,12 +32,9 @@ public class VoteController {
 	
 	@Autowired
 	private ProductVoteDaoImpl productVoteDaoImpl;
-	/*
-	@GetMapping(value = "/voteMain")
-	public String vote_html() {
-		return "voteMain";
-	}
-	*/
+	
+	@Autowired
+	private UserService userService;
 	
 	
 	@GetMapping(value = "/voteMain")
@@ -67,15 +66,14 @@ public class VoteController {
 	*/
 	
 	@GetMapping("/productVote")
-	public String ProductVoteList(Model model,HttpServletRequest request) {
+	public String ProductVoteList(Model model,HttpSession session) throws Exception {
 		/*************** 유저정보 ***************/
 		
 		
 		//임의로 세션 로그인 유저 설정함
-		HttpSession session = request.getSession();
-		session.setAttribute("user_id", "why3795");
-		String userId = (String) session.getAttribute("user_id");
-		model.addAttribute("user_id", userId);
+		String loginUser = (String) session.getAttribute("sUserId");
+		UserDto user = userService.findUser(loginUser);
+		model.addAttribute("loginUser", user);
 		
 		/*************** 유저정보 ***************/
 		
