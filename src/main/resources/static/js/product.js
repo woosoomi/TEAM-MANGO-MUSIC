@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 ///////////goods list////////////
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
 	const searchInput = document.getElementById('searchInput');
 	const goodsContainer = document.getElementById('goodsList');
 	var initialData = $('#goodsList').html();
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
-	var itemList = $(initialData).find('.movie-item-style-2, .movie-item-style-1').toArray();
+	var itemList = $(initialData).find('.movie-item-style-2').toArray();
 	console.log(itemList);
 
 	function filterItems(searchQuery) {
@@ -73,13 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
 				musicContainer.appendChild(item);
 			}
-			/*if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+			if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
 				musicContainer.appendChild(item);
-			}*/
+			}
 		});
 
 	}
-});
+});*/
 
 
 
