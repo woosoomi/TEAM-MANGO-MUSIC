@@ -72,7 +72,7 @@
                                 </a>
                                 <div class="mv-item-infor">
                                 <h6>
-                                <a th:text="${ticket.productName}">Tom Hardy</a></h3>
+                                <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">Tom Hardy</a></h3>
                                 </h6>
                                 <p>티켓가격 : <a th:text="|${ticket.productPrice} 원 |">actor</a></p>
                                 <p>잔여좌석 : <a th:text="|${ticket.productStock} 좌석 남았습니다|">10</a></p>
