@@ -250,7 +250,7 @@ public class OrderController {
 			
 			HttpSession session = request.getSession();
 			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "kbs88");
+			session.setAttribute("user_id", "cgj22");
 			String userId = (String) session.getAttribute("user_id");
 //			//테스트용 코드
 			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
@@ -258,11 +258,10 @@ public class OrderController {
 			System.out.println("주문 내역:" + orderDtoList);
 			List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
 			model.addAttribute("orderItemDtoList", orderItemDtoList);
-			
+			System.out.println("orderItemDtoList:"+ orderItemDtoList);
 			//원래 코드
 			//orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
-			
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
 			Context context = new Context();

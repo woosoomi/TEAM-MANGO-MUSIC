@@ -51,12 +51,18 @@
 		</div>
 
 	<div class="login"> 
-		<ul>
-			<li><a href="userCheckIdPw">로그인</a></li>
-			<li><a href="user_write_form">회원가입</a></li>
-		</ul>
-
-	</div>
+    <ul>
+        <li th:if="${loginUser == null}">
+            <a href="user_login_form">로그인</a>
+        </li>
+        <li th:if="${loginUser != null}">
+            <a href="user_logout_action" th:text="${loginUser.userId + ' 님 로그아웃'}">로그아웃</a>
+        </li>
+        <li th:if="${loginUser == null}">
+        <a href="user_write_form">회원가입</a>
+        </li>
+    </ul>
+</div>
 
 </div>	
 
@@ -131,11 +137,21 @@
 				<a th:text="${top1Product.productName}">노래제목</a> 
 				<a id="Rank1_Tot" th:text="${top1Product.voteTot}">11,501</a> 
 				<a id="Rank1_Tot_text">득표</a>
-		</div>		
-		
+		</div>
+
+
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top1Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
 			
-			<button class="choose-btn" 
-					onclick="voteButtonClicked(this)" th:attr="data-voteid=${top1Product.voteId}">투표하기</button>
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
+		
+		
 		</div>
 		<h3 class="vs">VS</h3>
 
@@ -152,7 +168,16 @@
 				<a id="Rank1_Tot_text">득표</a>
 			</div>
 
-			<button class="choose-btn"  onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top2Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 	</div>
 
@@ -185,7 +210,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top1Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -212,7 +246,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top2Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -238,7 +281,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top3Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -264,7 +316,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top4Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -289,7 +350,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top5Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -314,7 +384,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+		<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top6Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -340,7 +419,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top7Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -367,7 +455,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top8Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -394,7 +491,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+			<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top9Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 		
@@ -423,7 +529,16 @@
 				</div>
 			</div>
 			
-			<button class="choose-btn" onclick="voteButtonClicked()">투표하기</button>
+		<th:block th:if="${ not #strings.isEmpty(loginUser)}">
+				<button
+					class="choose-btn" onclick="voteButtonClicked(this)"
+					th:attr="data-voteid=${top10Product.voteId}, data-userid=${loginUser.userId}">투표하기</button>
+			</th:block>
+			
+			<th:block th:unless="${ not #strings.isEmpty(loginUser)}">
+				<button 
+					class="choose-btn" onclick="voteButtonClicked(this)">투표하기</button>
+			</th:block>
 		</div>
 		
 	</div>

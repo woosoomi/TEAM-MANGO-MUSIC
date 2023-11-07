@@ -1,33 +1,34 @@
 
 function voteButtonClicked(button) {
-    // 클릭된 버튼의 data-voteid 속성을 가져옵니다.
-    var voteId = button.getAttribute("data-voteid");
-
-    // Ajax 요청을 통해 서버로 데이터 전송
+    // 사용자 ID와 투표 ID 추출
+    var voteId = $(button).data("voteid");
+    var userId = $(button).data("userid");
+	console.log(userId);
+	console.log(voteId);
+    // 회원 투표 업데이트 실행
     $.ajax({
         type: "PUT",
-        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/userVoteUpdate/a/" + voteId, 
-        // userVoteUpdate/a/ 부분에서 "/a/" 가 유저 아이디가 들어가게 추후 수정 필요 --> userId session 받아오게 수정 
+        url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/userVoteUpdate/${userId}/${voteId}`,
         contentType: "application/json",
-        success: function (data) {
-        $.ajax({
-        type: "PUT",
-        url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/voteProduct/update",
-        contentType: "application/json",
-        data: JSON.stringify({ voteId: voteId }),
-        success: function (data) {
-            alert("투표가 완료되었습니다.");
-   			window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/productVote"; 
+        success: function (userData) {
+            // 회원 투표 업데이트 실행 후, 투표 업데이트
+            $.ajax({
+                type: "PUT",
+                url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/voteProduct/update",
+                contentType: "application/json",
+                data: JSON.stringify({ voteId: voteId }),
+                success: function (data) {
+                    alert("투표가 완료되었습니다.");
+                    window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/productVote";
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert("투표 업데이트 중 오류가 발생했습니다.");
+                }
+            });
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("투표 업데이트 중 오류가 발생했습니다.");
-        }
-    });
-            
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            alert("로그인이 필요한 메뉴입니다");
-            window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form";
+            alert("로그인이 필요한 서비스입니다.");
+             window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form";
         }
     });
 }

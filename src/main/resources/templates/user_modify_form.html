@@ -49,42 +49,43 @@
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
-						<form action="" class="password" th:object="${loginUser}" method="post">
+						<form action="" class="password" th:object="${loginUser}"
+							method="post">
 							<h4>02. 회원정보수정</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserName</label><input type="text"
-										placeholder="**********" th:value="*{userName}">
+										placeholder="**********" th:value="${loginUser.userName}">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPassword</label><input type="text"
-										placeholder="***************" th:value="*{userPw}">
+										placeholder="***************" th:value="${loginUser.userPw}">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserPhone</label><input type="text"
-										placeholder="**********" th:value="*{userPhone}">
+										placeholder="**********" th:value="${loginUser.userPhone}">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserAddress</label><input type="text"
-										placeholder="***************" th:value="*{userAddress}">
+										placeholder="***************"
+										th:value="${loginUser.userAddress}">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserEmail</label><input type="text"
-										placeholder="**********" th:value="*{userEmail}">
+										placeholder="**********" th:value="${loginUser.userEmail}">
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-2">
-									<input class="submit" type="submit" value="change">
+									<input class="submit" type="submit" value="change" onclick="updateUser()">
 								</div>
 							</div>
 						</form>
-						s
 					</div>
 				</div>
 			</div>
@@ -93,6 +94,55 @@
 	<!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
+
+
+	<script>
+	function updateUser() {
+	    // 사용자가 수정한 데이터 가져오기
+	    var userName = document.getElementById("userName").value;
+	    var userPw = document.getElementById("userPw").value;
+	    var userPhone = document.getElementById("userPhone").value;
+	    var userAddress = document.getElementById("userAddress").value;
+	    var userEmail = document.getElementById("userEmail").value;
+
+	    // 수정할 데이터를 JSON 형식으로 만들기
+	    var userData = {
+	        userName: userName,
+	        userPw: userPw,
+	        userPhone: userPhone,
+	        userAddress: userAddress,
+	        userEmail: userEmail
+	    };
+
+	    // 서버로 데이터 전송
+	    fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/user_modify_action', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify(userData)
+	    })
+	    .then(response => response.json())
+	    .then(updatedUserData => {
+	        // 수정된 데이터를 화면에 업데이트
+	        document.getElementById("userName").value = updatedUserData.userName;
+	        document.getElementById("userPw").value = updatedUserData.userPw;
+	        document.getElementById("userPhone").value = updatedUserData.userPhone;
+	        document.getElementById("userAddress").value = updatedUserData.userAddress;
+	        document.getElementById("userEmail").value = updatedUserData.userEmail;
+
+	        // 성공 메시지 또는 리디렉션을 처리 (필요에 따라)
+	    })
+	    .catch(error => {
+	        console.error('에러:', error);
+	        // 에러 메시지 처리 (필요에 따라)
+	    });
+	}
+
+	</script>
+
+
+
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>

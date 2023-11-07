@@ -26,6 +26,7 @@ public class UserUpdateDto {
 	
 	public static UserUpdateDto toDto(User entity) {
 		return UserUpdateDto.builder()
+							.userId(entity.getUserId())
 							.userPw(entity.getUserPw())
 							.userName(entity.getUserName())
 							.userPhone(entity.getUserPhone())
