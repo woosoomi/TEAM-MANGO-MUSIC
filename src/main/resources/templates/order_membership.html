@@ -236,14 +236,16 @@
 				if (xhr.status === 200) {
 					// 결제가 성공적으로 완료될 경우 실행할 코드
 					var response = JSON.parse(xhr.responseText);
-					console.log(response);
 					alert('주문이 성공적으로 완료되었습니다.');
 					alert('무통장입금 신한은행 110-354-123456\n1시간 내 미입금시 주문이 취소됩니다.');
-					requestDeleteCoupon(couponId);
+					//requestDeleteCoupon(couponId);
+						
+					//redirect
+            		window.location.replace('order_history');
+            		
 				} else {
 					// 결제가 실패한 경우 실행할 코드
 					alert('주문에 실패하였습니다.');
-					console.log(response);
 				}
 			}
 		};
@@ -324,7 +326,7 @@
 	
 	/*결제에 사용된 쿠폰 삭제*/
 	
-	
+	/*
 	var couponSelect = document.getElementById("couponSelect");
 	var selectedOption = couponSelect.options[couponSelect.selectedIndex];
 	var couponId = selectedOption.getAttribute("data-coupon-id"); // 선택된 옵션의 data-coupon-id 속성 값
@@ -371,7 +373,7 @@
 		}
 		
 	});
-	
+	*/
 	
 
 

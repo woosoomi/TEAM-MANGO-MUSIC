@@ -33,11 +33,10 @@ public class UserController {
 	 * forward_path = "user_info_form"; return forward_path; }
 	 */
 
-	@GetMapping("/user_modify_form")
-	public String user_modify_form() {
-		String forward_path = "user_modify_form";
-		return forward_path;
-	}
+	/*
+	 * @GetMapping("/user_modify_form") public String user_modify_form() { String
+	 * forward_path = "user_modify_form"; return forward_path; }
+	 */
 
 	@GetMapping("/user_login_form")
 	public String user_login_form() {
@@ -82,24 +81,23 @@ public class UserController {
 	}
 
 	@LoginCheck
-	@RequestMapping("user_logout_action")
+	@RequestMapping("/user_logout_action")
 	public String user_logout_action(HttpSession session) {
 		session.invalidate();
 		return "redirect:user_login_form";
 	}
 
-	/*
-	 * @LoginCheck
-	 * 
-	 * @GetMapping("/user_modify_form") public String
-	 * user_modify_form(HttpServletRequest request, Model model) throws Exception {
-	 * String sUserId = (String) request.getSession().getAttribute("sUserId");
-	 * UserDto loginUser = userService.findUser(sUserId);
-	 * model.addAttribute("loginUser", loginUser); return "user_modify_form"; }
-	 */
+	@LoginCheck
+	@GetMapping("/user_modify_form")
+	public String user_modify_form(HttpSession session, Model model) throws Exception {
+		String sUserId = (String) session.getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		model.addAttribute("loginUser", loginUser);
+		return "user_modify_form";
+	}
 
 	@LoginCheck
-	@PostMapping("user_modify_action")
+	@PostMapping("/user_modify_action")
 	public String user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto, HttpServletRequest request)
 			throws Exception {
 		String sUserId = (String) request.getSession().getAttribute("sUserId");
@@ -108,7 +106,7 @@ public class UserController {
 	}
 
 	@LoginCheck
-	@PostMapping("user_remove_action")
+	@PostMapping("/user_remove_action")
 	public String user_remove_action(HttpServletRequest request) throws Exception {
 		String sUserId = (String) request.getSession().getAttribute("sUserId");
 		userService.deleteUser(sUserId);
@@ -117,7 +115,7 @@ public class UserController {
 	}
 
 	/*********** GET방식요청시 guest_main redirection *********/
-	@GetMapping({ "user_write_action", "user_login_action", "user_modify_action", "user_remove_action" })
+	@GetMapping({ "/user_write_action", "/user_login_action", "/user_modify_action", "/user_remove_action" })
 	public String user_get() {
 		String forwardPath = "redirect:index";
 		return forwardPath;
