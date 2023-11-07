@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.cart.CartItemDto;
@@ -36,18 +38,12 @@ public class CartItemRestController {
             return "실패";
         }
     }
-    @Operation(summary = "수량 업데이트[성공]")
-    @PostMapping("/cart_main/{cartItemId}")
-    public String updateCartItem(CartItemDto dto,Model model) {
-    	CartItemDto updateCartItem;
-    	try {
-			updateCartItem = cartItemService.update(dto.getCartItemId(), dto.getCartItemQty());
-			model.addAttribute("updateCartItem",updateCartItem);
-			return "성공";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "실패";
-		}
+    @PostMapping("/cart_main/updateQty/{cartItemId}")
+    public CartItemDto updateCartItem(@PathVariable Long cartItemId, @RequestParam Integer cartItemQty) throws Exception {
+    	System.out.println(cartItemId);
+    	System.out.println("123123123123");
+        CartItemDto updatedCartItem = cartItemService.update(cartItemId, cartItemQty);
+        return updatedCartItem;
     }
     
     @Operation(summary = "상품 한개 삭제[성공]")
