@@ -65,7 +65,7 @@
 					</ul>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userNo}==null">
+			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userId}==null">
 				<li>
 					<a href="user_info_form" th:text='${session.userName+"님"}'></a>
 				<li><span>/</span></li>
@@ -74,7 +74,7 @@
 				</li>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userNo}!=null">
+			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.userId}!=null">
 				<li class="btn signupLink">
 					<a href="index" th:text='${session.userName+"님"}'>//</a>
 				<li><span>/</span></li>
