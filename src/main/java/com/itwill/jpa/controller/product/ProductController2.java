@@ -42,22 +42,20 @@ public class ProductController2 {
 	private final ProductService productService;
 	
 	@Autowired
-	private final ProductServiceImpl productServiceImpl;
-	
-	@Autowired
 	private final UserService userService;
 	
 	// 뮤직리스트 
 	@GetMapping("/product_music_list")
 	public String musicList(Model model) {
 		try {
+			
 //			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 //			musics=productService.productByReadCountDescDto(1L);
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 			musics = productService.productByReadCountDescDto(1L);
 			model.addAttribute("musics", musics);
-			//log.info(">>>MUSIC LIST : " + musics);
 			return "product_music_list";
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());
@@ -68,8 +66,9 @@ public class ProductController2 {
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
 	
 	@GetMapping("/product_music_detail")
-	public String MusicDetail(@RequestParam(name = "productNo" ) Long productNo, Model model) {
+	public String MusicDetail(@RequestParam(name = "productNo" ) Long productNo, Model model, HttpSession session) {
 		try {
+			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			
 			System.out.println(findMusicOptional.get());
@@ -96,17 +95,14 @@ public class ProductController2 {
 	public String MembershipDetail(HttpSession session,Model model) {
 		try {
 			List<Product> memberships = productService.findByCategoryId(4L);
-			if(session.getAttribute("")!=null) {
-				//유저의 멤버십 구매 확인 - 오더, 유저 기능 구현된 거 확인하고 활용
-				//구매가 되어있을 경우 메세지와 함께 뮤직 리스트로 넘겨버리는 간단한 액션
-				
-				//	or 레스트 활용 - (유저) 님은 멤버십 가입이 되어있습니다. 로 h2 체인지 -> 추후...시간 남으면 구현.
-				
-			}else {
-				model.addAttribute("memberships", memberships);
-			}
 			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
-			return "product_membership_detail";
+			
+//			if(session.getAttribute("userId")!=null) {
+//				return "product_membership_detail";
+//			}else {
+//				return "user_login_form";
+//			}
+				return "product_membership_detail";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());

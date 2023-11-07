@@ -34,7 +34,7 @@
 						<div class="row">
 							<div th:each="magazine, iterStat : *{magazines}" th:if="${iterStat.index lt 6}">
 								<div class="col-md-4 col-sm-12 col-xs-12">
-									<div class="blog-item-style-2"><a href="blogdetail.html"><img
+									<div class="blog-item-style-2"><a th:href="@{/board_other_detail(boardId=${magazine.boardId})}"><img
 												src="images/uploads/MAGAZINE1.jpeg" alt=""></a>
 										<div class="blog-it-infor">
 											<h3><a th:href="@{/board_other_detail(boardId=${magazine.boardId})}"

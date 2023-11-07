@@ -53,10 +53,12 @@ public class BoardReply {
     
 	@ManyToOne
 	@JoinColumn(name = "board_Id")
+	@ToString.Exclude
 	private Board board;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_Id")
+	@ToString.Exclude
 	private User user;
 	
 

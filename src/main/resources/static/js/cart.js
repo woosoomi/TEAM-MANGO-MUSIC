@@ -77,6 +77,15 @@ $('.delete-all-btn').click(function() {
             }
         });
     }
+    
+    function updateCartItemQuantity(selectElement) {
+        var selectedQty = selectElement.value;
+        var productPrice = parseFloat(selectElement.parentElement.querySelector('.product-price').textContent);
+        var totalPriceElement = selectElement.parentElement.querySelector('.total-price');
+
+        var totalPrice = selectedQty * productPrice;
+        totalPriceElement.textContent = totalPrice.toFixed(2) + '원';
+    }
 
     
 });
