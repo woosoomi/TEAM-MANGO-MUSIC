@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User findUser(String userId) {
-		User findedUser = userRepository.findById(userId).get();  
+		User findedUser = userRepository.findById(userId).get(); 
 		return findedUser;
 	}
 

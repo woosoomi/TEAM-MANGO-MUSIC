@@ -20,7 +20,7 @@
 <!-- CSS files -->
 <link rel="stylesheet" href="css/plugins.css">
 <link rel="stylesheet" href="css/style.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 	<!--preloading-->
@@ -95,11 +95,11 @@
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserId</label> <input type="text" id="userId"
-										name="userId" placeholder="아이디를 입력하세요." required="required">
+										name="userId" placeholder="아이디를 입력하세요." required="required" value="kbs88">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPassword</label> <input type="text" id="userPw"
-										name="userPw" placeholder="비밀번호를 입력하세요." required="required">
+										name="userPw" placeholder="비밀번호를 입력하세요." required="required" value="qjatjr88">
 
 								</div>
 							</div>
@@ -107,7 +107,7 @@
 							<div class="row">
 								<div class="col-md-2">
 									<!-- Submit button -->
-									<input class="submit" id="loginbtn" type="button"
+									<input class="submit" id="loginbutton" type="button"
 										value="로그인" onclick="loginForm()">
 								</div>
 							</div>
@@ -152,7 +152,9 @@
                 if (response.status === 200) {
                     alert('로그인이 성공적으로 완료되었습니다.');
                     document.getElementById("loginbutton").value = "로그아웃"; // 버튼 텍스트 변경
-                    window.location.href = "user_info_form"; // 로그인 성공 시 리디렉션할 페이지
+                    alert('dasdasd');
+                    window.location.href = "index"; // 로그인 성공 시 리디렉션할 페이지
+                    
                 } else if (response.status === 401) {
                     alert('비밀번호가 틀렸습니다.');
                 } else if (response.status === 500) {
