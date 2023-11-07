@@ -58,16 +58,18 @@
 
 							<div th:each="ReplyList : ${ReplyList}">
 								<div class="cmt-item flex-it">
-									<img src="images/uploads/author4.png" alt="">
+									<img src="images/uploads/author.png" alt="">
 									<div class="author-infor">
-										<div class="cmt-item flex-it">
+										<div class="flex-it2">
 											<!--Name으로 체인지 가능-userinfo-->
-											<h4 th:text="'작성자 : '+${board.getUser().getUserName()}">Steve Perry</h4>
-											<h4
-												th:text="${#temporals.format(ReplyList.createDateTime, 'yyyy-MM-dd HH:mm')}">-
-												27 Mar 2017</h4>
+											<h6 th:text="'작성자 : '+${board.getUser().getUserName()}" style="color: white; font-size: 20px;"><a href="#">Steve Perry</a></h6>
+											<span class="time"
+												th:text="${#temporals.format(ReplyList.createDateTime, 'yyyy-MM-dd HH:mm')}">
+												27 Mar 2017</span>
 										</div>
-										<p th:text="${ReplyList.BoardReplyContent}">textContent</p>
+										<p th:text="${ReplyList.BoardReplyContent}"></p>
+										<p><a class="rep-btn" href="#">+ Reply</a></p>
+
 									</div>
 								</div>
 							</div>
@@ -86,6 +88,8 @@
 								</div><input class="submit" type="submit" placeholder="submit">
 							</form>
 						</div>
+
+
 
 						<div class="comment-form">
 							<div class="dropdown-container">
