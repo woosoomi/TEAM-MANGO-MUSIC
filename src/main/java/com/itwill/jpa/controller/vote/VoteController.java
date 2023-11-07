@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.jpa.dao.product.ProductVoteDaoImpl;
+import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.product.ProductVoteDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.product.ProductVoteServiceImple;
 import com.itwill.jpa.service.user.UserService;
 import com.itwill.jpa.service.vote.VoteServiceImpl;
@@ -72,9 +74,12 @@ public class VoteController {
 		
 		//임의로 세션 로그인 유저 설정함
 		String loginUser = (String) session.getAttribute("sUserId");
-		UserDto user = userService.findUser(loginUser);
+		UserDto user=null;
+		if(loginUser!=null) {
+			user = userService.findUser(loginUser);
+			model.addAttribute("loginUser", user);
+		}
 		model.addAttribute("loginUser", user);
-		
 		/*************** 유저정보 ***************/
 		
 		List<ProductVoteDto> productVote = productVoteDaoImpl.findProductsByVoteIsNotNullOrderByVoteTotDesc();
