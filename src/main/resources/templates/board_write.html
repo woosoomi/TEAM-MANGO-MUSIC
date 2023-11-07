@@ -50,11 +50,11 @@
 							<form action="#" class="dropdown-form" style="width: 200px; margin-left: 50px;">
 								<select name="languages" id="lang1" onchange="updateLang2Options()">
 									<option value="카테고리설정">카테고리설정</option>
-									<option value="공지사항">공지사항</option>
-									<option value="FAQ">FAQ</option>
-									<option value="매거진">매거진</option>
-									<option value="1대1문의">1대1문의</option>
-									<option value="이벤트">이벤트</option>
+									<option value="1.공지사항">1.공지사항</option>
+									<option value="2.이벤트">2.이벤트</option>
+									<option value="3.매거진">3.매거진</option>
+									<option value="4.1대1문의">4.1대1문의</option>
+									<option value="5.FAQ">5.FAQ</option>
 								</select>
 							</form>
 
@@ -128,54 +128,54 @@
 		lang2.innerHTML = "";
 
 		// 선택된 lang1에 따라 lang2 드롭다운을 업데이트합니다.
-		if (selectedLang1 === "공지사항") {
+		if (selectedLang1 === "1.공지사항") {
 			// "공지사항"이 선택된 경우, lang2에 해당 옵션을 추가합니다.
 			var option = document.createElement("option");
-			option.value = "일반공지";
+			option.value = "2.일반공지";
 			option.text = "일반공지";
 			lang2.appendChild(option);
 			var option = document.createElement("option");
-			option.value = "서비스공지";
+			option.value = "3.서비스공지";
 			option.text = "서비스공지";
 			lang2.appendChild(option);
 			var option = document.createElement("option");
-			option.value = "시스템공지";
+			option.value = "4.시스템공지";
 			option.text = "시스템공지";
 			lang2.appendChild(option);
 			var option = document.createElement("option");
-			option.value = "기타";
+			option.value = "1.기타";
 			option.text = "기타";
 			lang2.appendChild(option);
-		} else if (selectedLang1 === "FAQ") {
+		} else if (selectedLang1 === "5.FAQ") {
 			var option = document.createElement("option");
-			option.value = "회원정보";
+			option.value = "5.회원정보";
 			option.text = "회원정보";
 			lang2.appendChild(option);
 			var option = document.createElement("option");
-			option.value = "결제/환불";
+			option.value = "6.결제/환불";
 			option.text = "결제/환불";
 			lang2.appendChild(option);
 			var option = document.createElement("option");
-			option.value = "이벤트";
+			option.value = "7.이벤트";
 			option.text = "이벤트";
 			lang2.appendChild(option);
 			var option = document.createElement("option");
-			option.value = "faq4";
+			option.value = "1.기타";
 			option.text = "기타";
 			lang2.appendChild(option);
-		} else if (selectedLang1 === "매거진") {
+		} else if (selectedLang1 === "3.매거진") {
 			var option = document.createElement("option");
-			option.value = "MAGAZINE";
+			option.value = "12.MAGAZINE";
 			option.text = "MAGAZINE";
 			lang2.appendChild(option);
-		} else if (selectedLang1 === "이벤트") {
+		} else if (selectedLang1 === "2.이벤트") {
 			var option = document.createElement("option");
-			option.value = "진행중이벤트";
+			option.value = "10.진행중이벤트";
 			option.text = "진행중이벤트";
 			lang2.appendChild(option);
-		} else if (selectedLang1 === "1대1문의") {
+		} else if (selectedLang1 === "4.1대1문의") {
 			var option = document.createElement("option");
-			option.value = "답변대기중";
+			option.value = "9.답변대기중";
 			option.text = "답변대기중";
 			lang2.appendChild(option);
 		} else {
@@ -193,16 +193,28 @@
 
 
 	function board_write_action() {
+		var postTitle = $("#postTitle").val();
+		var postContent = $("#postContent").val();
+		var postCategory = $("#lang1").val();
+		var categoryNumber = parseInt(postCategory.split('.')[0]);
 		
+		var postType = $("#lang2").val();
+		var typeNumber = parseInt(postType.split('.')[0]);
+		console.log(postCategory);
+		console.log(categoryNumber);
+		console.log(postType);
+		console.log(typeNumber);
+
+
 		const writeData = {
-			"boardTitle": "as",
-			"boardContent": "ds",
-			"boardImage": "d",
-			
-			"boardReadCount": 99,
-			"boardTypeId": 1,
-			"boardCategoryId": 1,
-			"userId": "why3795"
+			"boardTitle": postTitle,
+			"boardContent": postContent,
+			"boardImage": null,
+			"boardCategoryId": categoryNumber,
+			"boardTypeId": typeNumber,
+
+			"boardReadCount": 0,
+			"userId": "admin"
 		}
 
 		fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_create', {
