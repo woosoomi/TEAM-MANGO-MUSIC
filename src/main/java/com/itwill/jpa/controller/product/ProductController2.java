@@ -110,40 +110,41 @@ public class ProductController2 {
 	}
 
 	// 굿즈리스트
-		@GetMapping("/goods_list")
+		@GetMapping("/product_goods_list")
 		public String GoodsList(Model model) {
 			try {
-				List<ProductDto> goods = productService.findByProductCategoryId(2L);
-				model.addAttribute("goods", goods);
-				//System.out.println(">>>GOODS LIST : " + goods);
-				return "goods_list";
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute(e.getMessage());
-				return null;
-			}
-		
-		}
-		
-		// 굿즈디테일
-		@GetMapping("/goods_detail/{productNo}")
-		public String GoodsDetail(@PathVariable Long productNo ,Model model) {
-			try {
-				Product goodsDetail=(Product)productService.findByProductNo(productNo).get();
-				System.out.println(productNo);
-				System.out.println(goodsDetail);
-				
-				productService.increaseReadCount(goodsDetail);
-				model.addAttribute("goodsDetail", goodsDetail);
-				log.info(">>>GOODS DETAIL : "+ goodsDetail);
-				
-				return "goods_detail";
+				List<ProductDto> goodsList = productService.findByProductCategoryId(2L);
+				model.addAttribute("goodsList", goodsList);
+				//System.out.println(">>>TICKET LIST : " + tickets);
+				return "product_goods_list";
 			} catch (Exception e) {
 				e.printStackTrace();
 				model.addAttribute(e.getMessage());
 				return null;
 			}
 			
+		}
+		
+		// 굿즈디테일
+		@GetMapping("/product_goods_detail")
+		public String GoodsDetail(@RequestParam(name = "productNo") Long productNo ,Model model) {
+		    try {
+		        Optional<Product> findGoodsOptional = productService.findByProductNo(productNo);
+
+		        if (findGoodsOptional.isPresent()) {
+		            Product findGoods = findGoodsOptional.get();
+		            model.addAttribute("findGoods", findGoods);
+		            System.out.println(">>>굿즈 상세정보:" + findGoods);
+		        } else {
+		            model.addAttribute("errorMSG", "해당 굿즈를 찾을 수 없습니다.");
+		        }
+		        return "product_goods_detail";
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        model.addAttribute("errorMSG", "티켓을 찾는 중 오류 발생: " + e.getMessage());
+		        return "error";
+		    }
 		}
 	
 		

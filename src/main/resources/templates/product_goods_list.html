@@ -41,17 +41,27 @@
 							href="movielist.html" class="list"><i
 							class="ion-ios-list-outline "></i></a><a href="moviegridfw.html"
 							class="grid"><i class="ion-grid active"></i></a>
+							
+						<p class="pad-change">Total <span th:text="${#lists.size(goodsList)}">1,608 </span> goods</p>
 					</div>
+							<div class="row" id="goodsList">
+
+
+						<div class="goods_List" th:each="goods : ${goodsList}">		
+					
 					<div class="flex-wrap-movielist mv-grid-fw">
 						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="images/uploads/mv1.jpg" alt="">
+									<a style="padding-right: 20px; color: #ffffff;" th:text="${goods.productNo}">번호</a>
+									<a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" > 
+									<img th:src="${goods.productImage}" alt="" style="width: 100px">
+									</a>
 							<div class="hvr-inner">
 								<a href="moviesingle.html">Read more <i
 									class="ion-android-arrow-dropright"></i></a>
 							</div>
 							<div class="mv-item-infor">
 								<h6>
-									<a href="#">oblivion</a>
+									<a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">Leonardo DiCaprio</a>
 								</h6>
 								<p class="rate">
 									<i class="ion-android-star"></i><span>8.1</span>/10

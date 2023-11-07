@@ -81,9 +81,10 @@
 								</div>
 							</div>
 						<!--</div>-->
+						<!--티켓 좋아요-->						
 						<div class="movie-rate">
 							<div class="rate"><i class="ion-android-star"></i>
-								<p><span>8.1</span>/10<br><span class="rv">56 Reviews</span></p>
+								<p>추천 개수 : <span th:text="${findTicket.productStar}">8.1</span>명이 추천해주셨습니다.<br><span class="rv">56 Reviews</span></p>
 							</div>
 							<div class="rate-star">
 								<p>Rate This Movie:</p><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i
@@ -92,14 +93,16 @@
 									class="ion-ios-star-outline"></i>
 							</div>
 						</div>
+						
+						<!--티켓 상세설명 및 댓글-->
 						<div class="movie-tabs">
 							<div class="tabs">
 								<ul class="tab-links tabs-mv">
-									<li class="active"><a href="#overview">Overview</a></li>
+		<!--티켓 상세설명-->		<li class="active"><a href="#overview">Overview</a></li>
 									<li><a href="#reviews">Reviews</a></li>
 									<li><a href="#cast"> Cast & Crew </a></li>
 									<li><a href="#media">Media</a></li>
-									<li><a href="#moviesrelated">Related Movies</a></li>
+									<!--<li><a href="#moviesrelated">Related Movies</a></li>-->
 								</ul>
 								<div class="tab-content">
 									<div id="overview" class="tab active">
