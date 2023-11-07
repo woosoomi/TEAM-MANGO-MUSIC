@@ -40,10 +40,8 @@ public class OrderController {
 	public String orderMembershipPage(Model model, HttpServletRequest request) {
 		
 		try {
-			
-			
+					
 			/*************** 유저정보 ***************/
-			
 			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
@@ -51,22 +49,15 @@ public class OrderController {
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 			
-			
 			/*************** 주문아이템 ***************/
-			
-			
+						
 			//멤버쉽 카테고리번호 4 픽스
 			Long categoryId = 4L;
 			
-			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
-			//로그인 체크가 생기면 아래 조건문 지울것
 			if(userId != null) {
 				
 				//유저의 카테고리별 주문아이템 조회하기
 				List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
-				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
-				//model.addAttribute("orderDtoList", orderDtoList);
-				//System.out.println("주문 아이템: " + orderDtoList);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
 				
 				// Product 엔티티의 정보를 저장할 변수
@@ -97,22 +88,16 @@ public class OrderController {
 	            model.addAttribute("membershipImage", membershipImage);
 	            model.addAttribute("membershipContent", membershipContent);
 	            model.addAttribute("membershipNo", membershipNo);
-	            
-	            
+	                
 	            /*************** 가격 ***************/
-	            
-	            
+	                
 	            double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
 	            //상품 가격 소수점 아래 절사
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
 	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
 	          
-
-
-	            
 	            /*************** 쿠폰 ***************/
-	            
 	            	            
 	            // 유저의 쿠폰정보 불러오기
 	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
@@ -155,34 +140,25 @@ public class OrderController {
 		
 		try {
 			
-			
 			/*************** 유저정보 ***************/
-			
 			
 			//임의로 세션 로그인 유저 설정함
 			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "lsg33");
+			session.setAttribute("user_id", "ycl77");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 			
-			
 			/*************** 주문아이템 ***************/
-			
 			
 			//티켓 카테고리번호 3 픽스
 			Long categoryId = 3L;
 			
-			//로그인한 유저가 맞다면 오더페이지 아니면 로그인 페이지로 이동
-			//로그인 체크가 생기면 아래 조건문 지울것
 			if(userId != null) {
 				
 				//유저의 카테고리별 주문아이템 조회하기
 				List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
 				model.addAttribute("orderItemDtoList", orderItemDtoList);
-				//List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
-				//model.addAttribute("orderDtoList", orderDtoList);
-				//System.out.println("주문 아이템: " + orderDtoList);
-				
+
 				// Product 엔티티의 정보를 저장할 변수 초기화
 	            String ticketName = null;
 	            String ticketImage = null;
@@ -192,6 +168,7 @@ public class OrderController {
 	            Date ticketDate = null;
 	            String ticketArtist = null;
 	            int ticketStock = 0;
+	            Long ticketNo = 0L;
 	            
 	            // 주문 아이템별로 Product 정보 가져오기
 	            for (OrderItemDto orderItemDto : orderItemDtoList) {
@@ -207,6 +184,7 @@ public class OrderController {
 	                    ticketDate = product.getProductDate();
 	                    ticketArtist = product.getProductArtist();
 	                    ticketStock = product.getProductStock();
+	                    ticketNo = product.getProductNo();
 	                }
 	            }
 	            model.addAttribute("ticketName", ticketName);
@@ -217,20 +195,18 @@ public class OrderController {
 	            model.addAttribute("ticketDate", ticketDate);
 	            model.addAttribute("ticketArtist", ticketArtist);
 	            model.addAttribute("ticketStock", ticketStock);
-	            
+	            model.addAttribute("ticketNo", ticketNo);
 	            
 	            /*************** 가격 ***************/
-	            
-	            
+	             
 	            double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
 	            //상품 가격 소수점 아래 절사
 	            int formattedOrderPrice = (int) orderPrice;
 	            model.addAttribute("orderPrice", orderPrice);
 	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
 	            
-	            
 	            /*************** 쿠폰 ***************/
-	            
+ 
 	            	            
 	            // 유저의 쿠폰정보 불러오기
 	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
