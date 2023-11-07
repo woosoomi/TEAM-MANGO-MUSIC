@@ -58,5 +58,11 @@ public class Controller {
 		return forward_path; 
 	}
 	
+	@GetMapping("/order_test_form") 
+	public String order_test_form() { 
+		String forward_path = "order_test_form"; 
+		return forward_path; 
+	}
+	
 	
 }
