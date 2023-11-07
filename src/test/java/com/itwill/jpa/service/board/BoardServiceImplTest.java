@@ -32,6 +32,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	}
 	
 	
+	
 //	// 게시글저장 -성공
 //	@Test
 //	@Transactional

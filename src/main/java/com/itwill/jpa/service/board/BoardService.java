@@ -50,5 +50,7 @@ public interface BoardService {
     public List<Board> findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(Long boardCategoryId, String userId);
     
     public List<BoardReply> findByBoard_boardId(Long BoardId);
+
+	BoardReply ReplyInsert(BoardReply boardReply);
     
 }

@@ -37,6 +37,11 @@ public class BoardServiceImpl implements BoardService{
         return boardRepository.save(board);
 	}
 	
+	@Override
+	public BoardReply ReplyInsert(BoardReply boardReply) {
+		return boardReplyRepository.save(boardReply);
+	}
+	
 	//게시글삭제
 	@Override
 	public void delete(Long boardId) {
