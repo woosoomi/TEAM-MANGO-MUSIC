@@ -28,6 +28,12 @@ public class Controller {
 		return forward_path; 
 	}
 	
+	@GetMapping("/admin") 
+	public String admin() { 
+		String forward_path = "admin_form"; 
+		return forward_path; 
+	}
+	
 
 	
 }

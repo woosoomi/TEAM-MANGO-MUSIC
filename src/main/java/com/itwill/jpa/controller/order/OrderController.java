@@ -262,6 +262,7 @@ public class OrderController {
 			//원래 코드
 			//orderdetail.html에 리스트명 orderDtoNewerList로 바꿈
 			List<OrderDto> orderDtoNewerList = orderService.orderListByNewer(userId);
+			
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
 			Context context = new Context();

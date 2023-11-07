@@ -49,32 +49,32 @@
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
-						<form action="" class="password">
+						<form action="" class="password" th:object="${loginUser}" method="post">
 							<h4>02. 회원정보수정</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserName</label><input type="text"
-										placeholder="**********">
+										placeholder="**********" th:value="*{userName}">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserPassword</label><input type="text"
-										placeholder="***************">
+										placeholder="***************" th:value="*{userPw}">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserPhone</label><input type="text"
-										placeholder="**********">
+										placeholder="**********" th:value="*{userPhone}">
 								</div>
 								<div class="col-md-6 form-it">
 									<label>UserAddress</label><input type="text"
-										placeholder="***************">
+										placeholder="***************" th:value="*{userAddress}">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
 									<label>UserEmail</label><input type="text"
-										placeholder="**********">
+										placeholder="**********" th:value="*{userEmail}">
 								</div>
 							</div>
 

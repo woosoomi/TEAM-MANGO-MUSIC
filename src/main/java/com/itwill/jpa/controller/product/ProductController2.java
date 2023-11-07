@@ -72,6 +72,7 @@ public class ProductController2 {
 			
 			if(findMusicOptional.isPresent()) {
 				Product findMusic=findMusicOptional.get();
+				productService.increaseReadCount(findMusic);
 				model.addAttribute("findMusic", findMusic);
 	            System.out.println(">>>MUSIC DETAIL:"+findMusic);
 			}else {
@@ -87,7 +88,7 @@ public class ProductController2 {
 	}
 	
 	// 멤버십
-	@GetMapping("/membership_detail")
+	@GetMapping("/product_membership_detail")
 	public String MembershipDetail(HttpSession session,Model model) {
 		try {
 			List<Product> memberships = productService.findByCategoryId(4L);
@@ -101,7 +102,7 @@ public class ProductController2 {
 				model.addAttribute("memberships", memberships);
 			}
 			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
-			return "membership_detail";
+			return "product_membership_detail";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());
@@ -133,6 +134,7 @@ public class ProductController2 {
 
 		        if (findGoodsOptional.isPresent()) {
 		            Product findGoods = findGoodsOptional.get();
+		            productService.increaseReadCount(findGoods);
 		            model.addAttribute("findGoods", findGoods);
 		            System.out.println(">>>굿즈 상세정보:" + findGoods);
 		        } else {
@@ -172,6 +174,7 @@ public class ProductController2 {
 
 		        if (findTicketOptional.isPresent()) {
 		            Product findTicket = findTicketOptional.get();
+		            productService.increaseReadCount(findTicket);
 		            model.addAttribute("findTicket", findTicket);
 		            System.out.println(">>>티켓 상세정보:" + findTicket);
 		        } else {
