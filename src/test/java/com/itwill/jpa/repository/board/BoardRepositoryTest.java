@@ -2,16 +2,13 @@ package com.itwill.jpa.repository.board;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
-import com.itwill.jpa.entity.board.Board;
-import com.itwill.jpa.entity.board.BoardCategory;
-import com.itwill.jpa.entity.board.BoardType;
+import com.itwill.jpa.entity.board.BoardReply;
 
 class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	
@@ -21,6 +18,20 @@ class BoardRepositoryTest extends TeamProjectMangoApplicationTest{
 	BoardCategoryRepository boardCategoryRepository;
 	@Autowired
 	BoardTypeRepository boardTypeRepository;
+	
+	@Autowired
+	BoardReplyRepository replyRepository;
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void findBoard() {
+		List<BoardReply> BoardReplyList = replyRepository.findByBoard_boardId(8L);
+		System.out.println("BoardReplyList : " + BoardReplyList);
+		
+		
+	}
 
 //	@Test
 //	@Transactional

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.jpa.controller.user.LoginCheck;
+import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductDto;
 
 import com.itwill.jpa.entity.board.Board;
@@ -50,7 +51,10 @@ public class ProductController2 {
 	@GetMapping("/product_music_list")
 	public String musicList(Model model) {
 		try {
+//			List<ProductDto> musics = productService.findByProductCategoryId(1L);
+//			musics=productService.productByReadCountDescDto(1L);
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
+			musics = productService.productByReadCountDescDto(1L);
 			model.addAttribute("musics", musics);
 			//log.info(">>>MUSIC LIST : " + musics);
 			return "product_music_list";
