@@ -27,7 +27,7 @@
 <body>
 	<!--preloading-->
 	<div th:insert="~{common_header :: headerFragment}"></div>
-	<div class="page-single userfav_list">
+	<div class="page-single userfav_list" style="color: aliceblue;">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
@@ -90,7 +90,6 @@
 
 					</div>
 
-
 					<div class="flex-wrap-movielist user-fav-list">
 						<div th:each="cartItem : ${cartItems}" class="movie-item-style-2">
 							<div style="margin-right: 5%;" class="checkbox-container">
@@ -105,19 +104,21 @@
 								th:if="${product.productNo == cartItem.productId}"
 								class="mv-item-infor">
 								<span th:text="${product.productName}"></span> <br /> <br />
-								<h6 style="font-size: 15px;">
-									수량: <select id="cartItemQty" style="width: 80px;"
-										onchange="updateCartItemQuantity(this)">
-										<th:block th:each="i : ${#numbers.sequence(1,10)}">
-											<option th:value="${i}"
-												th:selected="${i eq cartItem.cartItemQty}">[[${i}]]</option>
-										</th:block>
-									</select>
-								</h6>
+								<div
+									style="display: flex; align-items: center; font-size: 15px;">
+									<button class="quantity-control" onclick="changeQuantity(-1)"
+										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; line-height: 25px; border: solid 1px white;">-</button>
+									<input id="cartItemQty" type="text"
+										style="width: 50px; height: 35px; background-color: rgb(2, 15, 25); text-align: center; font-size: 15px; border: solid 1px white; color: white;"
+										th:value="${cartItem.cartItemQty}" readonly>
+									<button class="quantity-control" onclick="changeQuantity(1)"
+										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; border: solid 1px white; line-height: 25px;">+</button>
+								</div>
 								<p class="describe">상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트</p>
 								<p class="run-time" style="font-size: 20px">
 									상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비 :
 									0원 <span style="color: orange;">주문금액 :</span> <span
+										id="totalPrice"
 										th:text="${product.productPrice * cartItem.cartItemQty +'원'}"
 										style="color: orange;"></span> <a href="#"
 										style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;">주문하기</a>
