@@ -71,9 +71,9 @@
 										<option value="woman">여</option>
 									</select></div>-->
 							</div>
-							<div class="row">
+							<!--<div class="row">
 								<div class="col-md-2"><input class="submit" type="submit" value="save"></div>
-							</div>
+							</div>-->
 						</form>
 					</div>
 				</div>
@@ -82,31 +82,6 @@
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
-
-	
-
-	<!--<script>
-    window.addEventListener('load', function () {
-        // 세션에서 사용자 정보 가져오기
-        var userId = "${session.getAttribute('userId')}";
-        var userPw = "${session.getAttribute('userPw')}";
-        var userName = "${session.getAttribute('userName')}";
-        var userPhone = "${session.getAttribute('userPhone')}";
-        var userEmail = "${session.getAttribute('userEmail')}";
-        var userJumin = "${session.getAttribute('userJumin')}";
-        var userAddress = "${session.getAttribute('userAddress')}";
-
-        // 필드에 정보 할당
-        document.getElementById("userId").value = userId;
-        document.getElementById("userPw").value = userPw;
-        document.getElementById("userName").value = userName;
-        document.getElementById("userPhone").value = userPhone;
-        document.getElementById("userEmail").value = userEmail;
-        document.getElementById("userJumin").value = userJumin;
-        document.getElementById("userAddress").value = userAddress;
-    });
-</script>-->
-
 
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
