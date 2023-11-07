@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 $(function() { // 보이기 | 숨기기
 	$(window).scroll(function() {
-    if ($(this).scrollTop() > 250) { //250 넘으면 버튼이 보여짐
+    if ($(this).scrollTop() > 300) { //300 넘으면 버튼이 보여짐
       $('#topBtn').fadeIn();
     } else {
       $('#topBtn').fadeOut();
