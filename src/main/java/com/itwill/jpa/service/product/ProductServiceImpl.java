@@ -243,12 +243,12 @@ public class ProductServiceImpl implements ProductService{
 //	}
 	
 	// ticket 등록 - DTO [성공]
-//	@Override
-//	public TicketDto insertTicketDto(TicketDto dto) {
-//		Ticket ticket = productRepository.save(Ticket.toEntity(dto));
-//		TicketDto ticketDto = TicketDto.toDto(ticket);
-//		return ticketDto;
-//	}
+	@Override
+	public TicketDto insertTicketDto(TicketDto dto) {
+		Ticket ticket = productRepository.save(Ticket.toEntity(dto));
+		TicketDto ticketDto = TicketDto.toDto(ticket);
+		return ticketDto;
+	}
 /*********************************************/	
 	
 /******************** DELETE[ENTITY] ********************/	
@@ -448,11 +448,7 @@ public GoodsDto insertGoodsDto(GoodsDto goodsDto) {
 	// TODO Auto-generated method stub
 	return null;
 }
-@Override
-public TicketDto insertTicketDto(TicketDto ticketDto) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 @Override
 public GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception {
 	// TODO Auto-generated method stub

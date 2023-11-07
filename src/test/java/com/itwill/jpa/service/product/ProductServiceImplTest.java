@@ -141,7 +141,7 @@ class ProductServiceImplTest {
 	    goodsDto.setProductName("테스트 상품");
 	    goodsDto.setProductPrice(7777);
 	    goodsDto.setProductStock(100);
-//	    goodsDto.setProductCategory(productCategory);
+//	    goodsDto.setProductCategoryId(productCategory);
 	    // insertGoodsDto 메서드 호출
 	    GoodsDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
 		System.out.println(goodsDto.getProductName());
@@ -153,7 +153,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	public void testInserTicketDto() {
 	    // GoodsDto를 생성하고 categoryId 설정
 	    TicketDto ticketDto = new TicketDto();
@@ -274,17 +274,17 @@ class ProductServiceImplTest {
 //	}
 
 	// product 조회수별 내림차순 정렬[성공]
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	public void testGetProductOrderByReadCountDesc() {
-//		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
-//		for (Product product : products) {
-//			System.out.println(
-//					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
-//		}
-//	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testGetProductOrderByReadCountDesc() {
+		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
+		for (Product product : products) {
+			System.out.println(
+					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+		}
+	}
 //	@Test
 //	@Transactional
 //	@Rollback(false)
