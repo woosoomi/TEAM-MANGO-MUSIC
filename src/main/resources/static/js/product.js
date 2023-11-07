@@ -40,6 +40,49 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+///////////goods list////////////
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const goodsContainer = document.getElementById('goodsList');
+	var initialData = $('#goodsList').html();
+
+	searchInput.addEventListener('keyup', function(event) {
+		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
+		if (true) {
+			const searchValue = searchInput.value;
+			console.log(searchValue);
+			filterItems(searchValue);
+		}
+	});
+
+	var itemList = $(initialData).find('.movie-item-style-2, .movie-item-style-1').toArray();
+	console.log(itemList);
+
+	function filterItems(searchQuery) {
+		goodsContainer.innerHTML = '';
+
+
+		itemList.forEach(function(item) {
+
+			var goodsName = $(item).find('.goodsName').text();
+			console.log(goodsName);
+			//var artist = $(item).find('.artist').text();
+
+
+
+			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+			/*if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}*/
+		});
+
+	}
+});
+
+
+
 
 
 
