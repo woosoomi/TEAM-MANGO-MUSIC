@@ -37,7 +37,7 @@ public class CartController {
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 	    	
-	        CartDto cart = cartService.findCartByCartId(1L);
+	        CartDto cart = cartService.findCartByCartId(5L);
 	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
 	        
 	        if (cartItems.isEmpty()) {
