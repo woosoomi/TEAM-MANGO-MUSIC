@@ -42,15 +42,14 @@
 								<li class="active"><a href="user_modify_form">회원정보수정</a></li>
 								<li><a href="cart_main">나의 장바구니</a></li>
 								<li><a href="order_history">나의 주문내역</a></li>
-								<li><a href="#">logout</a></li>
+								<li><a href="#">회원탈퇴</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
-						<form action="" class="password" th:object="${loginUser}"
-							method="post">
+						<form action="" class="password" th:action="@{user_modify_action}" th:object="${loginUser}" method="post">
 							<h4>02. 회원정보수정</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
@@ -95,7 +94,6 @@
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
 
-
 	<script>
 	function updateUser() {
 	    // 사용자가 수정한 데이터 가져오기
@@ -115,7 +113,7 @@
 	    };
 
 	    // 서버로 데이터 전송
-	    fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/user_modify_action', {
+	    fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_modify_action', {
 	        method: 'POST',
 	        headers: {
 	            'Content-Type': 'application/json'
