@@ -271,7 +271,7 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testUpdateProductDto() throws Exception {
 		Product product = productRepository.findById(8L).get();
 		ProductDto productDto = ProductDto.toDto(product);
@@ -318,21 +318,21 @@ class ProductServiceImplTest {
 //		}
 //	}
 	// product 조회수별 오름차순 정렬[DTO][성공]
-	@Test
-	@Transactional
-	@Rollback(false)	
-	@Disabled
-	public void testProductByReadCountAscDto() {
-		// Arrange (준비)
-		Long categoryId = 1L; // 적절한 카테고리 ID 설정
-		// Act (실행)
-		List<ProductDto> productList = productServiceImpl.productByReadCountAscDto(categoryId);
-		for (ProductDto productDto : productList) {
-			System.out.println(
-					"Product Name : " + productDto.getProductName() + "///Read Count : " + productDto.getReadCount());
-		}
-		
-	}
+//	@Test
+//	@Transactional
+//	@Rollback(false)	
+//	@Disabled
+//	public void testProductByReadCountAscDto() {
+//		// Arrange (준비)
+//		Long categoryId = 1L; // 적절한 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
+//		// Act (실행)
+//		List<ProductDto> productList = productServiceImpl.productByReadCountAscDto(categoryId);
+//		for (ProductDto productDto : productList) {
+//			System.out.println(
+//					"Product Name : " + productDto.getProductName() + "///Read Count : " + productDto.getReadCount());
+//		}
+//		
+//	}
 	// product 조회수별 내림차순 정렬[DTO][성공]
 //	@Test
 //	@Transactional
@@ -340,7 +340,7 @@ class ProductServiceImplTest {
 //	@Disabled
 //	public void testProductByReadCountDescDto() {
 //		// Arrange (준비)
-//		Long categoryId = 1L; // 적절한 카테고리 ID 설정
+//		Long categoryId = 1L; // 적절한 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
 //		// Act (실행)
 //		List<ProductDto> productList = productServiceImpl.productByReadCountDescDto(categoryId);
 //		for (ProductDto productDto : productList) {
@@ -375,23 +375,38 @@ class ProductServiceImplTest {
 //		}
 //	}
 
-
-    // product 오래 등록된 순으로 정렬
-    @Test
-    @Transactional
-    @Rollback(false)
-    @Disabled
-    public void testProductListByOlder () throws Exception {
-    	Long categoryId = 1L; // 테스트하려는 categoryId
-    	// 테스트할 내용
-    	List<ProductDto> productDtos = productServiceImpl.productListByOlder(categoryId);
-    	for (ProductDto product : productDtos) {
-        	System.out.println("오래된 순");
-    		System.out.println(
-    				"Product Name : " + product.getProductName() + "///ProductDate : " + product.getProductDate());
-    	}
-    }    	
-
+	// product 오래 등록된 순으로 정렬[DTO][성공]
+	@Test
+	@Transactional
+	@Rollback(false)	
+	@Disabled
+	public void testProductListByNewer() {
+		// Arrange (준비)
+		Long categoryId = 3L; // 적절한 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
+		// Act (실행)
+		List<ProductDto> productList = productServiceImpl.productListByNewer(categoryId);
+		for (ProductDto productDto : productList) {
+			System.out.println(
+					"Product Name : " + productDto.getProductName() + "///Product Date : " + productDto.getProductDate());
+		}
+		
+	}	
+	// product 오래 등록된 순으로 정렬[DTO][성공]
+	@Test
+	@Transactional
+	@Rollback(false)	
+	@Disabled
+	public void testProductListByOlder() {
+		// Arrange (준비)
+		Long categoryId = 3L; // 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
+		// Act (실행)
+		List<ProductDto> productList = productServiceImpl.productListByOlder(categoryId);
+		for (ProductDto productDto : productList) {
+			System.out.println(
+					"Product Name : " + productDto.getProductName() + "///Product Date : " + productDto.getProductDate());
+		}
+		
+	}	
 	// product 조회수 올리기[성공]
 //	@Test
 //	@Transactional

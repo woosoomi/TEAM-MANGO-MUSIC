@@ -462,17 +462,18 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return productDtoList;
 	}
-	// product 오래 등록된 순으로 정렬[성공]
+	
+	// product 최신 등록 순으로 정렬[성공]
 	@Override
-	public List<ProductDto> productListByOlder(Long categoryId) {
+	public List<ProductDto> productListByNewer(Long categoryId) {
 		Sort sort = Sort.by(Sort.Direction.ASC, "productDate");
-		List<Product> productList = productRepository.findByProductCategoryCategoryIdOrderByProductDate(categoryId, sort);
+		List<Product> productList = productRepository.findProductByProductCategoryCategoryIdOrderByProductDateAsc(categoryId, sort);
 		List<ProductDto> productDtoList = new ArrayList<>();
 		for (Product product : productList) {
 			productDtoList.add(ProductDto.toDto(product));
 		}
 		return productDtoList;
-	}	
+	}
 /*********************************************/		
 	/******************** 내림차순[ENTITY] ********************/
 	
@@ -493,7 +494,17 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return productDtoList;
 	}
-	
+	// product 오래 등록된 순으로 정렬[성공]
+	@Override
+	public List<ProductDto> productListByOlder(Long categoryId) {
+		Sort sort = Sort.by(Sort.Direction.DESC, "productDate");
+		List<Product> productList = productRepository.findProductByProductCategoryCategoryIdOrderByProductDateDesc(categoryId, sort);
+		List<ProductDto> productDtoList = new ArrayList<>();
+		for (Product product : productList) {
+			productDtoList.add(ProductDto.toDto(product));
+		}
+		return productDtoList;
+	}		
 
 /*********************************************/
 

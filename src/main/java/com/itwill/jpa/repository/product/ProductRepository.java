@@ -50,7 +50,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	List<Product> findProductByProductCategoryCategoryIdOrderByReadCountDesc(Long categoryId, Sort sort);
 	// 조회수별 오름차순 정렬
 	List<Product> findProductByProductCategoryCategoryIdOrderByReadCountAsc(Long categoryId, Sort sort);
+	// 오래된 순 정렬
 	List<Product> findProductByProductCategoryCategoryIdOrderByProductDateDesc(Long categoryId, Sort sort);
+	// 최신순 정렬
 	List<Product> findProductByProductCategoryCategoryIdOrderByProductDateAsc(Long categoryId, Sort sort);
 	
 	

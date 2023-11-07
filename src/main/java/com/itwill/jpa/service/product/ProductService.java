@@ -166,7 +166,7 @@ public interface ProductService{
 	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
 	
 	//주문 오래된순으로 나열하기
-	List<ProductDto> productListByOlder(Long categoryId);
+	List<ProductDto> productListByOlder(Long categoryId) throws Exception;
 	/*********************************************/	
 	/******************** 내림차순[ENTITY] ********************/		
 	// product 조회수별 내림차순 정렬 [성공]
@@ -178,7 +178,7 @@ public interface ProductService{
 	
 	
 	//주문 최신순으로 나열하기
-//	List<ProductDto> productListByNewer(Long categoryId);	
+	List<ProductDto> productListByNewer(Long categoryId) throws Exception;	
 	/*********************************************/	
 	
 	/******************** 키워드로 검색[ENTITY] ********************/	
