@@ -39,8 +39,8 @@ public class OrderDto {
 	
 //	private Long couponId;
 	
-	@Builder.Default
-	private List<OrderItemDto> orderItemDtos = new ArrayList<>();
+	//@Builder.Default
+	private List<OrderItemDto> orderItemDtos;
 	
 	@CreationTimestamp
 	private LocalDateTime createdAt;
