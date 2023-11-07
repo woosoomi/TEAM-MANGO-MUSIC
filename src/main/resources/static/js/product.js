@@ -82,11 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });*/
 
 
+/////////// top button 보이기 | 숨기기////////////////
 
-
-
-
-$(function() { // 보이기 | 숨기기
+$(function() { 
 	$(window).scroll(function() {
     if ($(this).scrollTop() > 500) { //300 넘으면 버튼이 보여짐
       $('#topBtn').fadeIn();
@@ -100,4 +98,17 @@ $(function() { // 보이기 | 숨기기
   	return false; 
   }); 
 });
+
+
+/////////////// 로그인 유무? //////////////////
+
+function loginChk() {
+	let signIn = '<%=(String)session.getAttribute("userId")%>';
+	if(signIn==null,""){
+		alert("로그인 후 사용하실 수 있습니다.");
+		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form";
+	}
+}
+
+
 
