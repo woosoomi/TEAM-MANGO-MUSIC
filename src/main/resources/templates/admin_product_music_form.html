@@ -35,20 +35,16 @@
 
 	<div id="admin_container"
 		style="display: grid; grid-template-columns: 200px 1fr;">
-		
-		
 		<!-- 관리자 페이지 사이드바 시작 -->
 		<div id="admin_menu">
 			<ul>
 				<li class="accordion"><a href="admin">회원</a>
-				
 				<li class="accordion"><a href="admin_music">상품</a>
 					<ul class="submenu">
 						<li><a href="admin_music">음악</a></li>
 						<li><a href="admin_goods">굿즈</a></li>
 						<li><a href="admin_ticket">티켓</a></li>
-					</ul>
-				</li>
+					</ul></li>
 				<li class="accordion"><a href="admin_Board">게시판</a>
 					<ul class="submenu">
 						<li><a href="#">공지사항</a></li>
@@ -64,49 +60,69 @@
 		</div>
 		<!-- 관리자 페이지 사이드바 종료 -->
 
-		<!-- 유저 테이블 시작 -->
+		<!-- 음악 추가 테이블 시작 -->
 		<div class="content" style="color: white; padding: 20px;">
-			<h1 style="margin-left: 600px; margin-bottom: 100px; margin-top: 20px;">회원 목록</h1>
-			
-			<table>
+			<h1 style="margin-left: 20px; margin-bottom: 20px; margin-top: 20px;">음악
+				목록</h1>
+
+			<table style="width: 100%; border-collapse: collapse;">
 				<tr style="font-size: 20px;">
-					<td style=" width: 43px;"><input type="checkbox" name="userList"></td>
-					<th>사용자 ID</th>
-					<th>이름</th>
-					<th>주소</th>
-					<th>이메일</th>
-					<th>주민번호</th>
-					<th>전화번호</th>
-					<th>성별</th>
+					<th style="width: 5%;"><input type="checkbox" name="musicList"></th>
+					<th style="width: 15%;">음악 ID</th>
+					<th style="width: 20%;">음악 이름</th>
+					<th style="width: 20%;">가수</th>
+					<th style="width: 20%;">발매일</th>
+					<th style="width: 20%;">장르</th>
 				</tr>
-				<tr>
-					<td><input type="checkbox" name="user1"></td>
-					<td>사용자1</td>
-					<td>이름1</td>
-					<th>주소1</th>
-					<th>이메일1</th>
-					<th>주민번호1</th>
-					<th>전화번호1</th>
-					<th>성별1</th>
+				<tr style="font-size: 20px;">
+					<td><input type="checkbox" name="music1"></td>
+					<td>음악1</td>
+					<td>음악 이름1</td>
+					<td>가수1</td>
+					<td>발매일1</td>
+					<td>장르1</td>
 				</tr>
-				<tr>
-					<td><input type="checkbox" name="user2"></td>
-					<td>사용자2</td>
-					<td>이름2</td>
-					<th>주소2</th>
-					<th>이메일2</th>
-					<th>주민번호2</th>
-					<th>전화번호2</th>
-					<th>성별2</th>
+				<tr style="font-size: 20px;">
+					<td><input type="checkbox" name="music2"></td>
+					<td>음악2</td>
+					<td>음악 이름2</td>
+					<td>가수2</td>
+					<td>발매일2</td>
+					<td>장르2</td>
 				</tr>
-				<!-- 다른 사용자 데이터 추가 -->
+				<!-- 다른 음악 데이터 추가 -->
 			</table>
-		
-		 <button id="user_deleteButton"style="margin-top: 20px;color: black;margin-left: 600px;">삭제하기</button>
-		 <button id="user_updateButton" style="margin-top: 20px;color: black;margin-left: 50px;">수정하기</button>
-		
+
+			<button id="music_deleteButton"
+				style="margin-top: 20px; color: black;">삭제하기</button>
+			<button id="music_updateButton"
+				style="margin-top: 20px; color: black;">수정하기</button>
+
+			<h2 style="margin-top: 20px;">음악 추가</h2>
+			
+			<form style="display: flex; flex-direction: row; width: 100%;">
+				<div style="flex: 1; margin-right: 10px;">
+					<label for="music_name">음악 이름:</label> <input type="text"
+						id="music_name" name="music_name">
+				</div>
+				<div style="flex: 1; margin-right: 10px;">
+					<label for="music_artist">가수:</label> <input type="text"
+						id="music_artist" name="music_artist">
+				</div>
+				<div style="flex: 1; margin-right: 10px;">
+					<label for="music_release_date">발매일:</label> <input type="text"
+						id="music_release_date" name="music_release_date">
+				</div>
+				<div style="flex: 1; margin-right: 10px;">
+					<label for="music_genre">장르:</label> <input type="text"
+						id="music_genre" name="music_genre">
+				</div>
+				<button type="submit"
+					style="flex: 1; margin-top: 20px; color: black;">추가</button>
+			</form>
 		</div>
-		<!-- 유저 테이블 종료 -->
+		<!-- 음악 추가 테이블 종료 -->
+
 
 	</div>
 
