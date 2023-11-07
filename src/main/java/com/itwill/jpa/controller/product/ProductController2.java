@@ -72,6 +72,7 @@ public class ProductController2 {
 			
 			if(findMusicOptional.isPresent()) {
 				Product findMusic=findMusicOptional.get();
+				productService.increaseReadCount(findMusic);
 				model.addAttribute("findMusic", findMusic);
 	            System.out.println(">>>MUSIC DETAIL:"+findMusic);
 			}else {
@@ -87,7 +88,7 @@ public class ProductController2 {
 	}
 	
 	// 멤버십
-	@GetMapping("/membership_detail")
+	@GetMapping("/product_membership_detail")
 	public String MembershipDetail(HttpSession session,Model model) {
 		try {
 			List<Product> memberships = productService.findByCategoryId(4L);
@@ -101,7 +102,7 @@ public class ProductController2 {
 				model.addAttribute("memberships", memberships);
 			}
 			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
-			return "membership_detail";
+			return "product_membership_detail";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());
@@ -110,40 +111,42 @@ public class ProductController2 {
 	}
 
 	// 굿즈리스트
-		@GetMapping("/goods_list")
+		@GetMapping("/product_goods_list")
 		public String GoodsList(Model model) {
 			try {
-				List<ProductDto> goods = productService.findByProductCategoryId(2L);
-				model.addAttribute("goods", goods);
-				//System.out.println(">>>GOODS LIST : " + goods);
-				return "goods_list";
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute(e.getMessage());
-				return null;
-			}
-		
-		}
-		
-		// 굿즈디테일
-		@GetMapping("/goods_detail/{productNo}")
-		public String GoodsDetail(@PathVariable Long productNo ,Model model) {
-			try {
-				Product goodsDetail=(Product)productService.findByProductNo(productNo).get();
-				System.out.println(productNo);
-				System.out.println(goodsDetail);
-				
-				productService.increaseReadCount(goodsDetail);
-				model.addAttribute("goodsDetail", goodsDetail);
-				log.info(">>>GOODS DETAIL : "+ goodsDetail);
-				
-				return "goods_detail";
+				List<ProductDto> goodsList = productService.findByProductCategoryId(2L);
+				model.addAttribute("goodsList", goodsList);
+				//System.out.println(">>>TICKET LIST : " + tickets);
+				return "product_goods_list";
 			} catch (Exception e) {
 				e.printStackTrace();
 				model.addAttribute(e.getMessage());
 				return null;
 			}
 			
+		}
+		
+		// 굿즈디테일
+		@GetMapping("/product_goods_detail")
+		public String GoodsDetail(@RequestParam(name = "productNo") Long productNo ,Model model) {
+		    try {
+		        Optional<Product> findGoodsOptional = productService.findByProductNo(productNo);
+
+		        if (findGoodsOptional.isPresent()) {
+		            Product findGoods = findGoodsOptional.get();
+		            productService.increaseReadCount(findGoods);
+		            model.addAttribute("findGoods", findGoods);
+		            System.out.println(">>>굿즈 상세정보:" + findGoods);
+		        } else {
+		            model.addAttribute("errorMSG", "해당 굿즈를 찾을 수 없습니다.");
+		        }
+		        return "product_goods_detail";
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        model.addAttribute("errorMSG", "티켓을 찾는 중 오류 발생: " + e.getMessage());
+		        return "error";
+		    }
 		}
 	
 		
@@ -171,6 +174,7 @@ public class ProductController2 {
 
 		        if (findTicketOptional.isPresent()) {
 		            Product findTicket = findTicketOptional.get();
+		            productService.increaseReadCount(findTicket);
 		            model.addAttribute("findTicket", findTicket);
 		            System.out.println(">>>티켓 상세정보:" + findTicket);
 		        } else {

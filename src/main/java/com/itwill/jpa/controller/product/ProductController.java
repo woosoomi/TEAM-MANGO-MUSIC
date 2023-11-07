@@ -23,10 +23,10 @@ public class ProductController {
 	private final ProductServiceImpl productServiceImpl;
 
 	// 굿즈리스트
-	@GetMapping("/product_goods_list")
-	public String goodsList(Model model) {
-		return "product_goods_list";
-	}
+	/*
+	 * @GetMapping("/product_goods_list") public String goodsList(Model model) {
+	 * return "product_goods_list"; }
+	 */
 	
 	
 	/*
