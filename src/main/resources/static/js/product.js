@@ -70,46 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-///////////goods list////////////
-/*document.addEventListener('DOMContentLoaded', function() {
-	const searchInput = document.getElementById('searchInput');
-	const goodsContainer = document.getElementById('goodsList');
-	var initialData = $('#goodsList').html();
-
-	searchInput.addEventListener('keyup', function(event) {
-		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
-		if (true) {
-			const searchValue = searchInput.value;
-			console.log(searchValue);
-			filterItems(searchValue);
-		}
-	});
-
-	var itemList = $(initialData).find('.movie-item-style-2').toArray();
-	console.log(itemList);
-
-	function filterItems(searchQuery) {
-		goodsContainer.innerHTML = '';
-
-
-		itemList.forEach(function(item) {
-
-			var goodsName = $(item).find('.goodsName').text();
-			console.log(goodsName);
-			//var artist = $(item).find('.artist').text();
-
-
-
-			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
-				musicContainer.appendChild(item);
-			}
-			if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
-				musicContainer.appendChild(item);
-			}
-		});
-
-	}
-});*/
 
 
 /////////// top button 보이기 | 숨기기////////////////
@@ -180,10 +140,14 @@ function loginChk() {
 
 
 	}
+///////////GOODS LIST////////////
 
 
-$(document).ready(function () {
+//////////////////////////////////////////////////////////////////////////////////////////////
+///////////// TICKET LIST //////////////////////
+
   // 정렬 함수
+$(document).ready(function () {
   function sortItems(order) {
     var ticketList = $('#ticketList'); // 티켓 목록을 감싸는 요소의 ID를 사용
     var items = ticketList.find('.movie-item-style-2').get(); // 티켓 항목 요소를 가져옴
@@ -211,6 +175,7 @@ $(document).ready(function () {
       ticketList.append(item);
     });
   }
+//////////////////////////////////////////////////////////////////////////////////////////////
 
   // select 요소의 변경 감지
   $('#sortSelect').on('change', function () {
