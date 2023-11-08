@@ -39,7 +39,7 @@ public class CartRestController {
 	CartRepository cartRepository;
 
 	@Operation(summary = "장바구니생성[성공]")
-	@PostMapping("/create")
+	@PostMapping("/cart_main/create")
 	public ResponseEntity<CartDto> createCart(@RequestBody CartDto dto) {
 	    try {
 	        CartDto createCart = cartServiceImpl.createCart(dto);

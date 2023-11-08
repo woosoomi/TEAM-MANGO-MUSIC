@@ -14,8 +14,10 @@ import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.entity.product.ProductReply;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
 import com.itwill.jpa.entity.product.Product.Music;
@@ -56,7 +58,7 @@ public interface ProductService{
 	ProductDto insertProductDto(ProductDto productDto);
 	
 	// goods 등록 - DTO[성공]
-	GoodsDto insertGoodsDto(GoodsDto goodsDto);
+	ProductDto insertGoodsDto(ProductDto productDto);
 		
 	// ticket 등록 - DTO[성공]	
 	TicketDto insertTicketDto(TicketDto ticketDto);
@@ -163,10 +165,10 @@ public interface ProductService{
 	
 	/******************** 오름차순[DTO] ********************/		
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
-//	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
+	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
 	
 	//주문 오래된순으로 나열하기
-	List<ProductDto> productListByOlder(Long categoryId);
+	List<ProductDto> productListByOlder(Long categoryId) throws Exception;
 	/*********************************************/	
 	/******************** 내림차순[ENTITY] ********************/		
 	// product 조회수별 내림차순 정렬 [성공]
@@ -176,18 +178,19 @@ public interface ProductService{
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
 	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
 	
-	List<MusicDto> musicByReadCountDescDto(Long categoryId) throws Exception;
 	
 	//주문 최신순으로 나열하기
-//	List<ProductDto> productListByNewer(Long categoryId);	
+	List<ProductDto> productListByNewer(Long categoryId) throws Exception;	
 	/*********************************************/	
 	
 	/******************** 키워드로 검색[ENTITY] ********************/	
 	// 키워드로 검색[성공]
 	public List<Product> searchProductsByKeyword(String keyword);
 	/******************** 키워드로 검색[DTO] ********************/	
-	/*********************************************/	
-
+	/*********************************************/
+	
+	/******************** 댓글달기 ********************/	
+	ProductReply ReplyInsert(ProductReply productReply);
 
 	
 

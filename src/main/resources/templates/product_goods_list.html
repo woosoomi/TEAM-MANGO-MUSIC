@@ -1,96 +1,110 @@
 <!DOCTYPE html>
-<!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
+<!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)]><!-->
 <html xmlns:th="http://www.thymeleaf.org">
-
+	
 <head><!-- Basic need -->
-	<title>Open Pediatrics</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
-	<link rel="profile" href="#"><!--Google Font-->
-	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
-	<!-- Mobile specific meta -->
-	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
-
+    <title>Open Pediatrics</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="profile" href="#"><!-- Google Font -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600" />
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone-no"><!-- CSS files -->
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product.css">
 </head>
 
 <body>
-<!--preloading-->
-	<div th:insert="~{common_header :: headerFragment}">
-	</div>
-	
-	<div class="page-single">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="topbar-filter fw">
-						<p>
-							Found <span>1,608 movies</span>in total
-						</p>
-						<label>Sort by:</label><select><option value="popularity">Popularity
-								Descending</option>
-							<option value="popularity">Popularity Ascending</option>
-							<option value="rating">Rating Descending</option>
-							<option value="rating">Rating Ascending</option>
-							<option value="date">Release date Descending</option>
-							<option value="date">Release date Ascending</option></select><a
-							href="movielist.html" class="list"><i
-							class="ion-ios-list-outline "></i></a><a href="moviegridfw.html"
-							class="grid"><i class="ion-grid active"></i></a>
-							
-						<p class="pad-change">Total <span th:text="${#lists.size(goodsList)}">1,608 </span> goods</p>
-					</div>
-							<div class="row" id="goodsList">
-
-
-						<div class="goods_List" th:each="goods : ${goodsList}">		
-					
-					<div class="flex-wrap-movielist mv-grid-fw">
-						<div class="movie-item-style-2 movie-item-style-1">
-									<a style="padding-right: 20px; color: #ffffff;" th:text="${goods.productNo}">번호</a>
-									<a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" > 
-									<img th:src="${goods.productImage}" alt="" style="width: 100px">
-									</a>
-							<div class="hvr-inner">
-								<a href="moviesingle.html">Read more <i
-									class="ion-android-arrow-dropright"></i></a>
-							</div>
-							<div class="mv-item-infor">
-								<h6>
-									<a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">Leonardo DiCaprio</a>
-								</h6>
-								<p class="rate">
-									<i class="ion-android-star"></i><span>8.1</span>/10
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="topbar-filter">
-						<label>Movies per page:</label><select><option
-								value="range">20 Movies</option>
-							<option value="saab">10 Movies</option></select>
-						<div class="pagination2">
-							<span>Page 1 of 2:</span><a class="active" href="#">1</a><a
-								href="#">2</a><a href="#">3</a><a href="#">...</a><a href="#">78</a><a
-								href="#">79</a><a href="#"><i class="ion-arrow-right-b"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- footer section-->
-	<div th:insert="~{common_footer :: footerFragment}">
-	</div>
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/cart.js"></script>
+    <!-- Preloading -->
+    <div th:insert="~{common_header :: headerFragment}">
+    </div>
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-12 col-xs-12"> <!-- Main content column -->
+                    <div class="topbar-filter fw">
+                        <p class="pad-change" style="white-space: nowrap;">
+                            총 <span th:text="${#lists.size(goodsList)}">1,608</span> 건의 goods
+                        </p>
+                        <!-- 정렬조건 -->
+                        <label style="white-space: nowrap;">Sort by:</label>
+                        <select id="sortSelect">
+                            <option value="popularity">조회수 오름차순</option>
+                            <option value="popularity">조회수 내림차순</option>
+                            <option value="date">최신순</option>
+                            <option value="date">오래된순</option>
+                        </select>
+                    </div>
+                    <div class="row" id="goodsList">
+                        <!-- 굿즈리스트 -->
+                        <div class="row">
+                            <div th:each="goods, iterStat : *{goodsList}" th:if="${iterStat.index lt 6}">
+                                <!-- 그리드 -->
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <!-- movie-item-style-1 -->
+                                    <div class="movie-item-style-2">
+                                        <a style="padding-right: 20px; color: #ffffff;" th:text="${goods.productNo}">번호</a>
+                                        <a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" href="celebritylist.html">
+                                            <img th:src="${goods.productImage}" alt="" style="width: 100px">
+                                        </a>
+                                        <div class="mv-item-infor">
+                                            <h6>
+                                                <a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">Tom Hardy</a>
+                                            </h6>
+                                            <p>굿즈가격 : <a th:text="${goods.productPrice}">actor</a> 원</p>
+                                            <p>남은개수 : <a th:text="${goods.productStock} ">10</a> 개</p>
+                                            <p>조 회 수 : <a th:text="${goods.readCount} ">10</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 페이지 네비게이션 -->
+                    <div class="row">
+                        <ul class="pagination">
+                            <li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 검색창 -->
+                <div class="col-md-3 col-xs-12 col-sm-12">
+                    <div class="sidebar">
+                        <div class="searh-form">
+                            <h4 class="sb-title">검색하기</h4>
+                            <form class="form-style-1 celebrity-form" action="#">
+                                <div class="form-it">
+                                    <label>굿즈이름</label>
+                                    <input type="text" placeholder="Enter keywords">
+                                </div>
+                                <div>
+                                    <input class="submit" type="submit" value="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer section -->
+    <div th:insert="~{common_footer :: footerFragment}">
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/plugins2.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/cart.js"></script>
 </body>
-
 </html>

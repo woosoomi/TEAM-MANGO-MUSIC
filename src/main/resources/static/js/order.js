@@ -7,8 +7,6 @@ $(document).ready(function() {
     items.sort(function(a, b) {
       var dateA = new Date($(a).find('.rate span').text().split(': ')[1]);
       var dateB = new Date($(b).find('.rate span').text().split(': ')[1]);
-      console.log(dateA)
-      console.log(dateB)
       // 날짜 객체를 사용하여 비교
       if (order === 'newest') {
         return dateB - dateA;

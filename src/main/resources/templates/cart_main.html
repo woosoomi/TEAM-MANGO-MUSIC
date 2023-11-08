@@ -26,7 +26,7 @@
 
 <body>
 	<!--preloading-->
-	<div th:insert="~{common_header :: headerFragment}"></div>
+	<div th:insert="~{common_header :: headerFragment}" ></div>
 	<div class="page-single userfav_list" style="color: aliceblue;">
 		<div class="container">
 			<div class="row ipad-width2">
@@ -60,8 +60,8 @@
 
 
 
-				<div class="col-md-9 col-sm-12 col-xs-12">
-					<p style="font-size: 17px; text-align: right;">
+				<div class="col-md-9 col-sm-12 col-xs-12" >
+					<p style="font-size: 17px; text-align: right;" >
 						01.옵션선택 > <span style="font-size: 23px; color: aqua;">02.장바구니
 							> </span> 03.주문하기 > 04.주문완료
 					</p>
@@ -102,29 +102,39 @@
 								style="width: 181px; height: 278px;">
 							<div th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
-								class="mv-item-infor">
-								<span th:text="${product.productName}"></span> <br /> <br />
+								class="mv-item-infor" style="width: 600px">
+								<hr style = "border:solid 1px; width: 100%; margin: 0 auto;"/>
+								<br/>
+								<span th:text="${product.productName}"></span> <br /><br />
+
 								<div
 									style="display: flex; align-items: center; font-size: 15px;">
-									<button class="quantity-control" onclick="changeQuantity(-1)"
+									<input type = "hidden"  class='test' th:data-cartItemId = '${cartItem.cartItemId}' th:value = '${cartItem.cartItemId}'>
+									<button class="quantity-control"
+										onclick="changeQuantity(-1, this)"
 										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; line-height: 25px; border: solid 1px white;">-</button>
 									<input id="cartItemQty" type="text"
 										style="width: 50px; height: 35px; background-color: rgb(2, 15, 25); text-align: center; font-size: 15px; border: solid 1px white; color: white;"
 										th:value="${cartItem.cartItemQty}" readonly>
-									<button class="quantity-control" onclick="changeQuantity(1)"
+									<button class="quantity-control"
+										onclick="changeQuantity(1, this)"
 										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; border: solid 1px white; line-height: 25px;">+</button>
 								</div>
-								<p class="describe">상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트상품상세내용테스트</p>
-								<p class="run-time" style="font-size: 20px">
+								<br/>
+								<p class="describe" th:text="${product.productContent}"></p>
+								<p class="run-time" style="font-size: 15px">
 									상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비 :
-									0원 <span style="color: orange;">주문금액 :</span> <span
+									0원 <span style="color: orange; font-size: 17px">주문금액 :</span> <span
 										id="totalPrice"
 										th:text="${product.productPrice * cartItem.cartItemQty +'원'}"
-										style="color: orange;"></span> <a href="#"
-										style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;">주문하기</a>
-								</p>
+										style="color: orange; font-size: 17px"></span>
+										<a href="#"
+										style="border: 1px solid #ccc; padding: 7px 20px; border-radius: 5px; color: white;">주문하기</a>
+								</p><br/>
+								<hr style = "border:solid 1px; width: 100%; margin: 0 auto;"/>
+								
 
-								<div
+								<div id = "total"
 									style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
 									<span id="cartTotPrice"
 										style="margin-right: 10px; font-size: 18px;"> <span
@@ -278,6 +288,10 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		
+	</script>
+
 	<!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<script src="js/jquery.js"></script>

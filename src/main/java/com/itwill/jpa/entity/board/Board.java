@@ -3,7 +3,6 @@ package com.itwill.jpa.entity.board;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,6 +11,7 @@ import com.itwill.jpa.dto.board.BoardDto;
 import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +41,8 @@ public class Board {
 	private Long boardId;
 
 	private String boardTitle;
+	
+	@Column(columnDefinition = "CLOB")
 	private String boardContent;
 	private String boardImage;
 	private String boardPrize;

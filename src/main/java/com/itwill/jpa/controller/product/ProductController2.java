@@ -134,7 +134,7 @@ public class ProductController2 {
 
 		        if (findGoodsOptional.isPresent()) {
 		            Product findGoods = findGoodsOptional.get();
-		            productService.increaseReadCount(findGoods);
+	//	            productService.increaseReadCount(findGoods);
 		            model.addAttribute("findGoods", findGoods);
 		            System.out.println(">>>굿즈 상세정보:" + findGoods);
 		        } else {
@@ -155,6 +155,7 @@ public class ProductController2 {
 		public String TicketList(Model model) {
 			try {
 				List<ProductDto> tickets = productService.findByProductCategoryId(3L);
+				tickets = productService.productByReadCountDescDto(3L);
 				model.addAttribute("tickets", tickets);
 				//System.out.println(">>>TICKET LIST : " + tickets);
 				return "product_ticket_list";

@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.jpa.controller.user.LoginCheck;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.board.BoardType;
 import com.itwill.jpa.service.board.BoardServiceImpl;
+import com.itwill.jpa.service.user.UserService;
 import com.itwill.jpa.service.user.UserServiceImpl;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -32,6 +37,9 @@ public class BoardController {
 	private final BoardServiceImpl boardServiceImpl;
 
 	private UserServiceImpl userServiceImpl;
+
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/board_event")
 	public String eventPage(Model model) {
@@ -46,10 +54,11 @@ public class BoardController {
 			return null;
 		}
 	}
-
 	@GetMapping("/board_notification")
-	public String notificationPage(Model model) {
+	public String notificationPage(HttpSession session, Model model) {
 		try {
+			
+			
 			List<Board> notifications = boardServiceImpl.findBycategory(1L);
 			model.addAttribute("notifications", notifications);
 			System.out.println("notifications리스트 : " + notifications);
@@ -89,23 +98,34 @@ public class BoardController {
 		}
 	}
 
+	@LoginCheck
 	@GetMapping("/board_inquiries")
-	public String inquiries(Model model) {
+	public String inquiries(HttpSession session, Model model) throws Exception{
 		try {
-			List<Board> inquiries = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,
-					"why3795");
-			Collections.reverse(inquiries);
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
 
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+
+			    // 사용자 정보를 세션에 저장
+			    session.setAttribute("loginUser", user);
+			}
+			
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+				
+			List<Board> inquiries = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,	userIdString);
+			Collections.reverse(inquiries);
 			model.addAttribute("inquiries", inquiries);
 			System.out.println("inquiries 리스트 : " + inquiries);
-
 			return "board_inquiries";
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("errorMSG : " + e.getMessage());
-			return null;
+
+			}catch (Exception e) {
+				e.printStackTrace();
+				return "index";
+			}
 		}
-	}
 
 	@GetMapping("/board_faq")
 	public String faq(Model model) {
@@ -159,7 +179,7 @@ public class BoardController {
 			return "error";
 		}
 	}
-	
+
 	@GetMapping("/board_other_detail")
 	public String board_other_detail(@RequestParam(name = "boardId") Long boardId, Model model) {
 		try {
@@ -171,13 +191,38 @@ public class BoardController {
 				Board board = boardOptional.get();
 				model.addAttribute("board", board);
 				model.addAttribute("ReplyList", ReplyList);
-				
+
 			} else {
 				// 게시물이 존재하지 않을 경우 에러 처리
 				model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
 			}
 
 			return "board_other_detail";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
+			return "error";
+		}
+	}
+	
+	@GetMapping("/board_other_detail1")
+	public String board_other_detail1(@RequestParam(name = "boardId") Long boardId, Model model) {
+		try {
+			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
+			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
+			List<BoardReply> ReplyList = boardServiceImpl.findByBoard_boardId(boardId);
+			if (boardOptional.isPresent()) {
+				// 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
+				Board board = boardOptional.get();
+				model.addAttribute("board", board);
+				model.addAttribute("ReplyList", ReplyList);
+
+			} else {
+				// 게시물이 존재하지 않을 경우 에러 처리
+				model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+			}
+
+			return "board_other_detail1";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMSG", "에러 발생: " + e.getMessage());
@@ -208,6 +253,8 @@ public class BoardController {
 		}
 	}
 	
+	
+
 	@GetMapping("/board_map")
 	public String board_map(Model model) {
 		try {
@@ -218,7 +265,5 @@ public class BoardController {
 			return null;
 		}
 	}
-	
-
 
 }

@@ -44,21 +44,6 @@ public class UserController {
 		return forward_path;
 	}
 
-	/*
-	 * @LoginCheck
-	 * 
-	 * @PostMapping("/user_login_action") public String
-	 * user_login_action(@ModelAttribute("fuser") UserLoginDto userLoginDto, Model
-	 * model, HttpSession session) throws Exception { String forwardPath = ""; try {
-	 * userService.loginUser(userLoginDto.getUserId(), userLoginDto.getUserPw());
-	 * session.setAttribute("sUserId", userLoginDto.getUserId()); forwardPath =
-	 * "redirect:user_info_form"; } catch (UserNotFoundException e) {
-	 * e.printStackTrace(); model.addAttribute("msg1", e.getMessage()); forwardPath
-	 * = "user_login_form"; } catch (PasswordMismatchException e) {
-	 * e.printStackTrace(); model.addAttribute("msg2", e.getMessage()); forwardPath
-	 * = "user_login_form"; } return forwardPath; }
-	 */
-
 	@GetMapping("/user_write_form")
 	public String user_write_form() {
 		String forward_path = "user_write_form";
@@ -96,15 +81,16 @@ public class UserController {
 		return "user_modify_form";
 	}
 
-	@LoginCheck
-	@PostMapping("/user_modify_action")
-	public String user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto, HttpServletRequest request)
-			throws Exception {
-		String sUserId = (String) request.getSession().getAttribute("sUserId");
-		userUpdateDto.setUserId(sUserId);
-		userService.updateUser(userUpdateDto);
-		return "redirect:user_info_form";
-	}
+	/*
+	 * @LoginCheck
+	 * 
+	 * @PostMapping("/user_modify_action") public String
+	 * user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto,
+	 * HttpServletRequest request) throws Exception { String sUserId = (String)
+	 * request.getSession().getAttribute("sUserId");
+	 * userUpdateDto.setUserId(sUserId); userService.updateUser(userUpdateDto);
+	 * return "redirect:user_info_form"; }
+	 */
 
 	@LoginCheck
 	@PostMapping("/user_remove_action")

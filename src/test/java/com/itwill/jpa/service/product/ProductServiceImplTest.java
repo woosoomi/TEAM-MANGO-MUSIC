@@ -26,7 +26,9 @@ import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
+import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Music;
+import com.itwill.jpa.repository.product.ProductCategoryRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -42,6 +44,9 @@ class ProductServiceImplTest {
 
 	@Autowired
 	ProductDao productDao;
+	
+	@Autowired
+	ProductCategoryRepository productCategoryRepository;
 	
 	// productNo 찾기[성공]
 	@Test
@@ -134,17 +139,39 @@ class ProductServiceImplTest {
 	@Transactional
 	@Rollback(false)
 	@Disabled
-	public void testInsertGoodsDto() {
+	public void testProductDto() {
 	    // GoodsDto를 생성하고 categoryId 설정
-	    GoodsDto goodsDto = new GoodsDto();
-	    ProductCategoryDto productCategory = new ProductCategoryDto();
-        productCategory.setCategoryId(2L);
-	    goodsDto.setProductName("테스트 상품");
-	    goodsDto.setProductPrice(7777);
-	    goodsDto.setProductStock(100);
+		Product product = new Product();
+		product.setCategoryId(2L);
+	    ProductDto productDto = ProductDto.toDto(product);
+	    productDto.setProductName("테스트 상품");
+	    productDto.setProductPrice(7777);
+	    productDto.setProductStock(100);
 //	    goodsDto.setProductCategoryId(productCategory);
 	    // insertGoodsDto 메서드 호출
-	    GoodsDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
+	    ProductDto savedProductDto = productServiceImpl.insertProductDto(productDto);
+	    System.out.println(savedProductDto);
+		System.out.println(productDto.getProductName());
+		System.out.println(productDto.getProductPrice());
+//		System.out.println(goodsDto.getProductCategory());
+		
+	}
+	// goods 추가 - DTO로 받기[성공]
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testinsertGoodsDto() {
+		// GoodsDto를 생성하고 categoryId 설정
+		Product goods = new Product();
+		ProductDto goodsDto = ProductDto.toDto(goods);
+		goodsDto.setProductName("테스트굿즈");
+		goodsDto.setProductPrice(7777);
+		goodsDto.setProductStock(100);
+//	    goodsDto.setProductCategoryId(productCategory);
+		// insertGoodsDto 메서드 호출
+		ProductDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
+		System.out.println(savedGoodsDto);
 		System.out.println(goodsDto.getProductName());
 		System.out.println(goodsDto.getProductPrice());
 //		System.out.println(goodsDto.getProductCategory());
@@ -215,54 +242,52 @@ class ProductServiceImplTest {
 //	  }
 	
 	// product 삭제 - DTO로 받기[성공]
-//		@Test
-//		@Transactional
-//		@Rollback(false)
-//		@Disabled	 
-//		void testDeledtProductDto() throws Exception {
-//			// productNo 값을 지정
-//			productServiceImpl.deleteProductDto(24L);
-//		}
+		@Test
+		@Transactional
+		@Rollback(false)
+		@Disabled	 
+		void testDeledtProductDto() throws Exception {
+			// productNo 값을 지정
+			productServiceImpl.deleteProductDto(6L);
+		}
 
 	  
 	// product 수정[성공]
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	public void testUpdateProduct() {
-//		Long productNo = 1L;
-//		Product product = productServiceImpl.getProduct(productNo);
-//		// 수정
-//		product.setProductName("수정 테스트완료");
-//		// updateProduct 메서드 호출
-//		Product updatedProduct = productServiceImpl.updateProduct(product);
-//	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testUpdateProduct() {
+		Long productNo = 6L;
+		Product product = productServiceImpl.getProduct(productNo);
+		// 수정
+		product.setProductName("수정 테스트완료");
+		// updateProduct 메서드 호출
+		Product updatedProduct = productServiceImpl.updateProduct(product);
+	}
 	
 	
 	// product 수정 - DTO로 받기
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	public void testUpdateProductDto() throws Exception {
-		Product product = productRepository.findById(2L).get();
-		ProductDto productDto = ProductDto.toDto(product);
+		
+		ProductDto productDto = new ProductDto(6L, "sadasda", 123, null, null, 0, null, 0, null, null, null, null, 0, null, null, null);
+		productDto.setProductNo(6L);
 		productDto.setProductName("수정완료");
+		productDto.setProductArtist("가수수정");
+		
 		ProductDto updatedProductDto = productServiceImpl.updateProductDto(productDto);
 		System.out.println(updatedProductDto);
 		
-//        Long existingProductId = 2L;
-//		Optional<Product> productOptional = productRepository.findById(existingProductId);
-//		if(productOptional.isPresent()) {
-//			Product product = productOptional.get();
-//			ProductDto productDto = ProductDto.toDto(product);
-//			productDto.setProductName("수정 테스트완료");
-//			ProductDto updatedProductDto = productServiceImpl.updateProductDto(productDto);
-//			productRepository.save(updatedProductDto);
-//			System.out.println(updatedProductDto.getProductName());
-//		}
 	}
+		
+//		Long productNo = 6L;
+//		Product product = productServiceImpl.getProduct(productNo);
+		
+		
 	// 제목키워드로 검색[성공]
 //	@Test
 //	@Transactional
@@ -275,47 +300,49 @@ class ProductServiceImplTest {
 //	}
 
 	// product 조회수별 내림차순 정렬[성공]
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	public void testGetProductOrderByReadCountDesc() {
-		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
-		for (Product product : products) {
-			System.out.println(
-					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
-		}
-	}
-	@Test
-	@Transactional
-	@Rollback(false)	
+//	@Test
+//	@Transactional
+//	@Rollback(false)
 //	@Disabled
-	public void testProductByReadCountDescDto() {
-		// Arrange (준비)
-		Long categoryId = 1L; // 적절한 카테고리 ID 설정
-		// Act (실행)
-		List<ProductDto> productList = productServiceImpl.productByReadCountDescDto(categoryId);
-		for (ProductDto productDto : productList) {
-			System.out.println(
-					"Product Name : " + productDto.getProductName() + "///Read Count : " + productDto.getReadCount());
-		}
-		
-	}
-	@Test
-	@Transactional
-	@Rollback(false)	
-	@Disabled
-    public void testMusicByReadCountDescDto() {
-        // Arrange (준비)
-        Long categoryId = 1L; // 적절한 카테고리 ID 설정
-        // Act (실행)
-        List<MusicDto> musicList = productServiceImpl.musicByReadCountDescDto(categoryId);
-        for (MusicDto music : musicList) {
-			System.out.println(
-					"Product Name : " + music.getProductName() + "///Read Count : " + music.getReadCount());
-        }
-        
-    }
+//	public void testGetProductOrderByReadCountDesc() {
+//		List<Product> products = productServiceImpl.getProductOrderByReadCountDesc();
+//		for (Product product : products) {
+//			System.out.println(
+//					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+//		}
+//	}
+	// product 조회수별 오름차순 정렬[DTO][성공]
+//	@Test
+//	@Transactional
+//	@Rollback(false)	
+//	@Disabled
+//	public void testProductByReadCountAscDto() {
+//		// Arrange (준비)
+//		Long categoryId = 1L; // 적절한 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
+//		// Act (실행)
+//		List<ProductDto> productList = productServiceImpl.productByReadCountAscDto(categoryId);
+//		for (ProductDto productDto : productList) {
+//			System.out.println(
+//					"Product Name : " + productDto.getProductName() + "///Read Count : " + productDto.getReadCount());
+//		}
+//		
+//	}
+	// product 조회수별 내림차순 정렬[DTO][성공]
+//	@Test
+//	@Transactional
+//	@Rollback(false)	
+//	@Disabled
+//	public void testProductByReadCountDescDto() {
+//		// Arrange (준비)
+//		Long categoryId = 1L; // 적절한 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
+//		// Act (실행)
+//		List<ProductDto> productList = productServiceImpl.productByReadCountDescDto(categoryId);
+//		for (ProductDto productDto : productList) {
+//			System.out.println(
+//					"Product Name : " + productDto.getProductName() + "///Read Count : " + productDto.getReadCount());
+//		}
+//		
+//	}
 //	@Test
 //	@Transactional
 //	@Rollback(false)
@@ -330,54 +357,69 @@ class ProductServiceImplTest {
 //        }
 //	}
 	// product 조회수별 오름차순 정렬[성공]
+//	@Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//	public void testGetProductOrderByReadCountAsc() {
+//		List<Product> products = productServiceImpl.getProductOrderByReadCountAsc();
+//		for (Product product : products) {
+//			System.out.println(
+//					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+//		}
+//	}
+
+	// product 오래 등록된 순으로 정렬[DTO][성공]
 	@Test
 	@Transactional
-	@Rollback(false)
+	@Rollback(false)	
 	@Disabled
-	public void testGetProductOrderByReadCountAsc() {
-		List<Product> products = productServiceImpl.getProductOrderByReadCountAsc();
-		for (Product product : products) {
+	public void testProductListByNewer() {
+		// Arrange (준비)
+		Long categoryId = 3L; // 적절한 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
+		// Act (실행)
+		List<ProductDto> productList = productServiceImpl.productListByNewer(categoryId);
+		for (ProductDto productDto : productList) {
 			System.out.println(
-					"Product Name : " + product.getProductName() + "///Read Count : " + product.getReadCount());
+					"Product Name : " + productDto.getProductName() + "///Product Date : " + productDto.getProductDate());
 		}
-	}
-
-
-    // product 오래 등록된 순으로 정렬
-    @Test
-    @Transactional
-    @Rollback(false)
-    @Disabled
-    public void testProductListByOlder () throws Exception {
-    	Long categoryId = 1L; // 테스트하려는 categoryId
-    	// 테스트할 내용
-    	List<ProductDto> productDtos = productServiceImpl.productListByOlder(categoryId);
-    	for (ProductDto product : productDtos) {
-        	System.out.println("오래된 순");
-    		System.out.println(
-    				"Product Name : " + product.getProductName() + "///ProductDate : " + product.getProductDate());
-    	}
-    }    	
-
-	// product 조회수 올리기[성공]
+		
+	}	
+	// product 오래 등록된 순으로 정렬[DTO][성공]
 	@Test
 	@Transactional
-	@Rollback(false)
+	@Rollback(false)	
 	@Disabled
-	public void testIncreaseReadCount() {
-		Optional<Product> productOptional = productRepository.findById(5L);
-		if (productOptional.isPresent()) {
-			// 엔티티가 존재할 경우
-			Product product = productOptional.get();
-			// readCount 증가
-			product.setReadCount(product.getReadCount() + 1);
-			// 변경사항 저장
-			productRepository.save(product);
-		} else {
-			// 엔티티 못찾았을 경우의 예외처리
+	public void testProductListByOlder() {
+		// Arrange (준비)
+		Long categoryId = 3L; // 카테고리 ID 설정[1. music, 2. goods, 3. ticket, 4. membership]
+		// Act (실행)
+		List<ProductDto> productList = productServiceImpl.productListByOlder(categoryId);
+		for (ProductDto productDto : productList) {
+			System.out.println(
+					"Product Name : " + productDto.getProductName() + "///Product Date : " + productDto.getProductDate());
 		}
-	}
-	// product 조회수 올리기[실패]	
+		
+	}	
+	// product 조회수 올리기[성공]
+//	@Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//	public void testIncreaseReadCount() {
+//		Optional<Product> productOptional = productRepository.findById(5L);
+//		if (productOptional.isPresent()) {
+//			// 엔티티가 존재할 경우
+//			Product product = productOptional.get();
+//			// readCount 증가
+//			product.setReadCount(product.getReadCount() + 1);
+//			// 변경사항 저장
+//			productRepository.save(product);
+//		} else {
+//			// 엔티티 못찾았을 경우의 예외처리
+//		}
+//	}
+	// product 조회수 올리기[DTO][실패]	
 	@Test
 	@Transactional
 	@Rollback(false)
