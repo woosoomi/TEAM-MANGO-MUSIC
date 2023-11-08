@@ -80,23 +80,21 @@
 								</li>
 							</ul>
 						</div>
-						<!-- 
+						
 							
-						<div class="searh-form">
-							<form class="form-style-1 celebrity-form" action="#">
+						<!--userId가 admin일때 보이기 -->
+						<div th:if="${session == null or (userIdString != null and userIdString == 'admin')}"
+							class="searh-form">
+							<form class="form-style-1 celebrity-form"
+								action="/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_write">
 								<div class="row">
-									
-									<div class="col-md-12 form-it">
-										<div class="row">
-											</div>
-											<div class="col-md-6"></div>
-										</div>
+									<div class="col-md-12">
+										<input class="submit" type="submit" value="작성하기">
 									</div>
-									<div class="col-md-12 "><input class="submit" type="submit" value="게시글 작성"></div>
 								</div>
 							</form>
 						</div>
-						-->
+						
 
 						<div class="ads">
 							<img src="images/uploads/ads1.png" alt="">
