@@ -101,9 +101,10 @@
 									
 						<!--티켓 상세설명-->	
 								<li class="active"><a href="#overview">상세설명</a></li>
-									<li><a href="#reviews">댓글</a></li>
+									<li><a href="#reviews">댓글쓰기</a></li>
 									<li><a href="#cast"> 아티스트 </a></li>
-									<li><a href="#media">관련영상</a></li>									
+									<li><a href="#media">관련영상</a></li>
+									<li><a href="#media">오시는길</a></li>										
 								</ul>
 								<div class="tab-content">
 									<div id="overview" class="tab active">
@@ -264,7 +265,7 @@
 									
 				<!--댓글보기-->
 									<div id="reviews" class="tab review">
-										<div class="row">
+										<!--<div class="row">
 											<div class="rv-hd">
 												<div class="div">
 													<h3>Related Movies To</h3>
@@ -474,7 +475,7 @@
 														href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#"><i
 															class="ion-arrow-right-b"></i></a></div>
 											</div>
-										</div>
+										</div>-->
 									</div>
 									
 									<!--아티스트 보기-->
@@ -922,7 +923,43 @@
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div>
 </body>
-	
+
+<script>
+	function create_reply() {
+		const productNo = 8;
+		
+		const commentData = {
+			"productReplyTitle": "비동기테스트",
+			"productReplyContent": "비동기테스트",
+			"productNo": productNo,
+			"userId": "myr1109"
+		}
+		console.log(commentData);
+		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_reply_create/${productNo}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(commentData)
+		})
+			.then(response => {
+				if (response.status === 201) {
+					alert('댓글 등록되었습니다.');
+					window.location.href = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/index';
+
+				} else {
+					alert('댓글 등록에 실패했습니다.');
+					alert('에러 발생: ' + error);
+
+				}
+			})
+			.catch(error => {
+				alert('에러 발생: ' + error);
+			});
+
+
+	}
+</script>		
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
