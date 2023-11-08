@@ -15,6 +15,8 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/productTest.css">
+	
 </head>
 
 <body><!--preloading-->
@@ -31,30 +33,43 @@
 		</div>
 	</div>
 	
+	<!--굿즈 정보시작-->
 	<div class="page-single movie-single movie_single">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div class="movie-img sticky-sb"><img src="images/uploads/movie-single.jpg" alt="">
-						<div class="movie-btn">
+					<div class="movie-img sticky-sb"><img th:src="${findGoods.productImage}" src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
+					
+						<!--뮤비 보기 버튼-->
+						<!--<div class="movie-btn">
 							<div class="btn-transform transform-vertical red">
-								<div><a href="#" class="item item-1 redbtn"><i class="ion-play"></i>Watch Trailer</a>
+								<div><a th:href="${findGoods.productMovie}" href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-1 redbtn"><i class="ion-play"></i>트레일러 보기</a>
 								</div>
-								<div><a href="https://www.youtube.com/embed/o-0hcF97wy0"
+								<div><a th:href="${findTicket.productMovie}" href="https://www.youtube.com/embed/o-0hcF97wy0"
 										class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a>
 								</div>
-							</div>
+							</div>-->
+							
+						<!--굿즈 구매하기 버튼-->			
 							<div class="btn-transform transform-vertical">
-								<div><a href="#" class="item item-1 yellowbtn"><i class="ion-card"></i>Buy ticket</a>
+								<div><a href="cart_main" class="item item-1 yellowbtn"><i class="ion-card"></i>굿즈 구매</a>
 								</div>
-								<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+								<div><a href="cart_main" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
 							</div>
+							
 						</div>
 					</div>
 				</div>
+				
+						<!--굿즈 정보표시-->				
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="movie-single-ct main-content">
-						<h1 class="bd-hd">Skyfall: Quantum of Spectre <span>2015</span></h1>
+						<h1 class="bd-hd" th:text="${findGoods.productName}">Skyfall: Quantum of Spectre
+					</h1>   <p>참여가수 : <span th:text="${findGoods.productArtist}" style="margin-bottom: 15px;">2015</span></p>
+							<p>공연일자 : <span th:text="${findGoods.productDate}" style="margin-bottom: 15px;"></span></p><span>
+							<p>티켓가격 : <span th:text="${findGoods.productPrice}" style="margin-bottom: 15px;"></span>원</p>  
+							<p>잔여좌석 : <span th:text="${findGoods.productStock}" style="margin-bottom: 15px;"></span>석</p>  
+							<p>공연장소 : <span th:text="${findGoods.productAddress}" style="margin-bottom: 15px;"></span></p>  
 						<div class="social-btn"><a href="#" class="parent-btn"><i class="ion-heart"></i>Add to
 								Favorite</a>
 							<div class="hover-bnt"><a href="#" class="parent-btn"><i
@@ -64,11 +79,13 @@
 											class="ion-social-twitter"></i></a><a href="#" class="hvr-grow"><i
 											class="ion-social-googleplus"></i></a><a href="#" class="hvr-grow"><i
 											class="ion-social-youtube"></i></a></div>
+								</div>
 							</div>
-						</div>
+						<!--</div>-->
+						<!--굿즈 좋아요-->						
 						<div class="movie-rate">
 							<div class="rate"><i class="ion-android-star"></i>
-								<p><span>8.1</span>/10<br><span class="rv">56 Reviews</span></p>
+								<p>추천 개수 : <span th:text="${findGoods.productStar}">8.1</span>명이 추천해주셨습니다.<br><span class="rv">56 Reviews</span></p>
 							</div>
 							<div class="rate-star">
 								<p>Rate This Movie:</p><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i
@@ -77,29 +94,33 @@
 									class="ion-ios-star-outline"></i>
 							</div>
 						</div>
+						
+						<!--굿즈 상세설명 및 댓글-->
 						<div class="movie-tabs">
 							<div class="tabs">
 								<ul class="tab-links tabs-mv">
-									<li class="active"><a href="#overview">Overview</a></li>
-									<li><a href="#reviews">Reviews</a></li>
-									<li><a href="#cast"> Cast & Crew </a></li>
-									<li><a href="#media">Media</a></li>
-									<li><a href="#moviesrelated">Related Movies</a></li>
+									
+						<!--굿즈 상세설명-->	
+								<li class="active"><a href="#overview">상세설명</a></li>
+									<li><a href="#reviews">댓글</a></li>
+									<li><a href="#cast"> 아티스트 </a></li>
+									<!--<li><a href="#media">관련영상</a></li>-->									
 								</ul>
 								<div class="tab-content">
 									<div id="overview" class="tab active">
+								<h3>아티스트 : <span th:text="${findGoods.productArtist}"></span></h3>
+								<h2>공연제목 : <span th:text="${findGoods.productName}"></span></h2>
+										<img th:src="${findGoods.productImage}" src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
+										
 										<div class="row">
 											<div class="col-md-8 col-sm-12 col-xs-12">
-												<p>Tony Stark creates the Ultron Program to protect the world, but when
-													the peacekeeping program becomes hostile, The Avengers go into
-													action to try and defeat a virtually impossible enemy together.
-													Earth's mightiest heroes must come together once again to protect
-													the world from global extinction.</p>
-												<div class="title-hd-sm">
-													<h4>Videos & Photos</h4><a href="#" class="time">All 5 Videos & 245
-														Photos <i class="ion-ios-arrow-right"></i></a>
+												<p><span th:text="${findGoods.productContent}"></span></p>
 												</div>
-												<div class="mvsingle-item ov-item"><a class="img-lightbox"
+												<div class="title-hd-sm">
+													<!--<h4>Videos & Photos</h4><a href="#" class="time">All 5 Videos & 245
+														Photos <i class="ion-ios-arrow-right"></i></a>-->
+												</div>
+										<!--		<div class="mvsingle-item ov-item"><a class="img-lightbox"
 														data-fancybox-group="gallery"
 														href="images/uploads/image11.jpg"><img
 															src="images/uploads/image1.jpg" alt=""></a><a
@@ -114,13 +135,14 @@
 															class="fancybox-media hvr-grow"
 															href="https://www.youtube.com/embed/o-0hcF97wy0"><img
 																src="images/uploads/play-vd.png" alt=""></a></div>
-												</div>
-												<div class="title-hd-sm">
+												</div>-->
+											<!--	<div class="title-hd-sm">
 													<h4>cast</h4><a href="#" class="time">Full Cast & Crew <i
 															class="ion-ios-arrow-right"></i></a>
-												</div><!-- movie cast -->
-												<div class="mvcast-item">
+												</div> <!--movie cast--> -->
+											<!--	<div class="mvcast-item">
 													<div class="cast-it">
+														
 														<div class="cast-left"><img src="images/uploads/cast1.jpg"
 																alt=""><a href="#">Robert Downey Jr.</a></div>
 														<p>... Robert Downey Jr.</p>
@@ -159,25 +181,27 @@
 														<div class="cast-left"><img src="images/uploads/cast9.jpg"
 																alt=""><a href="#">Don Cheadle</a></div>
 														<p>... James Rhodes/ War Machine</p>
-													</div>
-												</div>
+													</div>-->
+												<!--</div>
 												<div class="title-hd-sm">
 													<h4>User reviews</h4><a href="#" class="time">See All 56 Reviews <i
 															class="ion-ios-arrow-right"></i></a>
-												</div><!-- movie user review -->
+												</div> movie user review 
 												<div class="mv-user-review-item">
 													<h3>Best Marvel movie in my opinion</h3>
-													<div class="no-star"><i class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star"></i><i
-															class="ion-android-star last"></i></div>
-													<p class="time"> 17 December 2016 by <a href="#">hawaiipierson</a>
+													<div class="no-star"><i class="ion-android-star"></i>-->
+													<!--<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star last"></i>
+													</div>-->
+													
+											<!--		<p class="time"> 17 December 2016 by <a href="#">hawaiipierson</a>
 													</p>
 													<p>This is by far one of my favorite movies from the MCU. The
 														introduction of new Characters both good and bad also makes the
@@ -191,12 +215,13 @@
 														is splendid (they really do out do themselves in each film,
 														there are no problems watching it more than once.</p>
 												</div>
-											</div>
-											<div class="col-md-4 col-xs-12 col-sm-12">
+											</div>-->
+											<!--<div class="col-md-4 col-xs-12 col-sm-12">
 												<div class="sb-it">
 													<h6>Director:</h6>
 													<p><a href="#">Joss Whedon</a></p>
-												</div>
+												</div>-->
+												<!--
 												<div class="sb-it">
 													<h6>Writer:</h6>
 													<p><a href="#">Joss Whedon,</a><a href="#">Stan Lee</a></p>
@@ -234,9 +259,11 @@
 																href="#">final battle</a></span></p>
 												</div>
 												<div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
-											</div>
+											</div>-->
 										</div>
 									</div>
+									
+				<!--댓글보기-->
 									<div id="reviews" class="tab review">
 										<div class="row">
 											<div class="rv-hd">
@@ -450,25 +477,29 @@
 											</div>
 										</div>
 									</div>
-									<div id="cast" class="tab">
+									
+									<!--아티스트 보기-->
+									
+									<div id="cast"  class="tab">
+											<h3>아티스트 : <span th:text="${findGoods.productArtist}"></span></h3>
+											<h2>공연제목 : <span th:text="${findGoods.productName}"></span></h2>
+											<div class="title-hd-sm1">									
 										<div class="row">
-											<h3>Cast & Crew of</h3>
-											<h2>Avengers: Age of Ultron</h2><!-- //== -->
 											<div class="title-hd-sm">
-												<h4>Directors & Credit Writers</h4>
+											</div>
 											</div>
 											<div class="mvcast-item">
 												<div class="cast-it">
 													<div class="cast-left">
-														<h4>JW</h4><a href="#">Joss Whedon</a>
+														<h4>Artist</h4><a href="#"><span th:text="${findGoods.productArtist}"></span></a>
 													</div>
-													<p>... Director</p>
+													<!--<p>... Director</p>-->
 												</div>
-											</div><!-- //== -->
-											<div class="title-hd-sm">
+											</div>  
+											<!--<div class="title-hd-sm">
 												<h4>Directors & Credit Writers</h4>
-											</div>
-											<div class="mvcast-item">
+											</div>-->
+											<!--<div class="mvcast-item">
 												<div class="cast-it">
 													<div class="cast-left">
 														<h4>SL</h4><a href="#">Stan Lee</a>
@@ -505,8 +536,8 @@
 													</div>
 													<p>... (character created by: Ultron, Vision)</p>
 												</div>
-											</div><!-- //== -->
-											<div class="title-hd-sm">
+											</div> -->
+											<!--<div class="title-hd-sm">
 												<h4>Cast</h4>
 											</div>
 											<div class="mvcast-item">
@@ -550,7 +581,7 @@
 															href="#">Don Cheadle</a></div>
 													<p>... James Rhodes/ War Machine</p>
 												</div>
-											</div><!-- //== -->
+											</div> //== 
 											<div class="title-hd-sm">
 												<h4>Produced by</h4>
 											</div>
@@ -603,19 +634,22 @@
 													</div>
 													<p>... associate producer</p>
 												</div>
-											</div>
+											</div>-->
 										</div>
 									</div>
+				<!--관련영상 보기-->
+				<!--https://youtu.be/a9jDYsAsBg0-->
+				<!--<p>공연일자 : <span th:text="${findTicket.productName}" style="margin-bottom: 15px;"></span></p><span>	-->			
 									<div id="media" class="tab">
 										<div class="row">
 											<div class="rv-hd">
 												<div>
-													<h3>Videos & Photos of</h3>
-													<h2>Skyfall: Quantum of Spectre</h2>
+											<h3>아티스트 : <span th:text="${findGoods.productArtist}"></span></h3>
+											<h2>공연제목 : <span th:text="${findGoods.productName}"></span></h2>
 												</div>
 											</div>
 											<div class="title-hd-sm">
-												<h4>Videos <span>(8)</span></h4>
+												<h4>트레일러<span></span></h4>
 											</div>
 											<div class="mvsingle-item media-item">
 												<div class="vd-item">
@@ -625,11 +659,11 @@
 															href="https://www.youtube.com/embed/o-0hcF97wy0"><img
 																src="images/uploads/play-vd.png" alt=""></a></div>
 													<div class="vd-infor">
-														<h6><a href="#">Trailer: Watch New Scenes</a></h6>
+														<h6><a href="${findGoods.productMovie}"><span th:text="${findGoods.productName}"></span></a></h6>
 														<p class="time">1: 31</p>
 													</div>
 												</div>
-												<div class="vd-item">
+												<!--<div class="vd-item">
 													<div class="vd-it"><img class="vd-img"
 															src="images/uploads/vd-item2.jpg" alt=""><a
 															class="fancybox-media hvr-grow"
@@ -706,12 +740,12 @@
 														<h6><a href="#">Official Trailer #2</a></h6>
 														<p class="time">3:27</p>
 													</div>
-												</div>
+												</div>-->
 											</div>
-											<div class="title-hd-sm">
+											<!--<div class="title-hd-sm">
 												<h4>Photos <span>(21)</span></h4>
-											</div>
-											<div class="mvsingle-item"><a class="img-lightbox"
+											</div>-->
+<!--											<div class="mvsingle-item"><a class="img-lightbox"
 													data-fancybox-group="gallery" href="images/uploads/image11.jpg"><img
 														src="images/uploads/image1.jpg" alt=""></a><a
 													class="img-lightbox" data-fancybox-group="gallery"
@@ -774,7 +808,7 @@
 													class="img-lightbox" data-fancybox-group="gallery"
 													href="images/uploads/image211.jpg"><img
 														src="images/uploads/image2-1.jpg" alt=""></a></div>
-										</div>
+										</div>-->
 									</div>
 									<div id="moviesrelated" class="tab">
 										<div class="row">
@@ -884,9 +918,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<!-- footer section-->
+	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
 	

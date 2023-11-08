@@ -18,50 +18,45 @@
 	<link rel="stylesheet" href="css/product.css">
 </head>
 
-<body><!--preloading-->
+<body>
+	<!--preloading-->
 	<!-- END | Header -->
 	<div th:insert="~{common_header::headerFragment}">
 	</div>
-	<!-- celebrity grid v1 section-->
-	
+	<!-- celebrity grid v1 section-->	
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
 							<p class="pad-change">
-								Total <span th:text="${#lists.size(tickets)}">1,608 </span> ticket
+								총 <span th:text="${#lists.size(tickets)}">1,608 </span> 건의 ticket
 							</p>
-																											
-						<!--<p>Found <span th:text="${#lists.size(tickets)}">건</span>in total</p>-->
 						
 						<!--정렬조건-->
 						<label>Sort by:</label>
 						<select id="sortSelect">					
-							<option value="popularity">인기도 오름차순</option>
-							<option value="popularity">인기도 내림차순</option>
-							<option value="date">출시일 오름차순</option>
-							<option value="date">출시일 내림차순</option>
+							<option value="popularity">조회수 오름차순</option>
+							<option value="popularity">조회수 내림차순</option>
+							<option value="date">최신순</option>
+							<option value="date">오래된순</option>
 						</select>			
-						</div>	
+						</div>							
+						<div class="row" id="ticketList">																			
 						
-						
-						<div class="row" id="ticketList">	
-																		
-						<div class="ticket_List" th:each="ticket : ${tickets}">
+                 <!--티켓리스트-->
+                 	<div class="row">
+						<!--<div th:each="ticket : ${tickets}">-->
+						<div th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 6}">
+							
+							<!--그냥 나열-->
 							<div class="flex-wrap-movielist user-fav-list">
 								
-								<!--<div class="movie-item-style-2">
-									<a style="padding-right: 20px; color: #ffffff;"		
-                        th:text="${ticket.productNo}">번호</a> <a
-										th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}">
-										<img th:src="${ticket.productImage}" alt=""
-										style="width: 100px">
-                    </div>-->
-                    
-                    <!--티켓리스트-->
-                    <div class="product_ticket_List">
-					<div class="flex-wrap-movielist user-fav-list">	
+							<!--그리드-->	
+							<!--<div class="col-md-4 col-sm-12 col-xs-12">-->
+									                   
+                    <!--<div class="product_ticket_List">
+					<div class="flex-wrap-movielist user-fav-list">-->
 						
                         <div class="movie-item-style-2">
 							<a style="padding-right: 20px; color: #ffffff;"
@@ -72,42 +67,50 @@
                                 </a>
                                 <div class="mv-item-infor">
                                 <h6>
-                                <a th:text="${ticket.productName}">Tom Hardy</a></h3>
+                                <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">Tom Hardy</a></h3>
                                 </h6>
-                                <p>티켓가격 : <a th:text="|${ticket.productPrice} 원 |">actor</a></p>
-                                <p>잔여좌석 : <a th:text="|${ticket.productStock} 좌석 남았습니다|">10</a></p>
-                                <p>조 회 수 : <a th:text="|${ticket.readCount} 분이 조회했습니다|">10</a></p>
+                                <p>티켓가격 : <a th:text="${ticket.productPrice}">actor</a> 원</p>
+                                <p>잔여좌석 : <a th:text="${ticket.productStock} ">10</a> 좌석 남았습니다.</p>
+                                <p>조 회 수 : <a th:text="${ticket.readCount} ">10</a> 분이 조회했습니다</p>
                             </a>
-                            
-                            <!--<div class="ceb-infor">
-                                <h3><a th:href="@{/ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
-                                <span th:text="${ticket.productName}">Tom Hardy</a></span></h3>
-                                <span th:text="|${ticket.productPrice} 원 |">actor</span>
-                                <p />
-                                <span th:text="|${ticket.productStock} 좌석 남았습니다|">10</span>
-                            </div>-->
-                        </div>
+                            <!--</div>-->
+                        <!--</div>-->
                         </div>
                     </div>      
                 </div>                
               </div> 
               </div>
               </div> 
-              </div>
+
             <!--</div>-->
             
-            
+            <!--페이지-->
+ 					<div class="row">
+					</div>
+					<ul class="pagination">
+						<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+					</ul>
+				</div>  
+				
+			<!--검색창-->         
                 <div class="col-md-3 col-xs-12 col-sm-12">
                     <div class="sidebar">
                         <div class="searh-form">
-                            <h4 class="sb-title">Search celebrity</h4>
+                            <h4 class="sb-title">검색하기</h4>
                             <form class="form-style-1 celebrity-form" action="#">
                                 <div class="row">
                                     <div class="col-md-12 form-it">
-                                        <label>Celebrity name</label>
+                                        <label>티켓이름</label>
                                         <input type="text" placeholder="Enter keywords">
                                     </div>
-                                    <div class="col-md-12 form-it">
+                                    
+                                    <!--<div class="col-md-12 form-it">
                                         <label>Celebrity Letter</label>
                                         <select>
                                             <option value="range">A</option>
@@ -136,7 +139,7 @@
                                                     <option value="number">others</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <div class="col-md-12 ">
                                         <input class="submit" type="submit" value="submit">
@@ -144,6 +147,7 @@
                                 </div>
                             </form>
                         </div>
+                        
                         <!--<div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
                         <div class="celebrities">
                             <h4 class="sb-title">featured celebrity</h4>
@@ -180,6 +184,7 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/product.js"></script>
 </body>
 
 </html>
