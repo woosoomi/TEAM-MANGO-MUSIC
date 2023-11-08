@@ -117,7 +117,7 @@ public class ProductController2 {
 			return null;
 		}
 	}
-
+	
 	// 굿즈리스트
 		@LoginCheck
 		@GetMapping("/product_goods_list")

@@ -140,5 +140,45 @@ function loginChk() {
 	}
 }
 
+///////////// 댓글달기 //////////////////////
+	function create_reply() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const productNo = urlParams.get("productNo");
+		const productNoInt = parseInt(productNo, 10); //prodctId
+
+		var commentContent = $("#comment_content").val()
+		console.log(commentContent);
+
+		const commentData = {
+			"productReplyTitle": "댓글타이틀",
+			"productReplyContent": commentContent,
+			"productNo": productNoInt,
+			"userId": "rgh66" //세션처리 아이디넣으면 자동으로 이름들어옴
+		}
+		console.log(commentData);
+		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_reply_create/${productNo}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(commentData)
+		})
+			.then(response => {
+				if (response.status === 201) {
+					alert('댓글 등록되었습니다.');
+					location.reload(); // 현재 페이지를 새로 고침
+
+				} else {
+					alert('댓글 등록에 실패했습니다.');
+					alert('에러 발생: ' + error);
+
+				}
+			})
+			.catch(error => {
+				alert('에러 발생: ' + error);
+			});
+
+
+	}
 
 
