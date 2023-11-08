@@ -75,6 +75,10 @@
 									<label>UserEmail</label><input type="text" placeholder="**********"
 										th:value="${loginUser.userEmail}" id="userEmail">
 								</div>
+								<div class="col-md-6 form-it">
+									<label></label><input type="hidden" placeholder="**********"
+										th:value="${loginUser.userId}" id="userId">  <!--ui에서 숨김 hidden 처리-->
+								</div>
 							</div>
 
 							<div class="row">
@@ -91,41 +95,48 @@
 	<!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
-
+	
 	<script>
 		function updateUser() {
-			alert("수정시작")
-			// 수정할 데이터를 JSON 형식으로 만들기
 			var userData = {
-				userId : "why3795",
-				userName: "111",
-				userPw: "1111",
-				userPhone: "1111",
-				userAddress: "1111",
-				userEmail: "1111"
+				userName: document.getElementById("userName").value,
+				userPw: document.getElementById("userPw").value,
+				userPhone: document.getElementById("userPhone").value,
+				userAddress: document.getElementById("userAddress").value,
+				userEmail: document.getElementById("userEmail").value,
+				userId: document.getElementById("userId").value
 			};
-
+			
+			console.log(userId);
+			alert("업데이트 시작");
+			
 			// 서버로 데이터 전송
-			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/update/{userId}', {
+			fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/update/${userData.userId}`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(userData)
 			})
-				.then((response) => {
-					if (response.status === 200) {
-						alert("게시글이 수정되었습니다.");
-					window.location.reload();
-					} else {
-						alert("게시글 수정에 실패했습니다.");
-					}
+				.then(response => response.json())
+				.then(updatedUserData => {
+					// 수정된 데이터를 화면에 업데이트
+					document.getElementById("userName").value = updatedUserData.userName;
+					document.getElementById("userPw").value = updatedUserData.userPw;
+					document.getElementById("userPhone").value = updatedUserData.userPhone;
+					document.getElementById("userAddress").value = updatedUserData.userAddress;
+					document.getElementById("userEmail").value = updatedUserData.userEmail;
+					document.getElementById("userId").value = updatedUserData.userId;
+
+					// 성공 메시지 또는 리디렉션을 처리 (필요에 따라)
+					window.location.href = "user_info_form";
 				})
-				.catch((error) => {
-					alert("에러발생.")
-					console.error("에러:", error);
-				})
+				.catch(error => {
+					console.error('에러:', error);
+					// 에러 메시지 처리 (필요에 따라)
+				});
 		}
+		
 	</script>
 
 	<script src="js/jquery.js"></script>

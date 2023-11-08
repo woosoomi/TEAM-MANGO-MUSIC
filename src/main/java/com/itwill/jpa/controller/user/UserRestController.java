@@ -177,6 +177,17 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/getUserInfo")
+	public ResponseEntity<String> getUserInfo(HttpSession session) {
+		String userId = (String) session.getAttribute("sUserId");
+		if (userId != null) {
+			return new ResponseEntity<>(userId, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("User not logged in", HttpStatus.UNAUTHORIZED);
+		}
+	}
+	
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleException(Exception e) {
