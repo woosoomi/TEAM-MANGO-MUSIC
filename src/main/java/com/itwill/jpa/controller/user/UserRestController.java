@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.dto.user.UserLoginDto;
 import com.itwill.jpa.dto.user.UserUpdateDto;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.ExistedUserException;
 import com.itwill.jpa.exception.user.PasswordMismatchException;
+import com.itwill.jpa.service.cart.CartService;
 import com.itwill.jpa.service.user.UserService;
 import com.itwill.jpa.service.user.UserServiceImpl;
 
@@ -40,6 +42,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	private CartService cartService;
 
 	@Operation(summary = "회원가입[성공]")
 	@PostMapping(value = "/join")
@@ -49,6 +54,8 @@ public class UserRestController {
 				throw new ExistedUserException("이미 존재하는 아이디입니다. >>> user_write_action 레스트 컨트롤러 작동");
 			}
 			UserDto createdUser = userService.createUser(userDto);
+			cartService.createCart(userDto.getUserId());
+			
 			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 		} catch (ExistedUserException e) {
 			// 이미 존재하는 사용자 예외 처리
