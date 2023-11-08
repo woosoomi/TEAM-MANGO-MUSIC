@@ -28,8 +28,10 @@ import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.entity.product.ProductReply;
 import com.itwill.jpa.exception.product.NotEnoughProductStockException;
 import com.itwill.jpa.repository.product.ProductCategoryRepository;
+import com.itwill.jpa.repository.product.ProductReplyRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -43,6 +45,9 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	private ProductCategoryRepository productCategoryRepository;
+	
+	@Autowired
+	private ProductReplyRepository productReplyRepository;
 	
 	@Autowired
 	ProductDao productDao;
@@ -243,7 +248,12 @@ public class ProductServiceImpl implements ProductService{
 	public Membership insertMembership(Membership membership) {
 		return productRepository.save(membership);
 	}
-	
+
+	//댓글달기	
+	@Override
+	public ProductReply ReplyInsert(ProductReply productReply) {
+		return productReplyRepository.save(productReply);
+	}
 /******************** INSERT[DTO] ********************/
 	// product 등록 - DTO[성공]
 	@Override
@@ -515,7 +525,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	/*==============================================================*/
 	
-	
+
 	
 
 @Override

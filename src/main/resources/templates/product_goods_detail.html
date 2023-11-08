@@ -50,14 +50,14 @@
 								</div>
 							</div>-->
 							
-						<!--굿즈 구매하기 버튼-->			
+						<!--굿즈 구매하기 버튼-->
+						<div class="movie-btn">			
 							<div class="btn-transform transform-vertical">
 								<div><a href="cart_main" class="item item-1 yellowbtn"><i class="ion-card"></i>굿즈 구매</a>
 								</div>
 								<div><a href="cart_main" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
 							</div>
-							
-						</div>
+							</div>						
 					</div>
 				</div>
 				
@@ -65,11 +65,10 @@
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="movie-single-ct main-content">
 						<h1 class="bd-hd" th:text="${findGoods.productName}">Skyfall: Quantum of Spectre
-					</h1>   <p>참여가수 : <span th:text="${findGoods.productArtist}" style="margin-bottom: 15px;">2015</span></p>
-							<p>공연일자 : <span th:text="${findGoods.productDate}" style="margin-bottom: 15px;"></span></p><span>
-							<p>티켓가격 : <span th:text="${findGoods.productPrice}" style="margin-bottom: 15px;"></span>원</p>  
-							<p>잔여좌석 : <span th:text="${findGoods.productStock}" style="margin-bottom: 15px;"></span>석</p>  
-							<p>공연장소 : <span th:text="${findGoods.productAddress}" style="margin-bottom: 15px;"></span></p>  
+					</h1>   <p>관련가수 : <span th:text="${findGoods.productArtist}" style="margin-bottom: 15px;">2015</span></p>
+							<p>등록일자 : <span th:text="${findGoods.productDate}" style="margin-bottom: 15px;"></span></p><span>
+							<p>굿즈가격 : <span th:text="${findGoods.productPrice}" style="margin-bottom: 15px;"></span>원</p>  
+							<p>남은개수 : <span th:text="${findGoods.productStock}" style="margin-bottom: 15px;"></span>석</p>   
 						<div class="social-btn"><a href="#" class="parent-btn"><i class="ion-heart"></i>Add to
 								Favorite</a>
 							<div class="hover-bnt"><a href="#" class="parent-btn"><i
