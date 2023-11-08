@@ -17,6 +17,7 @@ import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.cart.CartDaoImpl;
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
@@ -43,7 +44,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Test
 	@Transactional
-	@Disabled
+	//Disabled
 	@Rollback(false)
 	void createCart() throws Exception {
 		
@@ -60,7 +61,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 			CartDto createCart = cartServiceImpl.createCart(cartDto);
 			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+createCart);
 		}
-
+			
 	}
 	
 	
@@ -108,7 +109,7 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void findCartByCartId() throws Exception {
