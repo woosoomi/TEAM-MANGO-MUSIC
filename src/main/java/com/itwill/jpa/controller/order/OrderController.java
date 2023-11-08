@@ -9,16 +9,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.thymeleaf.context.Context;
 
+import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.order.CouponDto;
 import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.order.CouponService;
 import com.itwill.jpa.service.order.DeliveryService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
+import com.itwill.jpa.service.user.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -38,19 +42,29 @@ public class OrderController {
 	@Autowired
 	private CouponService couponService;
 	
+	@Autowired
+	private UserService userService;
 	
+	@LoginCheck
 	@GetMapping("/order_membership")
-	public String orderMembershipPage(Model model, HttpServletRequest request) {
+	public String orderMembershipPage(Model model, HttpSession session) {
 		
 		try {
-					
+			
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+			user = userService.findUser(loginUser);
+
+			    // 사용자 정보를 세션에 저장
+			String userId = (user != null) ? user.getUserId() : null;
+			model.addAttribute("user_id", userId);
 			/*************** 유저정보 ***************/
 			
 			//임의로 세션 로그인 유저 설정함
-			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "lsg33");
-			String userId = (String) session.getAttribute("user_id");
-			model.addAttribute("user_id", userId);
+//			HttpSession session = request.getSession();
+//			session.setAttribute("user_id", "lsg33");
+//			String userId = (String) session.getAttribute("user_id");
+//			model.addAttribute("user_id", userId);
 			
 			/*************** 주문아이템 ***************/
 						
@@ -137,19 +151,19 @@ public class OrderController {
 	            
 	
 	
-	
+	@LoginCheck
 	@GetMapping("/order_ticket")
-	public String orderTicketPage(Model model, HttpServletRequest request) {
+	public String orderTicketPage(Model model, HttpSession session) {
 		
 		try {
-			
 			/*************** 유저정보 ***************/
+			String userId = (String) session.getAttribute("sUserId");
 			
-			//임의로 세션 로그인 유저 설정함
-			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "ycl77");
-			String userId = (String) session.getAttribute("user_id");
-			model.addAttribute("user_id", userId);
+//			//임의로 세션 로그인 유저 설정함
+//			HttpSession session = request.getSession();
+//			session.setAttribute("user_id", "ycl77");
+//			String userId = (String) session.getAttribute("user_id");
+//			model.addAttribute("user_id", userId);
 			
 			/*************** 주문아이템 ***************/
 			
@@ -246,16 +260,15 @@ public class OrderController {
 	
 				
 	
-	
+	@LoginCheck
 	@GetMapping("/order_history")
-	public String orderHistoryPage(Model model, HttpServletRequest request) {
+	public String orderHistoryPage(Model model, HttpSession session) {
 		try {
 			
-			HttpSession session = request.getSession();
-			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "cgj22");
-			String userId = (String) session.getAttribute("user_id");
-//			//테스트용 코드
+			String userId = (String) session.getAttribute("sUserId");
+			UserDto user = userService.findUser(userId);
+			model.addAttribute("user", user);
+			//테스트용 코드
 			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 			model.addAttribute("orderDtoList", orderDtoList);
 			System.out.println("주문 내역:" + orderDtoList);
@@ -268,11 +281,6 @@ public class OrderController {
 			model.addAttribute("orderDtoNewerList", orderDtoNewerList);
 			System.out.println("주문 내역 최신순:" + orderDtoNewerList);
 			
-			Context context = new Context();
-			context.setVariable("user_id", userId);
-			
-			// Thymeleaf 템플릿에 컨텍스트를 전달
-			model.addAttribute("context", context);
 			return "order_history";
 			
 		} catch (Exception e) {
