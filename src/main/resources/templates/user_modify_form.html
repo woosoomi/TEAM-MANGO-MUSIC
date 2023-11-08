@@ -113,8 +113,8 @@
 	    };
 
 	    // 서버로 데이터 전송
-	    fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_modify_action', {
-	        method: 'POST',
+	    fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/' + userId, {
+	        method: 'PUT',
 	        headers: {
 	            'Content-Type': 'application/json'
 	        },
@@ -136,10 +136,7 @@
 	        // 에러 메시지 처리 (필요에 따라)
 	    });
 	}
-
 	</script>
-
-
 
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
