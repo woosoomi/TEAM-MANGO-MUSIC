@@ -374,12 +374,12 @@ public class ProductServiceImpl implements ProductService{
 //		return productDto;
 //	}
 /******************** UPDATE[DTO] ********************/	
-	// product 수정 - DTO[실패]
+	// product 수정 - DTO[성공]
 	@Transactional
 	@Override
 	public ProductDto updateProductDto(ProductDto dto) throws Exception {
-	    Product product = productDao.updateProduct(Product.toEntity(dto));
-	    ProductDto productDto = ProductDto.toDto(product);
+		Product updateProduct = productDao.updateProduct(dto);
+		ProductDto productDto = ProductDto.toDto(updateProduct);
 	    return productDto;
 	}
 //	// goods 수정 - DTO

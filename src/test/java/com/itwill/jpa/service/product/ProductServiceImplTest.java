@@ -253,45 +253,39 @@ class ProductServiceImplTest {
 
 	  
 	// product 수정[성공]
-//	@Test
-//	@Transactional
-//	@Rollback(false)
-//	@Disabled
-//	public void testUpdateProduct() {
-//		Long productNo = 1L;
-//		Product product = productServiceImpl.getProduct(productNo);
-//		// 수정
-//		product.setProductName("수정 테스트완료");
-//		// updateProduct 메서드 호출
-//		Product updatedProduct = productServiceImpl.updateProduct(product);
-//	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	public void testUpdateProduct() {
+		Long productNo = 6L;
+		Product product = productServiceImpl.getProduct(productNo);
+		// 수정
+		product.setProductName("수정 테스트완료");
+		// updateProduct 메서드 호출
+		Product updatedProduct = productServiceImpl.updateProduct(product);
+	}
 	
 	
 	// product 수정 - DTO로 받기
 	@Test
 	@Transactional
 	@Rollback(false)
-	@Disabled
+//	@Disabled
 	public void testUpdateProductDto() throws Exception {
-		Product product = productRepository.findById(8L).get();
-		ProductDto productDto = ProductDto.toDto(product);
+		
+		ProductDto productDto = new ProductDto(6L, "sadasda", 123, null, null, 0, null, 0, null, null, null, null, 0, null, null, null);
+		productDto.setProductNo(6L);
 		productDto.setProductName("수정완료");
 		productDto.setProductArtist("가수수정");
+		
 		ProductDto updatedProductDto = productServiceImpl.updateProductDto(productDto);
 		System.out.println(updatedProductDto);
 		
-//        Long existingProductId = 2L;
-//		Optional<Product> productOptional = productRepository.findById(existingProductId);
-//		if(productOptional.isPresent()) {
-//			Product product = productOptional.get();
-//			ProductDto productDto = ProductDto.toDto(product);
-//			productDto.setProductName("수정 테스트완료");
-//			ProductDto updatedProductDto = productServiceImpl.updateProductDto(productDto);
-//			productRepository.save(updatedProductDto);
-//			System.out.println(updatedProductDto.getProductName());
-//		}
 	}
 		
+//		Long productNo = 6L;
+//		Product product = productServiceImpl.getProduct(productNo);
 		
 		
 	// 제목키워드로 검색[성공]
