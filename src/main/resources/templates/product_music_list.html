@@ -44,7 +44,7 @@
 						<div class="music_List" th:each="music : ${musics}">
 							<div class="flex-wrap-movielist user-fav-list">
 								<div class="movie-item-style-2">
-									<a style="padding-right: 20px; color: #ffffff;"
+									<a class="rank" style="padding-right: 20px; color: #ffffff;"
 										th:text="${music.productNo}">번호</a> <a
 										th:href="@{/product_music_detail(productNo=${music.productNo})}">
 										<img th:src="${music.productImage}" alt=""

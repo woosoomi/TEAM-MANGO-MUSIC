@@ -39,6 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 });
 
+/*내림차순 */
+const arr = [2, 1, 3, 10];
+
+arr.sort(function(a, b)  {
+  return b - a;
+});
+document.writeln(arr + '<br>');
 
 ///////////goods list////////////
 /*document.addEventListener('DOMContentLoaded', function() {
