@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en" class="no-js">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head><!-- Basic need -->
+	<title>Mango</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<link rel="profile" href="#"><!--Google Font-->
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+	<!-- Mobile specific meta -->
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
+	<link rel="stylesheet" href="css/plugins.css">
+	<link rel="stylesheet" href="css/style1.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/order.js"></script>
+</head>
+
+<body><!--preloading-->
+<div th:insert="~{common_header :: headerFragment}"></div>
+	
+	
+	
+	
+	<!--최신순, 오래된순-->
+	 
+
+	<div class="page-single movie_list">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-12 col-xs-12">
+					<div class="topbar-filter">
+						<p><a th:text="${context.user_id}+'님의'"></a>
+							<span th:text="${#lists.size(orderItemDtoList)}"></span>
+							<span>개의 주문내역</span>
+					 
+				
+							</p><label>Sort by:</label>
+						<select id="sortSelect">
+				        <option value="newest">최신순</option>
+				        <option value="oldest">오래된순</option>
+					    </select>
+					</div>
+					
+		<!--주문내역-->	
+    
+			<div class="row" id="orderHistory">
+		
+        <div th:each="order, iterStat: ${orderDtoList}">
+			주문 내역 최신순:[OrderDto(orderId=10, orderPrice=50000, orderStatus=배송중, userId=cgj22, deliveryId=10, orderItemDtos=[OrderItemDto(oiId=10, oiQty=3, productName=멤버십 제품1, productImage=tmembership.png, productPrice=300, productContent=멤버십 제품 설명 1, productNo=7, orderId=10)], createdAt=2023-11-07T10:21:35.444, updatedAt=2023-11-07T10:21:35.444), 
+							  OrderDto(orderId=2, orderPrice=20000, orderStatus=배송준비중, userId=cgj22, deliveryId=2, orderItemDtos=[OrderItemDto(oiId=2, oiQty=5, productName=멤버십 제품1, productImage=tmembership.png, productPrice=300, productContent=멤버십 제품 설명 1, productNo=7, orderId=2)], createdAt=2023-11-07T10:21:35.350, updatedAt=2023-11-07T10:21:35.350)]
+			
+			
+		<div class="movie-item-style-2">
+   			 <img th:src="@{'images/' + ${order.orderItemDtos[0].productImage}}" alt="">
+   		 <div class="mv-item-infor">
+            <h6>
+                <a th:text="'주문번호:  '+${order.orderId}"></a>
+        	     <!--삭제버튼-->
+                <button th:class="deleteButton" th:data-order-id="${order.orderItemDtos[0].oiId}">x</button>
+          
+            </h6>
+                <p class="rate">
+                    <span th:text="${order.orderItemDtos[0].productName}+ ' [총 ' + ${order.orderItemDtos[0].oiQty} + '개]'"></span>
+                </p>
+                <p class="rate">
+                    <span th:text="${order.orderPrice + '원'}"></span>
+                </p>
+                <p class="rate">
+					
+                	<!--<span th:text="'배송지: '+${deliveryList[iterStat.index].deliveryAddress != null ? deliveryList[iterStat.index].deliveryAddress : '배송지 없음'}"></span>-->
+                </p>
+                <p class="rate">
+                    <span th:text="${'구매날짜: '+ #temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                </p>
+         		
+            <p class="describe">
+                <span th:text = "'주문상태: '+${order.orderStatus}"></span>
+            </p>
+            <p>⚠️ 환불불가 상품입니다.</p>
+            <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="board_inquiries">고객센터</a>로 문의해주세요.</p>
+		   
+        				</div>
+        
+    				</div>
+				</div>
+			</div>
+
+
+
+					
+				</div>
+					<div class="sidebar">
+					<div class="ads2">
+						<p>🎦광고</p>
+						<img src="images/aespa.png" alt=""></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- footer section-->
+	<footer class="ht-footer">
+		<div class="container">
+			<div class="flex-parent-ft">
+				<div class="flex-child-ft item1"><a href="index.html"><img class="logo" src="images/logo1.png"
+							alt=""></a>
+					<p>5th Avenue st, manhattan<br> New York, NY 10001</p>
+					<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
+				</div>
+				<div class="flex-child-ft item2">
+					<h4>Resources</h4>
+					<ul>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Blockbuster</a></li>
+						<li><a href="#">Contact Us</a></li>
+						<li><a href="#">Forums</a></li>
+						<li><a href="#">Blog</a></li>
+						<li><a href="#">Help Center</a></li>
+					</ul>
+				</div>
+				<div class="flex-child-ft item3">
+					<h4>Legal</h4>
+					<ul>
+						<li><a href="#">Terms of Use</a></li>
+						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="#">Security</a></li>
+					</ul>
+				</div>
+				<div class="flex-child-ft item4">
+					<h4>Account</h4>
+					<ul>
+						<li><a href="#">My Account</a></li>
+						<li><a href="#">Watchlist</a></li>
+						<li><a href="#">Collections</a></li>
+						<li><a href="#">User Guide</a></li>
+					</ul>
+				</div>
+				<div class="flex-child-ft item5">
+					<h4>Newsletter</h4>
+					<p>Subscribe to our newsletter system now <br>to get latest news from us.</p>
+					<form action="#"><input type="text" placeholder="Enter your email..."></form><a href="#"
+						class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="ft-copyright">
+			<div class="ft-left">
+				<p>© 2017 Blockbuster. All Rights <a href="http://www.bootstrapmb.com/"
+						title="bootstrapmb">Reserved</a>. Designed by leehari.</p>
+			</div>
+			<div class="backtotop">
+				<p><a href="#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
+			</div>
+		</div>
+	</footer><!-- end of footer section-->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+</body>
+
+</html>

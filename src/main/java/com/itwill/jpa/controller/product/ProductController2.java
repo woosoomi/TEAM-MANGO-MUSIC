@@ -45,10 +45,12 @@ public class ProductController2 {
 	private final UserService userService;
 	
 	// 뮤직리스트 
+	@LoginCheck
 	@GetMapping("/product_music_list")
-	public String musicList(Model model) {
+	public String musicList(Model model, HttpSession session) {
 		try {
-			
+			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("userId",userId);
 //			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 //			musics=productService.productByReadCountDescDto(1L);
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
@@ -64,10 +66,12 @@ public class ProductController2 {
 	}
 
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
-	
+	@LoginCheck
 	@GetMapping("/product_music_detail")
 	public String MusicDetail(@RequestParam(name = "productNo" ) Long productNo, Model model, HttpSession session) {
 		try {
+			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("userId",userId);
 			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			
@@ -91,9 +95,13 @@ public class ProductController2 {
 	}
 	
 	// 멤버십
+	@LoginCheck
 	@GetMapping("/product_membership_detail")
 	public String MembershipDetail(HttpSession session,Model model) {
 		try {
+			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("userId",userId);
+			
 			List<Product> memberships = productService.findByCategoryId(4L);
 			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
 			
@@ -109,11 +117,14 @@ public class ProductController2 {
 			return null;
 		}
 	}
-
+	
 	// 굿즈리스트
+		@LoginCheck
 		@GetMapping("/product_goods_list")
-		public String GoodsList(Model model) {
+		public String GoodsList(Model model,HttpSession session) {
 			try {
+				String userId = (String) session.getAttribute("sUserId");
+				model.addAttribute("userId",userId);
 				List<ProductDto> goodsList = productService.findByProductCategoryId(2L);
 				model.addAttribute("goodsList", goodsList);
 				//System.out.println(">>>TICKET LIST : " + tickets);
@@ -127,9 +138,12 @@ public class ProductController2 {
 		}
 		
 		// 굿즈디테일
+		@LoginCheck
 		@GetMapping("/product_goods_detail")
-		public String GoodsDetail(@RequestParam(name = "productNo") Long productNo ,Model model) {
+		public String GoodsDetail(@RequestParam(name = "productNo") Long productNo ,Model model,HttpSession session) {
 		    try {
+		    	String userId = (String) session.getAttribute("sUserId");
+				model.addAttribute("userId",userId);
 		        Optional<Product> findGoodsOptional = productService.findByProductNo(productNo);
 
 		        if (findGoodsOptional.isPresent()) {
@@ -151,9 +165,12 @@ public class ProductController2 {
 	
 		
 		// 티켓리스트
+		@LoginCheck
 		@GetMapping("/product_ticket_list")
-		public String TicketList(Model model) {
+		public String TicketList(Model model,HttpSession session) {
 			try {
+				String userId = (String) session.getAttribute("sUserId");
+				model.addAttribute("userId",userId);
 				List<ProductDto> tickets = productService.findByProductCategoryId(3L);
 				tickets = productService.productByReadCountDescDto(3L);
 				model.addAttribute("tickets", tickets);
@@ -168,9 +185,12 @@ public class ProductController2 {
 		}
 
 		// 티켓디테일
+		@LoginCheck
 		@GetMapping("/product_ticket_detail")
-		public String TicketDetail(@RequestParam(name = "productNo") Long productNo, Model model) {
+		public String TicketDetail(@RequestParam(name = "productNo") Long productNo, Model model,HttpSession session) {
 		    try {
+		    	String userId = (String) session.getAttribute("sUserId");
+				model.addAttribute("userId",userId);
 		        Optional<Product> findTicketOptional = productService.findByProductNo(productNo);
 
 		        if (findTicketOptional.isPresent()) {

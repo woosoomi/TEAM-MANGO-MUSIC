@@ -87,7 +87,7 @@ public class UserRestController {
 
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")
-	@PostMapping(value = "/{userId}")
+	@PostMapping(value = "/view/{userId}")
 	public ResponseEntity<UserDto> user_View(@PathVariable(name = "userId") String userId, HttpSession session)
 			throws Exception {
 		try {
@@ -121,13 +121,12 @@ public class UserRestController {
 
 	@LoginCheck
 	@Operation(summary = "회원업데이트[성공]")
-	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
+	@PutMapping(value = "/update/{userId}", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
 			@RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
-		try { // 현재 로그인된 사용자의 아이디를 세션에서 가져옵니다. String sUserId = (String)
+		try {
 			session.getAttribute("sUserId");
 
-			// 사용자 정보를 업데이트하고 업데이트된 정보를 반환합니다. 
 			UserDto updatedUser = userService.updateUser(userUpdateDto);
 
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
@@ -135,6 +134,22 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	/*
+	 * @LoginCheck
+	 * 
+	 * @Operation(summary = "회원업데이트[성공]")
+	 * 
+	 * @PutMapping(value = "/update", produces = "application/json;charset=UTF-8")
+	 * public ResponseEntity<?> user_modify_action(@RequestBody UserUpdateDto
+	 * userUpdateDto, HttpSession session) { try { String loginUser =
+	 * (String)session.getAttribute("sUserId");
+	 * 
+	 * UserDto updatedUser = userService.updateUser(userUpdateDto);
+	 * 
+	 * return new ResponseEntity<>(updatedUser, HttpStatus.OK); } catch (Exception
+	 * e) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); } }
+	 */
 
 	// 아이디 중복 체크 API
 	@Operation(summary = "아이디중복체크")
@@ -169,6 +184,17 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/getUserInfo")
+	public ResponseEntity<String> getUserInfo(HttpSession session) {
+		String userId = (String) session.getAttribute("sUserId");
+		if (userId != null) {
+			return new ResponseEntity<>(userId, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("User not logged in", HttpStatus.UNAUTHORIZED);
+		}
+	}
+	
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleException(Exception e) {

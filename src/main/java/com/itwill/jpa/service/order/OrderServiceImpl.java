@@ -11,6 +11,8 @@ import com.itwill.jpa.dao.order.OrderDao;
 import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
+import com.itwill.jpa.entity.cart.Cart;
+import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.order.Delivery;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.order.OrderItem;
@@ -18,6 +20,7 @@ import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.UserNotFoundException;
+import com.itwill.jpa.repository.cart.CartRepository;
 import com.itwill.jpa.repository.order.OrderRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.repository.user.UserRepository;
@@ -38,12 +41,15 @@ public class OrderServiceImpl implements OrderService{
 	UserRepository userRepository;
 	
 	@Autowired
+	ProductRepository productRepository;
+	
+	@Autowired
 	UserDao userDao;
 	
 	@Autowired
 	ProductService productService;
 	@Autowired
-	ProductRepository productRepository;
+	CartRepository cartRepository;
 
 	//주문 생성
 	@Override
@@ -69,7 +75,32 @@ public class OrderServiceImpl implements OrderService{
 		OrderDto orderDto = OrderDto.toDto(saveOrder);
 		return orderDto;
 	}
-	
+
+	@Override
+	public OrderDto saveCartOrder(String userId) {
+		Cart cart=cartRepository.findByUserId(userId);
+		User user=userRepository.findById(userId).get();
+		Order order=new Order( null, cart.getCartTotPrice(),null,null, Order.OrderStatus.결제완료,new Delivery(null, null, null, null, null, null, null),null,null,null);
+		
+		List<OrderItem> orderItems=new ArrayList<>();
+		List<CartItem> cartItems=cart.getCartitems();
+		for (CartItem cartItem : cartItems) {
+			Product product =productRepository.findById(cartItem.getProduct().getProductNo()).get();
+			orderItems.add(new OrderItem(null, cartItem.getCartItemQty(), order, product));
+		}
+		order.setUser(user);
+		order.setOrderItems(orderItems);
+		Order saveOrder = orderRepository.save(order);
+		System.out.println(">>>>>>>>>>>>>>"+saveOrder);
+		
+		
+		
+		OrderDto orderDto = OrderDto.toDto(saveOrder);
+		return orderDto;
+		
+		
+	}
+
 	//주문 정보 수정
 	@Transactional
 	@Override

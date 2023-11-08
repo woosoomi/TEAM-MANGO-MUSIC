@@ -2,6 +2,7 @@ package com.itwill.jpa.dao.product;
 
 import java.util.List;
 
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Music;
@@ -22,8 +23,10 @@ public interface ProductDao {
 //	
 //	Goods insertGoods(Goods goods);
 		
-// 제품 수정(admin)	
+// 제품 수정(admin)[ENTITY]	
 	Product updateProduct(Product product) throws Exception;
+// 제품 수정(admin)[DTO][성공]	
+	Product updateProductDto(ProductDto product) throws Exception;
 		
 //	Goods updateGoods(Goods goods) throws Exception;
 //	

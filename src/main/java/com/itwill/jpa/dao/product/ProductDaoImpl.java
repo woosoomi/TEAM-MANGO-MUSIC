@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Music;
@@ -57,16 +58,20 @@ public class ProductDaoImpl implements ProductDao{
 //		return insertGoods;
 //	}
 
-	// 제품 업데이트
-	@Override
 	public Product updateProduct(Product product) throws Exception {
+		return null;
+	}
+	// 제품 업데이트[DTO][성공]
+	@Override
+	public Product updateProductDto(ProductDto productDto) throws Exception {
 		Optional<Product> findProductOptional =
-				productRepository.findById(product.getProductNo());
+				productRepository.findById(productDto.getProductNo());
 		Product updateProduct=null;
 		if(findProductOptional.isPresent()) {
 			Product findProduct = findProductOptional.get();
-			findProduct.setProductName(product.getProductName());
-			product=productRepository.save(findProduct);
+			findProduct.setProductName(productDto.getProductName());
+			findProduct.setProductArtist(productDto.getProductArtist());
+			updateProduct=productRepository.save(findProduct);
 		}else {
 			throw new Exception("존재하지 않는 제품입니다.");
 		}
