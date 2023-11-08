@@ -276,7 +276,7 @@ class ProductServiceImplTest {
 		
 		ProductDto productDto = new ProductDto(6L, "sadasda", 123, null, null, 0, null, 0, null, null, null, null, 0, null, null, null);
 		productDto.setProductNo(6L);
-		productDto.setProductName("수정완료");
+		productDto.setProductName("수정완료2");
 		productDto.setProductArtist("가수수정");
 		
 		ProductDto updatedProductDto = productServiceImpl.updateProductDto(productDto);
