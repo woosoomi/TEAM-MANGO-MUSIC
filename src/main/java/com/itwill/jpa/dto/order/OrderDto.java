@@ -46,6 +46,8 @@ public class OrderDto {
 	
 	private String deliveryCompany;
 	
+	private String productImage;
+	
 	
 	//	private Long couponId;
 	
@@ -79,6 +81,7 @@ public class OrderDto {
 		this.updatedAt = order.getUpdatedAt();
 		
 		
+		
 	}
 	
 	//Entity to Dto 변환
@@ -96,6 +99,7 @@ public class OrderDto {
 									.createdAt(entity.getCreatedAt())
 									.updatedAt(entity.getUpdatedAt())
 									.build();
+		
 		
 		// OrderItem 엔티티 목록을 OrderItemDto 목록으로 변환하여 설정
 		List<OrderItemDto> orderItemDtoList = new ArrayList<>();

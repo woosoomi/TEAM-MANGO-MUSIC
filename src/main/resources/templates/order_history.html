@@ -32,12 +32,6 @@
 		
 	</style>
 	
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/order.js"></script>
 </head>
 
 <body><!--preloading-->
@@ -54,7 +48,7 @@
 			<div class="row">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						<p><a th:text="${context.user_id}+'님의'"></a>
+						<p><a th:text="${session.sUserId}+'님의'"></a>
 							<span th:text="${#lists.size(orderDtoList)}"></span>
 							<span>개의 주문내역</span>
 					 
@@ -71,10 +65,11 @@
 			<div class="row" id="orderHistory">
 		
         <div th:each="order, iterStat: ${orderDtoList}">
+        <div th:each="orderitem, iterStat: ${order.orderItemDtos}">
 			
 			
 		<div class="movie-item-style-2">
-   			 <img th:src="@{'images/' + ${order.orderItemDtos[0].productImage}}" alt="">
+		 <img th:src="@{'images/' + ${orderitem.productImage}}" alt="">
    		 <div class="mv-item-infor">
             <h6>
                 <a th:text="'주문번호:  '+${order.orderId}"></a>
@@ -86,14 +81,12 @@
                 <span th:text = "'주문상태: '+${order.orderStatus}"></span>
             	</p>
                 <p class="rate">
-                    <span th:text="${order.orderItemDtos[0].productName}+ ' (외 ' + (${order.orderItemDtos.size}-1) + '개)'"></span>
-                </p>
-                <p class="rate">
                     <span th:text="'총가격: '+${order.orderPrice + ' 원'}"></span>
                 </p>
                 <p class="rate">
 					
-                	<span th:text="'배송지: '+${order.deliveryAddress}"></span>
+                
+					<span th:text="'배송지: ' + ${user.userAddress}"></span>
                 </p>
                 <p class="describe">
                     <span th:text="${'구매날짜: '+ #temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
@@ -130,75 +123,25 @@
 
 
 					
-				</div>
+				<!--</div>
 					<div class="sidebar">
 					<div class="ads2">
 						<p>🎦광고</p>
 						<img src="images/aespa.png" alt=""></div>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div><!-- footer section-->
-	<footer class="ht-footer">
-		<div class="container">
-			<div class="flex-parent-ft">
-				<div class="flex-child-ft item1"><a href="index.html"><img class="logo" src="images/logo1.png"
-							alt=""></a>
-					<p>5th Avenue st, manhattan<br> New York, NY 10001</p>
-					<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
-				</div>
-				<div class="flex-child-ft item2">
-					<h4>Resources</h4>
-					<ul>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Blockbuster</a></li>
-						<li><a href="#">Contact Us</a></li>
-						<li><a href="#">Forums</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Help Center</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item3">
-					<h4>Legal</h4>
-					<ul>
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Security</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item4">
-					<h4>Account</h4>
-					<ul>
-						<li><a href="#">My Account</a></li>
-						<li><a href="#">Watchlist</a></li>
-						<li><a href="#">Collections</a></li>
-						<li><a href="#">User Guide</a></li>
-					</ul>
-				</div>
-				<div class="flex-child-ft item5">
-					<h4>Newsletter</h4>
-					<p>Subscribe to our newsletter system now <br>to get latest news from us.</p>
-					<form action="#"><input type="text" placeholder="Enter your email..."></form><a href="#"
-						class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="ft-copyright">
-			<div class="ft-left">
-				<p>© 2017 Blockbuster. All Rights <a href="http://www.bootstrapmb.com/"
-						title="bootstrapmb">Reserved</a>. Designed by leehari.</p>
-			</div>
-			<div class="backtotop">
-				<p><a href="#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
-			</div>
-		</div>
+	<div th:insert="~{common_footer :: footerFragment}"></div>
+	
 	</footer><!-- end of footer section-->
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/order.js"></script>
 </body>
 
 </html>
