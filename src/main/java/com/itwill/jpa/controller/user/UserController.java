@@ -91,7 +91,7 @@ public class UserController {
 	 * userUpdateDto.setUserId(sUserId); userService.updateUser(userUpdateDto);
 	 * return "redirect:user_info_form"; }
 	 */
-
+	 
 	@LoginCheck
 	@PostMapping("/user_remove_action")
 	public String user_remove_action(HttpServletRequest request) throws Exception {
