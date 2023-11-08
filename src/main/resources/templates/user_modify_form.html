@@ -100,7 +100,7 @@
 			var userPhone = document.getElementById("userPhone").value;
 			var userAddress = document.getElementById("userAddress").value;
 			var userEmail = document.getElementById("userEmail").value;
-alert("수정 ");
+
 			// 수정할 데이터를 JSON 형식으로 만들기
 			var userData = {
 				userName: userName,
@@ -111,7 +111,7 @@ alert("수정 ");
 			};
 
 			// 서버로 데이터 전송
-			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/update', {
+			fetch('/user/update/{userId}', {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
@@ -128,7 +128,6 @@ alert("수정 ");
 					document.getElementById("userEmail").value = updatedUserData.userEmail;
 
 					// 성공 메시지 또는 리디렉션을 처리 (필요에 따라)
-					alert("수정 성공");
 				})
 				.catch(error => {
 					console.error('에러:', error);
