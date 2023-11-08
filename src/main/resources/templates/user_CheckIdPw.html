@@ -73,7 +73,7 @@
 							<div class="row">
 								<div class="col-md-2">
 									<input class="submit" type="button" id="checkPwbutton" value="찾기(Find)"
-										onclick="checkPw">
+										onclick="checkPw()">
 								</div>
 							</div>
 						</form>
@@ -87,19 +87,76 @@
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
+
 
 	<script>
 		function checkId() {
 			let userEmail = document.getElementById('userEmail').value;
 			let userName = document.getElementById('userName').value;
 
+			// Fetch API를 사용하여 아이디 찾기 기능 수행
+			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-id?userEmail=' + userEmail + '&userName=' + userName, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+				.then(response => {
+					if (response.status === 200) {
+						return response.text();
+					} else {
+						return Promise.reject('아이디를 찾을 수 없습니다.');
+					}
+				})
+				.then(data => {
+					// 성공적으로 아이디를 찾은 경우
+					alert('찾은 아이디: ' + data);
+				})
+				.catch(error => {
+					// 아이디를 찾지 못한 경우 또는 다른 오류 발생 시
+					alert(error);
+				});
+		}
+
+		function checkPw() {
+			let userId = document.getElementById('userId').value;
+			let userPhone = document.getElementById('userPhone').value;
+
+			// Fetch API를 사용하여 비밀번호 찾기 기능 수행
+			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-pw?userId=' + userId + '&userPhone=' + userPhone, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+				.then(response => {
+					if (response.status === 200) {
+						return response.text();
+					} else {
+						return Promise.reject('비밀번호를 찾을 수 없습니다.');
+					}
+				})
+				.then(data => {
+					// 성공적으로 비밀번호를 찾은 경우
+					alert('찾은 비밀번호: ' + data);
+				})
+				.catch(error => {
+					// 비밀번호를 찾지 못한 경우 또는 다른 오류 발생 시
+					alert(error);
+				});
+		}
+	</script>
+
+
+
+	<!--<script>
+		function checkId() {
+			let userEmail = document.getElementById('userEmail').value;
+			let userName = document.getElementById('userName').value;
+
 			// AJAX 요청을 사용하여 아이디 찾기 기능 수행
 			$.ajax({
-				url: '/user/find-id',
+				url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-id',
 				method: 'GET',
 				data: {userEmail, userName},
 				dataType: 'json',
@@ -120,7 +177,7 @@
 
 			// AJAX 요청을 사용하여 비밀번호 찾기 기능 수행
 			$.ajax({
-				url: '/user/find-pw',
+				url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-pw',
 				method: 'GET',
 				data: {userId, userPhone},
 				dataType: 'json',
@@ -134,7 +191,12 @@
 				}
 			});
 		}
-	</script>
+	</script>-->
+
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
 
 </body>
 
