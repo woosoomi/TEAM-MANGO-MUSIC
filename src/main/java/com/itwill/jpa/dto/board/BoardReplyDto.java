@@ -20,12 +20,15 @@ public class BoardReplyDto {
     private String boardReplyTitle;
     private String boardReplyContent;
     private LocalDateTime createDateTime;
+    private String userId;
+    private Long BoardId; 
 
     public static BoardReplyDto toDto(BoardReply entity) {
     	return BoardReplyDto.builder()
     			 		 .boardReplyId(entity.getBoardReplyId())
     			 		 .boardReplyTitle(entity.getBoardReplyTitle())
     			 		 .boardReplyContent(entity.getBoardReplyContent())
+    			 		 .userId(entity.getUser().getUserId())
     					 .build();
     }
 }

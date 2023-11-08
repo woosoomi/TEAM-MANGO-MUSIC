@@ -13,6 +13,7 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.entity.vote.Vote;
@@ -38,18 +39,22 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //	category로 찾기
 	List<Product> findByProductCategoryCategoryId(Long categoryId);
 	List<Product> findByProductCategory(ProductCategory category);
+	List<Music> findMusicByProductCategory(ProductCategory category);	
 	List<Goods> findGoodsByProductCategory(ProductCategory category);	
 	List<Ticket> findTicketByProductCategory(ProductCategory category);
 	
 	/********************* 조회수, 등록순으로 전체나열 ********************/
 	// 조회수별 오름차순 정렬
-//	@Query(value = "SELECT * FROM product WHERE category_id = :category_id ORDER BY READ_COUNT ASC", nativeQuery = true)
-//	List<Product> productListByReadCountAsc(@Param("category_id") Long categoryId);
-//	// 조회수별 내림차순 정렬
-//	@Query(value = "SELECT * FROM product WHERE category_id = :category_id ORDER BY READ_COUNT DESC", nativeQuery = true)
-//	List<Product> productListByReadCountDesc(@Param("category_id") Long categoryId);	
 	List<Product> findByProductCategoryCategoryIdOrderByReadCount(Long categoryId, Sort sort);
+	// 조회수별 내림차순 정렬
+	List<Product> findProductByProductCategoryCategoryIdOrderByReadCountDesc(Long categoryId, Sort sort);
 	// 조회수별 오름차순 정렬
+	List<Product> findProductByProductCategoryCategoryIdOrderByReadCountAsc(Long categoryId, Sort sort);
+	// 오래된 순 정렬
+	List<Product> findProductByProductCategoryCategoryIdOrderByProductDateDesc(Long categoryId, Sort sort);
+	// 최신순 정렬
+	List<Product> findProductByProductCategoryCategoryIdOrderByProductDateAsc(Long categoryId, Sort sort);
+	
 	
 	// 등록날자별 최신순 정렬
 	List<Product> findByProductCategoryCategoryIdOrderByProductDate(Long categoryId, Sort sort);

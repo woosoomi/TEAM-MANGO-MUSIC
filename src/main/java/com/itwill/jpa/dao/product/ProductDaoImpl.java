@@ -7,8 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.Product.Goods;
+import com.itwill.jpa.entity.product.Product.Music;
 import com.itwill.jpa.entity.product.Product.Ticket;
 import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.repository.product.ProductCategoryRepository;
@@ -56,16 +58,20 @@ public class ProductDaoImpl implements ProductDao{
 //		return insertGoods;
 //	}
 
+	public Product updateProduct(Product product) throws Exception {
+		return null;
+	}
 	// 제품 업데이트
 	@Override
-	public Product updateProduct(Product product) throws Exception {
+	public Product updateProduct(ProductDto productDto) throws Exception {
 		Optional<Product> findProductOptional =
-				productRepository.findById(product.getProductNo());
+				productRepository.findById(productDto.getProductNo());
 		Product updateProduct=null;
 		if(findProductOptional.isPresent()) {
 			Product findProduct = findProductOptional.get();
-			findProduct.setProductName(product.getProductName());
-			product=productRepository.save(findProduct);
+			findProduct.setProductName(productDto.getProductName());
+			findProduct.setProductArtist(productDto.getProductArtist());
+			updateProduct=productRepository.save(findProduct);
 		}else {
 			throw new Exception("존재하지 않는 제품입니다.");
 		}
@@ -100,6 +106,16 @@ public class ProductDaoImpl implements ProductDao{
 		if(categoryOptional.isPresent()) {
 			ProductCategory productCategory = categoryOptional.get();
 			return productRepository.findByProductCategory(productCategory);
+		}else {
+			return new ArrayList<>();  // 카테고리를 찾지 못한 경우 빈 목록을 반환
+		}
+	}
+	@Override
+	public List<Music> getMusicByCategoryId(Long categoryId) {
+		Optional<ProductCategory> categoryOptional = productCategoryRepository.findById(categoryId);
+		if(categoryOptional.isPresent()) {
+			ProductCategory productCategory = categoryOptional.get();
+			return productRepository.findMusicByProductCategory(productCategory);
 		}else {
 			return new ArrayList<>();  // 카테고리를 찾지 못한 경우 빈 목록을 반환
 		}

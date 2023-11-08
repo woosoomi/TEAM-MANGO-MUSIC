@@ -52,7 +52,6 @@
 										
 
 										<p th:text="${inquiries.boardType.boardTypeTitle}">회원가입했는데 로그인이안되요...</p>
-										<span th:text="${inquiries.boardContent}"> 답변완료 </span>
 									</div>
 								</div>
 							</div>
@@ -99,7 +98,11 @@
 
 
 </body>
-
+		<script>
+			var sessionUserId = '<%=(String)session.getAttribute(userIdString)%>';
+			console.log(sessionUserId)
+		</script>
+		
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>

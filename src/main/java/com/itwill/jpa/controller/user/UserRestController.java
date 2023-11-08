@@ -55,28 +55,27 @@ public class UserRestController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			// 기타 예외 처리
-			return new ResponseEntity<>("Internal Server Error>> user_write 레스트 컨트롤러 작동하지만 기타예외로 납치됨",
+			return new ResponseEntity<>("Internal Server Error>> user_write_action 레스트 컨트롤러 작동하지만 기타예외로 납치됨",
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@Operation(summary = "로그인 성공")
 	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<UserLoginDto> user_login_action(@RequestBody UserLoginDto userLogindto,
-			HttpSession session) throws Exception {
+	public ResponseEntity<UserLoginDto> user_login_action(@RequestBody UserLoginDto userLogindto, HttpSession session)
+			throws Exception {
 		User loginUser = userService.loginUser(userLogindto.getUserId(), userLogindto.getUserPw());
-	
-	    
-	    if (loginUser != null) {
-	        // 로그인 성공 시 사용자 정보를 세션에 저장
-	        session.setAttribute("sUserId", loginUser.getUserId());
-	        session.setAttribute("sUserName", loginUser.getUserName());
-	        
-	        return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
-	    } else {
-	        // 로그인 실패 시 UNAUTHORIZED 상태 반환
-	        return new ResponseEntity<UserLoginDto>(HttpStatus.UNAUTHORIZED);
-	    }
+
+		if (loginUser != null) {
+			// 로그인 성공 시 사용자 정보를 세션에 저장
+			session.setAttribute("sUserId", loginUser.getUserId());
+			session.setAttribute("sUserName", loginUser.getUserName());
+
+			return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
+		} else {
+			// 로그인 실패 시 UNAUTHORIZED 상태 반환
+			return new ResponseEntity<UserLoginDto>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 
 	@LoginCheck
@@ -116,19 +115,19 @@ public class UserRestController {
 	@LoginCheck
 	@Operation(summary = "회원업데이트[성공]")
 	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId ,@RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
-		try {
-            // 현재 로그인된 사용자의 아이디를 세션에서 가져옵니다.
-            String sUserId = (String) session.getAttribute("sUserId");
-            
-            // 사용자 정보를 업데이트하고 업데이트된 정보를 반환합니다.
-            UserDto updatedUser = userService.updateUser(userUpdateDto);
+	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
+			@RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
+		try { // 현재 로그인된 사용자의 아이디를 세션에서 가져옵니다. String sUserId = (String)
+			session.getAttribute("sUserId");
 
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+			// 사용자 정보를 업데이트하고 업데이트된 정보를 반환합니다. 
+			UserDto updatedUser = userService.updateUser(userUpdateDto);
+
+			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	// 아이디 중복 체크 API
 	@Operation(summary = "아이디중복체크")
@@ -141,8 +140,8 @@ public class UserRestController {
 	// 아이디, 이메일로 아이디 찾기 API
 	@Operation(summary = "아이디찾기[성공]")
 	@GetMapping("/find-id")
-	public ResponseEntity<String> findUserIdByUserNameUserEmail(@RequestParam(name = "user_name") String userName,
-			@RequestParam(name = "user_email") String userEmail) {
+	public ResponseEntity<String> findUserIdByUserNameUserEmail(@RequestParam(name = "userName") String userName,
+			@RequestParam(name = "userEmail") String userEmail) {
 		try {
 			String foundUserId = userService.findUserIdByUserNameUserEmail(userName, userEmail);
 			return new ResponseEntity<>(foundUserId, HttpStatus.OK);

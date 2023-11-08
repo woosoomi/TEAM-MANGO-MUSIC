@@ -33,8 +33,6 @@
 
 					<div class "row" id="faqContainer">
 
-
-
 						<div th:each="faq : ${faqs}">
 							<div class="blog-item-style-1 blog-item-style-3">
 								<img src="images/uploads/faq.jpeg" alt="">
@@ -45,7 +43,6 @@
 									</h3>
 									<span class="time" th:text="${faq.boardType.boardTypeTitle}">2023.10.19</span></br>
 									<span class="time" th:text="${faq.createdTime}">2023.10.19</span>
-									<p th:text="${faq.boardContent}"></p>
 								</div>
 							</div>
 						</div>

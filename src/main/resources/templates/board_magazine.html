@@ -34,15 +34,14 @@
 						<div class="row">
 							<div th:each="magazine, iterStat : *{magazines}" th:if="${iterStat.index lt 6}">
 								<div class="col-md-4 col-sm-12 col-xs-12">
-									<div class="blog-item-style-2"><a href="blogdetail.html"><img
+									<div class="blog-item-style-2"><a th:href="@{/board_other_detail(boardId=${magazine.boardId})}"><img
 												src="images/uploads/MAGAZINE1.jpeg" alt=""></a>
 										<div class="blog-it-infor">
 											<h3><a th:href="@{/board_other_detail(boardId=${magazine.boardId})}"
 													th:text="${magazine.boardTitle}">MAGAZINE
 													TITLE1.....</a></h3>
 											<span class="time" th:text="${magazine.createdTime}">2023.10.19</span>
-											<p th:text="${magazine.boardContent}">MAGAZINE CONTENT1......</p>
-											<p>조회수 : <span th:text="${magazine.boardReadCount}">0</span></p>
+-->											<p>조회수 : <span th:text="${magazine.boardReadCount}">0</span></p>
 										</div>
 									</div>
 								</div>
