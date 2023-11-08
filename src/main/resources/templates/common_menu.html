@@ -51,7 +51,7 @@
 						<li><a href="board_notification">공지사항</a></li>
 						<li><a href="board_faq">FAQ</a></li>
 						<li><a href="board_magazine">magazine</a></li>
-						<li><a href="board_inquiries">1대1문의</a></li>
+						<li><a id="inquiriesLink" href="board_inquiries">1대1문의</a></li>
 						<li><a href="board_event">이벤트</a></li>
 						<li><a href="board_map">찾아오는길..</a></li>
 					</ul>
@@ -80,6 +80,18 @@
 		</div><!-- /.navbar-collapse -->
 	</nav><!-- top search form -->
 
+
+<script type="text/javascript">
+    var userId = /*[[${session.sUserName}]]*/ null;
+	console.log(userId);
+    // 링크 요소를 가져옵니다.
+    var inquiriesLink = document.getElementById("inquiriesLink");
+
+    if (userId === "admin") {
+        // 사용자 ID가 "admin"인 경우 링크를 변경합니다.
+        inquiriesLink.href = "board_admin_inquiries";
+    }
+</script>
 
 
 

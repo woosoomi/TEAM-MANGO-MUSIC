@@ -126,6 +126,36 @@ public class BoardController {
 				return "index";
 			}
 		}
+	
+	@LoginCheck
+	@GetMapping("/board_admin_inquiries")
+	public String admin_inquiries(HttpSession session, Model model) throws Exception{
+		try {
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+
+			    // 사용자 정보를 세션에 저장
+			    session.setAttribute("loginUser", user);
+			}
+			
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+				
+			List<Board> inquiries = boardServiceImpl.findBycategory(4L);
+			
+			Collections.reverse(inquiries);
+			model.addAttribute("inquiries", inquiries);
+			System.out.println("inquiries 리스트 : " + inquiries);
+			return "board_admin_inquiries";
+
+			}catch (Exception e) {
+				e.printStackTrace();
+				return "index";
+			}
+		}
 
 	@GetMapping("/board_faq")
 	public String faq(Model model) {
