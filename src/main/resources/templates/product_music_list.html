@@ -44,9 +44,13 @@
 						<div class="music_List" th:each="music : ${musics}">
 							<div class="flex-wrap-movielist user-fav-list">
 								<div class="movie-item-style-2">
-									<a class="rank" style="padding-right: 20px; color: #ffffff;"
-										th:text="${music.productNo}">번호</a> <a
-										th:href="@{/product_music_detail(productNo=${music.productNo})}">
+									
+									<p style="padding-right: 20px; color: #ffffff; font-weight: bold;
+											background-color: #405266"
+										
+										th:text="|${musicStat.count} 위|">번호</p> 
+										<!-- Stat.count 사용 -> 실시간 순위 -->
+									<a th:href="@{/product_music_detail(productNo=${music.productNo})}">
 										<img th:src="${music.productImage}" alt=""
 										style="width: 100px">
 									</a>
@@ -62,6 +66,7 @@
 											조회수: <a th:text="${music.readCount}">2</a>
 										</p>
 									</div>
+									
 								</div>
 							</div>
 						</div>

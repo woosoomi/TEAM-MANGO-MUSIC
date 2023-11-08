@@ -292,6 +292,37 @@ public class OrderController {
 	
 	
 	
+	@GetMapping("/order_history_copy")
+	public String order_history_copy(Model model, HttpServletRequest request) {
+		try {
+			
+			HttpSession session = request.getSession();
+			//일단 임의로 세션 로그인 유저 설정함
+			session.setAttribute("user_id", "cgj22");
+			String userId = (String) session.getAttribute("user_id");
+			
+			//주문 DTO 가져오기
+			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
+			model.addAttribute("orderDtoList", orderDtoList);
+			
+			
+			
+			//주문 아이템 DTO 가져오기
+			List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
+			model.addAttribute("orderItemDtoList", orderItemDtoList);
+			
+			
+			
+			//원래 코드
+			return "order_history_copy";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("주문 내역이 없습니다.", e.getMessage());
+			return "index";
+		}
+	}
+	
 	
 	
 	

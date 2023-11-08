@@ -80,7 +80,7 @@ public class UserRestController {
 
 	@LoginCheck
 	@Operation(summary = "회원상세보기[성공]")
-	@PostMapping(value = "/{userId}")
+	@PostMapping(value = "/view/{userId}")
 	public ResponseEntity<UserDto> user_View(@PathVariable(name = "userId") String userId, HttpSession session)
 			throws Exception {
 		try {
@@ -114,13 +114,11 @@ public class UserRestController {
 
 	@LoginCheck
 	@Operation(summary = "회원업데이트[성공]")
-	@PutMapping(value = "/{userId}", produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
-			@RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
-		try { // 현재 로그인된 사용자의 아이디를 세션에서 가져옵니다. String sUserId = (String)
-			session.getAttribute("sUserId");
+	@PutMapping(value = "/update", produces = "application/json;charset=UTF-8")
+	public ResponseEntity<?> user_modify_action(@RequestBody UserUpdateDto userUpdateDto, HttpSession session) {
+		try {
+			String loginUser = (String)session.getAttribute("sUserId");
 
-			// 사용자 정보를 업데이트하고 업데이트된 정보를 반환합니다. 
 			UserDto updatedUser = userService.updateUser(userUpdateDto);
 
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);

@@ -40,12 +40,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /*내림차순 */
-const arr = [{}];
+/*$(document).ready(function() {
+	var initialData = $('#musicList').html();
+	var rankCount = $('#rank');
+	var musicContainer = $('#musicList');
+	
+	function sortRank(ascending){
+		var itemList = musicContainer.find('.movie-item-style-2').toArray();
+		itemList.sort(function(a,b){
+			var dataA = new Data($(a).find('p').eq(3).text());
+			var dataB = new Data($(b).find('p').eq(3).text());
+			return ascending ? dataB - dataA : dataA - dataB;
+		});
+		musicContainer.empty();
+		$.each(itemList, function(index,item){
+			musicContainer.append(item);
+			
+		});
+	}
+		rankCount.on('change', function() {
+		var selectedOption = rankCount.val();
+		if (selectedOption === 'latest') {
+			sortRank(false); // 최신순으로 정렬
+			}
+		});
+	});
+*/
 
-arr.sort(function(a, b)  {
-  return b - a;
-});
-document.writeln(arr + '<br>');
+
+
 
 ///////////goods list////////////
 /*document.addEventListener('DOMContentLoaded', function() {
