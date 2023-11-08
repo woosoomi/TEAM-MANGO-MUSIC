@@ -55,7 +55,7 @@ public class UserRestController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			// 기타 예외 처리
-			return new ResponseEntity<>("Internal Server Error>> user_write 레스트 컨트롤러 작동하지만 기타예외로 납치됨",
+			return new ResponseEntity<>("Internal Server Error>> user_write_action 레스트 컨트롤러 작동하지만 기타예외로 납치됨",
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -140,8 +140,8 @@ public class UserRestController {
 	// 아이디, 이메일로 아이디 찾기 API
 	@Operation(summary = "아이디찾기[성공]")
 	@GetMapping("/find-id")
-	public ResponseEntity<String> findUserIdByUserNameUserEmail(@RequestParam(name = "user_name") String userName,
-			@RequestParam(name = "user_email") String userEmail) {
+	public ResponseEntity<String> findUserIdByUserNameUserEmail(@RequestParam(name = "userName") String userName,
+			@RequestParam(name = "userEmail") String userEmail) {
 		try {
 			String foundUserId = userService.findUserIdByUserNameUserEmail(userName, userEmail);
 			return new ResponseEntity<>(foundUserId, HttpStatus.OK);
