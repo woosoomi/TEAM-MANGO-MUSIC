@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head><!-- Basic need -->
-	<title>Open Pediatrics</title>
+	<title>Mango</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -14,11 +14,11 @@
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style77.css">
 </head>
 
 <body><!--preloading-->
-	<div th:insert="~{header::headerFragment}">
+	<div th:insert="~{common_header::headerFragment}">
 			<h2>멤버쉽 구독</h2>
 			<h2 class="text-yellow"> 최신음악 무제한 재생 가능! </h2>
 			<h2>90일 이용 가능</h2>
@@ -30,23 +30,23 @@
 			<div class="col-md-6"><img src="images/tmembership.png" alt="Dark Version">
 			<!--<div class="col-md-6"><img src="images/uploads/mango.png" alt="Dark Version">-->
 				<h2>30일 멤버십</h2> 1개월 결제 
-				<a href="order_membership" target="blank_" class="redbtn">결제하기</a>
+				<a href="order_membership" target="_self" class="redbtn">결제하기</a>
 			</div>
 			<div class="col-md-6"><img src="images/tmembership1year.png" alt="Dark Version">
 			<!--<div class="col-md-6"><img src="images/uploads/mango_logo2.png" alt="Light Version">-->
 				<h2>365일 멤버십</h2> 12개월 결제
-				<a href="index" target="blank_" class="redbtn">Comming Soon</a>
+				<a href="index" target="_self" class="redbtn">Comming Soon</a>
 			</div>
 		</div>
-	</div><!-- footer v3 section-->
-	<div class="ft-copyright-landing">
-		<p>© 2017 Blockbuster. All Rights <a href="http://www.bootstrapmb.com/" title="bootstrapmb">Reserved</a>.
-			Designed by haintheme.</p>
-	</div><!-- end of footer v3 section-->
+	</div>
+	
+	<div th:insert="~{common_footer :: footerFragment}"></div>
+
+</body>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-</body>
 
 </html>

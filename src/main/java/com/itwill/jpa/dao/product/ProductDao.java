@@ -26,7 +26,7 @@ public interface ProductDao {
 // 제품 수정(admin)[ENTITY]	
 	Product updateProduct(Product product) throws Exception;
 // 제품 수정(admin)[DTO][성공]	
-	Product updateProduct(ProductDto product) throws Exception;
+	Product updateProductDto(ProductDto product) throws Exception;
 		
 //	Goods updateGoods(Goods goods) throws Exception;
 //	

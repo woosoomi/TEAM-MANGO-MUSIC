@@ -12,4 +12,5 @@ import com.itwill.jpa.entity.product.Product;
 public interface CartItemRepository extends JpaRepository<CartItem, Long>{
 	 List<CartItem> findByProduct(Product product);
 	 List<CartItem> findAllByCart_CartId(Long cartId);
+	
 }

@@ -378,7 +378,7 @@ public class ProductServiceImpl implements ProductService{
 	@Transactional
 	@Override
 	public ProductDto updateProductDto(ProductDto dto) throws Exception {
-		Product updateProduct = productDao.updateProduct(dto);
+		Product updateProduct = productDao.updateProductDto(dto);
 		ProductDto productDto = ProductDto.toDto(updateProduct);
 	    return productDto;
 	}

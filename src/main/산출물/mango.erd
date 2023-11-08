@@ -749,8 +749,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>85</x>
-                          <y>175</y>
+                          <x>87</x>
+                          <y>167</y>
                         </constraint>
                         <sourceConnections>
                           <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>

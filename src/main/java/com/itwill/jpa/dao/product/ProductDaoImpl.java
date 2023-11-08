@@ -61,9 +61,9 @@ public class ProductDaoImpl implements ProductDao{
 	public Product updateProduct(Product product) throws Exception {
 		return null;
 	}
-	// 제품 업데이트
+	// 제품 업데이트[DTO][성공]
 	@Override
-	public Product updateProduct(ProductDto productDto) throws Exception {
+	public Product updateProductDto(ProductDto productDto) throws Exception {
 		Optional<Product> findProductOptional =
 				productRepository.findById(productDto.getProductNo());
 		Product updateProduct=null;

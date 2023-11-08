@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.service.order.OrderService;
-import com.itwill.jpa.service.user.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,8 +31,6 @@ import lombok.RequiredArgsConstructor;
 public class OrderRestController {
 
 	private final OrderService orderService;
-	
-	private final UserService userService;
 
    
 	/* Restful Order */
@@ -52,6 +49,28 @@ public class OrderRestController {
 			
 		}
 	}
+	
+	// 주문생성
+	@Operation(summary = "카트주문생성[성공]")
+	@PostMapping("/saveCartOrder")
+	public ResponseEntity<?> saveCartOrder(HttpSession session) {
+		try {
+			String userId="lsg33";
+			session.setAttribute("user_id", userId);
+			
+			userId = (String) session.getAttribute("user_id");
+			orderService.saveCartOrder(userId);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(orderService.saveCartOrder(userId));
+		} catch (Exception e) {
+			e.printStackTrace();
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("error", e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+			
+		}
+	}
+
 		
 	// 주문수정(관리자권한 orderPrice, orderStatus 수정가능)
 	@Operation(summary = "주문수정[성공]")
