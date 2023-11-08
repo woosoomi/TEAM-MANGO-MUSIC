@@ -42,27 +42,25 @@ class CartServiceImplTest extends TeamProjectMangoApplicationTest {
 	CartRepository cartRepository;
 
 	
-	@Test
-	@Transactional
-	//Disabled
-	@Rollback(false)
-	void createCart() throws Exception {
-		
-		Optional<User> findUser = userRepository.findById("lsg33");
-		System.out.println("findUser>>>>>>>>>>>>>>>"+findUser);
-		if (findUser.isPresent()) {
-			User user = findUser.get();
-			System.out.println("user>>>>>>>>>>>>>>>>>>"+user);
-			CartDto cartDto = new CartDto();
-			cartDto.setCartId(0L);
-			cartDto.setUserId(user.getUserId());
-			cartDto.setCartTotPrice(10);
-			System.out.println("cart1>>>>>>>>>>>>>>>>"+cartDto);
-			CartDto createCart = cartServiceImpl.createCart(cartDto);
-			System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+createCart);
-		}
-			
-	}
+	/*
+	 * @Test
+	 * 
+	 * @Transactional //Disabled
+	 * 
+	 * @Rollback(false) void createCart() throws Exception {
+	 * 
+	 * Optional<User> findUser = userRepository.findById("lsg33");
+	 * System.out.println("findUser>>>>>>>>>>>>>>>"+findUser); if
+	 * (findUser.isPresent()) { User user = findUser.get();
+	 * System.out.println("user>>>>>>>>>>>>>>>>>>"+user); CartDto cartDto = new
+	 * CartDto(); cartDto.setCartId(0L); cartDto.setUserId(user.getUserId());
+	 * cartDto.setCartTotPrice(10);
+	 * System.out.println("cart1>>>>>>>>>>>>>>>>"+cartDto); CartDto createCart =
+	 * cartServiceImpl.createCart(cartDto);
+	 * System.out.println("insert>>>>>>>>>>>>>>>>>>>>>"+createCart); }
+	 * 
+	 * }
+	 */
 	
 	
 	

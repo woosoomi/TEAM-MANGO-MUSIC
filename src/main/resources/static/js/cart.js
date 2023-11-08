@@ -1,29 +1,3 @@
-// 회원가입이 성공했을 때 호출되는 함수
-function onRegisterSuccess() {
-    var userId = "lsg34"; // 회원가입에 사용한 아이디
-    createCartForUser(userId); // 해당 유저에 대한 장바구니 생성
-}
-
-// 장바구니를 생성하는 함수
-function createCartForUser(userId) {
-    var cartDto = {
-        userId: userId, // 장바구니에 필요한 정보를 설정해줘야 합니다.
-        cartId: receivedCartId
-    };
-
-    $.ajax({
-        url: '/create', // 장바구니 생성 엔드포인트의 URL을 지정해야 합니다.
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(cartDto),
-        success: function(response) {
-            console.log('장바구니 생성 성공:', response);
-        },
-        error: function(error) {
-            console.error('장바구니 생성 실패:', error);
-        }
-    });
-}
 
 // 전체 선택 체크박스 클릭 시 동작
 $('#selectAll').change(function() {
@@ -78,6 +52,7 @@ function changeQuantity(amount, element) {
 				console.log('카트 아이템 수량이 업데이트되었습니다.');
 				var newPrice = data.cartTotPrice;
 				document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
+				location.reload();
 			},
 			error: function() {
 				console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
@@ -85,8 +60,6 @@ function changeQuantity(amount, element) {
 		});
 	}
 }
-var cartId = 1;
-calculateTotalPrice(cartId);
 function calculateTotalPrice(cartId) {
 	console.log(cartId);
 	$.ajax({
