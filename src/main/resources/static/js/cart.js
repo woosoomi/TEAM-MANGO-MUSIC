@@ -78,6 +78,7 @@ function changeQuantity(amount, element) {
 				console.log('카트 아이템 수량이 업데이트되었습니다.');
 				var newPrice = data.cartTotPrice;
 				document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
+				location.reload();
 			},
 			error: function() {
 				console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
