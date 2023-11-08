@@ -40,7 +40,9 @@
 
 					</div>
 
-					<div class="row" id="musicList">
+
+					<!-- 원래코드 <div class="row" id="musicList"> -->
+					<div  id="musicList"  style="display:grid; grid-template-columns:580px 580px;">
 						<div class="music_List" th:each="music : ${musics}">
 							<div class="flex-wrap-movielist user-fav-list">
 								<div class="movie-item-style-2">
