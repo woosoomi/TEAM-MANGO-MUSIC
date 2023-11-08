@@ -56,7 +56,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2">
-									<input class="submit" type="button" id="checkIdbutton" value="찾기(Find)"
+									<input class="submit" type="button" value="찾기"
 										onclick="checkId()">
 								</div>
 							</div>
@@ -72,7 +72,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2">
-									<input class="submit" type="button" id="checkPwbutton" value="찾기(Find)"
+									<input class="submit" type="button" value="찾기"
 										onclick="checkPw()">
 								</div>
 							</div>
@@ -123,7 +123,7 @@
 			let userPhone = document.getElementById('userPhone').value;
 
 			// Fetch API를 사용하여 비밀번호 찾기 기능 수행
-			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-pw?userId=' + userId + '&userPhone=' + userPhone, {
+			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/find-pw?userId=' + userId + '&user_phone=' + userPhone, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'
