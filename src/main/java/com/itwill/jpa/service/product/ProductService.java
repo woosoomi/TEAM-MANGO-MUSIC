@@ -14,8 +14,10 @@ import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductCategoryDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.TicketDto;
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductCategory;
+import com.itwill.jpa.entity.product.ProductReply;
 import com.itwill.jpa.entity.product.Product.Goods;
 import com.itwill.jpa.entity.product.Product.Membership;
 import com.itwill.jpa.entity.product.Product.Music;
@@ -185,8 +187,10 @@ public interface ProductService{
 	// 키워드로 검색[성공]
 	public List<Product> searchProductsByKeyword(String keyword);
 	/******************** 키워드로 검색[DTO] ********************/	
-	/*********************************************/	
-
+	/*********************************************/
+	
+	/******************** 댓글달기 ********************/	
+	ProductReply ReplyInsert(ProductReply productReply);
 
 	
 

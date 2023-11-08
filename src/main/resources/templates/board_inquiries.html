@@ -99,7 +99,11 @@
 
 
 </body>
-
+		<script>
+			var sessionUserId = '<%=(String)session.getAttribute(userIdString)%>';
+			console.log(sessionUserId)
+		</script>
+		
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>

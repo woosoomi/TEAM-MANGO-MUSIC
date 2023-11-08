@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.itwill.jpa.dto.board.BoardReplyDto;
+import com.itwill.jpa.dto.product.ProductReplyDto;
+import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.board.BoardReply;
 import com.itwill.jpa.entity.user.User;
 
 import jakarta.persistence.Entity;
@@ -36,7 +40,16 @@ public class ProductReply {
 
     @CreationTimestamp
     private LocalDateTime creDateTime;
-    
+
+    public static ProductReply toEntity(ProductReplyDto dto) {
+    	return ProductReply.builder()
+    					 .productReplyId(dto.getProductReplyId())
+    					 .productReplytTitle(dto.getProductReplytTitle())
+    					 .productReplyContent(dto.getProductReplyContent())
+    					 .user(User.builder().userId(dto.getUserId()).build())
+    					 .product(Product.builder().productNo(dto.getProductNo()).build())
+    					 .build();
+    }
 	@ManyToOne
 	@JoinColumn(name = "product_no")
 	private Product product;
