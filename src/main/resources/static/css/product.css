@@ -4,3 +4,26 @@
     grid-template-rows: auto; /* 행 높이 자동 조절 */
     gap: 10px; /* 열과 행 사이의 간격 조절 */
 }
+
+
+/* 그리드 스타일 */
+.celebrity-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ceb-item {
+    width: calc(33.33% - 5px); /* 3개의 항목이 한 행에 나열되도록 설정 */
+    margin-bottom: 20px;
+}
+/* 이미지 스타일 */
+.ceb-item img {
+    width: 300px; /* 원하는 너비로 조절 */
+    height: auto; /* 높이 자동으로 조절 (비율 유지) */
+}
+
+/* 텍스트 스타일 */
+.ceb-infor {
+    width: 300px; /* 원하는 너비로 조절 */
+}

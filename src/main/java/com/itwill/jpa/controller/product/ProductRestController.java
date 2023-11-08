@@ -3,6 +3,7 @@ package com.itwill.jpa.controller.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,4 +40,9 @@ public class ProductRestController {
 	    }
 		
 	}
+	/*
+	 * @Operation(summary = "조회수별 내림차순 정렬")
+	 * 
+	 * @GetMapping
+	 */
 }

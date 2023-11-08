@@ -245,10 +245,10 @@ class ProductServiceImplTest {
 		@Test
 		@Transactional
 		@Rollback(false)
-		@Disabled	 
+//		@Disabled	 
 		void testDeledtProductDto() throws Exception {
 			// productNo 값을 지정
-			productServiceImpl.deleteProductDto(6L);
+			productServiceImpl.deleteProductDto(24L);
 		}
 
 	  
