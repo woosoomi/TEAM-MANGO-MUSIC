@@ -15,6 +15,14 @@
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Bootstrap CSS -->
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+	<!-- Bootstrap JS and Popper.js -->
+	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+
 </head>
 
 <body>
@@ -34,11 +42,39 @@
 								<li><a href="user_modify_form">회원정보수정</a></li>
 								<li><a href="cart_main">나의 장바구니</a></li>
 								<li><a href="order_history">나의 주문내역</a></li>
-								<li><a href="#">회원탈퇴</a></li>
+								<!--<li><a href="user_remove_action" id="deleteButton">회원탈퇴</a></li>-->
+								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal">회원탈퇴</a></li>
+
 							</ul>
 						</div>
 					</div>
 				</div>
+				<!-- 모달 창 -->
+				<div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog"
+					aria-labelledby="withdrawalModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="withdrawalModalLabel">회원 탈퇴를 원하십니까?</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<label for="password">비밀번호를 입력하세요:</label>
+								<input type="password" id="password" placeholder="비밀번호">
+								<!--<input id="password" placeholder="비밀번호">-->
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+								<button type="button" class="btn btn-primary" onclick="confirmWithdrawal()">회원
+									탈퇴</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 모달 창 끝 -->
+
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
 						<form action="" class="user" th:object="${loginUser}" method="post">
@@ -82,6 +118,34 @@
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
+
+	<script>
+		function confirmWithdrawal() {
+			var userId = document.getElementById("userId").value;
+			var userPw = document.getElementById("userPw").value;
+			var enteredPassword = document.getElementById("password").value;
+
+			// 비밀번호 확인
+			if (userPw === enteredPassword) {
+				// 비밀번호 일치 시 회원 탈퇴 진행
+				alert("회원 탈퇴 성공!");
+				closeWithdrawalModal();
+			} else {
+				// 비밀번호 불일치 시 알림
+				alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
+			}
+		}
+
+		function closeWithdrawalModal() {
+			// 모달 닫기
+			$('#withdrawalModal').modal('hide');
+			window.location.href = "user_info_form";
+
+			// TODO: 여기에 실제 회원 탈퇴 처리를 위한 Ajax 요청 추가
+			// 비밀번호 확인이 성공했으므로 서버로 회원 탈퇴 요청을 보낼 수 있음
+		}
+		
+	</script>
 
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
