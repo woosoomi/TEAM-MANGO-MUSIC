@@ -11,7 +11,7 @@ public interface UserDao {
     User updateUser(User user) throws Exception;
 
     void deleteUser(String userId) throws Exception;
-
+    
     User findUser(String userId);
 
     List<User> findUserList();
@@ -21,8 +21,7 @@ public interface UserDao {
     String findUserIdByUserNameUserEmail(String userName ,String userEmail); // 이름과 이메일로 아이디 찾기
 
     String findUserPwByUserIdUserPhone(String userId ,String userPhone); // 아이디와 번호로 비밀번호 찾기
-    
-    
-    
+
+	
     
 }

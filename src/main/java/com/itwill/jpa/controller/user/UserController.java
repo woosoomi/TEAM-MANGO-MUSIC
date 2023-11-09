@@ -28,16 +28,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	/*
-	 * @GetMapping("/user_info_form") public String user_info_form() { String
-	 * forward_path = "user_info_form"; return forward_path; }
-	 */
-
-	/*
-	 * @GetMapping("/user_modify_form") public String user_modify_form() { String
-	 * forward_path = "user_modify_form"; return forward_path; }
-	 */
-
 	@GetMapping("/user_login_form")
 	public String user_login_form() {
 		String forward_path = "user_login_form";
@@ -50,12 +40,6 @@ public class UserController {
 		return forward_path;
 	}
 
-	@GetMapping("/user_CheckIdPw")
-	public String user_CheckIdPw() {
-		String forward_path = "user_CheckIdPw";
-		return forward_path;
-	}
-
 	@LoginCheck
 	@GetMapping("/user_info_form")
 	public String user_info_form(HttpSession session, Model model) throws Exception {
@@ -63,6 +47,12 @@ public class UserController {
 		UserDto user = userService.findUser(loginUser);
 		model.addAttribute("loginUser", user);
 		return "user_info_form";
+	}
+
+	@GetMapping("/user_CheckIdPw")
+	public String user_CheckIdPw() {
+		String forward_path = "user_CheckIdPw";
+		return forward_path;
 	}
 
 	@LoginCheck
@@ -80,25 +70,24 @@ public class UserController {
 		model.addAttribute("loginUser", loginUser);
 		return "user_modify_form";
 	}
+	
+	
+	@GetMapping("/admin")
+	public String userList(Model model) throws Exception {
+	    List<UserDto> userInfoList = userService.findUserList();
+	    model.addAttribute("userInfoList", userInfoList);
+	    return "admin_form"; // 
+	}
+	
+	
 
-	/*
-	 * @LoginCheck
-	 * 
-	 * @PostMapping("/user_modify_action") public String
-	 * user_modify_action(@ModelAttribute UserUpdateDto userUpdateDto,
-	 * HttpServletRequest request) throws Exception { String sUserId = (String)
-	 * request.getSession().getAttribute("sUserId");
-	 * userUpdateDto.setUserId(sUserId); userService.updateUser(userUpdateDto);
-	 * return "redirect:user_info_form"; }
-	 */
-	 
 	@LoginCheck
 	@PostMapping("/user_remove_action")
-	public String user_remove_action(HttpServletRequest request) throws Exception {
-		String sUserId = (String) request.getSession().getAttribute("sUserId");
+	public String user_remove_action(HttpSession session) throws Exception {
+		String sUserId = (String) session.getAttribute("sUserId");
 		userService.deleteUser(sUserId);
-		request.getSession().invalidate();
-		return "redirect:index";
+		session.invalidate();
+		return "redirect:user_login_form";
 	}
 
 	/*********** GET방식요청시 guest_main redirection *********/
