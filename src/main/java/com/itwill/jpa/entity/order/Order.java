@@ -68,9 +68,9 @@ public class Order {
 	
 	
 	//주문 진행상황 표시를 위한 enum(상수)타입 메서드
-		public enum OrderStatus {
-			결제완료, 배송준비중, 배송중, 배송완료
-		}
+	public enum OrderStatus {
+		결제완료, 배송준비중, 배송중, 배송완료
+	}
 	
 	
 	//order와 delivery 1대1
