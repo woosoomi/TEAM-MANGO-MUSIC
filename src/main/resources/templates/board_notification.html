@@ -41,7 +41,7 @@
 
 									<span class="time"
 										th:text="${notification.boardType.boardTypeTitle}">2023.10.19</span></br>
-									<span class="time" th:text="${notification.createdTime}" >2023.10.19</span>
+									<span class="time" th:text="${notification.createdTime}">2023.10.19</span>
 									</br>
 									</br>
 									<pre th:utext="${#strings.length(notification.boardContent) &gt; 10 ? notification.boardContent.substring(0, 10) + '...' : notification.boardContent}"
@@ -93,17 +93,20 @@
 						</div>
 
 						<!--userId가 admin일때 보이기 -->
-						<div class="searh-form">
+						<div th:if="${session == null or (userIdString != null and userIdString == 'admin')}"
+							class="searh-form">
 							<form class="form-style-1 celebrity-form"
 								action="/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_write">
 								<div class="row">
-									<div class="col-md-12 "><input class="submit" type="submit" value="작성하기">
+									<div class="col-md-12">
+										<input class="submit" type="submit" value="작성하기">
 									</div>
 								</div>
 							</form>
-
-
 						</div>
+
+
+
 					</div>
 				</div>
 			</div>

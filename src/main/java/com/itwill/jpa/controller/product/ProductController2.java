@@ -64,6 +64,25 @@ public class ProductController2 {
 			return null;
 		}
 	}
+	// 최신 뮤직리스트 
+	@LoginCheck
+	@GetMapping("/product_music_newest")
+	public String musicNewestList(Model model, HttpSession session) {
+		try {
+			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("userId",userId);
+
+			List<ProductDto> newestMusic = productService.findByProductCategoryId(1L);
+			newestMusic = productService.productListByOlder(1L); //서비스 메서드 older랑 newer 반대로 됐음.
+			model.addAttribute("newestMusic", newestMusic);
+			return "product_music_newest";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute(e.getMessage());
+			return null;
+		}
+	}
 
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
 	@LoginCheck
@@ -148,7 +167,7 @@ public class ProductController2 {
 
 		        if (findGoodsOptional.isPresent()) {
 		            Product findGoods = findGoodsOptional.get();
-	//	            productService.increaseReadCount(findGoods);
+		            productService.increaseReadCount(findGoods);
 		            model.addAttribute("findGoods", findGoods);
 		            System.out.println(">>>굿즈 상세정보:" + findGoods);
 		        } else {

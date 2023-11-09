@@ -473,7 +473,7 @@ public class ProductServiceImpl implements ProductService{
 		return productDtoList;
 	}
 	
-	// product 최신 등록 순으로 정렬[성공]
+	// product 오래 등록된 순으로 정렬[성공]
 	@Override
 	public List<ProductDto> productListByNewer(Long categoryId) {
 		Sort sort = Sort.by(Sort.Direction.ASC, "productDate");
@@ -504,7 +504,9 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return productDtoList;
 	}
-	// product 오래 등록된 순으로 정렬[성공]
+	
+	// product 최신 등록 순으로 정렬[성공]
+		//older,newer 기능 반대-추후 이름수정 필요
 	@Override
 	public List<ProductDto> productListByOlder(Long categoryId) {
 		Sort sort = Sort.by(Sort.Direction.DESC, "productDate");
