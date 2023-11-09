@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 });
 
-/*내림차순 */
+/*내림차순 - 필요없어짐*/
 /*$(document).ready(function() {
 	var initialData = $('#musicList').html();
 	var rankCount = $('#rank');

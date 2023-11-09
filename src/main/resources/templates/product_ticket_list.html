@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/product.css">
+	<link rel="stylesheet" href="css/productTest.css">
 </head>
 
 <body>
@@ -72,7 +73,7 @@
 		            <form class="form-style-1 celebrity-form" action="#">
 		                <div class="form-it">
 		                    <label>티켓이름</label>
-		                    <input type="text" placeholder="Enter keywords">
+		                    <input type="text" id="searchInput" placeholder="Enter keywords">
 		                </div>
 		                <div>
 		                    <input class="submit" type="submit" value="submit">
@@ -87,6 +88,7 @@
 		</div>	
             </div>
         </div>
+        <a id="topBtn" href="#"><img src="images/upward-arrow-60.png" ></a>
     </div>
 	</div><!--end of celebrity grid v1 section--><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
@@ -96,6 +98,8 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/product.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
 </body>
 
 </html>
