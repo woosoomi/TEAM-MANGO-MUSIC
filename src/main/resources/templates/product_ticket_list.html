@@ -45,8 +45,8 @@
 
         </div>
 
+ <!-- 티켓리스트 -->
         <div class="row" id="ticketList">
-          <!-- 티켓리스트 -->
           <div class="movie-item-style-2" th:id="'ticketItem_' + ${ticket.productNo}" th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 13}">
             <a style="padding-right: 20px; color: #ffffff;" th:text="${ticket.productNo}">번호</a>
             <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
