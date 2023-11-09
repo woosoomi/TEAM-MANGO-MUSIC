@@ -7,18 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.thymeleaf.context.Context;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.order.CouponDto;
-import com.itwill.jpa.dto.order.DeliveryDto;
 import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
-import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.order.CouponService;
-import com.itwill.jpa.service.order.DeliveryService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
@@ -42,115 +38,90 @@ public class OrderController {
 	@Autowired
 	private CouponService couponService;
 	
-
 	@Autowired
 	private UserService userService;
+
 	
 	@LoginCheck
-
 	@GetMapping("/order_membership")
-
 	public String orderMembershipPage(Model model, HttpSession session) {
 		
-
 		try {
-
-			
-			String loginUser = (String) session.getAttribute("sUserId");
-			UserDto user = null;
-			user = userService.findUser(loginUser);
-
-			    // 사용자 정보를 세션에 저장
-			String userId = (user != null) ? user.getUserId() : null;
-			model.addAttribute("user_id", userId);
-
 			/*************** 유저정보 ***************/
-
 			
-			//임의로 세션 로그인 유저 설정함
-//			HttpSession session = request.getSession();
-//			session.setAttribute("user_id", "lsg33");
-//			String userId = (String) session.getAttribute("user_id");
-//			model.addAttribute("user_id", userId);
+			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("user_id", userId);
 			
-
 			/*************** 주문아이템 ***************/
 
 			// 멤버쉽 카테고리번호 4 픽스
 			Long categoryId = 4L;
-
-			
-			if(userId != null) {
 				
-				//유저의 카테고리별 주문아이템 조회하기
-				List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
-				model.addAttribute("orderItemDtoList", orderItemDtoList);
-				
-				// Product 엔티티의 정보를 저장할 변수
-	            Date membershipStartPeriod = null;
-	            int membershipPeriodOfUse = 0;
-	            String membershipName = null;
-	            String membershipImage = null;
-	            String membershipContent = null;
-	            Long membershipNo = 0L;
-	            
-	            // 주문 아이템별로 Product 정보 가져오기
-	            for (OrderItemDto orderItemDto : orderItemDtoList) {
-	                Long productNo = orderItemDto.getProductNo();
-	                Product product = productService.getProduct(productNo);
-	                if (product != null) {
-	                    // Product 엔티티의 멤버십 시작일 정보 가져오기
-	                    membershipStartPeriod = product.getStartPeriod();
-	                    membershipPeriodOfUse = product.getPeriodOfUse();
-	                    membershipName = product.getProductName();
-	                    membershipImage = product.getProductImage();
-	                    membershipContent = product.getProductContent();
-	                    membershipNo = product.getProductNo();
-	                }
-	            }
-	            model.addAttribute("membershipStartPeriod", membershipStartPeriod);
-	            model.addAttribute("membershipPeriodOfUse", membershipPeriodOfUse);
-	            model.addAttribute("membershipName", membershipName);
-	            model.addAttribute("membershipImage", membershipImage);
-	            model.addAttribute("membershipContent", membershipContent);
-	            model.addAttribute("membershipNo", membershipNo);
-	                
-	            /*************** 가격 ***************/
-	                
-	            double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
-	            //상품 가격 소수점 아래 절사
-	            int formattedOrderPrice = (int) orderPrice;
-	            model.addAttribute("orderPrice", orderPrice);
-	            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
-	          
-	            /*************** 쿠폰 ***************/
-	            	            
-	            // 유저의 쿠폰정보 불러오기
-	            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
-	            model.addAttribute("couponDtoList", couponDtoList);	
-	            for (CouponDto couponDto : couponDtoList) {
-	                Double couponDiscount = couponDto.getCouponDiscount();
-	                if (couponDiscount != null) {
-	                    int discount = couponDiscount.intValue(); // Double 값을 int로 변환
-	                    model.addAttribute("discount", discount);
-	                } else {
-	                    // 할인율이 null인 경우
-	                }
-	            }
-	            //쿠폰 할인 적용 메서드
-	            double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
-	            //총 결제금액 소수점 아래 절사
-	            int endPrice = (int) salePrice;
-	            model.addAttribute("salePrice", salePrice);
-	            model.addAttribute("endPrice", endPrice);
-	           
-	            return "order_membership";
-	            
-			} else {
-				//추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
-				return "index";
-			}
+			//유저의 카테고리별 주문아이템 조회하기
+			List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
+			model.addAttribute("orderItemDtoList", orderItemDtoList);
 			
+			// Product 엔티티의 정보를 저장할 변수
+            Date membershipStartPeriod = null;
+            int membershipPeriodOfUse = 0;
+            String membershipName = null;
+            String membershipImage = null;
+            String membershipContent = null;
+            Long membershipNo = 0L;
+            
+            // 주문 아이템별로 Product 정보 가져오기
+            for (OrderItemDto orderItemDto : orderItemDtoList) {
+                Long productNo = orderItemDto.getProductNo();
+                Product product = productService.getProduct(productNo);
+                if (product != null) {
+                    // Product 엔티티의 멤버십 시작일 정보 가져오기
+                    membershipStartPeriod = product.getStartPeriod();
+                    membershipPeriodOfUse = product.getPeriodOfUse();
+                    membershipName = product.getProductName();
+                    membershipImage = product.getProductImage();
+                    membershipContent = product.getProductContent();
+                    membershipNo = product.getProductNo();
+                }
+            }
+            
+            model.addAttribute("membershipStartPeriod", membershipStartPeriod);
+            model.addAttribute("membershipPeriodOfUse", membershipPeriodOfUse);
+            model.addAttribute("membershipName", membershipName);
+            model.addAttribute("membershipImage", membershipImage);
+            model.addAttribute("membershipContent", membershipContent);
+            model.addAttribute("membershipNo", membershipNo);
+                
+            /*************** 가격 ***************/
+                
+            double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
+            //상품 가격 소수점 아래 절사
+            int formattedOrderPrice = (int) orderPrice;
+            model.addAttribute("orderPrice", orderPrice);
+            model.addAttribute("formattedOrderPrice", formattedOrderPrice);
+          
+            /*************** 쿠폰 ***************/
+            	            
+            // 유저의 쿠폰정보 불러오기
+            List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
+            model.addAttribute("couponDtoList", couponDtoList);	
+            for (CouponDto couponDto : couponDtoList) {
+                Double couponDiscount = couponDto.getCouponDiscount();
+                if (couponDiscount != null) {
+                    int discount = couponDiscount.intValue(); // Double 값을 int로 변환
+                    model.addAttribute("discount", discount);
+                } else {
+                    // 할인율이 null인 경우
+                }
+            }
+            //쿠폰 할인 적용 메서드
+            double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
+            //총 결제금액 소수점 아래 절사
+            int endPrice = (int) salePrice;
+            model.addAttribute("salePrice", salePrice);
+            model.addAttribute("endPrice", endPrice);
+           
+            return "order_membership";
+	            			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("주문이 존재하지 않습니다.", e.getMessage());
@@ -166,90 +137,81 @@ public class OrderController {
 		
 		try {
 			/*************** 유저정보 ***************/
-			String userId = (String) session.getAttribute("sUserId");
 			
-//			//임의로 세션 로그인 유저 설정함
-//			HttpSession session = request.getSession();
-//			session.setAttribute("user_id", "ycl77");
-//			String userId = (String) session.getAttribute("user_id");
-//			model.addAttribute("user_id", userId);
+			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("user_id", userId);
 			
 			/*************** 주문아이템 ***************/
 			
 			//티켓 카테고리번호 3 픽스
 			Long categoryId = 3L;
-			
-			if(userId != null) {
-				
-				//유저의 카테고리별 주문아이템 조회하기
-				List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
+						
+			//유저의 카테고리별 주문아이템 조회하기
+			List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
 
-				model.addAttribute("orderItemDtoList", orderItemDtoList);
+			model.addAttribute("orderItemDtoList", orderItemDtoList);
 
-				// Product 엔티티의 정보를 저장할 변수
-				Date membershipStartPeriod = null;
-				int membershipPeriodOfUse = 0;
-				String membershipName = null;
-				String membershipImage = null;
-				String membershipContent = null;
-				Long membershipNo = 0L;
+			// Product 엔티티의 정보를 저장할 변수
+			Date membershipStartPeriod = null;
+			int membershipPeriodOfUse = 0;
+			String membershipName = null;
+			String membershipImage = null;
+			String membershipContent = null;
+			Long membershipNo = 0L;
 
-				// 주문 아이템별로 Product 정보 가져오기
-				for (OrderItemDto orderItemDto : orderItemDtoList) {
-					Long productNo = orderItemDto.getProductNo();
-					Product product = productService.getProduct(productNo);
-					if (product != null) {
-						// Product 엔티티의 멤버십 시작일 정보 가져오기
-						membershipStartPeriod = product.getStartPeriod();
-						membershipPeriodOfUse = product.getPeriodOfUse();
-						membershipName = product.getProductName();
-						membershipImage = product.getProductImage();
-						membershipContent = product.getProductContent();
-						membershipNo = product.getProductNo();
-					}
+			// 주문 아이템별로 Product 정보 가져오기
+			for (OrderItemDto orderItemDto : orderItemDtoList) {
+				Long productNo = orderItemDto.getProductNo();
+				Product product = productService.getProduct(productNo);
+				if (product != null) {
+					// Product 엔티티의 멤버십 시작일 정보 가져오기
+					membershipStartPeriod = product.getStartPeriod();
+					membershipPeriodOfUse = product.getPeriodOfUse();
+					membershipName = product.getProductName();
+					membershipImage = product.getProductImage();
+					membershipContent = product.getProductContent();
+					membershipNo = product.getProductNo();
 				}
-				model.addAttribute("membershipStartPeriod", membershipStartPeriod);
-				model.addAttribute("membershipPeriodOfUse", membershipPeriodOfUse);
-				model.addAttribute("membershipName", membershipName);
-				model.addAttribute("membershipImage", membershipImage);
-				model.addAttribute("membershipContent", membershipContent);
-				model.addAttribute("membershipNo", membershipNo);
-
-				/*************** 가격 ***************/
-
-				double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
-				// 상품 가격 소수점 아래 절사
-				int formattedOrderPrice = (int) orderPrice;
-				model.addAttribute("orderPrice", orderPrice);
-				model.addAttribute("formattedOrderPrice", formattedOrderPrice);
-
-				/*************** 쿠폰 ***************/
-
-				// 유저의 쿠폰정보 불러오기
-				List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
-				model.addAttribute("couponDtoList", couponDtoList);
-				for (CouponDto couponDto : couponDtoList) {
-					Double couponDiscount = couponDto.getCouponDiscount();
-					if (couponDiscount != null) {
-						int discount = couponDiscount.intValue(); // Double 값을 int로 변환
-						model.addAttribute("discount", discount);
-					} else {
-						// 할인율이 null인 경우
-					}
-				}
-				// 쿠폰 할인 적용 메서드
-				double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
-				// 총 결제금액 소수점 아래 절사
-				int endPrice = (int) salePrice;
-				model.addAttribute("salePrice", salePrice);
-				model.addAttribute("endPrice", endPrice);
-
-				return "order_membership";
-
-			} else {
-				// 추후에 메인(index)페이지 대신에 로그인 페이지로 보낼예정
-				return "index";
 			}
+			
+			model.addAttribute("membershipStartPeriod", membershipStartPeriod);
+			model.addAttribute("membershipPeriodOfUse", membershipPeriodOfUse);
+			model.addAttribute("membershipName", membershipName);
+			model.addAttribute("membershipImage", membershipImage);
+			model.addAttribute("membershipContent", membershipContent);
+			model.addAttribute("membershipNo", membershipNo);
+
+			/*************** 가격 ***************/
+
+			double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
+			// 상품 가격 소수점 아래 절사
+			int formattedOrderPrice = (int) orderPrice;
+			model.addAttribute("orderPrice", orderPrice);
+			model.addAttribute("formattedOrderPrice", formattedOrderPrice);
+
+			/*************** 쿠폰 ***************/
+
+			// 유저의 쿠폰정보 불러오기
+			List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
+			model.addAttribute("couponDtoList", couponDtoList);
+			for (CouponDto couponDto : couponDtoList) {
+				Double couponDiscount = couponDto.getCouponDiscount();
+				if (couponDiscount != null) {
+					int discount = couponDiscount.intValue(); // Double 값을 int로 변환
+					model.addAttribute("discount", discount);
+				} else {
+					// 할인율이 null인 경우
+				}
+			}
+			// 쿠폰 할인 적용 메서드
+			double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
+			// 총 결제금액 소수점 아래 절사
+			int endPrice = (int) salePrice;
+			model.addAttribute("salePrice", salePrice);
+			model.addAttribute("endPrice", endPrice);
+
+			return "order_ticket";
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -263,7 +225,6 @@ public class OrderController {
 				
 	
 	@LoginCheck
-
 	@GetMapping("/order_history")
 	public String orderHistoryPage(Model model, HttpSession session) {
 		try {
