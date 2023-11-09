@@ -63,7 +63,7 @@
 									<div class="author-infor">
 										<div class="flex-it2">
 											<!--Name으로 체인지 가능-userinfo-->
-											<h6 th:text="'작성자 : '+${board.getUser().getUserName()}"
+											<h6 th:text="${ReplyList.getUser.getUserName}"
 												style="color: white; font-size: 20px;"><a href="#">Steve Perry</a></h6>
 											<span class="time"
 												th:text="${#temporals.format(ReplyList.createDateTime, 'yyyy-MM-dd HH:mm')}">
@@ -74,21 +74,20 @@
 									</div>
 								</div>
 							</div>
-
-
 						</div>
+						
 						<div class="comment-form">
 							<h4>댓글쓰기</h4>
 							<form action="">
 								<div class="row">
 									<div class="col-md-4">
-										<input type="text" id="comment_id" placeholder="작성자 이름">
+										<input type="text" id="comment_id" placeholder="작성자 이름" th:value="${userIdString+'님'}">
 									</div>
 									
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<textarea name="message" id="comment_content" placeholder="댓글을입력하세요"></textarea>
+										<textarea name="message" id="comment_content" placeholder="건전한 댓글문화를 위해 최소 20글자의 댓글을입력해주세요"></textarea>
 									</div>
 								</div>
 								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
@@ -148,7 +147,7 @@
 			"boardReplyTitle": "댓글타이틀",
 			"boardReplyContent": commentContent,
 			"boardId": boardIdInt,
-			"userId": "myr1109" //세션처리 아이디넣으면 자동으로 이름들어옴
+			"userId": "why3795" //세션처리 아이디넣으면 자동으로 이름들어옴
 		}
 		console.log(commentData);
 		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_reply_create/${boardId}`, {
