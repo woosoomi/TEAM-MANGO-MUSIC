@@ -79,10 +79,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
     public void deleteUser(String userId) throws Exception {
-      
         userDao.deleteUser(userId);
     }
-
+	
 	@Override
     public UserDto findUser(String userId) throws Exception {
         return UserDto.toDto(userDao.findUser(userId));

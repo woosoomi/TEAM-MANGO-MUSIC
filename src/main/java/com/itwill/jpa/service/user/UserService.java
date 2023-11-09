@@ -18,9 +18,9 @@ public interface UserService {
 	// 회원 정보 업데이트
 	UserDto updateUser(UserUpdateDto userUpdateDto) throws Exception;
 
-	// 회원 탈퇴
+	// 회원 탈퇴(아이디로)
 	void deleteUser(String userId) throws Exception;
-
+	
 	// 회원 상세 정보 조회
 	UserDto findUser(String userId) throws Exception;
 
@@ -35,5 +35,7 @@ public interface UserService {
 
 	// 아이디, 번호로 비밀번호 찾기
 	String findUserPwByUserIdUserPhone(String userId, String userPhone) throws Exception;
+
+	
 
 }
