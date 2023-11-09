@@ -50,17 +50,12 @@ public class OrderRestController {
 		}
 	}
 	
-	// 주문생성
+	// 카트주문생성
 	@Operation(summary = "카트주문생성[성공]")
 	@PostMapping("/saveCartOrder")
 	public ResponseEntity<?> saveCartOrder(HttpSession session) {
 		try {
-			String userId="lsg33";
-			session.setAttribute("user_id", userId);
-			
-			userId = (String) session.getAttribute("user_id");
-			orderService.saveCartOrder(userId);
-			
+			String userId = (String) session.getAttribute("sUserId");
 			return ResponseEntity.status(HttpStatus.OK).body(orderService.saveCartOrder(userId));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -211,8 +206,9 @@ public class OrderRestController {
 	// 결제된 멤버쉽 정보 저장하기
 	@Operation(summary = "결제된 멤버쉽 정보 저장하기[성공]")
 	@PostMapping("/saveMembership/{userId}")
-	public ResponseEntity<?> isMembershipPurchasedAndSaveMembership(@PathVariable(value = "userId") String userId) {
+	public ResponseEntity<?> isMembershipPurchasedAndSaveMembership(HttpSession session) {
 		try {
+			String userId = (String) session.getAttribute("sUserId");
 			boolean isMembershipPurchaseSuccess = orderService.isMembershipPurchasedAndSaveMembership(userId);
 			return ResponseEntity.status(HttpStatus.OK).body(isMembershipPurchaseSuccess);
 		} catch (Exception e) {

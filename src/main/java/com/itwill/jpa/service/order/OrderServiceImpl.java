@@ -214,7 +214,7 @@ public class OrderServiceImpl implements OrderService{
 		}
 		
 		// 멤버십 결제 로직 (예: 결제가 성공하면 멤버십을 구매한 것으로 간주)
-		boolean membershipPurchaseSuccess = performMembershipPurchaseLogic(userId);
+		boolean membershipPurchaseSuccess = true;
 		
 		if (membershipPurchaseSuccess) {
 			// 멤버십 구매가 성공하면 사용자 멤버십 정보 true로 업데이트

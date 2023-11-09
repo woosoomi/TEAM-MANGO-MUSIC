@@ -61,7 +61,6 @@ public class OrderController {
 			List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
 			model.addAttribute("orderItemDtoList", orderItemDtoList);
 			
-			
 			// Product 엔티티의 정보를 저장할 변수
             Date membershipStartPeriod = null;
             int membershipPeriodOfUse = 0;
@@ -70,6 +69,7 @@ public class OrderController {
             String membershipContent = null;
             Long membershipNo = 0L;
             int membershipPrice = 0;
+            
             // 주문 아이템별로 Product 정보 가져오기
             for (OrderItemDto orderItemDto : orderItemDtoList) {
                 Long productNo = orderItemDto.getProductNo();
@@ -100,7 +100,6 @@ public class OrderController {
             int formattedOrderPrice = (int) orderPrice;
             model.addAttribute("formattedOrderPrice", formattedOrderPrice);
             
-          
             /*************** 쿠폰 ***************/
             	            
             // 유저의 쿠폰정보 불러오기
