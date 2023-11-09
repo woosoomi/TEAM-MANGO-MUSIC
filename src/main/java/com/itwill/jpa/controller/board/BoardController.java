@@ -42,8 +42,20 @@ public class BoardController {
 	private UserService userService;
 
 	@GetMapping("/board_event")
-	public String eventPage(Model model) {
+	public String eventPage(HttpSession session, Model model) {
 		try {
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+			}
+
+			session.setAttribute("loginUser", user);
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+			
 			List<Board> events = boardServiceImpl.findBycategory(2L);
 			model.addAttribute("events", events);
 			System.out.println("이벤트 리스트 :" + events);
