@@ -13,6 +13,8 @@ function voteButtonClicked(button) {
     var userId = $(button).data("userid");
 	console.log(userId);
 	console.log(voteId);
+	
+	
     // 회원 투표 업데이트 실행
     $.ajax({
         type: "PUT",
