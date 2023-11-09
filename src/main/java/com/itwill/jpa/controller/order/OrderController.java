@@ -40,7 +40,7 @@ public class OrderController {
 	
 	@Autowired
 	private UserService userService;
-
+	
 	
 	@LoginCheck
 	@GetMapping("/order_membership")
@@ -53,13 +53,14 @@ public class OrderController {
 			model.addAttribute("user_id", userId);
 			
 			/*************** 주문아이템 ***************/
-
+			
 			// 멤버쉽 카테고리번호 4 픽스
 			Long categoryId = 4L;
 				
 			//유저의 카테고리별 주문아이템 조회하기
 			List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
 			model.addAttribute("orderItemDtoList", orderItemDtoList);
+			
 			
 			// Product 엔티티의 정보를 저장할 변수
             Date membershipStartPeriod = null;
@@ -94,36 +95,26 @@ public class OrderController {
             model.addAttribute("membershipPrice", membershipPrice);
                 
             /*************** 가격 ***************/
-              double orderPrice = membershipPrice;  
-            //double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
+        	double orderPrice = membershipPrice;  
             //상품 가격 소수점 아래 절사
             int formattedOrderPrice = (int) orderPrice;
-            model.addAttribute("orderPrice", orderPrice);
             model.addAttribute("formattedOrderPrice", formattedOrderPrice);
+            
           
             /*************** 쿠폰 ***************/
             	            
             // 유저의 쿠폰정보 불러오기
             List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
-            model.addAttribute("couponDtoList", couponDtoList);	
-            for (CouponDto couponDto : couponDtoList) {
-                Double couponDiscount = couponDto.getCouponDiscount();
-                if (couponDiscount != null) {
-                    int discount = couponDiscount.intValue(); // Double 값을 int로 변환
-                    model.addAttribute("discount", discount);
-                } else {
-                    // 할인율이 null인 경우
-                }
-            }
+            model.addAttribute("couponDtoList", couponDtoList);
+            
             //쿠폰 할인 적용 메서드
             double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
             //총 결제금액 소수점 아래 절사
             int endPrice = (int) salePrice;
-            model.addAttribute("salePrice", salePrice);
             model.addAttribute("endPrice", endPrice);
            
             return "order_membership";
-	            			
+        	
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("주문이 존재하지 않습니다.", e.getMessage());
@@ -197,10 +188,9 @@ public class OrderController {
 
 			/*************** 가격 ***************/
 
-			double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
-			// 상품 가격 소수점 아래 절사
+			double orderPrice = ticketPrice;
+			//상품 가격 소수점 아래 절사
 			int formattedOrderPrice = (int) orderPrice;
-			model.addAttribute("orderPrice", orderPrice);
 			model.addAttribute("formattedOrderPrice", formattedOrderPrice);
 
 			/*************** 쿠폰 ***************/
@@ -208,25 +198,15 @@ public class OrderController {
 			// 유저의 쿠폰정보 불러오기
 			List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
 			model.addAttribute("couponDtoList", couponDtoList);
-			for (CouponDto couponDto : couponDtoList) {
-				Double couponDiscount = couponDto.getCouponDiscount();
-				if (couponDiscount != null) {
-					int discount = couponDiscount.intValue(); // Double 값을 int로 변환
-					model.addAttribute("discount", discount);
-				} else {
-					// 할인율이 null인 경우
-				}
-			}
+
 			// 쿠폰 할인 적용 메서드
 			double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
 			// 총 결제금액 소수점 아래 절사
 			int endPrice = (int) salePrice;
-			model.addAttribute("salePrice", salePrice);
 			model.addAttribute("endPrice", endPrice);
-
+			
 			return "order_ticket";
-
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("주문이 존재하지 않습니다.", e.getMessage());

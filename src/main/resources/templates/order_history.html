@@ -81,7 +81,7 @@
                 <span th:text = "'주문상태: '+${order.orderStatus}"></span>
             	</p>
                 <p class="rate">
-                    <span th:text="'총가격: '+${order.orderPrice + ' 원'}"></span>
+                    <span th:text="'결제금액: '+${order.orderPrice + ' 원'}"></span>
                 </p>
                 <p class="rate">
 					
@@ -136,12 +136,12 @@
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	
-	</footer><!-- end of footer section-->
+</body>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/order.js"></script>
-</body>
-
+	
 </html>
