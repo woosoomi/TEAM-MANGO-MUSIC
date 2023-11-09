@@ -4,10 +4,12 @@ package com.itwill.jpa.controller.user;
 import java.net.http.HttpHeaders;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +44,7 @@ public class UserRestController {
 
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-	
+
 	@Autowired
 	private CartService cartService;
 
@@ -55,7 +57,7 @@ public class UserRestController {
 			}
 			UserDto createdUser = userService.createUser(userDto);
 			cartService.createCart(userDto.getUserId());
-			
+
 			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 		} catch (ExistedUserException e) {
 			// 이미 존재하는 사용자 예외 처리
@@ -77,6 +79,7 @@ public class UserRestController {
 			// 로그인 성공 시 사용자 정보를 세션에 저장
 			session.setAttribute("sUserId", loginUser.getUserId());
 			session.setAttribute("sUserName", loginUser.getUserName());
+			session.setAttribute("sUserPw", loginUser.getUserPw());
 
 			return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
 		} else {
@@ -134,22 +137,6 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	/*
-	 * @LoginCheck
-	 * 
-	 * @Operation(summary = "회원업데이트[성공]")
-	 * 
-	 * @PutMapping(value = "/update", produces = "application/json;charset=UTF-8")
-	 * public ResponseEntity<?> user_modify_action(@RequestBody UserUpdateDto
-	 * userUpdateDto, HttpSession session) { try { String loginUser =
-	 * (String)session.getAttribute("sUserId");
-	 * 
-	 * UserDto updatedUser = userService.updateUser(userUpdateDto);
-	 * 
-	 * return new ResponseEntity<>(updatedUser, HttpStatus.OK); } catch (Exception
-	 * e) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); } }
-	 */
 
 	// 아이디 중복 체크 API
 	@Operation(summary = "아이디중복체크")
@@ -184,17 +171,37 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	@GetMapping("/getUserInfo")
-	public ResponseEntity<String> getUserInfo(HttpSession session) {
-		String userId = (String) session.getAttribute("sUserId");
-		if (userId != null) {
-			return new ResponseEntity<>(userId, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>("User not logged in", HttpStatus.UNAUTHORIZED);
+
+	@Operation(summary = "회원탈퇴")
+	@DeleteMapping("/delete/{userId}")
+	public ResponseEntity<UserLoginDto> user_delete_action(@PathVariable(name = "userId") String userId,
+			HttpSession session) throws Exception {
+		if (session.getAttribute("sUserId") != null) {
+			userService.deleteUser(userId);
+			session.invalidate();
 		}
+		return new ResponseEntity<UserLoginDto>(HttpStatus.OK);
 	}
-	
+
+	/*
+	 * @Operation(summary = "회원탈퇴")
+	 * 
+	 * @DeleteMapping("/delete/{userId}") public ResponseEntity<UserLoginDto>
+	 * user_delete_action(@PathVariable(name = "userId") String userId,
+	 * 
+	 * @RequestBody Map<String, String> requestBody, HttpSession session) { try { if
+	 * (session.getAttribute("sUserId") != null) { String enteredPassword =
+	 * requestBody.get("password");
+	 * 
+	 * // TODO: 실제로는 비밀번호 확인을 위한 로직을 추가해야 함 (예: userService.checkPassword(userId, //
+	 * enteredPassword)) // 여기에서는 간단히 비밀번호가 일치하는 것으로 가정 if
+	 * (enteredPassword.equals("비밀번호가 일치하는 경우")) { userService.deleteUser(userId);
+	 * session.invalidate(); return new ResponseEntity<>(HttpStatus.OK); } else { //
+	 * 비밀번호가 일치하지 않는 경우 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); } }
+	 * else { // 세션이 유효하지 않은 경우 return new
+	 * ResponseEntity<>(HttpStatus.UNAUTHORIZED); } } catch (Exception e) { // 예외가
+	 * 발생한 경우 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
+	 */
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleException(Exception e) {
