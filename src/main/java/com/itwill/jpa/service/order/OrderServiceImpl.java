@@ -63,10 +63,8 @@ public class OrderServiceImpl implements OrderService{
 			Product product =productRepository.findById(productNo).get();
 			orderItems.add(new OrderItem(null, orderItemDto.getOiQty(), order, product));
 		}
-		
 		order.setUser(user);
 		order.setOrderItems(orderItems);
-		
 		Order saveOrder = orderRepository.save(order);
 		
 		
@@ -90,12 +88,9 @@ public class OrderServiceImpl implements OrderService{
 		order.setOrderItems(orderItems);
 		Order saveOrder = orderRepository.save(order);
 		
-		
-		
+
 		OrderDto orderDto = OrderDto.toDto(saveOrder);
 		return orderDto;
-		
-		
 	}
 
 	//주문 정보 수정
