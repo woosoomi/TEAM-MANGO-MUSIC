@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
-	var itemList = $(initialData).find('.celebrity-items').toArray();
+	var itemList = $(initialData).find('.ceb-item').toArray();
 	console.log(itemList);
 
 	function filterItems(searchQuery) {
