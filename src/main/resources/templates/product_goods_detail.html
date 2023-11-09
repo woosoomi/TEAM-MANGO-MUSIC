@@ -23,7 +23,7 @@
 	<div th:insert="~{common_header::headerFragment}"></div>
 	<!-- END | Header -->
 
-	<div class="hero mv-single-hero">
+	<div class="ticketBackground" style="margin-top: 100px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -267,17 +267,17 @@
 				<!--댓글보기 내용[시작]-->						
 										<div class="row">
 											<!--관련무비 정보[시작]-->
-											<div class="rv-hd">
+											<!--<div class="rv-hd">
 												<div class="div">
 													<h3>Related Movies To</h3>
 													<h2>Skyfall: Quantum of Spectre</h2>
-												</div><a href="#" class="redbtn">Write Review</a>
-											</div>
+												</div><a href="#" class="redbtn">댓글작성버튼/a>
+											</div>-->
 											<!--관련무비 정보[마지막]-->
 											
 											<!--정렬탭[시작]-->
 											<div class="topbar-filter">
-												<p>총 <span>N개의</span>댓글</p>
+												<p>총 <span th:text="${ReplyList.size()} + ' 개의 댓글'" style="color: white; border-bottom: 1px solid #233a50;"></span></p>
 												<select>
 													<option value="popularity">최신순</option>
 													<option value="popularity">오래된순</option>
@@ -287,25 +287,103 @@
 											
 											<!--댓글란[시작]-->
 											<div class="mv-user-review-item">
-												<div class="user-infor"><img src="images/uploads/userava1.jpg" alt="">
-													<div>
-														<h3>Comment Title</h3>
-														<p class="time"> 작성일자 </p>
-													</div>
-												</div>
+													
+				<!--리스트로 나열할 것들[시작]-->
+												<div class="user-infor"><!--<img src="images/uploads/userava1.jpg" alt="">-->
+											<div class="comments" style="margin-top: 20px; margin-bottom: 50px;">
+											
+											
+											
+										<div th:each="ReplyList : ${ReplyList}">				
+											<div class="cmt-item flex-it">
+												<img src="images/uploads/author.png" alt="">
+												
+												<!--댓글작성자 정보 및 댓글내용[시작]-->
+												<div class="author-infor">		
 												<p>댓글내용</p>
+													<div class="flex-it2">
+													<p th:text="${ReplyList.ProductReplyContent}" style="color: white;"> content </p>
+										<!--문제발생[시작]-->										
+														<!--<h6 th:text="'작성자 : '${ReplyList.getUser().getUserName()}" style="color: white; font-size: 20px;">
+															<a href="#">Steve Perry</a></h6>							
+														<span class="time"
+														th:text="${#temporals.format(ReplyList.CreateDateTime, 'yyyy-MM-dd HH:mm')}">
+													 	27 Mar 2017</span>-->
+										<!--문제발생[시작]-->
+													</div>									
+												</div>
+												<!--댓글작성자 정보 및 댓글내용[마지막]-->
 											</div>
-											<!--댓글란[시작]-->
+											</div>
+											</div>
+											
 										</div>
-									<!--댓글보기 내용[마지막]-->																								
+				<!--리스트로 나열할 것들 [마지막]-->
+				
+							<!--댓글작성하기 폼	[시작]-->	
+							<div class="comment-form">
+							<h4>댓글작성</h4>
+							<form action="">
+								<div class="row">
+									<div class="col-md-4">
+										<input type="text" id="comment_id" placeholder="작성자 이름" style="font-size: 15px;"
+											th:value="${userIdString}">
 									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<textarea name="message" id="comment_content"
+											placeholder="지금 작성하면 무한로딩임"
+											style="font-size: 15px;"></textarea>
+									</div>
+								</div>
+								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
+							</form>
+						</div>						
+						<!--댓글작성하기 폼	[마지막]-->
+						
+				<!--댓글 수정 및 삭제 폼[시작]-->		
+						<div class="comment-form">
+							<div class="dropdown-container">
+								<div class="row">
+						<!--댓글 수정 버튼[시작]-->
+									<div class="col-md-6">
+										<form action="">
+											<input class="submit" type="button" value="수정하기"
+												onclick="update_reply_form()" style="margin-left: 250px;">
+										</form>
+									</div>
+									<!--댓글 수정 버튼[마지막]-->
+									
+									<!--댓글 삭제버튼[시작]-->
+									<div class="col-md-6">
+										<form id="deleteForm">
+											<input class="submit" value="삭제하기" type="button" onclick="deleteForms()"
+												style="margin-left: 10%;">
+										</form>
+									</div>
+									<!--댓글 삭제버튼[마지막]-->
+								</div>
+
+							</div>
+						</div>									
+						<!--댓글 수정 및 삭제 폼[마지막]-->	
+										
+										</div>
+											<!--댓글란[마지막]-->
+	
+												</div>
+									<!--댓글보기 내용[마지막]-->
+									
+											</div>
 									<!--댓글보기 전체[마지막]-->	
 									
 									<!--아티스트 보기-->
 									
 									<div id="cast"  class="tab">
-											<h3>아티스트 : <span th:text="${findGoods.productArtist}"></span></h3>
 											<h2>공연제목 : <span th:text="${findGoods.productName}"></span></h2>
+											<h3>아티스트 : <span th:text="${findGoods.productArtist}"></span></h3>
 											<div class="title-hd-sm1">									
 										<div class="row">
 											<div class="title-hd-sm">
@@ -745,10 +823,84 @@
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
 	
+</body>
+<script>
+	function create_reply() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const productNo = urlParams.get("productNo");
+
+		var commentContent = $("#comment_content").val()
+		console.log(commentContent);
+
+		const commentData = {
+			"productReplytTitle": "댓글타이틀",
+			"productReplyContent": commentContent,
+			"productNo": productNo,
+			"userId": "myr1109" //세션처리 아이디넣으면 자동으로 이름들어옴
+		}
+		console.log(commentData);
+		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_reply_create/${productNo}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(commentData)
+		})
+			.then(response => {
+				if (response.status === 201) {
+					alert('댓글 등록되었습니다.');
+				//	location.reload(); // 현재 페이지를 새로 고침
+					window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_goods_detail?productNo=" +productNo;
+				} else {
+					alert('댓글 등록에 실패했습니다.');
+					alert('에러 발생: ' + error);
+
+				}
+			})
+			.catch(error => {
+				alert('에러 발생: ' + error);
+			});
+
+
+	}
+
+	function deleteForms() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const productNo = urlParams.get("productNo");
+
+		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/delete/${productNo}`, {
+			method: "DELETE",
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					alert("댓글이 삭제되었습니다.");
+					/*alert("메인으로 이동합니다.");*/
+					window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_goods_detail?productNo=" +productNo;
+				} else {
+					alert("게시글 삭제에 실패했습니다.");
+				}
+			})
+			.catch((error) => {
+				alert("에러발생.")
+				console.error("에러:", error);
+			})
+			.finally(() => {
+				// 비활성화된 버튼을 활성화
+				deleteButton.disabled = false;
+			});
+	}
+		//수정하기폼으로 이동
+	function update_reply_form() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const productNo = urlParams.get("productNo");
+
+		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_goods_detail?productNo=" +productNo;
+	}
+
+</script>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
-</body>
-
+	<script src="js/product.js"></script>
 </html>
