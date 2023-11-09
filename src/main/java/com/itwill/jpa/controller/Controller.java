@@ -27,12 +27,13 @@ public class Controller {
 		String forward_path = "common"; 
 		return forward_path; 
 	}
-	
+	/*
 	@GetMapping("/admin") 
 	public String admin() { 
 		String forward_path = "admin_form"; 
 		return forward_path; 
 	}
+	*/
 	
 	@GetMapping("/admin_Board") 
 	public String admin_Board() { 
