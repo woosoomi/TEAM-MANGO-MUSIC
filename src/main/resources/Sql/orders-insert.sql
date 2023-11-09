@@ -37,7 +37,7 @@ values (delivery_no_seq.nextval, '서울시 구로구', '한진택배', '이승�
 INSERT INTO ORDERS (order_price, created_at, delivery_id, order_id, updated_at, order_status, user_id)
 values (30000, SYSTIMESTAMP, delivery_no_seq.currval, order_no_seq.nextval, SYSTIMESTAMP, '배송중', 'lsg33');
 
-INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (2, order_item_no_seq.nextval, order_no_seq.currval, 7);
+INSERT INTO ORDER_ITEM (oi_qty, oi_id, order_id, product_no) values (1, order_item_no_seq.nextval, order_no_seq.currval, 7);
 
 INSERT INTO COUPON (COUPON_DISCOUNT, COUPON_EXPIRATION_DATE, COUPON_IS_USED, COUPON_ID, CREATED_AT, ORDER_ID, UPDATED_AT, COUPON_CODE, COUPON_NAME, COUPON_TYPE, USER_ID) 
 values (30.0, TO_DATE('2023-10-30', 'YYYY-MM-DD'), 1, coupon_coupon_no_seq.nextval, SYSTIMESTAMP, order_no_seq.currval, SYSTIMESTAMP, '00000003', '망고 많이 먹기 대회 우승쿠폰', '12개월쿠폰', 'lsg33');
