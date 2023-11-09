@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService{
       
         userDao.deleteUser(userId);
     }
-
+	
 	@Override
     public UserDto findUser(String userId) throws Exception {
         return UserDto.toDto(userDao.findUser(userId));

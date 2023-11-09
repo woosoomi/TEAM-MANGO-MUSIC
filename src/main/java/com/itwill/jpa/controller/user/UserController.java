@@ -71,14 +71,14 @@ public class UserController {
 		return "user_modify_form";
 	}
 
-	@LoginCheck
-	@PostMapping("/user_remove_action")
-	public String user_remove_action(HttpSession session) throws Exception {
-		String sUserId = (String) session.getAttribute("sUserId");
-		userService.deleteUser(sUserId);
-		session.invalidate();
-		return "redirect:index";
-	}
+	/*
+	 * @LoginCheck
+	 * 
+	 * @PostMapping("/user_remove_action") public String
+	 * user_remove_action(HttpSession session) throws Exception { String sUserId =
+	 * (String) session.getAttribute("sUserId"); userService.deleteUser(sUserId);
+	 * session.invalidate(); return "redirect:index"; }
+	 */
 
 	/*********** GET방식요청시 guest_main redirection *********/
 	@GetMapping({ "/user_write_action", "/user_login_action", "/user_modify_action", "/user_remove_action" })

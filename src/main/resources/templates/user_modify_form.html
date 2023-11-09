@@ -107,7 +107,6 @@
 			};
 			
 			console.log(userId);
-			alert("업데이트 시작");
 			
 			// 서버로 데이터 전송
 			fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/update/${userData.userId}`, {
@@ -127,12 +126,11 @@
 					document.getElementById("userEmail").value = updatedUserData.userEmail;
 					document.getElementById("userId").value = updatedUserData.userId;
 
-					// 성공 메시지 또는 리디렉션을 처리 (필요에 따라)
+					alert("회원정보 수정이 완료되었습니다.");
 					window.location.href = "user_info_form";
 				})
 				.catch(error => {
 					console.error('에러:', error);
-					// 에러 메시지 처리 (필요에 따라)
 				});
 		}
 		

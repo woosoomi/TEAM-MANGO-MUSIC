@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class UserRestController {
 
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-	
+
 	@Autowired
 	private CartService cartService;
 
@@ -55,7 +56,7 @@ public class UserRestController {
 			}
 			UserDto createdUser = userService.createUser(userDto);
 			cartService.createCart(userDto.getUserId());
-			
+
 			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 		} catch (ExistedUserException e) {
 			// 이미 존재하는 사용자 예외 처리
@@ -134,7 +135,7 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	// 아이디 중복 체크 API
 	@Operation(summary = "아이디중복체크")
 	@GetMapping("/{userId}")
@@ -168,17 +169,17 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	@GetMapping("/getUserInfo")
-	public ResponseEntity<String> getUserInfo(HttpSession session) {
-		String userId = (String) session.getAttribute("sUserId");
-		if (userId != null) {
-			return new ResponseEntity<>(userId, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>("User not logged in", HttpStatus.UNAUTHORIZED);
+
+	@Operation(summary = "회원탈퇴")
+	@DeleteMapping("/delete/{userId}")
+	public ResponseEntity<UserLoginDto> user_delete_action(@PathVariable(name = "userId") String userId,
+			HttpSession session) throws Exception {
+		if (session.getAttribute("sUserId") != null) {
+			userService.deleteUser(userId);
+			session.invalidate();
 		}
+		return new ResponseEntity<UserLoginDto>(HttpStatus.OK);
 	}
-	
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleException(Exception e) {
