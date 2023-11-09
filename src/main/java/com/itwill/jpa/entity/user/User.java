@@ -80,31 +80,31 @@ public class User {
 	private Vote vote;
 
 	// user와 order 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@ToString.Exclude
 	private List<Order> orders = new ArrayList<>();
 
 	// user와 coupon 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@ToString.Exclude
 	private List<Coupon> coupons = new ArrayList<>();
 	
 	// user와 delivery 1대N 관계설정 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@ToString.Exclude
     private List<Delivery> deliverys = new ArrayList<>();
 
 	// user와 board_Reply 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@ToString.Exclude
 	private List<BoardReply> boardReply = new ArrayList<>();
 	
 	// user와 product_Reply 1대N 관계설정
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@ToString.Exclude
 	private List<ProductReply> productReply = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@ToString.Exclude
 	private List<Board> Board = new ArrayList<>();
 	
