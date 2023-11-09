@@ -1,68 +1,68 @@
 <!DOCTYPE html>
+<!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <!-- Basic need -->
+<head><!-- Basic need -->
     <title>Open Pediatrics</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name "keywords" content="">
     <meta name="author" content="">
-    <link rel="profile" href="#">
-    <!-- Google Font -->
+    <link rel="profile" href="#"><!-- Google Font -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600" />
     <!-- Mobile specific meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone-no">
-    <!-- CSS files -->
+    <meta name="format-detection" content="telephone-no"><!-- CSS files -->
+    <link rel="stylesheet" href="css/plugins.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/productTest.css">
 </head>
 
 <body>
     <!-- Preloading -->
-    <div th:insert="~{common_header :: headerFragment}"></div>
+    <div th:insert="~{common_header :: headerFragment}">		
+	</div>
 
     <!-- 정렬조건 -->
     <div class="page-single">
         <div class="container">
             <div class="row">
                 <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="topbar-filter fw">
-                        <p class="pad-change" style="white-space: nowrap;">
+                    <div class="topbar-filter">
+                        <p class="pad-change">
                             총 <span th:text="${#lists.size(goodsList)}">1,608</span> 건의 goods
                         </p>
-                        <label style="white-space: nowrap;">Sort by:</label>
+                        
+                        <label>Sort by:</label>
                         <select id="sortSelect">
-                            <option value="popularity">조회수 오름차순</option>
-                            <option value="popularity">조회수 내림차순</option>
-                            <option value="date">최신순</option>
-                            <option value="date">오래된순</option>
+                            <option value="readCountAsc">조회수 오름차순</option>
+                            <option value="readCountDesc">조회수 내림차순</option>
+                            <option value="dateAsc">최신순</option>
+                            <option value="dateDesc">오래된순</option>
                         </select>
+                        
                     </div>
-                    <div class="row" id="goodsList">
-                        <div class="celebrity-items">
-                            <div th:each="goods, iterStat : *{goodsList}" th:if="${iterStat.index lt 12}">
-								<!-- 그룹의 시작 부분 -->
-                                <div class="ceb-item">
-                                        <img th:src="${goods.productImage}" alt="" style="width: 380px; height: 380px;">
-                                    <div class="ceb-infor">
-                                        <h2>
-                                            <a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">상품명</a>
-                                        </h2>
-                                        <p>굿즈가격 : <a th:text="${goods.productPrice}"></a> 원</p>
-                                        <p>남은개수 : <a th:text="${goods.productStock}"></a> 개</p>
-                                        <p>조 회 수 : <a th:text="${goods.readCount}"></a>회</p>
-                                    </div>
-                                    </div>
-                                    <div th:if="${(iterStat.index + 1) % 3 == 0}" class="ceb-item-group-end">										
-									</div>
-                                    <!--<div class="movie-item-style-2">
-                                </div>-->
-                                </div>
-                            </div>
-                        </div>                                              
-                    </div>                                                   
+                    
+		<!--굿즈리스트-->
+ 					<div class="row" id="goodsList" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  					  <div class="celebrity-items" th:id="'goodsItem_' + ${goods.productNo}" th:each="goods, iterStat : *{goodsList}" th:if="${iterStat.index lt 12}" style="flex: 0 0 calc(33.33% - 10px); margin-right: 10px;">			        
+			        <div class="ceb-item">
+			            <img th:src="${goods.productImage}" alt="" style="width: 100%; height: 400px;">
+			            <div class="ceb-infor">
+			                <h2>
+			                    <a class="goodsName" th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">상품명</a>
+			                </h2>
+			                <p>굿즈가격 : <a th:text="${goods.productPrice}" class="red-text"></a> 원</p>
+			                <p>남은개수 : <a th:text="${goods.productStock}" class="red-text"></a> 개</p>
+			                <p>조 회 수 : <a th:text="${goods.readCount}" class="red-text"></a> 회</p>
+			                <p>등록날짜 : <a th:text="${goods.productDate}" class="red-text"></a></p>
+			            </div>
+			        </div>
+			        </div>
+			        </div>
+    </div>
+                                         
                 
 <!--검색기능-->                 
  <div class="col-md-3 col-xs-12 col-sm-12">
@@ -72,7 +72,7 @@
             <form class="form-style-1 celebrity-form" action="#">
                 <div class="form-it">
                     <label>굿즈이름</label>
-                    <input type="text" placeholder="Enter keywords">
+                    <input type="text" id="searchInput" placeholder="Enter keywords">
                 </div>
                 <div>
                     <input class="submit" type="submit" value="submit">
@@ -83,16 +83,20 @@
 </div>      
 <!--////////////////////////////////////////////////////////////////////////////// -->
             </div>
+            <a id="topBtn" href="#"><img src="images/upward-arrow-60.png" ></a>
         </div>
     </div>
     <!-- footer section -->
-    <div th:insert="~{common_footer :: footerFragment}"></div>
+    <div th:insert="~{common_footer :: footerFragment}">		
+	</div>
     <script src="js/jquery.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/plugins2.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/product.js"></script>
     <script src="js/cart.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
 </body>
 
 </html>

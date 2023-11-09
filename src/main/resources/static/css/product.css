@@ -6,21 +6,20 @@
 }
 
 /*/////////////////////////GOODS LIST/////////////////////////*/
-/* 기존 스타일 수정 */
-.celebrity-items .ceb-item {
-    /* 기존 스타일 */
+.red-text {
+    color: palegoldenrod;
+}
+.ceb-infor {
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    margin: 0 auto; /* 요소를 수평 가운데 정렬 */
+}
+.ceb-item {
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    margin: 0 auto; /* 요소를 수평 가운데 정렬 */
 }
 
-/* 3개씩 나열하도록 그룹화하는 스타일 */
-.celebrity-items .ceb-item-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-/* 그룹의 마지막에 적용되는 스타일 */
-.celebrity-items .ceb-item-group-end {
-    width: calc(30% - 10px); /* 3개씩 나열, 간격을 조절 */
-    margin-right: 1px; /* 오른쪽 여백 조절 */
-}
+/* 각 그룹의 마지막 아이템에 오른쪽 여백을 제거 */
+/*.celebrity-items .ceb-item-group-end .ceb-item:last-child {
+    margin-right: 0;
+}*/
 /*//////////////////////////////////////////////////////////////////*/
