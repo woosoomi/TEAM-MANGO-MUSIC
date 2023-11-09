@@ -63,7 +63,7 @@
 							<div class="modal-body">
 								<label for="password">비밀번호를 입력하세요:</label>
 								<input type="password" id="password" placeholder="비밀번호">
-								<input id="password" placeholder="비밀번호"> 비밀번호가 보이는 코드임  
+								<!--<input id="password" placeholder="비밀번호">-->
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -119,39 +119,7 @@
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
 
-
 	<script>
-		function confirmWithdrawal() {
-			var userId = document.getElementById("userId").value;
-			var enteredPassword = document.getElementById("password").value;
-
-			// Ajax를 이용하여 서버에 비밀번호 확인 및 회원 탈퇴 요청
-			$.ajax({
-				type: "DELETE",
-				url: `/user/delete/${userId}`,
-				data: JSON.stringify({password: enteredPassword}),
-				contentType: "application/json",
-				success: function (response) {
-					// 비밀번호 확인이 성공하면 모달 닫기
-					closeWithdrawalModal();
-					alert("회원 탈퇴 성공!");
-				},
-				error: function (error) {
-					// 비밀번호 확인이 실패하면 에러 메시지를 어딘가에 표시하거나 예외 처리
-					alert("비밀번호 확인이 실패했습니다. 다시 시도해주세요.");
-				}
-			});
-		}
-
-		function closeWithdrawalModal() {
-			// 모달 닫기
-			$('#withdrawalModal').modal('hide');
-		}
-	</script>
-
-
-
-	<!--<script>
 		function confirmWithdrawal() {
 			var userId = document.getElementById("userId").value;
 			var userPw = document.getElementById("userPw").value;
@@ -171,11 +139,13 @@
 		function closeWithdrawalModal() {
 			// 모달 닫기
 			$('#withdrawalModal').modal('hide');
+			window.location.href = "user_info_form";
 
 			// TODO: 여기에 실제 회원 탈퇴 처리를 위한 Ajax 요청 추가
 			// 비밀번호 확인이 성공했으므로 서버로 회원 탈퇴 요청을 보낼 수 있음
 		}
-	</script>-->
+		
+	</script>
 
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
