@@ -212,7 +212,89 @@
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div>
 </body>
+<script>
+	function create_reply() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const productNo = urlParams.get("productNo");
 
+		var commentContent = $("#comment_content").val()
+		console.log(commentContent);
+
+		const commentData = {
+			"productReplytTitle": "댓글타이틀",
+			"productReplyContent": commentContent,
+			"productNo": productNo,
+			"userId": "myr1109" //세션처리 아이디넣으면 자동으로 이름들어옴
+		}
+		console.log(commentData);
+		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_reply_create/${productNo}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(commentData)
+		})
+			.then(response => {
+				if (response.status === 201) {
+					alert('댓글 등록되었습니다.');
+					location.reload(); // 현재 페이지를 새로 고침
+
+				} else {
+					alert('댓글 등록에 실패했습니다.');
+					alert('에러 발생: ' + error);
+
+				}
+			})
+			.catch(error => {
+				alert('에러 발생: ' + error);
+			});
+
+
+	}
+
+	function deleteForms() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const productNo = urlParams.get("productNo");
+
+		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_delete/${productNo}`, {
+			method: "DELETE",
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					alert("댓글이 삭제되었습니다.");
+					alert("메인으로 이동합니다.");
+					window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_notification";
+				} else {
+					alert("게시글 삭제에 실패했습니다.");
+				}
+			})
+			.catch((error) => {
+				alert("에러발생.")
+				console.error("에러:", error);
+			})
+			.finally(() => {
+				// 비활성화된 버튼을 활성화
+				deleteButton.disabled = false;
+			});
+
+	}
+	//수정하기폼으로 이동
+	function update_edit_form() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const boardId = urlParams.get("boardId");
+		const boardIdInt = parseInt(boardId, 10);
+
+		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_detail_edit?boardId=" + boardIdInt;
+	}
+
+
+
+
+
+
+
+
+</script>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>

@@ -27,6 +27,8 @@ public interface ProductDao {
 	Product updateProduct(Product product) throws Exception;
 // 제품 수정(admin)[DTO][성공]	
 	Product updateProductDto(ProductDto product) throws Exception;
+// 제품 readCount[DTO]	
+	Product increaseReadCountByProductDto(ProductDto productDto) throws Exception;
 		
 //	Goods updateGoods(Goods goods) throws Exception;
 //	
