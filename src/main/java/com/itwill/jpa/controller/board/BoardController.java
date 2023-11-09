@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.user.UserDto;
@@ -48,14 +49,14 @@ public class BoardController {
 			UserDto user = null;
 
 			if (loginUser != null) {
-			    user = userService.findUser(loginUser);
+				user = userService.findUser(loginUser);
 			}
 
 			session.setAttribute("loginUser", user);
 
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
-			
+
 			List<Board> events = boardServiceImpl.findBycategory(2L);
 			model.addAttribute("events", events);
 			System.out.println("이벤트 리스트 :" + events);
@@ -74,7 +75,7 @@ public class BoardController {
 			UserDto user = null;
 
 			if (loginUser != null) {
-			    user = userService.findUser(loginUser);
+				user = userService.findUser(loginUser);
 			}
 
 			session.setAttribute("loginUser", user);
@@ -82,7 +83,6 @@ public class BoardController {
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
 
-			
 			List<Board> notifications = boardServiceImpl.findBycategory(1L);
 			model.addAttribute("notifications", notifications);
 			System.out.println("notifications리스트 : " + notifications);
@@ -98,22 +98,23 @@ public class BoardController {
 			return null;
 		}
 	}
-
+	@LoginCheck
 	@GetMapping("/board_magazine")
-	public String magazine(HttpSession session, Model model) {
+	public String magazine(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 		try {
 			String loginUser = (String) session.getAttribute("sUserId");
-			UserDto user = null;
-
-			if (loginUser != null) {
-			    user = userService.findUser(loginUser);
+			
+			//로그인정보없으면 로그인으로
+			if (loginUser == null) {
+				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
+				return "redirect:/user_login_form";
 			}
 
+			UserDto user = null;
+			user = userService.findUser(loginUser);
 			session.setAttribute("loginUser", user);
-
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
-			
 			List<Board> magazines = boardServiceImpl.findBycategory(3L);
 			model.addAttribute("magazines", magazines);
 			System.out.println("magazine 리스트 : " + magazines);
@@ -136,23 +137,24 @@ public class BoardController {
 
 	@LoginCheck
 	@GetMapping("/board_inquiries")
-	public String inquiries(HttpSession session, Model model) throws Exception {
+	public String inquiries(HttpSession session, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		try {
-			
+
 			String loginUser = (String) session.getAttribute("sUserId");
-			
+
 			if (loginUser == null) {
-	            // 로그인되어 있지 않은 경우, 리디렉션
-	            return "redirect:/user_login_form";
-	        }
-			
+				// 로그인되어 있지 않은 경우, 리디렉션
+				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
+
+				return "redirect:/user_login_form";
+			}
+
 			UserDto user = null;
 			user = userService.findUser(loginUser);
 			session.setAttribute("loginUser", user);
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
 
-			
 			List<Board> inquiries = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,
 					userIdString);
 			Collections.reverse(inquiries);
@@ -199,19 +201,19 @@ public class BoardController {
 	@GetMapping("/board_faq")
 	public String faq(HttpSession session, Model model) {
 		try {
-			
+
 			String loginUser = (String) session.getAttribute("sUserId");
 			UserDto user = null;
 
 			if (loginUser != null) {
-			    user = userService.findUser(loginUser);
+				user = userService.findUser(loginUser);
 			}
 
 			session.setAttribute("loginUser", user);
 
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
-			
+
 			List<Board> faqs = boardServiceImpl.findBycategory(5L);
 			model.addAttribute("faqs", faqs);
 			System.out.println("FAQ 리스트 :" + faqs);
@@ -239,14 +241,14 @@ public class BoardController {
 	}
 
 	@GetMapping("/board_detail")
-	public String boardDetail(@RequestParam(name = "boardId") Long boardId,HttpSession session, Model model) {
+	public String boardDetail(@RequestParam(name = "boardId") Long boardId, HttpSession session, Model model) {
 		try {
-			
+
 			String loginUser = (String) session.getAttribute("sUserId");
 			UserDto user = null;
 
 			if (loginUser != null) {
-			    user = userService.findUser(loginUser);
+				user = userService.findUser(loginUser);
 			}
 
 			session.setAttribute("loginUser", user);
@@ -275,9 +277,9 @@ public class BoardController {
 	}
 
 	@GetMapping("/board_other_detail")
-	public String board_other_detail(@RequestParam(name = "boardId") Long boardId,HttpSession session, Model model) {
+	public String board_other_detail(@RequestParam(name = "boardId") Long boardId, HttpSession session, Model model) {
 		try {
-			
+
 			String loginUser = (String) session.getAttribute("sUserId");
 			UserDto user = null;
 
@@ -290,7 +292,7 @@ public class BoardController {
 
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
-			
+
 			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
 			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
 			List<BoardReply> ReplyList = boardServiceImpl.findByBoard_boardId(boardId);

@@ -28,14 +28,16 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
 						<p class="pad-change" th:text="${userIdString+'님 모든 문의사항은 ' + inquiries.size() + '개입니다'}">
-							userName님의 문의 총 <span>N</span> 개 입니다</p>
+							userName님의 문의 총 <span>N</span> 개 입니다
+						</p>
 						<label>분류 : </label>
-						<select id="sortSelect">
+						<select id="selectOption">
 							<option value="inqall">전체</option>
 							<option value="inqfalse">답변대기중</option>
 							<option value="inqtrue">답변완료</option>
 						</select>
 					</div>
+
 
 					<div class="row">
 						<div class="row" id="inquiriesContainer">
@@ -43,6 +45,13 @@
 
 								<div class="ceb-item-style-2">
 									<div class="ceb-infor">
+
+										<div class="checkbox-container">
+											<input type="checkbox" name="checkBox" class="checkbox"
+												style="width: 20px; height: 20px;">
+										</div>
+
+
 										<h2>
 
 											<a th:href="@{/board_other_detail1(boardId=${inquiries.boardId})}"
@@ -81,16 +90,13 @@
 						</div>
 
 
-						<!--작성하기 필요없음-->
-						<!--<div class="searh-form">
-							<form class="form-style-1 celebrity-form" action="#">
-								<div class="row">
-									<div class="col-md-12 "><input class="submit" type="submit" value="작성하기">
-									</div>
+						<form class="form-style-1 celebrity-form" action="#">
+							<div class="row">
+								<div class="col-md-12 "><input class="submit" type="button" value="답변완료처리">
 								</div>
-							</form>
-						</div>-->
-						
+							</div>
+						</form>
+
 					</div>
 				</div>
 			</div>
@@ -101,12 +107,70 @@
 
 
 </body>
-
-
-
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
 <script src="js/custom.js"></script>
+
+<script>
+
+	document.addEventListener('DOMContentLoaded', function () {
+		const searchInput = document.getElementById('searchInput');
+		var titleElements = document.querySelectorAll('.ceb-item-style-2 h2 a');
+		var inquiriesContainer = document.getElementById('inquiriesContainer');
+
+		searchInput.addEventListener('keydown', function (event) {
+			if (event.key === 'Enter') {
+				const searchValue = searchInput.value;
+
+				filterItems(searchValue);
+				searchInput.value = ''; // 검색어 필드 비우기
+			}
+		});
+
+		function filterItems(searchQuery) {
+			inquiriesContainer.innerHTML = ''; // 리스트 비우기
+
+			titleElements.forEach(function (titleElement, index) {
+				var title = titleElement.textContent;
+				console.log("titleElement->" + titleElement);
+				if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+					var item = titleElement.closest('.ceb-item-style-2'); // 부모 .ceb-item-style-2 요소 선택
+					inquiriesContainer.appendChild(item);
+				}
+			});
+		}
+	});
+
+
+	$(document).ready(function () {
+		var initialData = $('#inquiriesContainer').html();
+		var inquiriesContainer = $('#inquiriesContainer');
+		
+		function filterItems(filter) {
+			inquiriesContainer.empty();
+			var itemList = $(initialData).find('.ceb-item-style-2').toArray();
+			$.each(itemList, function (index, item) {
+				var status = $(item).find('p').eq(2).text(); // 수정된 부분
+				if (filter === 'inqall' || (filter === 'inqfalse' && status === '답변대기중') || (filter === 'inqtrue' && status === '답변완료')) {
+					inquiriesContainer.append(item);
+				}
+			});
+		}
+
+		$('#selectOption').on('change', function () {
+			var selectedOption = $(this).val();
+			filterItems(selectedOption);
+		});
+
+		filterItems('inqall');
+	});
+
+
+
+
+
+</script>
+
 
 </html>
