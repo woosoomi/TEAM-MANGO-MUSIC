@@ -12,9 +12,9 @@ public class Controller {
 		String forward_path = "index"; 
 		return forward_path; 
 	}
-	@GetMapping("/userprofile")
+	@GetMapping("/Audio")
 	public String userprofile() {
-		String forwardPath = "userprofile";
+		String forwardPath = "Audio";
 		return forwardPath;
 	}
 	@GetMapping("/test") 
@@ -58,7 +58,7 @@ public class Controller {
 		String forward_path = "admin_product_ticket_form"; 
 		return forward_path; 
 	}
-
 	
+		
 	
 }

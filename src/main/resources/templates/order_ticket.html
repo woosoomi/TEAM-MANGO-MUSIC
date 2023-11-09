@@ -26,10 +26,7 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
-					<div class="topbar-filter">
-						<p th:text="${user_id} + ' 님이 선택하신 ' + ${ticketName} + ' 입니다.'">
-						</p>
-					</div>
+					<div class="topbar-filter"></div>
 					<div class="movie-item-style-2">
 						<img th:src="@{'images/' + ${ticketImage}}" alt="">
 						<div class="mv-item-infor">
@@ -76,10 +73,9 @@
 							
 							<!--결제정보 저장공간 폼-->
 							<form class="form-style-1" name="payment_form" action="#">
-								<input type="hidden"  th:value="${orderItemDtoList}">
 								<input type="hidden" id="user_id" name="userId" th:value="${user_id}">
-								<input type="hidden" name="ticketImage" th:value="${ticketImage}" >								
 								<input type="hidden" name="ticketName" th:value="${ticketName}">								
+								<input type="hidden" name="ticketImage" th:value="${ticketImage}" >								
 								<input type="hidden" name="ticketContent" th:value="${ticketContent}">								
 								<input type="hidden" name="ticketStar" th:value="${ticketStar}">								
 								<input type="hidden" name="ticketAddress" th:value="${ticketAddress}">								
@@ -87,7 +83,7 @@
 								<input type="hidden" name="ticketArtist" th:value="${ticketArtist}">		
 								<input type="hidden" name="ticketStock" th:value="${ticketStock}">		
 								<input type="hidden" name="ticketNo" th:value="${ticketNo}">		
-								
+								<input type="hidden" name="ticketPrice" th:value="${ticketPrice}">		
 								
 								<div class="row">
 									<div class="col-md-12 form-it">
@@ -219,7 +215,7 @@
 					"oiQty": 1,
 					"productName": payment_form.ticketName.value,
 					"productImage": payment_form.ticketImage.value,
-					"productPrice": 0,
+					"productPrice": payment_form.ticketPrice.value,
 					"productContent": payment_form.ticketContent.value,
 					"productNo": payment_form.ticketNo.value,
 					"orderId": 0
@@ -354,11 +350,12 @@
 
 		deleteXhr.send();
 	}
+	*/
 	
 	
+	//쿠폰선택시 data-coupon-id 값으로 couponId가 잘 들어오는지 확인하는 방법
 	
-	//쿠폰선택시 data-coupon-id 값으로 couponId가 잘 들어오는지 확인하는 방법(잘들어오는데 왜안돼)
-	
+	/*
 	var couponSelect = document.getElementById("couponSelect");
 
 	couponSelect.addEventListener("change", function () {

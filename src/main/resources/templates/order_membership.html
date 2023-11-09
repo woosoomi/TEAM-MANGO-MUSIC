@@ -26,11 +26,7 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-8 col-sm-12 col-xs-12">
-
-					<div class="topbar-filter" id="userId" th:value="${user_id}">
-						<p th:text="${user_id} + ' 님이 선택하신 '+${membershipName}+' 입니다.'"></p>
-					</div>
-					
+					<div class="topbar-filter"></div>				
 					<div class="movie-item-style-2">
 						<img th:src="@{'images/' + ${membershipImage}}" alt="">
 						<div class="mv-item-infor">
@@ -74,7 +70,6 @@
 							<h4 class="sb-title">결제상세</h4>
 							<!--결제정보 저장공간 폼-->
 							<form class="form-style-1" name="payment_form" action="#">
-								<input type="hidden"  th:value="${orderItemDtoList}">
 								<input type="hidden" id="user_id" name="userId" th:value="${user_id}">
 								<input type="hidden" name="membershipImage" th:value="${membershipImage}" >								
 								<input type="hidden" name="membershipName" th:value="${membershipName}">								
@@ -82,6 +77,7 @@
 								<input type="hidden" name="membershipStartPeriod" th:value="${membershipStartPeriod}">								
 								<input type="hidden" name="membershipPeriodOfUse" th:value="${membershipPeriodOfUse}">								
 								<input type="hidden" name="membershipNo" th:value="${membershipNo}">						
+								<input type="hidden" name="membershipPrice" th:value="${membershipPrice}">
 								
 								<div class="row">
 									<div class="col-md-12 form-it">
@@ -217,7 +213,7 @@
 					"oiQty": 1,
 					"productName": payment_form.membershipName.value,
 					"productImage": payment_form.membershipImage.value,
-					"productPrice": 0,
+					"productPrice": payment_form.membershipPrice.value,
 					"productContent": payment_form.membershipContent.value,
 					"productNo": payment_form.membershipNo.value,
 					"orderId": 0
@@ -352,11 +348,12 @@
 
 		deleteXhr.send();
 	}
+	*/
 	
 	
+	//쿠폰선택시 data-coupon-id 값으로 couponId가 잘 들어오는지 확인하는 방법
 	
-	//쿠폰선택시 data-coupon-id 값으로 couponId가 잘 들어오는지 확인하는 방법(잘들어오는데 왜안돼)
-	
+	/*
 	var couponSelect = document.getElementById("couponSelect");
 
 	couponSelect.addEventListener("change", function () {

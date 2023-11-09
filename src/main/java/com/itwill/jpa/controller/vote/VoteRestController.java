@@ -75,7 +75,11 @@ public class VoteRestController {
 	
 	
 	
-	// User의 Json에서 vote가 String으로 받고 있어서 해결 필요
+	/* 투표인원이 적어서 투표 수 늘리는 기능 추가
+	 *  voteServiceImpl.updateVote에서 
+	 *  int totalVoteCount = users.size()+20;으로 변경하여 기존 투표 인원 +20 해놓음
+	 *  추후 삭제 필요
+	 */ 
 	@Operation(summary = "회원 투표 합으로 tot 업데이트") // 완료
 	@PutMapping("/update")
 	public ResponseEntity<Map<String, Object>> updateVote(@RequestBody VoteDto vote) throws Exception {
@@ -90,8 +94,10 @@ public class VoteRestController {
 		    return ResponseEntity.status(HttpStatus.OK).body(responseMap);
 	   
 	}
-		
-	@Operation(summary = "투표 전체보기") // 완료 --> url로도 열림
+	
+	
+	
+	@Operation(summary = "투표 전체보기") // 완료 --> url로도 열림 
 	@GetMapping("/voteListAll")
 	public ResponseEntity<List<VoteDto>> findVoteListAll() throws Exception {
 	    List<Vote> voteList = voteServiceImpl.findVoteListAll();

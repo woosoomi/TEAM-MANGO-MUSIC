@@ -42,8 +42,20 @@ public class BoardController {
 	private UserService userService;
 
 	@GetMapping("/board_event")
-	public String eventPage(Model model) {
+	public String eventPage(HttpSession session, Model model) {
 		try {
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+			}
+
+			session.setAttribute("loginUser", user);
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+			
 			List<Board> events = boardServiceImpl.findBycategory(2L);
 			model.addAttribute("events", events);
 			System.out.println("이벤트 리스트 :" + events);
@@ -126,7 +138,14 @@ public class BoardController {
 	@GetMapping("/board_inquiries")
 	public String inquiries(HttpSession session, Model model) throws Exception {
 		try {
+			
 			String loginUser = (String) session.getAttribute("sUserId");
+			
+			if (loginUser == null) {
+	            // 로그인되어 있지 않은 경우, 리디렉션
+	            return "redirect:/user_login_form";
+	        }
+			
 			UserDto user = null;
 			user = userService.findUser(loginUser);
 			session.setAttribute("loginUser", user);
@@ -220,8 +239,20 @@ public class BoardController {
 	}
 
 	@GetMapping("/board_detail")
-	public String boardDetail(@RequestParam(name = "boardId") Long boardId, Model model) {
+	public String boardDetail(@RequestParam(name = "boardId") Long boardId,HttpSession session, Model model) {
 		try {
+			
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+			}
+
+			session.setAttribute("loginUser", user);
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
 			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
 			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
 
@@ -244,8 +275,22 @@ public class BoardController {
 	}
 
 	@GetMapping("/board_other_detail")
-	public String board_other_detail(@RequestParam(name = "boardId") Long boardId, Model model) {
+	public String board_other_detail(@RequestParam(name = "boardId") Long boardId,HttpSession session, Model model) {
 		try {
+			
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+				user = userService.findUser(loginUser);
+
+				// 사용자 정보를 세션에 저장
+				session.setAttribute("loginUser", user);
+			}
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+			
 			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
 			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
 			List<BoardReply> ReplyList = boardServiceImpl.findByBoard_boardId(boardId);
