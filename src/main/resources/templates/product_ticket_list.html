@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/product.css">
+	<link rel="stylesheet" href="css/productTest.css">
 </head>
 
 <body>
@@ -44,21 +45,25 @@
 
         </div>
 
+ <!-- 티켓리스트 -->
         <div class="row" id="ticketList">
-          <!-- 티켓리스트 -->
           <div class="movie-item-style-2" th:id="'ticketItem_' + ${ticket.productNo}" th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 13}">
+           
+           <div class="movie-item-style-2">
             <a style="padding-right: 20px; color: #ffffff;" th:text="${ticket.productNo}">번호</a>
             <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
               <img th:src="${ticket.productImage}" alt="" style="width: 200px">
             </a>
             <div class="mv-item-infor">
               <h6>
-                <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">Tom Hardy</a>
+                <a class="ticketName" th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">티켓명</a>
               </h6>
               <p>티켓가격 : <span th:text="${ticket.productPrice}"></span> 원</p>
               <p>잔여좌석 : <span th:text="${ticket.productStock}"></span> 좌석 남았습니다.</p>
               <p>조 회 수 : <span th:text="${ticket.readCount}"></span> 분이 조회했습니다</p>
               <p>등록날짜 : <span th:text="${ticket.productDate}"></span> 에 등록되었습니다</p>
+            </div>
+            
             </div>
           </div>
         </div>        
@@ -72,7 +77,7 @@
 		            <form class="form-style-1 celebrity-form" action="#">
 		                <div class="form-it">
 		                    <label>티켓이름</label>
-		                    <input type="text" placeholder="Enter keywords">
+		                    <input type="text" id="searchInput" placeholder="Enter keywords">
 		                </div>
 		                <div>
 		                    <input class="submit" type="submit" value="submit">
@@ -87,6 +92,7 @@
 		</div>	
             </div>
         </div>
+        <a id="topBtn" href="#"><img src="images/upward-arrow-60.png" ></a>
     </div>
 	</div><!--end of celebrity grid v1 section--><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
@@ -96,6 +102,8 @@
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/product.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
 </body>
 
 </html>
