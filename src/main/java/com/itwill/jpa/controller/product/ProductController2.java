@@ -73,7 +73,7 @@ public class ProductController2 {
 			model.addAttribute("userId",userId);
 
 			List<ProductDto> newestMusic = productService.findByProductCategoryId(1L);
-			newestMusic = productService.productListByOlder(1L);
+			newestMusic = productService.productListByOlder(1L); //서비스 메서드 older랑 newer 반대로 됐음.
 			model.addAttribute("newestMusic", newestMusic);
 			return "product_music_newest";
 			
