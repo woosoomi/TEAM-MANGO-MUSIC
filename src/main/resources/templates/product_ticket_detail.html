@@ -144,27 +144,35 @@
 									</div>-->
 									<div style="margin-bottom: 30px;">
 											<div class="comments" style="margin-top: 20px; margin-bottom: 50px;">
-										<h4 style="color: white; border-bottom: 1px solid #233a50;" >
-											04 Comments</h4>
-										
+										<h4 th:text="${ReplyList.size()} + ' 개의 댓글'" style="color: white; border-bottom: 1px solid #233a50;" >04 Comments</h4>
 										<div style="background: #233a50;margin-top: 50px;border: 15px solid #233a50; border-radius: 10px;">
-										
+											
+											
+											
+	<!--문제발생-->										
+<!--										<div th:each="ReplyList : ${ReplyList}">				
 											<div class="cmt-item flex-it">
 												<img src="images/uploads/author.png" alt="">
 												<div class="author-infor">
 													<div class="flex-it2">
-														<!--Name으로 체인지 가능-userinfo-->
-														<h6 style="color: white; font-size: 20px;">
-															<a href="#">Steve Perry</a>
-														</h6>
-														<span class="time"> 27 Mar 2017</span>
+														Name으로 체인지 가능-userinfo
+														<h6 th:text="'작성자 : '${Product.getUser().getUserName()}" style="color: white; font-size: 20px;">
+															<a href="#">Steve Perry</a></h6>							
+														<span class="time"
+														th:text="${#temporals.format(ReplyList.CreateDateTime, 'yyyy-MM-dd HH:mm')}">
+													 	27 Mar 2017</span>
 													</div>
-													<p style="color: white;"> content </p>
+													<p th:text="${ReplyList.ProductReplyContent}" style="color: white;"> content </p>
 												</div>
 											</div>	
-											</div>
+											</div>-->
+											
+											
 										</div>
-									</div>				
+									</div>
+									
+									
+													
 									<!--아티스트 보기-->
 									
 									<div id="cast"  class="tab">
