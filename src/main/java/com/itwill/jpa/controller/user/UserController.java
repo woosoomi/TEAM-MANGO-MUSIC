@@ -80,6 +80,16 @@ public class UserController {
 		model.addAttribute("loginUser", loginUser);
 		return "user_modify_form";
 	}
+	
+	
+	@GetMapping("/admin")
+	public String userList(Model model) throws Exception {
+	    List<UserDto> userInfoList = userService.findUserList();
+	    model.addAttribute("userInfoList", userInfoList);
+	    return "admin_form"; // 
+	}
+	
+	
 
 	/*
 	 * @LoginCheck
