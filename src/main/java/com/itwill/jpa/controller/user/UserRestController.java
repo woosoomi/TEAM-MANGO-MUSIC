@@ -78,6 +78,7 @@ public class UserRestController {
 			// 로그인 성공 시 사용자 정보를 세션에 저장
 			session.setAttribute("sUserId", loginUser.getUserId());
 			session.setAttribute("sUserName", loginUser.getUserName());
+			session.setAttribute("sUserPw", loginUser.getUserPw());
 
 			return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
 		} else {

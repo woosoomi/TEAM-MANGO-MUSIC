@@ -48,7 +48,7 @@ public class UserController {
 		model.addAttribute("loginUser", user);
 		return "user_info_form";
 	}
-	
+
 	@GetMapping("/user_CheckIdPw")
 	public String user_CheckIdPw() {
 		String forward_path = "user_CheckIdPw";
@@ -71,14 +71,14 @@ public class UserController {
 		return "user_modify_form";
 	}
 
-	/*
-	 * @LoginCheck
-	 * 
-	 * @PostMapping("/user_remove_action") public String
-	 * user_remove_action(HttpSession session) throws Exception { String sUserId =
-	 * (String) session.getAttribute("sUserId"); userService.deleteUser(sUserId);
-	 * session.invalidate(); return "redirect:index"; }
-	 */
+	@LoginCheck
+	@PostMapping("/user_remove_action")
+	public String user_remove_action(HttpSession session) throws Exception {
+		String sUserId = (String) session.getAttribute("sUserId");
+		userService.deleteUser(sUserId);
+		session.invalidate();
+		return "redirect:user_login_form";
+	}
 
 	/*********** GET방식요청시 guest_main redirection *********/
 	@GetMapping({ "/user_write_action", "/user_login_action", "/user_modify_action", "/user_remove_action" })
