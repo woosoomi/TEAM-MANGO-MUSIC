@@ -28,7 +28,8 @@
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter"></div>
 					<div class="movie-item-style-2">
-						<img th:src="@{'images/' + ${ticketImage}}" alt="">
+						<!--<img th:src="@{'images/' + ${ticketImage}}" alt="">-->
+						<img th:src="${ticketImage}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="ticket_list" th:text="${ticketName}">티켓명<span>(2023)</span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span th:text="${ticketStar}">7.0</span>/10
