@@ -157,7 +157,10 @@ public class ProductServiceImpl implements ProductService{
 	    return Optional.empty();
 	}	
 /*************************************************************************/	
-	
+	@Override
+	public List<ProductReply> findByProduct_productNo(Long productNo){
+		return productReplyRepository.findByProduct_productNo(productNo);
+	}	
 /******************** categoryId별로 전체나열[ENTITY] ********************/
 	
 	// product 카테고리별 구분[성공]

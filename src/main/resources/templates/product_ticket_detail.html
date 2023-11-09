@@ -118,12 +118,12 @@
 									<div id="reviews" class="tab review">
 										
 										<div class="row">
-											<div class="rv-hd">
+											<!--<div class="rv-hd">
 												<div class="div">
-													<!--<h3>Related Movies To</h3>
-													<h2>Skyfall: Quantum of Spectre</h2>-->
-												<!--</div><a href="#" class="redbtn">Write Review</a>
-											</div>-->
+													<h3>Related Movies To</h3>
+													<h2>Skyfall: Quantum of Spectre</h2>
+												</div><a href="#" class="redbtn">Write Review</a>
+											</div>
 											<div class="topbar-filter">
 												<p>총 <span>N개의</span>댓글</p>
 												<select>
@@ -141,11 +141,34 @@
 												<p>댓글내용. </p>
 											</div>
 										</div>
-									</div>
-									
+									</div>-->
+									<div style="margin-bottom: 30px;">
+											<div class="comments" style="margin-top: 20px; margin-bottom: 50px;">
+										<h4 style="color: white; border-bottom: 1px solid #233a50;" >
+											04 Comments</h4>
+										
+										<div style="background: #233a50;margin-top: 50px;border: 15px solid #233a50; border-radius: 10px;">
+										
+											<div class="cmt-item flex-it">
+												<img src="images/uploads/author.png" alt="">
+												<div class="author-infor">
+													<div class="flex-it2">
+														<!--Name으로 체인지 가능-userinfo-->
+														<h6 style="color: white; font-size: 20px;">
+															<a href="#">Steve Perry</a>
+														</h6>
+														<span class="time"> 27 Mar 2017</span>
+													</div>
+													<p style="color: white;"> content </p>
+												</div>
+											</div>	
+											</div>
+										</div>
+									</div>				
 									<!--아티스트 보기-->
 									
 									<div id="cast"  class="tab">
+									<div class="row">	
 											<h3>아티스트 : <span th:text="${findTicket.productArtist}"></span></h3>
 											<h2>공연제목 : <span th:text="${findTicket.productName}"></span></h2>
 											<div class="title-hd-sm1">									
@@ -160,7 +183,7 @@
 													</div>
 												</div>
 											</div>  
-											
+											</div>
 										</div>
 									</div>
 				<!--관련영상 보기-->
@@ -195,6 +218,7 @@
 									</div>
 									
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -278,21 +302,6 @@
 			});
 
 	}
-	//수정하기폼으로 이동
-	function update_edit_form() {
-		const urlParams = new URLSearchParams(window.location.search);
-		const boardId = urlParams.get("boardId");
-		const boardIdInt = parseInt(boardId, 10);
-
-		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_detail_edit?boardId=" + boardIdInt;
-	}
-
-
-
-
-
-
-
 
 </script>
 	<script src="js/jquery.js"></script>

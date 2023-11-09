@@ -90,7 +90,7 @@ public interface ProductService{
 	 * ProductDto increaseReadCountByProductNo(Long productNo) throws Exception;
 	 */
 	/*************************************************************/
-
+	public List<ProductReply> findByProduct_productNo(Long productNo);
 	/******************** categoryId별로 전체나열[ENTITY] ********************/		
 	// product categoryId별 분류
 	public List<Product> findByCategoryId(Long categoryId);
