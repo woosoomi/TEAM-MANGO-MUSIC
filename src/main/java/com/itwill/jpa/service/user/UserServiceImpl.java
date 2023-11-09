@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.dao.order.OrderDao;
 import com.itwill.jpa.dao.user.UserDao;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.dto.user.UserLoginDto;
@@ -20,41 +21,45 @@ import com.itwill.jpa.repository.user.UserRepository;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	UserDao userDao;
+
+	@Autowired
+	OrderDao orderDao;
 	
+	@Autowired
+	UserRepository repository;
+
 	@Override
 	public UserDto createUser(UserDto userDto) throws Exception {
-		if(userDao.existsById(userDto.getUserId())) {
+		if (userDao.existsById(userDto.getUserId())) {
 			throw new ExistedUserException(userDto.getUserId() + "는 이미 존재하는 아이디입니다.");
 		}
-		
+
 		User createdUser = userDao.createUser(User.toEntity(userDto));
-		
-		return  UserDto.toDto(createdUser);
+
+		return UserDto.toDto(createdUser);
 	}
-	
+
 	@Override
 	public User loginUser(String userId, String userPw) throws Exception {
 		User userinfo = userDao.findUser(userId);
-		User fUser= User.builder().userId(userId).userPw(userPw).build();
-		
-		if(userinfo == null) {
-			UserNotFoundException exception = 
-					new UserNotFoundException(userId + " 는 존재하지않는 아이디입니다.");
+		User fUser = User.builder().userId(userId).userPw(userPw).build();
+
+		if (userinfo == null) {
+			UserNotFoundException exception = new UserNotFoundException(userId + " 는 존재하지않는 아이디입니다.");
 			exception.setData(fUser);
 			throw exception;
 		}
 		String userPassword = userinfo.getUserPw();
-		if(!userPassword.equals(userPw)) {
-			PasswordMismatchException exception=
-				new PasswordMismatchException("패쓰워드가 일치하지 않습니다.");
+		if (!userPassword.equals(userPw)) {
+			PasswordMismatchException exception = new PasswordMismatchException("패쓰워드가 일치하지 않습니다.");
 			exception.setData(fUser);
 			throw exception;
 		}
-		
+
 		return userinfo;
 	}
 
@@ -78,45 +83,54 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-    public void deleteUser(String userId) throws Exception {
-        userDao.deleteUser(userId);
-    }
-	
+	public void deleteUser(String userId) throws Exception {
+		userDao.deleteUser(userId);
+	}
+
 	@Override
-    public UserDto findUser(String userId) throws Exception {
-        return UserDto.toDto(userDao.findUser(userId));
-    }
+	public UserDto findUser(String userId) throws Exception {
+		return UserDto.toDto(userDao.findUser(userId));
+	}
+
+	@Override
+	public boolean checkPassword(String userId, String enteredPassword) {
+		// 사용자 정보 조회
+		UserDto user =UserDto.toDto(userDao.findUser(userId));
+
+		// 사용자가 존재하고 비밀번호가 일치하는지 확인
+		return user != null && user.getUserPw().equals(enteredPassword);
+	}
 
 	@Override
 	public List<UserDto> findUserList() {
-	    List<User> userList = userDao.findUserList();
-	    List<UserDto> userDtoList = new ArrayList<UserDto>();
+		List<User> userList = userDao.findUserList();
+		List<UserDto> userDtoList = new ArrayList<UserDto>();
 
-	    for (User user : userList) {
-	        userDtoList.add(UserDto.toDto(user));
-	    }
-	    return userDtoList;
+		for (User user : userList) {
+			userDtoList.add(UserDto.toDto(user));
+		}
+		return userDtoList;
 	}
 
 	@Override
 	public boolean existsById(String userId) throws Exception {
 		return userDao.existsById(userId);
-		
+
 	}
 
 	@Override
 	public String findUserIdByUserNameUserEmail(String userName, String userEmail) throws Exception {
-	    if (userName == null || userName.isEmpty()) {
-	        throw new Exception("사용자 이름이 잘못되었습니다.");
-	    }
-	    if (userEmail == null || userEmail.isEmpty()) {
-	        throw new Exception("사용자 이메일이 잘못되었습니다.");
-	    }
-	    String userId = userDao.findUserIdByUserNameUserEmail(userName, userEmail);
-	    if (userId == null) {
-	        throw new Exception("해당 정보로 등록된 사용자가 없습니다.");
-	    }
-	    return userId;
+		if (userName == null || userName.isEmpty()) {
+			throw new Exception("사용자 이름이 잘못되었습니다.");
+		}
+		if (userEmail == null || userEmail.isEmpty()) {
+			throw new Exception("사용자 이메일이 잘못되었습니다.");
+		}
+		String userId = userDao.findUserIdByUserNameUserEmail(userName, userEmail);
+		if (userId == null) {
+			throw new Exception("해당 정보로 등록된 사용자가 없습니다.");
+		}
+		return userId;
 	}
 
 	@Override
@@ -136,6 +150,3 @@ public class UserServiceImpl implements UserService{
 	}
 
 }
-	
-	
-
