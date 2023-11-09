@@ -128,22 +128,6 @@ public class UserRestController {
 		}
 	}
 	
-	/*
-	 * @LoginCheck
-	 * 
-	 * @Operation(summary = "회원업데이트[성공]")
-	 * 
-	 * @PutMapping(value = "/update", produces = "application/json;charset=UTF-8")
-	 * public ResponseEntity<?> user_modify_action(@RequestBody UserUpdateDto
-	 * userUpdateDto, HttpSession session) { try { String loginUser =
-	 * (String)session.getAttribute("sUserId");
-	 * 
-	 * UserDto updatedUser = userService.updateUser(userUpdateDto);
-	 * 
-	 * return new ResponseEntity<>(updatedUser, HttpStatus.OK); } catch (Exception
-	 * e) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); } }
-	 */
-
 	// 아이디 중복 체크 API
 	@Operation(summary = "아이디중복체크")
 	@GetMapping("/{userId}")
