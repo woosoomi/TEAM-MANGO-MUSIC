@@ -47,7 +47,7 @@
 
  <!-- 티켓리스트 -->
         <div class="row" id="ticketList">
-          <div class="movie-item-style-2" th:id="'ticketItem_' + ${ticket.productNo}" th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 13}">
+          <div class="movie-item-style-3" th:id="'ticketItem_' + ${ticket.productNo}" th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 13}">
            
            <div class="movie-item-style-2">
             <a style="padding-right: 20px; color: #ffffff;" th:text="${ticket.productNo}">번호</a>

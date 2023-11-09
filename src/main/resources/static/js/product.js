@@ -148,6 +148,10 @@ $(function() {
 
 	}
 ///////////GOODS LIST////////////
+$(document).ready(function(){
+    // Slick 슬라이더 초기화 코드
+    $('.your-slider-class').slick();
+});
 /*goods 검색기능*/
 document.addEventListener('DOMContentLoaded', function() {
 	const searchInput = document.getElementById('searchInput');
@@ -168,19 +172,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function filterItems(searchQuery) {
 		goodsContainer.innerHTML = '';
-
+		
+		var itemsAdded = 0;
 
 		itemList.forEach(function(item) {
 
 			var goodsName = $(item).find('.goodsName').text();
-					
+								
 
 			if (goodsName.toLowerCase().includes(searchQuery.toLowerCase())) {
 				goodsContainer.appendChild(item);
+				itemsAdded++;
 			}
 
 			if (goodsName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
 				goodsContainer.appendChild(item);
+				itemsAdded++;
 			}
 			
 		});
@@ -193,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function () {
   function sortGoodsItems(order) {
     var goodsList = $('#goodsList');
-    var items = goodsList.find('.celebrity-items').get();
+    var items = goodsList.find('.ceb-item').toArray();
 
     items.sort(function (a, b) {
       var aValue, bValue;
@@ -229,6 +236,7 @@ $(document).ready(function () {
     sortGoodsItems(selectedOption);
   });
 });
+
 
 
 //////////////////// TICKET LIST //////////////////////
@@ -275,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // 정렬 함수
-$(document).ready(function () {
+/*$(document).ready(function () {
   function sortItems(order) {
     var ticketList = $('#ticketList'); // 티켓 목록을 감싸는 요소의 ID를 사용
     var items = ticketList.find('.movie-item-style-2').get(); // 티켓 항목 요소를 가져옴
@@ -302,12 +310,44 @@ $(document).ready(function () {
     $.each(items, function (i, item) {
       ticketList.append(item);
     });
+  }*/
+  // ticket 리스트 정렬 함수
+$(document).ready(function () {
+  function sortTicketItems(order) {
+    var ticketList = $('#ticketList');
+    var items = ticketList.find('.movie-item-style-3').get();
+
+    items.sort(function (a, b) {
+      var aValue, bValue;
+
+      if (order === 'readCountAsc') {
+        aValue = parseInt($(a).find('p:contains("조 회 수") span').text());
+        bValue = parseInt($(b).find('p:contains("조 회 수") span').text());
+        return aValue - bValue;
+      } else if (order === 'readCountDesc') {
+        aValue = parseInt($(a).find('p:contains("조 회 수") span').text());
+        bValue = parseInt($(b).find('p:contains("조 회 수") span').text());
+        return bValue - aValue;
+      } else if (order === 'dateDesc') {
+        aValue = new Date($(a).find('p:contains("등록날짜") span').text());
+        bValue = new Date($(b).find('p:contains("등록날짜") span').text());
+        return aValue - bValue;
+      } else if (order === 'dateAsc') {
+        aValue = new Date($(a).find('p:contains("등록날짜") span').text());
+        bValue = new Date($(b).find('p:contains("등록날짜") span').text());
+        return bValue - aValue;
+      }
+    });
+
+    ticketList.empty();
+    $.each(items, function (i, item) {
+      ticketList.append(item);
+    });
   }
-//////////////////////////////////////////////////////////////////////////////////////////////
 
   // select 요소의 변경 감지
   $('#sortSelect').on('change', function () {
     var selectedOption = $(this).val();
-    sortItems(selectedOption);
+    sortTicketItems(selectedOption);
   });
 });

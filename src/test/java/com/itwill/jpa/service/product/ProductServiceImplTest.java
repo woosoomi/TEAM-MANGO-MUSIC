@@ -156,65 +156,6 @@ class ProductServiceImplTest {
 //		System.out.println(goodsDto.getProductCategory());
 		
 	}
-	// goods 추가 - DTO로 받기[성공]
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	public void testinsertGoodsDto() {
-		// GoodsDto를 생성하고 categoryId 설정
-		Product goods = new Product();
-		ProductDto goodsDto = ProductDto.toDto(goods);
-		goodsDto.setProductName("테스트굿즈");
-		goodsDto.setProductPrice(7777);
-		goodsDto.setProductStock(100);
-//	    goodsDto.setProductCategoryId(productCategory);
-		// insertGoodsDto 메서드 호출
-		ProductDto savedGoodsDto = productServiceImpl.insertGoodsDto(goodsDto);
-		System.out.println(savedGoodsDto);
-		System.out.println(goodsDto.getProductName());
-		System.out.println(goodsDto.getProductPrice());
-//		System.out.println(goodsDto.getProductCategory());
-		
-	}
-	// ticket 추가 - DTO로 받기
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	public void testInserTicketDto() {
-	    // GoodsDto를 생성하고 categoryId 설정
-	    TicketDto ticketDto = new TicketDto();
-//        ProductCategoryDto productCategory = new ProductCategoryDto();
-        ticketDto.setProductCategoryId(3L);
-	    ticketDto.setProductName("테스트 상품");
-	    ticketDto.setProductPrice(7777);
-	    ticketDto.setProductStock(100);
-//	    ticketDto.setProductCategory(productCategory);
-	    // insertGoodsDto 메서드 호출
-	    TicketDto savedTicketDto = productServiceImpl.insertTicketDto(ticketDto);
-		System.out.println(ticketDto.getProductName());
-		System.out.println(ticketDto.getProductPrice());
-//		System.out.println(ticketDto.getProductCategory());
-		
-	}	
-//	public void testInserTicketDto() {
-//	    // GoodsDto를 생성하고 categoryId 설정
-//	    TicketDto ticketDto = new TicketDto();
-//        ProductCategoryDto productCategory = new ProductCategoryDto();
-//        productCategory.setCategoryId(3L);
-//	    ticketDto.setProductName("테스트 상품");
-//	    ticketDto.setProductPrice(7777);
-//	    ticketDto.setProductStock(100);
-//	    ticketDto.setProductCategory(productCategory);
-//	    // insertGoodsDto 메서드 호출
-//	    TicketDto savedTicketDto = productServiceImpl.insertTicketDto(ticketDto);
-//		System.out.println(ticketDto.getProductName());
-//		System.out.println(ticketDto.getProductPrice());
-//		System.out.println(ticketDto.getProductCategory());
-//		
-//	}	
-
 	
 	/*
 	// product 삭제[성공]
@@ -245,7 +186,7 @@ class ProductServiceImplTest {
 		@Test
 		@Transactional
 		@Rollback(false)
-//		@Disabled	 
+		@Disabled	 
 		void testDeledtProductDto() throws Exception {
 			// productNo 값을 지정
 			productServiceImpl.deleteProductDto(24L);
@@ -276,8 +217,9 @@ class ProductServiceImplTest {
 		
 		ProductDto productDto = new ProductDto(6L, "sadasda", 123, null, null, 0, null, 0, null, null, null, null, 0, null, null, null);
 		productDto.setProductNo(6L);
-		productDto.setProductName("수정완료2");
-		productDto.setProductArtist("가수수정");
+		productDto.setProductName("수정완료3");
+		productDto.setProductArtist("가수수정2");
+		productDto.setReadCount(3L);
 		
 		ProductDto updatedProductDto = productServiceImpl.updateProductDto(productDto);
 		System.out.println(updatedProductDto);

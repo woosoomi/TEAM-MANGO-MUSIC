@@ -58,25 +58,26 @@ $('.delete-all-btn').click(function() {
 
 
 function changeQuantity(amount, element) {
- 
+
 	var cartItemQtyElement = element.parentElement.querySelector('#cartItemQty');
 	var currentQty = parseInt(cartItemQtyElement.value);
 	var newQty = currentQty + amount;
 	var relatedTextbox = element.parentElement.querySelector('.test');
 	var cartItemId = relatedTextbox.dataset.cartitemid;
 	var cartTotPriceElement = document.getElementById('priceTest');
-	var cartTot = cartTotPriceElement.value;
+	var cartTot = parseInt(cartTotPriceElement.value);
+
 	if (newQty >= 1) {
 		cartItemQtyElement.value = newQty;
-	
+
 		$.ajax({
 			url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/updateQty/' + cartItemId,
 			type: 'POST',
-			data: { cartItemId: cartItemId, cartItemQty: newQty, cartTot:cartTot},
+			data: { cartItemId: cartItemId, cartItemQty: newQty, cartTot: cartTot },
 			success: function(data) {
 				console.log('카트 아이템 수량이 업데이트되었습니다.');
 				var newPrice = data.cartTot;
-				$('#price100 span#totalPrice').text(newPrice + '원');
+				$('#price100 span#totalPrice').text(cartTot + '원');
 				//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
 				//location.reload();
 				calculateTotalPrice(cartId);
@@ -106,4 +107,63 @@ function calculateTotalPrice(cartId) {
 		}
 	});
 }
+
+
+/*document.querySelectorAll('.checkbox2').forEach(function(checkbox) {
+	checkbox.addEventListener('change', function() {
+		if (!this.checked) {
+			var cartId = 5;
+			var cartTotPriceElement = document.getElementById('priceTest');
+			var cartTot = parseInt(cartTotPriceElement.value);
+			calculateTotalPrice(cartId);
+			function calculateTotalPrice(cartId) {
+				var checkedItems = document.querySelectorAll('.checkbox2:not(checked)');
+				var cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
+				if (cartItemIds.length > 0) {
+					$.ajax({
+						url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/' + cartId,
+						type: 'GET',
+						success: function(data) {
+							var newPrice = data.cartTotPrice;
+							var tot = newPrice-cartTot;
+							//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
+							console.log(document.getElementById('cartTotPrice'));
+							$('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + tot + '원');
+						},
+						error: function(error) {
+							console.error('Error:', error);
+						}
+					});
+				}
+
+			}
+		}else {
+			var cartId = 5;
+			var cartTotPriceElement = document.getElementById('priceTest');
+			var cartTot = parseInt(cartTotPriceElement.value);
+			calculateTotalPrice(cartId);
+			function calculateTotalPrice(cartId) {
+				var checkedItems = document.querySelectorAll('.checkbox2:not(checked)');
+				var cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
+				if (cartItemIds.length > 0) {
+					$.ajax({
+						url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/' + cartId,
+						type: 'GET',
+						success: function(data) {
+							var newPrice = data.cartTotPrice;
+							var tot = newPrice+cartTot;
+							//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
+							console.log(document.getElementById('cartTotPrice'));
+							$('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + tot + '원');
+						},
+						error: function(error) {
+							console.error('Error:', error);
+						}
+					});
+				}
+
+			}
+		}
+	});
+});*/
 

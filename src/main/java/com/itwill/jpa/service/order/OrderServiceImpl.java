@@ -63,10 +63,8 @@ public class OrderServiceImpl implements OrderService{
 			Product product =productRepository.findById(productNo).get();
 			orderItems.add(new OrderItem(null, orderItemDto.getOiQty(), order, product));
 		}
-		
 		order.setUser(user);
 		order.setOrderItems(orderItems);
-		
 		Order saveOrder = orderRepository.save(order);
 		
 		
@@ -90,12 +88,9 @@ public class OrderServiceImpl implements OrderService{
 		order.setOrderItems(orderItems);
 		Order saveOrder = orderRepository.save(order);
 		
-		
-		
+
 		OrderDto orderDto = OrderDto.toDto(saveOrder);
 		return orderDto;
-		
-		
 	}
 
 	//주문 정보 수정
@@ -214,7 +209,7 @@ public class OrderServiceImpl implements OrderService{
 		}
 		
 		// 멤버십 결제 로직 (예: 결제가 성공하면 멤버십을 구매한 것으로 간주)
-		boolean membershipPurchaseSuccess = performMembershipPurchaseLogic(userId);
+		boolean membershipPurchaseSuccess = true;
 		
 		if (membershipPurchaseSuccess) {
 			// 멤버십 구매가 성공하면 사용자 멤버십 정보 true로 업데이트

@@ -16,12 +16,22 @@ import com.itwill.jpa.entity.product.ProductCategory;
 import com.itwill.jpa.repository.product.ProductCategoryRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
+
 @Repository
 public class ProductDaoImpl implements ProductDao{
+    private final EntityManager entityManager;
+
+    @Autowired
+    public ProductDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 	@Autowired
 	ProductRepository productRepository;
 	@Autowired
 	ProductCategoryRepository productCategoryRepository;
+	
 	
 	// 제품 조회
 	@Override
@@ -70,23 +80,37 @@ public class ProductDaoImpl implements ProductDao{
 		if(findProductOptional.isPresent()) {
 			Product findProduct = findProductOptional.get();
 			findProduct.setProductName(productDto.getProductName());
+			findProduct.setProductPrice(productDto.getProductPrice());
+			findProduct.setProductDate(productDto.getProductDate());
+			findProduct.setReadCount(productDto.getReadCount());
+			findProduct.setProductStock(productDto.getProductStock());
+			findProduct.setProductImage(productDto.getProductImage());
+			findProduct.setProductMovie(productDto.getProductMovie());
 			findProduct.setProductArtist(productDto.getProductArtist());
+			findProduct.setProductAddress(productDto.getProductAddress());
+			findProduct.setStartPeriod(productDto.getStartPeriod());
+			findProduct.setPeriodOfUse(productDto.getPeriodOfUse());
 			updateProduct=productRepository.save(findProduct);
 		}else {
 			throw new Exception("존재하지 않는 제품입니다.");
 		}
 		return updateProduct;
 	}
-//	@Override
-//	public Goods updateGoods(Goods goods) throws Exception {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//	@Override
-//	public Ticket updateTicket(Ticket ticket) throws Exception {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	
+	@Override
+    public Product increaseReadCountByProductDto(ProductDto productDto) throws Exception {
+		Long productNo = productDto.getProductNo();
+        Product product = entityManager.find(Product.class, productNo);
+
+        if (product != null) {
+            product.setReadCount(product.getReadCount() + 1);
+            entityManager.merge(product);
+            return product;
+        } else {
+            throw new EntityNotFoundException("해당 productNo에 해당하는 제품을 찾을 수 없습니다.");
+        }
+    }
+
 	// 제품 삭제
 	@Override
 	public void deleteProduct(Long productNo) throws Exception {
@@ -140,6 +164,8 @@ public class ProductDaoImpl implements ProductDao{
 			return new ArrayList<>();  // 카테고리를 찾지 못한 경우 빈 목록을 반환
 	}
 	}
+
+
 
 
 
