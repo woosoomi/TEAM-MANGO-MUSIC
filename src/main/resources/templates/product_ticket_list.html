@@ -48,18 +48,22 @@
  <!-- 티켓리스트 -->
         <div class="row" id="ticketList">
           <div class="movie-item-style-2" th:id="'ticketItem_' + ${ticket.productNo}" th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 13}">
+           
+           <div class="movie-item-style-2">
             <a style="padding-right: 20px; color: #ffffff;" th:text="${ticket.productNo}">번호</a>
             <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
               <img th:src="${ticket.productImage}" alt="" style="width: 200px">
             </a>
             <div class="mv-item-infor">
               <h6>
-                <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">티켓명</a>
+                <a class="ticketName" th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">티켓명</a>
               </h6>
               <p>티켓가격 : <span th:text="${ticket.productPrice}"></span> 원</p>
               <p>잔여좌석 : <span th:text="${ticket.productStock}"></span> 좌석 남았습니다.</p>
               <p>조 회 수 : <span th:text="${ticket.readCount}"></span> 분이 조회했습니다</p>
               <p>등록날짜 : <span th:text="${ticket.productDate}"></span> 에 등록되었습니다</p>
+            </div>
+            
             </div>
           </div>
         </div>        

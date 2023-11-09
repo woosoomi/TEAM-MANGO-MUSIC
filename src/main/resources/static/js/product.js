@@ -1,4 +1,5 @@
-
+///////////// MUSIC LIST //////////////////////
+/* 검색 기능 */
 document.addEventListener('DOMContentLoaded', function() {
 	const searchInput = document.getElementById('searchInput');
 	const musicContainer = document.getElementById('musicList');
@@ -28,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+			if (musicName.toLowerCase().includes(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
+			if (artist.toLowerCase().includes(searchQuery.toLowerCase())) {
+				musicContainer.appendChild(item);
+			}
 			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
 				musicContainer.appendChild(item);
 			}
@@ -92,13 +99,13 @@ $(function() {
 
 /////////////// 로그인 유무? //////////////////
 
-function loginChk() {
+/*function loginChk() {
 	let signIn = '<%=(String)session.getAttribute("userId")%>';
 	if(signIn==null,""){
 		alert("로그인 후 사용하실 수 있습니다.");
 		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user_login_form";
 	}
-}
+}*/
 
 ///////////// 댓글달기 //////////////////////
 	function create_reply() {
@@ -141,7 +148,7 @@ function loginChk() {
 
 	}
 ///////////GOODS LIST////////////
-// goods 검색기능 함수
+/*goods 검색기능*/
 document.addEventListener('DOMContentLoaded', function() {
 	const searchInput = document.getElementById('searchInput');
 	const goodsContainer = document.getElementById('goodsList');
@@ -167,6 +174,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			var goodsName = $(item).find('.goodsName').text();
 					
+
+			if (goodsName.toLowerCase().includes(searchQuery.toLowerCase())) {
+				goodsContainer.appendChild(item);
+			}
 
 			if (goodsName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
 				goodsContainer.appendChild(item);
@@ -219,8 +230,49 @@ $(document).ready(function () {
   });
 });
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-///////////// TICKET LIST //////////////////////
+
+//////////////////// TICKET LIST //////////////////////
+/*티켓 검색기능*/
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const ticketContainer = document.getElementById('ticketList');
+	var initialData = $('#ticketList').html();
+
+	searchInput.addEventListener('keyup', function(event) {
+		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
+		if (true) {
+			const searchValue = searchInput.value;
+			console.log(searchValue);
+			filterItems(searchValue);
+		}
+	});
+
+	var itemList = $(initialData).find('.movie-item-style-2').toArray();
+	console.log(itemList);
+
+	function filterItems(searchQuery) {
+		ticketContainer.innerHTML = '';
+
+
+		itemList.forEach(function(item) {
+
+			var ticketName = $(item).find('.ticketName').text();
+					
+
+			
+			if (ticketName.toLowerCase().includes(searchQuery.toLowerCase())) {
+				ticketContainer.appendChild(item);
+			}
+			if (ticketName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				ticketContainer.appendChild(item);
+			}
+			
+		});
+
+	}
+});
+
+
 
   // 정렬 함수
 $(document).ready(function () {
