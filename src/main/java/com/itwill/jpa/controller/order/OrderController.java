@@ -50,6 +50,7 @@ public class OrderController {
 			/*************** 유저정보 ***************/
 			
 			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("user_id", userId);
 			
 			/*************** 주문아이템 ***************/
 
@@ -138,6 +139,7 @@ public class OrderController {
 			/*************** 유저정보 ***************/
 			
 			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("user_id", userId);
 			
 			/*************** 주문아이템 ***************/
 			
