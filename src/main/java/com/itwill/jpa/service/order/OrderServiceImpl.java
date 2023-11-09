@@ -55,7 +55,6 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public OrderDto saveOrder(OrderDto dto) {
 		Long productNo = dto.getOrderItemDtos().get(0).getProductNo();
-		System.out.println("111111111111>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dto.getOrderItemDtos().get(0).getProductNo());
 		Order order=new Order( null, dto.getOrderPrice(),null,null,dto.getOrderStatus(),new Delivery(null, null, null, null, null, null, null),null,null,null);
 		User user=userRepository.findById(dto.getUserId()).get();
 		List<OrderItemDto> orderItemDtos=dto.getOrderItemDtos();
@@ -69,7 +68,6 @@ public class OrderServiceImpl implements OrderService{
 		order.setOrderItems(orderItems);
 		
 		Order saveOrder = orderRepository.save(order);
-		System.out.println(">>>>>>>>>>>>>>"+saveOrder);
 		
 		
 		OrderDto orderDto = OrderDto.toDto(saveOrder);
@@ -91,7 +89,6 @@ public class OrderServiceImpl implements OrderService{
 		order.setUser(user);
 		order.setOrderItems(orderItems);
 		Order saveOrder = orderRepository.save(order);
-		System.out.println(">>>>>>>>>>>>>>"+saveOrder);
 		
 		
 		
