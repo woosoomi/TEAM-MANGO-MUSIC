@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/product.css">
     <link rel="stylesheet" href="css/productTest.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 
 <body>
@@ -47,6 +51,8 @@
 		<!--굿즈리스트-->
  					<div class="row" id="goodsList" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
   					  <div class="celebrity-items" th:id="'goodsItem_' + ${goods.productNo}" th:each="goods, iterStat : *{goodsList}" th:if="${iterStat.index lt 12}" style="flex: 0 0 calc(33.33% - 10px); margin-right: 10px;">			        
+			        
+			        <div class="celebrity-items2">
 			        <div class="ceb-item">
 			            <img th:src="${goods.productImage}" alt="" style="width: 100%; height: 400px;">
 			            <div class="ceb-infor">
@@ -58,6 +64,7 @@
 			                <p>조 회 수 : <a th:text="${goods.readCount}" class="red-text"></a> 회</p>
 			                <p>등록날짜 : <a th:text="${goods.productDate}" class="red-text"></a></p>
 			            </div>
+			        </div>
 			        </div>
 			        </div>
 			        </div>

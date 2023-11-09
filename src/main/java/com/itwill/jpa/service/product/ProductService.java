@@ -55,20 +55,11 @@ public interface ProductService{
 	
 	/******************** INSERT[DTO] ********************/
 	// product 등록 - DTO
-	ProductDto insertProductDto(ProductDto productDto);
-	
-	// goods 등록 - DTO[성공]
-	ProductDto insertGoodsDto(ProductDto productDto);
-		
-	// ticket 등록 - DTO[성공]	
-	TicketDto insertTicketDto(TicketDto ticketDto);
-	
-	/*********************************************/
+	ProductDto insertProductDto(ProductDto productDto);	
 	
 	/******************** DELETE[ENTITY] ********************/
 	// product 삭제[성공]		
-	void deleteProduct(Long productNo) throws Exception;
-		
+	void deleteProduct(Long productNo) throws Exception;		
 	// product 삭제[성공]
 //	public void deleteProduct2(Long productNo);
 	
@@ -84,14 +75,22 @@ public interface ProductService{
 	/******************** UPDATE[DTO] ********************/	
 	// product 업데이트 - DTO	
 	ProductDto updateProductDto(ProductDto productDto) throws Exception;
-	
-	// goods 업데이트 - DTO
-	GoodsDto updateGoodsDto(GoodsDto goodsDto) throws Exception;
-	
-	// ticket 업데이트 - DTO
-	TicketDto updateTicketDto(TicketDto ticketDto) throws Exception;
 	/*********************************************/
+	
+	/******************** INCREASE READCOUNT[ENTITY] ********************/	
+	// product 조회수 올리기[성공]
+	Product increaseReadCount(Product product);
+	/******************** INCREASE READCOUNT[DTO] ********************/
+	ProductDto increaseReadCountByProductNo(Long productNo) throws Exception;
+	ProductDto increaseProductReadCountDto(ProductDto productDto) throws Exception;
 
+	/*
+	 * ProductDto increaseReadCountByProductNo(ProductDto dto) throws Exception;
+	 * 
+	 * ProductDto increaseReadCountByProductNo(Long productNo) throws Exception;
+	 */
+	/*************************************************************/
+	public List<ProductReply> findByProduct_productNo(Long productNo);
 	/******************** categoryId별로 전체나열[ENTITY] ********************/		
 	// product categoryId별 분류
 	public List<Product> findByCategoryId(Long categoryId);
@@ -145,19 +144,6 @@ public interface ProductService{
 	Optional<ProductDto> findProductDtoByProductNo(Long productNo);
 
 
-	/******************** INCREASE READCOUNT[ENTITY] ********************/	
-	// product 조회수 올리기[성공]
-	Product increaseReadCount(Product product);
-	
-	/******************** INCREASE READCOUNT[DTO] ********************/
-	ProductDto increaseProductReadCountDto(ProductDto productDto) throws Exception;
-	
-	// goods 조회수 올리기 - DTO
-	GoodsDto increaseGoodsReadCountDto(GoodsDto goodsDto) throws Exception;
-
-	// ticket 조회수 올리기 - DTO
-	TicketDto increaseTicketReadCountDto(TicketDto ticketDto) throws Exception;
-	/*************************************************************/
 	
 	/******************** 오름차순[ENTITY] ********************/		
 	// product 조회수별 오름차순 정렬 [성공]
@@ -191,6 +177,7 @@ public interface ProductService{
 	
 	/******************** 댓글달기 ********************/	
 	ProductReply ReplyInsert(ProductReply productReply);
+
 
 	
 

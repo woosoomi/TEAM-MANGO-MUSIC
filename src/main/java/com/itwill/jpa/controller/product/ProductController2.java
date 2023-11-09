@@ -22,6 +22,7 @@ import com.itwill.jpa.entity.board.Board;
 //import com.itwill.jpa.dto.product.ProductMusicDto;
 
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.product.ProductReply;
 import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.service.product.ProductService;
 import com.itwill.jpa.service.product.ProductServiceImpl;
@@ -164,12 +165,14 @@ public class ProductController2 {
 		    	String userId = (String) session.getAttribute("sUserId");
 				model.addAttribute("userId",userId);
 		        Optional<Product> findGoodsOptional = productService.findByProductNo(productNo);
-
+		        List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);
 		        if (findGoodsOptional.isPresent()) {
 		            Product findGoods = findGoodsOptional.get();
 		            productService.increaseReadCount(findGoods);
 		            model.addAttribute("findGoods", findGoods);
 		            System.out.println(">>>굿즈 상세정보:" + findGoods);
+		            model.addAttribute("ReplyList",ReplyList);
+		            System.out.println(">>>댓글정보:" + ReplyList);
 		        } else {
 		            model.addAttribute("errorMSG", "해당 굿즈를 찾을 수 없습니다.");
 		        }
@@ -211,12 +214,14 @@ public class ProductController2 {
 		    	String userId = (String) session.getAttribute("sUserId");
 				model.addAttribute("userId",userId);
 		        Optional<Product> findTicketOptional = productService.findByProductNo(productNo);
-
+		        List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);
 		        if (findTicketOptional.isPresent()) {
 		            Product findTicket = findTicketOptional.get();
 		            productService.increaseReadCount(findTicket);
 		            model.addAttribute("findTicket", findTicket);
 		            System.out.println(">>>티켓 상세정보:" + findTicket);
+		            model.addAttribute("ReplyList",ReplyList);
+		            System.out.println(">>>댓글정보:" + ReplyList);
 		        } else {
 		            model.addAttribute("errorMSG", "해당 티켓을 찾을 수 없습니다.");
 		        }
