@@ -167,7 +167,7 @@ public interface ProductService{
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
 	List<ProductDto> productByReadCountAscDto(Long categoryId) throws Exception;
 	
-	//주문 오래된순으로 나열하기
+	//주문 최신순으로 나열하기
 	List<ProductDto> productListByOlder(Long categoryId) throws Exception;
 	/*********************************************/	
 	/******************** 내림차순[ENTITY] ********************/		
@@ -178,8 +178,8 @@ public interface ProductService{
 	// product 조회수별 내림차순 정렬 - DTO	[성공]
 	List<ProductDto> productByReadCountDescDto(Long categoryId) throws Exception;
 	
-	
-	//주문 최신순으로 나열하기
+	//주문 오래된순으로 나열하기
+		// >> older , newer 기능 반대로 구현되어있음. 추후 이름수정 필요.
 	List<ProductDto> productListByNewer(Long categoryId) throws Exception;	
 	/*********************************************/	
 	
