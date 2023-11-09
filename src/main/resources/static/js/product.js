@@ -141,42 +141,81 @@ function loginChk() {
 
 	}
 ///////////GOODS LIST////////////
-// 정렬 함수
+// goods 검색기능 함수
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const goodsContainer = document.getElementById('goodsList');
+	var initialData = $('#goodsList').html();
+
+	searchInput.addEventListener('keyup', function(event) {
+		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
+		if (true) {
+			const searchValue = searchInput.value;
+			console.log(searchValue);
+			filterItems(searchValue);
+		}
+	});
+
+	var itemList = $(initialData).find('.celebrity-items').toArray();
+	console.log(itemList);
+
+	function filterItems(searchQuery) {
+		goodsContainer.innerHTML = '';
+
+
+		itemList.forEach(function(item) {
+
+			var goodsName = $(item).find('.goodsName').text();
+					
+
+			if (goodsName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+				goodsContainer.appendChild(item);
+			}
+			
+		});
+
+	}
+});
+
+
+// goods 리스트 정렬 함수
 $(document).ready(function () {
-  function sortGoods(order) {
-    var goodsList = $('#goodsList'); // 굿즈 목록을 감싸는 요소의 ID를 사용
-    var items = goodsList.find('.celebrity-items').toArray(); // 굿즈 항목 요소를 가져옴
+  function sortGoodsItems(order) {
+    var goodsList = $('#goodsList');
+    var items = goodsList.find('.celebrity-items').get();
 
     items.sort(function (a, b) {
-        var valueA, valueB;
+      var aValue, bValue;
 
-        if (order === 'readCountAsc' || order === 'readCountDesc') {
-            // '조회수'에 대한 비교
-            valueA = parseInt($(a).find('p:contains("조 회 수") span').text());
-            valueB = parseInt($(b).find('p:contains("조 회 수") span').text());
-        } else if (order === 'dateDesc' || order === 'dateAsc') {
-            // '등록날짜'에 대한 비교
-            valueA = new Date($(a).find('p:contains("등록날짜") span').text());
-            valueB = new Date($(b).find('p:contains("등록날짜") span').text());
-        }
-
-        if (order.includes('Desc')) {
-            return valueB - valueA;
-        } else {
-            return valueA - valueB;
-        }
+      if (order === 'readCountAsc') {
+        aValue = parseInt($(a).find('p:contains("조 회 수") span').text());
+        bValue = parseInt($(b).find('p:contains("조 회 수") span').text());
+        return aValue - bValue;
+      } else if (order === 'readCountDesc') {
+        aValue = parseInt($(a).find('p:contains("조 회 수") span').text());
+        bValue = parseInt($(b).find('p:contains("조 회 수") span').text());
+        return bValue - aValue;
+      } else if (order === 'dateDesc') {
+        aValue = new Date($(a).find('p:contains("등록날짜") span').text());
+        bValue = new Date($(b).find('p:contains("등록날짜") span').text());
+        return aValue - bValue;
+      } else if (order === 'dateAsc') {
+        aValue = new Date($(a).find('p:contains("등록날짜") span').text());
+        bValue = new Date($(b).find('p:contains("등록날짜") span').text());
+        return bValue - aValue;
+      }
     });
 
     goodsList.empty();
     $.each(items, function (i, item) {
-        goodsList.append(item);
+      goodsList.append(item);
     });
   }
 
   // select 요소의 변경 감지
   $('#sortSelect').on('change', function () {
     var selectedOption = $(this).val();
-    sortGoods(selectedOption);
+    sortGoodsItems(selectedOption);
   });
 });
 
