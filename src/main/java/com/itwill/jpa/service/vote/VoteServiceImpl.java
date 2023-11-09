@@ -62,7 +62,7 @@ public class VoteServiceImpl implements VoteService {
 	        List<User> users = userRepository.findByVote_VoteId(vote.getVoteId());
 	        
 	        // User의 전체 투표수 합산
-	        int totalVoteCount = users.size();
+	        int totalVoteCount = users.size()+20;
 	        
 	        // 전체 투표수를 투표 객체의 투표 총수(voteTot)로 업데이트
 	        updateByVoteNo.setVoteTot(totalVoteCount);

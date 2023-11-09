@@ -42,7 +42,7 @@
 								<li><a href="user_modify_form">회원정보수정</a></li>
 								<li><a href="cart_main">나의 장바구니</a></li>
 								<li><a href="order_history">나의 주문내역</a></li>
-								<!--<li><a href="user_remove_action" id="deleteButton">회원탈퇴</a></li>-->
+								<!--<li><a href="user_remove_action">회원탈퇴</a></li>-->
 								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal">회원탈퇴</a></li>
 
 							</ul>
@@ -63,7 +63,6 @@
 							<div class="modal-body">
 								<label for="password">비밀번호를 입력하세요:</label>
 								<input type="password" id="password" placeholder="비밀번호">
-								<!--<input id="password" placeholder="비밀번호">-->
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -121,20 +120,53 @@
 
 	<script>
 		function confirmWithdrawal() {
+			// 로그인 한 유저 아이디
 			var userId = document.getElementById("userId").value;
+			console.log("아이디:" + userId);
+
+			// 로그인 한 유저의 비밀번호
 			var userPw = document.getElementById("userPw").value;
+			console.log("비번:" + userPw);
+
+			// 모달에서 입력한 비밀번호 값
 			var enteredPassword = document.getElementById("password").value;
+			console.log("모달입력값:" + enteredPassword);
+
+			// 비밀번호 입력 확인
+			if (!enteredPassword) {
+				alert("비밀번호를 입력하세요.");
+				return;
+			}
 
 			// 비밀번호 확인
 			if (userPw === enteredPassword) {
-				// 비밀번호 일치 시 회원 탈퇴 진행
-				alert("회원 탈퇴 성공!");
-				closeWithdrawalModal();
+				// 비밀번호 일치 시 회원 탈퇴 진행 --> 탈퇴 아작스 호출
+				// 버튼 비활성화 (중복 호출 방지)
+				$("#withdrawalButton").prop("disabled", true);
+
+				$.ajax({
+					type: "DELETE",
+					url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mangoo/user/delete/${userId}`,
+					success: function (data) {
+						alert("회원 탈퇴 성공!");
+						closeWithdrawalModal();
+					},
+					error: function (error) {
+						// 에러 핸들링
+						alert("회원 탈퇴 실패. 다시 시도해주세요.");
+						console.error("Error deleting user:", error);
+					},
+					complete: function () {
+						// 비동기 처리 완료 후 버튼 활성화
+						$("#withdrawalButton").prop("disabled", false);
+					}
+				});
 			} else {
 				// 비밀번호 불일치 시 알림
 				alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
 			}
 		}
+
 
 		function closeWithdrawalModal() {
 			// 모달 닫기
@@ -144,7 +176,7 @@
 			// TODO: 여기에 실제 회원 탈퇴 처리를 위한 Ajax 요청 추가
 			// 비밀번호 확인이 성공했으므로 서버로 회원 탈퇴 요청을 보낼 수 있음
 		}
-		
+
 	</script>
 
 	<script src="js/jquery.js"></script>

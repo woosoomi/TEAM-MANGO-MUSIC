@@ -38,6 +38,18 @@ public class VoteController {
 	@Autowired
 	private UserService userService;
 	
+	@GetMapping("/bestAward") 
+	public String bestAward() { 
+		String forward_path = "vote_bestAward_form"; 
+		return forward_path; 
+	}
+	
+	@GetMapping("/specialAward") 
+	public String specialAward() { 
+		String forward_path = "vote_specialAward_form"; 
+		return forward_path; 
+	}
+	
 	
 	@GetMapping(value = "/voteMain")
 	public String voteMain(Model model) {		
