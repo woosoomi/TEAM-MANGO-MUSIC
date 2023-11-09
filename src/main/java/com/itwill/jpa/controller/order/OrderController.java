@@ -68,7 +68,7 @@ public class OrderController {
             String membershipImage = null;
             String membershipContent = null;
             Long membershipNo = 0L;
-            
+            int membershipPrice = 0;
             // 주문 아이템별로 Product 정보 가져오기
             for (OrderItemDto orderItemDto : orderItemDtoList) {
                 Long productNo = orderItemDto.getProductNo();
@@ -81,6 +81,7 @@ public class OrderController {
                     membershipImage = product.getProductImage();
                     membershipContent = product.getProductContent();
                     membershipNo = product.getProductNo();
+                    membershipPrice = product.getProductPrice();
                 }
             }
             
@@ -90,10 +91,11 @@ public class OrderController {
             model.addAttribute("membershipImage", membershipImage);
             model.addAttribute("membershipContent", membershipContent);
             model.addAttribute("membershipNo", membershipNo);
+            model.addAttribute("membershipPrice", membershipPrice);
                 
             /*************** 가격 ***************/
-                
-            double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
+              double orderPrice = membershipPrice;  
+            //double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
             //상품 가격 소수점 아래 절사
             int formattedOrderPrice = (int) orderPrice;
             model.addAttribute("orderPrice", orderPrice);
@@ -152,34 +154,46 @@ public class OrderController {
 			model.addAttribute("orderItemDtoList", orderItemDtoList);
 
 			// Product 엔티티의 정보를 저장할 변수
-			Date membershipStartPeriod = null;
-			int membershipPeriodOfUse = 0;
-			String membershipName = null;
-			String membershipImage = null;
-			String membershipContent = null;
-			Long membershipNo = 0L;
-
+			String ticketName = null;
+			String ticketImage = null;
+			String ticketContent = null;
+			int ticketStar = 0;
+			String ticketAddress = null;
+			Date ticketDate = null;
+			String ticketArtist = null;
+			int ticketStock = 0;
+			Long ticketNo = 0L;
+			int ticketPrice = 0;
+			
 			// 주문 아이템별로 Product 정보 가져오기
 			for (OrderItemDto orderItemDto : orderItemDtoList) {
 				Long productNo = orderItemDto.getProductNo();
 				Product product = productService.getProduct(productNo);
 				if (product != null) {
 					// Product 엔티티의 멤버십 시작일 정보 가져오기
-					membershipStartPeriod = product.getStartPeriod();
-					membershipPeriodOfUse = product.getPeriodOfUse();
-					membershipName = product.getProductName();
-					membershipImage = product.getProductImage();
-					membershipContent = product.getProductContent();
-					membershipNo = product.getProductNo();
+					ticketName = product.getProductName();
+					ticketImage = product.getProductImage();
+					ticketContent = product.getProductContent();
+					ticketStar = product.getProductStar();
+					ticketAddress = product.getProductAddress();
+					ticketDate = product.getProductDate();
+					ticketArtist = product.getProductArtist();
+					ticketStock = product.getProductStock();
+					ticketNo = product.getProductNo();
+					ticketPrice = product.getProductPrice();
 				}
 			}
 			
-			model.addAttribute("membershipStartPeriod", membershipStartPeriod);
-			model.addAttribute("membershipPeriodOfUse", membershipPeriodOfUse);
-			model.addAttribute("membershipName", membershipName);
-			model.addAttribute("membershipImage", membershipImage);
-			model.addAttribute("membershipContent", membershipContent);
-			model.addAttribute("membershipNo", membershipNo);
+			model.addAttribute("ticketName", ticketName);
+			model.addAttribute("ticketImage", ticketImage);
+			model.addAttribute("ticketContentt", ticketContent);
+			model.addAttribute("ticketStar", ticketStar);
+			model.addAttribute("ticketAddress", ticketAddress);
+			model.addAttribute("ticketDate", ticketDate);
+			model.addAttribute("ticketArtist", ticketArtist);
+			model.addAttribute("ticketStock", ticketStock);
+			model.addAttribute("ticketNo", ticketNo);
+			model.addAttribute("ticketPrice", ticketPrice);
 
 			/*************** 가격 ***************/
 
