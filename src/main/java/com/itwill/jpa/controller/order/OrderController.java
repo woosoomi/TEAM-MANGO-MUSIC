@@ -105,9 +105,12 @@ public class OrderController {
             	            
             // 유저의 쿠폰정보 불러오기
             List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
-            model.addAttribute("couponDtoList", couponDtoList);	
+            model.addAttribute("couponDtoList", couponDtoList);
+            
             for (CouponDto couponDto : couponDtoList) {
+            	
                 Double couponDiscount = couponDto.getCouponDiscount();
+                
                 if (couponDiscount != null) {
                     int discount = couponDiscount.intValue(); // Double 값을 int로 변환
                     model.addAttribute("discount", discount);
@@ -115,6 +118,7 @@ public class OrderController {
                     // 할인율이 null인 경우
                 }
             }
+            
             //쿠폰 할인 적용 메서드
             double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
             //총 결제금액 소수점 아래 절사
@@ -206,8 +210,11 @@ public class OrderController {
 			// 유저의 쿠폰정보 불러오기
 			List<CouponDto> couponDtoList = couponService.couponsByUserId(userId);
 			model.addAttribute("couponDtoList", couponDtoList);
+			
 			for (CouponDto couponDto : couponDtoList) {
+				
 				Double couponDiscount = couponDto.getCouponDiscount();
+				
 				if (couponDiscount != null) {
 					int discount = couponDiscount.intValue(); // Double 값을 int로 변환
 					model.addAttribute("discount", discount);
@@ -215,6 +222,7 @@ public class OrderController {
 					// 할인율이 null인 경우
 				}
 			}
+			
 			// 쿠폰 할인 적용 메서드
 			double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
 			// 총 결제금액 소수점 아래 절사
