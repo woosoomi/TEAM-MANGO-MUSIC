@@ -142,9 +142,11 @@ function loginChk() {
 	}
 ///////////GOODS LIST////////////
 // 정렬 함수
-function sortGoods(order) {
+$(document).ready(function () {
+  function sortGoods(order) {
     var goodsList = $('#goodsList'); // 굿즈 목록을 감싸는 요소의 ID를 사용
     var items = goodsList.find('.celebrity-items').toArray(); // 굿즈 항목 요소를 가져옴
+
     items.sort(function (a, b) {
         var valueA, valueB;
 
@@ -169,7 +171,14 @@ function sortGoods(order) {
     $.each(items, function (i, item) {
         goodsList.append(item);
     });
-}
+  }
+
+  // select 요소의 변경 감지
+  $('#sortSelect').on('change', function () {
+    var selectedOption = $(this).val();
+    sortGoods(selectedOption);
+  });
+});
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 ///////////// TICKET LIST //////////////////////
@@ -211,4 +220,3 @@ $(document).ready(function () {
     sortItems(selectedOption);
   });
 });
-

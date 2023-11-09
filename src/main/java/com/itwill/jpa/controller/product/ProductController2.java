@@ -148,7 +148,7 @@ public class ProductController2 {
 
 		        if (findGoodsOptional.isPresent()) {
 		            Product findGoods = findGoodsOptional.get();
-	//	            productService.increaseReadCount(findGoods);
+		            productService.increaseReadCount(findGoods);
 		            model.addAttribute("findGoods", findGoods);
 		            System.out.println(">>>굿즈 상세정보:" + findGoods);
 		        } else {
