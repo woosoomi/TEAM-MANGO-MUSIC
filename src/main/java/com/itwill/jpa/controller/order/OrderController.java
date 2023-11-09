@@ -14,7 +14,6 @@ import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
-import com.itwill.jpa.service.cart.CartService;
 import com.itwill.jpa.service.order.CouponService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
@@ -96,12 +95,11 @@ public class OrderController {
             model.addAttribute("membershipPrice", membershipPrice);
                 
             /*************** 가격 ***************/
-              double orderPrice = membershipPrice;  
-            //double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
+        	double orderPrice = membershipPrice;  
             //상품 가격 소수점 아래 절사
             int formattedOrderPrice = (int) orderPrice;
-            model.addAttribute("orderPrice", orderPrice);
             model.addAttribute("formattedOrderPrice", formattedOrderPrice);
+            
           
             /*************** 쿠폰 ***************/
             	            
@@ -121,11 +119,10 @@ public class OrderController {
             double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
             //총 결제금액 소수점 아래 절사
             int endPrice = (int) salePrice;
-            model.addAttribute("salePrice", salePrice);
             model.addAttribute("endPrice", endPrice);
            
             return "order_membership";
-	            			
+        	
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("주문이 존재하지 않습니다.", e.getMessage());
@@ -199,10 +196,9 @@ public class OrderController {
 
 			/*************** 가격 ***************/
 
-			double orderPrice = orderService.calculateTotalOrderPriceByCatagoryId(userId, categoryId);
-			// 상품 가격 소수점 아래 절사
+			double orderPrice = ticketPrice;
+			//상품 가격 소수점 아래 절사
 			int formattedOrderPrice = (int) orderPrice;
-			model.addAttribute("orderPrice", orderPrice);
 			model.addAttribute("formattedOrderPrice", formattedOrderPrice);
 
 			/*************** 쿠폰 ***************/
@@ -223,12 +219,10 @@ public class OrderController {
 			double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
 			// 총 결제금액 소수점 아래 절사
 			int endPrice = (int) salePrice;
-			model.addAttribute("salePrice", salePrice);
 			model.addAttribute("endPrice", endPrice);
-
+			
 			return "order_ticket";
-
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("주문이 존재하지 않습니다.", e.getMessage());
