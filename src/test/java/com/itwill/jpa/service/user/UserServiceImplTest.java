@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.when;
 
 import java.util.List;
 import java.util.Optional;
@@ -112,7 +111,7 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
     @Rollback(false)
     @DisplayName("회원탈퇴")
     public void testDeleteUser() {
-        String userId = "itwill";
+        String userId = "a";
 
         try {
             userDao.deleteUser(userId);

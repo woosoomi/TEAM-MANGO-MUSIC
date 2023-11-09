@@ -174,34 +174,14 @@ public class UserRestController {
 
 	@Operation(summary = "회원탈퇴")
 	@DeleteMapping("/delete/{userId}")
-	public ResponseEntity<UserLoginDto> user_delete_action(@PathVariable(name = "userId") String userId,
-			HttpSession session) throws Exception {
-		if (session.getAttribute("sUserId") != null) {
-			userService.deleteUser(userId);
-			session.invalidate();
-		}
-		return new ResponseEntity<UserLoginDto>(HttpStatus.OK);
-	}
+	public ResponseEntity<String> user_delete_action(@PathVariable(name = "userId") String userId, HttpSession session)
+			throws Exception {
+		String loginUser = (String) session.getAttribute("sUserId");
+		userService.deleteUser(loginUser);
+		session.invalidate();
 
-	/*
-	 * @Operation(summary = "회원탈퇴")
-	 * 
-	 * @DeleteMapping("/delete/{userId}") public ResponseEntity<UserLoginDto>
-	 * user_delete_action(@PathVariable(name = "userId") String userId,
-	 * 
-	 * @RequestBody Map<String, String> requestBody, HttpSession session) { try { if
-	 * (session.getAttribute("sUserId") != null) { String enteredPassword =
-	 * requestBody.get("password");
-	 * 
-	 * // TODO: 실제로는 비밀번호 확인을 위한 로직을 추가해야 함 (예: userService.checkPassword(userId, //
-	 * enteredPassword)) // 여기에서는 간단히 비밀번호가 일치하는 것으로 가정 if
-	 * (enteredPassword.equals("비밀번호가 일치하는 경우")) { userService.deleteUser(userId);
-	 * session.invalidate(); return new ResponseEntity<>(HttpStatus.OK); } else { //
-	 * 비밀번호가 일치하지 않는 경우 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); } }
-	 * else { // 세션이 유효하지 않은 경우 return new
-	 * ResponseEntity<>(HttpStatus.UNAUTHORIZED); } } catch (Exception e) { // 예외가
-	 * 발생한 경우 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
-	 */
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleException(Exception e) {

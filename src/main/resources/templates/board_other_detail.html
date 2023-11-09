@@ -47,8 +47,7 @@
 
 						<div id="boardId" th:text="${board.boardId}" style="display: none;">게시글 ID</div>
 
-						<pre th:utext="${board.boardContent}"
-							style="border: 2px solid rgb(2, 15, 25); line-height: 20px; margin-top: 50px; 
+						<pre th:utext="${board.boardContent}" style="border: 2px solid rgb(2, 15, 25); line-height: 20px; margin-top: 50px; 
 							color: rgb(255, 255, 255); height: 3500px ; width: 1000px;  overflow: auto;"></pre>
 
 						<div class="flex-it share-tag"></div>
@@ -75,19 +74,22 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="comment-form">
 							<h4>댓글쓰기</h4>
 							<form action="">
 								<div class="row">
 									<div class="col-md-4">
-										<input type="text" id="comment_id" placeholder="작성자 이름" th:value="${userIdString+'님'}">
+										<input type="text" id="comment_id" placeholder="작성자 이름"
+											th:value="${userIdString}">
 									</div>
-									
+
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<textarea name="message" id="comment_content" placeholder="건전한 댓글문화를 위해 최소 20글자의 댓글을입력해주세요"></textarea>
+										<textarea name="message" id="comment_content"
+											placeholder="건전한 댓글문화를 위해 최소 60글자의 댓글을입력해주세요"
+											style="font-size: 20px;"></textarea>
 									</div>
 								</div>
 								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
@@ -138,41 +140,47 @@
 	function create_reply() {
 		const urlParams = new URLSearchParams(window.location.search);
 		const boardId = urlParams.get("boardId");
-		const boardIdInt = parseInt(boardId, 10); //boardId
+		const boardIdInt = parseInt(boardId, 10); // boardId
 
-		var commentContent = $("#comment_content").val()
+		var commentContent = $("#comment_content").val();
 		console.log(commentContent);
+		
+		var commentId = $("#comment_id").val();
+		console.log(commentId);
 
-		const commentData = {
-			"boardReplyTitle": "댓글타이틀",
-			"boardReplyContent": commentContent,
-			"boardId": boardIdInt,
-			"userId": "why3795" //세션처리 아이디넣으면 자동으로 이름들어옴
-		}
-		console.log(commentData);
-		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_reply_create/${boardId}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(commentData)
-		})
-			.then(response => {
-				if (response.status === 201) {
-					alert('댓글 등록되었습니다.');
-					location.reload(); // 현재 페이지를 새로 고침
+		// 댓글 내용이 60글자 이하인지 확인
+		if (commentContent.length >= 60) {
+			const commentData = {
+				"boardReplyTitle": "댓글타이틀",
+				"boardReplyContent": commentContent,
+				"boardId": boardIdInt,
+				"userId": commentId // 세션처리 아이디 넣으면 자동으로 이름 들어옴
+			};
 
-				} else {
-					alert('댓글 등록에 실패했습니다.');
-					alert('에러 발생: ' + error);
+			console.log(commentData);
 
-				}
+			fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_reply_create/${boardId}`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(commentData)
 			})
-			.catch(error => {
-				alert('에러 발생: ' + error);
-			});
-
-
+				.then(response => {
+					if (response.status === 201) {
+						alert('댓글 등록되었습니다.');
+						location.reload(); // 현재 페이지를 새로 고침
+					} else {
+						alert('댓글 등록에 실패했습니다.');
+						alert('에러 발생: ' + error);
+					}
+				})
+				.catch(error => {
+					alert('에러 발생: ' + error);
+				});
+		} else {
+			alert('댓글 내용은 60글자 이하로 작성해야 합니다.');
+		}
 	}
 
 
