@@ -43,10 +43,9 @@
                     <div class="row" id="goodsList">
                         <div class="celebrity-items">
                             <div th:each="goods, iterStat : *{goodsList}" th:if="${iterStat.index lt 12}">
+								<!-- 그룹의 시작 부분 -->
                                 <div class="ceb-item">
-                                    <div class="movie-item-style-2">
-                                        <img th:src="${goods.productImage}" alt="">
-                                    </div>
+                                        <img th:src="${goods.productImage}" alt="" style="width: 380px; height: 380px;">
                                     <div class="ceb-infor">
                                         <h2>
                                             <a th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">상품명</a>
@@ -55,11 +54,34 @@
                                         <p>남은개수 : <a th:text="${goods.productStock}"></a> 개</p>
                                         <p>조 회 수 : <a th:text="${goods.readCount}"></a>회</p>
                                     </div>
+                                    </div>
+                                    <div th:if="${(iterStat.index + 1) % 3 == 0}" class="ceb-item-group-end">										
+									</div>
+                                    <!--<div class="movie-item-style-2">
+                                </div>-->
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>                                              
+                    </div>                                                   
+                
+<!--검색기능-->                 
+ <div class="col-md-3 col-xs-12 col-sm-12">
+    <div class="sidebar">
+        <div class="searh-form">
+            <h4 class="sb-title">검색하기</h4>
+            <form class="form-style-1 celebrity-form" action="#">
+                <div class="form-it">
+                    <label>굿즈이름</label>
+                    <input type="text" placeholder="Enter keywords">
                 </div>
+                <div>
+                    <input class="submit" type="submit" value="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>      
+<!--////////////////////////////////////////////////////////////////////////////// -->
             </div>
         </div>
     </div>

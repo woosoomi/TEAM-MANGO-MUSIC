@@ -22,6 +22,7 @@ import com.itwill.jpa.repository.cart.CartRepository;
 import com.itwill.jpa.repository.product.ProductRepository;
 import com.itwill.jpa.repository.user.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -39,12 +40,15 @@ public class CartServiceImpl implements CartService {
 	CartItemService cartItemService;
 	
 	@Override
-	public CartDto createCart(CartDto dto) throws Exception {
-		User user = userRepository.findById(dto.getUserId()).orElseThrow();
-		Cart cart = Cart.toEntity(dto);
-		cart.setUser(user);
-		cart = cartRepository.save(cart);
-		return CartDto.toDto(cart);
+	public void createCart(String userId) throws Exception {
+		Optional<User> findUser= userRepository.findById(userId);
+		Cart cart = Cart.builder()
+				.cartitems(null)
+				.cartTotPrice(0)
+				.user(findUser.get())
+				.build();
+		
+		cartRepository.save(cart);
 	}
 	@Override
 	public CartDto deleteAllByCartId(Long cartId) throws Exception {

@@ -70,46 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-///////////goods list////////////
-/*document.addEventListener('DOMContentLoaded', function() {
-	const searchInput = document.getElementById('searchInput');
-	const goodsContainer = document.getElementById('goodsList');
-	var initialData = $('#goodsList').html();
-
-	searchInput.addEventListener('keyup', function(event) {
-		//타자 넣을때마다 검색 (key up) -> 검색칸 조건 X
-		if (true) {
-			const searchValue = searchInput.value;
-			console.log(searchValue);
-			filterItems(searchValue);
-		}
-	});
-
-	var itemList = $(initialData).find('.movie-item-style-2').toArray();
-	console.log(itemList);
-
-	function filterItems(searchQuery) {
-		goodsContainer.innerHTML = '';
-
-
-		itemList.forEach(function(item) {
-
-			var goodsName = $(item).find('.goodsName').text();
-			console.log(goodsName);
-			//var artist = $(item).find('.artist').text();
-
-
-
-			if (musicName.toLowerCase().startsWith(searchQuery.toLowerCase())) {
-				musicContainer.appendChild(item);
-			}
-			if (artist.toLowerCase().startsWith(searchQuery.toLowerCase())) {
-				musicContainer.appendChild(item);
-			}
-		});
-
-	}
-});*/
 
 
 /////////// top button 보이기 | 숨기기////////////////
@@ -180,5 +140,47 @@ function loginChk() {
 
 
 	}
+///////////GOODS LIST////////////
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+///////////// TICKET LIST //////////////////////
+
+  // 정렬 함수
+$(document).ready(function () {
+  function sortItems(order) {
+    var ticketList = $('#ticketList'); // 티켓 목록을 감싸는 요소의 ID를 사용
+    var items = ticketList.find('.movie-item-style-2').get(); // 티켓 항목 요소를 가져옴
+    items.sort(function (a, b) {
+      if (order === 'readCountAsc') {
+        var readCountA = parseInt($(a).find('p:contains("조 회 수") span').text());
+        var readCountB = parseInt($(b).find('p:contains("조 회 수") span').text());
+        return readCountA - readCountB;
+      } else if (order === 'readCountDesc') {
+        var readCountA = parseInt($(a).find('p:contains("조 회 수") span').text());
+        var readCountB = parseInt($(b).find('p:contains("조 회 수") span').text());
+        return readCountB - readCountA;
+      } else if (order === 'dateDesc') {
+        var dateA = new Date($(a).find('p:contains("등록날짜") span').text());
+        var dateB = new Date($(b).find('p:contains("등록날짜") span').text());
+        return dateA - dateB;
+      } else if (order === 'dateAsc') {
+        var dateA = new Date($(a).find('p:contains("등록날짜") span').text());
+        var dateB = new Date($(b).find('p:contains("등록날짜") span').text());
+        return dateB - dateA;
+      }
+    });
+    ticketList.empty();
+    $.each(items, function (i, item) {
+      ticketList.append(item);
+    });
+  }
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+  // select 요소의 변경 감지
+  $('#sortSelect').on('change', function () {
+    var selectedOption = $(this).val();
+    sortItems(selectedOption);
+  });
+});
 

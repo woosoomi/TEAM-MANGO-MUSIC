@@ -37,7 +37,7 @@ public class CartRestController {
 	CartItemServiceImpl cartItemServiceImpl;
 	@Autowired
 	CartRepository cartRepository;
-
+/*
 	@Operation(summary = "장바구니생성[성공]")
 	@PostMapping("/cart_main/create")
 	public ResponseEntity<CartDto> createCart(@RequestBody CartDto dto) {
@@ -49,7 +49,7 @@ public class CartRestController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	    }
 	}
-	
+	*/
 
 	@Operation(summary = "장바구니 상품전체삭제[성공]")
 	@DeleteMapping("/cart_main/delete/{cartId}")

@@ -54,10 +54,22 @@ public class BoardController {
 			return null;
 		}
 	}
+
 	@GetMapping("/board_notification")
 	public String notificationPage(HttpSession session, Model model) {
 		try {
-			
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+			}
+
+			session.setAttribute("loginUser", user);
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+
 			
 			List<Board> notifications = boardServiceImpl.findBycategory(1L);
 			model.addAttribute("notifications", notifications);
@@ -76,8 +88,20 @@ public class BoardController {
 	}
 
 	@GetMapping("/board_magazine")
-	public String magazine(Model model) {
+	public String magazine(HttpSession session, Model model) {
 		try {
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+			}
+
+			session.setAttribute("loginUser", user);
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+			
 			List<Board> magazines = boardServiceImpl.findBycategory(3L);
 			model.addAttribute("magazines", magazines);
 			System.out.println("magazine 리스트 : " + magazines);
@@ -100,36 +124,75 @@ public class BoardController {
 
 	@LoginCheck
 	@GetMapping("/board_inquiries")
-	public String inquiries(HttpSession session, Model model) throws Exception{
+	public String inquiries(HttpSession session, Model model) throws Exception {
 		try {
 			String loginUser = (String) session.getAttribute("sUserId");
 			UserDto user = null;
-
-			if (loginUser != null) {
-			    user = userService.findUser(loginUser);
-
-			    // 사용자 정보를 세션에 저장
-			    session.setAttribute("loginUser", user);
-			}
-			
+			user = userService.findUser(loginUser);
+			session.setAttribute("loginUser", user);
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
-				
-			List<Board> inquiries = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,	userIdString);
+
+			
+			List<Board> inquiries = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,
+					userIdString);
 			Collections.reverse(inquiries);
 			model.addAttribute("inquiries", inquiries);
 			System.out.println("inquiries 리스트 : " + inquiries);
 			return "board_inquiries";
 
-			}catch (Exception e) {
-				e.printStackTrace();
-				return "index";
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "index";
 		}
+	}
+
+	@LoginCheck
+	@GetMapping("/board_admin_inquiries")
+	public String admin_inquiries(HttpSession session, Model model) throws Exception {
+		try {
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+				user = userService.findUser(loginUser);
+
+				// 사용자 정보를 세션에 저장
+				session.setAttribute("loginUser", user);
+			}
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+
+			List<Board> inquiries = boardServiceImpl.findBycategory(4L);
+
+			Collections.reverse(inquiries);
+			model.addAttribute("inquiries", inquiries);
+			System.out.println("inquiries 리스트 : " + inquiries);
+			return "board_admin_inquiries";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "index";
+		}
+	}
 
 	@GetMapping("/board_faq")
-	public String faq(Model model) {
+	public String faq(HttpSession session, Model model) {
 		try {
+			
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+			    user = userService.findUser(loginUser);
+			}
+
+			session.setAttribute("loginUser", user);
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+			
 			List<Board> faqs = boardServiceImpl.findBycategory(5L);
 			model.addAttribute("faqs", faqs);
 			System.out.println("FAQ 리스트 :" + faqs);
@@ -204,7 +267,7 @@ public class BoardController {
 			return "error";
 		}
 	}
-	
+
 	@GetMapping("/board_other_detail1")
 	public String board_other_detail1(@RequestParam(name = "boardId") Long boardId, Model model) {
 		try {
@@ -252,8 +315,6 @@ public class BoardController {
 			return "error";
 		}
 	}
-	
-	
 
 	@GetMapping("/board_map")
 	public String board_map(Model model) {

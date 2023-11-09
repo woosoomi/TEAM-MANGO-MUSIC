@@ -24,156 +24,67 @@
 	<div th:insert="~{common_header::headerFragment}">
 	</div>
 	<!-- celebrity grid v1 section-->	
-	<div class="page-single">
-		<div class="container">
-			<div class="row ipad-width2">
-				<div class="col-md-9 col-sm-12 col-xs-12">
-					<div class="topbar-filter">
-							<p class="pad-change">
-								총 <span th:text="${#lists.size(tickets)}">1,608 </span> 건의 ticket
-							</p>
-						
-						<!--정렬조건-->
-						<label>Sort by:</label>
-						<select id="sortSelect">					
-							<option value="popularity">조회수 오름차순</option>
-							<option value="popularity">조회수 내림차순</option>
-							<option value="date">최신순</option>
-							<option value="date">오래된순</option>
-						</select>			
-						</div>							
-						<div class="row" id="ticketList">																			
-						
-                 <!--티켓리스트-->
-                 	<div class="row">
-						<!--<div th:each="ticket : ${tickets}">-->
-						<div th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 6}">
-							
-							<!--그냥 나열-->
-							<div class="flex-wrap-movielist user-fav-list">
-								
-							<!--그리드-->	
-							<!--<div class="col-md-4 col-sm-12 col-xs-12">-->
-									                   
-                    <!--<div class="product_ticket_List">
-					<div class="flex-wrap-movielist user-fav-list">-->
-						
-                        <div class="movie-item-style-2">
-							<a style="padding-right: 20px; color: #ffffff;"
-								th:text="${ticket.productNo}">번호</a>
-                            	<a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
-                                <img th:src="${ticket.productImage}" alt="" 
-                                style="width: 200px">
-                                </a>
-                                <div class="mv-item-infor">
-                                <h6>
-                                <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">Tom Hardy</a></h3>
-                                </h6>
-                                <p>티켓가격 : <a th:text="${ticket.productPrice}">actor</a> 원</p>
-                                <p>잔여좌석 : <a th:text="${ticket.productStock} ">10</a> 좌석 남았습니다.</p>
-                                <p>조 회 수 : <a th:text="${ticket.readCount} ">10</a> 분이 조회했습니다</p>
-                            </a>
-                            <!--</div>-->
-                        <!--</div>-->
-                        </div>
-                    </div>      
-                </div>                
-              </div> 
-              </div>
-              </div> 
+<div class="page-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="topbar-filter">
+          <p class="pad-change">
+            총 <span th:text="${#lists.size(tickets)}">1,608</span> 건의 ticket
+          </p>
 
-            <!--</div>-->
-            
-            <!--페이지-->
- 					<div class="row">
-					</div>
-					<ul class="pagination">
-						<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-					</ul>
-				</div>  
-				
-			<!--검색창-->         
-                <div class="col-md-3 col-xs-12 col-sm-12">
-                    <div class="sidebar">
-                        <div class="searh-form">
-                            <h4 class="sb-title">검색하기</h4>
-                            <form class="form-style-1 celebrity-form" action="#">
-                                <div class="row">
-                                    <div class="col-md-12 form-it">
-                                        <label>티켓이름</label>
-                                        <input type="text" placeholder="Enter keywords">
-                                    </div>
-                                    
-                                    <!--<div class="col-md-12 form-it">
-                                        <label>Celebrity Letter</label>
-                                        <select>
-                                            <option value="range">A</option>
-                                            <option value="saab">B</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12 form-it">
-                                        <label>Category</label>
-                                        <select>
-                                            <option value="range">Actress</option>
-                                            <option value="saab">Others</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12 form-it">
-                                        <label>Year of birth</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select>
-                                                    <option value="range">1970</option>
-                                                    <option value="number">Other</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <select>
-                                                    <option value="range">1990</option>
-                                                    <option value="number">others</option>
-                                                </select>
-                                            </div>
-                                        </div>-->
-                                    </div>
-                                    <div class="col-md-12 ">
-                                        <input class="submit" type="submit" value="submit">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        
-                        <!--<div class="ads"><img src="images/uploads/ads1.png" alt=""></div>
-                        <div class="celebrities">
-                            <h4 class="sb-title">featured celebrity</h4>
-                            <div class="celeb-item"><a href="#"><img src="images/uploads/ava1.jpg" alt=""></a>
-                                <div class="celeb-author">
-                                    <h6><a href="#">Samuel N. Jack</a></h6><span>Actor</span>
-                                </div>
-                            </div>
-                            <div class="celeb-item"><a href="#"><img src="images/uploads/ava2.jpg" alt=""></a>
-                                <div class "celeb-author">
-                                    <h6><a href="#">Benjamin Carroll</a></h6><span>Actor</span>
-                                </div>
-                            </div>
-                            <div class="celeb-item"><a href="#"><img src="images/uploads/ava3.jpg" alt=""></a>
-                                <div class="celeb-author">
-                                    <h6><a href="#">Beverly Griffin</a></h6><span>Actor</span>
-                                </div>
-                            </div>
-                            <div class="celeb-item"><a href="#"><img src="images/uploads/ava4.jpg" alt=""></a>
-                                <div class="celeb-author">
-                                    <h6><a href="#">Justin Weaver</a></h6><span>Actor</span>
-                                </div>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <!-- 정렬조건 -->
+          <label>Sort by:</label>
+		<select id="sortSelect">
+			<option value="readCountAsc">조회수 오름차순</option>
+			<option value="readCountDesc">조회수 내림차순</option>
+			<option value="dateAsc">최신순</option>
+			<option value="dateDesc">오래된순</option>
+		</select>
+
+        </div>
+
+        <div class="row" id="ticketList">
+          <!-- 티켓리스트 -->
+          <div class="movie-item-style-2" th:id="'ticketItem_' + ${ticket.productNo}" th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 13}">
+            <a style="padding-right: 20px; color: #ffffff;" th:text="${ticket.productNo}">번호</a>
+            <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
+              <img th:src="${ticket.productImage}" alt="" style="width: 200px">
+            </a>
+            <div class="mv-item-infor">
+              <h6>
+                <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" th:text="${ticket.productName}">Tom Hardy</a>
+              </h6>
+              <p>티켓가격 : <span th:text="${ticket.productPrice}"></span> 원</p>
+              <p>잔여좌석 : <span th:text="${ticket.productStock}"></span> 좌석 남았습니다.</p>
+              <p>조 회 수 : <span th:text="${ticket.readCount}"></span> 분이 조회했습니다</p>
+              <p>등록날짜 : <span th:text="${ticket.productDate}"></span> 에 등록되었습니다</p>
+            </div>
+          </div>
+        </div>        
+      </div>
+      
+<!--검색기능-->      
+		<div class="col-md-3 col-xs-12 col-sm-12">
+		    <div class="sidebar">
+		        <div class="searh-form">
+		            <h4 class="sb-title">검색하기</h4>
+		            <form class="form-style-1 celebrity-form" action="#">
+		                <div class="form-it">
+		                    <label>티켓이름</label>
+		                    <input type="text" placeholder="Enter keywords">
+		                </div>
+		                <div>
+		                    <input class="submit" type="submit" value="submit">
+		                </div>
+		            </form>
+		        </div>
+		    </div>
+		</div> 
+<!--////////////////////////////////////////////////////////////////////////////// -->		       
+		    </div>
+		  </div>
+		</div>	
             </div>
         </div>
     </div>
