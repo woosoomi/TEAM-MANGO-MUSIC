@@ -14,6 +14,7 @@ import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.service.cart.CartService;
 import com.itwill.jpa.service.order.CouponService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
@@ -40,7 +41,7 @@ public class OrderController {
 	
 	@Autowired
 	private UserService userService;
-
+	
 	
 	@LoginCheck
 	@GetMapping("/order_membership")
@@ -53,13 +54,14 @@ public class OrderController {
 			model.addAttribute("user_id", userId);
 			
 			/*************** 주문아이템 ***************/
-
+			
 			// 멤버쉽 카테고리번호 4 픽스
 			Long categoryId = 4L;
 				
 			//유저의 카테고리별 주문아이템 조회하기
 			List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
 			model.addAttribute("orderItemDtoList", orderItemDtoList);
+			
 			
 			// Product 엔티티의 정보를 저장할 변수
             Date membershipStartPeriod = null;
