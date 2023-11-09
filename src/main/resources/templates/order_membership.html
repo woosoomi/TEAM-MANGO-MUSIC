@@ -82,6 +82,7 @@
 								<input type="hidden" name="membershipStartPeriod" th:value="${membershipStartPeriod}">								
 								<input type="hidden" name="membershipPeriodOfUse" th:value="${membershipPeriodOfUse}">								
 								<input type="hidden" name="membershipNo" th:value="${membershipNo}">						
+								<input type="hidden" name="membershipPrice" th:value="${membershipPrice}">
 								
 								<div class="row">
 									<div class="col-md-12 form-it">
@@ -217,7 +218,7 @@
 					"oiQty": 1,
 					"productName": payment_form.membershipName.value,
 					"productImage": payment_form.membershipImage.value,
-					"productPrice": 0,
+					"productPrice": payment_form.membershipPrice.value,
 					"productContent": payment_form.membershipContent.value,
 					"productNo": payment_form.membershipNo.value,
 					"orderId": 0
@@ -352,11 +353,11 @@
 
 		deleteXhr.send();
 	}
+	*/
 	
 	
-	
-	//쿠폰선택시 data-coupon-id 값으로 couponId가 잘 들어오는지 확인하는 방법(잘들어오는데 왜안돼)
-	
+	//쿠폰선택시 data-coupon-id 값으로 couponId가 잘 들어오는지 확인하는 방법
+	/*
 	var couponSelect = document.getElementById("couponSelect");
 
 	couponSelect.addEventListener("change", function () {

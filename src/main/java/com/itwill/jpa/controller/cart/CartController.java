@@ -27,13 +27,9 @@ public class CartController {
 	CartService cartService;
 
 	@GetMapping("/cart_main")
-	public String cart(Model model, HttpServletRequest request) {
+	public String cart(Model model, HttpSession session) {
 	    try {
 	    	
-	    	/*오더의 손길*/
-			//임의로 세션 로그인 유저 설정함
-			HttpSession session = request.getSession();
-			session.setAttribute("user_id", "lsg33");
 			String userId = (String) session.getAttribute("user_id");
 			model.addAttribute("user_id", userId);
 	    	
