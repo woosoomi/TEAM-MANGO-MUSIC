@@ -52,12 +52,8 @@
 
 							<!--티켓 구매하기 버튼-->
 							<div class="btn-transform transform-vertical">
-								<!--<div><a th:href="@{'/order_ticket/' + ${productNo}}" class="item item-1 yellowbtn"><i class="ion-card"></i>티켓 구매</a></div>-->
 								<div><a th:href="@{/order_ticket(productNo=${productNo})}" class="item item-1 yellowbtn"><i class="ion-card"></i>티켓 구매</a></div>
 								<div><a th:href="@{/order_ticket(productNo=${productNo})}" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
-
-								
-								
 							</div>
 
 						</div>
