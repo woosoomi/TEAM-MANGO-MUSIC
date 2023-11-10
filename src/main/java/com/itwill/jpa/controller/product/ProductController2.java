@@ -121,7 +121,6 @@ public class ProductController2 {
 		try {
 			String userId = (String) session.getAttribute("sUserId");
 			model.addAttribute("userId",userId);
-			
 			List<Product> memberships = productService.findByCategoryId(4L);
 			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
 			
