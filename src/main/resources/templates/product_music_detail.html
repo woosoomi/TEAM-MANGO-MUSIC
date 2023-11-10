@@ -114,23 +114,23 @@
 						<!-- <div class="row" style="margin-left: auto; margin-right: auto;">
 							<div class="rv-hd" style="margin-top: 50px; margin-bottom: 30px; border-top: 1px solid #233a50;">
 									 -->
-									<div class="comments" style="margin-top: 20px; margin-bottom: 50px;">
-										<h4 style="color: white; border-bottom: 1px solid #233a50;" >
-											04 Comments</h4>
+									<div class="comments" style="margin-top: 90px; margin-bottom: 50px;">
+										<h4 th:text="| 총 ${replyList.size()} 개의 댓글|" style="color: white; border-top: 1px solid #233a50;" >
+											Comments</h4>
 										
-										<div style="background: #233a50;margin-top: 50px;border: 15px solid #233a50; border-radius: 10px;">
-										
-											<div class="cmt-item flex-it">
+										<div style="margin-top: 30px;">
+											<div class="cmt-item flex-it" th:each="replyList : ${replyList}" 
+											style="background: #233a50;margin-top: 10px;border: 15px solid #233a50; border-radius: 10px;">
 												<img src="images/uploads/author.png" alt="">
 												<div class="author-infor">
 													<div class="flex-it2">
 														<!--Name으로 체인지 가능-userinfo-->
-														<h6 style="color: white; font-size: 20px;">
-															<a href="#">Steve Perry</a>
+														<h6 th:text="${replyList.getUser.getUserId}" style="color: white; font-size: 20px;">
+															Name
 														</h6>
-														<span class="time"> 27 Mar 2017</span>
+														<span class="time" th:text="${replyList.CreDateTime}"> 27 Mar 2017</span>
 													</div>
-													<p style="color: white;"> content </p>
+													<p th:text="${replyList.ProductReplyContent}" style="color: white;"> content </p>
 												</div>
 												
 											</div>
@@ -160,20 +160,21 @@
 							<form action="">
 								<div class="row">
 									<div class="col-md-4">
-										<input type="text" id="comment_id" placeholder="작성자 이름">
+										<input type="text" id="comment_id" placeholder="작성자 이름" style="font-size: 15px;" th:value="${userIdString}">
 									</div>
 									
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<textarea name="message" id="comment_content" placeholder="댓글을입력하세요"></textarea>
+										<textarea name="message" id="comment_content" placeholder="댓글을 입력하세요"></textarea>
 									</div>
 								</div>
-								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
+								<input class="submit" type="button" value="댓글달기"
+									onclick="create_reply()">
 							</form>
 						</div>
 						
-						<div class="comment-form">
+						<!-- <div class="comment-form">
 							<div class="dropdown-container">
 								<div class="row">
 									<div class="col-md-6">
@@ -192,7 +193,7 @@
 
 							</div>
 						</div>
-						
+						 -->
 
 								<a id="topBtn" href="#"><img
 									src="images/upward-arrow-60.png"></a>
@@ -227,20 +228,23 @@ function copyUrl(){
 
 function create_reply() {
 	const urlParams = new URLSearchParams(window.location.search);
-	const boardId = urlParams.get("boardId");
-	const boardIdInt = parseInt(boardId, 10); //boardId
-
+	const productNo = urlParams.get("productNo");
+	console.log(productNo);
+	
 	var commentContent = $("#comment_content").val()
 	console.log(commentContent);
 
+	var commentId = $("#comment_id").val()
+	console.log(commentId);
+
 	const commentData = {
-		"boardReplyTitle": "댓글타이틀",
-		"boardReplyContent": commentContent,
-		"boardId": boardIdInt,
-		"userId": "myr1109" //세션처리 아이디넣으면 자동으로 이름들어옴
+		"productReplytTitle": "댓글타이틀",
+		"productReplyContent": commentContent,
+		"productNo": productNo,
+		"userId": commentId //세션처리 아이디넣으면 자동으로 이름들어옴
 	}
 	console.log(commentData);
-	fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_reply_create/${boardId}`, {
+	fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_reply_create/${productNo}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -250,8 +254,8 @@ function create_reply() {
 		.then(response => {
 			if (response.status === 201) {
 				alert('댓글 등록되었습니다.');
-				location.reload(); // 현재 페이지를 새로 고침
-
+				//	location.reload(); // 현재 페이지를 새로 고침
+				window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_ticket_detail?productNo=" + productNo;
 			} else {
 				alert('댓글 등록에 실패했습니다.');
 				alert('에러 발생: ' + error);
@@ -261,7 +265,6 @@ function create_reply() {
 		.catch(error => {
 			alert('에러 발생: ' + error);
 		});
-
 
 }
 

@@ -107,7 +107,9 @@ public class ProductController2 {
 				redirectAttributes.addAttribute("msg", "멤버십 구매가 필요합니다");
 				return "redirect:/product_membership_detail";
 			}
-			model.addAttribute("userId",user);
+			session.setAttribute("loginUser", user);
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
 			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			List<ProductReply> replyList = productService.findByProduct_productNo(productNo);
