@@ -112,7 +112,7 @@ VALUES (product_product_no_seq.nextval, 1, 'I Love My Body', 100, '화사 (HWASA
 
 
 INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use)
-VALUES (product_product_no_seq.nextval, 1, '이브, 프시케 그리고 푸른 수염의 아내', 100, 'music', 'ZEROBASEONE, ‘르세라핌, 정규 1집 ‘UNFORGIVEN’ 발매…르세라핌 만의 길 개척!', 0 , TO_DATE('2023-05-01', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/112/34/678/11234678_20230502162327_500.jpg?YUV444-90/melon/resize/282', 'https://www.youtube.com/watch?v=dZs_cLHfnNA&pp=ygUz7J2067iMLCDtlITsi5zsvIAg6re466as6rOgIO2RuOuluCDsiJjsl7zsnZgg7JWE64K0', 'LE SSERAFIM (르세라핌)', 30);
+VALUES (product_product_no_seq.nextval, 1, '이브, 프시케 그리고 푸른 수염의 아내', 100, 'music', 'ZEROBASEONE, ‘르세라핌, 정규 1집 ‘UNFORGIVEN’ 발매…르세라핌 만의 길 개척!', 0 , TO_DATE('2023-05-01', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/112/34/678/11234678_20230502162327_1000.jpg?YUV444-90', 'https://www.youtube.com/watch?v=dZs_cLHfnNA&pp=ygUz7J2067iMLCDtlITsi5zsvIAg6re466as6rOgIO2RuOuluCDsiJjsl7zsnZgg7JWE64K0', 'LE SSERAFIM (르세라핌)', 30);
 
 /** 30개 **/
 
@@ -319,6 +319,15 @@ VALUES (product_product_no_seq.nextval, 1, 'I Want That', 100, 'music', '(여자
 INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use)
 VALUES (product_product_no_seq.nextval, 1, 'Nxde',  100, 'music', '(여자)아이들의 다섯 번째 미니 앨범 [I love]', 0 , TO_DATE('2022-10-17', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/110/78/852/11078852_20221017102947_500.jpg?3afd315fe8957d40a511b9c42aeaf516/melon/resize/282/quality/80/optimize', 'https://i.ytimg.com/vi/fCO7f0SmrDc/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCNri56B_sXJSHFsj-fOgu7DJm5sA', '(여자)아이들', 30);
 /** 80개 **/
+
+INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use)
+VALUES (product_product_no_seq.nextval, 1, 'Spicy',  100, 'music', '‘신드롬급 컴백’ aespa, 세 번째 미니앨범 ‘MY WORLD’ 공개!', 0 , TO_DATE('2023-05-08', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/112/36/264/11236264_20230508184331_1000.jpg?YUV420-90', 'https://www.youtube.com/embed/Os_heh8vPfs?si=YRJJde2vNirpKiGk', 'aespa', 30);
+
+INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use)
+VALUES (product_product_no_seq.nextval, 1, 'Get a guitar',  100, 'music', '2023년 어나더급 신인 출격! SM 新 보이그룹 ‘RIIZE’, 첫 싱글 ‘Get A Guitar’ 공개!', 0 , TO_DATE('2023-05-08', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/113/09/832/11309832_20230904111501_1000.jpg?35e04331d61f54e12a5dee88ad45a75c/melon/quality/80/optimize', 'https://www.youtube.com/embed/iUw3LPM7OBU?si=XoTbC2V1qsZvCtHY', 'RIIZE', 30);
+
+INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use)
+VALUES (product_product_no_seq.nextval, 1, '아이와 나의 바다',  100, 'music', '‘아이유(IU)’ 정규 5집 [LILAC]', 0 , TO_DATE('2023-05-08', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/105/54/246/10554246_20210325161233_1000.jpg?304eb9ed9c07a16ec6d6e000dc0e7d91/melon/quality/80/optimize', 'https://www.youtube.com/embed/nn1pbxe8bAI?si=tI2IqH0blLp5Exwl', '아이유', 30);
 
 
 
