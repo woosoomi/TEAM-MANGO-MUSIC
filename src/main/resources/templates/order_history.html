@@ -36,12 +36,10 @@
 
 <body><!--preloading-->
 <div th:insert="~{common_header :: headerFragment}"></div>
-	
-	
-	
-	
-	<!--최신순, 오래된순-->
+
 	 
+	<!--최신순, 오래된순-->		
+
 
 	<div class="page-single movie_list">
 		<div class="container">
@@ -52,7 +50,6 @@
 							<span th:text="${#lists.size(orderDtoList)}"></span>
 							<span>개의 주문내역</span>
 					 
-				
 							</p><label>Sort by:</label>
 						<select id="sortSelect">
 				        <option value="newest">최신순</option>
@@ -67,7 +64,7 @@
         <div th:each="order, iterStat: ${orderDtoList}">
         <div th:each="orderitem, iterStat: ${order.orderItemDtos}">
 			
-			
+		<div class="e">
 		<div class="movie-item-style-2">
 		<!-- <img th:src="@{'images/' + ${orderitem.productImage}}" alt="">-->
 		 <img th:src="${orderitem.productImage}" alt="">
@@ -97,11 +94,13 @@
             <p>⚠️ 환불불가 상품입니다.</p>
             <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="board_inquiries">고객센터</a>로 문의해주세요.</p>
 		   <!-- item start-->
-		  <div class="movie-item-style-2 movie-item-style-3" th:each="orderItemDto, iterStat: ${order.orderItemDtos}">
+		  <div class="movie-item-style-2 movie-item-style-3" th:each="orderItemDto, iterStat: ${order.orderItemDtos}" style="margin-top: 20px;" >
 							<a style="padding-right: 20px; color: #ffffff;
-									    padding-left: 200px;
+									    padding-left:0px;
 									    margin-bottom: 0px;
-									    border-bottom-width: 10px;"></a>
+									    border-bottom-width: 10px;
+									    margin-top: 20px;"
+									    ></a>
                                <!-- <img th:src="@{'images/' + ${orderItemDto.productImage}}" alt="" style="width: 70px">-->
                                 <img th:src="${orderItemDto.productImage}" alt="" style="width: 70px">
                                 
@@ -122,7 +121,7 @@
     				</div>
 				</div>
 			</div>
-
+</div>
 
 
 					
