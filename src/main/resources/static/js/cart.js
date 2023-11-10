@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $('.delete-all-btn').click(function() {
 	var checkedItems = document.querySelectorAll('.checkbox2:checked');
-	var cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId)); // cartItemId를 숫자로 변환
+	var cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
 	console.log(cartItemIds);
 
 	if (cartItemIds.length > 0) {
@@ -57,8 +57,10 @@ $('.delete-all-btn').click(function() {
 });
 
 
-function changeQuantity(amount, element) {
 
+
+
+function changeQuantity(amount, element) {
 	var cartItemQtyElement = element.parentElement.querySelector('#cartItemQty');
 	var currentQty = parseInt(cartItemQtyElement.value);
 	var newQty = currentQty + amount;
@@ -69,45 +71,44 @@ function changeQuantity(amount, element) {
 
 	if (newQty >= 1) {
 		cartItemQtyElement.value = newQty;
-
-		$.ajax({
-			url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/updateQty/' + cartItemId,
-			type: 'POST',
-			data: { cartItemId: cartItemId, cartItemQty: newQty, cartTot: cartTot },
-			success: function(data) {
-				console.log('카트 아이템 수량이 업데이트되었습니다.');
-				var newPrice = data.cartTot;
-				$('#price100 span#totalPrice').text(cartTot + '원');
-				//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
-				//location.reload();
-				calculateTotalPrice(cartId);
-			},
-			error: function() {
-				console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
-			}
-		});
 	}
+
+	$.ajax({
+		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/updateQty/' + cartItemId,
+		type: 'POST',
+		data: { cartItemId: cartItemId, cartItemQty: newQty, cartTot: cartTot },
+		success: function(data) {
+			console.log('카트 아이템 수량이 업데이트되었습니다.');
+			var newPrice = data.cartTot;
+			$('#price100 span#totalPrice').text(cartTot + '원');
+			//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
+			//location.reload();
+			calculateTotalPrice(cartId);
+		},
+		error: function() {
+			console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
+		}
+	});
 }
 var cartId = 5;
 calculateTotalPrice(cartId);
 function calculateTotalPrice(cartId) {
-
-	console.log(cartId);
-	$.ajax({
-		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/' + cartId,
-		type: 'GET',
-		success: function(data) {
-			var newPrice = data.cartTotPrice;
-			//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
-			console.log(document.getElementById('cartTotPrice'));
-			$('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + newPrice + '원');
-		},
-		error: function(error) {
-			console.error('Error:', error);
-		}
-	});
-}
-
+		console.log(cartId);
+		$.ajax({
+			url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/' + cartId,
+			type: 'GET',
+			success: function(data) {
+				var newPrice = data.cartTotPrice;
+				//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
+				console.log(document.getElementById('cartTotPrice'));
+				$('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + newPrice + '원');
+			},
+			error: function(error) {
+				console.error('Error:', error);
+			}
+		});
+	}
+	
 
 /*document.querySelectorAll('.checkbox2').forEach(function(checkbox) {
 	checkbox.addEventListener('change', function() {

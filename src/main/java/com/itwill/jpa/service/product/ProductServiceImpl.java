@@ -350,9 +350,10 @@ public class ProductServiceImpl implements ProductService{
 	/*********************************************/
 	// product 조회수 올리기 - DTO
 	   @Override
-	   public ProductDto increaseProductReadCountDto(ProductDto productDto) throws Exception {
-	   	// TODO Auto-generated method stub
-	   	return null;
+	   public ProductDto increaseProductReadCountDto(ProductDto dto) throws Exception {
+	   	Product updateProduct = productDao.increaseReadCountByProductDto(dto);
+	   	ProductDto productDto = ProductDto.toDto(updateProduct);
+	   	return productDto;
 	   }	
 /******************** INCREASE READCOUNT[ENTITY] ********************/	
 	// product 조회수 올리기[성공]
@@ -471,11 +472,7 @@ public void saveProductCategory(ProductCategoryDto productCategoryDto) {
 	// TODO Auto-generated method stub
 	
 }
-	@Override
-	public ProductDto increaseReadCountByProductNo(Long productNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 	

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.order.CouponDto;
@@ -20,7 +21,6 @@ import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.product.ProductService;
 import com.itwill.jpa.service.user.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -44,13 +44,20 @@ public class OrderController {
 	
 	@LoginCheck
 	@GetMapping("/order_membership")
-	public String orderMembershiptestPage(Model model, HttpSession session) {
+	public String orderMembershipPage(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+
 		
 		try {
 			/*************** 유저정보 ***************/
 			
 			String userId = (String) session.getAttribute("sUserId");
 			model.addAttribute("user_id", userId);
+			
+			//로그인정보없으면 로그인으로
+			if (userId == null) {
+				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
+				return "redirect:/user_login_form";
+			}
 			
 			/*************** 주문아이템(멤버십) ***************/
 			
@@ -120,7 +127,7 @@ public class OrderController {
 	
 	@LoginCheck
 	@GetMapping("/order_ticket")
-	public String orderTicketPage(Model model, HttpSession session) {
+	public String orderTicketPage(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		try {
 			/*************** 유저정보 ***************/
@@ -128,6 +135,11 @@ public class OrderController {
 			String userId = (String) session.getAttribute("sUserId");
 			model.addAttribute("user_id", userId);
 			
+			//로그인정보없으면 로그인으로
+			if (userId == null) {
+				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
+				return "redirect:/user_login_form";
+			}
 			/*************** 주문아이템 ***************/
 			
 			//티켓 카테고리번호 3 픽스
@@ -211,15 +223,23 @@ public class OrderController {
 	
 	@LoginCheck
 	@GetMapping("/order_history")
-	public String orderHistoryPage(Model model, HttpSession session) {
+	public String orderHistoryPage(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		try {
 
 			
 			String userId = (String) session.getAttribute("sUserId");
+			
+			if (userId == null) {
+				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
+				return "redirect:/user_login_form";
+			}
+			
 			UserDto user = userService.findUser(userId);
 			model.addAttribute("user", user);
-			//테스트용 코드
+			
 
+			
+			
 			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
 			model.addAttribute("orderDtoList", orderDtoList);
 			System.out.println("주문 내역:" + orderDtoList);
@@ -242,44 +262,10 @@ public class OrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("주문 내역이 없습니다.", e.getMessage());
-			return "index";
+			return  "index";
 		}
 	}
 
-	
-	
-	
-	@GetMapping("/order_history_copy")
-	public String order_history_copy(Model model, HttpServletRequest request) {
-		try {
-			
-			HttpSession session = request.getSession();
-			//일단 임의로 세션 로그인 유저 설정함
-			session.setAttribute("user_id", "cgj22");
-			String userId = (String) session.getAttribute("user_id");
-			
-			//주문 DTO 가져오기
-			List<OrderDto> orderDtoList = orderService.ordersByUserId(userId);
-			model.addAttribute("orderDtoList", orderDtoList);
-			
-			
-			
-			//주문 아이템 DTO 가져오기
-			List<OrderItemDto> orderItemDtoList = orderItemService.orderItemsByUserId(userId);
-			model.addAttribute("orderItemDtoList", orderItemDtoList);
-			
-			
-			
-			//원래 코드
-			return "order_history_copy";
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("주문 내역이 없습니다.", e.getMessage());
-			return "index";
-		}
-	}
-	
 	
 	
 	
