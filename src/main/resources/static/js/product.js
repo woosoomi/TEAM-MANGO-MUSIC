@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function () {
   function sortGoodsItems(order) {
     var goodsList = $('#goodsList');
-    var items = goodsList.find('.ceb-item').toArray();
+    var items = goodsList.find('celebrity-items3').toArray();
 
     items.sort(function (a, b) {
       var aValue, bValue;
