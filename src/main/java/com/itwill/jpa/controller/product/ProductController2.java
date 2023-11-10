@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.jpa.controller.user.LoginCheck;
 import com.itwill.jpa.dto.product.MusicDto;
@@ -51,7 +52,9 @@ public class ProductController2 {
 	public String musicList(Model model, HttpSession session) {
 		try {
 			String userId = (String) session.getAttribute("sUserId");
-			model.addAttribute("userId", userId);
+
+			model.addAttribute("sUserId",userId);
+
 //			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 //			musics=productService.productByReadCountDescDto(1L);
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
@@ -89,11 +92,24 @@ public class ProductController2 {
 	// 뮤직디테일 -> https://www.baeldung.com/spring-mvc-404-error
 	@LoginCheck
 	@GetMapping("/product_music_detail")
-	public String MusicDetail(@RequestParam(name = "productNo") Long productNo, Model model, HttpSession session) {
+	public String MusicDetail(@RequestParam(name = "productNo" ) Long productNo, Model model, HttpSession session,RedirectAttributes redirectAttributes ) {
 		try {
 			String userId = (String) session.getAttribute("sUserId");
-			model.addAttribute("userId", userId);
-
+			
+			
+			if (userId == null) {
+				// 로그인되어 있지 않은 경우, 리디렉션
+				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
+				return "redirect:/user_login_form";
+			}	
+			
+			UserDto user = userService.findUser(userId);
+			if(user.getMemberShip()==false) {
+				redirectAttributes.addAttribute("msg", "멤버십 구매가 필요합니다");
+				return "redirect:/product_membership_detail";
+			}
+			model.addAttribute("userId",user);
+			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			List<ProductReply> replyList = productService.findByProduct_productNo(productNo);
 
@@ -231,6 +247,9 @@ public class ProductController2 {
 
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
+
+			// 상품 번호 모델에 저장
+			model.addAttribute("productNo", productNo);
 
 			Optional<Product> findTicketOptional = productService.findByProductNo(productNo);
 			List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);
