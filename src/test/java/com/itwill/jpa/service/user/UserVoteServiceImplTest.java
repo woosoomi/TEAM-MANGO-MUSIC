@@ -121,4 +121,3 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
     }
 	
 }
-
