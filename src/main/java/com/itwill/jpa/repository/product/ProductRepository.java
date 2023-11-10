@@ -20,21 +20,7 @@ import com.itwill.jpa.entity.vote.Vote;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-//    Product insertProduct(Product product);
-
 	List<Product> findAll();
-//	List<Goods> findAllGoods(Sort sort);
-// productNo로 찾기
-//Optional<Product> findById(Long productNo);
-//	Optional<ProductCategory> findByCategoryId(Long categoryNo);
-
-// productNo로 찾기[DTO]	
-//	@Query("SELECT p FROM Product p WHERE p.productNo = :productNo")
-//	Optional<ProductDto> findByIdDto(@Param("productNo") Long productNo);
-//	ProductDto findByIdDto( Long productNo);
-
-//	ProductDto save(ProductDto productDto);
-
 	/******************** categoryId별로 전체나열 ********************/
 //	category로 찾기
 	List<Product> findByProductCategoryCategoryId(Long categoryId);
@@ -67,17 +53,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Modifying
     @Query("UPDATE Product p SET p.readCount = p.readCount + 1 WHERE p.productNo = :productNo")
     void increaseReadCount(@Param("productNo") Long productNo);
-// product 삭제
- //   void deleteByProductNo(Long productNo);
 	
-/************************ Vote관련  ***************************/	
-
-//	productName로 찾기
-//	Product findByProductName(String productName);
-
-//	productArtist로 찾기
-//	Product findByProductArtist(String productArtist);
-
 	/************************ Vote관련 ***************************/
 
 	// 상품에서 음악 조회수(readCount), 음악 별점(productStar)의 합산해서 Top 20명 추출

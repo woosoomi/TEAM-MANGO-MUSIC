@@ -9,6 +9,10 @@
 .red-text {
     color: palegoldenrod;
 }
+.celebrity-items3 {
+    flex: 0 0 calc(33.33% - 5px); /* Adjusted width and reduced margin */
+    margin-right: 5px; /* Reduced margin between items */
+    }
 .ceb-infor {
     text-align: center; /* 텍스트를 가운데 정렬 */
     margin: 0 auto; /* 요소를 수평 가운데 정렬 */
