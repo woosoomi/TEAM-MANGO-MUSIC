@@ -300,6 +300,7 @@ public class BoardController {
 			if (boardOptional.isPresent()) {
 				// 게시물 정보가 존재할 경우 모델에 추가하여 뷰에서 사용할 수 있도록 합니다.
 				Board board = boardOptional.get();
+				boardServiceImpl.increaseReadCount(board);
 				model.addAttribute("board", board);
 				model.addAttribute("ReplyList", ReplyList);
 

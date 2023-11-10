@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardReply;
+import com.itwill.jpa.entity.board.BoardType;
 
 class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 
@@ -23,15 +24,25 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Transactional
 	@Rollback(false)
 	//@Disabled
-	void readcountTest() {
-
-		Board originalBoard = boardServiceImpl.findById(1L).orElse(null);
-		System.out.println("Original Read Count: " + originalBoard.getBoardReadCount());
-
-		Board board = boardServiceImpl.increaseReadCount(originalBoard);
-		System.out.println(board.getBoardReadCount());
+	void typeTeset() {
+		Board board = boardServiceImpl.findById(17L).orElse(null);
+		board.setBoardType(new BoardType(8L,"답변완료",null));
+		boardServiceImpl.updateType(board);
+		return ;
 	}
-
+	
+	
+//	@Test
+//	@Transactional
+//	@Rollback(false)
+//	//@Disabled
+//	void readcountTest() {
+//		Board originalBoard = boardServiceImpl.findById(1L).orElse(null);
+//		System.out.println("Original Read Count: " + originalBoard.getBoardReadCount());
+//
+//		Board board = boardServiceImpl.increaseReadCount(originalBoard);
+//		System.out.println(board.getBoardReadCount());
+//	}
 //	@Test
 //	@Transactional
 //	@Rollback(false)
