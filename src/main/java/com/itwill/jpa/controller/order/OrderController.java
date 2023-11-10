@@ -44,7 +44,7 @@ public class OrderController {
 	
 	@LoginCheck
 	@GetMapping("/order_membership")
-	public String orderMembershipPage(Model model, HttpSession session) {
+	public String orderMembershiptestPage(Model model, HttpSession session) {
 		
 		try {
 			/*************** 유저정보 ***************/
@@ -52,14 +52,11 @@ public class OrderController {
 			String userId = (String) session.getAttribute("sUserId");
 			model.addAttribute("user_id", userId);
 			
-			/*************** 주문아이템 ***************/
+			/*************** 주문아이템(멤버십) ***************/
 			
-			// 멤버쉽 카테고리번호 4 픽스
-			Long categoryId = 4L;
-				
-			//유저의 카테고리별 주문아이템 조회하기
-			List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
-			model.addAttribute("orderItemDtoList", orderItemDtoList);
+			//멤버십 디테일에서 상품 세션 담은거 받기
+			Long productNo = (Long) session.getAttribute("productNo");
+			model.addAttribute("productNo", productNo);
 			
 			// Product 엔티티의 정보를 저장할 변수
             Date membershipStartPeriod = null;
@@ -70,22 +67,18 @@ public class OrderController {
             Long membershipNo = 0L;
             int membershipPrice = 0;
             
-            // 주문 아이템별로 Product 정보 가져오기
-            for (OrderItemDto orderItemDto : orderItemDtoList) {
-                Long productNo = orderItemDto.getProductNo();
-                Product product = productService.getProduct(productNo);
-                if (product != null) {
-                    // Product 엔티티의 멤버십 시작일 정보 가져오기
-                    membershipStartPeriod = product.getStartPeriod();
-                    membershipPeriodOfUse = product.getPeriodOfUse();
-                    membershipName = product.getProductName();
-                    membershipImage = product.getProductImage();
-                    membershipContent = product.getProductContent();
-                    membershipNo = product.getProductNo();
-                    membershipPrice = product.getProductPrice();
-                }
-            }
-            
+            // 주문할 Product 정보 가져오기
+            Product product = productService.getProduct(productNo);
+
+			// Product 엔티티의 멤버십 시작일 정보 가져오기
+			membershipStartPeriod = product.getStartPeriod();
+			membershipPeriodOfUse = product.getPeriodOfUse();
+			membershipName = product.getProductName();
+			membershipImage = product.getProductImage();
+			membershipContent = product.getProductContent();
+			membershipNo = product.getProductNo();
+			membershipPrice = product.getProductPrice();
+        	
             model.addAttribute("membershipStartPeriod", membershipStartPeriod);
             model.addAttribute("membershipPeriodOfUse", membershipPeriodOfUse);
             model.addAttribute("membershipName", membershipName);
@@ -95,7 +88,9 @@ public class OrderController {
             model.addAttribute("membershipPrice", membershipPrice);
                 
             /*************** 가격 ***************/
-        	double orderPrice = membershipPrice;  
+            //상품 가격
+        	double orderPrice = membershipPrice;
+        	
             //상품 가격 소수점 아래 절사
             int formattedOrderPrice = (int) orderPrice;
             model.addAttribute("formattedOrderPrice", formattedOrderPrice);
@@ -108,6 +103,7 @@ public class OrderController {
             
             //쿠폰 할인 적용 메서드
             double salePrice = couponService.applyCouponDiscount(userId, formattedOrderPrice);
+            
             //총 결제금액 소수점 아래 절사
             int endPrice = (int) salePrice;
             model.addAttribute("endPrice", endPrice);
@@ -120,7 +116,6 @@ public class OrderController {
 			return "index";
 		}
 	}
-	            
 	
 	
 	@LoginCheck
@@ -213,9 +208,6 @@ public class OrderController {
 		}
 	}
 
-				
-	
-				
 	
 	@LoginCheck
 	@GetMapping("/order_history")

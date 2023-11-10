@@ -130,6 +130,13 @@ public class ProductController2 {
 //			}else {
 //				return "user_login_form";
 //			}
+			
+			//<DB에 멤버쉽 상품 번호 11번 OR 14번>
+			//상품 번호 세션에 저장	
+			Long productNo = 11L;
+			session.setAttribute("productNo", productNo);
+			
+			
 				return "product_membership_detail";
 		} catch (Exception e) {
 			e.printStackTrace();
