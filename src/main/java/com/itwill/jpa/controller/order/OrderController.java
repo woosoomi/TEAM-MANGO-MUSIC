@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.jpa.controller.user.LoginCheck;
@@ -59,7 +61,7 @@ public class OrderController {
 				return "redirect:/user_login_form";
 			}
 			
-			/*************** 주문아이템(멤버십) ***************/
+			/*************** 주문아이템(멤버십) 수량 1픽스***************/
 			
 			//멤버십 디테일에서 상품 세션 담은거 받기
 			Long productNo = (Long) session.getAttribute("productNo");
@@ -127,7 +129,7 @@ public class OrderController {
 	
 	@LoginCheck
 	@GetMapping("/order_ticket")
-	public String orderTicketPage(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+	public String orderTicketPage(@RequestParam(name = "productNo") Long productNo, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		try {
 			/*************** 유저정보 ***************/
@@ -140,16 +142,9 @@ public class OrderController {
 				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
 				return "redirect:/user_login_form";
 			}
-			/*************** 주문아이템 ***************/
 			
-			//티켓 카테고리번호 3 픽스
-			Long categoryId = 3L;
-						
-			//유저의 카테고리별 주문아이템 조회하기
-			List<OrderItemDto> orderItemDtoList = orderService.findOrderItemsByUserIdAndProductCategoryId(userId, categoryId);
-
-			model.addAttribute("orderItemDtoList", orderItemDtoList);
-
+			/*************** 주문아이템(티켓) 수량 1 픽스***************/
+			
 			// Product 엔티티의 정보를 저장할 변수
 			String ticketName = null;
 			String ticketImage = null;
@@ -163,23 +158,19 @@ public class OrderController {
 			int ticketPrice = 0;
 			
 			// 주문 아이템별로 Product 정보 가져오기
-			for (OrderItemDto orderItemDto : orderItemDtoList) {
-				Long productNo = orderItemDto.getProductNo();
-				Product product = productService.getProduct(productNo);
-				if (product != null) {
-					// Product 엔티티의 멤버십 시작일 정보 가져오기
-					ticketName = product.getProductName();
-					ticketImage = product.getProductImage();
-					ticketContent = product.getProductContent();
-					ticketStar = product.getProductStar();
-					ticketAddress = product.getProductAddress();
-					ticketDate = product.getProductDate();
-					ticketArtist = product.getProductArtist();
-					ticketStock = product.getProductStock();
-					ticketNo = product.getProductNo();
-					ticketPrice = product.getProductPrice();
-				}
-			}
+			Product product = productService.getProduct(productNo);
+
+			// Product 엔티티의 멤버십 시작일 정보 가져오기
+			ticketName = product.getProductName();
+			ticketImage = product.getProductImage();
+			ticketContent = product.getProductContent();
+			ticketStar = product.getProductStar();
+			ticketAddress = product.getProductAddress();
+			ticketDate = product.getProductDate();
+			ticketArtist = product.getProductArtist();
+			ticketStock = product.getProductStock();
+			ticketNo = product.getProductNo();
+			ticketPrice = product.getProductPrice();
 			
 			model.addAttribute("ticketName", ticketName);
 			model.addAttribute("ticketImage", ticketImage);
@@ -219,7 +210,7 @@ public class OrderController {
 			return "index";
 		}
 	}
-
+	
 	
 	@LoginCheck
 	@GetMapping("/order_history")

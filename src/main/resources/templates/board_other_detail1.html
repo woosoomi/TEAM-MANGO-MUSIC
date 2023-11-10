@@ -29,7 +29,6 @@
 	<div class="page-single">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="blog-detail-ct">
 						<div class="flex-it share-tag"></div>
@@ -49,6 +48,8 @@
 
 						<pre th:utext="${board.boardContent}" style="border: 2px solid rgb(2, 15, 25); line-height: 20px; margin-top: 50px; 
 							color: rgb(255, 255, 255); height: 200px ; width: 1000px;  overflow: auto;"></pre>
+
+
 
 						<div class="flex-it share-tag"></div>
 
@@ -94,6 +95,7 @@
 									</div>
 								</div>
 								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
+								<input class="submit" type="button" value="답변완료" onclick="" style="margin-left: 7%;">
 							</form>
 						</div>
 
@@ -122,6 +124,7 @@
 
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
