@@ -16,6 +16,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -32,6 +34,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User {
 
 	@Id
@@ -75,9 +78,10 @@ public class User {
 	
 	//1대N 관계설정
 	@ManyToOne(cascade = CascadeType.REMOVE)
+	@Builder.Default
 	@JoinColumn(name = "vote_id")
 	@ToString.Exclude
-	private Vote vote;
+	private Vote vote = new Vote();
 
 	// user와 order 1대N 관계설정
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
