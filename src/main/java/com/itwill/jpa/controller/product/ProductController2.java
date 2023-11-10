@@ -96,7 +96,6 @@ public class ProductController2 {
 		try {
 			String userId = (String) session.getAttribute("sUserId");
 			
-			
 			if (userId == null) {
 				// 로그인되어 있지 않은 경우, 리디렉션
 				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
@@ -247,9 +246,6 @@ public class ProductController2 {
 
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
-
-			// 상품 번호 모델에 저장
-			model.addAttribute("productNo", productNo);
 
 			Optional<Product> findTicketOptional = productService.findByProductNo(productNo);
 			List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);

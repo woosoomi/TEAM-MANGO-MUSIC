@@ -59,7 +59,6 @@
 									<div class="mv-item-infor">
 										<h6>
 											<a	style="color: white;" class ="musicName"
-												 onclick="showLoginAlert()"
 												th:href="@{/product_music_detail(productNo=${music.productNo})}"
 												th:text="${music.productName}">Leonardo DiCaprio</a>
 										</h6>
@@ -83,10 +82,9 @@
 							<h4 class="sb-title">Search</h4>
 							<input type="text" id="searchInput" placeholder="제목 / 아티스트 검색">
 						</div>
-
-						<!--userId가 admin일때 보이기 -->
+						
 						<!-- th:if="${session == null or (userId != null and userId == 'admin') -->
-						<div  class="searh-form">
+						<!-- <div  class="searh-form">
 							<form class="form-style-1 celebrity-form" action="#">
 								<div class="row">
 									<div class="col-md-12 ">
@@ -94,7 +92,7 @@
 									</div>
 								</div>
 							</form>
-						</div>
+						</div> -->
 
 					</div>
 				</div>
