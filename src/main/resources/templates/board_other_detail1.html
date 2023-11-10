@@ -95,7 +95,6 @@
 									</div>
 								</div>
 								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
-								<input class="submit" type="button" value="답변완료" onclick="change_type()" style="margin-left: 7%;">
 							</form>
 						</div>
 
@@ -141,40 +140,8 @@
 </body>
 
 <script>
-		function change_type() {
-		const urlParams = new URLSearchParams(window.location.search);
-		const boardId = urlParams.get("boardId");
-		const boardIdInt = parseInt(boardId, 10); //boardId
-		console.log(boardIdInt);
-		const changeData = {
-			"oardTypeId": 8
-		}
-		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/board_type_change/${boardIdInt}`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(changeData)
-		})
-			.then(response => {
-				if (response.status === 200) {
-					alert('문의 완료입니다.');
-					location.reload(); // 현재 페이지를 새로 고침
-
-				} else {
-					alert('실패했습니다.');
-					alert('에러 발생: ' + error);
-
-				}
-			})
-			.catch(error => {
-				alert('에러 발생: ' + error);
-			});
 
 
-
-	}
-	
 	function create_reply() {
 		const urlParams = new URLSearchParams(window.location.search);
 		const boardId = urlParams.get("boardId");
@@ -185,7 +152,7 @@
 
 		var commentId = $("#comment_id").val();
 		console.log(commentId);
-		
+
 		const commentData = {
 			"boardReplyTitle": "댓글타이틀",
 			"boardReplyContent": commentContent,

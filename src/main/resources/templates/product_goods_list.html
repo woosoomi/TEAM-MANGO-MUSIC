@@ -55,15 +55,13 @@
 			        
 			        <!--<div class="celebrity-items2">-->
 			        <div class="ceb-item">
-			            <img th:src="${goods.productImage}" alt="" style="width: 100%; height: 400px;">
+			            <img th:src="${goods.productImage}" alt="" style="width: 100%; height: 200px;">
 			            <div class="ceb-infor">
 			                <h2>
 			                    <a class="goodsName" th:href="@{/product_goods_detail(productNo=${goods.productNo})}" th:text="${goods.productName}">상품명</a>
 			                </h2>
-			                <p>굿즈가격 : <a th:text="${goods.productPrice}" class="red-text"></a> 원</p>
-			                <p>남은개수 : <a th:text="${goods.productStock}" class="red-text"></a> 개</p>
-			                <p>조 회 수 : <a th:text="${goods.readCount}" class="red-text"></a> 회</p>
-			                <p>등록날짜 : <a th:text="${goods.productDate}" class="red-text"></a></p>
+			                <p>굿즈가격 : <a th:text="${goods.productPrice}" class="red-text" style="margin-bottom: 40px;"></a> 원</p>
+
 			            </div>
 			        </div>
 			        <!--</div>-->
