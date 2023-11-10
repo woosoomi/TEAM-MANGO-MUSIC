@@ -97,43 +97,45 @@
 						</div>
 
 
+						<div th:if="${session == null or (userIdString != null and userIdString == 'admin')}">
 
-						<div class="comment-form">
-							<div class="dropdown-container">
-								<div class="row">
-									<div class="col-md-6">
-										<form action="">
-											<input class="submit" type="button" value="수정하기"
-												onclick="update_edit_form()" style="margin-left: 250px;">
-										</form>
+							<div class="comment-form">
+								<div class="dropdown-container">
+									<div class="row">
+										<div class="col-md-6">
+											<form action="">
+												<input class="submit" type="button" value="수정하기"
+													onclick="update_edit_form()" style="margin-left: 250px;">
+											</form>
+										</div>
+										<div class="col-md-6">
+											<form id="deleteForm">
+												<input class="submit" value="삭제하기" type="button" onclick="deleteForms()"
+													style="margin-left: 10%;">
+											</form>
+										</div>
 									</div>
-									<div class="col-md-6">
-										<form id="deleteForm">
-											<input class="submit" value="삭제하기" type="button" onclick="deleteForms()"
-												style="margin-left: 10%;">
-										</form>
-									</div>
+
 								</div>
-
+								</div>
 							</div>
+
+
 						</div>
-
-
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-md-3 col-sm-12 col-xs-12">
-		<div class="sidebar">
-			<div class="sb-cate sb-it"></div>
-			<div class="sb-recentpost sb-it"></div>
-			<div class="sb-tags sb-it"></div>
+		<div class="col-md-3 col-sm-12 col-xs-12">
+			<div class="sidebar">
+				<div class="sb-cate sb-it"></div>
+				<div class="sb-recentpost sb-it"></div>
+				<div class="sb-tags sb-it"></div>
+			</div>
 		</div>
-	</div>
 
 
-	<div th:insert="~{common_footer :: footerFragment}"></div>
+		<div th:insert="~{common_footer :: footerFragment}"></div>
 </body>
 
 <script>
@@ -144,7 +146,7 @@
 
 		var commentContent = $("#comment_content").val();
 		console.log(commentContent);
-		
+
 		var commentId = $("#comment_id").val();
 		console.log(commentId);
 
