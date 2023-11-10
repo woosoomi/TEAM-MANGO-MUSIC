@@ -21,6 +21,8 @@ public interface BoardService {
 	//업데이트
 	public Board update(Board board);
 	
+	public Board updateType(Board board);
+	
 	//category별 분류
 	public List<Board> findBycategory(Long id);
 	

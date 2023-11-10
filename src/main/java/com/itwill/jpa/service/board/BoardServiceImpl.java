@@ -58,7 +58,7 @@ public class BoardServiceImpl implements BoardService {
 	// 게시글수정
 	@Override
 	public Board update(Board board) {
-		Board isBoard = boardRepository.findById(board.getBoardId()).orElse(null); // nullpoint방지
+		Board isBoard = boardRepository.findById(board.getBoardId()).orElse(null); 
 		if (isBoard != null) {
 			// title ,content , image 수정하기 (요소추가)
 			isBoard.setBoardTitle(board.getBoardTitle());
@@ -69,7 +69,20 @@ public class BoardServiceImpl implements BoardService {
 			throw new EntityNotFoundException("게시물을 찾을 수 없습니다."); // 게시물이 없을때 예외처리
 		}
 	}
-	// 아직 readcount 추가안함
+	
+	@Override
+	public Board updateType(Board board) {
+		Board isBoard = boardRepository.findById(board.getBoardId()).orElse(null); 
+		if (isBoard != null) {
+			// title ,content , image 수정하기 (요소추가)
+			isBoard.setBoardType(board.getBoardType());
+			return boardRepository.save(isBoard); // 수정한board 저장
+		} else {
+			throw new EntityNotFoundException("게시물을 찾을 수 없습니다."); // 게시물이 없을때 예외처리
+		}
+	}
+	
+	//조회수증가
 	@Override
 	public Board increaseReadCount(Board findboard) {
 	    Board boardcount = boardRepository.findById(findboard.getBoardId()).orElse(null); // nullpoint 방지
