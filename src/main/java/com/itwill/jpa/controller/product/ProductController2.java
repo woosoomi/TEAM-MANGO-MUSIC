@@ -107,7 +107,9 @@ public class ProductController2 {
 				redirectAttributes.addAttribute("msg", "멤버십 구매가 필요합니다");
 				return "redirect:/product_membership_detail";
 			}
-			model.addAttribute("userId",user);
+			session.setAttribute("loginUser", user);
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
 			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			List<ProductReply> replyList = productService.findByProduct_productNo(productNo);
@@ -132,36 +134,35 @@ public class ProductController2 {
 		}
 	}
 
-//	// 멤버십
-//	@LoginCheck
-//	@GetMapping("/product_membership_detail")
-//	public String MembershipDetail(HttpSession session, Model model) {
-//		try {
-//			String userId = (String) session.getAttribute("sUserId");
-//			model.addAttribute("userId", userId);
-//			List<Product> memberships = productService.findByCategoryId(4L);
-//			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
-//
-////			if(session.getAttribute("userId")!=null) {
-////				return "product_membership_detail";
-////			}else {
-////				return "user_login_form";
-////			}
-//			return "product_membership_detail";
-//			
-//			//<DB에 멤버쉽 상품 번호 11번 OR 14번>
-//			//상품 번호 세션에 저장	
-////			Long productNo = 11L;
-////			session.setAttribute("productNo", productNo);
-//			
-//			
-////				return "product_membership_detail";
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			model.addAttribute(e.getMessage());
-//			return null;
-//		}
-//	}
+	// 멤버십
+	@LoginCheck
+	@GetMapping("/product_membership_detail")
+	public String MembershipDetail(HttpSession session,Model model) {
+		try {
+			String userId = (String) session.getAttribute("sUserId");
+			model.addAttribute("userId",userId);
+			List<Product> memberships = productService.findByCategoryId(4L);
+			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
+			
+//			if(session.getAttribute("userId")!=null) {
+//				return "product_membership_detail";
+//			}else {
+//				return "user_login_form";
+//			}
+			
+			//<DB에 멤버쉽 상품 번호 7번 OR 14번>
+			//상품 번호 세션에 저장	
+			Long productNo = 7L;
+			session.setAttribute("productNo", productNo);
+			
+			return "product_membership_detail";
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute(e.getMessage());
+			return null;
+		}
+	}
 
 	// 굿즈리스트
 	@LoginCheck
@@ -246,6 +247,8 @@ public class ProductController2 {
 
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
+			
+			model.addAttribute("productNo", productNo);
 
 			Optional<Product> findTicketOptional = productService.findByProductNo(productNo);
 			List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);

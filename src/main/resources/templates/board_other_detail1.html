@@ -95,7 +95,6 @@
 									</div>
 								</div>
 								<input class="submit" type="button" value="댓글달기" onclick="create_reply()">
-								<input class="submit" type="button" value="답변완료" onclick="" style="margin-left: 7%;">
 							</form>
 						</div>
 
@@ -141,6 +140,8 @@
 </body>
 
 <script>
+
+
 	function create_reply() {
 		const urlParams = new URLSearchParams(window.location.search);
 		const boardId = urlParams.get("boardId");
@@ -151,7 +152,7 @@
 
 		var commentId = $("#comment_id").val();
 		console.log(commentId);
-		
+
 		const commentData = {
 			"boardReplyTitle": "댓글타이틀",
 			"boardReplyContent": commentContent,
