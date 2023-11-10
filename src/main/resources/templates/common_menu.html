@@ -72,19 +72,29 @@
 					</ul>
 				</li>
 			</ul>
-
 			<ul class="nav navbar-nav flex-child-menu menu-right" th:if="${session.sUserId==null}">
+				<a href="user_login_form" onclick="showLoginAlert()"><img src="images/uploads/cart_main_logo.png"></a>
 				<li class="btn">
 					<a href="user_login_form">Login</a>
 				</li>
 			</ul>
+
 			<ul class="nav navbar-nav flex-child-menu menu-right" th:unless="${session.sUserId==null}">
-				<a href="user_info_form" th:text='${session.sUserName + "  님"}' style="margin-right: 30px"></a>
+				<a href="cart_main"><img src="images/uploads/cart_main_logo.png"></a>
+				<a href="user_info_form" th:text='${session.sUserName + "  님"}' style="margin-right: 20px"></a>
 				<li class="btn">
 					<a href="user_logout_action">Logout</a>
 				</li>
 			</ul>
+
+
 		</div><!-- /.navbar-collapse -->
 	</nav><!-- top search form -->
 
+
+	<script>
+		function showLoginAlert() {
+			alert("로그인이 필요한 서비스입니다.");
+		}
+	</script>
 </body>
