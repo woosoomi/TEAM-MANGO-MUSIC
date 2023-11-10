@@ -117,28 +117,36 @@ public class ProductController2 {
 		}
 	}
 
-	// 멤버십
-	@LoginCheck
-	@GetMapping("/product_membership_detail")
-	public String MembershipDetail(HttpSession session, Model model) {
-		try {
-			String userId = (String) session.getAttribute("sUserId");
-			model.addAttribute("userId", userId);
-			List<Product> memberships = productService.findByCategoryId(4L);
-			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
-
-//			if(session.getAttribute("userId")!=null) {
-//				return "product_membership_detail";
-//			}else {
-//				return "user_login_form";
-//			}
-			return "product_membership_detail";
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute(e.getMessage());
-			return null;
-		}
-	}
+//	// 멤버십
+//	@LoginCheck
+//	@GetMapping("/product_membership_detail")
+//	public String MembershipDetail(HttpSession session, Model model) {
+//		try {
+//			String userId = (String) session.getAttribute("sUserId");
+//			model.addAttribute("userId", userId);
+//			List<Product> memberships = productService.findByCategoryId(4L);
+//			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
+//
+////			if(session.getAttribute("userId")!=null) {
+////				return "product_membership_detail";
+////			}else {
+////				return "user_login_form";
+////			}
+//			return "product_membership_detail";
+//			
+//			//<DB에 멤버쉽 상품 번호 11번 OR 14번>
+//			//상품 번호 세션에 저장	
+////			Long productNo = 11L;
+////			session.setAttribute("productNo", productNo);
+//			
+//			
+////				return "product_membership_detail";
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			model.addAttribute(e.getMessage());
+//			return null;
+//		}
+//	}
 
 	// 굿즈리스트
 	@LoginCheck

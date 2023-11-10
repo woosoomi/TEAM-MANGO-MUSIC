@@ -93,10 +93,6 @@ function changeQuantity(amount, element) {
 var cartId = 5;
 calculateTotalPrice(cartId);
 function calculateTotalPrice(cartId) {
-	var checkedItems = document.querySelectorAll('.checkbox2:checked');
-	var cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
-	console.log(cartItemIds);
-	if (cartItemIds.length > 0) {
 		console.log(cartId);
 		$.ajax({
 			url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/' + cartId,
@@ -112,7 +108,7 @@ function calculateTotalPrice(cartId) {
 			}
 		});
 	}
-}
+	
 
 /*document.querySelectorAll('.checkbox2').forEach(function(checkbox) {
 	checkbox.addEventListener('change', function() {
