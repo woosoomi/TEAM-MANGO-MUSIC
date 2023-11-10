@@ -245,6 +245,8 @@ public class ProductController2 {
 
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
+			
+			model.addAttribute("productNo", productNo);
 
 			Optional<Product> findTicketOptional = productService.findByProductNo(productNo);
 			List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);

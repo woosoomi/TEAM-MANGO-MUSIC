@@ -303,6 +303,13 @@
 	var originalPrice = parseFloat(document.getElementById('formattedOrderPrice').placeholder); // 오리지널 가격 가져오기
 	var currentDiscountedPrice = originalPrice; // 현재 쿠폰 할인된 가격
 	
+	// 페이지 로드 시 초기 값으로 설정
+	window.addEventListener('load', function () {
+		var endPriceElement = document.getElementById('endPrice');
+		endPriceElement.value = currentDiscountedPrice.toFixed(0) + ' 원';
+	});
+	
+	
 	document.getElementById('couponSelect').addEventListener('change', function () {
 		// 선택한 쿠폰의 할인율을 가져옴
 		var selectedCouponValue = parseFloat(this.value);
