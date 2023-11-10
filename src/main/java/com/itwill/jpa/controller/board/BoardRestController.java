@@ -78,11 +78,11 @@ public class BoardRestController {
 	public ResponseEntity<BoardDto> changeBoardType(@PathVariable(name = "boardId")Long boardId,@RequestBody BoardDto dto) {
 	    // increaseReadCount 메서드를 호출하여 조회수 증가
 		Optional<Board> optionalBoard = boardServiceImpl.findById(boardId);
- 
+
 	    if (optionalBoard.isPresent()) {
 	        // 업데이트된 Board 객체를 DTO로 변환
 	    	Board findboard = optionalBoard.get();
-	    	findboard.setBoardType(BoardType.builder().typeId(dto.getBoardTypeId()).build());
+	    	findboard.setBoardType(new BoardType(8L,"답변완료",null));
 	        BoardDto updatedBoardDto = BoardDto.toDto(findboard);
 	        return new ResponseEntity<>(updatedBoardDto, HttpStatus.OK);
 	    } else {
@@ -105,7 +105,7 @@ public class BoardRestController {
 			Board findboard = optionalBoard.get();
 			findboard.setBoardContent(dto.getBoardContent());
 			findboard.setBoardTitle(dto.getBoardTitle());
-			findboard.setBoardType(BoardType.builder().typeId(dto.getBoardTypeId()).build());
+			
 //	        findboard.setBoardPrize(dto.getBoardPrize());
 //	        findboard.setBoardImage(dto.getBoardImage());
 
