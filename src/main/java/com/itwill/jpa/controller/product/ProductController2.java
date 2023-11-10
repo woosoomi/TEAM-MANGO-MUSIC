@@ -221,6 +221,10 @@ public class ProductController2 {
 		    try {
 		    	String userId = (String) session.getAttribute("sUserId");
 				model.addAttribute("userId",userId);
+				
+				//상품 번호 모델에 저장
+				model.addAttribute("productNo", productNo);
+				
 		        Optional<Product> findTicketOptional = productService.findByProductNo(productNo);
 		        List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);
 		        if (findTicketOptional.isPresent()) {
