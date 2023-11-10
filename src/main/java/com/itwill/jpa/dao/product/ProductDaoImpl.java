@@ -39,13 +39,7 @@ public class ProductDaoImpl implements ProductDao{
 		Product selectProduct = productRepository.findById(productNo).get();
 		return selectProduct;
 	}
-	// 제품 카테고리 조회
-//	@Override
-//	public ProductCategory selectProductCategory(Long categoryId) {
-//		ProductCategory selectProductCategory = productRepository.findByProductCategoryCategoryId(categoryId);
-//		return selectProductCategory;
-//	}
-	
+
 	// 제품 나열
 	@Override
 	public List<Product> selectList() {
@@ -57,16 +51,6 @@ public class ProductDaoImpl implements ProductDao{
 		Product insertProduct = productRepository.save(product);
 		return insertProduct;
 	}
-//	@Override
-//	public Ticket insertTicket(Ticket ticket) {
-//		Ticket insertTicket = productRepository.save(ticket);
-//		return insertTicket;
-//	}
-//	@Override
-//	public Goods insertGoods(Goods goods) {
-//		Goods insertGoods = productRepository.save(goods);
-//		return insertGoods;
-//	}
 
 	public Product updateProduct(Product product) throws Exception {
 		return null;
@@ -99,16 +83,16 @@ public class ProductDaoImpl implements ProductDao{
 	
 	@Override
     public Product increaseReadCountByProductDto(ProductDto productDto) throws Exception {
-		Long productNo = productDto.getProductNo();
-        Product product = entityManager.find(Product.class, productNo);
-
-        if (product != null) {
-            product.setReadCount(product.getReadCount() + 1);
-            entityManager.merge(product);
-            return product;
+		Optional<Product> findProductOptional =
+					productRepository.findById(productDto.getProductNo());
+		Product updateProduct=null;
+        if (findProductOptional.isPresent()) {
+			Product findProduct = findProductOptional.get();
+			findProduct.setReadCount(productDto.getReadCount() + 1);
         } else {
-            throw new EntityNotFoundException("해당 productNo에 해당하는 제품을 찾을 수 없습니다.");
+			throw new Exception("존재하지 않는 제품입니다.");
         }
+        return updateProduct;
     }
 
 	// 제품 삭제

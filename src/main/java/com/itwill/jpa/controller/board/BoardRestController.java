@@ -55,22 +55,42 @@ public class BoardRestController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@Operation(summary = "댓글등록")
 	@PostMapping("board_reply_create/{boardId}")
-	public ResponseEntity<BoardReplyDto> createBoardReply(@PathVariable(name="boardId") Long boardId, @RequestBody BoardReplyDto boardReplyDto) {
-	    try {
-	    	BoardReply boardReply =BoardReply.toEntity(boardReplyDto);
-	    	BoardReply createReply = boardServiceImpl.ReplyInsert(boardReply);
-	    	BoardReplyDto createReplyDto = BoardReplyDto.toDto(createReply);
-	    	return new ResponseEntity<>(createReplyDto, HttpStatus.CREATED);
-	    }catch (Exception e) { 
-	    	e.printStackTrace();
-	    	return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-		
+	public ResponseEntity<BoardReplyDto> createBoardReply(@PathVariable(name = "boardId") Long boardId,
+			@RequestBody BoardReplyDto boardReplyDto) {
+		try {
+			BoardReply boardReply = BoardReply.toEntity(boardReplyDto);
+			BoardReply createReply = boardServiceImpl.ReplyInsert(boardReply);
+			BoardReplyDto createReplyDto = BoardReplyDto.toDto(createReply);
+			return new ResponseEntity<>(createReplyDto, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 	}
 
+	@Operation(summary = "조회수증가")
+	@PostMapping("/BoardReadCount/{boardId}")
+	public ResponseEntity<BoardDto> increaseReadCount(@PathVariable(name = "boardId")Long boardId,@RequestBody BoardDto dto) {
+	    // increaseReadCount 메서드를 호출하여 조회수 증가
+		Optional<Board> optionalBoard = boardServiceImpl.findById(boardId);
+
+	    if (optionalBoard.isPresent()) {
+	        // 업데이트된 Board 객체를 DTO로 변환
+	    	Board findboard = optionalBoard.get();
+	    	findboard.setBoardReadCount(dto.getBoardReadCount()+1);
+	        BoardDto updatedBoardDto = BoardDto.toDto(findboard);
+	        return new ResponseEntity<>(updatedBoardDto, HttpStatus.OK);
+	    } else {
+	        // 결과가 없을 경우 클라이언트에게 적절한 오류 상태 코드를 반환
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	}
+
+	
 
 	@Operation(summary = "업데이트")
 	@PutMapping("/board_update/{boardId}")
@@ -105,12 +125,6 @@ public class BoardRestController {
 	public void BoardDelete(@PathVariable(name = "boardId") Long boardId) {
 		boardServiceImpl.delete(boardId);
 	}
-
-///////////////////////////// 공지사항 ///////////////////////////////////////////////	
-
-///////////////////////////// 매거진 ///////////////////////////////////////////////	
-///////////////////////////// faq ///////////////////////////////////////////////	
-///////////////////////////// 1대1문의 ///////////////////////////////////////////////	
 
 	@Operation(summary = "1대1문의 오래된 순서로 정렬[성공]")
 	@GetMapping("/inquiries/reverseSort")
@@ -151,34 +165,28 @@ public class BoardRestController {
 ///////////////////////////// 이벤트 ///////////////////////////////////////////////	
 
 	@GetMapping("/category/{categoryId}")
-	public ResponseEntity<Page<BoardDto>> getBoardsByCategory(
-	        @PathVariable Long categoryId,
-	        @PageableDefault(page = 0, size = 6) Pageable pageable) {
-	    Page<BoardDto> boardPage = boardServiceImpl.getBoardsByCategory(categoryId, pageable);
+	public ResponseEntity<Page<BoardDto>> getBoardsByCategory(@PathVariable Long categoryId,
+			@PageableDefault(page = 0, size = 6) Pageable pageable) {
+		Page<BoardDto> boardPage = boardServiceImpl.getBoardsByCategory(categoryId, pageable);
 
-	    // 현재 페이지 번호
-	    int currentPage = boardPage.getNumber();
+		// 현재 페이지 번호
+		int currentPage = boardPage.getNumber();
 
-	    // 전체 페이지 수
-	    int totalPages = boardPage.getTotalPages();
+		// 전체 페이지 수
+		int totalPages = boardPage.getTotalPages();
 
-	    // 다음 페이지가 있는지 여부 확인
-	    boolean hasNextPage = currentPage < totalPages - 1;
+		// 다음 페이지가 있는지 여부 확인
+		boolean hasNextPage = currentPage < totalPages - 1;
 
-	    // 다음 페이지를 요청하는 URL을 생성
-	    String nextUrl = hasNextPage ? 
-	                    "/boards/category/{categoryId}?page=" + (currentPage + 1) : 
-	                    null;
+		// 다음 페이지를 요청하는 URL을 생성
+		String nextUrl = hasNextPage ? "/boards/category/{categoryId}?page=" + (currentPage + 1) : null;
 
-	    // 다음 페이지 정보를 응답에 포함
-	    HttpHeaders responseHeaders = new HttpHeaders();
-	    responseHeaders.add("X-Has-Next-Page", String.valueOf(hasNextPage));
-	    responseHeaders.add("X-Next-Page-Url", nextUrl);
+		// 다음 페이지 정보를 응답에 포함
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("X-Has-Next-Page", String.valueOf(hasNextPage));
+		responseHeaders.add("X-Next-Page-Url", nextUrl);
 
-	    return ResponseEntity.ok()
-	            .headers(responseHeaders)
-	            .body(boardPage);
+		return ResponseEntity.ok().headers(responseHeaders).body(boardPage);
 	}
-
 
 }

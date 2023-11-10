@@ -81,7 +81,6 @@ public interface ProductService{
 	// product 조회수 올리기[성공]
 	Product increaseReadCount(Product product);
 	/******************** INCREASE READCOUNT[DTO] ********************/
-	ProductDto increaseReadCountByProductNo(Long productNo) throws Exception;
 	ProductDto increaseProductReadCountDto(ProductDto productDto) throws Exception;
 
 	/*

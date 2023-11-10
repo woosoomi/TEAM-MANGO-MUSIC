@@ -28,9 +28,6 @@ public interface BoardService {
 	
 	
 	
-//	// 조회수 올리기
-//	public Board increaseReadCount(Board board);
-	
 //	//조회수정렬
 //	public List<Board> getBoardsOrderByReadCount();
 //
@@ -52,5 +49,7 @@ public interface BoardService {
     public List<BoardReply> findByBoard_boardId(Long BoardId);
 
 	BoardReply ReplyInsert(BoardReply boardReply);
+
+	Board increaseReadCount(Board findboard);
     
 }

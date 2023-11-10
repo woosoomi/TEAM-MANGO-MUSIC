@@ -94,14 +94,16 @@ public class ProductController2 {
 			model.addAttribute("userId",userId);
 			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
-			
-			System.out.println(findMusicOptional.get());
+			List<ProductReply> replyList = productService.findByProduct_productNo(productNo);
 			
 			if(findMusicOptional.isPresent()) {
 				Product findMusic=findMusicOptional.get();
 				productService.increaseReadCount(findMusic);
 				model.addAttribute("findMusic", findMusic);
-	            System.out.println(">>>MUSIC DETAIL:"+findMusic);
+				System.out.println(">>>MUSIC DETAIL:"+findMusic);
+				
+				model.addAttribute("replyList",replyList);
+				System.out.println(">>>댓글정보:" + replyList);
 			}else {
 				 model.addAttribute("errorMSG", "NOT FOUNT MUSIC");
 			}
@@ -121,7 +123,6 @@ public class ProductController2 {
 		try {
 			String userId = (String) session.getAttribute("sUserId");
 			model.addAttribute("userId",userId);
-			
 			List<Product> memberships = productService.findByCategoryId(4L);
 			System.out.println(">>>MEMBERSHIP LIST : " + memberships);
 			
