@@ -98,13 +98,14 @@ public class BoardController {
 			return null;
 		}
 	}
+
 	@LoginCheck
 	@GetMapping("/board_magazine")
 	public String magazine(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 		try {
 			String loginUser = (String) session.getAttribute("sUserId");
-			
-			//로그인정보없으면 로그인으로
+
+			// 로그인정보없으면 로그인으로
 			if (loginUser == null) {
 				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
 				return "redirect:/user_login_form";
@@ -316,8 +317,20 @@ public class BoardController {
 	}
 
 	@GetMapping("/board_other_detail1")
-	public String board_other_detail1(@RequestParam(name = "boardId") Long boardId, Model model) {
+	public String board_other_detail1(@RequestParam(name = "boardId") Long boardId, HttpSession session, Model model) {
 		try {
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+				user = userService.findUser(loginUser);
+
+				// 사용자 정보를 세션에 저장
+				session.setAttribute("loginUser", user);
+			}
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
 			// 게시물 ID를 사용하여 해당 게시물의 정보를 데이터베이스에서 가져옵니다.
 			Optional<Board> boardOptional = boardServiceImpl.findById(boardId);
 			List<BoardReply> ReplyList = boardServiceImpl.findByBoard_boardId(boardId);
