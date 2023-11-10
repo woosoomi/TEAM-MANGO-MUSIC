@@ -28,6 +28,7 @@ import com.itwill.jpa.dto.board.BoardDto;
 import com.itwill.jpa.dto.board.BoardReplyDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.board.BoardReply;
+import com.itwill.jpa.entity.board.BoardType;
 import com.itwill.jpa.service.board.BoardServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -72,16 +73,16 @@ public class BoardRestController {
 
 	}
 
-	@Operation(summary = "조회수증가")
-	@PostMapping("/BoardReadCount/{boardId}")
-	public ResponseEntity<BoardDto> increaseReadCount(@PathVariable(name = "boardId")Long boardId,@RequestBody BoardDto dto) {
+	@Operation(summary = "타입변화")
+	@PutMapping("/board_type_change/{boardId}")
+	public ResponseEntity<BoardDto> changeBoardType(@PathVariable(name = "boardId")Long boardId,@RequestBody BoardDto dto) {
 	    // increaseReadCount 메서드를 호출하여 조회수 증가
 		Optional<Board> optionalBoard = boardServiceImpl.findById(boardId);
-
+ 
 	    if (optionalBoard.isPresent()) {
 	        // 업데이트된 Board 객체를 DTO로 변환
 	    	Board findboard = optionalBoard.get();
-	    	findboard.setBoardReadCount(dto.getBoardReadCount()+1);
+	    	findboard.setBoardType(BoardType.builder().typeId(dto.getBoardTypeId()).build());
 	        BoardDto updatedBoardDto = BoardDto.toDto(findboard);
 	        return new ResponseEntity<>(updatedBoardDto, HttpStatus.OK);
 	    } else {
@@ -104,6 +105,7 @@ public class BoardRestController {
 			Board findboard = optionalBoard.get();
 			findboard.setBoardContent(dto.getBoardContent());
 			findboard.setBoardTitle(dto.getBoardTitle());
+			findboard.setBoardType(BoardType.builder().typeId(dto.getBoardTypeId()).build());
 //	        findboard.setBoardPrize(dto.getBoardPrize());
 //	        findboard.setBoardImage(dto.getBoardImage());
 
