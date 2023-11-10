@@ -108,7 +108,7 @@ $(function() {
 }*/
 
 ///////////// 댓글달기 //////////////////////
-	function create_reply() {
+/*	function create_reply() {
 		const urlParams = new URLSearchParams(window.location.search);
 		const productNo = urlParams.get("productNo");
 		const productNoInt = parseInt(productNo, 10); //prodctId
@@ -146,7 +146,7 @@ $(function() {
 			});
 
 
-	}
+	}*/
 ///////////GOODS LIST////////////
 $(document).ready(function(){
     // Slick 슬라이더 초기화 코드
