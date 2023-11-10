@@ -5,8 +5,9 @@ $(document).ready(function() {
     var orderHistory = $('#orderHistory');
     var items = orderHistory.find('.movie-item-style-2').get();
     items.sort(function(a, b) {
-      var dateA = new Date($(a).find('.rate span').text().split(': ')[1]);
-      var dateB = new Date($(b).find('.rate span').text().split(': ')[1]);
+      var dateA = new Date($(a).find('.describe span').text().split(': ')[1]);
+      var dateB = new Date($(b).find('.describe span').text().split(': ')[1]);
+      console.log("dateA:"+dateA)
       // 날짜 객체를 사용하여 비교
       if (order === 'newest') {
         return dateB - dateA;

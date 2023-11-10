@@ -36,12 +36,10 @@
 
 <body><!--preloading-->
 <div th:insert="~{common_header :: headerFragment}"></div>
-	
-	
-	
-	
-	<!--최신순, 오래된순-->
+
 	 
+	<!--최신순, 오래된순-->		
+
 
 	<div class="page-single movie_list">
 		<div class="container">
@@ -52,7 +50,7 @@
 							<span th:text="${#lists.size(orderDtoList)}"></span>
 							<span>개의 주문내역</span>
 					 
-				
+		
 							</p><label>Sort by:</label>
 						<select id="sortSelect">
 				        <option value="newest">최신순</option>
