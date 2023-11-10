@@ -128,7 +128,7 @@
 														<h6 th:text="${replyList.getUser.getUserId}" style="color: white; font-size: 20px;">
 															Name
 														</h6>
-														<span class="time" th:text="${replyList.CreDateTime}"> 27 Mar 2017</span>
+														<span class="time" th:text="${#temporals.format(replyList.CreDateTime,'yyyy-MM-dd HH:mm')}"> 27 Mar 2017</span>
 													</div>
 													<p th:text="${replyList.ProductReplyContent}" style="color: white;"> content </p>
 												</div>
