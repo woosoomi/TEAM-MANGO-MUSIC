@@ -1,6 +1,5 @@
 package com.itwill.jpa.service.board;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +19,19 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Autowired
 	BoardServiceImpl boardServiceImpl;
 
+	@Test
+	@Transactional
+	@Rollback(false)
+	//@Disabled
+	void readcountTest() {
+
+		Board originalBoard = boardServiceImpl.findById(1L).orElse(null);
+		System.out.println("Original Read Count: " + originalBoard.getBoardReadCount());
+
+		Board board = boardServiceImpl.increaseReadCount(originalBoard);
+		System.out.println(board.getBoardReadCount());
+	}
+
 //	@Test
 //	@Transactional
 //	@Rollback(false)
@@ -30,9 +42,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 //
 //        System.out.println("boardReplyList--> : " + boardReplyList);
 //	}
-	
 
-	
 //	// 게시글저장 -성공
 //	@Test
 //	@Transactional
@@ -104,7 +114,7 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 //		System.out.println("2L 타입모음 : >>>>>" +boards);
 //				
 //	}
-	
+
 //	//최근 한달 게시물 검색 --성공
 //	@Test
 //	@Transactional
@@ -118,18 +128,18 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 //		System.out.println("최근 한달의 게시글 모음 >>>>>"+boards);
 //	}
 //
-	//키워드로 검색하기 -성공
+	// 키워드로 검색하기 -성공
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void searchBoardsByKeywordTest() {
-		List<Board> boards =new ArrayList<Board>();
-		boards =boardServiceImpl.searchBoardsByKeyword("새로운");
-		System.out.println("새로운이 들어간 게시판리스트는 ? >>>"+boards);
+		List<Board> boards = new ArrayList<Board>();
+		boards = boardServiceImpl.searchBoardsByKeyword("새로운");
+		System.out.println("새로운이 들어간 게시판리스트는 ? >>>" + boards);
 	}
-	
-	//readcount 순서로 내림차순정렬-성공
+
+	// readcount 순서로 내림차순정렬-성공
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -138,17 +148,17 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 		List<Board> boards = boardServiceImpl.findAllByOrderByBoardReadCountDesc();
 		System.out.println("readcount로 내림차순정렬 : " + boards);
 	}
-	//카테고리와 아이디로 찾기 -성공
+
+	// 카테고리와 아이디로 찾기 -성공
 	@Test
 	@Transactional
 	@Rollback(false)
 	@Disabled
 	void findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime() {
-		List<Board> boards 
-			=boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L,"why3795");
+		List<Board> boards = boardServiceImpl.findByBoardCategory_IdAndUser_UserIdOrderByCreatedTime(4L, "why3795");
 		System.out.println("4L이고 why3795아이디를 사용하는 리스트 : " + boards);
 	}
-	
+
 	@Test
 	@Transactional
 	@Rollback(false)
@@ -157,6 +167,5 @@ class BoardServiceImplTest extends TeamProjectMangoApplicationTest {
 		Optional<Board> board = boardServiceImpl.findById(1L);
 		System.out.println("게시판한개찾기 : " + board);
 	}
-	
-	
+
 }

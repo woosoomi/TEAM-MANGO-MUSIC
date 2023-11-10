@@ -16,10 +16,10 @@
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<!-- Bootstrap CSS -->
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
-	<!-- Bootstrap JS and Popper.js -->
-	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<!--Bootstrap CSS
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	Bootstrap JS and Popper.js
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
 
@@ -44,7 +44,6 @@
 								<li><a href="order_history">나의 주문내역</a></li>
 								<!--<li><a href="user_remove_action">회원탈퇴</a></li>-->
 								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal">회원탈퇴</a></li>
-
 							</ul>
 						</div>
 					</div>
@@ -66,8 +65,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-primary" onclick="confirmWithdrawal()">회원
-									탈퇴</button>
+								<button type="button" class="btn btn-primary" onclick="confirmWithdrawal()">회원탈퇴</button>
 							</div>
 						</div>
 					</div>
@@ -101,14 +99,7 @@
 										placeholder="주소" id="userAddress" th:value="*{userAddress}"></div>
 								<div class="col-md-6 form-it"><label>UserGender</label><input type="text"
 										placeholder="주소" id="userGender" th:value="*{userGender}"></div>
-								<!--<div class="col-md-6 form-it"><label>UserGender</label><select id="userGender" th:value="*{userGender}">
-										<option value="man">남</option>
-										<option value="woman">여</option>
-									</select></div>-->
 							</div>
-							<!--<div class="row">
-								<div class="col-md-2"><input class="submit" type="submit" value="save"></div>
-							</div>-->
 						</form>
 					</div>
 				</div>
@@ -120,7 +111,7 @@
 
 	<script>
 		function confirmWithdrawal() {
-			// 로그인 한 유저 아이디
+			// 로그인 한 유저의 아이디
 			var userId = document.getElementById("userId").value;
 			console.log("아이디:" + userId);
 
@@ -140,19 +131,16 @@
 
 			// 비밀번호 확인
 			if (userPw === enteredPassword) {
-				// 비밀번호 일치 시 회원 탈퇴 진행 --> 탈퇴 아작스 호출
-				// 버튼 비활성화 (중복 호출 방지)
 				$("#withdrawalButton").prop("disabled", true);
 
 				$.ajax({
-					type: "DELETE",
 					url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mangoo/user/delete/${userId}`,
+					method: 'DELETE',
 					success: function (data) {
 						alert("회원 탈퇴 성공!");
 						closeWithdrawalModal();
 					},
 					error: function (error) {
-						// 에러 핸들링
 						alert("회원 탈퇴 실패. 다시 시도해주세요.");
 						console.error("Error deleting user:", error);
 					},
@@ -162,19 +150,14 @@
 					}
 				});
 			} else {
-				// 비밀번호 불일치 시 알림
 				alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
 			}
 		}
 
-
 		function closeWithdrawalModal() {
 			// 모달 닫기
 			$('#withdrawalModal').modal('hide');
-			window.location.href = "user_info_form";
-
-			// TODO: 여기에 실제 회원 탈퇴 처리를 위한 Ajax 요청 추가
-			// 비밀번호 확인이 성공했으므로 서버로 회원 탈퇴 요청을 보낼 수 있음
+			window.location.href = "user_login_form";
 		}
 
 	</script>
