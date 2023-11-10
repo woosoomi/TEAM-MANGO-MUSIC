@@ -99,7 +99,7 @@
 									th:data-cart-Item-id="${cartItem.cartItemId}"> <span
 									th:id="cartItem" ></span>
 							</div>
-							<img src="images/uploads/cart_1.jpg" alt=""
+							<img src="${product.productImage}" alt=""
 								style="width: 181px; height: 278px;">
 							<div id = "product100" th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
@@ -136,7 +136,8 @@
 										<span style="color: orange; font-size: 17px">주문금액 :</span> <span
 											id="totalPrice"
 											th:text="${product.productPrice * cartItem.cartItemQty +'원'}"
-											style="color: orange; font-size: 17px"></span> <a href="#"
+											style="color: orange; font-size: 17px"></span>
+											<a href="#"
 											style="border: 1px solid #ccc; padding: 7px 20px; border-radius: 5px; color: white;">주문하기</a>
 									</p>
 									<br />
