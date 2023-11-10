@@ -80,7 +80,7 @@
 			</ul>
 
 			<ul class="nav navbar-nav flex-child-menu menu-right" th:unless="${session.sUserId==null}">
-				<a href="cart_main"><img src="images/uploads/cart_main_logo.png"></a>
+				<a href="cart_main"><img src="images/uploads/cart_main_logo.png" style="margin-right: 10px"></a>
 				<a href="user_info_form" th:text='${session.sUserName + "  님"}' style="margin-right: 20px"></a>
 				<li class="btn">
 					<a href="user_logout_action">Logout</a>
