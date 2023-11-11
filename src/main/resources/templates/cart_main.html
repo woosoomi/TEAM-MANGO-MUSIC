@@ -100,7 +100,7 @@
 									th:id="cartItem" 
 									th:value ="${cartItem.cartItemId}"></span>
 							</div>
-							<img src="images/uploads/cart_1.jpg" alt=""
+							<img id= "image" src="images/uploads/cart_1.jpg" alt=""
 								style="width: 181px; height: 278px;">
 							<div id = "product100" th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
