@@ -1,12 +1,15 @@
-
 $(document).ready(function() {
+  var orderHistory = $('#orderHistory');
+
   // 정렬 함수
   function sortItems(order) {
-    var orderHistory = $('#orderHistory');
-    var items = orderHistory.find('.movie-item-style-2').get();
+    var items = orderHistory.find('.e').get();
+    console.log(items)
     items.sort(function(a, b) {
-      var dateA = new Date($(a).find('.rate span').text().split(': ')[1]);
-      var dateB = new Date($(b).find('.rate span').text().split(': ')[1]);
+      var dateA = new Date($(a).find('.describe span').text().replace('구매날짜: ', ''));
+      var dateB = new Date($(b).find('.describe span').text().replace('구매날짜: ', ''));
+	console.log(dateA)
+	console.log(dateB)
       // 날짜 객체를 사용하여 비교
       if (order === 'newest') {
         return dateB - dateA;
@@ -14,10 +17,17 @@ $(document).ready(function() {
         return dateA - dateB;
       }
     });
+console.log(items)
     orderHistory.empty();
-    $.each(items, function(i, item) {
-      orderHistory.append(item);
-    });
+
+    // 정렬된 배열에 대한 순회
+    for (var i = 0; i < items.length; i++) {
+      orderHistory.append(items[i]);
+      // 'div.movie-item-style-2' 다음에 'div.movie-item-style-2.movie-item-style-3' 추가
+      if (i % 2 !== 0 && i + 1 < items.length) {
+        orderHistory.append(items[i + 1]);
+      }
+    }
   }
 
   // 선택 요소의 변경 이벤트를 감지
@@ -62,3 +72,27 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+
+/////최신순, 오래된순///////
+/*  document.getElementById("sortSelect").addEventListener("change", function() {
+        // 선택된 옵션 값 확인
+        var selectedValue = this.value;
+
+        // 선택된 값에 따라 동적으로 처리
+        switch (selectedValue) {
+            case "newest":
+                // 최신순에 대한 동작 추가
+                var order = button.getAttribute("newest");
+                console.log(order)
+                alert("최신순을 선택했습니다.");
+                break;
+            case "oldest":
+                // 오래된순에 대한 동작 추가
+                alert("오래된순을 선택했습니다.");
+                break;
+            default:
+                // 다른 경우에 대한 처리 추가
+                break;
+        }
+    });*/
