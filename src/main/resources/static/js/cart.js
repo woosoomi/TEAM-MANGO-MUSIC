@@ -56,13 +56,13 @@ $('.delete-all-btn').click(function() {
 
 //수량변경
 function changeQuantity(amount, element) {
-	let cartItemQtyElement = element.parentElement.querySelector('#cartItemQty');
-	let currentQty = parseInt(cartItemQtyElement.value);
-	let newQty = currentQty + amount;
-	let relatedTextbox = element.parentElement.querySelector('.test');
+	var cartItemQtyElement = element.parentElement.querySelector('#cartItemQty');
+	var currentQty = parseInt(cartItemQtyElement.value);
+	var newQty = currentQty + amount;
+	var relatedTextbox = element.parentElement.querySelector('.test');
 	var cartItemId = relatedTextbox.dataset.cartitemid;
-	//let cartTotPriceElement = document.getElementById('priceTest');
-	//let cartTot = parseInt(cartTotPriceElement.value);
+	var cartTotPriceElement = document.getElementById('priceTest');
+	var cartTot = parseInt(cartTotPriceElement.value);
 
 	if (newQty >= 1) {
 		cartItemQtyElement.value = newQty;
@@ -74,8 +74,8 @@ function changeQuantity(amount, element) {
 		data: { cartItemId: cartItemId, cartItemQty: newQty, cartTot: cartTot },
 		success: function(data) {
 			console.log('카트 아이템 수량이 업데이트되었습니다.');
-			let newPrice = data.cartTot;
-			$('#price100 span#totalPrice').text(newPrice + '원');
+			var newPrice = data.cartTot;
+			//$('#price100 span#totalPrice').text(newPrice + '원');
 			//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
 			//location.reload();
 			calculateTotalPrice(cartId);
@@ -97,7 +97,7 @@ function calculateTotalPrice(cartId) {
 		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/' + cartId,
 		type: 'GET',
 		success: function(data) {
-			let newPrice = data.cartTotPrice;
+			newPrice = data.cartTotPrice;
 			//document.getElementById('cartTotPrice').innerHTML = newPrice + '원';
 			console.log(document.getElementById('cartTotPrice'));
 			$('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + newPrice + '원');
@@ -107,6 +107,7 @@ function calculateTotalPrice(cartId) {
 		}
 	});
 }
+
 
 
 
@@ -188,7 +189,6 @@ function calculateTotalPrice(cartId) {
 	}
 	
 }*/
-
 
 
 
