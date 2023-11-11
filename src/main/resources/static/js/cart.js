@@ -166,6 +166,7 @@ function updateQuantity(input) {
                 error: function () {
                     console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
                 }
+                
             });
         } else {
             console.log('유효하지 않은 수량입니다.');
