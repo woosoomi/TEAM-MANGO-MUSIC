@@ -153,9 +153,9 @@
 									style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
 							
 									<input type="hidden" id="cartTotPrice1" name="cartTotPrice1"
-										th:value="${cart.cartTotPrice}"> <span
+										th:value="${cart.cartTotPrice}" pattern="###,###,###"> <span
 										id="cartTotPrice" style="margin-right: 10px; font-size: 18px;">
-										<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' "></span>
+										<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' " ></span>
 									</span>
 									<button
 										style="background-color: #fff; color: black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;">주문하기</button>

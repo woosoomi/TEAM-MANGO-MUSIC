@@ -77,6 +77,7 @@ function calculateTotalPrice() {
             async: false,
             success: function (data) {
                 const productPrice = parseFloat(data);
+                
                 //console.log(productPrice);
                 // 체크된 경우에만 가격을 더함
                 if (checkbox.checked) {
@@ -90,7 +91,8 @@ function calculateTotalPrice() {
     });
 
     // 전체 주문금액 업데이트
-    $('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + total + '원');
+    const formattedTotal = formatNumberWithCommas(total);
+    $('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + formattedTotal + '원');
 }
 
 //상품 수량 변경, 수량변경으로 인한 함수 호출로 총 주문금액, 개별 상품 금액 업데이트
@@ -131,7 +133,9 @@ function updateTotalPrice(cartItemId) {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            $('#totalPrice[data-cartItemId="' + cartItemId + '"]').html(data + '원');
+            const formattedPrice = formatNumberWithCommas(parseFloat(data));
+            $('#totalPrice[data-cartItemId="' + cartItemId + '"]').html(formattedPrice + '원');
+            
         },
         error: function (error) {
             console.error('Error:', error);
@@ -167,6 +171,10 @@ function updateQuantity(input) {
             console.log('유효하지 않은 수량입니다.');
         }
     });
+}
+//천의자리수마다 콤마표시
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 /*function goBuy(){
