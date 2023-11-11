@@ -60,7 +60,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void updateCartItemsQty() throws Exception {
@@ -70,7 +70,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		
 	}
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void findAllByCartId() throws Exception {
@@ -92,7 +92,7 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	@Transactional
 	@Rollback(false)
 	void getProductByProductId() throws Exception {
@@ -102,6 +102,19 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 		System.out.println(">>>>>>>>>>>>>>>>>>>"+productDto);
 			
 	}
+	
+	@Test
+	//@Disabled
+	@Transactional
+	@Rollback(false)
+	void calculateCartItem() throws Exception {
+		CartItem cartItem = new CartItem();
+		cartItem.setCartItemId(21L);
+		int result = cartItemServiceImpl.calculateTotalByCartItemId(cartItem.getCartItemId());
+		System.out.println(">>>>>>>>>>>>>>>>>"+result);
+		
+	}
+	
 	
 
 
