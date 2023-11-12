@@ -131,9 +131,9 @@
 								<!--상세설명 [마지막]-->
 
 								<!--댓글보기 전체[시작]-->
-								<div id="reviews" class="tab review">
-									<h2>공연제목 : <span th:text="${findTicket.productName}"></span></h2>
-									<h3>아티스트 : <span th:text="${findTicket.productArtist}"></span></h3>
+								<div id="reviews" class="tab review" style="margin-bottom: 10px;">
+									<h3>공연제목 : <span th:text="${findTicket.productName}"></span></h3>
+									<h4>아티스트 : <span th:text="${findTicket.productArtist}"></span></h3>
 									<!--댓글보기 내용[시작]-->
 									<div class="row">
 										<!--정렬탭[시작]-->
@@ -155,35 +155,32 @@
 										<div class="user-infor">
 											<!--<img src="images/uploads/userava1.jpg" alt="">-->
 											<div class="comments" style="margin-top: 10px; margin-bottom: 20px;">
-												<div th:each="ReplyList : ${ReplyList}"
-													style="background: #233a50;margin-top: 10px;border: 15px solid #233a50; border-radius: 10px;">
-													<div class="cmt-item flex-it">
+													<div class="cmt-item flex-it" th:each="ReplyList : ${ReplyList}"
+													style="background: #233a50;margin-top: 10px;border: 10px solid #233a50; border-radius: 10px;">
 														<img src="images/uploads/author.png" alt="">
 														<!--댓글작성자 정보 및 댓글내용[시작]-->
 														<div class="author-infor">
 															<div class="flex-it2">
 																<!--<p>댓글작성자</p>-->
-																<h6 th:text="${ReplyList.getUser.getUserId}"
-																	style="color: white; font-size: 20px;">
-																	<a href="#">Steve Perry</a>
+																<h6 th:text="${ReplyList.getUser.getUserId}" style="color: white; font-size: 20px;">
 																</h6>
-																<!--<p>댓글작성날자</p>--> <span class="time"
-																	th:text="${ReplyList.CreDateTime}">
+																<!--<p>댓글작성날자</p>-->
+																 <span class="time" th:text="${#temporals.format(ReplyList.CreDateTime,'yyyy-MM-dd HH:mm')}"></span>
+																 </div>
 																	<!--<p>댓글내용</p>-->
 																	<p th:text="${ReplyList.ProductReplyContent}"
 																		style="color: white;"> content </p>
-															</div>
+														
 														</div>
-														<!--댓글작성자 정보 및 댓글내용[마지막]-->
-													</div>
+														<!--댓글작성자 정보 및 댓글내용[마지막]-->														
 												</div>
 											</div>
 										</div>
 										<!--리스트로 나열할 것들 [마지막]-->
 
 										<!--댓글작성하기 폼	[시작]-->
-										<div class="comment-form">
-											<h4>댓글작성</h4>
+										<div class="comment-form" style="color: white; margin-bottom: 30px;">
+											<h4 style="margin-bottom: 30px; border-top: 3px solid #233a50;">댓글쓰기</h4>
 											<form action="">
 												<div class="row">
 													<div class="col-md-4">
@@ -252,7 +249,7 @@
 														th:text="${findTicket.productAddress}"></span></h4>
 												</br>
 
-												<div id="map" style="width:400px;height:400px;"></div>
+												<div id="map" style="width:500px;height:500px;"></div>
 												<div class="flex-it share-tag">
 												</div>
 											</div>
@@ -373,7 +370,7 @@
 </script>
 ///////////////////////////댓글전체[마지막]///////////////////////////-->
 
-<!--///////////////////////////지도전체[시작]///////////////////////////
+<!--///////////////////////////지도전체[시작]///////////////////////////-->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95118bde95091988e1c186337c9f0b23"></script>
 <script type="text/javascript">
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -397,7 +394,7 @@
 	// 마커를 지도에 추가
 	marker.setMap(map);
 </script>
-///////////////////////////지도전체[마지막]///////////////////////////-->
+///////////////////////////지도전체[마지막]///////////////////////////
 
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
