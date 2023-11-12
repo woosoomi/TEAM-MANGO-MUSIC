@@ -106,12 +106,12 @@ class UserServiceImplTest extends TeamProjectMangoApplicationTest{
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
     @Transactional
     @Rollback(false)
     @DisplayName("회원탈퇴")
     public void testDeleteUser() {
-        String userId = "a";
+        String userId = "test";
 
         try {
             userDao.deleteUser(userId);

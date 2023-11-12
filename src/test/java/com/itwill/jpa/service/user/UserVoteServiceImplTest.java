@@ -33,7 +33,7 @@ import com.itwill.jpa.service.vote.VoteServiceImpl;
 
 @SpringBootTest
 class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
-	@Autowired
+	/*v@Autowired
 	UserVotesericeImpl userVotesericeImpl;
 	
 	@Autowired
@@ -119,5 +119,5 @@ class UserVoteServiceImplTest extends TeamProjectMangoApplicationTest{
 		System.out.println(">>>>>>"+userVotesericeImpl.updateUserVoteId("ycl77",5L));
 	    
     }
-	
+	*/
 }

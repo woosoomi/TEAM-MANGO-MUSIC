@@ -194,5 +194,6 @@ public interface ProductService{
 
 	/******************** INCREASE READCOUNT[DTO] ********************/
 
-	
+	//굿즈상품 카트에 보낼 수량
+	public ProductDto goodsQty(Long productNo, int productQty) throws Exception;
 }

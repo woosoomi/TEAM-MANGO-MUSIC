@@ -35,6 +35,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.Builder.Default;
 
 @Entity
 @Builder //Dto를 Entity로 변환하는 메서드를 쓰기위해서 사용
@@ -73,7 +74,7 @@ public class Product {
 	private String productAddress; // 콘서트 장소
 	private Date startPeriod; // 멤버십 시작날짜
 	private int periodOfUse; // 멤버십 사용기간
-
+	private int productQty;
 	/** music **/
 
 	@Entity
@@ -185,6 +186,7 @@ public class Product {
 				.productAddress(dto.getProductAddress())
 				.startPeriod(dto.getStartPeriod())
 				.periodOfUse(dto.getPeriodOfUse())
+				.productQty(dto.getProductQty())
 				.build();
 	}
 	/*=======================================================*/

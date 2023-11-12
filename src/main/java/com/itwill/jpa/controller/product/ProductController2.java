@@ -270,5 +270,12 @@ public class ProductController2 {
 			return "error";
 		}
 	}
+	
+	@GetMapping("/product_goods_detail_cartVersion") 
+	public String index() { 
+		String forward_path = "product_goods_detail_cartVersion"; 
+		return forward_path; 
+	}
+	
 
 }

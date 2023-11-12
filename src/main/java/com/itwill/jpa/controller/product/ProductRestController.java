@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.jpa.dto.board.BoardReplyDto;
+import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.product.ProductReplyDto;
 import com.itwill.jpa.entity.board.BoardReply;
@@ -90,4 +92,17 @@ public class ProductRestController {
 	    }
 		
 	}
+	
+    @Operation(summary = "수량 업데이트")
+    @PostMapping("/product_goods_detail/qty")
+    public ResponseEntity<ProductDto> productQty(@RequestBody ProductDto dto) {
+        try {
+            ProductDto updatedQty = productService.goodsQty(dto.getProductNo(), dto.getProductQty());
+            return new ResponseEntity<>(updatedQty, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

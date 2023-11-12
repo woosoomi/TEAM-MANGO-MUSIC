@@ -78,14 +78,14 @@
 							class="ion-grid "></i></a> -->
 						<div class="checkbox-container"
 							style="display: flex; align-items: center;">
-							<input type="checkbox" name="checkBox"
-								class="checkbox1"
+							<input type="checkbox" name="checkboxAll"
+								class="checkboxAll" checked="checked"
 								style="width: 20px; height: 20px; vertical-align: middle;"
-								id="selectAll"> <label for="selectAll"
+								id="checkboxAll"> <label for="checkboxAll"
 								style="font-size: 20px; margin-left: 5px; font-weight: bold; vertical-align: middle;">전체
 								선택</label>
 						</div>
-						<a href="#" class="delete-all-btn"
+						<a href="#" class="delete-all-btn" 
 							style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;">선택
 							삭제</a>
 
@@ -93,13 +93,14 @@
 
 					<div class="flex-wrap-movielist user-fav-list">
 						<div th:each="cartItem : ${cartItems}" class="movie-item-style-2">
-							<div id="checkbox2" style="margin-right: 5%;" class="checkbox-container">
-								<input type="checkbox"  name="checkBox"
-									class="checkbox2" style="width: 20px; height: 20px;"
+							<div id="checkbox" style="margin-right: 5%;" class="checkbox-container">
+								<input type="checkbox"  name="checkbox" checked="checked"
+									class="checkbox" style="width: 20px; height: 20px;"
 									th:data-cart-Item-id="${cartItem.cartItemId}"> <span
-									th:id="cartItem" ></span>
+									th:id="cartItem" 
+									th:value ="${cartItem.cartItemId}"></span>
 							</div>
-							<img src="${product.productImage}" alt=""
+							<img id= "image" src="images/uploads/cart_1.jpg" alt=""
 								style="width: 181px; height: 278px;">
 							<div id = "product100" th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
@@ -119,7 +120,7 @@
 										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; line-height: 25px; border: solid 1px white;">-</button>
 									<input id="cartItemQty" type="text"
 										style="width: 50px; height: 35px; background-color: rgb(2, 15, 25); text-align: center; font-size: 15px; border: solid 1px white; color: white;"
-										th:value="${cartItem.cartItemQty}" readonly>
+										th:value="${cartItem.cartItemQty}" oninput="updateQuantity(this)">
 									<button class="quantity-control"
 										onclick="changeQuantity(1, this)"
 										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; border: solid 1px white; line-height: 25px;">+</button>
@@ -127,14 +128,15 @@
 								<br />
 								<div id="price100"
 									th:value="${product.productPrice * cartItem.cartItemQty}">
+									<input type="hidden" class="cartItemId" th:id="cartItemId" th:value="${cartItem.cartItemId}">
 									<input type="hidden" id ="priceTest" th:value="${product.productPrice * cartItem.cartItemQty}" >
 									<p class="describe" th:text="${product.productContent}"></p>
 									<p class="run-time" style="font-size: 15px">
-										<br /> 상품가격 : <span th:text="${product.productPrice} + 원"></span>배송비
+										<br /> 상품가격 : <span id= "productPrice" th:text="${product.productPrice} + 원"></span>배송비
 										: 0원 <input type="hidden" id="totalPrice100"
 											th:value="${product.productPrice * cartItem.cartItemQty}">
 										<span style="color: orange; font-size: 17px">주문금액 :</span> <span
-											id="totalPrice"
+											id="totalPrice"   th:data-cartItemId='${cartItem.cartItemId}'
 											th:text="${product.productPrice * cartItem.cartItemQty +'원'}"
 											style="color: orange; font-size: 17px"></span>
 											<a href="#"
@@ -149,10 +151,11 @@
 
 								<div id="cartTotPrice100"
 									style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
+							
 									<input type="hidden" id="cartTotPrice1" name="cartTotPrice1"
 										th:value="${cart.cartTotPrice}"> <span
 										id="cartTotPrice" style="margin-right: 10px; font-size: 18px;">
-										<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' "></span>
+										<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' " ></span>
 									</span>
 									<button
 										style="background-color: #fff; color: black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;">주문하기</button>

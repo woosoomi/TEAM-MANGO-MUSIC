@@ -28,6 +28,7 @@ import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.ExistedUserException;
 import com.itwill.jpa.exception.user.PasswordMismatchException;
 import com.itwill.jpa.service.cart.CartService;
+import com.itwill.jpa.service.cart.CartUserServiceImpl;
 import com.itwill.jpa.service.user.UserService;
 import com.itwill.jpa.service.user.UserServiceImpl;
 
@@ -45,6 +46,9 @@ public class UserRestController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
+	@Autowired 
+	private CartUserServiceImpl cartUserServiceImpl;
+	
 	@Autowired
 	private CartService cartService;
 
@@ -172,12 +176,17 @@ public class UserRestController {
 		}
 	}
 
-	@Operation(summary = "회원탈퇴")
+	@Operation(summary = "회원탈퇴") // 컨트롤러 테스트 완료!!!
 	@DeleteMapping("/delete/{userId}")
 	public ResponseEntity<String> user_delete_action(@PathVariable(name = "userId") String userId, HttpSession session)
 			throws Exception {
 		String loginUser = (String) session.getAttribute("sUserId");
-		userService.deleteUser(loginUser);
+		// 기존데이터 >>> userService.deleteUser(loginUser);
+		
+		// 수정한 부분 시작
+		cartUserServiceImpl.deleteByUserIdCart(userId);
+		// 수정한 부분 종료
+		
 		session.invalidate();
 
 		return new ResponseEntity<>(HttpStatus.OK);

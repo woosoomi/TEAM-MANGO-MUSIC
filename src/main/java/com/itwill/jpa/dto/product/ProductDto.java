@@ -45,6 +45,8 @@ public class ProductDto {
 	private Long productCategoryId; // 프로덕트 카테고리
 	
     private String userId;	
+    
+    private int productQty;
 //	private List<Product> products;
 //	private List<Music> musics;
 //	private List<Goods> goodss;
@@ -86,6 +88,7 @@ public static ProductDto toDto(Product entity) {
 						.startPeriod(entity.getStartPeriod())
 						.periodOfUse(entity.getPeriodOfUse())
 						.productCategoryId(entity.getProductCategory().getCategoryId())
+						.productQty(entity.getProductQty())
 //		                .userId(entity.getUser().getUserId())
 						.build();
 }
@@ -107,6 +110,7 @@ public static ProductDto toDto(Product entity) {
 						.productAddress(entity.getProductAddress())
 						.startPeriod(entity.getStartPeriod())
 						.periodOfUse(entity.getPeriodOfUse())
+						.productQty(entity.getProductQty())
 						.build();
 			 productDtoList.add(productDto);
 	 }

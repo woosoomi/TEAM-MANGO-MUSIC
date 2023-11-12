@@ -131,10 +131,10 @@
 
 			// 비밀번호 확인
 			if (userPw === enteredPassword) {
-				$("#withdrawalButton").prop("disabled", true);
+			//	$("#withdrawalButton").prop("disabled", true);
 
 				$.ajax({
-					url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mangoo/user/delete/${userId}`,
+					url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/delete/${userId}`,
 					method: 'DELETE',
 					success: function (data) {
 						alert("회원 탈퇴 성공!");

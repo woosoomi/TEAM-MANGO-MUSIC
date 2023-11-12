@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.jpa.TeamProjectMangoApplicationTest;
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dao.product.ProductVoteDaoImpl;
 import com.itwill.jpa.dto.product.GoodsDto;
@@ -34,7 +35,7 @@ import com.itwill.jpa.repository.product.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 @SpringBootTest
-class ProductServiceImplTest {
+class ProductServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 	@Autowired
 	ProductServiceImpl productServiceImpl;
@@ -212,10 +213,10 @@ class ProductServiceImplTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-//	@Disabled
+	@Disabled
 	public void testUpdateProductDto() throws Exception {
 		
-		ProductDto productDto = new ProductDto(6L, "sadasda", 123, null, null, 0, null, 0, null, null, null, null, 0, null, null, null);
+		ProductDto productDto = new ProductDto(6L, "sadasda", 123, null, null, 0, null, 0, null, null, null, null, 0, null, null, null,0);
 		productDto.setProductNo(6L);
 		productDto.setProductName("수정완료3");
 		productDto.setProductArtist("가수수정2");
@@ -424,7 +425,8 @@ class ProductServiceImplTest {
 //        assertEquals(null, productDto);
 //    }
 	
-	/******************* 진행중 *******************/
+	/******************* 진행중 
+	 * @throws Exception *******************/
 //	// productName 찾기
 //    @Test
 //    @Transactional
@@ -466,7 +468,16 @@ class ProductServiceImplTest {
 //	}
 //}
 	
+@Test
+@Transactional
+//@Disabled
+@Rollback(false)
+public void goGoodsQtyData() throws Exception {
+	Long productNo = 7L;
+	int productQty = 10;
+	productServiceImpl.goodsQty(productNo, productQty);
 	
+}
 	
 
 }

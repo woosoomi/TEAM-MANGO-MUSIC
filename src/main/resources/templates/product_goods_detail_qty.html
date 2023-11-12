@@ -158,7 +158,22 @@
 										<!--댓글보기 전체[마지막]-->
 
 										<!--아티스트 보기-->
-
+ 								<div
+									style="display: flex; align-items: center; font-size: 15px;">
+									<input type="hidden" id="productNo" th:value="${findGoods.productQty}">
+									<input type="hidden" class='test'
+										th:data-productNo='${findGoods.productQty}'
+										th:value='${findGoods.productQty}'>
+									<button class="quantity-control"
+										onclick="changeQuantity(-1, this)"
+										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; line-height: 25px; border: solid 1px white;">-</button>
+									<input id="productQty" type="text"
+										style="width: 50px; height: 35px; background-color: rgb(2, 15, 25); text-align: center; font-size: 15px; border: solid 1px white; color: white;"
+										th:value="${findGoods.productQty}" >
+									<button class="quantity-control"
+										onclick="changeQuantity(1, this)"
+										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; border: solid 1px white; line-height: 25px;">+</button>
+								</div> 
 
 										<div id="media" class="tab">
 											<div class="row">
@@ -186,6 +201,7 @@
 															<p class="time">1: 31</p>
 														</div>
 													</div>
+
 													<!--<div class="vd-item">
 													<div class="vd-it"><img class="vd-img"
 															src="images/uploads/vd-item2.jpg" alt=""><a
@@ -553,6 +569,45 @@
 		const productNo = urlParams.get("productNo");
 
 		window.location.href = "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_goods_detail?productNo=" + productNo;
+	}
+	
+	
+	//product 수량 설정
+	function changeQuantity(amount, button) {
+	    // 입력 필드에서 현재 수량 가져오기
+	    const inputElement = button.parentNode.querySelector('#productQty');
+	    let currentQty = parseInt(inputElement.value);
+
+	    // 버튼 클릭에 따라 수량 업데이트
+	    currentQty += amount;
+
+	    // 수량 최소 1이상
+	    currentQty = Math.max(currentQty, 0);
+
+	    // 새로운 수량으로 입력 필드 업데이트
+	    inputElement.value = currentQty;
+
+	    // 숨겨진 입력 필드에서 제품 번호 가져오기
+	    const productNo = button.parentNode.querySelector('#productNo').value;
+
+	    // AJAX를 사용하여 서버에 업데이트된 수량 보내기
+	    fetch("/product_goods_detail/qty", {
+	        method: "POST",
+	        headers: {
+	            "Content-Type": "application/json",
+	        },
+	        body: JSON.stringify({
+	            productNo: productNo,
+	            productQty: currentQty,
+	        }),
+	    })
+	    .then(response => response.json())
+	    .then(data => {
+	        console.log("업데이트된 수량:", data.productQty);
+	    })
+	    .catch(error => {
+	        console.error("수량 업데이트 중 오류:", error);
+	    });
 	}
 
 </script>
