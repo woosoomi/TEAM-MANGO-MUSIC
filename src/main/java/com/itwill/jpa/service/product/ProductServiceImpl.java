@@ -474,6 +474,21 @@ public void saveProductCategory(ProductCategoryDto productCategoryDto) {
 }
 
 
+@Override
+public ProductDto goodsQty(Long productNo, int productQty) throws Exception {
+	Optional<Product> findProduct = productRepository.findById(productNo);
+	Product updatedProduct = null;
+	if (findProduct.isPresent()) {
+		Product product = findProduct.get();
+		product.setProductQty(productQty);
+		updatedProduct = productRepository.save(product);
+		return ProductDto.toDto(updatedProduct);
+	} else {
+		throw new Exception("상품을 찾을 수 없습니다.");
+	}
+}
+
+
 
 	
 	/*============================================================*/
