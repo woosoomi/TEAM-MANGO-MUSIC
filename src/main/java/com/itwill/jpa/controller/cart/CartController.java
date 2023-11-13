@@ -40,7 +40,7 @@ public class CartController {
 	
 	
 	@GetMapping("/cart_main")
-	public String cart(@RequestParam(name = "productNo")Long productNo, Model model, HttpSession session) {
+	public String cart(@RequestParam(name = "productNo",required = false)Long productNo,@RequestParam(name = "cartId",required = false)Long cartId, Model model, HttpSession session) {
 	    try {
 	    	
 			
@@ -57,23 +57,19 @@ public class CartController {
 			  //newItem.setCartQty // 예시로 수량 1로 설정, 필요에 따라 조절
 			  fUserCart.getCartitems().add(newItem); 
 			  CartItemDto newItemDto = CartItemDto.toDto(newItem);
-			  System.out.println("asdasdsadsad"+newItemDto);
 			 
 	        
 	        
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>"+loginUser);
 			UserDto user = null;
 
 			if (loginUser != null) {
 				user = userService.findUser(loginUser);
-				System.out.println(">>>>>>>>>>>>>"+user);
 			}
 			session.setAttribute("loginUser", user);
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
-			System.out.println(">>>>>>>>>>>>>>>>"+userIdString);
 			
-	        CartDto cart = cartService.findCartByCartId(6L);
+	        CartDto cart = cartService.findCartByCartId(newItemDto.getCartId());
 	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
 	        System.out.println(">>>>>>>>>cartOT"+cartItems);
 	        
