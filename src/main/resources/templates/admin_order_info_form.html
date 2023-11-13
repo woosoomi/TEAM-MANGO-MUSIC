@@ -66,12 +66,10 @@
 					<td style="width:30%;">답변제목</td>
 				</tr>
 
-				<tr th:each="inquiries : ${inquiries}">
-					<td th:text="${inquiries.getUser.getUserId}">아이디</td>
-					<td th:text="${inquiries.getUser.getUserName}" >이름</td>
-					<td th:text="${inquiries.createdTime}">작성일</td>
-					<td th:text="${inquiries.boardType.boardTypeTitle}">탑변여부</td>
-					<td th:text="${inquiries.BoardTitle}">타이틀</td>
+				<tr th:each="orders : ${orders}">
+					<td th:text="${orders.getUser.getUserId}">아이디</td>
+					<td th:text="${orders.getUser.getUserName}" >이름</td>
+					<td th:text="${orders.createdAt}">주문일자</td>
 				</tr>
 			</table>
 
