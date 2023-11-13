@@ -3,7 +3,7 @@
 <html lang="en" class="no-js">
 
 <head><!-- Basic need -->
-	<title>Open Pediatrics</title>
+	<title>Mango</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -38,13 +38,13 @@
 						<div class="user-fav">
 							<p>Details</p>
 							<ul>
-								<li><a href="user_info_form">내정보</a></li>
+								<li class="active"><a href="user_info_form">내정보</a></li>
 								<li><a href="user_modify_form">회원정보수정</a></li>
-								<!--<li><a href="cart_main" id="cartForm">나의 장바구니</a></li>
-								<li><a href="order_history" id="orderForm">나의 주문내역</a></li>-->
-								<li><a href="user_userList_form" id="UserListForm">회원 목록</a></li>
+								<li><a href="cart_main" id="cartForm">나의 장바구니</a></li>
+								<li><a href="order_history" id="orderForm">나의 주문내역</a></li>
+								<li><a href="admin" id="UserListForm">회원 목록</a></li>
 								<li><a href="admin" id="OrderListForm">주문 목록</a></li>
-								<li class="active"><a href="user_inq_info_form" id="InquiryListForm">문의 목록</a></li>
+								<li><a href="admin_Board" id="InquiryListForm">문의 목록</a></li>
 								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal"
 										id="userDelete">회원탈퇴</a></li>
 							</ul>
@@ -56,22 +56,19 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
 						<div class="content" style="color: white; padding: 20px;">
-			<h1 style="margin-left: 600px; margin-bottom: 100px; margin-top: 20px;">회원 문의 목록</h1>
+			<h1 style="margin-left: 600px; margin-bottom: 100px; margin-top: 20px;">주문목록</h1>
 			<table>
 				<tr style="font-size: 15px; color: lightpink; ">
 					<td style="width: 15%;">아이디</td>
+					<td style="width:15%;">주문날짜</td>
 					<td style="width:15%;">이름</td>
-					<td style="width:15%;">날짜</td>
 					<td style="width:15%;">답변여부</td>
 					<td style="width:30%;">답변제목</td>
 				</tr>
 
-				<tr th:each="inquiries : ${inquiries}">
-					<td th:text="${inquiries.getUser.getUserId}">아이디</td>
-					<td th:text="${inquiries.getUser.getUserName}" >이름</td>
-					<td th:text="${inquiries.createdTime}">작성일</td>
-					<td th:text="${inquiries.boardType.boardTypeTitle}">답변여부</td>
-					<td th:text="${inquiries.BoardTitle}">타이틀</td>
+				<tr th:each="orders : ${orders}">
+					<td th:text="${orders.getUserId}">아이디</td>
+					<td th:text="${orders.createdAt}">주문일자</td>
 				</tr>
 			</table>
 
