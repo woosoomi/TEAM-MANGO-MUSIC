@@ -81,9 +81,11 @@
                 <p class="rate">
                     <span th:text="'결제금액: '+${order.orderPrice + ' 원'}"></span>
                 </p>
+                <!--주문아이템 정보-->
               		 <p class="rate" style="margin-left: 50px;">상품이름 : <span th:text="${orderitem.productName}"></span></p>
                      <p class="rate" style="margin-left: 50px;">상품가격 : <span th:text="${orderitem.productPrice}+' 원'"></span></p>
                      <p class="rate" style="margin-left: 50px;">수량 : <span th:text="${orderitem.oiQty}"></span></p>
+                <!-- -->
                 <p class="rate">
 					<span th:text="'배송지: ' + ${user.userAddress}"></span>
                 </p>
