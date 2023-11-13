@@ -4,9 +4,11 @@ package com.itwill.jpa.controller.user;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.dto.user.UserLoginDto;
 import com.itwill.jpa.dto.user.UserUpdateDto;
+import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.PasswordMismatchException;
 import com.itwill.jpa.exception.user.UserNotFoundException;
+import com.itwill.jpa.service.board.BoardServiceImpl;
 import com.itwill.jpa.service.user.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -27,6 +30,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private BoardServiceImpl boardServiceImpl;
 
 	@GetMapping("/user_login_form")
 	public String user_login_form() {
@@ -47,6 +53,19 @@ public class UserController {
 		UserDto user = userService.findUser(loginUser);
 		model.addAttribute("loginUser", user);
 		return "user_info_form";
+	}
+	
+	@LoginCheck
+	@GetMapping("/user_inq_info_form")
+	public String user_inq_info_form(HttpSession session, Model model) throws Exception {
+		String loginUser = (String) session.getAttribute("sUserId");
+		UserDto user = userService.findUser(loginUser);
+		List<Board> inquiries = boardServiceImpl.findBycategory(4L);
+		Collections.reverse(inquiries);
+		model.addAttribute("inquiries", inquiries);
+		model.addAttribute("loginUser", user);
+		
+		return "user_inq_info_form";
 	}
 	
 	@GetMapping("/user_CheckIdPw")
