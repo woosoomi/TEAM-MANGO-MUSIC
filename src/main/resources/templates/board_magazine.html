@@ -37,7 +37,7 @@
 									<div class="blog-item-style-2"><a
 											th:href="@{/board_other_detail(boardId=${magazine.boardId})}"
 											>
-											<img src="images/uploads/MAGAZINE1.jpeg" alt=""></a>
+											<img th:src="@{${magazine.boardImage}}" alt=""></a>
 										<div class="blog-it-infor">
 											<h3><a th:href="@{/board_other_detail(boardId=${magazine.boardId})}"
 													th:text="${magazine.boardTitle}">MAGAZINE

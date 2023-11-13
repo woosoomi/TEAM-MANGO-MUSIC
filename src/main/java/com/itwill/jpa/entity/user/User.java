@@ -74,7 +74,7 @@ public class User {
 	}
 	
 	//1대N 관계설정
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "vote_id")
 	@ToString.Exclude
 	private Vote vote;
