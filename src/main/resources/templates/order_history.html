@@ -64,7 +64,7 @@
         <div th:each="order, iterStat: ${orderDtoList}">
         <div th:each="orderitem, iterStat: ${order.orderItemDtos}">
 			
-		<div class="e">
+		<div class="e" style=" margin-top: 40px;">
 		<div class="movie-item-style-2">
 		<!-- <img th:src="@{'images/' + ${orderitem.productImage}}" alt="">-->
 		 <img th:src="${orderitem.productImage}" alt="">
@@ -81,9 +81,10 @@
                 <p class="rate">
                     <span th:text="'결제금액: '+${order.orderPrice + ' 원'}"></span>
                 </p>
+              		 <p class="rate" style="margin-left: 50px;">상품이름 : <span th:text="${orderitem.productName}"></span></p>
+                     <p class="rate" style="margin-left: 50px;">상품가격 : <span th:text="${orderitem.productPrice}+' 원'"></span></p>
+                     <p class="rate" style="margin-left: 50px;">수량 : <span th:text="${orderitem.oiQty}"></span></p>
                 <p class="rate">
-					
-                
 					<span th:text="'배송지: ' + ${user.userAddress}"></span>
                 </p>
                 <p class="describe">
@@ -94,14 +95,14 @@
             <p>⚠️ 환불불가 상품입니다.</p>
             <p>결제 내역 및 취소 요청, 그 외 상세 정보는 <a href="board_inquiries">고객센터</a>로 문의해주세요.</p>
 		   <!-- item start-->
-		  <div class="movie-item-style-2 movie-item-style-3" th:each="orderItemDto, iterStat: ${order.orderItemDtos}" style="margin-top: 20px;" >
+		 <!-- <div class="movie-item-style-2 movie-item-style-3" th:each="orderItemDto, iterStat: ${order.orderItemDtos}" style="margin-top: 20px;" >
 							<a style="padding-right: 20px; color: #ffffff;
 									    padding-left:0px;
 									    margin-bottom: 0px;
 									    border-bottom-width: 10px;
 									    margin-top: 20px;"
 									    ></a>
-                               <!-- <img th:src="@{'images/' + ${orderItemDto.productImage}}" alt="" style="width: 70px">-->
+                                <img th:src="@{'images/' + ${orderItemDto.productImage}}" alt="" style="width: 70px">
                                 <img th:src="${orderItemDto.productImage}" alt="" style="width: 70px">
                                 
                                 </a>
@@ -114,7 +115,7 @@
                             
                             
                         </div>
-                        </div>
+                        </div>-->
 		   <!-- item end   -->
         				</div>
         
