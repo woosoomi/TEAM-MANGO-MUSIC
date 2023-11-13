@@ -12,6 +12,7 @@ $(document).ready(function() {
 		checkboxes.forEach(function(checkbox) {
 			checkbox.checked = isChecked;
 		});
+		updateCartItemQtyOnCheckboxChange(checkbox);
 		calculateTotalPrice();
 
 	});
@@ -21,6 +22,7 @@ $(document).ready(function() {
 			const cnt = checkboxes.length;
 			const checkedCnt = document.querySelectorAll('.checkbox:checked').length;
 			allChk.checked = cnt === checkedCnt;
+			updateCartItemQtyOnCheckboxChange(checkbox);
 			calculateTotalPrice();
 			calculateTotalPriceOnServer(cartId);
 		});
@@ -45,80 +47,65 @@ function calculateTotalPrice() {
 	// 모든 체크박스 엘리먼트 선택
 	const checkboxes = document.querySelectorAll('.checkbox');
 	let total = 0;
-
 	// 비동기 함수를 동기적으로 처리하기 위해 콜백 함수 사용
+	// async await를 쓰려고 했지만 세미콜론 에러 발생해서 콜백 함수 사용함
 	function processCheckbox(index) {
 		if (index < checkboxes.length) {
 			const checkbox = checkboxes[index];
 			const cartItemId = checkbox.dataset.cartItemId;
 			const productQty = 1;
 
+			// Ajax 호출을 통해 상품 가격을 서버에서 가져옴
 			$.ajax({
 				url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/calculate/' + cartItemId,
 				type: 'GET',
 				dataType: 'json',
 				success: function(data) {
-					const productPrice = checkbox.checked ? parseFloat(data) : 0;
+					const productPrice = parseFloat(data);
+					// 체크된 경우에만 가격을 더함
 					if (checkbox.checked) {
 						total += productPrice * productQty;
-
-
-						// 데이터베이스 업데이트를 위한 새로운 AJAX 호출 추가
-						$.ajax({
-							url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/calculate/' + cartItemId,  // 수정 필요
-							type: 'GET',
-							data: {
-								cartItemId: cartItemId,
-								quantity: checkbox.checked ? productQty : 0,
-								price: checkbox.checked ? productPrice : 0
-							},
-							success: function(updateData) {
-								// 데이터베이스 업데이트 성공 시 처리
-								console.log('Database updated successfully:', updateData);
-								// calculateTotalPriceOnServer(cartId)
-							},
-							error: function(error) {
-								console.error('Error updating database:', error);
-							}
-						});
 					}
 
+					// 새로운 가격으로 updateTotalPrice 호출
 					updateTotalPrice(cartItemId);
+
+					// 다음 체크박스 처리
 					processCheckbox(index + 1);
-					//calculateTotalPriceOnServer(cartId);
+					calculateTotalPriceOnServer(cartId);
 				},
 				error: function(error) {
 					console.error('Error:', error);
+
+					// 에러가 발생하더라도 다음 체크박스 처리
 					processCheckbox(index + 1);
 				}
 			});
 		} else {
+			// 전체 주문금액 업데이트
 			const formattedTotal = formatNumberWithCommas(total);
 			$('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + formattedTotal + '원');
-			function calculateTotalPriceOnServer(cartId) {
-				var cartIdElement = document.getElementById('cartId');
-				var cartId = cartIdElement.value;
-				$.ajax({
-					url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
-					type: 'GET',
-					dataType: 'json',
-					success: function(formattedTotal) {
-						// 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
-						console.log('총 주문금액:', formattedTotal);
-						// 여기서 화면 업데이트 또는 필요한 작업 수행
-					},
-					error: function(error) {
-						console.error('에러 발생:', error);
-					}
-				});
-			}
-
 		}
 	}
-
 	processCheckbox(0);
 }
-
+function calculateTotalPriceOnServer(cartId) {
+	var cartIdElement = document.getElementById('cartId');
+	var cartId = cartIdElement.value;
+	$.ajax({
+		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
+		type: 'GET',
+		dataType: 'json',
+		success: function(data) {
+			// 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
+			console.log('총 주문금액:', data);
+			// 여기서 화면 업데이트 또는 필요한 작업 수행
+		},
+		error: function(error) {
+			console.error('에러 발생:', error);
+		}
+	});
+}
 
 // 상품 수량 변경, 수량변경으로 인한 함수 호출로 총 주문금액, 개별 상품 금액 업데이트
 function changeQuantity(amount, element) {
@@ -138,6 +125,7 @@ function changeQuantity(amount, element) {
 			data: { cartItemId: cartItemId, cartItemQty: newQty },
 			success: function(data) {
 				console.log('카트 아이템 수량이 업데이트되었습니다.');
+				
 				// 개별 상품의 가격 업데이트
 				updateTotalPrice(cartItemId);
 				// 전체 주문금액 재계산
@@ -270,3 +258,40 @@ $('.delete-all-btn').click(function() {
 	});
 });
 
+var previousCartItemQty;
+function updateCartItemQtyOnCheckboxChange(checkbox) {
+    var cartItemQtyElement = document.getElementById("cartItemQty");
+    var currentQty = cartItemQtyElement.value;
+    const cartItemId = checkbox.dataset.cartItemId;
+
+    // 체크박스가 선택되기 전의 값 저장
+    if (!checkbox.checked) {
+        previousCartItemQty = currentQty;
+    }
+    const newQty = checkbox.checked ? 1 : 0;
+    previousCartItemQty = currentQty;
+    currentQty = newQty;
+
+    // 서버에 수량 업데이트를 요청
+    $.ajax({
+        url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/updateQty/${cartItemId}`,
+        type: 'POST',
+        data: { cartItemId: cartItemId, cartItemQty: newQty },
+        success: function (data) {
+            console.log('카트 아이템 수량이 업데이트되었습니다.');
+            // 개별 상품의 가격 업데이트
+            updateTotalPrice(cartItemId);
+            // 전체 주문금액 재계산
+            calculateTotalPrice();
+
+            // 체크박스가 선택된 경우, 저장된 이전 값으로 복원
+            if (checkbox.checked) {
+                currentQty = previousCartItemQty;
+                
+            }
+        },
+        error: function () {
+            console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
+        }
+    });
+}
