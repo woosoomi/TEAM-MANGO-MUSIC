@@ -2,6 +2,7 @@ $(document).ready(function() {
 	// 페이지 로딩이 완료되면 실행될 코드
 	calculateTotalPrice();
 
+
 	//체크박스 전체선택과,개별선택 코드
 	const allChk = document.querySelector('#checkboxAll');
 	const checkboxes = document.querySelectorAll('.checkbox');
@@ -12,6 +13,7 @@ $(document).ready(function() {
 			checkbox.checked = isChecked;
 		});
 		calculateTotalPrice();
+
 	});
 
 	checkboxes.forEach(function(checkbox) {
@@ -20,17 +22,19 @@ $(document).ready(function() {
 			const checkedCnt = document.querySelectorAll('.checkbox:checked').length;
 			allChk.checked = cnt === checkedCnt;
 			calculateTotalPrice();
+			calculateTotalPriceOnServer(cartId);
 		});
 	});
 
 	//장바구니 상품 삭제 기능
-	
+
 
 	// 수량변경 이벤트 리스너 연결
 	$('.change-quantity-btn').click(function() {
 		const amount = 1; // 변경할 수량
 		const element = this; // 클릭된 버튼 엘리먼트
 		changeQuantity(amount, element);
+
 	});
 
 });
@@ -43,66 +47,78 @@ function calculateTotalPrice() {
 	let total = 0;
 
 	// 비동기 함수를 동기적으로 처리하기 위해 콜백 함수 사용
-	// async await를 쓰려고 했지만 세미콜론 에러 발생해서 콜백 함수 사용함
 	function processCheckbox(index) {
 		if (index < checkboxes.length) {
 			const checkbox = checkboxes[index];
 			const cartItemId = checkbox.dataset.cartItemId;
 			const productQty = 1;
 
-			// Ajax 호출을 통해 상품 가격을 서버에서 가져옴
 			$.ajax({
 				url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/calculate/' + cartItemId,
 				type: 'GET',
 				dataType: 'json',
 				success: function(data) {
-					const productPrice = parseFloat(data);
-					// 체크된 경우에만 가격을 더함
+					const productPrice = checkbox.checked ? parseFloat(data) : 0;
 					if (checkbox.checked) {
 						total += productPrice * productQty;
+
+
+						// 데이터베이스 업데이트를 위한 새로운 AJAX 호출 추가
+						$.ajax({
+							url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/calculate/' + cartItemId,  // 수정 필요
+							type: 'GET',
+							data: {
+								cartItemId: cartItemId,
+								quantity: checkbox.checked ? productQty : 0,
+								price: checkbox.checked ? productPrice : 0
+							},
+							success: function(updateData) {
+								// 데이터베이스 업데이트 성공 시 처리
+								console.log('Database updated successfully:', updateData);
+								// calculateTotalPriceOnServer(cartId)
+							},
+							error: function(error) {
+								console.error('Error updating database:', error);
+							}
+						});
 					}
 
-					// 새로운 가격으로 updateTotalPrice 호출
 					updateTotalPrice(cartItemId);
-
-					// 다음 체크박스 처리
 					processCheckbox(index + 1);
-					calculateTotalPriceOnServer(cartId);
+					//calculateTotalPriceOnServer(cartId);
 				},
 				error: function(error) {
 					console.error('Error:', error);
-
-					// 에러가 발생하더라도 다음 체크박스 처리
 					processCheckbox(index + 1);
 				}
 			});
 		} else {
-			// 전체 주문금액 업데이트
 			const formattedTotal = formatNumberWithCommas(total);
 			$('#cartTotPrice100 span#cartTotPrice').text('총 주문금액 : ' + formattedTotal + '원');
+			function calculateTotalPriceOnServer(cartId) {
+				var cartIdElement = document.getElementById('cartId');
+				var cartId = cartIdElement.value;
+				$.ajax({
+					url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
+					type: 'GET',
+					dataType: 'json',
+					success: function(formattedTotal) {
+						// 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
+						console.log('총 주문금액:', formattedTotal);
+						// 여기서 화면 업데이트 또는 필요한 작업 수행
+					},
+					error: function(error) {
+						console.error('에러 발생:', error);
+					}
+				});
+			}
+
 		}
 	}
+
 	processCheckbox(0);
 }
 
-
-function calculateTotalPriceOnServer(cartId) {
-	var cartIdElement = document.getElementById('cartId');
-	var cartId = cartIdElement.value;
-	$.ajax({
-		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
-		type: 'GET',
-		dataType: 'json',
-		success: function(data) {
-			// 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
-			console.log('총 주문금액:', data);
-			// 여기서 화면 업데이트 또는 필요한 작업 수행
-		},
-		error: function(error) {
-			console.error('에러 발생:', error);
-		}
-	});
-}
 
 // 상품 수량 변경, 수량변경으로 인한 함수 호출로 총 주문금액, 개별 상품 금액 업데이트
 function changeQuantity(amount, element) {
@@ -188,69 +204,69 @@ function formatNumberWithCommas(number) {
 
 
 function sendPostRequest() {
-    var userIdElement = document.getElementById("sUserId");
-    var userId = userIdElement.value;
+	var userIdElement = document.getElementById("sUserId");
+	var userId = userIdElement.value;
 
-    var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder';
+	var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder';
 
-    var requestData = {
-        userId: userId
-    };
+	var requestData = {
+		userId: userId
+	};
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', url, true);
+	xhr.setRequestHeader('Content-Type', 'application/json');
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200 || xhr.status === 405) {
-                var response = JSON.parse(xhr.responseText);
-                alert('주문이 성공적으로 완료되었습니다.');
-                alert('무통장입금 신한은행 110-354-123456\n1시간 내 미입금시 주문이 취소됩니다.');
-                deleteSelectedCartItems(function () {
-                    // 삭제가 완료된 후에 페이지를 다시 로드
-                    window.location.replace('order_history');
-                });
-            } else {
-                alert('주문에 실패하였습니다.');
-            }
-        }
-    };
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 405) {
+				var response = JSON.parse(xhr.responseText);
+				alert('주문이 성공적으로 완료되었습니다.');
+				alert('무통장입금 신한은행 110-354-123456\n1시간 내 미입금시 주문이 취소됩니다.');
+				deleteSelectedCartItems(function() {
+					// 삭제가 완료된 후에 페이지를 다시 로드
+					window.location.replace('order_history');
+				});
+			} else {
+				alert('주문에 실패하였습니다.');
+			}
+		}
+	};
 
-    xhr.send(JSON.stringify(requestData));
+	xhr.send(JSON.stringify(requestData));
 }
 
 function deleteSelectedCartItems(callback) {
-    const checkedItems = document.querySelectorAll('.checkbox:checked');
-    const cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
+	const checkedItems = document.querySelectorAll('.checkbox:checked');
+	const cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
 
-    if (cartItemIds.length > 0) {
-        $.ajax({
-            url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/deleteByCartItems',
-            type: 'DELETE',
-            contentType: 'application/json',
-            data: JSON.stringify(cartItemIds),
-            success: function (response) {
-                console.log('삭제 성공:', response);
-                // 삭제가 완료된 후에 콜백 함수 실행
-                if (callback && typeof callback === 'function') {
-                    callback();
-                }
-            },
-            error: function (error) {
-                console.error('삭제 실패:', error);
-            }
-        });
-    } else {
-        alert('삭제할 상품을 선택해주세요.');
-    }
+	if (cartItemIds.length > 0) {
+		$.ajax({
+			url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/deleteByCartItems',
+			type: 'DELETE',
+			contentType: 'application/json',
+			data: JSON.stringify(cartItemIds),
+			success: function(response) {
+				console.log('삭제 성공:', response);
+				// 삭제가 완료된 후에 콜백 함수 실행
+				if (callback && typeof callback === 'function') {
+					callback();
+				}
+			},
+			error: function(error) {
+				console.error('삭제 실패:', error);
+			}
+		});
+	} else {
+		alert('삭제할 상품을 선택해주세요.');
+	}
 }
 
 // 삭제 버튼 클릭 이벤트에 함수 연결
-$('.delete-all-btn').click(function () {
-    deleteSelectedCartItems(function () {
-        // 삭제가 완료된 후에 페이지를 다시 로드
-        location.reload();
-    });
+$('.delete-all-btn').click(function() {
+	deleteSelectedCartItems(function() {
+		// 삭제가 완료된 후에 페이지를 다시 로드
+		location.reload();
+	});
 });
 
