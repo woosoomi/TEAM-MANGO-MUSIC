@@ -183,8 +183,11 @@
 
 			}
 			if (!isAdminUser()) {
-				//회원 목록 폼을 숨김
-				hideUserListForm();
+				hideUserListForm(); // 회원 목록 폼을 숨김
+				
+				hideOrderListForm();// 주문 목록 폼을 숨김
+				
+				hideInquiryListForm();// 문의 목록 폼을 숨김
 			}
 		};
 
@@ -233,11 +236,27 @@
 			}
 		}
 		
+		// 주문 목록 폼을 숨기는 함수
+		function hideOrderListForm() {
+			var OrderListForm = document.getElementById("OrderListForm");
+			if (OrderListForm) {
+				OrderListForm.style.display = 'none';
+			}
+		}
+		
 		// 문의 목록 폼을 보이게 하는 함수
 		function showInquiryListForm() {
 			var InquiryListForm = document.getElementById("InquiryListForm");
 			if (InquiryListForm) {
 				InquiryListForm.style.display = 'block';
+			}
+		}
+		
+		// 문의 목록 폼을 숨기는 함수
+		function hideInquiryListForm() {
+			var InquiryListForm = document.getElementById("InquiryListForm");
+			if (InquiryListForm) {
+				InquiryListForm.style.display = 'none';
 			}
 		}
 
