@@ -109,18 +109,15 @@
 
 
 			
-					<div style="margin-bottom: 30px;">
-					<!-- <div id="reviews" class="tab review" style="margin-bottom: 30px;"> -->
-						<!-- <div class="row" style="margin-left: auto; margin-right: auto;">
-							<div class="rv-hd" style="margin-top: 50px; margin-bottom: 30px; border-top: 1px solid #233a50;">
-									 -->
-									<div class="comments" style="margin-top: 90px; margin-bottom: 50px;">
+					<div class="movie-rate" style="margin-top: 90px; margin-bottom: 50px;">
+					
+									<div class="comments" style="margin-bottom: 50px;">
 										<h4 th:text="| 총 ${replyList.size()} 개의 댓글|" style="color: white; border-top: 1px solid #233a50;" >
 											Comments</h4>
 										
 										<div style="margin-top: 30px;">
 											<div class="cmt-item flex-it" th:each="replyList : ${replyList}" 
-											style="background: #233a50;margin-top: 10px;border: 15px solid #233a50; border-radius: 10px;">
+											style="background: #233a50; margin-top: 10px;border: 15px solid #233a50; border-radius: 10px;">
 												<img src="images/uploads/author.png" alt="">
 												<div class="author-infor">
 													<div class="flex-it2">
@@ -136,27 +133,12 @@
 											</div>
 										</div>
 									</div>
-							<!-- <h4 th:text="${ReplyList.size()} + ' 개의 댓글'">04 Comments</h4>
-							<div th:each="ReplyList : ${ReplyList}">
-								<div class="cmt-item flex-it">
-									<img src="images/uploads/author.png" alt="">
-									<div class="author-infor">
-										<div class="flex-it2">
-											Name으로 체인지 가능-userinfo
-											<h6 th:text="'작성자 : '+${board.getUser().getUserName()}"
-												style="color: white; font-size: 20px;"><a href="#">Steve Perry</a></h6>
-											<span class="time"
-												th:text="${#temporals.format(ReplyList.createDateTime, 'yyyy-MM-dd HH:mm')}">
-												27 Mar 2017</span>
-										</div>
-										<p th:text="${ReplyList.BoardReplyContent}"></p>
-									</div>
-								</div>
-							</div> -->
 							
-							<div class="comment-form" style="color: white; margin-bottom: 30px;">
 							
-							<h4 style="margin-bottom: 30px; border-top: 3px solid #233a50;">댓글쓰기</h4>
+							<div class="comment-form" style="color: white;
+													 margin-top:30px; margin-bottom: 30px; background-color: #233a50; border: 15px solid #233a50; border-radius: 5px">
+							
+							<h4 style="margin-bottom: 30px; border:10px solid #233a50; background-color: #233a50;">댓글쓰기</h4>
 							<form action="">
 								<div class="row">
 									<div class="col-md-4">
@@ -166,11 +148,14 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<textarea name="message" id="comment_content" placeholder="댓글을 입력하세요"></textarea>
+										<textarea name="message" id="comment_content" 
+											placeholder="댓글을 입력하세요"
+											style="margin-top: 5px; margin-bottom: 5px; height: 100px;"></textarea>
 									</div>
 								</div>
 								<input class="submit" type="button" value="댓글달기"
-									onclick="create_reply()">
+									onclick="create_reply()"
+									style="background-color : white; color: #5c5c5c; ">
 							</form>
 						</div>
 						
