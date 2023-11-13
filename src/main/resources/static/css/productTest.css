@@ -17,3 +17,9 @@ a#topBtn {
 	z-index: 9999;
 	/* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */
 }
+
+.replyTemp {
+	margin-top: 90px;
+	margin-bottom: 50px;
+	
+}

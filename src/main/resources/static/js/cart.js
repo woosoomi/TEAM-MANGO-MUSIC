@@ -90,7 +90,7 @@ function calculateTotalPrice() {
 
 					// 다음 체크박스 처리
 					processCheckbox(index + 1);
-					
+					calculateTotalPriceOnServer(cartId);
 				},
 				error: function(error) {
 					console.error('Error:', error);
@@ -132,9 +132,6 @@ function changeQuantity(amount, element) {
 				updateTotalPrice(cartItemId);
 				// 전체 주문금액 재계산
 				calculateTotalPrice();
-				calculateTotalPriceOnServer(cartId);
-				
-				
 			},
 			error: function() {
 				console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
@@ -194,66 +191,71 @@ function formatNumberWithCommas(number) {
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-/*function goBuy(){
-	const checkedCnt = document.querySelectorAll('.checkbox:checked').length;
-	if(checkedCnt == 0){
-		alert("선택한 상품이 없습니다.");
-		return;
-	}
-	
-	let cartTotPrice = 0;
-	let cartItemQty = 0;
-	for(const check of checkedBoxes){
-		const price = document.getElementById('productPrice').innerHTML;
-		cartTotPrice = cartTotPrice + parseInt(price);
-			
-		const buyCnt = document.getElementById('cartItemQty').innerHTML;
-		cartItemQty = cartItemQty + buyCnt;
-		 
-	}
-	
-}*/
-/*$('#goOrderBtn').click(function() {
-	var userIdElement = document.getElementById("user_id");
-	var userId = userIdElement.value;
-    const checkedItems = document.querySelectorAll('.checkbox:checked');
-    const cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
-
-    if (cartItemIds.length > 0) {
-        $.ajax({
-            url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ userId: userId, cartItemIds: cartItemIds }),
-            success: function(response) {
-                console.log('주문 성공:', response);
-                alert("결제창으로 이동합니다.");
-                // 주문 완료 후 필요한 동작 수행
-                location.reload();
-            },
-            error: function(error) {
-                console.error('주문 실패:', error);
-            }
-        });
-    } else {
-        alert('주문할 상품을 선택해주세요.');
-    }
-});*/
 
 function calculateTotalPriceOnServer(cartId) {
 	var cartIdElement = document.getElementById('cartId');
 	var cartId = cartIdElement.value;
-  $.ajax({
-    url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
-    type: 'GET',
-    dataType: 'json',
-    success: function (data) {
-      // 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
-      console.log('총 주문금액:', data);
-      // 여기서 화면 업데이트 또는 필요한 작업 수행
-    },
-    error: function (error) {
-      console.error('에러 발생:', error);
-    }
-  });
+	$.ajax({
+		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
+		type: 'GET',
+		dataType: 'json',
+		success: function(data) {
+			// 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
+			console.log('총 주문금액:', data);
+			// 여기서 화면 업데이트 또는 필요한 작업 수행
+		},
+		error: function(error) {
+			console.error('에러 발생:', error);
+		}
+	});
 }
+
+function sendPostRequest() {
+
+	/* 결제하기 버튼을 클릭했을 때 실행되는 결제 함수(현대적인 방법의 ajax = 순수 자바스크립트로만 쓰임, 제이쿼리 X) */
+	/*
+	// 카트 총가격 가져오기
+	var cartTotPriceElement = document.getElementById('cartTotPrice');
+	var cartTotPriceValue = cartTotPriceElement.textContent;
+	var totalPrice = parseFloat(cartTotPriceValue);
+	*/
+	// userId 가져오기
+	var userIdElement = document.getElementById("sUserId");
+	var userId = userIdElement.value;
+
+	// AJAX 요청을 보낼 URL 및 데이터 설정
+	// 결제 처리를 수행하는 서버 엔드포인트 URL (OrderController의 saveCartOrder 메소드 주소)
+	var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder';
+
+
+	var requestData = {
+
+		userId: userId
+
+	};
+	console.log(requestData);
+
+	// AJAX 요청 보내기
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', url, true);
+	xhr.setRequestHeader('Content-Type', 'application/json');
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 405) {
+				// 결제가 성공적으로 완료될 경우 실행할 코드
+				var response = JSON.parse(xhr.responseText);
+				alert('주문이 성공적으로 완료되었습니다.');
+				alert('무통장입금 신한은행 110-354-123456\n1시간 내 미입금시 주문이 취소됩니다.');
+				//주문내역으로 redirect
+				window.location.replace('order_history');
+
+			} else {
+				// 결제가 실패한 경우 실행할 코드
+				alert('주문에 실패하였습니다.');
+
+			}
+		}
+	}
+	xhr.send(JSON.stringify(requestData)); // 요청 데이터를 JSON 문자열로 변환하여 보냅니다.
+};
