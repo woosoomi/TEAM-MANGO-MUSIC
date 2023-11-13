@@ -94,7 +94,7 @@
 					<!--</div>-->
 					<!--티켓 좋아요[시작]-->
 					<div class="movie-rate">
-						<div class="rate"><i class="ion-android-star"></i>
+						<div class="rate" style="margin-bottom: 30px;">
 							<p>추천 개수 : <span th:text="${findTicket.productStar}">8.1</span>명이 추천해주셨습니다.<br>
 							<span class="rv" th:text="${ReplyList.size()} + ' 개의 댓글이 있습니다.'"></span></p>							
 						</div>
@@ -132,55 +132,57 @@
 
 								<!--댓글보기 전체[시작]-->
 								<div id="reviews" class="tab review" style="margin-bottom: 10px;">
-									<h3>공연제목 : <span th:text="${findTicket.productName}"></span></h3>
-									<h4>아티스트 : <span th:text="${findTicket.productArtist}"></span></h3>
+									<!--<h3>공연제목 : <span th:text="${findTicket.productName}"></span></h3>
+									<h4>아티스트 : <span th:text="${findTicket.productArtist}"></span></h3>-->
+									
 									<!--댓글보기 내용[시작]-->
-									<div class="row">
+									<div class="tab active" style="margin-top: 40px; margin-bottom: 50px;">
+										
+										<div style="margin-bottom:10px;"></div>
 										<!--정렬탭[시작]-->
-										<div class="topbar-filter">
-											<p>총 <span th:text="${ReplyList.size()} + ' 개의 댓글'"
-													style="color: white; border-bottom: 1px solid #233a50;"></span>
-											</p>
-											<select>
-												<option value="popularity">최신순</option>
-												<option value="popularity">오래된순</option>
-											</select>
-										</div>
-										<!--정렬탭[마지막]-->
-
-										<!--댓글란[시작]-->
-
-										<!--댓글작성하기 폼	[마지막]-->
-										<!--리스트로 나열할 것들[시작]-->
-										<div class="user-infor">
-											<!--<img src="images/uploads/userava1.jpg" alt="">-->
-											<div class="comments" style="margin-top: 10px; margin-bottom: 20px;">
-													<div class="cmt-item flex-it" th:each="ReplyList : ${ReplyList}"
-													style="background: #233a50;margin-top: 10px;border: 10px solid #233a50; border-radius: 10px;">
-														<img src="images/uploads/author.png" alt="">
-														<!--댓글작성자 정보 및 댓글내용[시작]-->
-														<div class="author-infor">
-															<div class="flex-it2">
-																<!--<p>댓글작성자</p>-->
-																<h6 th:text="${ReplyList.getUser.getUserId}" style="color: white; font-size: 20px;">
-																</h6>
-																<!--<p>댓글작성날자</p>-->
-																 <span class="time" th:text="${#temporals.format(ReplyList.CreDateTime,'yyyy-MM-dd HH:mm')}"></span>
-																 </div>
-																	<!--<p>댓글내용</p>-->
-																	<p th:text="${ReplyList.ProductReplyContent}"
-																		style="color: white;"> content </p>
-														
+										<div class="comments" style="margin-bottom: 50px;">
+											<h4 th:text="| 총 ${ReplyList.size()} 개의 댓글|" style="color: white;">
+												Comments</h4>
+										
+																				<!--<div class="topbar-filter">
+																					<p>총 <span th:text="${ReplyList.size()} + ' 개의 댓글'"
+																							style="color: white; border-bottom: 1px solid #233a50;"></span>
+																					</p>
+																					<select>
+																						<option value="popularity">최신순</option>
+																						<option value="popularity">오래된순</option>
+																					</select>
+																				</div>-->
+										
+											<!--정렬탭[마지막]-->
+										
+											<div style="margin-top: 30px;">
+												<div class="cmt-item flex-it" th:each="ReplyList : ${ReplyList}"
+													style="background: #233a50; margin-top: 10px;border: 15px solid #233a50; border-radius: 10px;">
+													<img src="images/icons8-account-48.png" alt="">
+													<div class="author-infor">
+														<div class="flex-it2">
+															<!--Name으로 체인지 가능-userinfo-->
+															<h6 th:text="${ReplyList.getUser.getUserId}" style="color: white; font-size: 20px;">
+																Name
+															</h6>
+															<span class="time" th:text="${#temporals.format(ReplyList.CreDateTime,'yyyy-MM-dd HH:mm')}"> 27 Mar
+																2017</span>
 														</div>
-														<!--댓글작성자 정보 및 댓글내용[마지막]-->														
+														<p th:text="${ReplyList.ProductReplyContent}" style="color: white;"> content </p>
+													</div>
+										
 												</div>
 											</div>
 										</div>
-										<!--리스트로 나열할 것들 [마지막]-->
+								
+										<!--리스트 나열 [마지막]-->
 
 										<!--댓글작성하기 폼	[시작]-->
-										<div class="comment-form" style="color: white; margin-bottom: 30px;">
-											<h4 style="margin-bottom: 30px; border-top: 3px solid #233a50;">댓글쓰기</h4>
+										<div class="comment-form" style="color: white; 
+												margin-top:30px; margin-bottom: 30px; background-color: #233a50; border: 15px solid #233a50; border-radius: 5px">
+											<h4 style="margin-top:15px; margin-bottom: 15px; background-color: #233a50;">댓글쓰기</h4>
+											<div style="margin-bottom:20px; border-bottom:10px double #8ab1b5;"></div>
 											<form action="">
 												<div class="row">
 													<div class="col-md-4">
@@ -192,11 +194,13 @@
 												<div class="row">
 													<div class="col-md-12">
 														<textarea name="message" id="comment_content"
-															placeholder="댓글작성란" style="font-size: 15px;"></textarea>
+															placeholder="댓글을 입력하세요"
+															style="margin-top: 5px; margin-bottom: 5px; height: 100px;"></textarea>
 													</div>
 												</div>
 												<input class="submit" type="button" value="댓글달기"
-													onclick="create_reply()">
+													onclick="create_reply()"
+													style="background-color : white; color: #5c5c5c;">
 											</form>
 										</div>
 
@@ -230,7 +234,7 @@
 													</div>-->
 										<!--댓글 수정 및 삭제 폼[마지막]-->
 
-
+										
 										<!--댓글란[마지막]-->
 									</div>
 									<!--댓글보기 내용[마지막]-->
