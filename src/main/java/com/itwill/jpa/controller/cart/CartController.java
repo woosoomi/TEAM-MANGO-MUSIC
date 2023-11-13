@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
@@ -31,7 +32,7 @@ public class CartController {
 	UserService userService;
 
 	@GetMapping("/cart_main")
-	public String cart(Model model, HttpSession session) {
+	public String cart(@RequestParam(name = "productNo")Long productNo, Model model, HttpSession session) {
 	    try {
 	    	
 			String loginUser = (String) session.getAttribute("sUserId");

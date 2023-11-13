@@ -91,7 +91,7 @@ VALUES (product_product_no_seq.nextval, 3, '티켓 제품 3', 300, 'ticket', '�
 
 -- "멤버십" 카테고리 제품 1
 INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, period_of_use, product_image, start_period, product_Qty)
-VALUES (product_product_no_seq.nextval, 4, '멤버십 제품1', 300, 'membership', '멤버십 제품 설명 1', 0, TO_DATE('2023-10-31', 'YYYY-MM-DD'), 130, 10, 30, 'tmembership.png', SYSDATE, 0);
+VALUES (product_product_no_seq.nextval, 4, '망고 30일 이용권', 300, 'membership', '듣고 싶은 음악들을 망고에서 30일간 들을 수 있어요!', 0, TO_DATE('2023-10-31', 'YYYY-MM-DD'), 130, 10, 30, 'https://ifh.cc/g/mlHsSJ.png', SYSDATE, 0);
 
 
 
