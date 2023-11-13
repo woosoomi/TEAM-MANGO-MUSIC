@@ -46,6 +46,11 @@ VALUES (product_product_no_seq.nextval, 3, '티켓 제품 2', 250, 'ticket', '�
 INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Address, period_of_use)
 VALUES (product_product_no_seq.nextval, 3, '티켓 제품 3', 300, 'ticket', '티켓 제품 설명 3', 9, TO_DATE('2023-10-31', 'YYYY-MM-DD'), 130, 10, '콘서트 장소 3', 30);
 
+INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Address, period_of_use)
+VALUES (product_product_no_seq.nextval, 3, '2023 로이킴 콘서트 〈Roy Note〉', 300, 'ticket', 'https://ticketimage.interpark.com/Play/image/etc/23/23014851-05.jpg', 9, TO_DATE('2023-12-01', 'YYYY-MM-DD'), 130, 10, '올림픽공원 올림픽홀', 30);
+
+
+
 -- "멤버십" 카테고리 제품 1
 INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, period_of_use, product_image, start_period)
 VALUES (product_product_no_seq.nextval, 4, '멤버십 제품1', 300, 'membership', '멤버십 제품 설명 1', 0, TO_DATE('2023-10-31', 'YYYY-MM-DD'), 130, 10, 30, 'tmembership.png', SYSDATE);

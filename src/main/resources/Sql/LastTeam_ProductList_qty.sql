@@ -96,10 +96,6 @@ INSERT INTO product (product_No, product_category_id, product_Name, product_Pric
 VALUES (product_product_no_seq.nextval, 1, '사막에서 꽃을 피우듯', 100, 'music', '우디(Woody)의 음악을 통해 느껴지는 순수한 열정은 감정을 전달하기에 부족함이 없다 ', 0 , TO_DATE('2023-07-14', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/112/85/867/11285867_20230713162404_500.jpg?99a13fafd660587d711b4a977ecf3c5e/melon/resize/282/quality/80/optimize', 'https://www.youtube.com/watch?v=j4qaT26K80A&pp=ygUd7IKs66eJ7JeQ7IScIOq9g-ydhCDtlLzsmrDrk68%3D', '우디 (Woody)', 30,0);
 
 INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use, product_qty)
-VALUES (product_product_no_seq.nextval, 1, 'Either Way', 100, 'music', '자신을 표현하는데 있어 흔들림이 없다. 아이브의 그래프는 점점 선명하게 그려지고 있다.', 0 , TO_DATE('2023-10-13', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/113/33/459/11333459_20231013103537_500.jpg?faf3d08c19b6937258fd17162051dbc8/melon/resize/282/quality/80/optimize', 'https://i.ytimg.com/vi/_Hu4GYtye5U/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtJuTxWC_ZPnbbINAG5OGFnni70g', 'IVE (아이브)', 30,0);
-
-
-INSERT INTO product (product_No, product_category_id, product_Name, product_Price, dtype, product_Content, product_Star, product_Date, read_Count, product_Stock, product_Image, product_Movie, product_Artist, period_of_use, product_qty)
 VALUES (product_product_no_seq.nextval, 1, 'Seven', 100, 'music', '1. Seven (feat. Latto) – David Guetta Remix', 0 , TO_DATE('2023-10-30', 'YYYY-MM-DD'), 100, 50, 'https://cdnimg.melon.co.kr/cm2/album/images/112/86/070/11286070_20230713181059_1000.jpg?0b3a98d363e31435d805d60e3041a54b/melon/quality/80/optimize', 'https://www.youtube.com/watch?v=QU9c0053UAU&pp=ygUqICBTZXZlbiAoZmVhdC4gTGF0dG8pIC0gRGF2aWQgR3VldHRhIFJlbWl4', '정국', 30,0);
 
 
