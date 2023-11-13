@@ -80,6 +80,7 @@ public class UserController {
 		
 		return "user_inq_info_form";
 	}
+
 	
 	//관리자 페이지 주문내역 매핑
 	@LoginCheck
