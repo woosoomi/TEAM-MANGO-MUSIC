@@ -28,7 +28,8 @@
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter"></div>				
 					<div class="movie-item-style-2">
-						<img th:src="@{'images/' + ${membershipImage}}" alt="">
+						<!--<img th:src="@{'images/' + ${membershipImage}}" alt="">-->
+						<img th:src="${membershipImage}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="membership_detail" th:text="${membershipName}">멤버십명<span>(2023)</span></a></h6>
 							<p class="describe" th:text="${membershipContent}">
