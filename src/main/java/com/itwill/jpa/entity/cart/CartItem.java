@@ -1,15 +1,10 @@
 package com.itwill.jpa.entity.cart;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.entity.product.Product;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +36,8 @@ public class CartItem {
 	 */
 
 	public static CartItem toEntity(CartItemDto dto) {
-		return CartItem.builder().cartItemId(dto.getCartItemId()).cartItemQty(dto.getCartItemQty()).build();
+		return CartItem.builder().cartItemId(dto.getCartItemId())
+								 .cartItemQty(dto.getCartItemQty()).build();
 	}
 
 	public static CartItem toEntity(CartItemDto dto, Product product) {
@@ -52,9 +48,10 @@ public class CartItem {
 	}
 
 	// cartitem -cart설정
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cart_no")
 	private Cart cart;
+
 
 	// cartitem -product설정
 	@ManyToOne
