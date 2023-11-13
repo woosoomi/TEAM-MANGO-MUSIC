@@ -163,9 +163,10 @@
 													<div class="author-infor">
 														<div class="flex-it2">
 															<!--Name으로 체인지 가능-userinfo-->
-															<h6 th:text="${ReplyList.getUser.getUserId}" style="color: white; font-size: 20px;">
+															<h6 th:text="${ReplyList.getUser.getUserName}" style="color: white; font-size: 20px;">
 																Name
 															</h6>
+															<span class="time" th:text="|[${ReplyList.getUser.getUserId}]|"> userId </span>
 															<span class="time" th:text="${#temporals.format(ReplyList.CreDateTime,'yyyy-MM-dd HH:mm')}"> 27 Mar
 																2017</span>
 														</div>

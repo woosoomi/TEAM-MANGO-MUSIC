@@ -44,7 +44,7 @@
 									<span class="time" th:text="${notification.createdTime}">2023.10.19</span>
 									</br>
 									</br>
-									<pre th:utext="${#strings.length(notification.boardContent) &gt; 10 ? notification.boardContent.substring(0, 10) + '...' : notification.boardContent}"
+									<pre th:utext="${#strings.length(notification.boardContent) &gt; 15 ? notification.boardContent.substring(0, 15) + '...' : notification.boardContent}"
 										style="color: white;"></pre>
 
 

@@ -78,7 +78,7 @@
 					<td style="width: 5%;">성별</td>
 					<td style="width: 8%;">멤버쉽</td>
 				</tr>
-				
+
 				<tr th:each="user : ${users}">
 					<td><input type="checkbox" /></td>
 					<td th:text="${user.userId}">아이디</td>
@@ -104,11 +104,6 @@
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
 
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/admin.js"></script>
 	<script>
 		function updateTable(data) {
 			// 이 부분에서 테이블을 갱신하는 로직을 추가하세요.
@@ -155,6 +150,12 @@
 			});
 		});
 	</script>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/plugins2.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/admin.js"></script>
 
 
 </body>
