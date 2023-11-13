@@ -35,22 +35,22 @@ class CartItemServiceImplTest extends TeamProjectMangoApplicationTest {
 	@Autowired
 	CartItemRepository cartItemRepository;
 	
-	@Test
-	@Transactional
-	@Rollback(false)
-	@Disabled
-	void cartItemInsert() throws Exception{
-		Optional<Cart> cart = cartRepository.findById(1L);
-		System.out.println("cart>>>>>>>>>>>"+cart);
-	    CartItemDto cartItemDto1 = new CartItemDto();
-	    cartItemDto1.setCartItemQty(10);
-	    Product product1 = new Product();
-	    product1.setProductNo(5L);
-	    cartItemDto1.setProductId(5L);
-	    cartItemDto1.setCartId(cart.get().getCartId());
-	    cartItemServiceImpl.insert(cartItemDto1);
-	    System.out.println("cartItemDto1>>>>>>>>>>>>>>>>"+cartItemDto1);
-	}
+//	@Test
+//	@Transactional
+//	@Rollback(false)
+//	@Disabled
+//	void cartItemInsert() throws Exception{
+//		Optional<Cart> cart = cartRepository.findById(1L);
+//		System.out.println("cart>>>>>>>>>>>"+cart);
+//	    CartItemDto cartItemDto1 = new CartItemDto();
+//	    cartItemDto1.setCartItemQty(10);
+//	    Product product1 = new Product();
+//	    product1.setProductNo(5L);
+//	    cartItemDto1.setProductId(5L);
+//	    cartItemDto1.setCartId(cart.get().getCartId());
+//	    cartItemServiceImpl.insert(cartItemDto1);
+//	    System.out.println("cartItemDto1>>>>>>>>>>>>>>>>"+cartItemDto1);
+//	}
 	@Test
 	@Disabled
 	@Transactional

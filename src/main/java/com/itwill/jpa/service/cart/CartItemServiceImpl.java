@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.jpa.dao.cart.CartDao;
 import com.itwill.jpa.dao.product.ProductDao;
-import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.dto.product.ProductDto;
-import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.cart.CartItemRepository;
@@ -31,26 +29,15 @@ public class CartItemServiceImpl implements CartItemService {
 	ProductRepository productRepository;
 	@Autowired
 	CartRepository cartRepository;
+	
 	@Autowired
 	ProductDao productDao;
 	@Autowired
 	CartDao cartDao;
 
 	@Override
-	public CartItemDto insert(CartItemDto dto) throws Exception {
-		Product product = productDao.selectProduct(dto.getProductId());
-		Cart cart = cartDao.findByCartId(dto.getCartId());
-		List<CartItem> existingItems = cartItemRepository.findByProduct(product);
-		if (!existingItems.isEmpty()) {
-			throw new Exception("이미 해당 상품이 장바구니에 있습니다.");
-		}
-		CartItem cartItem = new CartItem();
-		cartItem.setCartItemQty(dto.getCartItemQty());
-		cartItem.setProduct(product);
-		cartItem.setCart(cart);
-		cartItem = cartItemRepository.save(cartItem);
-		return CartItemDto.toDto(cartItem);
-
+	public CartItem insert(CartItem cartItem) {
+		return cartItemRepository.save(cartItem);
 	}
 
 	@Override

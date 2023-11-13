@@ -3,16 +3,18 @@ package com.itwill.jpa.service.cart;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.cart.CartItem;
+import com.itwill.jpa.repository.cart.CartRepository;
 
 public interface CartItemService {
 	
-
-	//상품 추가
-	public CartItemDto insert(CartItemDto dto) throws Exception;
 	
+	//상품 추가
+	CartItem insert(CartItem cartItem);
 	//수량 수정
 	public CartItemDto update(Long cartItemId, int qty) throws Exception;
 	
@@ -29,6 +31,8 @@ public interface CartItemService {
 	
 	
 	public Optional<ProductDto> getProductByProductId(Long productId) throws Exception;
+
+	
 		
 	
 }
