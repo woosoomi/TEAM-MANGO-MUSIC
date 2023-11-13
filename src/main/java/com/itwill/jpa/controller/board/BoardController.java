@@ -116,6 +116,7 @@ public class BoardController {
 			session.setAttribute("loginUser", user);
 			String userIdString = (user != null) ? user.getUserId() : null;
 			model.addAttribute("userIdString", userIdString);
+			
 			List<Board> magazines = boardServiceImpl.findBycategory(3L);
 			model.addAttribute("magazines", magazines);
 			System.out.println("magazine 리스트 : " + magazines);

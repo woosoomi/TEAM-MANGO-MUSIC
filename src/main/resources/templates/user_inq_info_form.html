@@ -56,35 +56,39 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
 						<div class="content" style="color: white; padding: 20px;">
-			<h1 style="margin-left: 250px; margin-bottom: 100px; margin-top: 20px;">회원 문의 목록</h1>
-			<table>
-				<tr style="font-size: 15px; color: lightpink; ">
-					<td style="width: 15%;">아이디</td>
-					<td style="width:15%;">이름</td>
-					<td style="width:15%;">날짜</td>
-					<td style="width:15%;">답변여부</td>
-					<td style="width:30%;">답변제목</td>
-				</tr>
+							<h1 style="margin-left: 250px; margin-bottom: 100px; margin-top: 20px;">회원 문의 목록</h1>
+							<table>
+								<tr style="font-size: 15px; color: lightpink; ">
+									<td style="width:15%;">아이디</td>
+									<td style="width:15%;">이름</td>
+									<td style="width:20%;">날짜</td>
+									<td style="width:15%;">답변여부</td>
+									<td style="width:30%;">답변제목</td>
+								</tr>
 
-				<tr th:each="inquiries : ${inquiries}">
-					<td th:text="${inquiries.getUser.getUserId}">아이디</td>
-					<td th:text="${inquiries.getUser.getUserName}" >이름</td>
-					<td th:text="${inquiries.createdTime}">작성일</td>
-					<td th:text="${inquiries.boardType.boardTypeTitle}">답변여부</td>
-					<td th:text="${inquiries.BoardTitle}">타이틀</td>
-				</tr>
-			</table>
+								<tr th:each="inquiries : ${inquiries}">
+									<td th:text="${inquiries.getUser.getUserId}">아이디</td>
+									<td th:text="${inquiries.getUser.getUserName}">이름</td>
+									<td th:text="${#temporals.format(inquiries.createdTime, 'yyyy.MM.dd HH:mm')}">작성일
+									</td>
+									<td th:text="${inquiries.boardType.boardTypeTitle}">답변여부</td>
+									<td>
+										<a th:href="@{/board_other_detail1(boardId=${inquiries.boardId})}"
+											th:text="${inquiries.BoardTitle}" style="color: white;">타이틀</a>
+									</td>
+								</tr>
+							</table>
 
-		</div>
-		<!-- 유저 테이블 종료 -->
+						</div>
+						<!-- 유저 테이블 종료 -->
 
 
-	</div>
-						
 					</div>
+
 				</div>
 			</div>
 		</div>
+	</div>
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
@@ -152,9 +156,9 @@
 				hideOrderForm(); // 나의 주문내역 폼을 숨김
 
 				showUserListForm(); // 회원 목록 폼을 보임
-				
+
 				showOrderListForm(); // 주문 목록 폼을 보임
-				
+
 				showInquiryListForm(); //문의 목록 폼을 보임
 
 			}
@@ -200,7 +204,7 @@
 				UserListForm.style.display = 'none';
 			}
 		}
-		
+
 		// 주문 목록 폼을 보이게 하는 함수
 		function showOrderListForm() {
 			var OrderListForm = document.getElementById("OrderListForm");
@@ -208,7 +212,7 @@
 				OrderListForm.style.display = 'block';
 			}
 		}
-		
+
 		// 문의 목록 폼을 보이게 하는 함수
 		function showInquiryListForm() {
 			var InquiryListForm = document.getElementById("InquiryListForm");

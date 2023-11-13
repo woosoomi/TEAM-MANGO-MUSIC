@@ -42,23 +42,13 @@
 											th:text="${faq.boardTitle}">MMA2023 개최 안내</a>
 									</h3>
 									<span class="time" th:text="${faq.boardType.boardTypeTitle}">2023.10.19</span></br>
-									<span class="time" th:text="${faq.createdTime}">2023.10.19</span>
+									<span class="time"
+										th:text="${#temporals.format(faq.createdTime, 'yyyy.MM.dd')}">2023.10.19</span>
+									
 								</div>
 							</div>
 						</div>
 					</div>
-
-
-					<ul class="pagination">
-						<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-
-						<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-					</ul>
 				</div>
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="sidebar">
