@@ -45,8 +45,8 @@
 								<li class="active"><a href="user_userList_form" id="UserListForm">회원 목록</a></li>
 								<li><a href="admin" id="OrderListForm">주문 목록</a></li>
 								<li><a href="user_inq_info_form" id="InquiryListForm">문의 목록</a></li>
-								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal"
-										id="userDelete">회원탈퇴</a></li>
+								<!--<li><a href="#" data-toggle="modal" data-target="#withdrawalModal"
+										id="userDelete">회원탈퇴</a></li>-->
 							</ul>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 
 				<!-- 유저 테이블 시작 -->
 				<div class="content" style="color: white; padding: 20px; display: grid;">
-					<h1 style="margin-left: 600px; margin-bottom: 100px; margin-top: 20px; width: 200px;">회원 목록</h1>
+					<h1 style="margin-left: 400px; margin-bottom: 100px; margin-top: 20px; width: 200px;">회원 목록</h1>
 					<button id="loadUserListButton" style="color: black; width: 20%;">회원리스트 불러오기</button>
 					<table style="width: 130%;">
 						<tr style="font-size: 18px; color:  #FFBB00;">
@@ -173,10 +173,6 @@
 
 				showInquiryListForm(); //문의 목록 폼을 보임
 
-			}
-			if (!isAdminUser()) {
-				//회원 목록 폼을 숨김
-				hideUserListForm();
 			}
 		};
 

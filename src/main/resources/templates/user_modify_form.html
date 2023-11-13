@@ -116,6 +116,16 @@
 			
 			console.log(userId);
 			
+		    if (!isValidUserPhone(userData.userPhone)) {
+		        alert('전화번호 형식이 올바르지 않습니다.(ex 010-1234-5678)');
+		        return;
+		    }
+			if (!isValidUserEmail(userData.userEmail)) {
+		        alert('이메일 형식이 올바르지 않습니다.(ex user@example.com)');
+		        return;
+		    }
+		    
+			
 			// 서버로 데이터 전송
 			fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/update/${userData.userId}`, {
 				method: 'PUT',
@@ -141,6 +151,18 @@
 					console.error('에러:', error);
 				});
 		}
+		
+		// 전화번호 유효성 검사 함수
+	    function isValidUserPhone(userPhone) {
+	        var regex = /^010-\d{4}-\d{4}$/;
+	        return regex.test(userPhone);
+	    }
+	    
+	    // 이메일 유효성 검사 함수
+	    function isValidUserEmail(userEmail) {
+	        var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	        return regex.test(userEmail);
+	    }
 		
 	</script>
 
@@ -175,6 +197,12 @@
             orderForm.style.display = 'none';
         }
     }
+    
+    
+    
+ 
+    
+    
 </script>
 
 
