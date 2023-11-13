@@ -86,6 +86,23 @@ function calculateTotalPrice() {
 }
 
 
+function calculateTotalPriceOnServer(cartId) {
+	var cartIdElement = document.getElementById('cartId');
+	var cartId = cartIdElement.value;
+	$.ajax({
+		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
+		type: 'GET',
+		dataType: 'json',
+		success: function(data) {
+			// 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
+			console.log('총 주문금액:', data);
+			// 여기서 화면 업데이트 또는 필요한 작업 수행
+		},
+		error: function(error) {
+			console.error('에러 발생:', error);
+		}
+	});
+}
 
 // 상품 수량 변경, 수량변경으로 인한 함수 호출로 총 주문금액, 개별 상품 금액 업데이트
 function changeQuantity(amount, element) {
@@ -169,23 +186,6 @@ function formatNumberWithCommas(number) {
 }
 
 
-function calculateTotalPriceOnServer(cartId) {
-	var cartIdElement = document.getElementById('cartId');
-	var cartId = cartIdElement.value;
-	$.ajax({
-		url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
-		type: 'GET',
-		dataType: 'json',
-		success: function(data) {
-			// 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
-			console.log('총 주문금액:', data);
-			// 여기서 화면 업데이트 또는 필요한 작업 수행
-		},
-		error: function(error) {
-			console.error('에러 발생:', error);
-		}
-	});
-}
 
 function sendPostRequest() {
     var userIdElement = document.getElementById("sUserId");
