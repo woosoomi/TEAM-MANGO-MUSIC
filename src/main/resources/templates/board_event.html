@@ -45,14 +45,14 @@
 
 
 						<div class="flex-wrap-movielist user-fav-list">
-							<div th:each="event, stat : ${events}" >
+							<div th:each="event, stat : ${events}">
 
 								<div class="movie-item-style-2">
-									<img th:src="${'images/uploads/mv1.jpg'}" alt="">
+									<img th:src="${event.boardImage}" alt="">
 									<div class="mv-item-infor">
 										<h6>
 											<a th:href="@{/board_detail(boardId=${event.boardId})}"
-												th:text="${event.boardTitle + ' (' + event.createdTime + ')'}"></a>
+												th:text="${event.boardTitle}"></a>
 										</h6>
 										<p class="describe"></p>
 										<p class="run-time" th:text="${event.boardType.boardTypeTitle}">Run Time: 2h21’
@@ -64,23 +64,14 @@
 							</div>
 						</div>
 					</div>
-
-					<ul class="pagination">
-						<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-					</ul>
 				</div>
 
 
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="sidebar">
 						<div class="sb-search sb-it">
-							<h4 class="sb-title">Search Title</h4><input type="text" id="searchInput" placeholder="Enter keywords">
+							<h4 class="sb-title">Search Title</h4><input type="text" id="searchInput"
+								placeholder="Enter keywords">
 						</div>
 
 						<!--userId가 admin일때 보이기 -->
@@ -95,9 +86,9 @@
 								</div>
 							</form>
 						</div>
-						
-						
-						
+
+
+
 					</div>
 				</div>
 			</div>
@@ -110,35 +101,35 @@
 </body>
 
 <script>
-	
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    var titleElements = document.querySelectorAll('.movie-item-style-2 h6 a');
-    var eventContainer = document.getElementById('eventContainer');
 
-    searchInput.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            const searchValue = searchInput.value;
+	document.addEventListener('DOMContentLoaded', function () {
+		const searchInput = document.getElementById('searchInput');
+		var titleElements = document.querySelectorAll('.movie-item-style-2 h6 a');
+		var eventContainer = document.getElementById('eventContainer');
 
-            filterItems(searchValue);
-            searchInput.value = ''; // 검색어 필드 비우기
-        }
-    });
+		searchInput.addEventListener('keydown', function (event) {
+			if (event.key === 'Enter') {
+				const searchValue = searchInput.value;
 
-    function filterItems(searchQuery) {
-        eventContainer.innerHTML = ''; // 리스트 비우기
+				filterItems(searchValue);
+				searchInput.value = ''; // 검색어 필드 비우기
+			}
+		});
 
-        titleElements.forEach(function (titleElement, index) {
-            var title = titleElement.textContent;
-            console.log("title: " + title);
+		function filterItems(searchQuery) {
+			eventContainer.innerHTML = ''; // 리스트 비우기
 
-            if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
-                var item = titleElement.closest('.movie-item-style-2'); // 부모 .movie-item-style-2 요소 선택
-                eventContainer.appendChild(item);
-            }
-        });
-    }
-});
+			titleElements.forEach(function (titleElement, index) {
+				var title = titleElement.textContent;
+				console.log("title: " + title);
+
+				if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+					var item = titleElement.closest('.movie-item-style-2'); // 부모 .movie-item-style-2 요소 선택
+					eventContainer.appendChild(item);
+				}
+			});
+		}
+	});
 
 
 
