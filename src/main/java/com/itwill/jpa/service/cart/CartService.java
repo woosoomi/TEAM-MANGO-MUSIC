@@ -37,7 +37,8 @@ public interface CartService {
 	//장바구니 조회
 	//List<Cart> getCartItems(Cart cart) throws Exception; 
 	
-
+	// UserId로 Cart찾기
+	public Cart findCartByUserId(String userId) throws Exception;
 
 	
 	

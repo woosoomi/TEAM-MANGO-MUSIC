@@ -72,7 +72,7 @@ public class CartRestController {
 	 */
 	
 	@Operation(summary = "총합계산[성공]")
-	@GetMapping("/cart_main/{cartId}")
+	@GetMapping("/cart_main/total/{cartId}")
 	public ResponseEntity<CartDto> calculateTotalPrice(@PathVariable(value = "cartId") Long cartId) {
 		try {
 			CartDto cartTotPrice = cartService.calculateTotalPrice(cartId);
