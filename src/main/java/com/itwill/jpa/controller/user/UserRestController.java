@@ -57,7 +57,7 @@ public class UserRestController {
 	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
 		try {
 			if (userService.existsById(userDto.getUserId())) {
-				throw new ExistedUserException("이미 존재하는 아이디입니다. >>> user_write_action 레스트 컨트롤러 작동");
+				throw new ExistedUserException(">>>" + userDto.getUserId() + "는 이미 존재하는 아이디입니다.");
 			}
 			UserDto createdUser = userService.createUser(userDto);
 			cartService.createCart(userDto.getUserId());

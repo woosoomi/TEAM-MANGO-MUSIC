@@ -45,13 +45,12 @@
 									<form method="post" action="user_login_action">
 										<div class="row">
 											<label for="loginId">UserId:<input type="text"
-												name="loginId" id="loginId" placeholder="아이디"
-												required="required" /></label>
+												name="loginId" id="loginId" placeholder="아이디"/></label>
 										</div>
 										<div class="row">
 											<label for="password"> Password:<input
 												type="password" name="password" id="password"
-												placeholder="비밀번호" required="required" /></label>
+												placeholder="비밀번호"/></label>
 										</div>
 										<div class="row">
 											<div class="remember">
@@ -95,7 +94,7 @@
 										name="userId" placeholder="아이디를 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserPassword</label> <input type="text" id="userPw"
+									<label>UserPassword</label> <input type="password" id="userPw"
 										name="userPw" placeholder="비밀번호를 입력하세요." required="required">
 
 								</div>
@@ -202,6 +201,10 @@
             alert('전화번호의 형식이 틀렸습니다.');
             return;
         }
+        if (!isValidPhoneNumber(formData.userPhone)) {
+            alert('전화번호는 숫자만 입력 가능하며, 10자 또는 11자여야 합니다.');
+            return;
+        }
 
         // Send form data to the server
         fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/join', {
@@ -217,12 +220,12 @@
                 window.location.href = "user_login_form";
             } else if (response.status === 400) {
                 response.text().then(message => {
-                    alert('에러 서비스에서 설정해놓은 오류: ' + message);
+                    alert(message);
                 });
                 window.location.href = "user_write_form";
             } else {
                 // Other exceptions
-                alert('내부 서버 오류ㅋㅋ');
+                alert('내부 서버 오류');
             }
         })
         .catch(error => {
@@ -235,6 +238,13 @@
         // 영문자, 숫자만 허용하고, 4자 이상 15자 이하여야 함
         var regex = /^[a-zA-Z0-9]{4,15}$/;
         return regex.test(userId);
+    }
+    
+ // 전화번호 유효성 검사 함수
+    function isValidUserPw(userPw) {
+        // 010으로 시작하는 11자리 숫자 및 구분자(-) 확인
+        var regex = /^010-\d{4}-\d{4}$/;
+        return regex.test(userPw);
     }
 </script>
 
