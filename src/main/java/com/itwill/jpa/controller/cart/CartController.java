@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.service.cart.CartItemService;
 import com.itwill.jpa.service.cart.CartService;
+import com.itwill.jpa.service.user.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -25,15 +27,27 @@ public class CartController {
 	CartItemService cartItemService;
 	@Autowired
 	CartService cartService;
+	@Autowired
+	UserService userService;
 
 	@GetMapping("/cart_main")
 	public String cart(Model model, HttpSession session) {
 	    try {
 	    	
-			String userId = (String) session.getAttribute("user_id");
-			model.addAttribute("user_id", userId);
-	    	
-	        CartDto cart = cartService.findCartByCartId(5L);
+			String loginUser = (String) session.getAttribute("sUserId");
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>"+loginUser);
+			UserDto user = null;
+
+			if (loginUser != null) {
+				user = userService.findUser(loginUser);
+				System.out.println(">>>>>>>>>>>>>"+user);
+			}
+			session.setAttribute("loginUser", user);
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+			System.out.println(">>>>>>>>>>>>>>>>"+userIdString);
+			
+	        CartDto cart = cartService.findCartByCartId(7L);
 	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
 	        
 	        if (cartItems.isEmpty()) {
@@ -45,7 +59,7 @@ public class CartController {
 	                Optional<ProductDto> productOptional = cartItemService.getProductByProductId(cartItem.getProductId());
 	                productOptional.ifPresent(products::add);
 	            }
-	            
+	            model.addAttribute("sUser_id", loginUser);
 	            model.addAttribute("cart",cart);
 	            model.addAttribute("cartItems", cartItems);
 	            model.addAttribute("products", products);

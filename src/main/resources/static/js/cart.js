@@ -206,3 +206,29 @@ function formatNumberWithCommas(number) {
 	}
 	
 }*/
+$('#goOrderBtn').click(function() {
+	var userIdElement = document.getElementById("user_id");
+	var userId = userIdElement.value;
+    const checkedItems = document.querySelectorAll('.checkbox:checked');
+    const cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
+
+    if (cartItemIds.length > 0) {
+        $.ajax({
+            url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ userId: userId, cartItemIds: cartItemIds }),
+            success: function(response) {
+                console.log('주문 성공:', response);
+                alert("결제창으로 이동합니다.");
+                // 주문 완료 후 필요한 동작 수행
+                location.reload();
+            },
+            error: function(error) {
+                console.error('주문 실패:', error);
+            }
+        });
+    } else {
+        alert('주문할 상품을 선택해주세요.');
+    }
+});
