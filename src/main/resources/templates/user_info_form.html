@@ -40,9 +40,13 @@
 							<ul>
 								<li class="active"><a href="user_info_form">내정보</a></li>
 								<li><a href="user_modify_form">회원정보수정</a></li>
-								<li><a href="cart_main">나의 장바구니</a></li>
-								<li><a href="order_history">나의 주문내역</a></li>
-								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal">회원탈퇴</a></li>
+								<li><a href="cart_main" id="cartForm">나의 장바구니</a></li>
+								<li><a href="order_history" id="orderForm">나의 주문내역</a></li>
+								<li><a href="admin" id="UserListForm">회원 목록</a></li>
+								<li><a href="admin" id="OrderListForm">주문 목록</a></li>
+								<li><a href="admin_Board" id="InquiryListForm">문의 목록</a></li>
+								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal"
+										id="userDelete">회원탈퇴</a></li>
 							</ul>
 						</div>
 					</div>
@@ -64,7 +68,8 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-primary" onclick="confirmWithdrawal()">회원탈퇴</button>
+								<button type="button" class="btn btn-primary"
+									onclick="confirmWithdrawal()">회원탈퇴</button>
 							</div>
 						</div>
 					</div>
@@ -130,7 +135,7 @@
 
 			// 비밀번호 확인
 			if (userPw === enteredPassword) {
-			//	$("#withdrawalButton").prop("disabled", true);
+				//	$("#withdrawalButton").prop("disabled", true);
 
 				$.ajax({
 					url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/delete/${userId}`,
@@ -160,6 +165,84 @@
 		}
 
 	</script>
+
+	<script>
+		// 페이지 로드 시 실행되는 함수
+		window.onload = function () {
+			// admin 계정으로 로그인한 경우
+			if (isAdminUser()) {
+				hideCartForm(); // 나의 장바구니 폼을 숨김
+
+				hideOrderForm(); // 나의 주문내역 폼을 숨김
+
+				showUserListForm(); // 회원 목록 폼을 보임
+				
+				showOrderListForm(); // 주문 목록 폼을 보임
+				
+				showInquiryListForm(); //문의 목록 폼을 보임
+
+			}
+			if (!isAdminUser()) {
+				//회원 목록 폼을 숨김
+				hideUserListForm();
+			}
+		};
+
+		// admin 계정 여부를 확인하는 함수
+		function isAdminUser() {
+			var userId = document.getElementById("userId").value;
+			return userId === 'admin';
+		}
+
+		// 나의 장바구니 폼을 숨기는 함수
+		function hideCartForm() {
+			var cartForm = document.getElementById("cartForm");
+			if (cartForm) {
+				cartForm.style.display = 'none';
+			}
+		}
+		// 나의 주문내역 폼을 숨기는 함수
+		function hideOrderForm() {
+			var orderForm = document.getElementById("orderForm");
+			if (orderForm) {
+				orderForm.style.display = 'none';
+			}
+		}
+
+		// 회원 목록 폼을 보이게 하는 함수
+		function showUserListForm() {
+			var UserListForm = document.getElementById("UserListForm");
+			if (UserListForm) {
+				UserListForm.style.display = 'block';
+			}
+		}
+
+		// 회원 목록 폼을 숨기는 함수
+		function hideUserListForm() {
+			var UserListForm = document.getElementById("UserListForm");
+			if (UserListForm) {
+				UserListForm.style.display = 'none';
+			}
+		}
+		
+		// 주문 목록 폼을 보이게 하는 함수
+		function showOrderListForm() {
+			var OrderListForm = document.getElementById("OrderListForm");
+			if (OrderListForm) {
+				OrderListForm.style.display = 'block';
+			}
+		}
+		
+		// 문의 목록 폼을 보이게 하는 함수
+		function showInquiryListForm() {
+			var InquiryListForm = document.getElementById("InquiryListForm");
+			if (InquiryListForm) {
+				InquiryListForm.style.display = 'block';
+			}
+		}
+
+	</script>
+
 
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
