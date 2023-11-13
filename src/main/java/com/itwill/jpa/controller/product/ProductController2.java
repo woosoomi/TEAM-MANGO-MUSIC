@@ -21,10 +21,12 @@ import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.board.Board;
 //import com.itwill.jpa.dto.product.ProductMusicDto;
-
+import com.itwill.jpa.entity.cart.Cart;
+import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.entity.product.ProductReply;
 import com.itwill.jpa.repository.product.ProductRepository;
+import com.itwill.jpa.service.cart.CartService;
 import com.itwill.jpa.service.product.ProductService;
 import com.itwill.jpa.service.product.ProductServiceImpl;
 import com.itwill.jpa.service.user.UserService;
@@ -45,6 +47,9 @@ public class ProductController2 {
 
 	@Autowired
 	private final UserService userService;
+	
+	@Autowired
+	private final CartService cartService;
 
 	// 뮤직리스트
 	@LoginCheck
@@ -188,8 +193,32 @@ public class ProductController2 {
 	@GetMapping("/product_goods_detail")
 	public String GoodsDetail(@RequestParam(name = "productNo") Long productNo, Model model, HttpSession session) {
 		try {
-			String userId = (String) session.getAttribute("sUserId");
-			model.addAttribute("userId", userId);
+			String loginUser = (String) session.getAttribute("sUserId");
+			UserDto user = null;
+
+			if (loginUser != null) {
+				user = userService.findUser(loginUser);
+			}
+
+			session.setAttribute("loginUser", user);
+
+			String userIdString = (user != null) ? user.getUserId() : null;
+			model.addAttribute("userIdString", userIdString);
+			
+			model.addAttribute("productNo", productNo);
+			Product product = productService.findByProductNo(productNo).get(); // 제품 서비스를 이용하여 제품을 가져옵니다.
+			Cart cart = cartService.findCartByUserId(loginUser); // 사용자 ID를 이용하여 카트를 찾습니다.
+			if (cart != null) { // 카트가 존재하는 경우
+			    CartItem cartItem = new CartItem(); // 새로운 카트 아이템 생성
+			    cartItem.setProduct(product); // 가져온 제품을 카트 아이템에 설정
+	//		    cartItem.setCartItemQty(0) // 예시로 수량 1로 설정, 필요에 따라 조절
+
+			    cart.getCartitems().add(cartItem); // 카트에 카트 아이템을 추가
+	//		    cartService.saveCart(cart); // 변경된 카트를 저장
+			} else {
+			    // 카트가 존재하지 않는 경우에 대한 처리
+			    // 예를 들어, 새로운 카트를 생성하고 제품을 추가하는 등의 작업을 수행할 수 있습니다.
+			}
 			Optional<Product> findGoodsOptional = productService.findByProductNo(productNo);
 			List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);
 			if (findGoodsOptional.isPresent()) {
@@ -202,13 +231,13 @@ public class ProductController2 {
 			} else {
 				model.addAttribute("errorMSG", "해당 굿즈를 찾을 수 없습니다.");
 			}
-			return "product_goods_detail";
-
+			return "product_goods_detail";					
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMSG", "티켓을 찾는 중 오류 발생: " + e.getMessage());
 			return "error";
 		}
+
 	}
 
 	// 티켓리스트
