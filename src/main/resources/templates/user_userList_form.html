@@ -42,9 +42,9 @@
 								<li><a href="user_modify_form">회원정보수정</a></li>
 								<li><a href="cart_main" id="cartForm">나의 장바구니</a></li>
 								<li><a href="order_history" id="orderForm">나의 주문내역</a></li>
-								<li><a href="user_userList_form" id="UserListForm">회원 목록</a></li>
+								<li><a href="admin" id="UserListForm">회원 목록</a></li>
 								<li><a href="admin" id="OrderListForm">주문 목록</a></li>
-								<li><a href="user_inq_info_form" id="InquiryListForm">문의 목록</a></li>
+								<li><a href="admin_Board" id="InquiryListForm">문의 목록</a></li>
 								<li><a href="#" data-toggle="modal" data-target="#withdrawalModal"
 										id="userDelete">회원탈퇴</a></li>
 							</ul>
@@ -52,63 +52,53 @@
 					</div>
 				</div>
 				<!-- 모달 창 -->
-				<div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog"
-					aria-labelledby="withdrawalModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="withdrawalModalLabel">회원 탈퇴를 원하십니까?</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<label for="password">비밀번호를 입력하세요:</label>
-								<input type="password" id="password" placeholder="비밀번호">
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-primary"
-									onclick="confirmWithdrawal()">회원탈퇴</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 모달 창 끝 -->
 
-				<div class="col-md-9 col-sm-12 col-xs-12">
-					<div class="form-style-1 user-pro" action="">
-						<form action="" class="user" th:object="${loginUser}" method="post">
-							<h4>01. 회원정보</h4>
-							<div class="row">
-								<div class="col-md-6 form-it"><label>UserId</label><input type="text" placeholder="아이디"
-										id="userId" th:value="*{userId}"></div>
-								<div class="col-md-6 form-it"><label>UserPassword</label><input type="text"
-										placeholder="비밀번호" id="userPw" th:value="*{userPw}"></div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 form-it"><label>UserName</label><input type="text" placeholder="이름"
-										id="userName" th:value="*{userName}"></div>
-								<div class="col-md-6 form-it"><label>UserPhone</label><input type="text"
-										placeholder="전화번호" id="userPhone" th:value="*{userPhone}"></div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 form-it"><label>UserEmail</label><input type="text"
-										placeholder="이메일" id="userEmail" th:value="*{userEmail}"></div>
-								<div class="col-md-6 form-it"><label>UserJumin</label><input type="text"
-										placeholder="주민번호" id="userJumin" th:value="*{userJumin}"></div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 form-it"><label>UserAddress</label><input type="text"
-										placeholder="주소" id="userAddress" th:value="*{userAddress}"></div>
-								<div class="col-md-6 form-it"><label>UserGender</label><input type="text"
-										placeholder="주소" id="userGender" th:value="*{userGender}"></div>
-							</div>
-						</form>
-					</div>
+				<!-- 유저 테이블 시작 -->
+				<div class="content" style="color: white; padding: 20px;">
+					<h1 style="margin-left: 600px; margin-bottom: 100px; margin-top: 20px;">회원 목록</h1>
+					<button id="loadUserListButton" style="color: black;">회원리스트 불러오기</button>
+					<table>
+						<tr style="font-size: 20px; color: lightpink;">
+							<td style=" width: 43px;"><input type="checkbox"></td>
+							<td style="width: 10%;">아이디</td>
+							<td>비밀번호</td>
+							<td style="width: 5%;">이름</td>
+							<td style="width: 20%;">주소</td>
+							<td>이메일</td>
+							<td style="width: 15%;">주민번호</td>
+							<td>전화번호</td>
+							<td style="width: 5%;">성별</td>
+							<td style="width: 8%;">멤버쉽</td>
+						</tr>
+
+						<tr th:each="user : ${users}">
+							<td><input type="checkbox" /></td>
+							<td th:text="${user.userId}">아이디</td>
+							<td th:text="${user.userPw}">비밀번호</td>
+							<td th:text="${user.userName}">이름</td>
+							<td th:text="${user.userAddress}">주소</td>
+							<td th:text="${user.userEmail}">이메일</td>
+							<td th:text="${user.userJumin}">주민번호</td>
+							<td th:text="${user.userPhone}">전화번호</td>
+							<td th:text="${user.userGender}">성별</td>
+							<td th:text="${user.memberShip}">멤버쉽</td>
+						</tr>
+					</table>
+
+					<button id="user_deleteButton"
+						style="margin-top: 20px; color: black; margin-left: 600px;">삭제하기</button>
+					<button id="user_updateButton"
+						style="margin-top: 20px; color: black; margin-left: 50px;">수정하기</button>
 				</div>
+				<!-- 유저 테이블 종료 -->
+
+
 			</div>
+
 		</div>
+	</div>
+	</div>
+	</div>
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
@@ -176,9 +166,9 @@
 				hideOrderForm(); // 나의 주문내역 폼을 숨김
 
 				showUserListForm(); // 회원 목록 폼을 보임
-				
+
 				showOrderListForm(); // 주문 목록 폼을 보임
-				
+
 				showInquiryListForm(); //문의 목록 폼을 보임
 
 			}
@@ -224,7 +214,7 @@
 				UserListForm.style.display = 'none';
 			}
 		}
-		
+
 		// 주문 목록 폼을 보이게 하는 함수
 		function showOrderListForm() {
 			var OrderListForm = document.getElementById("OrderListForm");
@@ -232,7 +222,7 @@
 				OrderListForm.style.display = 'block';
 			}
 		}
-		
+
 		// 문의 목록 폼을 보이게 하는 함수
 		function showInquiryListForm() {
 			var InquiryListForm = document.getElementById("InquiryListForm");
@@ -241,6 +231,53 @@
 			}
 		}
 
+	</script>
+
+	<script>
+		function updateTable(data) {
+			// 이 부분에서 테이블을 갱신하는 로직을 추가하세요.
+			// 예를 들어, 테이블의 tbody를 찾아서 데이터를 반영할 수 있습니다.
+			var tbody = $("table tbody");
+
+			// 각 사용자에 대한 데이터를 테이블에 추가
+			for (var i = 0; i < data.length; i++) {
+				var user = data[i];
+				var row = $("<tr></tr>");
+
+				// 각 필드에 대한 데이터 표시
+				row.append("<td><input type='checkbox' /></td>");
+				row.append("<td>" + user.userId + "</td>");
+				row.append("<td>" + user.userPw + "</td>");
+				row.append("<td>" + user.userName + "</td>");
+				row.append("<td>" + user.userAddress + "</td>");
+				row.append("<td>" + user.userEmail + "</td>");
+				row.append("<td>" + user.userJumin + "</td>");
+				row.append("<td>" + user.userPhone + "</td>");
+				row.append("<td>" + user.userGender + "</td>");
+				row.append("<td>" + user.memberShip + "</td>");
+
+				// 나머지 필드도 유사하게 추가
+				tbody.append(row);
+			}
+		}
+
+		$(document).ready(function () {
+			$("#loadUserListButton").click(function () {
+				// 버튼 클릭 시 서버에 요청을 보냅니다.
+				$.ajax({
+					type: "GET",
+					url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/list",
+					success: function (data) {
+						console.log(data);
+						updateTable(data); // 테이블 갱신 함수 호출
+					},
+					error: function (error) {
+						// 요청이 실패했을 때 실행되는 코드
+						console.error("Error loading user list:", error);
+					}
+				});
+			});
+		});
 	</script>
 
 
