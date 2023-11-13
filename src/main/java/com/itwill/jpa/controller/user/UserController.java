@@ -1,14 +1,17 @@
 
 package com.itwill.jpa.controller.user;
 
+import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.dto.user.UserLoginDto;
 import com.itwill.jpa.dto.user.UserUpdateDto;
 import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.entity.order.Order;
 import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.exception.user.PasswordMismatchException;
 import com.itwill.jpa.exception.user.UserNotFoundException;
 import com.itwill.jpa.service.board.BoardServiceImpl;
+import com.itwill.jpa.service.order.OrderService;
 import com.itwill.jpa.service.user.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,6 +36,9 @@ public class UserController {
 	
 	@Autowired
 	private BoardServiceImpl boardServiceImpl;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@GetMapping("/user_login_form")
 	public String user_login_form() {
@@ -66,6 +72,19 @@ public class UserController {
 		model.addAttribute("loginUser", user);
 		
 		return "user_inq_info_form";
+	}
+	
+	//관리자 페이지 주문내역 매핑
+	@LoginCheck
+	@GetMapping("/admin_order_info_form")
+	public String admin_order_info_form(HttpSession session, Model model) throws Exception {
+		String loginUser = (String) session.getAttribute("sUserId");
+		UserDto user = userService.findUser(loginUser);
+		List<OrderDto> orders = orderService.orders();
+		model.addAttribute("orders", orders);
+		model.addAttribute("loginUser", user);
+		
+		return "admin_order_info_form";
 	}
 	
 	@GetMapping("/user_CheckIdPw")
