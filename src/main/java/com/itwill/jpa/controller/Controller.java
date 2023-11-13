@@ -1,16 +1,27 @@
 package com.itwill.jpa.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.itwill.jpa.entity.board.Board;
+import com.itwill.jpa.service.board.BoardServiceImpl;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
 public class Controller {
-
+	
+	@Autowired
+	BoardServiceImpl boardServiceImpl;
+		
 	@GetMapping("/index") 
-	public String index() { 
-		String forward_path = "index"; 
-		return forward_path; 
+	public String index(Model model) { 
+		List<Board> magazines = boardServiceImpl.findBycategory(3L);
+		model.addAttribute("magazines", magazines); 
+		return "index"; 
 	}
 	@GetMapping("/Audio")
 	public String userprofile() {
