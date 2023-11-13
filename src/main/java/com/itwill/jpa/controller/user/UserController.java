@@ -33,7 +33,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private BoardServiceImpl boardServiceImpl;
 	
@@ -60,7 +60,14 @@ public class UserController {
 		model.addAttribute("loginUser", user);
 		return "user_info_form";
 	}
-	
+
+	@LoginCheck
+	@GetMapping("/user_userList_form")
+	public String user_userList_form() throws Exception {
+		String forward_path = "user_userList_form";
+		return forward_path;
+	}
+
 	@LoginCheck
 	@GetMapping("/user_inq_info_form")
 	public String user_inq_info_form(HttpSession session, Model model) throws Exception {
@@ -119,7 +126,7 @@ public class UserController {
 	}
 
 	/*********** GET방식요청시 guest_main redirection *********/
-	@GetMapping({ "/user_write_action", "/user_login_action", "/user_modify_action"})
+	@GetMapping({ "/user_write_action", "/user_login_action", "/user_modify_action" })
 	public String user_get() {
 		String forwardPath = "redirect:index";
 		return forwardPath;
