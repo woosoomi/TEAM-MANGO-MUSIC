@@ -24,29 +24,7 @@ $(document).ready(function() {
 	});
 
 	//장바구니 상품 삭제 기능
-	$('.delete-all-btn').click(function() {
-		const checkedItems = document.querySelectorAll('.checkbox:checked');
-		const cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
-
-		if (cartItemIds.length > 0) {
-			$.ajax({
-				url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/deleteByCartItems',
-				type: 'DELETE',
-				contentType: 'application/json',
-				data: JSON.stringify(cartItemIds),
-				success: function(response) {
-					console.log('삭제 성공:', response);
-					alert("삭제되었습니다.");
-					location.reload();
-				},
-				error: function(error) {
-					console.error('삭제 실패:', error);
-				}
-			});
-		} else {
-			alert('삭제할 상품을 선택해주세요.');
-		}
-	});
+	
 
 	// 수량변경 이벤트 리스너 연결
 	$('.change-quantity-btn').click(function() {
@@ -79,7 +57,6 @@ function calculateTotalPrice() {
 				dataType: 'json',
 				success: function(data) {
 					const productPrice = parseFloat(data);
-
 					// 체크된 경우에만 가격을 더함
 					if (checkbox.checked) {
 						total += productPrice * productQty;
@@ -211,51 +188,69 @@ function calculateTotalPriceOnServer(cartId) {
 }
 
 function sendPostRequest() {
+    var userIdElement = document.getElementById("sUserId");
+    var userId = userIdElement.value;
 
-	/* 결제하기 버튼을 클릭했을 때 실행되는 결제 함수(현대적인 방법의 ajax = 순수 자바스크립트로만 쓰임, 제이쿼리 X) */
-	/*
-	// 카트 총가격 가져오기
-	var cartTotPriceElement = document.getElementById('cartTotPrice');
-	var cartTotPriceValue = cartTotPriceElement.textContent;
-	var totalPrice = parseFloat(cartTotPriceValue);
-	*/
-	// userId 가져오기
-	var userIdElement = document.getElementById("sUserId");
-	var userId = userIdElement.value;
+    var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder';
 
-	// AJAX 요청을 보낼 URL 및 데이터 설정
-	// 결제 처리를 수행하는 서버 엔드포인트 URL (OrderController의 saveCartOrder 메소드 주소)
-	var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder';
+    var requestData = {
+        userId: userId
+    };
 
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
 
-	var requestData = {
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200 || xhr.status === 405) {
+                var response = JSON.parse(xhr.responseText);
+                alert('주문이 성공적으로 완료되었습니다.');
+                alert('무통장입금 신한은행 110-354-123456\n1시간 내 미입금시 주문이 취소됩니다.');
+                deleteSelectedCartItems(function () {
+                    // 삭제가 완료된 후에 페이지를 다시 로드
+                    window.location.replace('order_history');
+                });
+            } else {
+                alert('주문에 실패하였습니다.');
+            }
+        }
+    };
 
-		userId: userId
+    xhr.send(JSON.stringify(requestData));
+}
 
-	};
-	console.log(requestData);
+function deleteSelectedCartItems(callback) {
+    const checkedItems = document.querySelectorAll('.checkbox:checked');
+    const cartItemIds = Array.from(checkedItems).map(item => parseInt(item.dataset.cartItemId));
 
-	// AJAX 요청 보내기
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', url, true);
-	xhr.setRequestHeader('Content-Type', 'application/json');
+    if (cartItemIds.length > 0) {
+        $.ajax({
+            url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/deleteByCartItems',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(cartItemIds),
+            success: function (response) {
+                console.log('삭제 성공:', response);
+                // 삭제가 완료된 후에 콜백 함수 실행
+                if (callback && typeof callback === 'function') {
+                    callback();
+                }
+            },
+            error: function (error) {
+                console.error('삭제 실패:', error);
+            }
+        });
+    } else {
+        alert('삭제할 상품을 선택해주세요.');
+    }
+}
 
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4) {
-			if (xhr.status === 200 || xhr.status === 405) {
-				// 결제가 성공적으로 완료될 경우 실행할 코드
-				var response = JSON.parse(xhr.responseText);
-				alert('주문이 성공적으로 완료되었습니다.');
-				alert('무통장입금 신한은행 110-354-123456\n1시간 내 미입금시 주문이 취소됩니다.');
-				//주문내역으로 redirect
-				window.location.replace('order_history');
+// 삭제 버튼 클릭 이벤트에 함수 연결
+$('.delete-all-btn').click(function () {
+    deleteSelectedCartItems(function () {
+        // 삭제가 완료된 후에 페이지를 다시 로드
+        location.reload();
+    });
+});
 
-			} else {
-				// 결제가 실패한 경우 실행할 코드
-				alert('주문에 실패하였습니다.');
-
-			}
-		}
-	}
-	xhr.send(JSON.stringify(requestData)); // 요청 데이터를 JSON 문자열로 변환하여 보냅니다.
-};
