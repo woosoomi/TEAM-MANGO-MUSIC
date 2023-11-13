@@ -110,7 +110,7 @@
 										placeholder="아이디를 입력하세요." required="required">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserPassword</label> <input type="text" id="userPw" name="userPw"
+									<label>UserPassword</label> <input type="password" id="userPw" name="userPw"
 										placeholder="비밀번호를 입력하세요." required="required">
 
 								</div>
@@ -138,7 +138,7 @@
 				userId: document.getElementById("userId").value,
 				userPw: document.getElementById("userPw").value
 			};
-
+			
 			// 각 필드의 유효성 검사
 			if (!formData.userId) {
 				alert('아이디를 입력하세요.');
@@ -148,7 +148,7 @@
 				alert('비밀번호를 입력하세요.');
 				return;
 			}
-
+			
 			// Send form data to the server
 			fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/login', {
 				method: 'POST',

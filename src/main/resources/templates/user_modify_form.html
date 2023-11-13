@@ -4,21 +4,22 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html lang="en" class="no-js">
 <head>
-	<!-- Basic need -->
-	<title>Open Pediatrics</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
-	<link rel="profile" href="#">
-	<!--Google Font-->
-	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
-	<!-- Mobile specific meta -->
-	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="format-detection" content="telephone-no">
-	<!-- CSS files -->
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+<!-- Basic need -->
+<title>Open Pediatrics</title>
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<link rel="profile" href="#">
+<!--Google Font-->
+<link rel="stylesheet"
+	href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+<!-- Mobile specific meta -->
+<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone-no">
+<!-- CSS files -->
+<link rel="stylesheet" href="css/plugins.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
 								<li class="active"><a href="user_modify_form">회원정보수정</a></li>
 								<li><a href="cart_main">나의 장바구니</a></li>
 								<li><a href="order_history">나의 주문내역</a></li>
-								<li><a href="#">회원탈퇴</a></li>
+								<!-- <li><a href="#">회원탈퇴</a></li> -->
 							</ul>
 						</div>
 					</div>
@@ -51,38 +52,45 @@
 							<h4>02. 회원정보수정</h4>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserName</label><input type="text" placeholder="**********"
-										th:value="${loginUser.userName}" id="userName">
+									<label>UserName</label><input type="text"
+										placeholder="**********" th:value="${loginUser.userName}"
+										id="userName">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserPassword</label><input type="text" placeholder="***************"
-										th:value="${loginUser.userPw}" id="userPw">
+									<label>UserPassword</label><input type="text"
+										placeholder="***************" th:value="${loginUser.userPw}"
+										id="userPw">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserPhone</label><input type="text" placeholder="**********"
-										th:value="${loginUser.userPhone}" id="userPhone">
+									<label>UserPhone</label><input type="text"
+										placeholder="**********" th:value="${loginUser.userPhone}"
+										id="userPhone">
 								</div>
 								<div class="col-md-6 form-it">
-									<label>UserAddress</label><input type="text" placeholder="***************"
+									<label>UserAddress</label><input type="text"
+										placeholder="***************"
 										th:value="${loginUser.userAddress}" id="userAddress">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-it">
-									<label>UserEmail</label><input type="text" placeholder="**********"
-										th:value="${loginUser.userEmail}" id="userEmail">
+									<label>UserEmail</label><input type="text"
+										placeholder="**********" th:value="${loginUser.userEmail}"
+										id="userEmail">
 								</div>
 								<div class="col-md-6 form-it">
 									<label></label><input type="hidden" placeholder="**********"
-										th:value="${loginUser.userId}" id="userId">  <!--ui에서 숨김 hidden 처리-->
+										th:value="${loginUser.userId}" id="userId">
+									<!--ui에서 숨김 hidden 처리-->
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-2">
-									<input class="submit" type="submit" value="change" onclick="updateUser()">
+									<input class="submit" type="submit" value="change"
+										onclick="updateUser()">
 								</div>
 							</div>
 						</form>
@@ -94,7 +102,7 @@
 	<!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 	<!-- end of footer section-->
-	
+
 	<script>
 		function updateUser() {
 			var userData = {
