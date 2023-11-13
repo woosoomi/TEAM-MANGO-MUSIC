@@ -36,6 +36,8 @@ public class OrderDto {
 
 	private String userId;
 	
+	private String userName;
+	
 	private Long deliveryId;
 	
 	private String deliveryName;
@@ -45,12 +47,8 @@ public class OrderDto {
 	private String deliveryAddress;
 	
 	private String deliveryCompany;
-	
-	private String productImage;
-	
-	
-	//	private Long couponId;
-	
+		
+//	private Long couponId;
 
 	//@Builder.Default
 	private List<OrderItemDto> orderItemDtos;
@@ -72,6 +70,7 @@ public class OrderDto {
 		this.orderPrice = order.getOrderPrice();
 		this.orderStatus = order.getOrderStatus();
 		this.userId = order.getUser().getUserId();
+		this.userName = order.getUser().getUserName();
 		this.deliveryId = order.getDelivery().getDeliveryId();
 		this.deliveryAddress = order.getDelivery().getDeliveryAddress();
 		this.deliveryCompany = order.getDelivery().getDeliveryCompany();
@@ -83,6 +82,7 @@ public class OrderDto {
 		
 		
 	}
+				
 	
 	//Entity to Dto 변환
 	public static OrderDto toDto(Order entity) {
@@ -91,6 +91,7 @@ public class OrderDto {
 									.orderPrice(entity.getOrderPrice())
 									.orderStatus(entity.getOrderStatus())
 									.userId(entity.getUser().getUserId())
+									.userName(entity.getUser().getUserName())
 									.deliveryId(entity.getDelivery().getDeliveryId())
 									.deliveryAddress(entity.getDelivery().getDeliveryAddress())
 									.deliveryCompany(entity.getDelivery().getDeliveryCompany())

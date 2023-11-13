@@ -60,15 +60,17 @@
 			<table>
 				<tr style="font-size: 15px; color: lightpink; ">
 					<td style="width: 15%;">아이디</td>
-					<td style="width:15%;">주문날짜</td>
-					<td style="width:15%;">이름</td>
-					<td style="width:15%;">답변여부</td>
-					<td style="width:30%;">답변제목</td>
+					<td style="width:15%;">주문일시</td>
+					<td style="width:15%;">주문자성명</td>
+					<td style="width:15%;">주문제품</td>
+					<td style="width:30%;">주문수량</td>
 				</tr>
 
 				<tr th:each="orders : ${orders}">
 					<td th:text="${orders.getUserId}">아이디</td>
-					<td th:text="${orders.createdAt}">주문일자</td>
+					<td th:text="${orders.createdAt}">주문일시</td>
+					<td th:text="${orders.getUserName}">주문자성명</td>
+					
 				</tr>
 			</table>
 
