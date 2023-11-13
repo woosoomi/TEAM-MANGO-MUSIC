@@ -170,6 +170,10 @@
             alert('아이디를 입력하세요.');
             return;
         }
+        if (!isValidUserId(formData.userId)) {
+            alert('아이디는 영문자, 숫자만 사용 가능하며, 4자 이상 15자 이하여야 합니다.');
+            return;
+        }
         if (!formData.userPw) {
             alert('비밀번호를 입력하세요.');
             return;
@@ -218,12 +222,19 @@
                 window.location.href = "user_write_form";
             } else {
                 // Other exceptions
-                alert('내부 서버 오류');
+                alert('내부 서버 오류ㅋㅋ');
             }
         })
         .catch(error => {
             console.error('에러:', error);
         });
+    }
+    
+    // 아이디 유효성 검사 함수
+    function isValidUserId(userId) {
+        // 영문자, 숫자만 허용하고, 4자 이상 15자 이하여야 함
+        var regex = /^[a-zA-Z0-9]{4,15}$/;
+        return regex.test(userId);
     }
 </script>
 
