@@ -47,7 +47,7 @@ public class CartController {
 			model.addAttribute("userIdString", userIdString);
 			System.out.println(">>>>>>>>>>>>>>>>"+userIdString);
 			
-	        CartDto cart = cartService.findCartByCartId(7L);
+	        CartDto cart = cartService.findCartByCartId(5L);
 	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
 	        
 	        if (cartItems.isEmpty()) {
@@ -59,7 +59,7 @@ public class CartController {
 	                Optional<ProductDto> productOptional = cartItemService.getProductByProductId(cartItem.getProductId());
 	                productOptional.ifPresent(products::add);
 	            }
-	            model.addAttribute("sUser_id", loginUser);
+	            model.addAttribute("sUserId", loginUser);
 	            model.addAttribute("cart",cart);
 	            model.addAttribute("cartItems", cartItems);
 	            model.addAttribute("products", products);

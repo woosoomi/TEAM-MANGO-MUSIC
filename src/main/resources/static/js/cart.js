@@ -58,6 +58,7 @@ $(document).ready(function() {
 });
 
 // view 맨 아래 총 주문금액 계산
+
 function calculateTotalPrice() {
 	// 모든 체크박스 엘리먼트 선택
 	const checkboxes = document.querySelectorAll('.checkbox');
@@ -89,6 +90,7 @@ function calculateTotalPrice() {
 
 					// 다음 체크박스 처리
 					processCheckbox(index + 1);
+					
 				},
 				error: function(error) {
 					console.error('Error:', error);
@@ -105,6 +107,8 @@ function calculateTotalPrice() {
 	}
 	processCheckbox(0);
 }
+
+
 
 // 상품 수량 변경, 수량변경으로 인한 함수 호출로 총 주문금액, 개별 상품 금액 업데이트
 function changeQuantity(amount, element) {
@@ -128,6 +132,9 @@ function changeQuantity(amount, element) {
 				updateTotalPrice(cartItemId);
 				// 전체 주문금액 재계산
 				calculateTotalPrice();
+				calculateTotalPriceOnServer(cartId);
+				
+				
 			},
 			error: function() {
 				console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
@@ -206,7 +213,7 @@ function formatNumberWithCommas(number) {
 	}
 	
 }*/
-$('#goOrderBtn').click(function() {
+/*$('#goOrderBtn').click(function() {
 	var userIdElement = document.getElementById("user_id");
 	var userId = userIdElement.value;
     const checkedItems = document.querySelectorAll('.checkbox:checked');
@@ -231,4 +238,22 @@ $('#goOrderBtn').click(function() {
     } else {
         alert('주문할 상품을 선택해주세요.');
     }
-});
+});*/
+
+function calculateTotalPriceOnServer(cartId) {
+	var cartIdElement = document.getElementById('cartId');
+	var cartId = cartIdElement.value;
+  $.ajax({
+    url: '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/total/' + cartId,
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      // 서버로부터 받은 데이터를 이용해 화면 업데이트 또는 필요한 작업 수행
+      console.log('총 주문금액:', data);
+      // 여기서 화면 업데이트 또는 필요한 작업 수행
+    },
+    error: function (error) {
+      console.error('에러 발생:', error);
+    }
+  });
+}

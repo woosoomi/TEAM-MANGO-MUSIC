@@ -57,7 +57,10 @@
 						</div> -->
 					</div>
 				</div>
-
+				<!--오더의 손길-->
+				<!--결제를 위한 유저정보 숨겨놓기-->
+				<input type="hidden" id="sUserId" name="sUserId"
+					th:value="${session.sUserId}">
 
 
 				<div class="col-md-9 col-sm-12 col-xs-12">
@@ -78,14 +81,14 @@
 							class="ion-grid "></i></a> -->
 						<div class="checkbox-container"
 							style="display: flex; align-items: center;">
-							<input type="checkbox" name="checkboxAll"
-								class="checkboxAll" checked="checked"
+							<input type="checkbox" name="checkboxAll" class="checkboxAll"
+								checked="checked"
 								style="width: 20px; height: 20px; vertical-align: middle;"
 								id="checkboxAll"> <label for="checkboxAll"
 								style="font-size: 20px; margin-left: 5px; font-weight: bold; vertical-align: middle;">전체
 								선택</label>
 						</div>
-						<a href="#" class="delete-all-btn" 
+						<a href="#" class="delete-all-btn"
 							style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; color: white;">선택
 							삭제</a>
 
@@ -93,21 +96,20 @@
 
 					<div class="flex-wrap-movielist user-fav-list">
 						<div th:each="cartItem : ${cartItems}" class="movie-item-style-2">
-							<div id="checkbox" style="margin-right: 5%;" class="checkbox-container">
-								<input type="checkbox"  name="checkbox" checked="checked"
+							<div id="checkbox" style="margin-right: 5%;"
+								class="checkbox-container">
+								<input type="checkbox" name="checkbox" checked="checked"
 									class="checkbox" style="width: 20px; height: 20px;"
 									th:data-cart-Item-id="${cartItem.cartItemId}"> <span
-									th:id="cartItem" 
-									th:value ="${cartItem.cartItemId}"></span>
+									th:id="cartItem" th:value="${cartItem.cartItemId}"></span>
 							</div>
-							<img id= "image" src="images/uploads/cart_1.jpg" alt=""
+							<img id="image" src="images/uploads/cart_1.jpg" alt=""
 								style="width: 181px; height: 278px;">
-							<div id = "product100" th:each="product : ${products}"
+							<div id="product100" th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
 								class="mv-item-infor" style="width: 600px">
 
-								<span th:text="${product.productName}"></span> <br />
-								<br />
+								<span th:text="${product.productName}"></span> <br /> <br />
 
 								<div
 									style="display: flex; align-items: center; font-size: 15px;">
@@ -120,7 +122,8 @@
 										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; line-height: 25px; border: solid 1px white;">-</button>
 									<input id="cartItemQty" type="text"
 										style="width: 50px; height: 35px; background-color: rgb(2, 15, 25); text-align: center; font-size: 15px; border: solid 1px white; color: white;"
-										th:value="${cartItem.cartItemQty}" oninput="updateQuantity(this)">
+										th:value="${cartItem.cartItemQty}"
+										oninput="updateQuantity(this)">
 									<button class="quantity-control"
 										onclick="changeQuantity(1, this)"
 										style="width: 35px; height: 35px; background-color: rgb(2, 15, 25); font-size: 20px; border: solid 1px white; line-height: 25px;">+</button>
@@ -128,37 +131,37 @@
 								<br />
 								<div id="price100"
 									th:value="${product.productPrice * cartItem.cartItemQty}">
-									<input type="hidden" class="cartItemId" th:id="cartItemId" th:value="${cartItem.cartItemId}">
-									<input type="hidden" id ="priceTest" th:value="${product.productPrice * cartItem.cartItemQty}" >
+									<input type="hidden" class="cartItemId" th:id="cartItemId"
+										th:value="${cartItem.cartItemId}"> <input
+										type="hidden" id="priceTest"
+										th:value="${product.productPrice * cartItem.cartItemQty}">
 									<p class="describe" th:text="${product.productContent}"></p>
 									<p class="run-time" style="font-size: 15px">
-										<br /> 상품가격 : <span id= "productPrice" th:text="${product.productPrice} + 원"></span>배송비
-										: 0원 <input type="hidden" id="totalPrice100"
+										<br /> 상품가격 : <span id="productPrice"
+											th:text="${product.productPrice} + 원"></span>배송비 : 0원 <input
+											type="hidden" id="totalPrice100"
 											th:value="${product.productPrice * cartItem.cartItemQty}">
 										<span style="color: orange; font-size: 17px">주문금액 :</span> <span
-											id="totalPrice"   th:data-cartItemId='${cartItem.cartItemId}'
+											id="totalPrice" th:data-cartItemId='${cartItem.cartItemId}'
 											th:text="${product.productPrice * cartItem.cartItemQty +'원'}"
-											style="color: orange; font-size: 17px"></span>
-											<a href="#"
+											style="color: orange; font-size: 17px"></span> <a href="#"
 											style="border: 1px solid #ccc; padding: 7px 20px; border-radius: 5px; color: white;">주문하기</a>
 									</p>
-									<br />
-									<br />
-									<br />
+									<br /> <br /> <br />
 									<hr style="border: solid 1px; width: 100%; margin: 0 auto;" />
 								</div>
 
 
 								<div id="cartTotPrice100"
 									style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(251, 185, 136); color: black; text-align: right; padding: 10px 10px;">
-							
+
 									<input type="hidden" id="cartTotPrice1" name="cartTotPrice1"
 										th:value="${cart.cartTotPrice}"> <span
 										id="cartTotPrice" style="margin-right: 10px; font-size: 18px;">
-										<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' " ></span>
+										<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' "></span>
 									</span>
-									<button
-										id="goOrderBtn" style="background-color: #fff; color: black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;">주문하기</button>
+									<button id="paymentButton"
+										style="background-color: #fff; color: black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;" onclick="sendPostRequest();">주문하기</button>
 								</div>
 							</div>
 						</div>
@@ -305,18 +308,67 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		
-	</script>
+
 
 	<!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}"></div>
+
+</body>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/cart.js"></script>
-</body>
+
+	<script>
+	function sendPostRequest() {
+
+		/* 결제하기 버튼을 클릭했을 때 실행되는 결제 함수(현대적인 방법의 ajax = 순수 자바스크립트로만 쓰임, 제이쿼리 X) */
+		/*
+		// 카트 총가격 가져오기
+		var cartTotPriceElement = document.getElementById('cartTotPrice');
+		var cartTotPriceValue = cartTotPriceElement.textContent;
+		var totalPrice = parseFloat(cartTotPriceValue);
+		*/
+		// userId 가져오기
+		var userIdElement = document.getElementById("sUserId");
+		var userId = userIdElement.value;
+
+		// AJAX 요청을 보낼 URL 및 데이터 설정
+		// 결제 처리를 수행하는 서버 엔드포인트 URL (OrderController의 saveCartOrder 메소드 주소)
+		var url = '/2023-05-JAVA-DEVELOPER-final-project-team1-mango/order/saveCartOrder';
 
 
+		var requestData = {
+			
+			userId: userId
+
+		};
+		console.log(requestData);
+
+		// AJAX 요청 보내기
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', url, true);
+		xhr.setRequestHeader('Content-Type', 'application/json');
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200 || xhr.status === 405) {
+					// 결제가 성공적으로 완료될 경우 실행할 코드
+					var response = JSON.parse(xhr.responseText);
+					alert('주문이 성공적으로 완료되었습니다.');
+					alert('무통장입금 신한은행 110-354-123456\n1시간 내 미입금시 주문이 취소됩니다.');
+					//주문내역으로 redirect
+            		window.location.replace('order_history');
+            		
+				} else {
+					// 결제가 실패한 경우 실행할 코드
+					alert('주문에 실패하였습니다.');
+					
+				}
+			}
+		}
+		xhr.send(JSON.stringify(requestData)); // 요청 데이터를 JSON 문자열로 변환하여 보냅니다.
+	};
+	</script>
 </html>
