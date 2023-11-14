@@ -64,6 +64,7 @@
 				<div class="col-md-4 col-sm-12 col-xs-12">
 				<input id ="cartId" type = "hidden" th:value ="${cart.cartId}">
 				<input id ="productNo" type = "hidden" th:value="${findGoods.productNo}">
+				<input id ="userId" type = "hidden" th:value="${userIdString}">
 					<div class="movie-img sticky-sb"><img th:src="${findGoods.productImage}"
 							src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
 						<!--수량조절ui-->
@@ -115,7 +116,7 @@
 </body>
 <script>
 
-	 function sendPostRequest() {
+/* 	 function sendPostRequest() {
 		 var cartIdElement = document.getElementById('cartId');
 		 var cartId = cartIdElement.value;
 		 var productNoElement = document.getElementById('productNo');
@@ -153,7 +154,7 @@ debugger;
 			});
 
 
-	} 
+	}  */
 	 
 	  /*  $(document).ready(function () {
 	        // "장바구니 담기" 버튼 클릭 시
@@ -205,8 +206,10 @@ debugger;
 	}
 
 function sendPostRequest() {
-    var productNo = 142;
-    var userId = 'aaaa';
+	var userIdElement = document.getElementById('userId');
+	var userId = userIdElement.value;
+	var productNoElement = document.getElementById('productNo');
+	var productNo = productNoElement.value;
     var productQty = 10;
 
     var data = {
