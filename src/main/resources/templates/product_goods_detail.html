@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if IE 7]><html class="ie ie7 no-js" lang="en-US"><![endif]--><!--[if IE 8]><html class="ie ie8 no-js" lang="en-US"><![endif]--><!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html lang="en" class="no-js">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head><!-- Basic need -->
 	<title>Mango>망고굿즈>detail</title>
@@ -62,10 +62,12 @@
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-4 col-sm-12 col-xs-12">
+				<input id ="cartId" type = "hidden" th:value ="${cart.cartId}">
+				<input id ="productNo" type = "hidden" th:value="${findGoods.productNo}">
 					<div class="movie-img sticky-sb"><img th:src="${findGoods.productImage}"
 							src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
 						<!--수량조절ui-->
-						<div class="quantity-box" style="margin-top: 20px;" id = "qty">
+						<div class="quantity-box" style="margin-top: 20px;" id ="qty"  >
 							<div class="quantity-button" onclick="changeQuantity(-1)">-</div>
 							<input class="quantity-input" type="text" value="1" id="quantity" readonly>
 							<div class="quantity-button" onclick="changeQuantity(1)">+</div>
@@ -74,12 +76,17 @@
 						<!--장바구니 담기 버튼-->
 						<div class="movie-btn">
 							<div class="btn-transform transform-vertical" id = "productNo">
-								<div><a th:href="@{/cart_main(productNo=${productNo})}" class="item item-1 yellowbtn"
-										onclick="sendPostRequest()">
+
+								<div><a th:href="@{/cart_main}" class="item item-1 yellowbtn"onclick="sendPostRequest()">
+								<!--<a th:href="@{/cart_main(productNo=${productNo})}" class="item item-1 yellowbtn"
+										onclick="sendPostRequest()">-->
 										<i class="ion-card"></i>장바구니 담기</a>
 								</div>
-								<div><a th:href="@{/cart_main(productNo=${productNo})}" class="item item-2 yellowbtn"
-										onclick="sendPostRequest()">
+
+	
+								<div><a th:href="@{/cart_main}" class="item item-2 yellowbtn" onclick="sendPostRequest()">
+							<div><a th:href="@{/cart_main(productNo=${productNo})}" class="item item-2 yellowbtn"
+										onclick="sendPostRequest()">-->
 										<i class="ion-card"></i>장바구니 담기</a>
 								</div>
 							</div>
@@ -108,16 +115,20 @@
 </body>
 <script>
 
-	/* function sendPostRequest() {
+	 function sendPostRequest() {
+		 var cartIdElement = document.getElementById('cartId');
+		 var cartId = cartIdElement.value;
+		 var productNoElement = document.getElementById('productNo');
+		 var productNo = productNoElement.value;
+		// var productQtyElement = document.getElementById('qty');
+		 //var productQty = productQtyElement.value;
+		 
 		const writeData = {
-			"cartItemId": 0,
-			"cartItemQty": 10,
-			"cartId": 5,
-			"productId": 151,
+			//"productQty": productQty,
+			"productNo": productNo,
+			"cartId":cartId
 		};
-		alert(writeData.cartId); // 수정
-		alert(writeData.cartItemQty); // 수정
-
+debugger;
 		fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/cart_create', {
 			method: 'POST',
 			headers: {
@@ -131,8 +142,8 @@
 				}
 				throw new Error('장바구니 추가 실패');
 			})
-			.then(data => {
-				alert('장바구니 추가 성공:', data);
+			.then(writeData => {
+				alert('장바구니 추가 성공:', writeData);
 				// 여기에 추가로 필요한 로직 작성 가능
 			})
 			.catch(error => {
@@ -142,11 +153,12 @@
 			});
 
 
-	} */
-	/*    $(document).ready(function () {
-		   alert("asdsadsadsa");
+	} 
+	 
+	  /*  $(document).ready(function () {
 	        // "장바구니 담기" 버튼 클릭 시
-	        $("sendPostRequest()").on("click", function () {
+		   alert("asdsadsadsa");
+	        $(".sendPostRequest()").on("click", function () {
 	            // 선택한 상품 정보 수집 (상품 번호, 수량 등)
 	            var productId = $("#productNo").val(); // 상품 번호를 가져오는 예시
 	            var quantity = $("#qty").val(); // 수량을 가져오는 예시
@@ -162,7 +174,7 @@
 	            $.ajax({
 	                type: "POST",
 	                contentType: "application/json",
-	                url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/cart_create", // 실제 엔드포인트에 맞게 수정
+	                url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/cart_create",
 	                data: JSON.stringify(cartItemData),
 	                success: function (response) {
 	                	
@@ -175,9 +187,10 @@
 	                }
 	            });
 	        });
+<<<<<<< HEAD
 	    }); */
 
-	//수령조절
+//
 	function changeQuantity(amount) {
 		var quantityInput = document.getElementById('quantity');
 		var currentValue = parseInt(quantityInput.value);
@@ -185,8 +198,44 @@
 		// Ensure that the quantity does not go below 1
 		if (currentValue + amount >= 1) {
 			quantityInput.value = currentValue + amount;
+			
+			// 변경된 수량 콘솔에 찍기
+            console.log('수량:', quantityInput.value);
 		}
 	}
+
+function sendPostRequest() {
+    var productNo = 142;
+    var userId = 'aaaa';
+    var productQty = 10;
+
+    var data = {
+        productNo: productNo,
+        userId: userId,
+        productQty: productQty
+    };
+
+    // AJAX를 사용하여 POST 요청 보내기
+    $.ajax({
+        type: "POST",
+        url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product/product_goods_Cart_detail/${productNo}/${userId}/${productQty}`,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (response) {
+            // 성공적으로 처리된 경우 실행할 코드
+            alert("장바구니에 담겼습니다.");
+            console.log(response);
+             window.location.href ="/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main";
+        },
+        error: function (xhr, status, error) {
+            // 오류가 발생한 경우 실행할 코드
+            console.error(error);
+        }
+    });
+
+
+}
+
 
 </script>
 <script src="js/jquery.js"></script>

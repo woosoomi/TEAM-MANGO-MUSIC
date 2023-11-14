@@ -176,17 +176,17 @@
 				hideOrderForm(); // 나의 주문내역 폼을 숨김
 
 				showUserListForm(); // 회원 목록 폼을 보임
-				
+
 				showOrderListForm(); // 주문 목록 폼을 보임
-				
+
 				showInquiryListForm(); //문의 목록 폼을 보임
 
 			}
 			if (!isAdminUser()) {
 				hideUserListForm(); // 회원 목록 폼을 숨김
-				
+
 				hideOrderListForm();// 주문 목록 폼을 숨김
-				
+
 				hideInquiryListForm();// 문의 목록 폼을 숨김
 			}
 		};
@@ -227,7 +227,7 @@
 				UserListForm.style.display = 'none';
 			}
 		}
-		
+
 		// 주문 목록 폼을 보이게 하는 함수
 		function showOrderListForm() {
 			var OrderListForm = document.getElementById("OrderListForm");
@@ -235,7 +235,7 @@
 				OrderListForm.style.display = 'block';
 			}
 		}
-		
+
 		// 주문 목록 폼을 숨기는 함수
 		function hideOrderListForm() {
 			var OrderListForm = document.getElementById("OrderListForm");
@@ -243,7 +243,7 @@
 				OrderListForm.style.display = 'none';
 			}
 		}
-		
+
 		// 문의 목록 폼을 보이게 하는 함수
 		function showInquiryListForm() {
 			var InquiryListForm = document.getElementById("InquiryListForm");
@@ -251,7 +251,7 @@
 				InquiryListForm.style.display = 'block';
 			}
 		}
-		
+
 		// 문의 목록 폼을 숨기는 함수
 		function hideInquiryListForm() {
 			var InquiryListForm = document.getElementById("InquiryListForm");
@@ -267,6 +267,7 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/plugins2.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/user.js"></script>
 </body>
 
 </html>
