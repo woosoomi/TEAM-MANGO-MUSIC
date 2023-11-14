@@ -187,7 +187,7 @@ class ProductServiceImplTest extends TeamProjectMangoApplicationTest {
 		@Test
 		@Transactional
 		@Rollback(false)
-//		@Disabled	 
+		@Disabled	 
 		void testDeledtProductDto() throws Exception {
 			// productNo 값을 지정
 			productServiceImpl.deleteProductDto(169L);
