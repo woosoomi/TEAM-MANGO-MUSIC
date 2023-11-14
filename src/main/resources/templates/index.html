@@ -165,318 +165,101 @@
 								class="ion-ios-arrow-right"></i></a>
 					</div>
 					<div class="tabs">
-						<ul class="tab-links">
-							<li class="active"><a href="#tab1">#Popular</a></li>
-							<li><a href="#tab2">#Coming soon</a></li>
-							<li><a href="#tab3"> #TESTSPACE </a></li>
-						</ul>
 						<div class="tab-content">
 							<div id="tab1" class="tab active">
 								<div class="row">
 									<div class="slick-multiItem">
+
 										<div class="slide-it">
 											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/아이유_티켓.jpg" alt=""
+												<div class="mv-img"><img th:src="${tickets[0].productImage}" alt=""
 														width="185" height="284"></div>
 												<div class="hvr-inner"><a
-														href="https://ticket.melon.com/performance/index.htm?prodId=208654">Read
+														th:href="@{/product_ticket_detail(productNo=${tickets[0].productNo})}">Read
 														more <i class="ion-android-arrow-dropright"></i></a></div>
 												<div class="title-in">
-													<h6><a
-															href="https://ticket.melon.com/performance/index.htm?prodId=208654">아이유
-															콘서트 </a></h6>
+													<h6><a th:href="@{/product_ticket_detail(productNo=${tickets[0].productNo})}"
+															th:text="${tickets[0].productName}">JPOP 콘서트</a>
+													</h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/JPOP_티켓.jpg" alt=""
+												<div class="mv-img"><img th:src="${tickets[1].productImage}" alt=""
 														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+												<div class="hvr-inner"><a
+														th:href="@{/product_ticket_detail(productNo=${tickets[1].productNo})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a></div>
 												<div class="title-in">
-													<h6><a href="#">JPOP 콘서트</a></h6>
+													<h6><a th:href="@{/product_ticket_detail(productNo=${tickets[1].productNo})}"
+															th:text="${tickets[1].productName}">JPOP 콘서트</a>
+													</h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/레베카_티켓.jpg" alt=""
+												<div class="mv-img"><img th:src="${tickets[2].productImage}" alt=""
 														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+												<div class="hvr-inner"><a
+														th:href="@{/product_ticket_detail(productNo=${tickets[2].productNo})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a></div>
 												<div class="title-in">
-													<h6><a href="#">레베카 뮤지컬</a></h6>
+													<h6><a th:href="@{/product_ticket_detail(productNo=${tickets[2].productNo})}"
+															th:text="${tickets[2].productName}">JPOP 콘서트</a>
+													</h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/에픽하이_티켓.jpg" alt=""
+												<div class="mv-img"><img th:src="${tickets[3].productImage}" alt=""
 														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+												<div class="hvr-inner"><a
+														th:href="@{/product_ticket_detail(productNo=${tickets[3].productNo})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a></div>
 												<div class="title-in">
-													<h6><a href="#">에픽하이콘서트</a></h6>
+													<h6><a th:href="@{/product_ticket_detail(productNo=${tickets[3].productNo})}"
+															th:text="${tickets[3].productName}">JPOP 콘서트</a>
+													</h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/엠씨더맥스_티켓.jpg" alt=""
+												<div class="mv-img"><img th:src="${tickets[4].productImage}" alt=""
 														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+												<div class="hvr-inner"><a
+														th:href="@{/product_ticket_detail(productNo=${tickets[4].productNo})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a></div>
 												<div class="title-in">
-													<h6><a href="#">엠씨더맥스콘서트</a></h6>
+													<h6><a th:href="@{/product_ticket_detail(productNo=${tickets[4].productNo})}"
+															th:text="${tickets[4].productName}">JPOP 콘서트</a>
+													</h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/린_티켓.jpg" alt=""
+												<div class="mv-img"><img th:src="${tickets[5].productImage}" alt=""
 														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+												<div class="hvr-inner"><a
+														th:href="@{/product_ticket_detail(productNo=${tickets[5].productNo})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a></div>
 												<div class="title-in">
-													<h6><a href="#">린 콘서트</a></h6>
+													<h6><a th:href="@{/product_ticket_detail(productNo=${tickets[5].productNo})}"
+															th:text="${tickets[5].productName}">JPOP 콘서트</a>
+													</h6>
 												</div>
 											</div>
 										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/대구힙합_티켓.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">대구힙합 콘서트</a></h6>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/삼총사_티켓.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">삼총사 뮤지컬</a></h6>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item3.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">TEST</a></h6>
-												</div>
-											</div>
-										</div>
+
+
 									</div>
 								</div>
 							</div>
-							<div id="tab2" class="tab">
-								<div class="row">
-									<div class="slick-multiItem">
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item5.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Interstellar</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item6.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">The revenant</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item7.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Die hard</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item8.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">The walk</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item3.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Die hard</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div id="tab3" class="tab">
-								<div class="row">
-									<div class="slick-multiItem">
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item1.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Interstellar</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item2.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">The revenant</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item3.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Die hard</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item4.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">The walk</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item3.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Die hard</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div id="tab4" class="tab">
-								<div class="row">
-									<div class="slick-multiItem">
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item5.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Interstellar</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item6.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">The revenant</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item7.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Die hard</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item8.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">The walk</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-										<div class="slide-it">
-											<div class="movie-item">
-												<div class="mv-img"><img src="images/uploads/mv-item3.jpg" alt=""
-														width="185" height="284"></div>
-												<div class="hvr-inner"><a href="moviesingle.html">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
-												<div class="title-in">
-													<h6><a href="#">Die hard</a></h6>
-													<p><i class="ion-android-star"></i><span>7.4</span>/10</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
 						</div>
 					</div>
 					<div class="title-hd">
@@ -491,88 +274,106 @@
 										<div class="slide-it">
 											<div class="movie-item">
 												<div class="mv-img">
-													<img th:src="@{${magazines[0].boardPrize}}"
-													alt=""  style="width: 166px; height: 199px;">
+													<img th:src="@{${magazines[0].boardPrize}}" alt=""
+														style="width: 166px; height: 199px;">
 												</div>
 												<div class="hvr-inner">
-													<a th:href="@{/board_other_detail(boardId=${magazines[0].boardId})}">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+													<a
+														th:href="@{/board_other_detail(boardId=${magazines[0].boardId})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a>
+												</div>
 												<div class="title-in">
-													<h6><a href="#" th:text="${magazines[0].boardTitle}">Interstellar</a></h6>
+													<h6><a href="#"
+															th:text="${magazines[0].boardTitle}">Interstellar</a></h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
 												<div class="mv-img">
-													<img th:src="@{${magazines[1].boardPrize}}"
-													alt=""  style="width: 166px; height: 199px;">
+													<img th:src="@{${magazines[1].boardPrize}}" alt=""
+														style="width: 166px; height: 199px;">
 												</div>
 												<div class="hvr-inner">
-													<a th:href="@{/board_other_detail(boardId=${magazines[1].boardId})}">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+													<a
+														th:href="@{/board_other_detail(boardId=${magazines[1].boardId})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a>
+												</div>
 												<div class="title-in">
-													<h6><a href="#" th:text="${magazines[1].boardTitle}">Interstellar</a></h6>
+													<h6><a href="#"
+															th:text="${magazines[1].boardTitle}">Interstellar</a></h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
 												<div class="mv-img">
-													<img th:src="@{${magazines[2].boardPrize}}"
-													alt=""  style="width: 166px; height: 199px;">
+													<img th:src="@{${magazines[2].boardPrize}}" alt=""
+														style="width: 166px; height: 199px;">
 												</div>
 												<div class="hvr-inner">
-													<a th:href="@{/board_other_detail(boardId=${magazines[2].boardId})}">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+													<a
+														th:href="@{/board_other_detail(boardId=${magazines[2].boardId})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a>
+												</div>
 												<div class="title-in">
-													<h6><a href="#" th:text="${magazines[2].boardTitle}">Interstellar</a></h6>
+													<h6><a href="#"
+															th:text="${magazines[2].boardTitle}">Interstellar</a></h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
 												<div class="mv-img">
-													<img th:src="@{${magazines[3].boardPrize}}"
-													alt=""  style="width: 166px; height: 199px;">
+													<img th:src="@{${magazines[3].boardPrize}}" alt=""
+														style="width: 166px; height: 199px;">
 												</div>
 												<div class="hvr-inner">
-													<a th:href="@{/board_other_detail(boardId=${magazines[3].boardId})}">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+													<a
+														th:href="@{/board_other_detail(boardId=${magazines[3].boardId})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a>
+												</div>
 												<div class="title-in">
-													<h6><a href="#" th:text="${magazines[3].boardTitle}">Interstellar</a></h6>
+													<h6><a href="#"
+															th:text="${magazines[3].boardTitle}">Interstellar</a></h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
 												<div class="mv-img">
-													<img th:src="@{${magazines[4].boardPrize}}"
-													alt=""  style="width: 166px; height: 199px;">
+													<img th:src="@{${magazines[4].boardPrize}}" alt=""
+														style="width: 166px; height: 199px;">
 												</div>
 												<div class="hvr-inner">
-													<a th:href="@{/board_other_detail(boardId=${magazines[4].boardId})}">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+													<a
+														th:href="@{/board_other_detail(boardId=${magazines[4].boardId})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a>
+												</div>
 												<div class="title-in">
-													<h6><a href="#" th:text="${magazines[4].boardTitle}">Interstellar</a></h6>
+													<h6><a href="#"
+															th:text="${magazines[4].boardTitle}">Interstellar</a></h6>
 												</div>
 											</div>
 										</div>
 										<div class="slide-it">
 											<div class="movie-item">
 												<div class="mv-img">
-													<img th:src="@{${magazines[5].boardPrize}}"
-													alt=""  style="width: 166px; height: 199px;">
+													<img th:src="@{${magazines[5].boardPrize}}" alt=""
+														style="width: 166px; height: 199px;">
 												</div>
 												<div class="hvr-inner">
-													<a th:href="@{/board_other_detail(boardId=${magazines[5].boardId})}">Read more <i
-															class="ion-android-arrow-dropright"></i></a></div>
+													<a
+														th:href="@{/board_other_detail(boardId=${magazines[5].boardId})}">Read
+														more <i class="ion-android-arrow-dropright"></i></a>
+												</div>
 												<div class="title-in">
-													<h6><a href="#" th:text="${magazines[5].boardTitle}" >Interstellar</a></h6>
+													<h6><a href="#"
+															th:text="${magazines[5].boardTitle}">Interstellar</a></h6>
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
 								</div>
 							</div>
@@ -581,38 +382,45 @@
 				</div>
 				<div class="col-md-4">
 					<div class="sidebar">
-						<div class="ads"><p>🎦 RedVelvet ComeBack 🎧</p>
-						<img src="images/rv.jpg" alt=""></div>
+						<div class="ads">
+							<p>🎦 RedVelvet ComeBack 🎧</p>
+							<img src="images/rv.jpg" alt="">
+						</div>
 						<div class="celebrities">
 							<h4 class="sb-title">MANGO CHART</h4>
-							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[0].productNo})}"><img th:src="${musics[0].productImage}" alt="" width="70"
-										height="70"></a>
+							<div class="celeb-item"><a
+									th:href="@{/product_music_detail(productNo=${musics[0].productNo})}"><img
+										th:src="${musics[0].productImage}" alt="" width="70" height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[0].productName}">1 . Celebrity</a></h6>
 									<span th:text="${musics[0].productArtist}">아이유(IU)</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[1].productNo})}"><img th:src="${musics[1].productImage}" alt="" width="70"
-										height="70"></a>
+							<div class="celeb-item"><a
+									th:href="@{/product_music_detail(productNo=${musics[1].productNo})}"><img
+										th:src="${musics[1].productImage}" alt="" width="70" height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[1].productName}">2 . You & Me</a></h6>
 									<span th:text="${musics[1].productArtist}">제니</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[2].productNo})}" ><img th:src="${musics[2].productImage}" alt="" width="70"
-										height="70"></a>
+							<div class="celeb-item"><a
+									th:href="@{/product_music_detail(productNo=${musics[2].productNo})}"><img
+										th:src="${musics[2].productImage}" alt="" width="70" height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[2].productName}">3 . LoveLee</a></h6>
 									<span th:text="${musics[2].productArtist}">악동뮤지션</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[3].productNo})}"><img th:src="${musics[3].productImage}" alt="" width="70"
-										height="70"></a>
+							<div class="celeb-item"><a
+									th:href="@{/product_music_detail(productNo=${musics[3].productNo})}"><img
+										th:src="${musics[3].productImage}" alt="" width="70" height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[3].productName}">4 . Seven</a></h6>
 									<span th:text="${musics[3].productArtist}">정국</span>
 								</div>
-							</div><a href="product_music_list" class="btn">VIEW MORE<i class="ion-ios-arrow-right"></i></a>
+							</div><a href="product_music_list" class="btn">VIEW MORE<i
+									class="ion-ios-arrow-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -624,7 +432,8 @@
 			<div class="row ipad-width">
 				<div class="col-md-12">
 					<div class="title-hd">
-						<h2>최신음악 MV</h2><a href="product_music_newest" class="viewall">View More <i class="ion-ios-arrow-right"></i></a>
+						<h2>최신음악 MV</h2><a href="product_music_newest" class="viewall">View More <i
+								class="ion-ios-arrow-right"></i></a>
 					</div>
 					<div class="videos">
 						<div class="slider-for-2 video-ft">

@@ -115,10 +115,10 @@
 							<div class="tab-content">
 								<!--상세설명 [시작]-->
 								<div id="overview" class="tab active">
-									<h2>공연제목 : <span th:text="${findTicket.productName}"></span></h2>
-									<h3>아티스트 : <span th:text="${findTicket.productArtist}"></span></h3>
-									<img th:src="${findTicket.productImage}" src="images/uploads/movie-single.jpg"
-										alt="" style="max-width: 100%">
+									<h2 th:text = "|공연제목 : ${findTicket.productName}|" style="color: white; font-size: 30px; margin-top:15px; margin-bottom: 15px;"></h2>
+									<h3 th:text = "|아티스트 : ${findTicket.productArtist}|" style="color: aqua; font-size: 20px; margin-top:15px; margin-bottom: 15px;"></h3>
+									<!--<img th:src="${findTicket.productImage}" src="images/uploads/movie-single.jpg"
+										alt="" style="max-width: 100%">-->
 
 									<div class="row">
 										<div class="col-md-8 col-sm-12 col-xs-12">
@@ -250,13 +250,10 @@
 											<div class="blog-detail-ct">
 												<h1>공연주소</h1>
 												<!--<div class="flex-it share-tag"></div>-->
-												<h4 style="margin-bottom: 10px; color: yellow;"><span
-														th:text="${findTicket.productAddress}"></span></h4>
-												</br>
-
-												<div id="map" style="width:500px;height:500px;"></div>
-												<div class="flex-it share-tag">
-												</div>
+												<h4 style="margin-bottom: 5px; color: yellow;"><span
+														th:text="${findTicket.productAddress}"></span></h4></br>
+												<img th:src="${findTicket.productMovie}"alt="" style="max-width: 200%">
+	
 											</div>
 										</div>
 									</div>
@@ -376,7 +373,7 @@
 ///////////////////////////댓글전체[마지막]///////////////////////////-->
 
 <!--///////////////////////////지도전체[시작]///////////////////////////-->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95118bde95091988e1c186337c9f0b23"></script>
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95118bde95091988e1c186337c9f0b23"></script>
 <script type="text/javascript">
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -398,7 +395,7 @@
 
 	// 마커를 지도에 추가
 	marker.setMap(map);
-</script>
+</script>-->
 ///////////////////////////지도전체[마지막]///////////////////////////
 
 <script src="js/jquery.js"></script>
