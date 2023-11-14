@@ -68,10 +68,10 @@
         <div th:each="order, iterStat: ${orderDtoList}">
         <div th:each="orderitem, iterStat: ${order.orderItemDtos}">
 			
-		<div class="e" style=" margin-top: 40px;">
-		<div class="movie-item-style-2">
+		<div class="e">
+		<div class="movie-item-style-2" style="margin-left: 50px;">
 		<!-- <img th:src="@{'images/' + ${orderitem.productImage}}" alt="">-->
-		 <img th:src="${orderitem.productImage}" alt="">
+		 <img th:src="${orderitem.productImage}" alt="" >
    		 <div class="mv-item-infor">
             <h6>
                 <a th:text="'주문번호:  '+${order.orderId}"></a>
