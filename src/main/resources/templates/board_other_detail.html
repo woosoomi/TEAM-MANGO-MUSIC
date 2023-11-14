@@ -58,7 +58,7 @@
 
 							<div th:each="ReplyList : ${ReplyList}">
 								<div class="cmt-item flex-it">
-									<img src="images/uploads/author.png" alt="">
+									<img src="images/uploads/user-img.png" alt="" style="width: 70px; height: 70px;">
 									<div class="author-infor">
 										<div class="flex-it2">
 											<!--Name으로 체인지 가능-userinfo-->
@@ -181,7 +181,7 @@
 					alert('에러 발생: ' + error);
 				});
 		} else {
-			alert('댓글 내용은 60글자 이하로 작성해야 합니다.');
+			alert('댓글 내용은 60글자 이상으로 작성해야 합니다.');
 		}
 	}
 
