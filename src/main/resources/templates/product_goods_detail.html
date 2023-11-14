@@ -68,11 +68,11 @@
 					<div class="movie-img sticky-sb"><img th:src="${findGoods.productImage}"
 							src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
 						<!--수량조절ui-->
-						<div class="quantity-box" style="margin-top: 20px;" id ="qty"  >
+						<!-- <div class="quantity-box" style="margin-top: 20px;" id ="qty"  >
 							<div class="quantity-button" onclick="changeQuantity(-1)">-</div>
-							<input class="quantity-input" type="text" value="1" id="quantity" readonly>
+							<input class="quantity-input" type="text" value="1" id="qty" readonly>
 							<div class="quantity-button" onclick="changeQuantity(1)">+</div>
-						</div>
+						</div> -->
 
 						<!--장바구니 담기 버튼-->
 						<div class="movie-btn">
@@ -210,7 +210,8 @@ function sendPostRequest() {
 	var userId = userIdElement.value;
 	var productNoElement = document.getElementById('productNo');
 	var productNo = productNoElement.value;
-    var productQty = 10;
+	//var productQtyElement = document.getElementById('qty');
+	var productQty = 1;
 
     var data = {
         productNo: productNo,
