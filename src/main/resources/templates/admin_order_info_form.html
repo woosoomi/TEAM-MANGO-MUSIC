@@ -60,7 +60,7 @@
 			<table>
 				<tr style="font-size: 15px; color: lightpink; ">
 					<td style="width: 15%;">아이디</td>
-					<td style="width:15%;">주문일시</td>
+					<td style="width:30%;">주문일시</td>
 					<td style="width:15%;">주문자성명</td>
 					<td style="width:15%;">주문제품</td>
 					<td style="width:30%;">주문수량</td>
@@ -68,8 +68,9 @@
 
 				<tr th:each="orders : ${orders}">
 					<td th:text="${orders.getUserId}">아이디</td>
-					<td th:text="${orders.createdAt}">주문일시</td>
+					<td th:text="${#temporals.format(orders.createdAt, 'yyyy.MM.dd HH:mm')}">주문일시</td>
 					<td th:text="${orders.getUserName}">주문자성명</td>
+					<td th:text="${orders.orderPrice}">주문자성명</td>
 					
 				</tr>
 			</table>
