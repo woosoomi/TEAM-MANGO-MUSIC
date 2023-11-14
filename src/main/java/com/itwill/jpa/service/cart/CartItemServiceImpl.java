@@ -11,6 +11,7 @@ import com.itwill.jpa.dao.cart.CartDao;
 import com.itwill.jpa.dao.product.ProductDao;
 import com.itwill.jpa.dto.cart.CartItemDto;
 import com.itwill.jpa.dto.product.ProductDto;
+import com.itwill.jpa.entity.cart.Cart;
 import com.itwill.jpa.entity.cart.CartItem;
 import com.itwill.jpa.entity.product.Product;
 import com.itwill.jpa.repository.cart.CartItemRepository;
@@ -34,11 +35,20 @@ public class CartItemServiceImpl implements CartItemService {
 	ProductDao productDao;
 	@Autowired
 	CartDao cartDao;
-
+	
 	@Override
-	public CartItem insert(CartItem cartItem) {
-		return cartItemRepository.save(cartItem);
-	}
+	public CartItem insert(CartItemDto cartItemDto) {
+		Product product = productRepository.findById(cartItemDto.getProductId()).get();
+		Cart cart = cartRepository.findById(cartItemDto.getCartId()).get();
+		CartItem fCartItem = CartItem.builder()
+							.product(product)
+							.cart(cart)
+							.cartItemId(cartItemDto.getCartItemId())
+							.cartItemQty(cartItemDto.getCartItemQty())
+							.build();
+		cartItemRepository.save(fCartItem);
+		return fCartItem;
+		}
 
 	@Override
 	public CartItemDto update(Long cartItemId, int qty) throws Exception {
@@ -121,4 +131,6 @@ public class CartItemServiceImpl implements CartItemService {
 	 * @Override public void deleteByCartItemId(Long cartItemId) {
 	 * cartItemRepository.deleteById(cartItemId);; }
 	 */
+	
+	
 }

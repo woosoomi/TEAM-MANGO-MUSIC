@@ -38,7 +38,7 @@ public class CartController {
 	ProductService productService;
 	
 	
-	/*
+/*
 	@GetMapping("/cart_main")
 	public String cart(@RequestParam(name = "productNo",required = false)Long productNo,@RequestParam(name = "cartId",required = false)Long cartId, Model model, HttpSession session) {
 	    try {
@@ -93,46 +93,64 @@ public class CartController {
 	        return "index";
 	    }
 	}
-	*/
+*/
 	@GetMapping("/cart_main")
-	public String cart(@RequestParam(name = "cartId",required = false)Long cartId,Model model, HttpSession session) {
+	public String cart(Model model, HttpSession session) {
 	    try {
-	    	
-			String loginUser = (String) session.getAttribute("sUserId");
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>"+loginUser);
-			UserDto user = null;
+	        String loginUser = (String) session.getAttribute("sUserId");
+	        System.out.println(">>>>>>>>>>>>>>>>>>>>>" + loginUser);
+	        UserDto user = null;
 
-			if (loginUser != null) {
-				user = userService.findUser(loginUser);
-				System.out.println(">>>>>>>>>>>>>"+user);
-			}
-			session.setAttribute("loginUser", user);
-			String userIdString = (user != null) ? user.getUserId() : null;
-			model.addAttribute("userIdString", userIdString);
-			System.out.println(">>>>>>>>>>>>>>>>"+userIdString);
-			
-	        CartDto cart = cartService.findCartByCartId(5L);
-	        List<CartItemDto> cartItems = cartItemService.findAllByCartId(cart.getCartId());
-	        
-	        if (cartItems.isEmpty()) {
-	            return "cart_empty";
-	        } else {
-	    
-	            List<ProductDto> products = new ArrayList<>();
-	            for (CartItemDto cartItem : cartItems) {
-	                Optional<ProductDto> productOptional = cartItemService.getProductByProductId(cartItem.getProductId());
-	                productOptional.ifPresent(products::add);
+	        if (loginUser != null) {
+	            user = userService.findUser(loginUser);
+	            System.out.println(">>>>>>>>>>>>>" + user);
+	        }
+
+	        // 세션에 로그인한 사용자 정보 설정
+	        session.setAttribute("loginUser", user);
+
+	        // 로그인한 사용자의 userId 가져오기
+	        String userId = (user != null) ? user.getUserId() : null;
+	        model.addAttribute("userIdString", loginUser);
+	        System.out.println(">>>>>>>>>>>>>>>>" + loginUser);
+
+	        if (userId != null) {
+	            // userId로 해당 사용자의 cart 정보 가져오기
+	            Cart cart = cartService.findCartByUserId(userId);
+	            CartDto cartDto = CartDto.toDto(cart);
+	            
+	            if (cartDto != null) {
+	                List<CartItemDto> cartItems = cartItemService.findAllByCartId(cartDto.getCartId());
+	                System.out.println(">>>>>>>>>>>>>>cartItems"+cartItems);
+
+	                if (cartItems.isEmpty()) {
+	                    return "cart_empty";
+	                } else {
+	                    List<ProductDto> products = new ArrayList<>();
+	                    for (CartItemDto cartItem : cartItems) {
+	                        Optional<ProductDto> productOptional = cartItemService.getProductByProductId(cartItem.getProductId());
+	                        productOptional.ifPresent(products::add);
+	                    }
+	                    model.addAttribute("sUserId", loginUser);
+	                    model.addAttribute("cart", cart);
+	                    model.addAttribute("cartItems", cartItems);
+	                    model.addAttribute("products", products);
+	                    return "cart_main";
+	                }
+	            } else {
+	                return "cart_empty";
 	            }
-	            model.addAttribute("sUserId", loginUser);
-	            model.addAttribute("cart",cart);
-	            model.addAttribute("cartItems", cartItems);
-	            model.addAttribute("products", products);
-	            return "cart_main"; 
+	        } else {
+	            return "cart_empty";
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "index";
 	    }
+
 	}
+
+
+
 	
 }

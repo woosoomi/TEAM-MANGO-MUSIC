@@ -14,7 +14,7 @@ public interface CartItemService {
 	
 	
 	//상품 추가
-	CartItem insert(CartItem cartItem);
+	CartItem insert(CartItemDto cartItemDto);
 	//수량 수정
 	public CartItemDto update(Long cartItemId, int qty) throws Exception;
 	
