@@ -585,28 +585,28 @@
 						<img src="images/rv.jpg" alt=""></div>
 						<div class="celebrities">
 							<h4 class="sb-title">MANGO CHART</h4>
-							<div class="celeb-item"><a href=""><img th:src="${musics[0].productImage}" alt="" width="70"
+							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[0].productNo})}"><img th:src="${musics[0].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[0].productName}">1 . Celebrity</a></h6>
 									<span th:text="${musics[0].productArtist}">아이유(IU)</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a href="#"><img th:src="${musics[1].productImage}" alt="" width="70"
+							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[1].productNo})}"><img th:src="${musics[1].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[1].productName}">2 . You & Me</a></h6>
 									<span th:text="${musics[1].productArtist}">제니</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a href="#" ><img th:src="${musics[2].productImage}" alt="" width="70"
+							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[2].productNo})}" ><img th:src="${musics[2].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[2].productName}">3 . LoveLee</a></h6>
 									<span th:text="${musics[2].productArtist}">악동뮤지션</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a href="#"><img th:src="${musics[3].productImage}" alt="" width="70"
+							<div class="celeb-item"><a th:href="@{/product_music_detail(productNo=${musics[3].productNo})}"><img th:src="${musics[3].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
 									<h6><a href="#" th:text="${musics[3].productName}">4 . Seven</a></h6>
