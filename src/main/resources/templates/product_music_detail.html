@@ -67,7 +67,9 @@
 						</h1>
 						<p th:text="${findMusic.productArtist}" style="margin-bottom: 15px;">2015</p>
 						<p th:text="${findMusic.productDate}" style="margin-bottom: 15px;"></p>
+						
 						<div class="social-btn"><a href="#" class="parent-btn"><i class="ion-heart"></i>Play Music</a>
+						
 							<div class="hover-bnt"><a href="#" class="parent-btn"><i class="ion-android-share-alt"
 										onclick="copyUrl()"></i>share</a>
 								<div class="hvr-item" onclick="copyUrl()"><a href="#" class="hvr-grow"><i
@@ -77,18 +79,19 @@
 											class="ion-social-youtube"></i></a></div>
 							</div>
 						</div>
-
+												
 						<script>
 							document.querySelector(".social-btn").addEventListener("click", function () {
 								var audio1 = new Audio("./css/Baddie.mp3");
 								audio1.loop = false; // 반복재생하지 않음
 								audio1.volume = 0.5; // 음량 설정
 								audio1.play(); // sound1.mp3 재생
+								
 							});
 						</script>
 						
 						
-					</div>
+						</div>
 					<div class="title-hd-sm">
 						<h4 th:text="|노래 소개|">User reviews</h4><a th:text="| |" href="#" class="time">See All 56 Reviews
 							<i class="ion-ios-arrow-right"></i></a>
@@ -110,7 +113,7 @@
 									<div class="videos">
 										<div class="slider-for-2 video-ft">
 											<div>
-												<iframe width="560" height="315" th:src="${findMusic.productMovie}"
+												<iframe class="youtube" width="560" height="315" th:src="${findMusic.productMovie}"
 													frameborder="0"
 													allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 													allowfullscreen>
@@ -167,7 +170,7 @@
 							<form action="">
 								<div class="row">
 									<div class="col-md-4">
-										<input type="text" id="comment_id" placeholder="작성자 이름" style="font-size: 15px;"
+										<input type="text" id="comment_id" placeholder="로그인이 필요합니다" style="font-size: 15px;"
 											th:value="${userIdString}">
 									</div>
 
@@ -222,18 +225,30 @@
 			<!-- end of footer section-->
 </body>
 
+<script th:inline="javascript">
+	document.querySelector(".social-btn, .movie-btn, .slider-for-2, .youtube").addEventListener("click", function () {
+		let sessionId = [[${userIdString}]];
+		if (sessionId == null) {
+			alert("로그인이 필요합니다.");
+			window.location.replace("user_login_form");
+		}
+	});
+
+</script>
+
 <script type="text/javascript">
 
 	//현재 url 변수로 가져오기
 	let nowUrl = window.location.href;
 
 	function copyUrl() {
-		//nowUrl 변수에 담긴 주소를
+		//nowUrl 변수에 담긴 주소 받아오기
 		navigator.clipboard.writeText(nowUrl).then(res => {
 			alert("주소가 복사되었습니다!");
 		})
 	}
 
+		
 	function create_reply() {
 		const urlParams = new URLSearchParams(window.location.search);
 		const productNo = urlParams.get("productNo");
@@ -251,7 +266,14 @@
 			"productNo": productNo,
 			"userId": commentId //세션처리 아이디넣으면 자동으로 이름들어옴
 		}
-		console.log(commentData);
+			console.log(commentData);
+		
+		if(commentData.commentId==null){
+			alert('로그인이 필요합니다.')
+			window.location.replace('user_login_form');
+		}		
+		
+		
 		fetch(`/2023-05-JAVA-DEVELOPER-final-project-team1-mango/product_reply_create/${productNo}`, {
 			method: 'POST',
 			headers: {
@@ -262,18 +284,17 @@
 			.then(response => {
 				if (response.status === 201) {
 					alert('댓글 등록되었습니다.');
-					//	location.reload(); // 현재 페이지를 새로 고침
+					// 현재 페이지를 새로 고침
 					location.reload();
 				} else {
 					alert('댓글 등록에 실패했습니다.');
-					alert('에러 발생: ' + error);
+					//alert('에러 발생: ' + error); -> 필요없는 액션
 
 				}
 			})
 			.catch(error => {
-				alert('에러 발생: ' + error);
+				//alert('에러 발생: ' + error);
 			});
-
 	}
 
 
