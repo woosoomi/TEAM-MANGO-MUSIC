@@ -28,7 +28,8 @@ public class UserVoteRestController {
 	                                           @PathVariable(name = "voteId") Long voteId) throws Exception {
 	    // userId와 voteId를 사용하여 업데이트 로직을 수행
 	    try {
-	        if (userDaoImpl.findUser(userId).getVote()!=null) {
+	       // 추가
+	    	if (userDaoImpl.findUser(userId).getVote()!=null) {
 	        	return new ResponseEntity<>("이미 투표가 완료된 회원입니다.", HttpStatus.CONFLICT);
 			}
 	    	UserVoteDto updatedUserVoteId = userVotesericeImpl.updateUserVoteId(userId, voteId);

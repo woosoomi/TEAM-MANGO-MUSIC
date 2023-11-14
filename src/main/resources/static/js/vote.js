@@ -7,7 +7,7 @@ function voteEnd() {
 }
 
 
-
+// 완료
 function voteButtonClicked(button) {
     // 사용자 ID와 투표 ID 추출
     var voteId = $(button).data("voteid");
