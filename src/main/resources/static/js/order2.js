@@ -6,8 +6,8 @@ $(document).ready(function() {
     var items = orderHistory.find('.e').get();
     console.log(items)
     items.sort(function(a, b) {
-    var dateA = new Date($(a).find('.rate span:contains("구매일시:")').text().replace('구매일시: ', ''));
-    var dateB = new Date($(b).find('.rate span:contains("구매일시:")').text().replace('구매일시: ', ''));
+      var dateA = new Date($(a).find('.describe span').text().replace('구매날짜: ', ''));
+      var dateB = new Date($(b).find('.describe span').text().replace('구매날짜: ', ''));
 	console.log(dateA)
 	console.log(dateB)
       // 날짜 객체를 사용하여 비교

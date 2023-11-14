@@ -100,21 +100,22 @@ public class ProductController2 {
 	public String MusicDetail(@RequestParam(name = "productNo" ) Long productNo, Model model, HttpSession session,RedirectAttributes redirectAttributes ) {
 		try {
 			String userId = (String) session.getAttribute("sUserId");
-			
-			if (userId == null) {
-				// 로그인되어 있지 않은 경우, 리디렉션
-				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
-				return "redirect:/user_login_form";
-			}	
-			
-			UserDto user = userService.findUser(userId);
-			if(user.getMemberShip()==false) {
-				redirectAttributes.addAttribute("msg", "멤버십 구매가 필요합니다");
-				return "redirect:/product_membership_detail";
+			if(userId!=null) {
+				UserDto user = userService.findUser(userId);
+					if(userService.findUser(userId).getMemberShip()==false) {
+						redirectAttributes.addAttribute("msg","멤버십 구매가 필요합니다.");
+						return "redirect:/product_membership_detail";
+					}
+				session.setAttribute("loginUser", user);
+				String userIdString = (user != null) ? user.getUserId() : null;
+				model.addAttribute("userIdString", userIdString);
 			}
-			session.setAttribute("loginUser", user);
-			String userIdString = (user != null) ? user.getUserId() : null;
-			model.addAttribute("userIdString", userIdString);
+			
+			/*
+			 * if (userId == null) { // 로그인되어 있지 않은 경우, 리디렉션
+			 * redirectAttributes.addAttribute("msg", "로그인이 필요합니다"); return
+			 * "redirect:/user_login_form"; }
+			 */
 			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			List<ProductReply> replyList = productService.findByProduct_productNo(productNo);
@@ -194,17 +195,14 @@ public class ProductController2 {
 		try {
 			String loginUser = (String) session.getAttribute("sUserId");
 			UserDto user = null;
-
 			if (loginUser != null) {
 				user = userService.findUser(loginUser);
 			}
-
 			session.setAttribute("loginUser", user);
-
 			String userIdString = (user != null) ? user.getUserId() : null;
-			model.addAttribute("userIdString", userIdString);
-			
+			model.addAttribute("userIdString", userIdString);		
 			model.addAttribute("productNo", productNo);
+			
 			Product product = productService.findByProductNo(productNo).get(); // 제품 서비스를 이용하여 제품을 가져옵니다.
 			Cart cart = cartService.findCartByUserId(loginUser); // 사용자 ID를 이용하여 카트를 찾습니다.
 			if (cart != null) { // 카트가 존재하는 경우
@@ -219,21 +217,18 @@ public class ProductController2 {
 			    // 예를 들어, 새로운 카트를 생성하고 제품을 추가하는 등의 작업을 수행할 수 있습니다.
 			}
 			Optional<Product> findGoodsOptional = productService.findByProductNo(productNo);
-			List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);
 			if (findGoodsOptional.isPresent()) {
 				Product findGoods = findGoodsOptional.get();
 				productService.increaseReadCount(findGoods);
 				model.addAttribute("findGoods", findGoods);
 				System.out.println(">>>굿즈 상세정보:" + findGoods);
-				model.addAttribute("ReplyList", ReplyList);
-				System.out.println(">>>댓글정보:" + ReplyList);
 			} else {
 				model.addAttribute("errorMSG", "해당 굿즈를 찾을 수 없습니다.");
 			}
 			return "product_goods_detail";					
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("errorMSG", "티켓을 찾는 중 오류 발생: " + e.getMessage());
+			model.addAttribute("errorMSG", "굿즈를 찾는 중 오류 발생: " + e.getMessage());
 			return "error";
 		}
 
