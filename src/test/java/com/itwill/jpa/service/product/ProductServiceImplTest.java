@@ -187,10 +187,18 @@ class ProductServiceImplTest extends TeamProjectMangoApplicationTest {
 		@Test
 		@Transactional
 		@Rollback(false)
-		@Disabled	 
+//		@Disabled	 
 		void testDeledtProductDto() throws Exception {
 			// productNo 값을 지정
-			productServiceImpl.deleteProductDto(24L);
+			productServiceImpl.deleteProductDto(169L);
+			productServiceImpl.deleteProductDto(170L);
+			productServiceImpl.deleteProductDto(171L);
+			productServiceImpl.deleteProductDto(172L);
+			productServiceImpl.deleteProductDto(174L);
+			productServiceImpl.deleteProductDto(175L);
+			productServiceImpl.deleteProductDto(176L);
+			productServiceImpl.deleteProductDto(178L);
+			productServiceImpl.deleteProductDto(179L);
 		}
 
 	  
@@ -470,7 +478,7 @@ class ProductServiceImplTest extends TeamProjectMangoApplicationTest {
 	
 @Test
 @Transactional
-//@Disabled
+@Disabled
 @Rollback(false)
 public void goGoodsQtyData() throws Exception {
 	Long productNo = 7L;
