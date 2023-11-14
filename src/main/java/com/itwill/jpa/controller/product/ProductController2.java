@@ -100,21 +100,22 @@ public class ProductController2 {
 	public String MusicDetail(@RequestParam(name = "productNo" ) Long productNo, Model model, HttpSession session,RedirectAttributes redirectAttributes ) {
 		try {
 			String userId = (String) session.getAttribute("sUserId");
-			
-			if (userId == null) {
-				// 로그인되어 있지 않은 경우, 리디렉션
-				redirectAttributes.addAttribute("msg", "로그인이 필요합니다");
-				return "redirect:/user_login_form";
-			}	
-			
-			UserDto user = userService.findUser(userId);
-			if(user.getMemberShip()==false) {
-				redirectAttributes.addAttribute("msg", "멤버십 구매가 필요합니다");
-				return "redirect:/product_membership_detail";
+			if(userId!=null) {
+				UserDto user = userService.findUser(userId);
+					if(userService.findUser(userId).getMemberShip()==false) {
+						redirectAttributes.addAttribute("msg","멤버십 구매가 필요합니다.");
+						return "redirect:/product_membership_detail";
+					}
+				session.setAttribute("loginUser", user);
+				String userIdString = (user != null) ? user.getUserId() : null;
+				model.addAttribute("userIdString", userIdString);
 			}
-			session.setAttribute("loginUser", user);
-			String userIdString = (user != null) ? user.getUserId() : null;
-			model.addAttribute("userIdString", userIdString);
+			
+			/*
+			 * if (userId == null) { // 로그인되어 있지 않은 경우, 리디렉션
+			 * redirectAttributes.addAttribute("msg", "로그인이 필요합니다"); return
+			 * "redirect:/user_login_form"; }
+			 */
 			
 			Optional<Product> findMusicOptional = productService.findByProductNo(productNo);
 			List<ProductReply> replyList = productService.findByProduct_productNo(productNo);

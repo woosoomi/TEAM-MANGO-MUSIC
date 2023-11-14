@@ -34,17 +34,17 @@ public class CartItemRestController {
 	private CartItemServiceImpl cartItemServiceImpl;
 
 	@Operation(summary = "장바구니에 상품추가[성공]")
-	@PostMapping("/cart_create")
+	@PostMapping("/cart_main/cart_create")
 	public ResponseEntity<CartItemDto> insertCartItem(@RequestBody CartItemDto cartItemDto) {
-		try {
-			CartItem cartItem = CartItem.toEntity(cartItemDto);
-			CartItem createCartItem = cartItemServiceImpl.insert(cartItem);
-			CartItemDto createCartItemDto = CartItemDto.toDto(createCartItem);
-			return new ResponseEntity<>(createCartItemDto, HttpStatus.CREATED);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	    try {
+	        CartItem createCartItem = cartItemServiceImpl.insert(cartItemDto);
+	        System.out.println("들어옵니까?" + createCartItem);
+	        CartItemDto createCartItemDto = CartItemDto.toDto(createCartItem);
+	        return new ResponseEntity<>(createCartItemDto, HttpStatus.CREATED);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
 	}
 
 	@PostMapping("/cart_main/updateQty/{cartItemId}")

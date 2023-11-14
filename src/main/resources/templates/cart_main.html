@@ -94,8 +94,8 @@
 
 					</div>
 
-					<div class="flex-wrap-movielist user-fav-list">
-						<div th:each="cartItem : ${cartItems}" class="movie-item-style-2">
+					<div class="flex-wrap-movielist user-fav-list" >
+						<div th:each="cartItem : ${cartItems}" class="movie-item-style-2" >
 							<div id="checkbox" style="margin-right: 5%;"
 								class="checkbox-container">
 								<input type="checkbox" name="checkbox" checked="checked"
@@ -103,7 +103,7 @@
 									th:data-cart-Item-id="${cartItem.cartItemId}"> <span
 									th:id="cartItem" th:value="${cartItem.cartItemId}"></span>
 							</div>
-							<img id="image" src="images/uploads/cart_1.jpg" alt=""
+							<img id="image"  th:src="${products[0].productNo}" alt=""
 								style="width: 181px; height: 278px;">
 							<div id="product100" th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
@@ -144,8 +144,8 @@
 										<span style="color: orange; font-size: 17px">주문금액 :</span> <span
 											id="totalPrice" th:data-cartItemId='${cartItem.cartItemId}'
 											th:text="${product.productPrice * cartItem.cartItemQty +'원'}"
-											style="color: orange; font-size: 17px"></span> <a href="#"
-											style="border: 1px solid #ccc; padding: 7px 20px; border-radius: 5px; color: white;">주문하기</a>
+											style="color: orange; font-size: 17px"></span> <!-- <a href="#"
+											style="border: 1px solid #ccc; padding: 7px 20px; border-radius: 5px; color: white;">주문하기</a> -->
 									</p>
 									<br /> <br /> <br />
 									<hr style="border: solid 1px; width: 100%; margin: 0 auto;" />

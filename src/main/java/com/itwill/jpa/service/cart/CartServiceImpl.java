@@ -93,6 +93,8 @@ public class CartServiceImpl implements CartService {
 			throw new Exception("해당 카트를 찾을 수 없습니다.");
 		}
 	}
+	
+	// 회원아이디에 해당하는 카트 찾기
 	@Override
 	public Cart findCartByUserId(String userId) throws Exception {
 		Cart cart = cartRepository.findByUserId(userId);
