@@ -42,7 +42,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductController2 {
-
 	@Autowired
 	private final ProductService productService;
 
@@ -60,7 +59,7 @@ public class ProductController2 {
 			String userId = (String) session.getAttribute("sUserId");
 
 			model.addAttribute("sUserId",userId);
-
+			
 //			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 //			musics=productService.productByReadCountDescDto(1L);
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
