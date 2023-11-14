@@ -36,7 +36,7 @@
 
 						<li><a href="product_ticket_list">망고티켓</a></li>
 						<li><a href="product_goods_list">망고굿즈</a></li>
-						<li><a href="product_membership_detail">멤버쉽</a></li>
+						<li><a href="product_membership_detail">멤버십</a></li>
 					</ul>
 				</li>
 				<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
@@ -63,7 +63,7 @@
 						<li><a href="board_map">찾아오는길</a></li>
 					</ul>
 				</li>
-<!--				<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
+				<!--				<li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown"
 						data-hover="dropdown"> 결제 <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 					<ul class="dropdown-menu level1">
 						<li><a href="order_membership">멤버십결제</a></li>
@@ -79,9 +79,13 @@
 				</li>
 			</ul>
 
-			<ul class="nav navbar-nav flex-child-menu menu-right" th:unless="${session.sUserId==null}">
-				<a href="cart_main"><img src="images/uploads/cart_main_logo.png" style="margin-right: 10px"></a>
-				<a href="user_info_form" th:text='${session.sUserName + "  님"}' style="margin-right: 20px"></a>
+			<ul class="nav navbar-nav flex-child-menu menu-right" th:unless="${session.sUserId == null}">
+				<span th:if="${session.sUserId != 'admin'}">
+					<a href="cart_main">
+						<img src="images/uploads/cart_main_logo.png" style="margin-right: 10px">
+					</a>
+				</span>
+				<a href="user_info_form" th:text="${session.sUserName + '  님'}" style="margin-right: 20px"></a>
 				<li class="btn">
 					<a href="user_logout_action">Logout</a>
 				</li>
