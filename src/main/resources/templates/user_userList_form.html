@@ -17,11 +17,11 @@
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!--Bootstrap CSS
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	Bootstrap JS and Popper.js
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   Bootstrap JS and Popper.js
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
 
 </head>
 
@@ -41,12 +41,12 @@
 								<li><a href="user_info_form">내정보</a></li>
 								<li><a href="user_modify_form">회원정보수정</a></li>
 								<!--<li><a href="cart_main" id="cartForm">나의 장바구니</a></li>
-								<li><a href="order_history" id="orderForm">나의 주문내역</a></li>-->
+                        <li><a href="order_history" id="orderForm">나의 주문내역</a></li>-->
 								<li class="active"><a href="user_userList_form" id="UserListForm">회원 목록</a></li>
-								<li><a href="admin" id="OrderListForm">주문 목록</a></li>
+								<li><a href="user_order_info_form" id="OrderListForm">주문 목록</a></li>
 								<li><a href="user_inq_info_form" id="InquiryListForm">문의 목록</a></li>
 								<!--<li><a href="#" data-toggle="modal" data-target="#withdrawalModal"
-										id="userDelete">회원탈퇴</a></li>-->
+                              id="userDelete">회원탈퇴</a></li>-->
 							</ul>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 					<button id="loadUserListButton" style="color: black; width: 20%;">회원리스트 불러오기</button>
 					<table style="width: 130%;">
 						<tr style="font-size: 18px; color:  #FFBB00;">
-							<td style="width: 43px;"><input type="checkbox"></td>
+							<td style="width: 43px;"><!--<input type="checkbox">--></td>
 							<td style="width: 10%;">아이디</td>
 							<td style="width: 15%;">비밀번호</td>
 							<td style="width: 8%;">이름</td>
@@ -72,7 +72,7 @@
 						</tr>
 
 						<tr th:each="user : ${users}">
-							<td><input type="checkbox" /></td>
+							<!--<td><input type="checkbox" /></td>-->
 							<td th:text="${user.userId}">아이디</td>
 							<td th:text="${user.userPw}">비밀번호</td>
 							<td th:text="${user.userName}">이름</td>
@@ -85,12 +85,12 @@
 						</tr>
 					</table>
 
-					<div style="display: flex; gap: 5%;">
-						<button id="user_deleteButton"
-							style="margin-top: 20px; background-color: white;  color: black; width: 100px;">삭제</button>
-						<button id="user_updateButton"
-							style="margin-top: 20px; background-color: white; color: black; width: 100px;">수정</button>
-					</div>
+					<!--<div style="display: flex; gap: 5%;">
+                  <button id="user_deleteButton"
+                     style="margin-top: 20px; background-color: white;  color: black; width: 100px;">삭제</button>
+                  <button id="user_updateButton"
+                     style="margin-top: 20px; background-color: white; color: black; width: 100px;">수정</button>
+               </div>-->
 				</div>
 				<!-- 유저 테이블 종료 -->
 
@@ -104,59 +104,6 @@
 	</div><!-- footer section-->
 	<div th:insert="~{common_footer :: footerFragment}">
 	</div><!-- end of footer section-->
-
-	<script>
-		function confirmWithdrawal() {
-			// 로그인 한 유저의 아이디
-			var userId = document.getElementById("userId").value;
-			console.log("아이디:" + userId);
-
-			// 로그인 한 유저의 비밀번호
-			var userPw = document.getElementById("userPw").value;
-			console.log("비번:" + userPw);
-
-			// 모달에서 입력한 비밀번호 값
-			var enteredPassword = document.getElementById("password").value;
-			console.log("모달입력값:" + enteredPassword);
-
-			// 비밀번호 입력 확인
-			if (!enteredPassword) {
-				alert("비밀번호를 입력하세요.");
-				return;
-			}
-
-			// 비밀번호 확인
-			if (userPw === enteredPassword) {
-				//	$("#withdrawalButton").prop("disabled", true);
-
-				$.ajax({
-					url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/user/delete/${userId}`,
-					method: 'DELETE',
-					success: function (data) {
-						alert("회원 탈퇴 성공!");
-						closeWithdrawalModal();
-					},
-					error: function (error) {
-						alert("회원 탈퇴 실패. 다시 시도해주세요.");
-						console.error("Error deleting user:", error);
-					},
-					complete: function () {
-						// 비동기 처리 완료 후 버튼 활성화
-						$("#withdrawalButton").prop("disabled", false);
-					}
-				});
-			} else {
-				alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
-			}
-		}
-
-		function closeWithdrawalModal() {
-			// 모달 닫기
-			$('#withdrawalModal').modal('hide');
-			window.location.href = "user_login_form";
-		}
-
-	</script>
 
 	<script>
 		// 페이지 로드 시 실행되는 함수
@@ -189,7 +136,7 @@
 				cartForm.style.display = 'none';
 			}
 		}
-		
+
 		// 나의 주문내역 폼을 숨기는 함수
 		function hideOrderForm() {
 			var orderForm = document.getElementById("orderForm");
@@ -244,7 +191,7 @@
 				var row = $("<tr></tr>");
 
 				// 각 필드에 대한 데이터 표시
-				row.append("<td><input type='checkbox' /></td>");
+				row.append("<td></td>");
 				row.append("<td>" + user.userId + "</td>");
 				row.append("<td>" + user.userPw + "</td>");
 				row.append("<td>" + user.userName + "</td>");
@@ -253,7 +200,11 @@
 				row.append("<td>" + user.userJumin + "</td>");
 				row.append("<td>" + user.userPhone + "</td>");
 				row.append("<td>" + user.userGender + "</td>");
-				row.append("<td>" + user.memberShip + "</td>");
+				//row.append("<td>" + user.memberShip + "</td>");
+
+				// 멤버쉽 값에 따라 'O' 또는 'X'를 표시
+				var membershipText = user.memberShip ? 'O' : 'X';
+				row.append("<td>" + membershipText + "</td>");
 
 				// 나머지 필드도 유사하게 추가
 				tbody.append(row);

@@ -15,7 +15,7 @@
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone-no"><!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style11.css">
+	<link rel="stylesheet" href="css/style1.css">
 	<style>
 		.movie-item-style-3 {
 			display: -webkit-flex;
@@ -46,15 +46,11 @@
 			<div class="row">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="topbar-filter">
-						
-						<p>
-							<a th:text="${session.sUserId}+'님의'"></a>
-							<!--<span th:text="${#lists.size(orderDtoList)}"></span>-->
-							<span>주문내역</span>
+						<p><a th:text="${session.sUserId}+'님의'"></a>
+							<span th:text="${#lists.size(orderDtoList)}"></span>
+							<span>개의 주문내역</span>
 					 
-						</p>
-						
-						<label>Sort by:</label>
+							</p><label>Sort by:</label>
 						<select id="sortSelect">
 				        <option value="newest">최신순</option>
 				        <option value="oldest">오래된순</option>
@@ -79,25 +75,23 @@
                 <button th:class="deleteButton" th:data-order-id="${order.orderId}">x</button>
           
             </h6>
+           	 	 <p class="rate">
+                <span th:text = "'주문상태: '+${order.orderStatus}"></span>
+            	</p>
                 <p class="rate">
-					<span th:text = "'주문상태: '+${order.orderStatus}"></span><br>
-					<span th:text="'결제금액: '+${order.orderPrice + ' 원'}"></span><br>
-					<span th:text="${'구매일시: '+ #temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span><br>
+                    <span th:text="'결제금액: '+${order.orderPrice + ' 원'}"></span>
+                </p>
+                <!--주문아이템 정보-->
+              		 <p class="rate" style="margin-left: 50px;">상품이름 : <span th:text="${orderitem.productName}"></span></p>
+                     <p class="rate" style="margin-left: 50px;">상품가격 : <span th:text="${orderitem.productPrice}+' 원'"></span></p>
+                     <p class="rate" style="margin-left: 50px;">수량 : <span th:text="${orderitem.oiQty}"></span></p>
+                <!-- -->
+                <p class="rate">
 					<span th:text="'배송지: ' + ${user.userAddress}"></span>
                 </p>
                 <p class="describe">
-			   	</p>
-                <p>Order Details</p>
-                <!--주문아이템 정보-->
-					<div class="rate" style="display: flex; align-items: center; max-width: 300px;">
-						<img th:src="${orderitem.productImage}" style="max-width: 100%; max-height: 100%; margin-right: 10px;">
-						<div>
-							<p class="rate">상품이름 : <span th:text="${orderitem.productName}"></span></p>
-							<p class="rate">상품가격 : <span th:text="${orderitem.productPrice}+' 원'"></span></p>
-							<p class="rate">수량 : <span th:text="${orderitem.oiQty}"></span></p>
-						</div>
-					</div>
-                <!-- -->
+                    <span th:text="${'구매날짜: '+ #temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                </p>
          		
            
             <p>⚠️ 환불불가 상품입니다.</p>
