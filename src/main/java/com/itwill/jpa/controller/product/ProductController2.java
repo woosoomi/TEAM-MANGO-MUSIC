@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.jpa.controller.user.LoginCheck;
+import com.itwill.jpa.dto.cart.CartDto;
 import com.itwill.jpa.dto.product.MusicDto;
 import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.dto.user.UserDto;
@@ -178,6 +179,11 @@ public class ProductController2 {
 			model.addAttribute("userId", userId);
 			List<ProductDto> goodsList = productService.findByProductCategoryId(2L);
 			model.addAttribute("goodsList", goodsList);
+			 if (userId != null) {
+		            // userId로 해당 사용자의 cart 정보 가져오기
+		            Cart cart = cartService.findCartByUserId(userId);
+			 model.addAttribute("cart",cart);
+			 }
 			// System.out.println(">>>TICKET LIST : " + tickets);
 			return "product_goods_list";
 		} catch (Exception e) {
@@ -197,6 +203,8 @@ public class ProductController2 {
 			UserDto user = null;
 			if (loginUser != null) {
 				user = userService.findUser(loginUser);
+				 Cart cart = cartService.findCartByUserId(loginUser);
+				 model.addAttribute("cart",cart);
 			}
 			session.setAttribute("loginUser", user);
 			String userIdString = (user != null) ? user.getUserId() : null;
