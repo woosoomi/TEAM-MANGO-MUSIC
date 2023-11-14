@@ -11,6 +11,7 @@ public interface OrderService {
 	OrderDto saveOrder(OrderDto orderDto);
 	//카트에서주문 생성
 	OrderDto saveCartOrder(String userId);
+	//OrderDto saveCartOrder(List<CartItemDto> cartItemList, String userId);
 	//주문 정보 수정
 	OrderDto updateOrder(OrderDto orderDto) throws Exception;
 	//주문 한개 삭제

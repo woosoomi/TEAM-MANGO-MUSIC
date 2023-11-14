@@ -94,26 +94,27 @@
 
 					</div>
 
-					<div class="flex-wrap-movielist user-fav-list" >
-						<div th:each="cartItem : ${cartItems}" class="movie-item-style-2" >
+					<div class="flex-wrap-movielist user-fav-list">
+						<div th:each="cartItem : ${cartItems}" class="movie-item-style-2">
 							<div id="checkbox" style="margin-right: 5%;"
 								class="checkbox-container">
 								<input type="checkbox" name="checkbox" checked="checked"
 									class="checkbox" style="width: 20px; height: 20px;"
-									th:data-cart-Item-id="${cartItem.cartItemId}"> <span
+									th:data-cart-Item-id="${cartItem.cartItemId}"
+									th:data-cart-Item-qty="${cartItem.cartItemQty}"> <span
 									th:id="cartItem" th:value="${cartItem.cartItemId}"></span>
 							</div>
-							<img id="image"  th:src="${products[0].productImage}" alt=""
-								style="width: 181px; height: 278px;">
 							<div id="product100" th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
 								class="mv-item-infor" style="width: 600px">
-
-								<span th:text="${product.productName}"></span> <br /> <br />
+								<img id="image" th:src="${product.productImage}" alt=""
+									style="width: 181px; height: 278px;"> <span
+									th:text="${product.productName}"></span> <br /> <br />
 
 								<div
 									style="display: flex; align-items: center; font-size: 15px;">
 									<input type="hidden" id="cartId" th:value="${cart.cartId}">
+									<input type="hidden" id="productNo" th:value="${product.productNo}">
 									<input type="hidden" class='test'
 										th:data-cartItemId='${cartItem.cartItemId}'
 										th:value='${cartItem.cartItemId}'>
@@ -135,8 +136,8 @@
 										th:value="${cartItem.cartItemId}"> <input
 										type="hidden" id="priceTest"
 										th:value="${product.productPrice * cartItem.cartItemQty}">
-									<p class="describe" ></p>
-									<br/>
+									<p class="describe"></p>
+									<br />
 									<p class="run-time" style="font-size: 15px">
 										<br /> 상품가격 : <span id="productPrice"
 											th:text="${product.productPrice} + 원"></span>배송비 : 0원 <input
@@ -145,7 +146,8 @@
 										<span style="color: orange; font-size: 17px">주문금액 :</span> <span
 											id="totalPrice" th:data-cartItemId='${cartItem.cartItemId}'
 											th:text="${product.productPrice * cartItem.cartItemQty +'원'}"
-											style="color: orange; font-size: 17px"></span> <!-- <a href="#"
+											style="color: orange; font-size: 17px"></span>
+										<!-- <a href="#"
 											style="border: 1px solid #ccc; padding: 7px 20px; border-radius: 5px; color: white;">주문하기</a> -->
 									</p>
 									<br /> <br /> <br />
@@ -162,7 +164,8 @@
 										<span th:text="'총 주문금액 : ' + ${cart.cartTotPrice} + '원' "></span>
 									</span>
 									<button id="paymentButton"
-										style="background-color: #fff; color: black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;" onclick="sendPostRequest();">주문하기</button>
+										style="background-color: #fff; color: black; border: none; padding: 10px 20px; font-size: 18px; margin-right: 10%; width: 15%; border-radius: 10px;"
+										onclick="sendPostRequest();">주문하기</button>
 								</div>
 							</div>
 						</div>
@@ -315,13 +318,13 @@
 	<div th:insert="~{common_footer :: footerFragment}"></div>
 
 </body>
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/plugins2.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/cart.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/cart.js"></script>
 
-	<script>
-
-	</script>
+<script>
+	
+</script>
 </html>

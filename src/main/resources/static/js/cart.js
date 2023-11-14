@@ -11,11 +11,11 @@ $(document).ready(function() {
 		const isChecked = allChk.checked;
 		checkboxes.forEach(function(checkbox) {
 			checkbox.checked = isChecked;
-					updateCartItemQtyOnCheckboxChange(checkbox);
-		calculateTotalPrice();
+			updateCartItemQtyOnCheckboxChange(checkbox);
+			calculateTotalPrice();
 		});
 
-		
+
 
 	});
 
@@ -127,7 +127,7 @@ function changeQuantity(amount, element) {
 			data: { cartItemId: cartItemId, cartItemQty: newQty },
 			success: function(data) {
 				console.log('카트 아이템 수량이 업데이트되었습니다.');
-				
+
 				// 개별 상품의 가격 업데이트
 				updateTotalPrice(cartItemId);
 				// 전체 주문금액 재계산
@@ -192,6 +192,35 @@ function formatNumberWithCommas(number) {
 }
 
 
+function updateSelectedItems() {
+	var selectedItems = [];
+	var checkboxes = document.querySelectorAll('.checkbox');
+	checkboxes.forEach(function(checkbox) {
+		if (checkbox.checked) {
+			console.log('`12123123123123');
+			console.log(checkbox.dataset);
+			const cartItemId = { cartItemId: checkbox.dataset.cartItemId };
+			var cartItemQtyElement = document.getElementById("cartItemQty");
+			var cartItemQty = cartItemQtyElement.value;
+			console.log(cartItemQty);
+			var cartIdElement = document.getElementById('cartId');
+			var cartId = cartIdElement.value;
+			var productNoElement = document.getElementById('productNo');
+			var productNo = productNoElement.value;
+			selectedItems.push(cartItemId);
+			selectedItems.push(cartItemQty);
+			selectedItems.push(cartId);
+			selectedItems.push(productNo);
+		}
+	});
+	return selectedItems;
+}
+document.addEventListener('change', function(event) {
+	if (event.target && event.target.classList.contains('checkbox')) {
+		// 체크박스가 변경되었을 때, 선택된 상품 업데이트
+		updateSelectedItems();
+	}
+});
 
 function sendPostRequest() {
 	var userIdElement = document.getElementById("sUserId");
@@ -206,7 +235,7 @@ function sendPostRequest() {
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', url, true);
 	xhr.setRequestHeader('Content-Type', 'application/json');
-
+debugger;
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200 || xhr.status === 405) {
@@ -225,6 +254,12 @@ function sendPostRequest() {
 
 	xhr.send(JSON.stringify(requestData));
 }
+
+
+
+
+
+
 
 function deleteSelectedCartItems(callback) {
 	const checkedItems = document.querySelectorAll('.checkbox:checked');
@@ -262,38 +297,38 @@ $('.delete-all-btn').click(function() {
 
 var previousCartItemQty;
 function updateCartItemQtyOnCheckboxChange(checkbox) {
-    var cartItemQtyElement = document.getElementById("cartItemQty");
-    var currentQty = cartItemQtyElement.value;
-    const cartItemId = checkbox.dataset.cartItemId;
+	var cartItemQtyElement = document.getElementById("cartItemQty");
+	var currentQty = cartItemQtyElement.value;
+	const cartItemId = checkbox.dataset.cartItemId;
 
-    // 체크박스가 선택되기 전의 값 저장
-    if (!checkbox.checked) {
-        previousCartItemQty = currentQty;
-    }
-    const newQty = checkbox.checked ? 1 : 0;
-    previousCartItemQty = currentQty;
-    currentQty = newQty;
+	// 체크박스가 선택되기 전의 값 저장
+	if (!checkbox.checked) {
+		previousCartItemQty = currentQty;
+	}
+	const newQty = checkbox.checked ? 1 : 0;
+	previousCartItemQty = currentQty;
+	currentQty = newQty;
 
-    // 서버에 수량 업데이트를 요청
-    $.ajax({
-        url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/updateQty/${cartItemId}`,
-        type: 'POST',
-        data: { cartItemId: cartItemId, cartItemQty: newQty },
-        success: function (data) {
-            console.log('카트 아이템 수량이 업데이트되었습니다.');
-            // 개별 상품의 가격 업데이트
-            updateTotalPrice(cartItemId);
-            // 전체 주문금액 재계산
-            calculateTotalPrice();
+	// 서버에 수량 업데이트를 요청
+	$.ajax({
+		url: `/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/updateQty/${cartItemId}`,
+		type: 'POST',
+		data: { cartItemId: cartItemId, cartItemQty: newQty },
+		success: function(data) {
+			console.log('카트 아이템 수량이 업데이트되었습니다.');
+			// 개별 상품의 가격 업데이트
+			updateTotalPrice(cartItemId);
+			// 전체 주문금액 재계산
+			calculateTotalPrice();
 
-            // 체크박스가 선택된 경우, 저장된 이전 값으로 복원
-            if (checkbox.checked) {
-                currentQty = previousCartItemQty;
-                
-            }
-        },
-        error: function () {
-            console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
-        }
-    });
+			// 체크박스가 선택된 경우, 저장된 이전 값으로 복원
+			if (checkbox.checked) {
+				currentQty = previousCartItemQty;
+
+			}
+		},
+		error: function() {
+			console.error('카트 아이템 수량 업데이트 중 오류가 발생했습니다.');
+		}
+	});
 }
