@@ -17,6 +17,7 @@ import com.itwill.jpa.dto.order.OrderDto;
 import com.itwill.jpa.dto.order.OrderItemDto;
 import com.itwill.jpa.dto.user.UserDto;
 import com.itwill.jpa.entity.product.Product;
+import com.itwill.jpa.entity.user.User;
 import com.itwill.jpa.service.order.CouponService;
 import com.itwill.jpa.service.order.OrderItemService;
 import com.itwill.jpa.service.order.OrderService;
@@ -61,6 +62,16 @@ public class OrderController {
 				return "redirect:/user_login_form";
 			}
 			
+			
+	        // 이미 멤버십을 구매한 경우 처리
+			UserDto user = userService.findUser(userId);
+			
+	        if (user.getMemberShip() == true) {
+				// 이미 멤버십을 구매한 경우 인덱스로 이동
+	            return "redirect:/index";
+			}
+	        
+	        
 			/*************** 주문아이템(멤버십) 수량 1픽스***************/
 			
 			//멤버십 디테일에서 상품 세션 담은거 받기
