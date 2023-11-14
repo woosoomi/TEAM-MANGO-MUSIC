@@ -49,7 +49,17 @@
 										class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a>
 								</div>
 							</div>
+							
+							<script th:inline="javascript">
+							document.querySelector(".movie-btn").addEventListener("click", function () {
+								let sessionId = [[${userIdString}]];
+								if (sessionId == null) {
+									alert("로그인이 필요합니다.");
+									window.location.replace("user_login_form");
+								}
+							});
 
+							</script>
 							<!-- <div class="btn-transform transform-vertical">
 								<div><a href="product_membership_detail" class="item item-1 yellowbtn"><i class="ion-card"></i>멤버십 구매하기</a>
 								</div>
@@ -79,9 +89,16 @@
 											class="ion-social-youtube"></i></a></div>
 							</div>
 						</div>
-												
-						<script>
+						
+																	
+						<script th:inline="javascript">
 							document.querySelector(".social-btn").addEventListener("click", function () {
+								let sessionId = [[${userIdString}]];
+								if (sessionId == null) {
+									alert("로그인이 필요합니다.");
+									window.location.replace("user_login_form");
+								}
+								
 								var audio1 = new Audio("./css/Baddie.mp3");
 								audio1.loop = false; // 반복재생하지 않음
 								audio1.volume = 0.5; // 음량 설정
@@ -113,7 +130,7 @@
 									<div class="videos">
 										<div class="slider-for-2 video-ft">
 											<div>
-												<iframe class="youtube" width="560" height="315" th:src="${findMusic.productMovie}"
+												<iframe width="560" height="315" th:src="${findMusic.productMovie}"
 													frameborder="0"
 													allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 													allowfullscreen>
@@ -225,16 +242,6 @@
 			<!-- end of footer section-->
 </body>
 
-<script th:inline="javascript">
-	document.querySelector(".social-btn, .movie-btn, .slider-for-2, .youtube").addEventListener("click", function () {
-		let sessionId = [[${userIdString}]];
-		if (sessionId == null) {
-			alert("로그인이 필요합니다.");
-			window.location.replace("user_login_form");
-		}
-	});
-
-</script>
 
 <script type="text/javascript">
 
