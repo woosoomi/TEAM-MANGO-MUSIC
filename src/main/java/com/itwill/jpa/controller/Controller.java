@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.jpa.dto.product.ProductDto;
 import com.itwill.jpa.entity.board.Board;
 import com.itwill.jpa.service.board.BoardServiceImpl;
+import com.itwill.jpa.service.product.ProductService;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
@@ -17,10 +19,20 @@ public class Controller {
 	@Autowired
 	BoardServiceImpl boardServiceImpl;
 		
+	@Autowired
+	ProductService productService;
 	@GetMapping("/index") 
 	public String index(Model model) { 
-		List<Board> magazines = boardServiceImpl.findBycategory(3L);
-		model.addAttribute("magazines", magazines); 
+		
+		try {
+			List<Board> magazines = boardServiceImpl.findBycategory(3L);
+			model.addAttribute("magazines", magazines); 
+			List<ProductDto> musics = productService.findByProductCategoryId(1L);
+			musics = productService.productByReadCountDescDto(1L);
+			model.addAttribute("musics", musics);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "index"; 
 	}
 	@GetMapping("/Audio")

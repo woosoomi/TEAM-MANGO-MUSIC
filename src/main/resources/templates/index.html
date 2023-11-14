@@ -585,28 +585,32 @@
 						<img src="images/rv.jpg" alt=""></div>
 						<div class="celebrities">
 							<h4 class="sb-title">MANGO CHART</h4>
-							<div class="celeb-item"><a href=""><img src="images/uploads/MINI아이유.jpg" alt="" width="70"
+							<div class="celeb-item"><a href=""><img th:src="${musics[0].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
-									<h6><a href="#">1 . Celebrity</a></h6><span>아이유(IU)</span>
+									<h6><a href="#" th:text="${musics[0].productName}">1 . Celebrity</a></h6>
+									<span th:text="${musics[0].productArtist}">아이유(IU)</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a href="#"><img src="images/uploads/MINI제니.jpg" alt="" width="70"
+							<div class="celeb-item"><a href="#"><img th:src="${musics[1].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
-									<h6><a href="#">2 . You & Me</a></h6><span>제니</span>
+									<h6><a href="#" th:text="${musics[1].productName}">2 . You & Me</a></h6>
+									<span th:text="${musics[1].productArtist}">제니</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a href="#"><img src="images/uploads/MINI악뮤.jpg" alt="" width="70"
+							<div class="celeb-item"><a href="#" ><img th:src="${musics[2].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
-									<h6><a href="#">3 . LoveLee</a></h6><span>악동뮤지션</span>
+									<h6><a href="#" th:text="${musics[2].productName}">3 . LoveLee</a></h6>
+									<span th:text="${musics[2].productArtist}">악동뮤지션</span>
 								</div>
 							</div>
-							<div class="celeb-item"><a href="#"><img src="images/uploads/MINI정국.png" alt="" width="70"
+							<div class="celeb-item"><a href="#"><img th:src="${musics[3].productImage}" alt="" width="70"
 										height="70"></a>
 								<div class="celeb-author">
-									<h6><a href="#">4 . Seven</a></h6><span>정국</span>
+									<h6><a href="#" th:text="${musics[3].productName}">4 . Seven</a></h6>
+									<span th:text="${musics[3].productArtist}">정국</span>
 								</div>
 							</div><a href="product_music_list" class="btn">VIEW MORE<i class="ion-ios-arrow-right"></i></a>
 						</div>
