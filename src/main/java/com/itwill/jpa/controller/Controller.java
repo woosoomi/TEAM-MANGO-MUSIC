@@ -30,6 +30,9 @@ public class Controller {
 			List<ProductDto> musics = productService.findByProductCategoryId(1L);
 			musics = productService.productByReadCountDescDto(1L);
 			model.addAttribute("musics", musics);
+			List<ProductDto> tickets = productService.findByProductCategoryId(3L);
+			tickets = productService.productByReadCountDescDto(3L);
+			model.addAttribute("tickets", tickets);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
