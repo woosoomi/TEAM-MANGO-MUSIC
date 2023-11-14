@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class ProductRestController3 {
 	
 	
 	@LoginCheck
-	@GetMapping("/product_goods_Cart_detail/{productNo}/{userId}/{productQty}")
+	@PostMapping("/product_goods_Cart_detail/{productNo}/{userId}/{productQty}")
 	public ResponseEntity<CartItemDto> GoodsDetail(@PathVariable(name = "productNo") Long productNo,
 	                                              @PathVariable(name = "userId") String userId,
 	                                              @PathVariable(name = "productQty") int productQty,
