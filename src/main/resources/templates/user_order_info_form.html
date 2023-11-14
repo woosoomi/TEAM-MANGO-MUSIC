@@ -56,21 +56,22 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="form-style-1 user-pro" action="">
 						<div class="content" style="color: white; padding: 20px;">
-			<h1 style="margin-left: 600px; margin-bottom: 100px; margin-top: 20px;">주문목록</h1>
+			<h1 style="margin-left: 270px; margin-bottom: 100px; margin-top: 20px;">주문목록</h1>
 			<table>
 				<tr style="font-size: 15px; color: lightpink; ">
 					<td style="width: 15%;">아이디</td>
-					<td style="width:30%;">주문일시</td>
-					<td style="width:15%;">주문자성명</td>
-					<td style="width:15%;">주문제품</td>
-					<td style="width:30%;">주문수량</td>
+					<td style="width:15%;">이름</td>
+					<td style="width:20%;">주문일시</td>
+					<td style="width:20%;">주문상태</td>
+					<td style="width:15%;">주문총액</td>
 				</tr>
 
 				<tr th:each="orders : ${orders}">
 					<td th:text="${orders.getUserId}">아이디</td>
+					<td th:text="${orders.getUserName}">이름</td>
 					<td th:text="${#temporals.format(orders.createdAt, 'yyyy.MM.dd HH:mm')}">주문일시</td>
-					<td th:text="${orders.getUserName}">주문자성명</td>
-					<td th:text="${orders.orderPrice}">주문자성명</td>
+					<td th:text="${orders.orderStatus}">주문상태</td>
+					<td th:text="${orders.orderPrice}">주문총액</td>
 					
 				</tr>
 			</table>
