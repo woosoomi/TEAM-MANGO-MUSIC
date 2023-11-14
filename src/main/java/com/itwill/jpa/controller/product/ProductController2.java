@@ -224,11 +224,14 @@ public class ProductController2 {
 			    // 예를 들어, 새로운 카트를 생성하고 제품을 추가하는 등의 작업을 수행할 수 있습니다.
 			}
 			Optional<Product> findGoodsOptional = productService.findByProductNo(productNo);
+			List<ProductReply> ReplyList = productService.findByProduct_productNo(productNo);
 			if (findGoodsOptional.isPresent()) {
 				Product findGoods = findGoodsOptional.get();
 				productService.increaseReadCount(findGoods);
 				model.addAttribute("findGoods", findGoods);
 				System.out.println(">>>굿즈 상세정보:" + findGoods);
+				model.addAttribute("ReplyList", ReplyList);
+				System.out.println(">>>댓글정보:" + ReplyList);
 			} else {
 				model.addAttribute("errorMSG", "해당 굿즈를 찾을 수 없습니다.");
 			}
