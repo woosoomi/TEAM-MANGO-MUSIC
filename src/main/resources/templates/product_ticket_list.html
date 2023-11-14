@@ -50,7 +50,6 @@
           <div class="movie-item-style-3" th:id="'ticketItem_' + ${ticket.productNo}" th:each="ticket, iterStat : *{tickets}" th:if="${iterStat.index lt 13}">
            
            <div class="movie-item-style-2">
-            <a style="padding-right: 20px; color: #ffffff;" th:text="${ticket.productNo}">번호</a>
             <a th:href="@{/product_ticket_detail(productNo=${ticket.productNo})}" href="celebritylist.html">
               <img th:src="${ticket.productImage}" alt="" style="width: 200px">
             </a>
