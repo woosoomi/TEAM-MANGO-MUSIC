@@ -62,13 +62,15 @@ public class UserVotesericeImpl implements UserVoteService{
 	    Vote vote = voteServiceImpl.selectByVoteNo(voteId);
 	    if (vote == null) {
 	        throw new RuntimeException("해당 투표를 찾을 수 없습니다.");
-	    }
-
+		}
 	    user.setVote(vote);
 	    User updatedUser = userRepository.save(user);
 	    return UserVoteDto.toDto(updatedUser);
 	}
 
+
+
+	
 
 	
 	
