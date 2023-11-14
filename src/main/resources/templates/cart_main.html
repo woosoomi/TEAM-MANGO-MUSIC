@@ -103,7 +103,7 @@
 									th:data-cart-Item-id="${cartItem.cartItemId}"> <span
 									th:id="cartItem" th:value="${cartItem.cartItemId}"></span>
 							</div>
-							<img id="image"  th:src="${products[0].productNo}" alt=""
+							<img id="image"  th:src="${products[0].productImage}" alt=""
 								style="width: 181px; height: 278px;">
 							<div id="product100" th:each="product : ${products}"
 								th:if="${product.productNo == cartItem.productId}"
@@ -135,7 +135,7 @@
 										th:value="${cartItem.cartItemId}"> <input
 										type="hidden" id="priceTest"
 										th:value="${product.productPrice * cartItem.cartItemQty}">
-									<p class="describe" th:text="${product.productContent}"></p>
+									<p class="describe" ></p>
 									<p class="run-time" style="font-size: 15px">
 										<br /> 상품가격 : <span id="productPrice"
 											th:text="${product.productPrice} + 원"></span>배송비 : 0원 <input

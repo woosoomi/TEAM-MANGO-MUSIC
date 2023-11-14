@@ -11,9 +11,11 @@ $(document).ready(function() {
 		const isChecked = allChk.checked;
 		checkboxes.forEach(function(checkbox) {
 			checkbox.checked = isChecked;
-		});
-		updateCartItemQtyOnCheckboxChange(checkbox);
+					updateCartItemQtyOnCheckboxChange(checkbox);
 		calculateTotalPrice();
+		});
+
+		
 
 	});
 
