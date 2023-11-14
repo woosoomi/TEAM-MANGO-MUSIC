@@ -65,7 +65,7 @@
 					<div class="movie-img sticky-sb"><img th:src="${findGoods.productImage}"
 							src="images/uploads/movie-single.jpg" alt="" style="max-width: 100%">
 						<!--수량조절ui-->
-						<div class="quantity-box" style="margin-top: 20px;">
+						<div class="quantity-box" style="margin-top: 20px;" id = "qty">
 							<div class="quantity-button" onclick="changeQuantity(-1)">-</div>
 							<input class="quantity-input" type="text" value="1" id="quantity" readonly>
 							<div class="quantity-button" onclick="changeQuantity(1)">+</div>
@@ -73,7 +73,7 @@
 
 						<!--장바구니 담기 버튼-->
 						<div class="movie-btn">
-							<div class="btn-transform transform-vertical">
+							<div class="btn-transform transform-vertical" id = "productNo">
 								<div><a th:href="@{/cart_main(productNo=${productNo})}" class="item item-1 yellowbtn"
 										onclick="sendPostRequest()">
 										<i class="ion-card"></i>장바구니 담기</a>
@@ -108,7 +108,7 @@
 </body>
 <script>
 
-	function sendPostRequest() {
+	/* function sendPostRequest() {
 		const writeData = {
 			"cartItemId": 0,
 			"cartItemQty": 10,
@@ -118,7 +118,7 @@
 		alert(writeData.cartId); // 수정
 		alert(writeData.cartItemQty); // 수정
 
-		fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/create', {
+		fetch('/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/cart_create', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -142,8 +142,40 @@
 			});
 
 
-	}
+	} */
+	/*    $(document).ready(function () {
+		   alert("asdsadsadsa");
+	        // "장바구니 담기" 버튼 클릭 시
+	        $("sendPostRequest()").on("click", function () {
+	            // 선택한 상품 정보 수집 (상품 번호, 수량 등)
+	            var productId = $("#productNo").val(); // 상품 번호를 가져오는 예시
+	            var quantity = $("#qty").val(); // 수량을 가져오는 예시
 
+	            // 장바구니에 담을 상품 정보를 JSON 형식으로 생성
+	            var cartItemData = {
+	                productNo: productNo,
+	                cartItemQty: qty
+	                // 여기에 필요한 다른 상품 정보 추가 가능
+	            };
+
+	            // AJAX를 사용하여 서버에 장바구니에 상품 추가 요청
+	            $.ajax({
+	                type: "POST",
+	                contentType: "application/json",
+	                url: "/2023-05-JAVA-DEVELOPER-final-project-team1-mango/cart_main/cart_create", // 실제 엔드포인트에 맞게 수정
+	                data: JSON.stringify(cartItemData),
+	                success: function (response) {
+	                	
+	                    console.log("장바구니에 상품이 성공적으로 추가되었습니다.", response);
+	                    // 여기에 추가 성공 시 수행할 동작 추가 가능
+	                },
+	                error: function (error) {
+	                    console.error("장바구니에 상품 추가 중 오류가 발생했습니다.", error);
+	                    // 여기에 오류 발생 시 수행할 동작 추가 가능
+	                }
+	            });
+	        });
+	    }); */
 
 	//수령조절
 	function changeQuantity(amount) {
