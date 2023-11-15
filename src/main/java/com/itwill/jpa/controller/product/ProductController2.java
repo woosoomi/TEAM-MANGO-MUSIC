@@ -183,8 +183,8 @@ public class ProductController2 {
 		            Cart cart = cartService.findCartByUserId(userId);
 			 model.addAttribute("cart",cart);
 			 }
+			 return "product_goods_list";
 			// System.out.println(">>>TICKET LIST : " + tickets);
-			return "product_goods_list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute(e.getMessage());
@@ -196,7 +196,7 @@ public class ProductController2 {
 	// 굿즈디테일
 	@LoginCheck
 	@GetMapping("/product_goods_detail")
-	public String GoodsDetail(@RequestParam(name = "productNo") Long productNo, Model model, HttpSession session) {
+	public String GoodsDetail(@RequestParam(name = "productNo") Long productNo, Model model, HttpSession session,RedirectAttributes redirectAttributes ) {
 		try {
 			String loginUser = (String) session.getAttribute("sUserId");
 			UserDto user = null;
@@ -204,9 +204,13 @@ public class ProductController2 {
 				user = userService.findUser(loginUser);
 				 Cart cart = cartService.findCartByUserId(loginUser);
 				 model.addAttribute("cart",cart);
-			}
+			}else {
+				redirectAttributes.addAttribute("msg","로그인이 필요합니다.");
+				return "redirect:/user_login_form";
+		 }
 			session.setAttribute("loginUser", user);
 			String userIdString = (user != null) ? user.getUserId() : null;
+			
 			model.addAttribute("userIdString", userIdString);		
 			model.addAttribute("productNo", productNo);
 			
