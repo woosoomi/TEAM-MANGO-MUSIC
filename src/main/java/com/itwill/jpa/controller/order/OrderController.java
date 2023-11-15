@@ -68,7 +68,8 @@ public class OrderController {
 			
 	        if (user.getMemberShip() == true) {
 				// 이미 멤버십을 구매한 경우 인덱스로 이동
-	            return "redirect:/index";
+	        	redirectAttributes.addAttribute("msg", "멤버십을 이미 보유하고 있습니다.");
+				return "redirect:/product_membership_detail";
 			}
 	        
 	        
