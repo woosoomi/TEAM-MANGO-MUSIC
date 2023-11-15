@@ -1,6 +1,7 @@
 package com.itwill.jpa.service.order;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -144,6 +145,7 @@ public class OrderServiceImpl implements OrderService{
 		for (Order order : orderList) {
 			orderDtoList.add(OrderDto.toDto(order));
 		}
+		orderDtoList.sort(Comparator.comparing(OrderDto::getUserId)); // 아이디로 정렬
 		return orderDtoList;
 	}
 

@@ -85,7 +85,7 @@ public class UserController {
 	//관리자 페이지 주문내역 매핑
 	@LoginCheck
 	@GetMapping("/user_order_info_form")
-	public String admin_order_info_form(HttpSession session, Model model) throws Exception {
+	public String user_order_info_form(HttpSession session, Model model) throws Exception {
 		String loginUser = (String) session.getAttribute("sUserId");
 		UserDto user = userService.findUser(loginUser);
 		List<OrderDto> orders = orderService.orders();
