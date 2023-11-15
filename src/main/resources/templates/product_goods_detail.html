@@ -126,10 +126,10 @@
 								<div id="overview" class="tab active">
 									<h3 th:text = "|아티스트 : ${findGoods.productArtist}|" style="color: orange; font-size: 30px; margin-top:15px; margin-bottom: 15px;"></h3>
 
-
 									<div class="row">
 										<div class="col-md-8 col-sm-12 col-xs-12">
-											<p><span th:text="${findGoods.productContent}"></span></p>
+											<!--<p><span th:text="${findGoods.productContent}"></span></p>-->
+											<img th:src="${findGoods.productContent}" src="images/uploads/movie-single.jpg" alt="" style="max-width: 200%">
 											<div class="title-hd-sm">
 											</div>
 										</div>
