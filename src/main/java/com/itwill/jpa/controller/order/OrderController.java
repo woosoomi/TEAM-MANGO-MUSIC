@@ -66,9 +66,10 @@ public class OrderController {
 	        // 이미 멤버십을 구매한 경우 처리
 			UserDto user = userService.findUser(userId);
 			
-	        if (user.getMemberShip() == true) {
-				// 이미 멤버십을 구매한 경우 인덱스로 이동
-	            return "redirect:/index";
+			// 컨트롤러에서 상태 저장
+			if (user.getMemberShip()) {
+			    redirectAttributes.addFlashAttribute("membershipStatus", "alreadyHasMembership");
+			    return "redirect:/index";
 			}
 	        
 	        
