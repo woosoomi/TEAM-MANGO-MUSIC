@@ -653,7 +653,25 @@
 				});
 			});
 		});
+		
+
+
+		
 	</script>
+
+
+	
+    <!-- membershipStatus를 확인하고 팝업을 표시하는 스크립트 -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var membershipStatus = /*[[${membershipStatus}]]*/ '';
+        if (membershipStatus === 'alreadyHasMembership') {
+            alert('이미 멤버십을 보유하고 있습니다.');
+        }
+        /*]]>*/
+    </script>
+    
+    
 
 </body>
 
